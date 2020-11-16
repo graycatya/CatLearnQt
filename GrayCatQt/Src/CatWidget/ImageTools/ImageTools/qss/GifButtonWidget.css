@@ -1,0 +1,107 @@
+﻿QWidget#RootWidget {
+    border: 5px solid #aaaaaa;
+    /*background-color: rgba(107, 107, 107, 100);*/
+    /*back*/
+    border-radius: 5px;
+}
+
+QWidget#BorderWidget {
+    background-color: rgba(107, 107, 107, 140);
+    border-radius: 5px;
+}
+
+QWidget#Image {
+    border-image: url(:/ImageTools/image/gif.png);
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+}
+
+QLabel {
+    color: white;
+    font-size: 15px;
+}
+
+QPushButton#VideoButton {
+    border-image: url(:/ImageTools/image/gifvideo_gray.png);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+QPushButton#VideoButton:hover {
+    border-image: url(:/ImageTools/image/gifvideo_white.png);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+QPushButton#VideoButton[State="VideoStart"] {
+    background-color: gray;
+    border-radius: 5px;
+}
+
+QPushButton#VideoButton[State="VideoStop"] {
+    background: transparent;
+}
+
+
+QPushButton#MoveButton {
+    border-image: url(:/ImageTools/image/gifmove_gray.png);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+QPushButton#MoveButton:hover {
+    border-image: url(:/ImageTools/image/gifmove_white.png);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+QPushButton#MoveButton[State="MoveStart"] {
+    background-color: gray;
+    border-radius: 5px;
+}
+
+QPushButton#MoveButton[State="MoveStop"] {
+    background: transparent;
+}
+
+QPushButton#ShowButton {
+    border-image: url(:/ImageTools/image/gifshow_gray.png);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+QPushButton#ShowButton:hover {
+    border-image: url(:/ImageTools/image/gifshow_white.png);
+    min-width: 30px;
+    min-height: 30px;
+}
+
+QPushButton#ShowButton[State="ShowStart"] {
+    background-color: gray;
+    border-radius: 5px;
+}
+
+QPushButton#ShowButton[State="ShowStop"] {
+    background: transparent;
+}
+
+QSpinBox#SpinBoxFps {
+    min-width: 15px;
+    min-height: 20px;
+}
+
+QLineEdit {
+    background: transparent;
+    border-radius: 3px;
+    border: 2px solid rgba(255, 255, 255, 150);
+    color: white;
+}
+
+QSpinBox#SpinBoxFps {
+    border: 1px solid rgba(255, 255, 255, 150);
+    background-color: transparent;
+    border-radius: 3px;
+    color: white;
+}

@@ -1,0 +1,106 @@
+﻿QWidget#RootWidget {
+    border: 1px solid gray;
+    border-radius: 4px;
+    background-color: white;
+}
+
+QPushButton {
+    border: none;
+    background-color: transparent;
+}
+
+QPushButton#CutButton {
+    image: url(:/ImageTools/image/cut.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CutButton:hover {
+    image: url(:/ImageTools/image/cut_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CutButton:pressed {
+    image: url(:/ImageTools/image/cut_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CutButton:checked {
+    image: url(:/ImageTools/image/cut_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#LampButton {
+    image: url(:/ImageTools/image/lamp.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#LampButton:hover {
+    image: url(:/ImageTools/image/lamp_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#LampButton:pressed {
+    image: url(:/ImageTools/image/lamp_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#LampButton:checked {
+    image: url(:/ImageTools/image/lamp_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#SaveButton {
+    image: url(:/ImageTools/image/save.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#SaveButton:hover {
+    image: url(:/ImageTools/image/save_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#SaveButton:pressed {
+    image: url(:/ImageTools/image/save_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#SaveButton:checked {
+    image: url(:/ImageTools/image/save_black.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CloseButton {
+    image: url(:/ImageTools/image/close.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CloseButton:hover {
+    image: url(:/ImageTools/image/close_red.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CloseButton:pressed {
+    image: url(:/ImageTools/image/close_red.png);
+    width: 24px;
+    height: 24px;
+}
+
+QPushButton#CloseButton:checked {
+    image: url(:/ImageTools/image/close_red.png);
+    width: 24px;
+    height: 24px;
+}

@@ -1,0 +1,22 @@
+﻿QWidget#Zoom {
+    border: none;
+    border-radius: 7px;
+    background-color: rgba(255,255,255,80%);
+    image: url(:/ImageTools/image/zoom.png);
+    min-width: 12px;
+    min-height: 12px;
+    max-width: 14px;
+    max-height: 14px;
+    width: 14px;
+    height: 14px;
+}
+
+ImageToolBase[State="CloseLight"] {
+    qproperty-MaskLayerColor: rgba(0,0,0,100%);
+}
+
+
+ImageToolBase[State="OpenLight"] {
+    qproperty-MaskLayerColor: rgba(160,160,160,75%);
+}
+

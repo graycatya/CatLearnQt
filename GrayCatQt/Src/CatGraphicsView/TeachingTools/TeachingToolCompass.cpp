@@ -655,6 +655,9 @@ void TeachingToolCompass::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                 SetCursor(PenCircleCursor);
                 break;
             }
+            default:{
+                break;
+            }
         }
         prepareGeometryChange();
     }

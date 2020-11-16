@@ -1,6 +1,7 @@
 QT += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+contains(QT_CONFIG, opengl): QT += opengl
 
 CONFIG += c++11
 CONFIG += console
@@ -34,3 +35,10 @@ INCLUDEPATH += Src
 
 include(main/main.pri)
 include(Src/SingleApplication/SingleApplication.pri)
+include(Src/CatUniversal/CatUniversal.pri)
+include(Src/CatNetWork/CatNetWork.pri)
+include(Src/CatLog/CatLog.pri)
+include(Src/CatWidget/CatWidget.pri)
+include(Src/CatGraphicsView/CatGraphicsView.pri)
+include(Src/CatSerial/CatSerial.pri)
+

@@ -1,5 +1,4 @@
-﻿#pragma execution_character_set("utf-8")
-#include "GifButtonWidget.h"
+﻿#include "GifButtonWidget.h"
 #include "ui_GifButtonWidget.h"
 #include <QFile>
 #include <QMouseEvent>
@@ -14,16 +13,16 @@
 GifButtonWidget::GifButtonWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::GifButtonWidget),
-    m_bShowFunction(true),
-    m_bWidgetMove(false),
+    m_bGifselect(false),
     m_bGifStart(false),
     m_bGifMove(true),
     m_bGifShow(true),
+    m_bShowFunction(true),
+    m_bWidgetMove(false),
     m_pGifWindow(0,0,0,0),
-    m_bGifselect(false),
     m_iCount(0),
-    m_pGifWriter(nullptr),
     m_pVidoTimer(nullptr),
+    m_pGifWriter(nullptr),
     m_pMenu(nullptr),
     m_pClose(nullptr)
 {

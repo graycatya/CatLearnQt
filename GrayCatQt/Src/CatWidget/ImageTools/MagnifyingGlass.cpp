@@ -93,6 +93,9 @@ void MagnifyingGlass::InitProperty()
                 this->close();
                 break;
             }
+            default:{
+                break;
+            }
         }
     });
 

@@ -1,5 +1,4 @@
-﻿#pragma execution_character_set("utf-8")
-#include "TeachingToolCompass.h"
+﻿#include "TeachingToolCompass.h"
 #include <QGraphicsSvgItem>
 #include <QPainter>
 #include <QPainterPath>

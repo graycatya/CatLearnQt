@@ -5,15 +5,15 @@
 
 ImageToolBase::ImageToolBase(QWidget *parent)
     : QWidget(parent)
-    , m_qMovePos(QPoint(-1, -1))
+    , m_pParent(parent)
+    , m_pButtonTool(nullptr)
     , m_pScreen(nullptr)
     , m_pFullScreen(nullptr)
     , m_pBackgroundScreen(nullptr)
-    , m_pButtonTool(nullptr)
+    , m_qMovePos(QPoint(-1, -1))
     , m_bLight(true)
     , m_bCut(false)
     , m_bInit(false)
-    , m_pParent(parent)
 {
     this->setWindowFlags(Qt::FramelessWindowHint);
     setAutoFillBackground(true);

@@ -3,11 +3,11 @@
 #include <QDebug>
 
 CatThreadPool::CatThreadPool(QObject *parent, int InitialThreadCount)
- : QObject(parent)
- , m_bHandle_NonWork_Threads(false)
- , m_pHandle_NonWork_Threads(nullptr)
- , m_iDefaultThreadCount(InitialThreadCount)
- , m_iThreadWorkCount(0)
+    : QObject(parent)
+    , m_iDefaultThreadCount(InitialThreadCount)
+    , m_iThreadWorkCount(0)
+    , m_bHandle_NonWork_Threads(false)
+    , m_pHandle_NonWork_Threads(nullptr)
 {
     //[0] 初始化
     m_pThreadList.clear();

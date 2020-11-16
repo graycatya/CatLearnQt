@@ -73,13 +73,14 @@ private:
     void ComparePoint(QPoint &leftTop, QPoint &rightBottom);
 
 private:
-    QPoint m_qLeftTopPos, m_qRightBottomPos, m_qRightTopPos, m_qLeftBottomPos;
-    QPoint m_qStartPos, m_qEndPos;
     int MinWidth, MinHeight;
     int MaxWidth, MaxHeight;
 
     // 在父对象活动范围大小
     int MaxParentWidth, MaxParentHeight;
+
+    QPoint m_qStartPos, m_qEndPos;
+    QPoint m_qLeftTopPos, m_qRightBottomPos, m_qRightTopPos, m_qLeftBottomPos;
 
     STATE m_qstate;
 

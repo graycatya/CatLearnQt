@@ -92,6 +92,9 @@ void SpotLight::InitProperty()
                 this->close();
                 break;
             }
+            default:{
+                break;
+            }
         }
     });
 

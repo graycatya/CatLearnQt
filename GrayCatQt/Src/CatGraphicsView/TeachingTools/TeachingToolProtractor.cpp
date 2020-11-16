@@ -1,5 +1,4 @@
-﻿#pragma execution_character_set("utf-8")
-#include "TeachingToolProtractor.h"
+﻿#include "TeachingToolProtractor.h"
 #include <QGraphicsSvgItem>
 #include <QPainter>
 #include <QPainterPath>
@@ -198,8 +197,8 @@ protected:
 
 private:
     bool Rotate = false;
-    bool Anticlockwise = false;
-    qreal LastTimeAngle = 0.0;
+    //bool Anticlockwise = false;
+    //qreal LastTimeAngle = 0.0;
     QString AngleButtonSvg = ":/TeachingTool/svg/angleMarker.svg";
     QGraphicsSvgItem *m_pAngleButton = nullptr;           // 量角按钮
     // 鼠标按下坐标
@@ -753,6 +752,9 @@ void TeachingToolProtractor::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                     setTransform(QTransform::fromTranslate(-rect().center().x(), -rect().center().y()), true);
                     mScaleFactor *= scaleFactor;
                 }
+                break;
+            }
+            default:{
                 break;
             }
         }

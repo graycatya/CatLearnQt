@@ -1,8 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include<iostream>
+#include<sstream>
 #include<string>
 #include<chrono>
+#include<thread>
 #include<initializer_list>
 
 #define DEBUG_LOG(_MSG) ( LOG_MESSAGE<LEVEL::DEBUG>::Log_Head({ _MSG }) )
@@ -76,6 +78,9 @@ struct LOG_MESSAGE{
                 ptm.tm_year + 1900, ptm.tm_mon + 1, ptm.tm_mday,
                 ptm.tm_hour, ptm.tm_min, ptm.tm_sec);
             log_head = std::string(date) + " | " + Get_Level();
+            std::ostringstream id;
+            id << std::this_thread::get_id();
+            log_head = log_head + " | " + id.str();
             for(auto &msg : log_msg)
             {
                 log_head += " | ";

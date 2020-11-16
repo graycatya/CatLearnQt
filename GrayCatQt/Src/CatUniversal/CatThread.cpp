@@ -6,8 +6,8 @@ CatThread::CatThread(QObject *parent)
     : QThread(parent)
     , m_bStart(false)
     , m_bWork(false)
-    , m_pFunction(nullptr)
     , m_qThreadId(nullptr)
+    , m_pFunction(nullptr)
 {
     m_bStart = true;
     this->start();

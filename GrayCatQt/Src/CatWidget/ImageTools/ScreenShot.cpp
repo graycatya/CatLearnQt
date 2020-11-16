@@ -91,6 +91,9 @@ void ScreenShot::InitProperty()
                 this->close();
                 break;
             }
+            default:{
+                break;
+            }
         }
     });
 

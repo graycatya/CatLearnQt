@@ -2,7 +2,6 @@
 
 ProcessObject::ProcessObject(QObject *parent)
     : QObject(parent)
-    , m_qstate(STATE::SELECT)
     , MinWidth(100)
     , MinHeight(100)
     , MaxWidth(9999)
@@ -15,6 +14,7 @@ ProcessObject::ProcessObject(QObject *parent)
     , m_qRightBottomPos(m_qStartPos)
     , m_qRightTopPos(m_qStartPos)
     , m_qLeftBottomPos(m_qStartPos)
+    , m_qstate(STATE::SELECT)
 {
 
 }

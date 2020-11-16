@@ -11,7 +11,7 @@ public:
     SerialProtocolFactory();
     ~SerialProtocolFactory();
 
-    SerialProtocolBase* CreateProtocol(SERIALPROTOCOL protocol = YET640_PROTOCOL);
+    SerialProtocolBase* CreateProtocol(SERIALPROTOCOL protocol);
 };
 
 #endif // SERIALPROTOCOLFACTORY_H

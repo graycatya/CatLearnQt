@@ -1,4 +1,4 @@
-Log version: CatLog_Sington 1.0.0.0
+﻿Log version: CatLog_Sington 1.0.0.0
 =======
 
 [![Build Status](https://travis-ci.org/graycatya/Log.svg?branch=master)](https://travis-ci.org/graycatya/Log)
@@ -75,6 +75,3 @@ CatLog::Delete();
 
 ```
 
-Author Information
-=======
-This role was created in 2019 by [graycatya](https://github.com/graycatya)

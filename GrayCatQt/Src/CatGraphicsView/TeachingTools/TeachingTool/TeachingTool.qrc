@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/TeachingTool">
+        <file>png/drawCompass.png</file>
+        <file>png/drawRulerLine.png</file>
+        <file>png/resize.png</file>
+        <file>png/rotate.png</file>
+        <file>svg/angleMarker.svg</file>
+        <file>svg/closeTool.svg</file>
+        <file>svg/hflipTool.svg</file>
+        <file>svg/resetTool.svg</file>
+        <file>svg/resizeCompass.svg</file>
+        <file>svg/resizeRuler.svg</file>
+        <file>svg/resizeTool.svg</file>
+        <file>svg/rotateTool.svg</file>
+        <file>svg/vflipTool.svg</file>
+        <file>svg/CompassClose.svg</file>
+        <file>svg/Compassresize.svg</file>
+    </qresource>
+</RCC>

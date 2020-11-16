@@ -1,0 +1,17 @@
+|  类名  |  说明  |
+| ------------ | ------------ |
+| QSqlDatabase | 处理到数据库的连接 |
+| QSqlDriverCreator | 模板类，为特定的驱动程序类型提供SQL驱动程序工厂 |
+| QSqlDriverCreatorBase | SQL驱动工厂基类 |
+| QSqlDriver | 用于访问特定SQL数据库的抽象基类 |
+| QSqlDriverPlugin | 自定义QSqlDriver插件的抽象基础 |
+| QSqlError | SQL数据库错误信息 |
+| QSqlField | 操作SQL数据库表和视图中的字段 |
+| QSqlIndex | 用于操作和描述数据库索引的函数 |
+| QSqlQuery | 执行和操作SQL语句的方法 |
+| QSqlRecord | 封装一个数据库记录 |
+| QSqlQueryModel | SQL结果集的只读数据模型 |
+| QSqlRelationalDelegate | 委托,用于显示和编辑来自QSqlRelationalTableModel的数据 |
+| QSqlRelation | 存储关于SQL外键的信息 |
+| QSqlRelationalTableModel | 单个数据表的可编辑数据模型,具有外键支持 |
+| QSqlTableModel | 单个数据表的可编辑数据模型 |

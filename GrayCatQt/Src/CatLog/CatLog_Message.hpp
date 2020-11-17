@@ -6,6 +6,7 @@
 #include<chrono>
 #include<thread>
 #include<initializer_list>
+#include<time.h>
 
 
 #define DEBUG_LOG(_MSG) ( LOG_MESSAGE<LEVEL::DEBUG, TID::OFF>::Log_Head({ _MSG }) )
@@ -109,7 +110,13 @@ struct LOG_MESSAGE{
             std::string log_head = "";
             auto tt = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
             struct tm ptm;
-            localtime_s(&ptm, &tt);
+#if defined(__APPLE__) && (defined(__GNUC__) || defined(__xlC__) || defined(__xlc__))
+    // mac OS
+    ptm = *std::localtime(&tt);
+#else
+    localtime_s(&ptm, &tt);
+#endif
+
             char date[60] = {0};
             sprintf(date, "%d-%02d-%02d %02d:%02d:%02d",
                 ptm.tm_year + 1900, ptm.tm_mon + 1, ptm.tm_mday,

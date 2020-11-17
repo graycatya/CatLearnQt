@@ -14,8 +14,17 @@ int main(int argc, char *argv[])
 
     MainWindow window;
     window.show();
-    window.move(300, 200);
 
+    QString log1 = "main size: "
+            + QString::number(window.width())
+            + " : "
+            + QString::number(window.height())
+            + " x: "
+            + QString::number(window.x())
+            + " y: "
+            + QString::number(window.y());
+
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log1.toStdString()));
 
     return a.exec();
 }

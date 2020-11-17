@@ -283,7 +283,12 @@ static char *dupAndToUpper(const char *str, QRencodeMode hint)
 	char *newstr, *p;
 	QRencodeMode mode;
     // strdup 改 _strdup
+#if defined(__APPLE__) && (defined(__GNUC__) || defined(__xlC__) || defined(__xlc__))
+    // mac OS
+    newstr = strdup(str);
+#else
     newstr = _strdup(str);
+#endif
 	if(newstr == NULL) return NULL;
 
 	p = newstr;

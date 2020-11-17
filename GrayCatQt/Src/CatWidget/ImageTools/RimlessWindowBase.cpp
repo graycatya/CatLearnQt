@@ -165,6 +165,7 @@ void RimlessWindowBase::showEvent(QShowEvent *event)
             + QString::number(this->x())
             + " y: "
             + QString::number(this->y());
+
     CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log1.toStdString()));
     SetZoomGeometry(this->x(), this->y(), this->width(), this->height());
 }
@@ -178,5 +179,15 @@ void RimlessWindowBase::resizeEvent(QResizeEvent *event)
 void RimlessWindowBase::moveEvent(QMoveEvent *event)
 {
     Q_UNUSED(event)
+    QString log1 = "RimlessWindowBase showEvent this2 size: "
+            + QString::number(this->width())
+            + " : "
+            + QString::number(this->height())
+            + " x: "
+            + QString::number(this->x())
+            + " y: "
+            + QString::number(this->y());
+
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log1.toStdString()));
     SetZoomGeometry(this->x(), this->y(), this->width(), this->height());
 }

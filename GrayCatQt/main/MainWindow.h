@@ -1,11 +1,13 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "RimlessWindowBase.h"
 
-class MainWindow
+class MainWindow : public RimlessWindowBase
 {
 public:
-    MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 };
 
 #endif // MAINWINDOW_H

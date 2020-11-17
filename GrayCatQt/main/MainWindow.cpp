@@ -1,6 +1,13 @@
-#include "MainWindow.h"
+﻿#include "MainWindow.h"
+#include <QGraphicsDropShadowEffect>
 
-MainWindow::MainWindow()
+MainWindow::MainWindow(QWidget *parent)
+    : RimlessWindowBase(parent)
+{
+
+}
+
+MainWindow::~MainWindow()
 {
 
 }

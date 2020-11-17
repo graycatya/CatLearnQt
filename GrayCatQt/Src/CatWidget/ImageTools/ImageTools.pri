@@ -8,6 +8,7 @@ HEADERS += \
     $$PWD/ImageToolFactory.h \
     $$PWD/MagnifyingGlass.h \
     $$PWD/ProcessObject.h \
+    $$PWD/RimlessWindowBase.h \
     $$PWD/ScreenShot.h \
     $$PWD/SpotLight.h \
     $$PWD/gif.h
@@ -20,8 +21,11 @@ SOURCES += \
     $$PWD/ImageToolFactory.cpp \
     $$PWD/MagnifyingGlass.cpp \
     $$PWD/ProcessObject.cpp \
+    $$PWD/RimlessWindowBase.cpp \
     $$PWD/ScreenShot.cpp \
     $$PWD/SpotLight.cpp
+
+INCLUDEPATH += $$PWD
 
 RESOURCES += \
     $$PWD/ImageTools/ImageTools.qrc

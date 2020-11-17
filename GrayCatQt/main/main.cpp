@@ -1,7 +1,7 @@
 ﻿//#include <QApplication>
 #include <SingleApplication>
 #include <CatLog>
-
+#include "MainWindow.h"
 
 
 
@@ -15,7 +15,8 @@ int main(int argc, char *argv[])
         CATLOG::CatLog::__Write_Log(DEBUG_LOG_T("test"));
     });
     th.join();
-
+    MainWindow window;
+    window.show();
 
     std::thread ths([](){
 

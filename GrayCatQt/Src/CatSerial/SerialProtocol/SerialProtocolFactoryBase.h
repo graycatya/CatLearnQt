@@ -10,6 +10,7 @@ class SerialProtocolFactoryBase : public QObject
     Q_ENUMS(SERIALPROTOCOL)
 public:
     enum SERIALPROTOCOL {
+        NONE,
     };
     virtual ~SerialProtocolFactoryBase() = 0;
     virtual SerialProtocolBase* CreateProtocol(SERIALPROTOCOL protocol) = 0;

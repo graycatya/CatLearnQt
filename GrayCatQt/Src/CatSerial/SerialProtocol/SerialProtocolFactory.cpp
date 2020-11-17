@@ -14,6 +14,12 @@ SerialProtocolFactory::~SerialProtocolFactory()
 SerialProtocolBase *SerialProtocolFactory::CreateProtocol(SERIALPROTOCOL protocol)
 {
     switch (protocol) {
-        default: return nullptr;
+        case SERIALPROTOCOL::NONE: {
+            break;
+        }
+        default: {
+            break;
+        }
     }
+    return nullptr;
 }

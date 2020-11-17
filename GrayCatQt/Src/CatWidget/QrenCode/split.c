@@ -1,4 +1,4 @@
-/*
+﻿/*
  * qrencode - QR Code encoder
  *
  * Input data splitter.
@@ -41,6 +41,7 @@
 
 #if !HAVE_STRDUP
 #undef strdup
+/*
 char *strdup(const char *s)
 {
 	size_t len = strlen(s) + 1;
@@ -48,6 +49,7 @@ char *strdup(const char *s)
 	if(newstring == NULL) return NULL;
 	return (char *)memcpy(newstring, s, len);
 }
+*/
 #endif
 
 static QRencodeMode Split_identifyMode(const char *string, QRencodeMode hint)
@@ -280,8 +282,8 @@ static char *dupAndToUpper(const char *str, QRencodeMode hint)
 {
 	char *newstr, *p;
 	QRencodeMode mode;
-
-	newstr = strdup(str);
+    // strdup 改 _strdup
+    newstr = _strdup(str);
 	if(newstr == NULL) return NULL;
 
 	p = newstr;

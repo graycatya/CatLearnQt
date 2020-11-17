@@ -1,4 +1,4 @@
-//
+﻿//
 // gif.h
 // by Charlie Tangora
 // Public domain.
@@ -372,10 +372,10 @@ void GifMakePalette( const uint8_t* lastFrame, const uint8_t* nextFrame, uint32_
     GIF_TEMP_FREE(destroyableImage);
 
     // add the bottom node for the transparency index
-    pPal->treeSplit[1 << (bitDepth-1)] = 0;
-    pPal->treeSplitElt[1 << (bitDepth-1)] = 0;
+    pPal->treeSplit[(1 << (bitDepth-1))] = 0;
+    pPal->treeSplitElt[(1 << (bitDepth-1))] = 0;
 
-    pPal->r[0] = pPal->g[0] = pPal->b[0] = 0;
+    pPal->r[0] = pPal->g[0] = pPal->b[0] = (uint8_t)0;
 }
 
 // Implements Floyd-Steinberg dithering, writes palette value to alpha

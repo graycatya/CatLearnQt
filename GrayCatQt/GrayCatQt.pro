@@ -34,7 +34,7 @@ DEFINES += LOG_PATH=\\\"'Logs/'\\\"
 INCLUDEPATH += Src
 
 include(main/main.pri)
-include(Src/SingleApplication/SingleApplication.pri)
+include(Src/SingleApplication/singleapplication.pri)
 include(Src/CatUniversal/CatUniversal.pri)
 include(Src/CatNetWork/CatNetWork.pri)
 include(Src/CatLog/CatLog.pri)

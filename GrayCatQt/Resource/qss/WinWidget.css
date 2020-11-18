@@ -1,0 +1,15 @@
+QWidget#TopWidget {
+    background-color: #3C3C3C;
+}
+
+QWidget#ToolListWidget {
+    background-color: #252526;
+}
+
+QWidget#ExhibitionWidget {
+    background-color: #1E1E1E;
+}
+
+QWidget#BottomWidget {
+    background-color: #007ACC;
+}

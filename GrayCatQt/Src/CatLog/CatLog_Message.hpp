@@ -110,11 +110,10 @@ struct LOG_MESSAGE{
             std::string log_head = "";
             auto tt = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
             struct tm ptm;
-#if defined(__APPLE__) && (defined(__GNUC__) || defined(__xlC__) || defined(__xlc__))
-    // mac OS
-    ptm = *std::localtime(&tt);
-#else
+#if !defined(SAG_COM) && (defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__))
     localtime_s(&ptm, &tt);
+#else
+    ptm = *std::localtime(&tt);
 #endif
 
             char date[60] = {0};

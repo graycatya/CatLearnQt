@@ -1,4 +1,6 @@
 ﻿#include "ProcessObject.h"
+#include <QRect>
+#include <QDebug>
 
 ProcessObject::ProcessObject(QObject *parent)
     : QObject(parent)
@@ -37,6 +39,8 @@ void ProcessObject::SetGeometry(int x, int y, int width, int height)
     m_qRightTopPos = QPoint(x + my_width, y);
     m_qRightBottomPos = QPoint(x + my_width, y + my_height);
     ComparePoint(m_qLeftTopPos, m_qRightBottomPos);
+    m_qStartPos = m_qLeftTopPos;
+    m_qEndPos = m_qRightBottomPos;
 }
 
 void ProcessObject::SetMinWidth(int width)

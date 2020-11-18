@@ -1,6 +1,9 @@
 SOURCES += \
-    $$PWD/MainWindow.cpp \
+    $$PWD/WinWidget.cpp \
     $$PWD/main.cpp
 
 HEADERS += \
-    $$PWD/MainWindow.h
+    $$PWD/WinWidget.h
+
+FORMS += \
+    $$PWD/WinWidget.ui

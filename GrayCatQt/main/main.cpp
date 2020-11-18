@@ -1,7 +1,8 @@
 ﻿//#include <QApplication>
 #include <SingleApplication>
 #include <CatLog>
-#include "MainWindow.h"
+#include <CatSerial>
+#include "WinWidget.h"
 
 
 
@@ -9,22 +10,15 @@ int main(int argc, char *argv[])
 {
     // [0] 进程单例 - 不可重复打开
     SingleApplication a(argc, argv);
+    // 启动日志模块
     CATLOG::CatLog::Instance();
+    // 启动串口热插拔检测
+    MonitorSerial::Instance()->Start(200, 300);
 
 
-    MainWindow window;
-    window.show();
-
-    QString log1 = "main size: "
-            + QString::number(window.width())
-            + " : "
-            + QString::number(window.height())
-            + " x: "
-            + QString::number(window.x())
-            + " y: "
-            + QString::number(window.y());
-
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log1.toStdString()));
+    WinWidget w;
+    w.setMinimumSize(QSize(300, 300));
+    w.show();
 
     return a.exec();
 }

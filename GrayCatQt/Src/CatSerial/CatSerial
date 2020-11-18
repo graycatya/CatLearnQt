@@ -3,7 +3,5 @@
 #include "SerialProtocol/SerialProtocolFactory.h"
 #include "SerialProtocol/SerialProtocolFactoryBase.h"
 #include "SerialProtocol/SerialProtocolBase.h"
-#include "SerialProtocol/Yet640Protocol.h"
-#include "SerialProtocol/ProtocolCache/Yet640ProtocolCache.h"
 #include "SerialDevFilter.h"
 

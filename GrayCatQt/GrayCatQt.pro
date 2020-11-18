@@ -1,4 +1,4 @@
-QT += core gui sql quick
+QT += core gui sql quick qml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
@@ -41,4 +41,7 @@ include(Src/CatLog/CatLog.pri)
 include(Src/CatWidget/CatWidget.pri)
 include(Src/CatGraphicsView/CatGraphicsView.pri)
 include(Src/CatSerial/CatSerial.pri)
+
+RESOURCES += \
+    Resource/Resource.qrc
 

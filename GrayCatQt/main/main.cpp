@@ -12,8 +12,17 @@ int main(int argc, char *argv[])
     SingleApplication a(argc, argv);
     // 启动日志模块
     CATLOG::CatLog::Instance();
+    CATLOG::CatLog::__Write_Log(INFO_LOG_T("Init System!"));
     // 启动串口热插拔检测
-    MonitorSerial::Instance()->Start(200, 300);
+    MonitorSerial::Instance()->Start(200, true);
+    QObject::connect(MonitorSerial::Instance(), &MonitorSerial::AddSerial, [](QSerialPortInfo info){
+        QString log = "AddSerial: " + info.portName();
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    });
+    QObject::connect(MonitorSerial::Instance(), &MonitorSerial::DeleteSerial, [](QSerialPortInfo info){
+        QString log = "DeleteSerial: " + info.portName();
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    });
 
 
     WinWidget w;

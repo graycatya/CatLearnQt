@@ -1,10 +1,11 @@
-QT += core gui sql quick qml
+QT += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
 
 CONFIG += c++11
 # CONFIG += console
+CONFIG -= qml_debug
 
 
 # The following define makes your compiler emit warnings if you use
@@ -12,7 +13,7 @@ CONFIG += c++11
 # depend on your compiler). Please consult the documentation of the
 # deprecated API in order to know how to port your code away from it.
 DEFINES += QT_DEPRECATED_WARNINGS
-
+DEFINES += QT_QML_DEBUG_NO_WARNING
 
 Release:DESTDIR = release
 Release:OBJECTS_DIR = release/.obj

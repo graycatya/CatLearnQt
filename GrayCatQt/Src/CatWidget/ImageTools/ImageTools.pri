@@ -5,6 +5,11 @@ unix {
     LIBS += -lX11
 }
 
+macx {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
 HEADERS += \
     $$PWD/ButtonTool.h \
     $$PWD/CatGifTool.h \

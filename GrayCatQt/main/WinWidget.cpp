@@ -8,7 +8,7 @@
 #include <QDebug>
 
 WinWidget::WinWidget(QWidget *parent) :
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget(parent),
 #else
     RimlessWindowBase(parent),
@@ -35,7 +35,7 @@ void WinWidget::InitUi()
 void WinWidget::InitProperty()
 {
     ui->BottomWidget->setVisible(false);
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     ui->TopWidget->setVisible(false);
 #else
     ui->TopWidget->installEventFilter(this);
@@ -57,7 +57,7 @@ void WinWidget::InitProperty()
 
 bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #else
     if(event->type() == QEvent::MouseMove)
     {

@@ -15,6 +15,7 @@ WinWidget::WinWidget(QWidget *parent) :
 #endif
     ui(new Ui::WinWidget)
 {
+
     ui->setupUi(this);
     InitUi();
     InitProperty();
@@ -33,6 +34,7 @@ void WinWidget::InitUi()
 
 void WinWidget::InitProperty()
 {
+    ui->BottomWidget->setVisible(false);
 #ifdef Q_OS_LINUX
     ui->TopWidget->setVisible(false);
 #else

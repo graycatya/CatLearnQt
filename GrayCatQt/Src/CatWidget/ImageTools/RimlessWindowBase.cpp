@@ -215,11 +215,11 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
 
     if(m_pScreen->GetState() == ProcessObject::STATE::MOVE)
     {
-#ifdef Q_OS_LINUX
-        LinuxMoveWidget(ClientMessage);
         m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         QPoint pos(event->globalX() - m_qMovePos.x(), event->globalY() - m_qMovePos.y());
         m_pScreen->Move(pos, true);
+#ifdef Q_OS_LINUX
+        LinuxMoveWidget(ClientMessage);
 #endif
     } else if(m_pScreen->GetState() == ProcessObject::STATE::ZOOM)
     {

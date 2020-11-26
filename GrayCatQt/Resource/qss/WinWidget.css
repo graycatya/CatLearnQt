@@ -13,3 +13,27 @@ QWidget#ExhibitionWidget {
 QWidget#BottomWidget {
     background-color: #007ACC;
 }
+
+QToolBox::tab {
+    background: #009deb;
+    /*border-radius: 5px;*/
+    color: black;
+}
+
+/*
+QToolBox::tab:first {
+    background: #4ade00;
+    border-radius: 5px;
+    color: black;
+}
+
+QToolBox::tab:last {
+    background: #f95300;
+    border-radius: 5px;
+    color: black;
+}
+*/
+QToolBox::tab:selected { /* italicize selected tabs */
+    font: italic;
+    color: white;
+}

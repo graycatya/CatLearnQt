@@ -51,7 +51,7 @@ public:
     bool IsInArea(QPoint pos);
 
     // 移动区域
-    void Move(QPoint pos);
+    void Move(QPoint pos, bool maxmove = false);
 
     // 设置状态
     void SetState( STATE state );

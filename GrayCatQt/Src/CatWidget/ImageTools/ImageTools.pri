@@ -1,5 +1,10 @@
 DEFINES += IMAGETOOL_VERSION=\\\"'v1.0.0'\\\"
 
+unix {
+    QT += x11extras
+    LIBS += -lX11
+}
+
 HEADERS += \
     $$PWD/ButtonTool.h \
     $$PWD/CatGifTool.h \

@@ -24,6 +24,10 @@ private:
     bool ZoomIsInArea(QRect rect, QPoint pos);
     void SetZoomGeometry(int x, int y, int width, int height);
 
+#ifdef Q_OS_LINUX
+    void LinuxMoveWidget( int type, QString event = "_NET_WM_MOVERESIZE");
+#endif
+
 protected:
     void SetMoveRect(QRect rect);
     void mousePressEvent(QMouseEvent *) override;
@@ -56,6 +60,8 @@ private:
     QPoint m_qMovePos; // 坐标缓存
 
     CURSORSTATE m_qCursorState;
+
+    QRect m_pLast_Rect;
 
 };
 

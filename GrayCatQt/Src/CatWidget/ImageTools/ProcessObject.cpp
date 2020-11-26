@@ -160,28 +160,30 @@ bool ProcessObject::IsInArea(QPoint pos)
     return false;
 }
 
-void ProcessObject::Move(QPoint pos)
+void ProcessObject::Move(QPoint pos, bool maxmove)
 {
     int m_ywidth = width();
     int m_yheight = height();
 
     int x = m_qLeftTopPos.x() + pos.x();
     int y = m_qLeftTopPos.y() + pos.y();
+    if(!maxmove)
+    {
+        if(x < 0)
+        {
+            x = 0;
+        } else if(x + m_ywidth > MaxParentWidth)
+        {
+            x = MaxParentWidth - m_ywidth;
+        }
 
-    if(x < 0)
-    {
-        x = 0;
-    } else if(x + m_ywidth > MaxParentWidth)
-    {
-        x = MaxParentWidth - m_ywidth;
-    }
-
-    if(y < 0)
-    {
-        y = 0;
-    } else if(y + m_yheight > MaxParentHeight)
-    {
-        y = MaxParentHeight - m_yheight;
+        if(y < 0)
+        {
+            y = 0;
+        } else if(y + m_yheight > MaxParentHeight)
+        {
+            y = MaxParentHeight - m_yheight;
+        }
     }
 
     m_qStartPos = QPoint(x, y);

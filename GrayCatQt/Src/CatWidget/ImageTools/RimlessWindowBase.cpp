@@ -4,6 +4,14 @@
 #include <QApplication>
 #include <QScreen>
 #include <QMouseEvent>
+#include <QDesktopWidget>
+#include <QDebug>
+#include <QTimer>
+
+#ifdef Q_OS_LINUX
+#include <X11/Xlib.h>
+#include <QX11Info>
+#endif
 
 
 
@@ -63,6 +71,36 @@ void RimlessWindowBase::SetZoomGeometry(int x, int y, int width, int height)
     m_pZoom_Right_Bottom.setRect(x+width-AngleRect.width(), y+height-AngleRect.height(),
                                  AngleRect.width(), AngleRect.height());
 }
+
+#ifdef Q_OS_LINUX
+void RimlessWindowBase::LinuxMoveWidget(int type, QString event)
+{
+    XEvent xevent;
+
+    memset(&xevent, 0, sizeof(XEvent));
+    //qDebug() << QCursor::pos();
+    Display *display = QX11Info::display();
+    xevent.xclient.type = type;
+    //_NET_WM_ALLOWED_ACTIONS _NET_WM_MOVERESIZE
+    xevent.xclient.message_type = XInternAtom(display, event.toStdString().data(), True);
+    xevent.xclient.display = display;
+    xevent.xclient.window = (XID)(this->winId());
+    xevent.xclient.format = 32;
+    xevent.xclient.data.l[0] = QCursor::pos().x();
+    xevent.xclient.data.l[1] = QCursor::pos().y();
+    xevent.xclient.data.l[2] = 8;
+    xevent.xclient.data.l[3] = Button1;
+    xevent.xclient.data.l[4] = 1;
+
+    XUngrabPointer(display, CurrentTime);
+    XSendEvent(display,
+               QX11Info::appRootWindow(QX11Info::appScreen()),
+               True,
+               SubstructureNotifyMask | SubstructureRedirectMask,
+               &xevent);
+    XFlush(display);
+}
+#endif
 
 void RimlessWindowBase::SetMoveRect(QRect rect)
 {
@@ -134,6 +172,7 @@ void RimlessWindowBase::mousePressEvent(QMouseEvent *event)
 
 void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
 {
+    //qDebug() << "event: " << event->globalPos();
     if(m_pScreen->GetState() != ProcessObject::STATE::MOVE && !m_bMousePress)
     {
         if(ZoomIsInArea(m_pZoom_Left_Top, event->pos()))
@@ -176,8 +215,12 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
 
     if(m_pScreen->GetState() == ProcessObject::STATE::MOVE)
     {
+#ifdef Q_OS_LINUX
+        LinuxMoveWidget(ClientMessage);
+        m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         QPoint pos(event->globalX() - m_qMovePos.x(), event->globalY() - m_qMovePos.y());
-        m_pScreen->Move(pos);
+        m_pScreen->Move(pos, true);
+#endif
     } else if(m_pScreen->GetState() == ProcessObject::STATE::ZOOM)
     {
         QRect temp;
@@ -198,7 +241,6 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
                 } else {
                     endpot.setY(temp.y());
                 }
-
                 break;
             }
             case TOPRIGHT: {
@@ -251,33 +293,59 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
             }
         }
         m_pScreen->SetEnd(endpot);
+        m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
 
     } else if(m_pScreen->GetState() == ProcessObject::STATE::TOP_ZOOM) {
         if(event->globalY() < this->y() + this->height() - this->minimumSize().height())
         {
             m_pScreen->SetEnd(QPoint(m_pScreen->GetLeftTopPos().x(), event->globalY()));
+            m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         }
     } else if(m_pScreen->GetState() == ProcessObject::STATE::BOTTOM_ZOOM) {
         if(event->globalY() > this->y() + this->minimumSize().height())
         {
             m_pScreen->SetEnd(QPoint(m_pScreen->GetRightBottomPos().x(), event->globalY()));
+            m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         }
     } else if(m_pScreen->GetState() == ProcessObject::STATE::LEFT_ZOOM) {
         if(event->globalX() < this->x() + this->width() - this->minimumSize().width())
         {
             m_pScreen->SetEnd(QPoint(event->globalX(), m_pScreen->GetLeftTopPos().y()));
+            m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         }
     } else if(m_pScreen->GetState() == ProcessObject::STATE::RIGHT_ZOOM) {
         if(event->globalX() > this->x() + this->minimumSize().width())
         {
             m_pScreen->SetEnd(QPoint(event->globalX(), m_pScreen->GetRightBottomPos().y()));
+            m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         }
     }
     m_qMovePos = event->globalPos();
     if(m_pScreen->GetState() != ProcessObject::STATE::SELECT)
     {
+#ifdef Q_OS_LINUX
+        if(m_pScreen->GetState() != ProcessObject::STATE::MOVE)
+        {
+            this->setGeometry(m_pScreen->x(), m_pScreen->y(),
+                              m_pScreen->width(), m_pScreen->height());
+            this->move(m_pScreen->x(), m_pScreen->y());
+        }
+
+        if(m_pLast_Rect == this->geometry() &&
+                m_pScreen->GetState() == ProcessObject::STATE::MOVE)
+        {
+            QApplication::mouseButtons().setFlag(Qt::NoButton, true);
+            LinuxMoveWidget(ButtonRelease, "_NET_WM_ALLOWED_ACTIONS");
+            m_bMousePress = false;
+            m_pScreen->SetState(ProcessObject::STATE::SELECT);
+            this->setCursor(Qt::ArrowCursor);
+            //m_pScreen->SetGeometry(this->x(), this->y(), this->width(), this->height());
+        }
+#else
         this->setGeometry(m_pScreen->x(), m_pScreen->y(),
                           m_pScreen->width(), m_pScreen->height());
+        this->move(m_pScreen->x(), m_pScreen->y());
+#endif
     }
 }
 
@@ -313,13 +381,19 @@ void RimlessWindowBase::resizeEvent(QResizeEvent *event)
 void RimlessWindowBase::moveEvent(QMoveEvent *event)
 {
     Q_UNUSED(event)
+    //qDebug() << "QApp: " << QApplication::mouseButtons();
     if(m_pScreen->GetState() == ProcessObject::STATE::SELECT)
     {
         m_pScreen->SetGeometry(this->x(), this->y(),
                                this->width(),
                                this->height());
         SetZoomGeometry(0, 0, this->width(), this->height());
-    }
+    } /*else {
+        qDebug() << "m_pScreen->GetState(): No Select";
+        m_pScreen->SetGeometry(this->x(), this->y(),
+                               this->width(),
+                               this->height());
+    }*/
 }
 
 void RimlessWindowBase::enterEvent(QEvent *event)

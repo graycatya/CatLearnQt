@@ -7,7 +7,12 @@ namespace Ui {
 class WinWidget;
 }
 
-class WinWidget : public RimlessWindowBase
+class WinWidget : public
+#ifdef Q_OS_LINUX
+    QWidget
+#else
+    RimlessWindowBase
+#endif
 {
     Q_OBJECT
 

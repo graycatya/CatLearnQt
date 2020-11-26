@@ -13,6 +13,9 @@
 #include <map>
 #include <chrono>
 //#include <filesystem>
+#ifdef QT_CORE_LIB
+#include <QDebug>
+#endif
 
 namespace CATLOG
 {
@@ -125,8 +128,12 @@ class CatLog
         static void __Write_Log(std::string&& __LOG_MSG) noexcept
         {
                 CatLog::enqueue([__LOG_MSG](){
-                    std::cout << __LOG_MSG << std::endl;
-                    std::cout.flush();
+                    #ifdef QT_CORE_LIB
+                        qDebug() << QString::fromStdString(__LOG_MSG).toLocal8Bit().constData();
+                    #else
+                        std::cout << __LOG_MSG << std::endl;
+                        std::cout.flush();
+                    #endif
                 });
         }
 

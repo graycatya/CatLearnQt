@@ -1,0 +1,33 @@
+QWidget#ListiongOptionsRootWidget {
+    border: none;
+    background-color: #272626;
+}
+
+QPushButton {
+    border: none;
+    color: #C1C1C1;
+    background-color: #343434;
+    qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;
+}
+
+QPushButton:hover {
+    border: none;
+    background-color: #656565;
+    qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;
+}
+
+QPushButton:pressed {
+    border: none;
+    background-color: #656565;
+    qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;
+}
+
+QPushButton:checked {
+    border: 1px solid #7C7C7C;
+    background-color: #656565;
+    qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;
+}

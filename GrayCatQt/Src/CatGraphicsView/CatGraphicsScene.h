@@ -1,11 +1,16 @@
-#ifndef CATGRAPHICSSCENE_H
+﻿#ifndef CATGRAPHICSSCENE_H
 #define CATGRAPHICSSCENE_H
 
+#include <QGraphicsScene>
 
-class CatGraphicsScene
+class CatGraphicsScene : public QGraphicsScene
 {
+    Q_OBJECT
 public:
-    CatGraphicsScene();
+    explicit CatGraphicsScene(QObject *parent = nullptr);
+    ~CatGraphicsScene();
+
+private:
 };
 
 #endif // CATGRAPHICSSCENE_H

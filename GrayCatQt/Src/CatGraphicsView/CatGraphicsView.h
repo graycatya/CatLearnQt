@@ -1,12 +1,17 @@
-#ifndef CATGRAPHICSVIEW_H
+﻿#ifndef CATGRAPHICSVIEW_H
 #define CATGRAPHICSVIEW_H
 
+#include <QGraphicsView>
 
-class CatGraphicsView
+class CatGraphicsView : public QGraphicsView
 {
     Q_OBJECT
 public:
-    CatGraphicsView();
+    explicit CatGraphicsView(QWidget *parent = nullptr);
+    ~CatGraphicsView();
+
+private:
+
 };
 
 #endif // CATGRAPHICSVIEW_H

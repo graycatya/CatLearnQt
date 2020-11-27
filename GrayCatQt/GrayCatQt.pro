@@ -42,6 +42,7 @@ include(Src/CatLog/CatLog.pri)
 include(Src/CatWidget/CatWidget.pri)
 include(Src/CatGraphicsView/CatGraphicsView.pri)
 include(Src/CatSerial/CatSerial.pri)
+include(Src/CatControl/CatControl.pri)
 
 RESOURCES += \
     Resource/Resource.qrc

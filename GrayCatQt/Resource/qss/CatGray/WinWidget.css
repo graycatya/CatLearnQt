@@ -1,9 +1,21 @@
+QWidget#WinWidget {
+    background-color: transparent;
+}
+
+QWidget#WinRootWidget {
+    border: none;
+    border-radius: 2px;
+    background-color: rgba(130, 130, 130, 20%);
+}
+
 QWidget#TopWidget {
     background-color: #3C3C3C;
 }
 
 QWidget#ToolListWidget {
     background-color: #252526;
+    max-width: 200;
+    min-width: 200;
 }
 
 QWidget#ExhibitionWidget {
@@ -14,26 +26,17 @@ QWidget#BottomWidget {
     background-color: #007ACC;
 }
 
-QToolBox::tab {
-    background: #009deb;
-    /*border-radius: 5px;*/
-    color: black;
+ListiongOptions {
+    border-radius: 0px;
+    background-color: transparent;
 }
 
 /*
-QToolBox::tab:first {
-    background: #4ade00;
-    border-radius: 5px;
-    color: black;
+QWidget#WidgetFunc {
+    background-color: saddlebrown;
 }
 
-QToolBox::tab:last {
-    background: #f95300;
-    border-radius: 5px;
-    color: black;
+QWidget#GraphicsViewFunc {
+    background-color: salmon;
 }
 */
-QToolBox::tab:selected { /* italicize selected tabs */
-    font: italic;
-    color: white;
-}

@@ -1,13 +1,15 @@
 ﻿#include "ListingOptions.h"
 #include <QFile>
-
+#include <QScrollArea>
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QButtonGroup>
 
 ListiongOptions::ListiongOptions(QWidget *parent) : QWidget(parent)
 {
     InitUi();
 
     InitProperty();
-
 }
 
 ListiongOptions::~ListiongOptions()
@@ -15,23 +17,27 @@ ListiongOptions::~ListiongOptions()
 
 }
 
-void ListiongOptions::AddButton(QPushButton *button)
+void ListiongOptions::AddButton(QPushButton *button, int id)
 {
-    m_pRootWidgetLayout->addWidget(button);
+    m_pButtonListsLayout->addWidget(button);
     button->setCheckable(true);
-    m_pButtonGroup->addButton(button);
-    button->setChecked(true);
+    m_pButtonGroup->addButton(button, id);
+    //button->setChecked(true);
+}
 
+void ListiongOptions::AddButtonNoGroup(QPushButton *button)
+{
+    m_pButtonListsLayout->addWidget(button);
 }
 
 void ListiongOptions::AddItem(QSpacerItem *item)
 {
-    m_pRootWidgetLayout->addItem(item);
+    m_pButtonListsLayout->addItem(item);
 }
 
 QWidget *ListiongOptions::GetRootWidget() const
 {
-    return m_pRootWidget;
+    return m_pButtonLists;
 }
 
 QButtonGroup *ListiongOptions::GetButtonGroup() const
@@ -43,12 +49,12 @@ void ListiongOptions::Clear()
 {
     for(auto button : m_lButtonList)
     {
-        m_pRootWidgetLayout->removeWidget(button);
+        m_pButtonListsLayout->removeWidget(button);
         m_pButtonGroup->removeButton(button);
     }
     for(auto item : m_lItemList)
     {
-        m_pRootWidgetLayout->removeItem(item);
+        m_pButtonListsLayout->removeItem(item);
     }
 }
 
@@ -60,21 +66,35 @@ void ListiongOptions::InitUi()
 
     m_pRootWidget = new QWidget(this);
     m_pRootWidget->setObjectName("ListiongOptionsRootWidget");
+    m_pRootLayout->addWidget(m_pRootWidget);
+
     m_pRootWidgetLayout = new QVBoxLayout(m_pRootWidget);
     m_pRootWidgetLayout->setContentsMargins(0,0,0,0);
     m_pRootWidgetLayout->setSpacing(0);
+    m_pScrollArea = new QScrollArea(m_pRootWidget);
+    m_pScrollArea->setObjectName("ListingOptionsScroll");
+    m_pScrollArea->setWidgetResizable(true);
+    m_pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    m_pButtonGroup = new QButtonGroup(m_pRootWidget);
+    m_pRootWidgetLayout->addWidget(m_pScrollArea);
+
+    m_pButtonLists = new QWidget();
+    m_pButtonLists->setObjectName(QString::fromUtf8("ButtonLists"));
+    m_pScrollArea->setWidget(m_pButtonLists);
+
+    m_pButtonListsLayout = new QVBoxLayout(m_pButtonLists);
+    m_pButtonListsLayout->setContentsMargins(0,0,0,0);
+    m_pButtonListsLayout->setSpacing(0);
+
+
+    m_pButtonGroup = new QButtonGroup(m_pButtonLists);
     m_pButtonGroup->setExclusive(true);
-
-    m_pRootLayout->addWidget(m_pRootWidget);
-
 }
 
 void ListiongOptions::InitProperty()
 {
     m_lButtonList.clear();
-    QFile resourceqss(":/qss/defaultstyle/ListingOptions.qss");
+    QFile resourceqss(":/qss/CatGray/ListingOptions.css");
     resourceqss.open(QFile::ReadOnly);
     this->setStyleSheet(resourceqss.readAll());
     resourceqss.close();

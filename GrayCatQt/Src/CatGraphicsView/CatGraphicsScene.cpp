@@ -1,6 +1,12 @@
-#include "CatGraphicsScene.h"
+﻿#include "CatGraphicsScene.h"
 
-CatGraphicsScene::CatGraphicsScene()
+CatGraphicsScene::CatGraphicsScene(QObject *parent)
+    : QGraphicsScene(parent)
+{
+
+}
+
+CatGraphicsScene::~CatGraphicsScene()
 {
 
 }

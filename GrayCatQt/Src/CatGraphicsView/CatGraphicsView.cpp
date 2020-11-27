@@ -1,6 +1,12 @@
-#include "CatGraphicsView.h"
+﻿#include "CatGraphicsView.h"
 
-CatGraphicsView::CatGraphicsView()
+CatGraphicsView::CatGraphicsView(QWidget *parent)
+    : QGraphicsView(parent)
+{
+
+}
+
+CatGraphicsView::~CatGraphicsView()
 {
 
 }

@@ -1,9 +1,13 @@
 ﻿#pragma once
 
 #include <QWidget>
-#include <QVBoxLayout>
-#include <QPushButton>
-#include <QButtonGroup>
+
+
+class QScrollArea;
+class QPushButton;
+class QSpacerItem;
+class QButtonGroup;
+class QVBoxLayout;
 
 class ListiongOptions : public QWidget
 {
@@ -13,7 +17,8 @@ public:
     ~ListiongOptions();
 
 public:
-    void AddButton(QPushButton *button);
+    void AddButton(QPushButton *button, int id);
+    void AddButtonNoGroup(QPushButton *button);
     void AddItem(QSpacerItem *item);
     QWidget *GetRootWidget( void ) const;
     QButtonGroup *GetButtonGroup( void ) const;
@@ -30,6 +35,9 @@ private:
     QVBoxLayout *m_pRootLayout;
     QWidget *m_pRootWidget;
     QVBoxLayout *m_pRootWidgetLayout;
+    QScrollArea *m_pScrollArea;
+    QWidget *m_pButtonLists;
+    QVBoxLayout *m_pButtonListsLayout;
     QList<QPushButton*> m_lButtonList;
     QList<QSpacerItem*> m_lItemList;
     QButtonGroup *m_pButtonGroup;

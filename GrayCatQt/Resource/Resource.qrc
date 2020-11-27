@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>qss/WinWidget.css</file>
+        <file>qss/CatGray/ListingOptions.css</file>
+        <file>qss/CatGray/WinWidget.css</file>
     </qresource>
 </RCC>

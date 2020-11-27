@@ -38,6 +38,7 @@ void RimlessWindowBase::InitProperty()
     this->setWindowFlags(Qt::FramelessWindowHint);
     setAutoFillBackground(true);
     setMouseTracking(true);
+    setAttribute(Qt::WA_TranslucentBackground);
 
     // 初始化 处理屏幕的对象 并初始化 可活动范围
     m_pScreen = new ProcessObject;

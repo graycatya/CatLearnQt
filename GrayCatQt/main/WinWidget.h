@@ -2,6 +2,11 @@
 #define WINWIDGET_H
 
 #include "RimlessWindowBase.h"
+#include <QHash>
+
+class QPushButton;
+class ListiongOptions;
+class CatDrawingBoard;
 
 namespace Ui {
 class WinWidget;
@@ -30,15 +35,20 @@ public:
 private:
     void InitUi();
     void InitProperty();
+    void InitButtonList();
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
 
-
+private slots:
+    void On_ButtonFunc(int id);
 
 private:
     Ui::WinWidget *ui;
+    ListiongOptions *m_pListiongOptions;
+    QHash<QString, QPushButton*> m_pButtons;
 
+    CatDrawingBoard *m_pCatDrawingBoard;
 
 };
 

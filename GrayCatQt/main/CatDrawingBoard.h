@@ -30,6 +30,16 @@ private:
 
     void InitTeachingTool();
 
+protected:
+    void mousePressEvent(QMouseEvent *) override;
+    void mouseMoveEvent(QMouseEvent *) override;
+    void mouseReleaseEvent(QMouseEvent *) override;
+    void showEvent(QShowEvent *) override;
+    void resizeEvent(QResizeEvent *event) override;
+    void moveEvent(QMoveEvent *event) override;
+    void enterEvent(QEvent *event) override;
+    void leaveEvent(QEvent *event) override;
+
 private:
     Ui::CatDrawingBoard *ui;
     ListiongOptions *m_pTeachingOptions;

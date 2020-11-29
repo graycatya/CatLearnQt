@@ -55,11 +55,13 @@ void WinWidget::InitUi()
     layout_0->setSpacing(0);
 
     m_pCatDrawingBoard = new CatDrawingBoard(ui->GraphicsViewFunc);
+    m_pCatDrawingBoard->setObjectName("WinCatDrawingBoard");
     layout_0->addWidget(m_pCatDrawingBoard);
 
     // 微调布局
     ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+    this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
 }
 
 void WinWidget::InitProperty()
@@ -91,6 +93,8 @@ void WinWidget::InitProperty()
     ui->ZoomButton->setMouseTracking(true);
     ui->CloseButton->installEventFilter(this);
     ui->CloseButton->setMouseTracking(true);
+    m_pCatDrawingBoard->installEventFilter(this);
+    m_pCatDrawingBoard->setMouseTracking(true);
 
 #endif
 
@@ -126,6 +130,7 @@ void WinWidget::InitConnect()
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
         if(m_bMousePress && m_bFullScreen)
         {
+            qDebug() << m_bMousePress;
             if(ui->TopWidget->rect().contains(pos))
             {
                 m_bFullScreen = !m_bFullScreen;
@@ -186,6 +191,14 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #else
+    QStringList list = { "WidgetFunc", "GraphicsViewFunc", "Setting", "About", "WinCatDrawingBoard" };
+    for(auto temp : list)
+    {
+        if(watched->objectName() == temp && event->type() == QEvent::MouseMove)
+        {
+            return QWidget::eventFilter(watched, event);
+        }
+    }
     if(event->type() == QEvent::MouseMove)
     {
         SetMoveRect(ui->TopWidget->rect());

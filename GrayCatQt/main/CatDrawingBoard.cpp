@@ -4,6 +4,7 @@
 #include "CatGraphicsView/CatGraphicsScene.h"
 #include "CatGraphicsView/TeachingTools/TeachingToolRuler.h"
 #include "CatControl/ListingOptions.h"
+#include "CatWidget/ImageTools/RimlessWindowBase.h"
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QFile>
@@ -32,10 +33,14 @@ CatGraphicsView *CatDrawingBoard::CreateBoard()
     layout->setSpacing(0);
 
     CatGraphicsScene *scene = new CatGraphicsScene(this);
+    scene->installEventFilter(this);
+
     //scene->setBackgroundBrush(QBrush(QColor("#244242")));
     scene->setSceneRect(-5000, -5000, 10000, 10000);
 
     CatGraphicsView *view = new CatGraphicsView(this);
+    view->installEventFilter(this);
+    view->setMouseTracking(true);
     view->setScene(scene);
     view->setRenderHints (QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::TextAntialiasing);
     /*view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -113,4 +118,44 @@ void CatDrawingBoard::InitTeachingTool()
     m_pTeachingOptions->AddItem(item);
 
     static_cast<QVBoxLayout*>(m_pTeachingOptions->GetButtonlayout())->setSpacing(1);
+}
+
+void CatDrawingBoard::mousePressEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::mouseMoveEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::moveEvent(QMoveEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::enterEvent(QEvent *event)
+{
+    Q_UNUSED(event)
+}
+
+void CatDrawingBoard::leaveEvent(QEvent *event)
+{
+    Q_UNUSED(event)
 }

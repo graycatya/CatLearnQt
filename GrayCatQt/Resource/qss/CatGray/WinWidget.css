@@ -1,3 +1,12 @@
+QLabel#Icon {
+    /*background-color: #999999;*/
+    border-image: url(:/Images/CatGray/CATicon.png);
+    min-width: 22px;
+    min-height: 22px;
+    max-width: 22px;
+    max-height: 22px;
+}
+
 QWidget#WinWidget {
     background-color: transparent;
 }

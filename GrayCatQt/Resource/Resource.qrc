@@ -13,5 +13,6 @@
         <file>qss/CatGray/CatDrawingBoard.css</file>
         <file>qss/CatGray/ListingOptionsWin.css</file>
         <file>qss/CatGray/ListingOptionTeaching.css</file>
+        <file>Images/CatGray/CATicon.png</file>
     </qresource>
 </RCC>

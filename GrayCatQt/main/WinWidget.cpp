@@ -122,7 +122,7 @@ void WinWidget::InitConnect()
     connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
         QApplication::exit();
     });
-
+#if defined (Q_OS_WIN)
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
         if(m_bMousePress && m_bFullScreen)
         {
@@ -137,6 +137,7 @@ void WinWidget::InitConnect()
             }
         }
     });
+#endif
     // [初始化工具栏信号与槽]
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
 

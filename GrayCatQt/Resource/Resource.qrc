@@ -2,5 +2,16 @@
     <qresource prefix="/">
         <file>qss/CatGray/ListingOptions.css</file>
         <file>qss/CatGray/WinWidget.css</file>
+        <file>Images/CatGray/Close.png</file>
+        <file>Images/CatGray/MaximizeMin.png</file>
+        <file>Images/CatGray/Minimize.png</file>
+        <file>Images/CatGray/MaximizeMax.png</file>
+        <file>Images/CatGray/Compass.png</file>
+        <file>Images/CatGray/Protractor.png</file>
+        <file>Images/CatGray/Ruler.png</file>
+        <file>Images/CatGray/Trangle.png</file>
+        <file>qss/CatGray/CatDrawingBoard.css</file>
+        <file>qss/CatGray/ListingOptionsWin.css</file>
+        <file>qss/CatGray/ListingOptionTeaching.css</file>
     </qresource>
 </RCC>

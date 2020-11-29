@@ -11,6 +11,8 @@ QWidget#ButtonLists {
 QPushButton#TeachingToolRuler {
     min-height: 60px;
     max-height: 60px;
+    border-radius: 5px;
+    border: 0px solid gray;
     background-color: #343434;
     qproperty-icon: url(:/Images/CatGray/Ruler.png);
 
@@ -22,6 +24,7 @@ QPushButton#TeachingToolRuler:hover {
     background-color: rgba(223,74,22,100%);
     min-height: 60px;
     max-height: 60px;
+    border: 1px solid gray;
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
 }
@@ -31,41 +34,100 @@ QPushButton#TeachingToolRuler:pressed {
     background-color: rgba(223,74,22,100%);
     min-height: 60px;
     max-height: 60px;
+    border: 3px solid gray;
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
 }
 
-QPushButton#TeachingToolRuler:checked {
-    /*border: 1px solid #7C7C7C;*/
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
-}
 
 QPushButton#TeachingToolTrangle {
     min-height: 60px;
     max-height: 60px;
+    border-radius: 5px;
+    border: 0px solid gray;
     background-color: #343434;
     qproperty-icon: url(:/Images/CatGray/Trangle.png);
     qproperty-iconSize: 48px 48px;
 }
 
+QPushButton#TeachingToolTrangle:hover {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 1px solid gray;
+    /*qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;*/
+}
+
+QPushButton#TeachingToolTrangle:pressed {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 3px solid gray;
+    /*qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;*/
+}
+
 QPushButton#TeachingToolProtractor {
     min-height: 60px;
     max-height: 60px;
+    border-radius: 5px;
+    border: 0px solid gray;
     background-color: #343434;
     qproperty-icon: url(:/Images/CatGray/Protractor.png);
     qproperty-iconSize: 48px 48px;
 }
 
+QPushButton#TeachingToolProtractor:hover {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 1px solid gray;
+    /*qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;*/
+}
+
+QPushButton#TeachingToolProtractor:pressed {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 3px solid gray;
+    /*qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;*/
+}
+
 QPushButton#TeachingToolCompass {
     min-height: 60px;
     max-height: 60px;
+    border-radius: 5px;
+    border: 0px solid gray;
     background-color: #343434;
     qproperty-icon: url(:/Images/CatGray/Compass.png);
     qproperty-iconSize: 48px 48px;
+}
+
+QPushButton#TeachingToolCompass:hover {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 1px solid gray;
+    /*qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;*/
+}
+
+QPushButton#TeachingToolCompass:pressed {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 3px solid gray;
+    /*qproperty-minimumSize: 200px 40px;
+    qproperty-maximumSize: 200px 40px;*/
 }
 
 QScrollArea#ListingOptionsScroll {

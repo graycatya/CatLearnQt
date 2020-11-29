@@ -73,6 +73,12 @@ void RimlessWindowBase::SetZoomGeometry(int x, int y, int width, int height)
                                  AngleRect.width(), AngleRect.height());
 }
 
+void RimlessWindowBase::SetProcessGeometry(int x, int y, int width, int height)
+{
+    m_pScreen->SetGeometry(x, y,
+                           width,height);
+}
+
 #ifdef Q_OS_LINUX
 void RimlessWindowBase::LinuxMoveWidget(int type, QString event)
 {
@@ -348,6 +354,7 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
         this->move(m_pScreen->x(), m_pScreen->y());
 #endif
     }
+    emit mouseMoveed(event->pos());
 }
 
 void RimlessWindowBase::mouseReleaseEvent(QMouseEvent *event)
@@ -395,6 +402,7 @@ void RimlessWindowBase::moveEvent(QMoveEvent *event)
                                this->width(),
                                this->height());
     }*/
+    emit moveEvented();
 }
 
 void RimlessWindowBase::enterEvent(QEvent *event)

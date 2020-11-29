@@ -10,6 +10,7 @@
 #include <QPushButton>
 #include <QButtonGroup>
 #include <CatLog>
+#include <QDesktopWidget>
 #include "CatDrawingBoard.h"
 
 WinWidget::WinWidget(QWidget *parent) :
@@ -18,12 +19,14 @@ WinWidget::WinWidget(QWidget *parent) :
 #else
     RimlessWindowBase(parent),
 #endif
-    ui(new Ui::WinWidget)
+    ui(new Ui::WinWidget) ,
+    m_bFullScreen(false)
 {
 
     ui->setupUi(this);
     InitUi();
     InitProperty();
+    InitConnect();
 }
 
 WinWidget::~WinWidget()
@@ -38,7 +41,7 @@ void WinWidget::InitUi()
     QVBoxLayout *ToolListWidgetLayout = new QVBoxLayout(ui->ToolListWidget);
     ToolListWidgetLayout->setContentsMargins(0,0,0,0);
     ToolListWidgetLayout->setSpacing(0);
-    m_pListiongOptions = new ListiongOptions(ui->ToolListWidget);
+    m_pListiongOptions = new ListiongOptions(ListiongOptions::VBox, ui->ToolListWidget);
     ToolListWidgetLayout->addWidget(m_pListiongOptions);
 
     InitButtonList();
@@ -54,6 +57,9 @@ void WinWidget::InitUi()
     m_pCatDrawingBoard = new CatDrawingBoard(ui->GraphicsViewFunc);
     layout_0->addWidget(m_pCatDrawingBoard);
 
+    // 微调布局
+    ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
+    //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 }
 
 void WinWidget::InitProperty()
@@ -63,6 +69,7 @@ void WinWidget::InitProperty()
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
     ui->TopWidget->setVisible(false);
 #else
+    // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
     ui->TopWidget->setMouseTracking(true);
     ui->ToolListWidget->installEventFilter(this);
@@ -73,14 +80,63 @@ void WinWidget::InitProperty()
     ui->BottomWidget->setMouseTracking(true);
     ui->WinRootWidget->installEventFilter(this);
     ui->WinRootWidget->setMouseTracking(true);
-    this->installEventFilter(this);
-#endif
-    QFile file(":/qss/CatGray/WinWidget.css");
-    file.open(QIODevice::ReadOnly);
-    QString stylehoot = QLatin1String(file.readAll());
-    this->setStyleSheet(stylehoot);
-    file.close();
+    for(auto button : m_pButtons)
+    {
+        button->installEventFilter(this);
+        button->setMouseTracking(true);
+    }
+    ui->MinimizeButton->installEventFilter(this);
+    ui->MinimizeButton->setMouseTracking(true);
+    ui->ZoomButton->installEventFilter(this);
+    ui->ZoomButton->setMouseTracking(true);
+    ui->CloseButton->installEventFilter(this);
+    ui->CloseButton->setMouseTracking(true);
 
+#endif
+
+    QFile file_1(":/qss/CatGray/ListingOptionsWin.css");
+    file_1.open(QIODevice::ReadOnly);
+    QString stylehoot_1 = QLatin1String(file_1.readAll());
+    m_pListiongOptions->setStyleSheet(stylehoot_1);
+    file_1.close();
+
+    QFile file_0(":/qss/CatGray/WinWidget.css");
+    file_0.open(QIODevice::ReadOnly);
+    QString stylehoot_0 = QLatin1String(file_0.readAll());
+    this->setStyleSheet(stylehoot_0);
+    file_0.close();
+
+    SetZoomButtonState("Min");
+}
+
+void WinWidget::InitConnect()
+{
+    connect(ui->MinimizeButton, &QPushButton::clicked, this, [=](){
+        showMinimized();
+    });
+
+    connect(ui->ZoomButton, &QPushButton::clicked, this, [=](){
+        SetWindowZoom();
+    });
+
+    connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
+        QApplication::exit();
+    });
+
+    connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
+        if(m_bMousePress && m_bFullScreen)
+        {
+            if(ui->TopWidget->rect().contains(pos))
+            {
+                m_bFullScreen = !m_bFullScreen;
+                float ration = static_cast<float>(pos.x()) / static_cast<float>(this->width());
+                int x = static_cast<int>(static_cast<float>(m_pLastRect.width()) * ration);
+                SetProcessGeometry(pos.x() - x , 0, m_pLastRect.width(), m_pLastRect.height());
+                this->resize(QSize(m_pLastRect.size()));
+                SetZoomButtonState("Min");
+            }
+        }
+    });
     // [初始化工具栏信号与槽]
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
 
@@ -104,6 +160,27 @@ void WinWidget::InitButtonList()
     m_pButtons[buttonList[3]]->setText(tr("About"));
 }
 
+void WinWidget::SetZoomButtonState(QString state)
+{
+    ui->ZoomButton->setProperty("State", state);
+    ui->ZoomButton->setStyle(QApplication::style());
+}
+
+void WinWidget::SetWindowZoom()
+{
+    m_bFullScreen = !m_bFullScreen;
+    if(m_bFullScreen)
+    {
+        m_pLastRect = QRect(this->pos().x(), this->pos().y(), this->width(), this->height());
+        QRect rect = QApplication::desktop()->availableGeometry(this);
+        this->setGeometry(rect.x()-2, rect.y()-2, rect.width()+4, rect.height()+4);
+        SetZoomButtonState("Max");
+    } else {
+        this->setGeometry(m_pLastRect);
+        SetZoomButtonState("Min");
+    }
+}
+
 bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -121,11 +198,23 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     return QWidget::eventFilter(watched, event);
 }
 
+void WinWidget::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::LeftButton)
+    {
+        if(ui->TopWidget->rect().contains(event->pos()))
+        {
+            SetWindowZoom();
+        }
+    }
+}
+
 void WinWidget::On_ButtonFunc(int id)
 {
     QString log = QString("On_ButtonFunc id: %1").arg(QString::number(id));
     CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     ui->FuncStackWidget->setCurrentIndex(id);
 }
+
 
 

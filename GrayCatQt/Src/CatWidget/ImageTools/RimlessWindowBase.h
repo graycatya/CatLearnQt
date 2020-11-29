@@ -29,6 +29,9 @@ private:
 #endif
 
 protected:
+    void SetProcessGeometry(int x, int y, int width, int height);
+
+protected:
     void SetMoveRect(QRect rect);
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
@@ -38,6 +41,13 @@ protected:
     void moveEvent(QMoveEvent *event) override;
     void enterEvent(QEvent *event) override;
     void leaveEvent(QEvent *event) override;
+
+signals:
+    void moveEvented();
+    void mouseMoveed(QPoint pos);
+
+protected:
+    bool m_bMousePress;
 
 private:
     QRect m_pZoom_Left_Top;
@@ -52,8 +62,6 @@ private:
     QRect m_pZoom_Bottom;
 
     QRect m_pMove_Rect;
-
-    bool m_bMousePress;
 
     ProcessObject *m_pScreen;  // 处理屏幕的对象
 

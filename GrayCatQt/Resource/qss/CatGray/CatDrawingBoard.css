@@ -1,23 +1,9 @@
-QPushButton#TeachingToolRuler {
-    min-height: 60px;
-    qproperty-icon: url(:/qss/CatGray/Ruler.png);
-    qproperty-iconSize: 48px 48px;
+CatGraphicsScene {
+    qproperty-backgroundBrush: #244242;
+    background-color: #244242;
 }
 
-QPushButton#TeachingToolTrangle {
-    min-height: 60px;
-    qproperty-icon: url(:/qss/CatGray/Trangle.png);
-    qproperty-iconSize: 48px 48px;
-}
-
-QPushButton#TeachingToolProtractor {
-    min-height: 60px;
-    qproperty-icon: url(:/qss/CatGray/Protractor.png);
-    qproperty-iconSize: 48px 48px;
-}
-
-QPushButton#TeachingToolCompass {
-    min-height: 60px;
-    qproperty-icon: url(:/qss/CatGray/Compass.png);
-    qproperty-iconSize: 48px 48px;
+CatGraphicsView {
+    background-color: #244242;
+    border: none;
 }

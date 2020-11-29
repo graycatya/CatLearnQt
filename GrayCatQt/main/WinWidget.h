@@ -35,10 +35,16 @@ public:
 private:
     void InitUi();
     void InitProperty();
+    void InitConnect();
     void InitButtonList();
+
+    void SetZoomButtonState(QString state);
+
+    void SetWindowZoom();
 
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
 
 private slots:
     void On_ButtonFunc(int id);
@@ -49,6 +55,8 @@ private:
     QHash<QString, QPushButton*> m_pButtons;
 
     CatDrawingBoard *m_pCatDrawingBoard;
+    bool m_bFullScreen;
+    QRect m_pLastRect;
 
 };
 

@@ -31,6 +31,73 @@ ListiongOptions {
     background-color: transparent;
 }
 
+QPushButton#MinimizeButton {
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 30px;
+    border: none;
+    background-color: transparent;
+    qproperty-icon: url(:/Images/CatGray/Minimize.png);
+    qproperty-iconSize: 16px 16px;
+}
+
+QPushButton#MinimizeButton:hover {
+    background-color: #505050;
+}
+
+QPushButton#MinimizeButton:pressed {
+    background-color: transparent;
+}
+
+QPushButton#ZoomButton {
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 30px;
+    border: none;
+    background-color: transparent;
+}
+
+QPushButton#ZoomButton[State="Max"] {
+    qproperty-icon: url(:/Images/CatGray/MaximizeMin.png);
+    qproperty-iconSize: 16px 16px;
+}
+
+QPushButton#ZoomButton[State="Min"] {
+    qproperty-icon: url(:/Images/CatGray/MaximizeMax.png);
+    qproperty-iconSize: 16px 16px;
+}
+
+QPushButton#ZoomButton:hover {
+    background-color: #505050;
+}
+
+QPushButton#ZoomButton:pressed {
+    background-color: transparent;
+}
+
+QPushButton#CloseButton {
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 30px;
+    border: none;
+    background-color: transparent;
+    qproperty-icon: url(:/Images/CatGray/Close.png);
+    qproperty-iconSize: 16px 16px;
+}
+
+QPushButton#CloseButton:hover {
+    background-color: #d71526;
+}
+
+QPushButton#CloseButton:pressed {
+    background-color: transparent;
+}
+
+
+QLabel#Title {
+    max-width: 200px;
+    color: white;
+}
 /*
 QWidget#WidgetFunc {
     background-color: saddlebrown;

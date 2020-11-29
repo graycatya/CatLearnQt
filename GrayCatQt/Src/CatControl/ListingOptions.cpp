@@ -4,8 +4,11 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QButtonGroup>
+#include <QSharedPointer>
 
-ListiongOptions::ListiongOptions(QWidget *parent) : QWidget(parent)
+ListiongOptions::ListiongOptions(ListiongOptions::LAYOUT layout, QWidget *parent)
+ : QWidget(parent)
+ , m_yLayout(layout)
 {
     InitUi();
 
@@ -19,7 +22,16 @@ ListiongOptions::~ListiongOptions()
 
 void ListiongOptions::AddButton(QPushButton *button, int id)
 {
-    m_pButtonListsLayout->addWidget(button);
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->addWidget(button);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addWidget(button);
+            break;
+        }
+    }
     button->setCheckable(true);
     m_pButtonGroup->addButton(button, id);
     //button->setChecked(true);
@@ -27,12 +39,30 @@ void ListiongOptions::AddButton(QPushButton *button, int id)
 
 void ListiongOptions::AddButtonNoGroup(QPushButton *button)
 {
-    m_pButtonListsLayout->addWidget(button);
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->addWidget(button);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addWidget(button);
+            break;
+        }
+    }
 }
 
 void ListiongOptions::AddItem(QSpacerItem *item)
 {
-    m_pButtonListsLayout->addItem(item);
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->addItem(item);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addItem(item);
+            break;
+        }
+    }
 }
 
 QWidget *ListiongOptions::GetRootWidget() const
@@ -49,13 +79,36 @@ void ListiongOptions::Clear()
 {
     for(auto button : m_lButtonList)
     {
-        m_pButtonListsLayout->removeWidget(button);
+        switch (m_yLayout) {
+            case VBox: {
+                static_cast<QVBoxLayout*>(m_pButtonListsLayout)->removeWidget(button);
+                break;
+            }
+            case HBox: {
+                static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeWidget(button);
+                break;
+            }
+        }
         m_pButtonGroup->removeButton(button);
     }
     for(auto item : m_lItemList)
     {
-        m_pButtonListsLayout->removeItem(item);
+        switch (m_yLayout) {
+            case VBox: {
+                static_cast<QVBoxLayout*>(m_pButtonListsLayout)->removeItem(item);
+                break;
+            }
+            case HBox: {
+                static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeItem(item);
+                break;
+            }
+        }
     }
+}
+
+void *ListiongOptions::GetButtonlayout()
+{
+    return m_pButtonListsLayout;
 }
 
 void ListiongOptions::InitUi()
@@ -81,10 +134,21 @@ void ListiongOptions::InitUi()
     m_pButtonLists = new QWidget();
     m_pButtonLists->setObjectName(QString::fromUtf8("ButtonLists"));
     m_pScrollArea->setWidget(m_pButtonLists);
+    switch (m_yLayout) {
+        case VBox: {
+            m_pButtonListsLayout = new QVBoxLayout(m_pButtonLists);
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->setContentsMargins(0,0,0,0);
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->setSpacing(0);
+            break;
+        }
+        case HBox: {
+            m_pButtonListsLayout = new QHBoxLayout(m_pButtonLists);
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->setContentsMargins(0,0,0,0);
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->setSpacing(0);
+            break;
+        }
+    }
 
-    m_pButtonListsLayout = new QVBoxLayout(m_pButtonLists);
-    m_pButtonListsLayout->setContentsMargins(0,0,0,0);
-    m_pButtonListsLayout->setSpacing(0);
 
 
     m_pButtonGroup = new QButtonGroup(m_pButtonLists);
@@ -94,10 +158,10 @@ void ListiongOptions::InitUi()
 void ListiongOptions::InitProperty()
 {
     m_lButtonList.clear();
-    QFile resourceqss(":/qss/CatGray/ListingOptions.css");
+    /*QFile resourceqss(":/qss/CatGray/ListingOptions.css");
     resourceqss.open(QFile::ReadOnly);
     this->setStyleSheet(resourceqss.readAll());
-    resourceqss.close();
+    resourceqss.close();*/
 }
 
 void ListiongOptions::showEvent(QShowEvent *event)

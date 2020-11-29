@@ -12,7 +12,7 @@ QPushButton {
     border: none;
     color: #C1C1C1;
     background-color: #343434;
-    min-height: 40px;
+    /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
 }
@@ -20,7 +20,7 @@ QPushButton {
 QPushButton:hover {
     border: none;
     background-color: #656565;
-    min-height: 40px;
+    /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
 }
@@ -28,7 +28,7 @@ QPushButton:hover {
 QPushButton:pressed {
     border: none;
     background-color: #656565;
-    min-height: 40px;
+    /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
 }
@@ -36,7 +36,7 @@ QPushButton:pressed {
 QPushButton:checked {
     /*border: 1px solid #7C7C7C;*/
     background-color: rgba(223,74,22,100%);
-    min-height: 40px;
+    /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
 }

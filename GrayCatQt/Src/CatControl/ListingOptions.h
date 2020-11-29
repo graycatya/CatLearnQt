@@ -13,7 +13,11 @@ class ListiongOptions : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ListiongOptions(QWidget *parent = nullptr);
+    enum LAYOUT {
+        VBox,
+        HBox
+    };
+    explicit ListiongOptions(LAYOUT layout, QWidget *parent = nullptr);
     ~ListiongOptions();
 
 public:
@@ -23,6 +27,7 @@ public:
     QWidget *GetRootWidget( void ) const;
     QButtonGroup *GetButtonGroup( void ) const;
     void Clear();
+    void *GetButtonlayout( void );
 
 private:
     void InitUi( void );
@@ -37,10 +42,10 @@ private:
     QVBoxLayout *m_pRootWidgetLayout;
     QScrollArea *m_pScrollArea;
     QWidget *m_pButtonLists;
-    QVBoxLayout *m_pButtonListsLayout;
+    void *m_pButtonListsLayout;
     QList<QPushButton*> m_lButtonList;
     QList<QSpacerItem*> m_lItemList;
     QButtonGroup *m_pButtonGroup;
-
+    LAYOUT m_yLayout;
 };
 

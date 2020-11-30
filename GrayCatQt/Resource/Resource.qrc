@@ -14,5 +14,12 @@
         <file>qss/CatGray/ListingOptionsWin.css</file>
         <file>qss/CatGray/ListingOptionTeaching.css</file>
         <file>Images/CatGray/CATicon.png</file>
+        <file>Images/CatGray/BoardClear.png</file>
+        <file>qss/CatGray/ListingOptionBoard.css</file>
+        <file>Images/CatGray/BoardReset.png</file>
+        <file>Images/CatGray/BoardZoomIn.png</file>
+        <file>Images/CatGray/BoardZoomOut.png</file>
+        <file>qss/CatGray/CatAbout.css</file>
+        <file>about/Licence/Licence.md</file>
     </qresource>
 </RCC>

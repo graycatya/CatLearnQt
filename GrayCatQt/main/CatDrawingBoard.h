@@ -29,8 +29,10 @@ private:
     void InitConnect();
 
     void InitTeachingTool();
+    void InitBoardTool();
 
 protected:
+    /*重写 事件，防止win下继承父对象后事件继承问题*/
     void mousePressEvent(QMouseEvent *) override;
     void mouseMoveEvent(QMouseEvent *) override;
     void mouseReleaseEvent(QMouseEvent *) override;
@@ -45,6 +47,7 @@ private:
     ListiongOptions *m_pTeachingOptions;
     ListiongOptions *m_pBoardOptions;
     QHash<QString, QPushButton*> m_pTeachingButtons;
+    QHash<QString, QPushButton*> m_pBoardButtons;
     QVector<CatGraphicsScene*> m_pBoardScenes;
 };
 

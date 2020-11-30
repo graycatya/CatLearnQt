@@ -1,0 +1,196 @@
+/*
+QTabWidget::pane{
+	border:none;
+}
+
+QTabWidget::tab-bar{
+        alignment:left;
+}
+
+QTabBar::tab{
+	background:transparent;
+	color:white;
+	min-width:30ex;
+	min-height:10ex;
+}
+
+QTabBar::tab:hover{
+	background:rgba(255, 255, 255, 100%);
+}
+
+QTabBar::tab:selected{
+	border-color: white;
+	background:white;
+	color:green;
+}*/
+
+QWidget#AboutWidget {
+	border-radius: 4px;
+	background-color: #343434;
+}
+QWidget#LicenceWidget {
+	border-radius: 4px;
+	background-color: #343434;
+}
+QWidget#ContextWidget {
+	border-radius: 4px;
+	background-color: #343434;
+}
+
+QTabWidget::pane {
+	background-color: #343434;
+}
+
+QTabWidget::tab-bar{
+	background-color: #343434;
+	border-width:0px;
+}
+
+QTabBar::tab{
+	border-bottom-color: #C2C7CB;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	max-width: 75px; 
+	min-width:75px; 
+	min-height:25px;
+	font:14px;
+	padding: 0px;
+}
+
+QTabBar::scroller {
+	width: 25;
+	border:0;
+	padding: 0px;
+	color: #C1C1C1;
+}
+
+QTabBar QToolButton::right-arrow {
+	background-color:rgb(132, 171, 208);
+	border-width: 0;
+}
+
+QTabBar QToolButton::right-arrow:hover {
+	background-color:rgb(132, 171, 208);
+	border-width: 0;
+}
+
+QTabBar QToolButton::right-arrow:disabled {
+	background-color:rgb(132, 171, 208);
+	border-width: 0;
+}
+
+QTabBar QToolButton::left-arrow {
+	background-color:rgb(132, 171, 208);
+	border-width: 0;
+}
+
+QTabBar QToolButton::left-arrow:hover {
+	background-color:rgb(132, 171, 208);
+	border-width: 0;
+}
+
+QTabBar QToolButton::left-arrow:disabled {
+	background-color:rgb(132, 171, 208);
+	border-width: 0;
+}
+
+QTabBar::tab:first:selected {
+	color: rgba(223,74,22,100%);
+	border-bottom: 2px solid rgba(223,74,22,100%);
+}
+
+QTabBar::tab:first:!selected {
+	color: #C1C1C1;
+	
+}
+
+QTabBar::tab:first:hover:!selected {
+	color: rgba(220, 220, 220, 0.9);
+	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+}
+
+QTabBar::tab:middle:selected {
+	color: rgba(223,74,22,100%);
+	border-bottom: 2px solid rgba(223,74,22,100%);
+
+}
+
+QTabBar::tab:middle:!selected {
+	color: #C1C1C1;
+}
+
+QTabBar::tab:middle:hover:!selected {
+	color: rgba(220, 220, 220, 0.9);
+	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+}
+
+QTabBar::tab:last:selected {
+	color: rgba(223,74,22,100%);
+	border-bottom: 2px solid rgba(223,74,22,100%);
+}
+QTabBar::tab:last:!selected {
+	color: #C1C1C1;
+}
+							 
+QTabBar::tab:last:hover:!selected {
+	color: rgba(220, 220, 220, 0.9);
+	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+}
+
+QTabBar::tab:only-one {
+	margin: 0;
+}
+
+QTextEdit#LicenceTextEdit {
+	color: #C1C1C1;
+	background-color: transparent;
+}
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
+/* 上下箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background: transparent;
+    border: none;
+}

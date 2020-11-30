@@ -102,7 +102,6 @@ QPushButton#CloseButton:pressed {
     background-color: transparent;
 }
 
-
 QLabel#Title {
     max-width: 200px;
     color: white;

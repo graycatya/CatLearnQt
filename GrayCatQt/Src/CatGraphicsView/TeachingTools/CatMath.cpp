@@ -18,7 +18,8 @@ qreal CatMath::CmtoPx(qreal cm)
     //获取主屏幕分辨率
     QScreen *screen = QApplication::primaryScreen();
     // 1 英寸的像素
-    qreal inchToPx = qreal(1)/GetDpi();
+    //qreal inchToPx = qreal(1)/GetDpi();
+    qreal inchToPx = qreal(1)/130.0;
     // 屏幕宽度
     qreal width = static_cast<qreal>(screen->geometry().width());
     // 1 英寸＝2.54 厘米 WidthToCm为当前屏幕宽度所对应的厘米尺寸

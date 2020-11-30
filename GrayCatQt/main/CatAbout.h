@@ -1,4 +1,4 @@
-#ifndef CATABOUT_H
+﻿#ifndef CATABOUT_H
 #define CATABOUT_H
 
 #include <QWidget>
@@ -14,6 +14,10 @@ class CatAbout : public QWidget
 public:
     explicit CatAbout(QWidget *parent = nullptr);
     ~CatAbout();
+
+private:
+    void InitUi();
+    void InitProperty();
 
 private:
     Ui::CatAbout *ui;

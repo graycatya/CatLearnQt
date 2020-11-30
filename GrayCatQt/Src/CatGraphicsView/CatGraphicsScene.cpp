@@ -3,6 +3,7 @@
 #include "TeachingTools/TeachingToolProtractor.h"
 #include "TeachingTools/TeachingToolRuler.h"
 #include "TeachingTools/TeachingToolTrangle.h"
+#include "CatGraphicsView.h"
 
 CatGraphicsScene::CatGraphicsScene(QObject *parent)
     : QGraphicsScene(parent)
@@ -16,10 +17,16 @@ CatGraphicsScene::~CatGraphicsScene()
 
 }
 
-void CatGraphicsScene::SetView(QGraphicsView *view)
+void CatGraphicsScene::SetView(CatGraphicsView *view)
 {
     m_yView = view;
 }
+
+CatGraphicsView *CatGraphicsScene::View()
+{
+    return m_yView;
+}
+
 
 void CatGraphicsScene::AddTeachingToolProtractor()
 {

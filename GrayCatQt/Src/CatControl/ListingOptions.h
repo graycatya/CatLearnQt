@@ -23,6 +23,7 @@ public:
 public:
     void AddButton(QPushButton *button, int id);
     void AddButtonNoGroup(QPushButton *button);
+    void AddWidget(QWidget *widget);
     void AddItem(QSpacerItem *item);
     QWidget *GetRootWidget( void ) const;
     QButtonGroup *GetButtonGroup( void ) const;

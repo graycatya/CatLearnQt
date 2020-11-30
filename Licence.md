@@ -1,49 +1,4 @@
-# Directory
-
-<br/><br/>
-
-1. SingleApplication (The MIT License)
-2. CatLearnQt (GPL v3)
-
-<br/><br/><br/>
-
-## 1. SingleApplication (The MIT License)
-
-<br/><br/>
-
-```
-The MIT License (MIT)
-
-Copyright (c) Itay Grudev 2015 - 2020
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
-
-<br/><br/>
-
-## 2. CatLearnQt (GPL v3)
-
-<br/><br/>
-
 ### GNU GENERAL PUBLIC LICENSE
-
-<br/><br/>
 
 Version 3, 29 June 2007
 
@@ -53,11 +8,7 @@ Copyright (C) 2007 Free Software Foundation, Inc.
 Everyone is permitted to copy and distribute verbatim copies of this
 license document, but changing it is not allowed.
 
-<br/><br/>
-
 ### Preamble
-
-<br/><br/>
 
 The GNU General Public License is a free, copyleft license for
 software and other kinds of works.
@@ -122,15 +73,9 @@ assures that patents cannot be used to render the program non-free.
 The precise terms and conditions for copying, distribution and
 modification follow.
 
-<br/><br/>
-
 ### TERMS AND CONDITIONS
 
-<br/><br/>
-
 #### 0. Definitions.
-
-<br/><br/>
 
 "This License" refers to version 3 of the GNU General Public License.
 
@@ -170,11 +115,7 @@ work under this License, and how to view a copy of this License. If
 the interface presents a list of user commands or options, such as a
 menu, a prominent item in the list meets this criterion.
 
-<br/><br/>
-
 #### 1. Source Code.
-
-<br/><br/>
 
 The "source code" for a work means the preferred form of the work for
 making modifications to it. "Object code" means any non-source form of
@@ -215,11 +156,7 @@ regenerate automatically from other parts of the Corresponding Source.
 The Corresponding Source for a work in source code form is that same
 work.
 
-<br/><br/>
-
 #### 2. Basic Permissions.
-
-<br/><br/>
 
 All rights granted under this License are granted for the term of
 copyright on the Program, and are irrevocable provided the stated
@@ -244,11 +181,7 @@ Conveying under any other circumstances is permitted solely under the
 conditions stated below. Sublicensing is not allowed; section 10 makes
 it unnecessary.
 
-<br/><br/>
-
 #### 3. Protecting Users' Legal Rights From Anti-Circumvention Law.
-
-<br/><br/>
 
 No covered work shall be deemed part of an effective technological
 measure under any applicable law fulfilling obligations under article
@@ -264,11 +197,7 @@ operation or modification of the work as a means of enforcing, against
 the work's users, your or third parties' legal rights to forbid
 circumvention of technological measures.
 
-<br/><br/>
-
 #### 4. Conveying Verbatim Copies.
-
-<br/><br/>
 
 You may convey verbatim copies of the Program's source code as you
 receive it, in any medium, provided that you conspicuously and
@@ -281,11 +210,7 @@ recipients a copy of this License along with the Program.
 You may charge any price or no price for each copy that you convey,
 and you may offer support or warranty protection for a fee.
 
-<br/><br/>
-
 #### 5. Conveying Modified Source Versions.
-
-<br/><br/>
 
 You may convey a work based on the Program, or the modifications to
 produce it from the Program, in the form of source code under the
@@ -320,11 +245,7 @@ beyond what the individual works permit. Inclusion of a covered work
 in an aggregate does not cause this License to apply to the other
 parts of the aggregate.
 
-<br/><br/>
-
 #### 6. Conveying Non-Source Forms.
-
-<br/><br/>
 
 You may convey a covered work in object code form under the terms of
 sections 4 and 5, provided that you also convey the machine-readable
@@ -420,11 +341,7 @@ documented (and with an implementation available to the public in
 source code form), and must require no special password or key for
 unpacking, reading or copying.
 
-<br/><br/>
-
 #### 7. Additional Terms.
-
-<br/><br/>
 
 "Additional permissions" are terms that supplement the terms of this
 License by making exceptions from one or more of its conditions.
@@ -483,11 +400,7 @@ Additional terms, permissive or non-permissive, may be stated in the
 form of a separately written license, or stated as exceptions; the
 above requirements apply either way.
 
-<br/><br/>
-
 #### 8. Termination.
-
-<br/><br/>
 
 You may not propagate or modify a covered work except as expressly
 provided under this License. Any attempt otherwise to propagate or
@@ -515,11 +428,7 @@ this License. If your rights have been terminated and not permanently
 reinstated, you do not qualify to receive new licenses for the same
 material under section 10.
 
-<br/><br/>
-
 #### 9. Acceptance Not Required for Having Copies.
-
-<br/><br/>
 
 You are not required to accept this License in order to receive or run
 a copy of the Program. Ancillary propagation of a covered work
@@ -530,11 +439,7 @@ modify any covered work. These actions infringe copyright if you do
 not accept this License. Therefore, by modifying or propagating a
 covered work, you indicate your acceptance of this License to do so.
 
-<br/><br/>
-
 #### 10. Automatic Licensing of Downstream Recipients.
-
-<br/><br/>
 
 Each time you convey a covered work, the recipient automatically
 receives a license from the original licensors, to run, modify and
@@ -559,11 +464,7 @@ rights granted under this License, and you may not initiate litigation
 any patent claim is infringed by making, using, selling, offering for
 sale, or importing the Program or any portion of it.
 
-<br/><br/>
-
 #### 11. Patents.
-
-<br/><br/>
 
 A "contributor" is a copyright holder who authorizes use under this
 License of the Program or a work on which the Program is based. The
@@ -632,11 +533,7 @@ Nothing in this License shall be construed as excluding or limiting
 any implied license or other defenses to infringement that may
 otherwise be available to you under applicable patent law.
 
-<br/><br/>
-
 #### 12. No Surrender of Others' Freedom.
-
-<br/><br/>
 
 If conditions are imposed on you (whether by court order, agreement or
 otherwise) that contradict the conditions of this License, they do not
@@ -649,11 +546,7 @@ from those to whom you convey the Program, the only way you could
 satisfy both those terms and this License would be to refrain entirely
 from conveying the Program.
 
-<br/><br/>
-
 #### 13. Use with the GNU Affero General Public License.
-
-<br/><br/>
 
 Notwithstanding any other provision of this License, you have
 permission to link or combine any covered work with a work licensed
@@ -664,11 +557,7 @@ but the special requirements of the GNU Affero General Public License,
 section 13, concerning interaction through a network will apply to the
 combination as such.
 
-<br/><br/>
-
 #### 14. Revised Versions of this License.
-
-<br/><br/>
 
 The Free Software Foundation may publish revised and/or new versions
 of the GNU General Public License from time to time. Such new versions
@@ -694,11 +583,7 @@ permissions. However, no additional obligations are imposed on any
 author or copyright holder as a result of your choosing to follow a
 later version.
 
-<br/><br/>
-
 #### 15. Disclaimer of Warranty.
-
-<br/><br/>
 
 THERE IS NO WARRANTY FOR THE PROGRAM, TO THE EXTENT PERMITTED BY
 APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE COPYRIGHT
@@ -710,11 +595,7 @@ PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE
 DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR
 CORRECTION.
 
-<br/><br/>
-
 #### 16. Limitation of Liability.
-
-<br/><br/>
 
 IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING
 WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MODIFIES AND/OR
@@ -726,11 +607,7 @@ LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE PROGRAM
 TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER
 PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-<br/><br/>
-
 #### 17. Interpretation of Sections 15 and 16.
-
-<br/><br/>
 
 If the disclaimer of warranty and limitation of liability provided
 above cannot be given local legal effect according to their terms,
@@ -741,11 +618,7 @@ copy of the Program in return for a fee.
 
 END OF TERMS AND CONDITIONS
 
-<br/><br/>
-
 ### How to Apply These Terms to Your New Programs
-
-<br/><br/>
 
 If you develop a new program, and you want it to be of the greatest
 possible use to the public, the best way to achieve this is to make it

@@ -8,126 +8,56 @@ QWidget#ButtonLists {
     background-color: transparent;
 }
 
-QPushButton#TeachingToolRuler {
+QPushButton {
     min-height: 60px;
     max-height: 60px;
     border-radius: 5px;
     border: 0px solid gray;
     background-color: #343434;
-    qproperty-icon: url(:/Images/CatGray/Ruler.png);
-
-    qproperty-iconSize: 48px 48px;
 }
 
-QPushButton#TeachingToolRuler:hover {
+QPushButton:hover {
     border: none;
-    background-color: rgba(223,74,22,100%);
+    background-color: #656565;
     min-height: 60px;
     max-height: 60px;
     border: 1px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
 }
 
-QPushButton#TeachingToolRuler:pressed {
+QPushButton:pressed {
     border: none;
     background-color: rgba(223,74,22,100%);
     min-height: 60px;
     max-height: 60px;
-    border: 3px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
+    border: 2px solid gray;
 }
 
-
-QPushButton#TeachingToolTrangle {
+QPushButton:checked {
+    border: none;
+    background-color: rgba(223,74,22,100%);
     min-height: 60px;
     max-height: 60px;
-    border-radius: 5px;
-    border: 0px solid gray;
-    background-color: #343434;
+    border: 2px solid gray;
+}
+
+QPushButton#TeachingToolRuler {
+    qproperty-icon: url(:/Images/CatGray/Ruler.png);
+    qproperty-iconSize: 48px 48px;
+}
+
+QPushButton#TeachingToolTrangle {
     qproperty-icon: url(:/Images/CatGray/Trangle.png);
     qproperty-iconSize: 48px 48px;
 }
 
-QPushButton#TeachingToolTrangle:hover {
-    border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 1px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
-}
-
-QPushButton#TeachingToolTrangle:pressed {
-    border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 3px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
-}
-
 QPushButton#TeachingToolProtractor {
-    min-height: 60px;
-    max-height: 60px;
-    border-radius: 5px;
-    border: 0px solid gray;
-    background-color: #343434;
     qproperty-icon: url(:/Images/CatGray/Protractor.png);
     qproperty-iconSize: 48px 48px;
 }
 
-QPushButton#TeachingToolProtractor:hover {
-    border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 1px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
-}
-
-QPushButton#TeachingToolProtractor:pressed {
-    border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 3px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
-}
-
 QPushButton#TeachingToolCompass {
-    min-height: 60px;
-    max-height: 60px;
-    border-radius: 5px;
-    border: 0px solid gray;
-    background-color: #343434;
     qproperty-icon: url(:/Images/CatGray/Compass.png);
     qproperty-iconSize: 48px 48px;
-}
-
-QPushButton#TeachingToolCompass:hover {
-    border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 1px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
-}
-
-QPushButton#TeachingToolCompass:pressed {
-    border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 3px solid gray;
-    /*qproperty-minimumSize: 200px 40px;
-    qproperty-maximumSize: 200px 40px;*/
 }
 
 QScrollArea#ListingOptionsScroll {
@@ -160,8 +90,24 @@ QScrollBar::handle:vertical:hover
     min-height:20;
 }
 
+QScrollBar::handle:vertical:pressed
+{
+    height:4px;
+    background:rgba(223,74,22,100%);
+    border-radius:2px;
+    min-width:20;
+}
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
 QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
 {
+    width: 0px;
     background:rgba(0,0,0,0%);
     border-radius:2px;
 }

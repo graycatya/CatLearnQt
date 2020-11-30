@@ -51,6 +51,20 @@ void ListiongOptions::AddButtonNoGroup(QPushButton *button)
     }
 }
 
+void ListiongOptions::AddWidget(QWidget *widget)
+{
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->addWidget(widget);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addWidget(widget);
+            break;
+        }
+    }
+}
+
 void ListiongOptions::AddItem(QSpacerItem *item)
 {
     switch (m_yLayout) {
@@ -127,7 +141,7 @@ void ListiongOptions::InitUi()
     m_pScrollArea = new QScrollArea(m_pRootWidget);
     m_pScrollArea->setObjectName("ListingOptionsScroll");
     m_pScrollArea->setWidgetResizable(true);
-    m_pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    //m_pScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     m_pRootWidgetLayout->addWidget(m_pScrollArea);
 

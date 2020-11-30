@@ -10,7 +10,15 @@ public:
     explicit CatGraphicsView(QWidget *parent = nullptr);
     ~CatGraphicsView();
 
+    void ScaleZoomIn();
+    void ScaleZoomOut();
+    void Reset();
+
 private:
+    void InitProperty();
+
+private:
+
 
 };
 

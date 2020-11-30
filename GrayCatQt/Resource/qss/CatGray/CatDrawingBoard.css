@@ -1,12 +1,14 @@
-CatGraphicsScene {
-    qproperty-backgroundBrush: #244242;
-    background-color: #244242;
+QWidget#GraphicsTopToolWidget {
+    min-height: 32px;
+    max-height: 32px;
 }
 
 CatGraphicsView {
     background-color: #244242;
     border: none;
 }
+
+
 
 QScrollArea {
     border: none;
@@ -30,6 +32,7 @@ QScrollBar::handle:vertical
     border-radius:4px;
     min-height:20;
 }
+
 QScrollBar::handle:vertical:hover
 {
     width:8px;
@@ -37,6 +40,15 @@ QScrollBar::handle:vertical:hover
     border-radius:4px;
     min-height:20;
 }
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
 /* 上下箭头的边框 */
 QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
 {
@@ -47,6 +59,7 @@ QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
 /* 滚动条背景 */
 QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
 {
+    width: 0px;
     background: transparent;
     border: none;
 }
@@ -59,6 +72,7 @@ QScrollBar:horizontal
     padding-top:0px;
     padding-bottom:0px;
 }
+
 QScrollBar::handle:horizontal
 {
     height:8px;
@@ -66,6 +80,7 @@ QScrollBar::handle:horizontal
     border-radius:4px;
     min-width:20;
 }
+
 QScrollBar::handle:horizontal:hover
 {
     height:8px;
@@ -73,6 +88,15 @@ QScrollBar::handle:horizontal:hover
     border-radius:4px;
     min-width:20;
 }
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-width:20;
+}
+
 
 /* 左右箭头的边框 */
 QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
@@ -84,6 +108,7 @@ QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
 /* 滚动条背景 */
 QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
 {
+    height: 0px;
     background: transparent;
     border: none;
 }

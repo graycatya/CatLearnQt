@@ -30,6 +30,7 @@ Debug:UI_DIR = debug/.ui
 
 DEFINES += APP_VERSION=\\\"'v1.0.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
+DEFINES += APP_NAME=\\\"'CatLearnQt'\\\"
 
 
 INCLUDEPATH += Src

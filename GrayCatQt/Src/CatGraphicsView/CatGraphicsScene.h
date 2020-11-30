@@ -3,7 +3,7 @@
 
 #include <QGraphicsScene>
 
-class QGraphicsView;
+class CatGraphicsView;
 class TeachingToolCompass;
 class TeachingToolProtractor;
 class TeachingToolRuler;
@@ -16,15 +16,18 @@ public:
     explicit CatGraphicsScene(QObject *parent = nullptr);
     ~CatGraphicsScene();
 
-    void SetView(QGraphicsView *view);
+    void SetView(CatGraphicsView *view);
+    CatGraphicsView *View( void );
+
 
     void AddTeachingToolProtractor();
     void AddTeachingToolRuler();
     void AddTeachingToolTrangle();
     void AddTeachingToolCompass();
 
+
 private:
-    QGraphicsView *m_yView;
+    CatGraphicsView *m_yView;
 
 };
 

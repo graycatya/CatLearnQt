@@ -7,6 +7,7 @@
 class QPushButton;
 class ListiongOptions;
 class CatDrawingBoard;
+class CatAbout;
 
 namespace Ui {
 class WinWidget;
@@ -55,6 +56,8 @@ private:
     QHash<QString, QPushButton*> m_pButtons;
 
     CatDrawingBoard *m_pCatDrawingBoard;
+    CatAbout *m_pCatAbout;
+
     bool m_bFullScreen;
     QRect m_pLastRect;
 

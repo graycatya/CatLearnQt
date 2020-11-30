@@ -12,6 +12,7 @@
 #include <CatLog>
 #include <QDesktopWidget>
 #include "CatDrawingBoard.h"
+#include "CatAbout.h"
 
 WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -58,10 +59,26 @@ void WinWidget::InitUi()
     m_pCatDrawingBoard->setObjectName("WinCatDrawingBoard");
     layout_0->addWidget(m_pCatDrawingBoard);
 
+    // About 布局
+    QVBoxLayout *layout_1 = new QVBoxLayout(ui->AboutFunc);
+    layout_1->setContentsMargins(0,0,0,0);
+    layout_1->setSpacing(0);
+
+    m_pCatAbout = new CatAbout(ui->AboutFunc);
+    m_pCatAbout->setObjectName("WinCatAbout");
+    layout_1->addWidget(m_pCatAbout);
+
     // 微调布局
-    ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
+    //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
+
+    this->setWindowTitle(APP_NAME);
+
+#if defined (Q_OS_WIN)
+
+#endif
+
 }
 
 void WinWidget::InitProperty()

@@ -141,10 +141,7 @@ QTabBar::tab:only-one {
 	margin: 0;
 }
 
-QTextEdit#LicenceTextEdit {
-	color: #C1C1C1;
-	background-color: transparent;
-}
+
 
 /* 滚动条 */
 QScrollBar:vertical
@@ -193,4 +190,14 @@ QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
     width: 0px;
     background: transparent;
     border: none;
+}
+
+QWidget#Licence {
+	background-color: transparent;
+}
+
+QTextEdit#LicenceTextEdit {
+	color: #C1C1C1;
+	border: none;
+	background: transparent;
 }

@@ -43,6 +43,8 @@ private:
 
     void SetWindowZoom();
 
+    void SetTitle(QString state = "");
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);

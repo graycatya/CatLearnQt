@@ -73,11 +73,7 @@ void WinWidget::InitUi()
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
     this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
 
-    this->setWindowTitle(APP_NAME);
 
-#if defined (Q_OS_WIN)
-
-#endif
 
 }
 
@@ -128,6 +124,10 @@ void WinWidget::InitProperty()
     file_0.close();
 
     SetZoomButtonState("Min");
+
+    QString title = ui->FuncStackWidget->currentWidget()->objectName();
+    title.replace(title.size()-4, title.size(), "");
+    SetTitle(title);
 }
 
 void WinWidget::InitConnect()
@@ -204,6 +204,17 @@ void WinWidget::SetWindowZoom()
     }
 }
 
+void WinWidget::SetTitle(QString state)
+{
+    QString title = APP_NAME;
+    if(!state.isEmpty())
+    {
+        title += QString(" - " + state);
+    }
+    this->setWindowTitle(title);
+    ui->Title->setText(title);
+}
+
 bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -245,6 +256,9 @@ void WinWidget::On_ButtonFunc(int id)
     QString log = QString("On_ButtonFunc id: %1").arg(QString::number(id));
     CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     ui->FuncStackWidget->setCurrentIndex(id);
+    QString title = ui->FuncStackWidget->currentWidget()->objectName();
+    title.replace(title.size()-4, title.size(), "");
+    SetTitle(title);
 }
 
 

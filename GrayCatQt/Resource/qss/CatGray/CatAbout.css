@@ -37,7 +37,9 @@ QWidget#ContextWidget {
 	background-color: #343434;
 }
 
+
 QTabWidget::pane {
+	border-radius: 4px;
 	background-color: #343434;
 }
 
@@ -58,7 +60,7 @@ QTabBar::tab{
 }
 
 QTabBar::scroller {
-	width: 25;
+	width: 25px;
 	border:0;
 	padding: 0px;
 	color: #C1C1C1;
@@ -200,4 +202,16 @@ QTextEdit#LicenceTextEdit {
 	color: #C1C1C1;
 	border: none;
 	background: transparent;
+}
+
+QPushButton#Log {
+	min-width: 150px;
+	min-height: 150px;
+	max-width: 150px;
+	max-height: 150px;
+	border-radius: 75px;
+	background-color: #C1C1C1;
+	qproperty-icon: url(:/Images/CatGray/CatLearnQt.png);
+	qproperty-iconSize: 100px 100px;
+	border: 2px solid rgba(223,74,22,100%);
 }

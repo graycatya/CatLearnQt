@@ -21,5 +21,6 @@
         <file>Images/CatGray/BoardZoomOut.png</file>
         <file>qss/CatGray/CatAbout.css</file>
         <file>about/Licence/Licence.md</file>
+        <file>Images/CatGray/CatLearnQt.png</file>
     </qresource>
 </RCC>

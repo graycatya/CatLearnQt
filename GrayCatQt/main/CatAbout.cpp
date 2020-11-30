@@ -22,6 +22,8 @@ void CatAbout::InitUi()
     ui->RootLayout->setStretchFactor(ui->LogVboxLayout, 2);
     ui->RootLayout->setStretchFactor(ui->AboutTabWidget, 8);
     ui->LicenceTextEdit->setReadOnly(true);
+    ui->AboutTabWidget->setAttribute(Qt::WA_StyledBackground);
+    ui->AboutTabWidget->setAttribute(Qt::WA_TranslucentBackground);
 }
 
 void CatAbout::InitProperty()

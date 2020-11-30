@@ -224,6 +224,7 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     {
         if(watched->objectName() == temp && event->type() == QEvent::MouseMove)
         {
+            setCursor(Qt::ArrowCursor);
             return QWidget::eventFilter(watched, event);
         }
     }

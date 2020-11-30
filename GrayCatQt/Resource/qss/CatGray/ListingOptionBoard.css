@@ -1,0 +1,9 @@
+QWidget#ListiongOptionsRootWidget {
+    border: none;
+    background-color: #272626;
+}
+
+QWidget#ButtonLists {
+    border: none;
+    background-color: transparent;
+}

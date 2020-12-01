@@ -147,7 +147,7 @@ void WinWidget::InitConnect()
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
         if(m_bMousePress && m_bFullScreen)
         {
-            qDebug() << m_bMousePress;
+            //qDebug() << m_bMousePress;
             if(ui->TopWidget->rect().contains(pos))
             {
                 m_bFullScreen = !m_bFullScreen;

@@ -101,7 +101,7 @@ void CatDrawingBoard::InitProperty()
     this->setStyleSheet(stylehoot_0);
     file_0.close();
 
-    qDebug() << m_pTeachingButtons["TeachingToolRuler"]->height();
+    //qDebug() << m_pTeachingButtons["TeachingToolRuler"]->height();
     QSpacerItem* item = new QSpacerItem(60, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
     m_pTeachingOptions->AddItem(item);
 }

@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿#ifndef CATLOG_MESSAGE_H
+#define CATLOG_MESSAGE_H
 
 #include<iostream>
 #include<sstream>
@@ -140,3 +141,5 @@ struct LOG_MESSAGE{
             return log_head;
     }
 };
+
+#endif

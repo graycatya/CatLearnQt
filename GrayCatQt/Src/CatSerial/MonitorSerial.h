@@ -10,6 +10,7 @@
 #include <QThread>
 #include <QMutex>
 #include <QSerialPortInfo>
+#include <QHash>
 
 class MonitorSerial : public QThread
 {
@@ -87,7 +88,7 @@ private:
     static bool m_bStart;
     static int FrequencyTime;
     static bool TheFirstTimeExamine;
-    QList<QSerialPortInfo> m_lSerialPortInfo;
+    QHash<QString, QSerialPortInfo> m_lSerialPortInfo;
 
 
 };

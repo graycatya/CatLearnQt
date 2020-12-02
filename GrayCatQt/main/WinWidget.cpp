@@ -254,8 +254,8 @@ void WinWidget::mouseDoubleClickEvent(QMouseEvent *event)
 
 void WinWidget::On_ButtonFunc(int id)
 {
-    QString log = QString("On_ButtonFunc id: %1").arg(QString::number(id));
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+    /*QString log = QString("On_ButtonFunc id: %1").arg(QString::number(id));
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));*/
     ui->FuncStackWidget->setCurrentIndex(id);
     QString title = ui->FuncStackWidget->currentWidget()->objectName();
     title.replace(title.size()-4, title.size(), "");

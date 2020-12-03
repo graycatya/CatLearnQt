@@ -24,5 +24,10 @@
         <file>Images/CatGray/CatLearnQt.png</file>
         <file>Images/CatGray/AboutLeftArrow.png</file>
         <file>Images/CatGray/AboutRightArrow.png</file>
+        <file>about/explain/explain_cn.md</file>
+        <file>about/explain/explain_en.md</file>
+        <file>Images/CatGray/Gitee.png</file>
+        <file>Images/CatGray/Github.png</file>
+        <file>Images/CatGray/Home.png</file>
     </qresource>
 </RCC>

@@ -18,6 +18,7 @@ public:
 private:
     void InitUi();
     void InitProperty();
+    void InitConnect();
 
 private:
     Ui::CatAbout *ui;

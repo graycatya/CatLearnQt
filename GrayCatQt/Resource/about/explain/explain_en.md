@@ -1,1 +1,1 @@
-This software is used to learn Qt development
+This software is used to learn Qt development.

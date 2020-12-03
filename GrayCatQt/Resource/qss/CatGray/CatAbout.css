@@ -66,29 +66,23 @@ QTabBar::scroller {
 	color: #C1C1C1;
 }
 
+QTabBar QToolButton {
+	border: 0px;
+}
+
 QTabBar QToolButton::right-arrow {
 	background-color:#343434;
 	image: url(:/Images/CatGray/AboutRightArrow.png);
 	border-radius: 1px;
 }
-/*
-QTabBar QToolButton {
-	border: 0px;
-}
-*/
+
 QTabBar QToolButton::right-arrow:hover {
 	background-color:#656565;
 }
 
 QTabBar QToolButton::right-arrow:disabled {
-	background-color:#343434;
+	background-color:#656565;
 }
-
-/*
-QTabBar QToolButton::right-arrow {
-	background-color:#343434;
-	border: 1px solid #656565;
-}*/
 
 QTabBar QToolButton::left-arrow {
 	background-color:#343434;
@@ -101,7 +95,7 @@ QTabBar QToolButton::left-arrow:hover {
 }
 
 QTabBar QToolButton::left-arrow:disabled {
-	background-color:#343434;
+	background-color:#656565;
 }
 
 QTabBar::tab:first:selected {
@@ -271,4 +265,95 @@ QPushButton#Log {
 	qproperty-icon: url(:/Images/CatGray/CatLearnQt.png);
 	qproperty-iconSize: 100px 100px;
 	border: 2px solid rgba(223,74,22,100%);
+}
+
+QLabel#AppName {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 24px;
+}
+
+QLabel#AppVersion {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 24px;
+}
+
+QLabel#Author {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 16px;
+}
+
+QLabel#AuthorName {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 16px;
+}
+
+QLabel#Explain {
+	color: #C1C1C1;
+	background-color: transparent;
+	border: 0px;
+	font-size: 16px;
+}
+
+QPushButton#GrayCatYa {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	background-color: #343434;
+	border: 1px solid gray;
+	border-radius: 4px;
+	qproperty-icon: url(:/Images/CatGray/Home.png);
+	qproperty-iconSize: 32px 32px;
+}
+
+QPushButton#GrayCatYa:hover {
+	background-color: #656565;
+}
+
+QPushButton#GrayCatYa:checked {
+	background-color: #343434;
+}
+
+QPushButton#GitHub {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	background-color: #343434;
+	border: 1px solid gray;
+	border-radius: 4px;
+	qproperty-icon: url(:/Images/CatGray/Github.png);
+	qproperty-iconSize: 32px 32px;
+}
+
+QPushButton#GitHub:hover {
+	background-color: #656565;
+}
+
+QPushButton#GitHub:checked {
+	background-color: #343434;
+}
+
+QPushButton#Gitee {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	background-color: #343434;
+	border: 1px solid gray;
+	border-radius: 4px;
+	qproperty-icon: url(:/Images/CatGray/Gitee.png);
+	qproperty-iconSize: 32px 32px;
+}
+
+QPushButton#Gitee:hover {
+	background-color: #656565;
+}
+
+QPushButton#Gitee:checked {
+	background-color: #343434;
 }

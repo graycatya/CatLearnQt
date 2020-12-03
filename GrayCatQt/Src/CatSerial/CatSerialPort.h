@@ -17,6 +17,7 @@ public:
     void InitProperty();
 
     void SetSerialInfo(const QSerialPortInfo info);
+
     void SetSerialPortName(const QString portname);
 
     bool OpenSerial();

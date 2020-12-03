@@ -109,8 +109,10 @@ void WinWidget::InitProperty()
     ui->CloseButton->setMouseTracking(true);
     m_pCatDrawingBoard->installEventFilter(this);
     m_pCatDrawingBoard->setMouseTracking(true);
-
+    m_pCatAbout->installEventFilter(this);
+    m_pCatAbout->setMouseTracking(true);
 #endif
+
 
     QFile file_1(":/qss/CatGray/ListingOptionsWin.css");
     file_1.open(QIODevice::ReadOnly);

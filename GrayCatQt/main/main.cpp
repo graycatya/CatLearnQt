@@ -4,6 +4,7 @@
 #include <CatSerial>
 #include "WinWidget.h"
 
+#include <QSettings>
 
 
 int main(int argc, char *argv[])
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
         CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
     });
 
+    QSettings settings("GrayCatYa", APP_NAME);
 
     WinWidget w;
     w.setMinimumSize(QSize(300, 300));

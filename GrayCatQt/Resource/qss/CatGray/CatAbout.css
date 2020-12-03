@@ -67,33 +67,41 @@ QTabBar::scroller {
 }
 
 QTabBar QToolButton::right-arrow {
-	background-color:rgb(132, 171, 208);
-	border-width: 0;
+	background-color:#343434;
+	image: url(:/Images/CatGray/AboutRightArrow.png);
+	border-radius: 1px;
 }
-
+/*
+QTabBar QToolButton {
+	border: 0px;
+}
+*/
 QTabBar QToolButton::right-arrow:hover {
-	background-color:rgb(132, 171, 208);
-	border-width: 0;
+	background-color:#656565;
 }
 
 QTabBar QToolButton::right-arrow:disabled {
-	background-color:rgb(132, 171, 208);
-	border-width: 0;
+	background-color:#343434;
 }
 
+/*
+QTabBar QToolButton::right-arrow {
+	background-color:#343434;
+	border: 1px solid #656565;
+}*/
+
 QTabBar QToolButton::left-arrow {
-	background-color:rgb(132, 171, 208);
-	border-width: 0;
+	background-color:#343434;
+	image: url(:/Images/CatGray/AboutLeftArrow.png);
+	border-radius: 1px;
 }
 
 QTabBar QToolButton::left-arrow:hover {
-	background-color:rgb(132, 171, 208);
-	border-width: 0;
+	background-color:#656565;
 }
 
 QTabBar QToolButton::left-arrow:disabled {
-	background-color:rgb(132, 171, 208);
-	border-width: 0;
+	background-color:#343434;
 }
 
 QTabBar::tab:first:selected {

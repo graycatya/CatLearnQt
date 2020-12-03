@@ -22,5 +22,7 @@
         <file>qss/CatGray/CatAbout.css</file>
         <file>about/Licence/Licence.md</file>
         <file>Images/CatGray/CatLearnQt.png</file>
+        <file>Images/CatGray/AboutLeftArrow.png</file>
+        <file>Images/CatGray/AboutRightArrow.png</file>
     </qresource>
 </RCC>

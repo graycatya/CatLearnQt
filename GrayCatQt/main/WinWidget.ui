@@ -156,7 +156,7 @@
          <widget class="QWidget" name="ToolListWidget" native="true">
           <property name="minimumSize">
            <size>
-            <width>100</width>
+            <width>200</width>
             <height>0</height>
            </size>
           </property>

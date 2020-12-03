@@ -10,6 +10,12 @@
     <height>574</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>200</width>
+    <height>400</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
@@ -84,7 +90,7 @@
    <item>
     <widget class="QTabWidget" name="AboutTabWidget">
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="AboutWidget">
       <attribute name="title">

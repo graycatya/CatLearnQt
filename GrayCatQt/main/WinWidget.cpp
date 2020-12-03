@@ -13,6 +13,7 @@
 #include <QDesktopWidget>
 #include "CatDrawingBoard.h"
 #include "CatAbout.h"
+#include <QToolButton>
 
 WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)

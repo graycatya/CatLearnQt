@@ -14,5 +14,4 @@ FORMS += \
     $$PWD/CatDrawingBoard.ui \
     $$PWD/WinWidget.ui
 
-
 include(CatConfig/CatConfig.pri)

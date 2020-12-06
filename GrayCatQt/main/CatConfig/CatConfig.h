@@ -1,10 +1,10 @@
 ﻿#ifndef CATCONFIG_H
 #define CATCONFIG_H
 
-#include <QSettings>
+#include "CatUniversal/CatSettingBase.h"
 #include <QMutex>
 
-class CatConfig : public QSettings
+class CatConfig : public CatSettingBase
 {
     Q_OBJECT
 public:
@@ -44,8 +44,13 @@ public:
     static void SetGroup(QString node, QStringList keys, QVariantList vars);
     static void SetArray(QString node, QStringList keys, QVariantList vars);
 
+    static QStringList GetKeys(QString node = "");
     static QVariant GetValue(QString key, QString node = "");
     static QMultiMap<QString, QVariant> GetArray(QString node, QStringList keys);
+
+    void SetWindowStyle(QVariant var);
+
+    static bool ConfigExist();
 
 signals:
     void UpdateStyleSheets();
@@ -56,8 +61,6 @@ private:
     ~CatConfig();
 
     void InitConfig();
-
-    static bool ConfigExist();
 
 private:
     static CatConfig* _instance;

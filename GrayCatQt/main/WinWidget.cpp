@@ -13,7 +13,8 @@
 #include <QDesktopWidget>
 #include "CatDrawingBoard.h"
 #include "CatAbout.h"
-#include <QToolButton>
+#include "CatSettings.h"
+#include "CatConfig/CatConfig.h"
 
 WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -69,12 +70,18 @@ void WinWidget::InitUi()
     m_pCatAbout->setObjectName("WinCatAbout");
     layout_1->addWidget(m_pCatAbout);
 
+    // Settings 布局
+    QVBoxLayout *layout_2 = new QVBoxLayout(ui->SettingFunc);
+    layout_2->setContentsMargins(0,0,0,0);
+    layout_2->setSpacing(0);
+
+    m_pCatSettings = new CatSettings(ui->SettingFunc);
+    m_pCatSettings->setObjectName("WinCatSettings");
+    layout_2->addWidget(m_pCatSettings);
+
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
-
-
 
 }
 
@@ -111,22 +118,12 @@ void WinWidget::InitProperty()
     m_pCatDrawingBoard->setMouseTracking(true);
     m_pCatAbout->installEventFilter(this);
     m_pCatAbout->setMouseTracking(true);
+    m_pCatSettings->installEventFilter(this);
+    m_pCatSettings->setMouseTracking(true);
 #endif
 
+    UpdateStyle();
 
-    QFile file_1(":/qss/CatGray/ListingOptionsWin.css");
-    file_1.open(QIODevice::ReadOnly);
-    QString stylehoot_1 = QLatin1String(file_1.readAll());
-    m_pListiongOptions->setStyleSheet(stylehoot_1);
-    file_1.close();
-
-    QFile file_0(":/qss/CatGray/WinWidget.css");
-    file_0.open(QIODevice::ReadOnly);
-    QString stylehoot_0 = QLatin1String(file_0.readAll());
-    this->setStyleSheet(stylehoot_0);
-    file_0.close();
-
-    SetZoomButtonState("Min");
 
     QString title = ui->FuncStackWidget->currentWidget()->objectName();
     title.replace(title.size()-4, title.size(), "");
@@ -167,6 +164,10 @@ void WinWidget::InitConnect()
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
 
     m_pButtons["WidgetFunc"]->setChecked(true);
+
+    connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
+        UpdateStyle();
+    });
 }
 
 void WinWidget::InitButtonList()
@@ -218,11 +219,47 @@ void WinWidget::SetTitle(QString state)
     ui->Title->setText(title);
 }
 
+void WinWidget::UpdateStyle()
+{
+    QString stylePath;
+    if(CatConfig::ConfigExist())
+    {
+        stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
+        QString icon = ":/Images/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
+        this->setWindowIcon(QIcon(icon + "CATicon.png"));
+    } else {
+        stylePath = ":/qss/CatGray/";
+        this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
+    }
+
+    QFile file_1(stylePath + "ListingOptionsWin.css");
+    file_1.open(QIODevice::ReadOnly);
+    QString stylehoot_1 = QLatin1String(file_1.readAll());
+    m_pListiongOptions->setStyleSheet(stylehoot_1);
+    file_1.close();
+
+    QFile file_0(stylePath + "WinWidget.css");
+    file_0.open(QIODevice::ReadOnly);
+    QString stylehoot_0 = QLatin1String(file_0.readAll());
+    this->setStyleSheet(stylehoot_0);
+    file_0.close();
+
+    if(m_bFullScreen)
+    {
+        SetZoomButtonState("Max");
+    } else {
+        SetZoomButtonState("Min");
+    }
+}
+
 bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #else
-    QStringList list = { "WidgetFunc", "GraphicsViewFunc", "Setting", "About", "WinCatDrawingBoard" };
+    QStringList list = { "WidgetFunc", "GraphicsViewFunc",
+                         "AboutFunc", "Setting",
+                         "About", "WinCatDrawingBoard",
+                            "WinCatAbout", "WinCatSettings"};
     for(auto temp : list)
     {
         if(watched->objectName() == temp && event->type() == QEvent::MouseMove)

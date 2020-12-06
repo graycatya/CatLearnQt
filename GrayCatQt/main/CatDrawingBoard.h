@@ -31,6 +31,8 @@ private:
     void InitTeachingTool();
     void InitBoardTool();
 
+    void UpdateStyle();
+
 protected:
     /*重写 事件，防止win下继承父对象后事件继承问题*/
     void mousePressEvent(QMouseEvent *) override;

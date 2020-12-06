@@ -8,6 +8,7 @@ class QPushButton;
 class ListiongOptions;
 class CatDrawingBoard;
 class CatAbout;
+class CatSettings;
 
 namespace Ui {
 class WinWidget;
@@ -45,6 +46,8 @@ private:
 
     void SetTitle(QString state = "");
 
+    void UpdateStyle();
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
@@ -59,6 +62,7 @@ private:
 
     CatDrawingBoard *m_pCatDrawingBoard;
     CatAbout *m_pCatAbout;
+    CatSettings *m_pCatSettings;
 
     bool m_bFullScreen;
     QRect m_pLastRect;

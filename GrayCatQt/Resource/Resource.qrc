@@ -29,5 +29,39 @@
         <file>Images/CatGray/Gitee.png</file>
         <file>Images/CatGray/Github.png</file>
         <file>Images/CatGray/Home.png</file>
+        <file>Images/CatWhite/AboutLeftArrow.png</file>
+        <file>Images/CatWhite/AboutRightArrow.png</file>
+        <file>Images/CatWhite/BoardClear.png</file>
+        <file>Images/CatWhite/BoardReset.png</file>
+        <file>Images/CatWhite/BoardZoomIn.png</file>
+        <file>Images/CatWhite/BoardZoomOut.png</file>
+        <file>Images/CatWhite/CATicon.png</file>
+        <file>Images/CatWhite/CatLearnQt.png</file>
+        <file>Images/CatWhite/Close.png</file>
+        <file>Images/CatWhite/Compass.png</file>
+        <file>Images/CatWhite/Gitee.png</file>
+        <file>Images/CatWhite/Github.png</file>
+        <file>Images/CatWhite/Home.png</file>
+        <file>Images/CatWhite/MaximizeMax.png</file>
+        <file>Images/CatWhite/MaximizeMin.png</file>
+        <file>Images/CatWhite/Minimize.png</file>
+        <file>Images/CatWhite/Protractor.png</file>
+        <file>Images/CatWhite/Ruler.png</file>
+        <file>Images/CatWhite/Trangle.png</file>
+        <file>qss/CatGray/CatSettings.css</file>
+        <file>qss/CatWhite/CatAbout.css</file>
+        <file>qss/CatWhite/CatDrawingBoard.css</file>
+        <file>qss/CatWhite/ListingOptionBoard.css</file>
+        <file>qss/CatWhite/ListingOptions.css</file>
+        <file>qss/CatWhite/ListingOptionsWin.css</file>
+        <file>qss/CatWhite/ListingOptionTeaching.css</file>
+        <file>qss/CatWhite/WinWidget.css</file>
+        <file>Images/CatGray/CatSettings.png</file>
+        <file>Images/CatWhite/CatSettings.png</file>
+        <file>Images/CatGray/PullDown.png</file>
+        <file>Images/CatGray/PullUp.png</file>
+        <file>Images/CatWhite/Close_Gray.png</file>
+        <file>Images/CatWhite/PullDown.png</file>
+        <file>Images/CatWhite/PullUp.png</file>
     </qresource>
 </RCC>

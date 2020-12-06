@@ -5,6 +5,7 @@
 #include "CatGraphicsView/TeachingTools/TeachingToolRuler.h"
 #include "CatControl/ListingOptions.h"
 #include "CatWidget/ImageTools/RimlessWindowBase.h"
+#include "CatConfig/CatConfig.h"
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QPushButton>
@@ -83,23 +84,7 @@ void CatDrawingBoard::InitProperty()
 {
     CreateBoard();
 
-    QFile file_2(":/qss/CatGray/ListingOptionBoard.css");
-    file_2.open(QIODevice::ReadOnly);
-    QString stylehoot_2 = QLatin1String(file_2.readAll());
-    m_pBoardOptions->setStyleSheet(stylehoot_2);
-    file_2.close();
-
-    QFile file_1(":/qss/CatGray/ListingOptionTeaching.css");
-    file_1.open(QIODevice::ReadOnly);
-    QString stylehoot_1 = QLatin1String(file_1.readAll());
-    m_pTeachingOptions->setStyleSheet(stylehoot_1);
-    file_1.close();
-
-    QFile file_0(":/qss/CatGray/CatDrawingBoard.css");
-    file_0.open(QIODevice::ReadOnly);
-    QString stylehoot_0 = QLatin1String(file_0.readAll());
-    this->setStyleSheet(stylehoot_0);
-    file_0.close();
+    UpdateStyle();
 
     //qDebug() << m_pTeachingButtons["TeachingToolRuler"]->height();
     QSpacerItem* item = new QSpacerItem(60, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -133,6 +118,10 @@ void CatDrawingBoard::InitConnect()
     });
     connect(m_pBoardButtons["BoardReset"], &QPushButton::clicked, this, [=](){
         m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->View()->Reset();
+    });
+
+    connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
+        UpdateStyle();
     });
 }
 
@@ -170,6 +159,36 @@ void CatDrawingBoard::InitBoardTool()
     m_pBoardOptions->AddItem(item);
 
     static_cast<QHBoxLayout*>(m_pBoardOptions->GetButtonlayout())->setSpacing(2);
+}
+
+void CatDrawingBoard::UpdateStyle()
+{
+
+    QString stylePath;
+    if(CatConfig::ConfigExist())
+    {
+        stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
+    } else {
+        stylePath = ":/qss/CatGray/";
+    }
+
+    QFile file_2(stylePath + "ListingOptionBoard.css");
+    file_2.open(QIODevice::ReadOnly);
+    QString stylehoot_2 = QLatin1String(file_2.readAll());
+    m_pBoardOptions->setStyleSheet(stylehoot_2);
+    file_2.close();
+
+    QFile file_1(stylePath + "ListingOptionTeaching.css");
+    file_1.open(QIODevice::ReadOnly);
+    QString stylehoot_1 = QLatin1String(file_1.readAll());
+    m_pTeachingOptions->setStyleSheet(stylehoot_1);
+    file_1.close();
+
+    QFile file_0(stylePath + "CatDrawingBoard.css");
+    file_0.open(QIODevice::ReadOnly);
+    QString stylehoot_0 = QLatin1String(file_0.readAll());
+    this->setStyleSheet(stylehoot_0);
+    file_0.close();
 }
 
 void CatDrawingBoard::mousePressEvent(QMouseEvent *event)

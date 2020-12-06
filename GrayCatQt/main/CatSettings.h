@@ -1,4 +1,4 @@
-#ifndef CATSETTINGS_H
+﻿#ifndef CATSETTINGS_H
 #define CATSETTINGS_H
 
 #include <QWidget>
@@ -16,7 +16,16 @@ public:
     ~CatSettings();
 
 private:
+    void InitUi();
+    void InitProperty();
+    void InitConnect();
+
+protected:
+    void showEvent(QShowEvent *event) override;
+
+private:
     Ui::CatSettings *ui;
+    bool m_bShowWidget;
 };
 
 #endif // CATSETTINGS_H

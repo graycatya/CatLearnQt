@@ -1,6 +1,6 @@
 QWidget#ListiongOptionsRootWidget {
     border: none;
-    background-color: #272626;
+    background-color: #f3f3f3;
 }
 
 QWidget#ButtonLists {
@@ -10,8 +10,8 @@ QWidget#ButtonLists {
 
 QPushButton {
     border: none;
-    color: #C1C1C1;
-    background-color: #343434;
+    color:#616161;
+    background-color: #e8e8e8;
     /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
@@ -19,7 +19,7 @@ QPushButton {
 
 QPushButton:hover {
     border: none;
-    background-color: #656565;
+    background-color: #cccccc;
     /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/
@@ -27,7 +27,7 @@ QPushButton:hover {
 
 QPushButton:pressed {
     border: none;
-    background-color: #656565;
+    background-color: #cccccc;
     /*min-height: 40px;*/
     /*qproperty-minimumSize: 200px 40px;
     qproperty-maximumSize: 200px 40px;*/

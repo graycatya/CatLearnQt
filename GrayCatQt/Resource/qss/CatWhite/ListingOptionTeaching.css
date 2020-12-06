@@ -1,6 +1,6 @@
 QWidget#ListiongOptionsRootWidget {
     border: none;
-    background-color: #272626;
+    background-color: #f3f3f3;
 }
 
 QWidget#ButtonLists {
@@ -13,12 +13,12 @@ QPushButton {
     max-height: 60px;
     border-radius: 5px;
     border: 0px solid gray;
-    background-color: #343434;
+    background-color: #e8e8e8;
 }
 
 QPushButton:hover {
     border: none;
-    background-color: #656565;
+    background-color: #cccccc;
     min-height: 60px;
     max-height: 60px;
     border: 1px solid gray;
@@ -41,22 +41,22 @@ QPushButton:checked {
 }
 
 QPushButton#TeachingToolRuler {
-    qproperty-icon: url(:/Images/CatGray/Ruler.png);
+    qproperty-icon: url(:/Images/CatWhite/Ruler.png);
     qproperty-iconSize: 48px 48px;
 }
 
 QPushButton#TeachingToolTrangle {
-    qproperty-icon: url(:/Images/CatGray/Trangle.png);
+    qproperty-icon: url(:/Images/CatWhite/Trangle.png);
     qproperty-iconSize: 48px 48px;
 }
 
 QPushButton#TeachingToolProtractor {
-    qproperty-icon: url(:/Images/CatGray/Protractor.png);
+    qproperty-icon: url(:/Images/CatWhite/Protractor.png);
     qproperty-iconSize: 48px 48px;
 }
 
 QPushButton#TeachingToolCompass {
-    qproperty-icon: url(:/Images/CatGray/Compass.png);
+    qproperty-icon: url(:/Images/CatWhite/Compass.png);
     qproperty-iconSize: 48px 48px;
 }
 

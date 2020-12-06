@@ -1,6 +1,6 @@
 QWidget#ListiongOptionsRootWidget {
     border: none;
-    background-color: #272626;
+    background-color: #f3f3f3;
 }
 
 QWidget#ButtonLists {
@@ -65,12 +65,12 @@ QPushButton {
     max-height: 30px;
     border-radius: 5px;
     border: 0px solid gray;
-    background-color: #343434;
+    background-color: #e8e8e8;
 }
 
 QPushButton:hover {
     border: none;
-    background-color: #656565;
+    background-color: #cccccc;
     min-height: 30px;
     max-height: 30px;
     border: 1px solid gray;
@@ -93,21 +93,21 @@ QPushButton:checked {
 }
 
 QPushButton#BoardClear {
-    qproperty-icon: url(:/Images/CatGray/BoardClear.png);
+    qproperty-icon: url(:/Images/CatWhite/BoardClear.png);
     qproperty-iconSize: 26px 26px;
 }
 
 QPushButton#BoardZoomIn {
-    qproperty-icon: url(:/Images/CatGray/BoardZoomIn.png);
+    qproperty-icon: url(:/Images/CatWhite/BoardZoomIn.png);
     qproperty-iconSize: 26px 26px;
 }
 
 QPushButton#BoardZoomOut {
-    qproperty-icon: url(:/Images/CatGray/BoardZoomOut.png);
+    qproperty-icon: url(:/Images/CatWhite/BoardZoomOut.png);
     qproperty-iconSize: 26px 26px;
 }
 
 QPushButton#BoardReset {
-    qproperty-icon: url(:/Images/CatGray/BoardReset.png);
+    qproperty-icon: url(:/Images/CatWhite/BoardReset.png);
     qproperty-iconSize: 26px 26px;
 }

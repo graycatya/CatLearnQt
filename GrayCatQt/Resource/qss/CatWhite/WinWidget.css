@@ -18,17 +18,17 @@ QWidget#WinRootWidget {
 }
 
 QWidget#TopWidget {
-    background-color: #3C3C3C;
+    background-color: #dddddd;
 }
 
 QWidget#ToolListWidget {
-    background-color: #252526;
+    background-color: #ffffff;
     max-width: 200;
     min-width: 200;
 }
 
 QWidget#ExhibitionWidget {
-    background-color: #1E1E1E;
+    background-color: #f7f7f7;
 }
 
 QWidget#BottomWidget {
@@ -46,12 +46,12 @@ QPushButton#MinimizeButton {
     min-height: 30px;
     border: none;
     background-color: transparent;
-    qproperty-icon: url(:/Images/CatGray/Minimize.png);
+    qproperty-icon: url(:/Images/CatWhite/Minimize.png);
     qproperty-iconSize: 16px 16px;
 }
 
 QPushButton#MinimizeButton:hover {
-    background-color: #505050;
+    background-color: #c6c6c6;
 }
 
 QPushButton#MinimizeButton:pressed {
@@ -67,17 +67,17 @@ QPushButton#ZoomButton {
 }
 
 QPushButton#ZoomButton[State="Max"] {
-    qproperty-icon: url(:/Images/CatGray/MaximizeMin.png);
+    qproperty-icon: url(:/Images/CatWhite/MaximizeMin.png);
     qproperty-iconSize: 16px 16px;
 }
 
 QPushButton#ZoomButton[State="Min"] {
-    qproperty-icon: url(:/Images/CatGray/MaximizeMax.png);
+    qproperty-icon: url(:/Images/CatWhite/MaximizeMax.png);
     qproperty-iconSize: 16px 16px;
 }
 
 QPushButton#ZoomButton:hover {
-    background-color: #505050;
+    background-color: #c6c6c6;
 }
 
 QPushButton#ZoomButton:pressed {
@@ -90,21 +90,25 @@ QPushButton#CloseButton {
     min-height: 30px;
     border: none;
     background-color: transparent;
-    qproperty-icon: url(:/Images/CatGray/Close.png);
+    qproperty-icon: url(:/Images/CatWhite/Close.png);
     qproperty-iconSize: 16px 16px;
 }
 
 QPushButton#CloseButton:hover {
+    qproperty-icon: url(:/Images/CatWhite/Close_Gray.png);
+    qproperty-iconSize: 16px 16px;
     background-color: #d71526;
 }
 
 QPushButton#CloseButton:pressed {
-    background-color: transparent;
+    qproperty-icon: url(:/Images/CatWhite/Close_Gray.png);
+    qproperty-iconSize: 16px 16px;
+    background-color: #d71526;
 }
 
 QLabel#Title {
     max-width: 200px;
-    color: white;
+    color: #333333;
 }
 /*
 QWidget#WidgetFunc {

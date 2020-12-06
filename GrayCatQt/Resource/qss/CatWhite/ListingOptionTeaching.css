@@ -1,0 +1,113 @@
+QWidget#ListiongOptionsRootWidget {
+    border: none;
+    background-color: #272626;
+}
+
+QWidget#ButtonLists {
+    border: none;
+    background-color: transparent;
+}
+
+QPushButton {
+    min-height: 60px;
+    max-height: 60px;
+    border-radius: 5px;
+    border: 0px solid gray;
+    background-color: #343434;
+}
+
+QPushButton:hover {
+    border: none;
+    background-color: #656565;
+    min-height: 60px;
+    max-height: 60px;
+    border: 1px solid gray;
+}
+
+QPushButton:pressed {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 2px solid gray;
+}
+
+QPushButton:checked {
+    border: none;
+    background-color: rgba(223,74,22,100%);
+    min-height: 60px;
+    max-height: 60px;
+    border: 2px solid gray;
+}
+
+QPushButton#TeachingToolRuler {
+    qproperty-icon: url(:/Images/CatGray/Ruler.png);
+    qproperty-iconSize: 48px 48px;
+}
+
+QPushButton#TeachingToolTrangle {
+    qproperty-icon: url(:/Images/CatGray/Trangle.png);
+    qproperty-iconSize: 48px 48px;
+}
+
+QPushButton#TeachingToolProtractor {
+    qproperty-icon: url(:/Images/CatGray/Protractor.png);
+    qproperty-iconSize: 48px 48px;
+}
+
+QPushButton#TeachingToolCompass {
+    qproperty-icon: url(:/Images/CatGray/Compass.png);
+    qproperty-iconSize: 48px 48px;
+}
+
+QScrollArea#ListingOptionsScroll {
+    border: none;
+    background-color: transparent;
+}
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:4px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:4px;
+    background:rgba(130,130,130,50%);
+    border-radius:2px;
+    min-height:20;
+}
+QScrollBar::handle:vertical:hover
+{
+    width:4px;
+    background:rgba(130,130,130,75%);
+    border-radius:2px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    height:4px;
+    background:rgba(223,74,22,100%);
+    border-radius:2px;
+    min-width:20;
+}
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background:rgba(0,0,0,0%);
+    border-radius:2px;
+}

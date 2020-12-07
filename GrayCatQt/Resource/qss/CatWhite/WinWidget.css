@@ -18,7 +18,7 @@ QWidget#WinRootWidget {
 }
 
 QWidget#TopWidget {
-    background-color: #dddddd;
+    background-color: #dedede;
 }
 
 QWidget#ToolListWidget {
@@ -28,6 +28,7 @@ QWidget#ToolListWidget {
 }
 
 QWidget#ExhibitionWidget {
+    border-left: 2px solid #dddddd;
     background-color: #f7f7f7;
 }
 

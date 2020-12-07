@@ -1,5 +1,6 @@
 ﻿#include "CatAbout.h"
 #include "ui_CatAbout.h"
+#include "CatConfig/CatConfig.h"
 
 #include <QFile>
 #include <QDesktopServices>
@@ -33,11 +34,8 @@ void CatAbout::InitUi()
 
 void CatAbout::InitProperty()
 {
-    QFile file_0(":/qss/CatGray/CatAbout.css");
-    file_0.open(QIODevice::ReadOnly);
-    QString stylehoot_0 = QLatin1String(file_0.readAll());
-    this->setStyleSheet(stylehoot_0);
-    file_0.close();
+
+    UpdateStyle();
 
     QFile file_licence(":/about/Licence/Licence.md");
     file_licence.open(QIODevice::ReadOnly);
@@ -70,4 +68,27 @@ void CatAbout::InitConnect()
     connect(ui->Gitee, &QPushButton::clicked, this, [=](){
         QDesktopServices::openUrl(QUrl("https://gitee.com/graycatya/CatLearnQt"));
     });
+
+    connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
+        UpdateStyle();
+    });
+}
+
+void CatAbout::UpdateStyle()
+{
+    QString stylePath;
+    if(CatConfig::ConfigExist())
+    {
+        stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
+    } else {
+        stylePath = ":/qss/CatGray/";
+    }
+
+    QFile file_0(stylePath + "CatAbout.css");
+    file_0.open(QIODevice::ReadOnly);
+    QString stylehoot_0 = QLatin1String(file_0.readAll());
+    this->setStyleSheet(stylehoot_0);
+    file_0.close();
+
+
 }

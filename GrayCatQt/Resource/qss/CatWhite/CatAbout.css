@@ -25,31 +25,34 @@ QTabBar::tab:selected{
 }*/
 
 QWidget#AboutWidget {
-	border-radius: 4px;
-	background-color: #343434;
+    background-color: #fafafa;
+    border: 2px solid #dddddd;
+    border-radius: 4px;
 }
 QWidget#LicenceWidget {
-	border-radius: 4px;
-	background-color: #343434;
+    background-color: #fafafa;
+    border: 2px solid #dddddd;
+    border-radius: 4px;
 }
 QWidget#ContextWidget {
-	border-radius: 4px;
-	background-color: #343434;
+    background-color: #fafafa;
+    border: 2px solid #dddddd;
+    border-radius: 4px;
 }
 
 
 QTabWidget::pane {
 	border-radius: 4px;
-	background-color: #343434;
+	background-color: #ffffff;
 }
 
 QTabWidget::tab-bar{
-	background-color: #343434;
+	background-color: #ffffff;
 	border-width:0px;
 }
 
 QTabBar::tab{
-	border-bottom-color: #C2C7CB;
+	border-bottom-color: #424242;
 	border-top-left-radius: 0px;
 	border-top-right-radius: 0px;
 	max-width: 75px; 
@@ -63,7 +66,7 @@ QTabBar::scroller {
 	width: 25px;
 	border:0;
 	padding: 0px;
-	color: #C1C1C1;
+	color: #424242;
 }
 
 QTabBar QToolButton {
@@ -71,31 +74,33 @@ QTabBar QToolButton {
 }
 
 QTabBar QToolButton::right-arrow {
-	background-color:#343434;
-	image: url(:/Images/CatGray/AboutRightArrow.png);
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+	image: url(:/Images/CatWhite/AboutRightArrow.png);
 	border-radius: 1px;
 }
 
 QTabBar QToolButton::right-arrow:hover {
-	background-color:#656565;
+	background-color: #f6f6f6;
 }
 
 QTabBar QToolButton::right-arrow:disabled {
-	background-color:#656565;
+	background-color: #f6f6f6;
 }
 
 QTabBar QToolButton::left-arrow {
-	background-color:#343434;
-	image: url(:/Images/CatGray/AboutLeftArrow.png);
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+	image: url(:/Images/CatWhite/AboutLeftArrow.png);
 	border-radius: 1px;
 }
 
 QTabBar QToolButton::left-arrow:hover {
-	background-color:#656565;
+	background-color: #f6f6f6;
 }
 
 QTabBar QToolButton::left-arrow:disabled {
-	background-color:#656565;
+	background-color: #f6f6f6;
 }
 
 QTabBar::tab:first:selected {
@@ -104,13 +109,13 @@ QTabBar::tab:first:selected {
 }
 
 QTabBar::tab:first:!selected {
-	color: #C1C1C1;
+	color: #424242;
 	
 }
 
 QTabBar::tab:first:hover:!selected {
-	color: rgba(220, 220, 220, 0.9);
-	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+	color: #424242;
+	border-bottom: 2px solid #424242;
 }
 
 QTabBar::tab:middle:selected {
@@ -120,12 +125,12 @@ QTabBar::tab:middle:selected {
 }
 
 QTabBar::tab:middle:!selected {
-	color: #C1C1C1;
+	color: #424242;;
 }
 
 QTabBar::tab:middle:hover:!selected {
-	color: rgba(220, 220, 220, 0.9);
-	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+	color: #424242;
+	border-bottom: 2px solid #424242;
 }
 
 QTabBar::tab:last:selected {
@@ -133,12 +138,12 @@ QTabBar::tab:last:selected {
 	border-bottom: 2px solid rgba(223,74,22,100%);
 }
 QTabBar::tab:last:!selected {
-	color: #C1C1C1;
+	color: #424242;;
 }
 							 
 QTabBar::tab:last:hover:!selected {
-	color: rgba(220, 220, 220, 0.9);
-	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+	color: #424242;
+	border-bottom: 2px solid #424242;
 }
 
 QTabBar::tab:only-one {
@@ -250,7 +255,7 @@ QWidget#Licence {
 }
 
 QTextEdit#LicenceTextEdit {
-	color: #C1C1C1;
+	color: #424242;
 	border: none;
 	background: transparent;
 }
@@ -261,38 +266,38 @@ QPushButton#Log {
 	max-width: 150px;
 	max-height: 150px;
 	border-radius: 75px;
-	background-color: #C1C1C1;
-	qproperty-icon: url(:/Images/CatGray/CatLearnQt.png);
+	background-color: #ffffff;
+	qproperty-icon: url(:/Images/CatWhite/CatLearnQt.png);
 	qproperty-iconSize: 100px 100px;
-	border: 2px solid rgba(223,74,22,100%);
+	border: 2px solid #dddddd;
 }
 
 QLabel#AppName {
-	color: #C1C1C1;
+	color: #424242;
 	font-weight:bold;
 	font-size: 24px;
 }
 
 QLabel#AppVersion {
-	color: #C1C1C1;
+	color: #424242;
 	font-weight:bold;
 	font-size: 24px;
 }
 
 QLabel#Author {
-	color: #C1C1C1;
+	color: #424242;
 	font-weight:bold;
 	font-size: 16px;
 }
 
 QLabel#AuthorName {
-	color: #C1C1C1;
+	color: #424242;
 	font-weight:bold;
 	font-size: 16px;
 }
 
 QLabel#Explain {
-	color: #C1C1C1;
+	color: #424242;
 	background-color: transparent;
 	border: 0px;
 	font-size: 16px;
@@ -303,19 +308,21 @@ QPushButton#GrayCatYa {
 	max-width: 40px;
 	min-height: 40px;
 	max-height: 40px;
-	background-color: #343434;
-	border: 1px solid gray;
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
 	border-radius: 4px;
-	qproperty-icon: url(:/Images/CatGray/Home.png);
+	qproperty-icon: url(:/Images/CatWhite/Home.png);
 	qproperty-iconSize: 32px 32px;
 }
 
 QPushButton#GrayCatYa:hover {
-	background-color: #656565;
+	background-color: #dedede;
+	border: 1px solid #424242;
 }
 
 QPushButton#GrayCatYa:checked {
-	background-color: #343434;
+	background-color: #dedede;
+	border: 1px solid rgba(223,74,22,100%);
 }
 
 QPushButton#GitHub {
@@ -323,19 +330,21 @@ QPushButton#GitHub {
 	max-width: 40px;
 	min-height: 40px;
 	max-height: 40px;
-	background-color: #343434;
-	border: 1px solid gray;
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
 	border-radius: 4px;
-	qproperty-icon: url(:/Images/CatGray/Github.png);
+	qproperty-icon: url(:/Images/CatWhite/Github.png);
 	qproperty-iconSize: 32px 32px;
 }
 
 QPushButton#GitHub:hover {
-	background-color: #656565;
+	background-color: #dedede;
+	border: 1px solid #424242;
 }
 
 QPushButton#GitHub:checked {
-	background-color: #343434;
+	background-color: #dedede;
+	border: 1px solid rgba(223,74,22,100%);
 }
 
 QPushButton#Gitee {
@@ -343,17 +352,19 @@ QPushButton#Gitee {
 	max-width: 40px;
 	min-height: 40px;
 	max-height: 40px;
-	background-color: #343434;
-	border: 1px solid gray;
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
 	border-radius: 4px;
-	qproperty-icon: url(:/Images/CatGray/Gitee.png);
+	qproperty-icon: url(:/Images/CatWhite/Gitee.png);
 	qproperty-iconSize: 32px 32px;
 }
 
 QPushButton#Gitee:hover {
-	background-color: #656565;
+	background-color: #dedede;
+	border: 1px solid #424242;
 }
 
 QPushButton#Gitee:checked {
-	background-color: #343434;
+	background-color: #dedede;
+	border: 1px solid rgba(223,74,22,100%);
 }

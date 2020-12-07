@@ -22,7 +22,7 @@ QWidget#CatSettingRoot {
 
 QLabel {
     color: #C1C1C1;
-    font-size: 24px;
+    font-size: 20px;
 }
 
 QComboBox {
@@ -111,7 +111,8 @@ QWidget#WindowColorsWidget {
 
 QLabel#WindowColors {
     color: white;
-    font-size: 20px;
+    font-weight: bold;
+    font-size: 24px;
 }
 
 

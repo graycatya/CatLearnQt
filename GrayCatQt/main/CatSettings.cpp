@@ -34,11 +34,7 @@ void CatSettings::InitUi()
 
 void CatSettings::InitProperty()
 {
-    QFile file_0(":/qss/CatGray/CatSettings.css");
-    file_0.open(QIODevice::ReadOnly);
-    QString stylehoot_0 = QLatin1String(file_0.readAll());
-    this->setStyleSheet(stylehoot_0);
-    file_0.close();
+    UpdateStyle();
 }
 
 void CatSettings::InitConnect()
@@ -54,6 +50,27 @@ void CatSettings::InitConnect()
         }
         m_bShowWidget = false;
     });
+
+    connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
+        UpdateStyle();
+    });
+}
+
+void CatSettings::UpdateStyle()
+{
+    QString stylePath;
+    if(CatConfig::ConfigExist())
+    {
+        stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
+    } else {
+        stylePath = ":/qss/CatGray/";
+    }
+
+    QFile file_0(stylePath + "CatSettings.css");
+    file_0.open(QIODevice::ReadOnly);
+    QString stylehoot_0 = QLatin1String(file_0.readAll());
+    this->setStyleSheet(stylehoot_0);
+    file_0.close();
 }
 
 void CatSettings::showEvent(QShowEvent *event)

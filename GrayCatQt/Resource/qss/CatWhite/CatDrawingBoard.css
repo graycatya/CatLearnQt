@@ -4,8 +4,9 @@ QWidget#GraphicsTopToolWidget {
 }
 
 CatGraphicsView {
-    background-color: #244242;
-    border: none;
+    background-color: #fafafa;
+    border: 2px solid #dddddd;
+    border-radius: 2px;
 }
 
 

@@ -1,6 +1,6 @@
 QWidget#ListiongOptionsRootWidget {
     border: none;
-    background-color: #f3f3f3;
+    background-color: #ffffff;
 }
 
 QWidget#ButtonLists {
@@ -10,27 +10,27 @@ QWidget#ButtonLists {
 
 QPushButton {
     border: none;
-    color:#616161;
-    background-color: #e8e8e8;
+    color:#424242;
+    background-color: #ffffff;
     min-height: 40px;
 }
 
 QPushButton:hover {
     border: none;
-    color:#616161;
-    background-color: #cccccc;
+    color:#424242;
+    background-color: #f6f6f6;
     min-height: 40px;
 }
 
 QPushButton:pressed {
     border: none;
-    color:#616161;
-    background-color: #cccccc;
+    color:#424242;
+    background-color: #f6f6f6;
     min-height: 40px;
 }
 
 QPushButton:checked {
-    color:#c1c1c1;
+    color:#ffffff;
     /*border: 1px solid #7C7C7C;*/
     background-color: rgba(223,74,22,100%);
     min-height: 40px;

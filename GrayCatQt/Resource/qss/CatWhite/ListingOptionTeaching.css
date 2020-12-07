@@ -12,32 +12,32 @@ QPushButton {
     min-height: 60px;
     max-height: 60px;
     border-radius: 5px;
-    border: 0px solid gray;
-    background-color: #e8e8e8;
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
 }
 
 QPushButton:hover {
     border: none;
-    background-color: #cccccc;
+    background-color: #dedede;
     min-height: 60px;
     max-height: 60px;
-    border: 1px solid gray;
+    border: 1px solid #424242;
 }
 
 QPushButton:pressed {
     border: none;
-    background-color: rgba(223,74,22,100%);
+    background-color: #dedede;
     min-height: 60px;
     max-height: 60px;
-    border: 2px solid gray;
+    border: 1px solid rgba(223,74,22,100%);
 }
 
 QPushButton:checked {
     border: none;
-    background-color: rgba(223,74,22,100%);
+    background-color: #dedede;
     min-height: 60px;
     max-height: 60px;
-    border: 2px solid gray;
+    border: 1px solid rgba(223,74,22,100%);
 }
 
 QPushButton#TeachingToolRuler {

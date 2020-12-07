@@ -20,6 +20,8 @@ private:
     void InitProperty();
     void InitConnect();
 
+    void UpdateStyle();
+
 protected:
     void showEvent(QShowEvent *event) override;
 

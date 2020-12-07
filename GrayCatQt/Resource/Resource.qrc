@@ -63,5 +63,6 @@
         <file>Images/CatWhite/Close_Gray.png</file>
         <file>Images/CatWhite/PullDown.png</file>
         <file>Images/CatWhite/PullUp.png</file>
+        <file>qss/CatWhite/CatSettings.css</file>
     </qresource>
 </RCC>

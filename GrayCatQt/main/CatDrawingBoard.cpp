@@ -67,7 +67,7 @@ void CatDrawingBoard::InitUi()
     QVBoxLayout *layout_1 = new QVBoxLayout(ui->GraphicsTopToolWidget);
     ui->GraphicsTopToolWidget->setMinimumHeight(30);
     ui->GraphicsTopToolWidget->setMaximumHeight(30);
-    layout_1->setContentsMargins(1,0,1,1);
+    layout_1->setContentsMargins(0,0,0,0);
     layout_1->setSpacing(0);
     m_pBoardOptions = new ListiongOptions(ListiongOptions::HBox, ui->GraphicsTopToolWidget);
     layout_1->addWidget(m_pBoardOptions);

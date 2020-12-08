@@ -9,6 +9,7 @@ class ListiongOptions;
 class CatDrawingBoard;
 class CatAbout;
 class CatSettings;
+class CatWidget;
 
 namespace Ui {
 class WinWidget;
@@ -63,6 +64,7 @@ private:
     CatDrawingBoard *m_pCatDrawingBoard;
     CatAbout *m_pCatAbout;
     CatSettings *m_pCatSettings;
+    CatWidget *m_pCatWidget;
 
     bool m_bFullScreen;
     QRect m_pLastRect;

@@ -1,4 +1,4 @@
-#ifndef CATWIDGET_H
+﻿#ifndef CATWIDGET_H
 #define CATWIDGET_H
 
 #include <QWidget>
@@ -14,6 +14,13 @@ class CatWidget : public QWidget
 public:
     explicit CatWidget(QWidget *parent = nullptr);
     ~CatWidget();
+
+private:
+    void InitUi();
+    void InitProperty();
+    void InitConnect();
+
+    void UpdateStyle();
 
 private:
     Ui::CatWidget *ui;

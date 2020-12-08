@@ -5,16 +5,17 @@
 #include <QScreen>
 #include <QEvent>
 #include <QFile>
-#include <QDebug>
-#include "CatControl/ListingOptions.h"
 #include <QPushButton>
 #include <QButtonGroup>
 #include <CatLog>
 #include <QDesktopWidget>
+
 #include "CatDrawingBoard.h"
 #include "CatAbout.h"
 #include "CatSettings.h"
+#include "CatWidget.h"
 #include "CatConfig/CatConfig.h"
+#include "CatControl/ListingOptions.h"
 
 WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -52,32 +53,41 @@ void WinWidget::InitUi()
     QSpacerItem* item_1 = new QSpacerItem(40, 300, QSizePolicy::Minimum, QSizePolicy::Expanding);
     m_pListiongOptions->AddItem(item_1);
 
+    //Widget 布局
+    QVBoxLayout *layout_Widget = new QVBoxLayout(ui->WidgetFunc);
+    layout_Widget->setContentsMargins(0,0,0,0);
+    layout_Widget->setSpacing(0);
+
+    m_pCatWidget = new CatWidget(ui->WidgetFunc);
+    m_pCatWidget->setObjectName("WinCatWidget");
+    layout_Widget->addWidget(m_pCatWidget);
+
     //Graphics 布局
-    QVBoxLayout *layout_0 = new QVBoxLayout(ui->GraphicsViewFunc);
-    layout_0->setContentsMargins(0,0,0,0);
-    layout_0->setSpacing(0);
+    QVBoxLayout *layout_Graphics = new QVBoxLayout(ui->GraphicsViewFunc);
+    layout_Graphics->setContentsMargins(0,0,0,0);
+    layout_Graphics->setSpacing(0);
 
     m_pCatDrawingBoard = new CatDrawingBoard(ui->GraphicsViewFunc);
     m_pCatDrawingBoard->setObjectName("WinCatDrawingBoard");
-    layout_0->addWidget(m_pCatDrawingBoard);
+    layout_Graphics->addWidget(m_pCatDrawingBoard);
 
     // About 布局
-    QVBoxLayout *layout_1 = new QVBoxLayout(ui->AboutFunc);
-    layout_1->setContentsMargins(0,0,0,0);
-    layout_1->setSpacing(0);
+    QVBoxLayout *layout_About = new QVBoxLayout(ui->AboutFunc);
+    layout_About->setContentsMargins(0,0,0,0);
+    layout_About->setSpacing(0);
 
     m_pCatAbout = new CatAbout(ui->AboutFunc);
     m_pCatAbout->setObjectName("WinCatAbout");
-    layout_1->addWidget(m_pCatAbout);
+    layout_About->addWidget(m_pCatAbout);
 
     // Settings 布局
-    QVBoxLayout *layout_2 = new QVBoxLayout(ui->SettingFunc);
-    layout_2->setContentsMargins(0,0,0,0);
-    layout_2->setSpacing(0);
+    QVBoxLayout *layout_Settings = new QVBoxLayout(ui->SettingFunc);
+    layout_Settings->setContentsMargins(0,0,0,0);
+    layout_Settings->setSpacing(0);
 
     m_pCatSettings = new CatSettings(ui->SettingFunc);
     m_pCatSettings->setObjectName("WinCatSettings");
-    layout_2->addWidget(m_pCatSettings);
+    layout_Settings->addWidget(m_pCatSettings);
 
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);

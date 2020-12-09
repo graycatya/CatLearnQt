@@ -8,6 +8,7 @@ class QPushButton;
 class QSpacerItem;
 class QButtonGroup;
 class QVBoxLayout;
+class QHBoxLayout;
 
 class ListiongOptions : public QWidget
 {
@@ -43,6 +44,7 @@ private:
     QVBoxLayout *m_pRootWidgetLayout;
     QScrollArea *m_pScrollArea;
     QWidget *m_pButtonLists;
+    QHBoxLayout *m_pHboxLayoutButton;
     void *m_pButtonListsLayout;
     QList<QPushButton*> m_lButtonList;
     QList<QSpacerItem*> m_lItemList;

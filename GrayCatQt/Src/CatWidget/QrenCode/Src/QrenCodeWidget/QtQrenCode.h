@@ -11,6 +11,6 @@
  * @param qrPixmap  二维码像素图
  * @param scale 二维码缩放比例
  */
-void GernerateQRCode(const QString &text, QPixmap &qrPixmap, QSize size = QSize(200, 200), QString logo = "", int margin = 5);
+void GernerateQRCode(const QString &text, QPixmap &qrPixmap, QSize size = QSize(200, 200), QString logo = "", int margin = 0);
 
 #endif // QTQRENCODE_H

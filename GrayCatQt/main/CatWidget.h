@@ -3,6 +3,9 @@
 
 #include <QWidget>
 
+class ListiongOptions;
+class QPushButton;
+
 namespace Ui {
 class CatWidget;
 }
@@ -20,10 +23,19 @@ private:
     void InitProperty();
     void InitConnect();
 
+    void InitToolButtons();
+    void InitToolWidgets();
+
     void UpdateStyle();
+
+private slots:
+    void On_ToolButtons(int);
 
 private:
     Ui::CatWidget *ui;
+    ListiongOptions *m_pToolListiongOptions;
+    QHash<QString, QPushButton*> m_pToolButtons;
+
 };
 
 #endif // CATWIDGET_H

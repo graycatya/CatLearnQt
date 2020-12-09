@@ -15,12 +15,12 @@ ImageToolBase::ImageToolBase(QWidget *parent)
     , m_bCut(false)
     , m_bInit(false)
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
-    QPalette pal = palette();
+    /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
     setPalette(pal);
-    setWindowOpacity(1);
+    setWindowOpacity(1);*/
     setAttribute(Qt::WA_TranslucentBackground);
     //添加自定义类控制
     setAttribute(Qt::WA_StyledBackground,true);

@@ -84,6 +84,7 @@ void CatConfig::InitConfig()
         QSettings setting(m_sConfigPath, QSettings::IniFormat);
         setting.setValue("AppName", APP_NAME);
         setting.setValue("AppVersion", APP_VERSION);
+        setting.setValue("HomePage", "www.graycatya.com");
 
         QStringList style = {"style", "style"};
         QVariantList styleNames = { "CatGray", "CatWhite" };

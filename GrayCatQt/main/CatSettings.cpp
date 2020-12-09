@@ -42,7 +42,6 @@ void CatSettings::InitConnect()
     /*connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         qDebug() << "update style: " << CatConfig::GetValue("style", "Defaule");
     });*/
-
     connect(ui->StyleComboBox, &QComboBox::currentTextChanged, this, [=](QString style){
         if(!style.isEmpty() && !m_bShowWidget)
         {

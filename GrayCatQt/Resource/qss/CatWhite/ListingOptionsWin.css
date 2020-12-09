@@ -11,6 +11,8 @@ QWidget#ButtonLists {
 QPushButton {
     border: none;
     color:#424242;
+    max-width: 200px;
+    min-width: 200px;
     background-color: #ffffff;
     min-height: 40px;
 }

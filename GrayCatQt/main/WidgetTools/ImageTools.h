@@ -1,7 +1,9 @@
-#ifndef IMAGETOOLS_H
+﻿#ifndef IMAGETOOLS_H
 #define IMAGETOOLS_H
 
 #include <QWidget>
+
+class QPushButton;
 
 namespace Ui {
 class ImageTools;
@@ -16,7 +18,15 @@ public:
     ~ImageTools();
 
 private:
+    void InitUi();
+    void InitProperty();
+    void InitConnect();
+
+    void UpdateStyle();
+
+private:
     Ui::ImageTools *ui;
+    QHash<QString, QPushButton*> m_pToolButtons;
 };
 
 #endif // IMAGETOOLS_H

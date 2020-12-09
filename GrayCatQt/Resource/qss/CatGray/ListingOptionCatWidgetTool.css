@@ -9,8 +9,10 @@ QWidget#ButtonLists {
 }
 
 QPushButton {
-    min-height: 60px;
-    max-height: 60px;
+    min-width: 50px;
+    max-width: 50px;
+    min-height: 50px;
+    max-height: 50px;
     border-radius: 5px;
     border: 0px solid gray;
     background-color: #343434;
@@ -19,30 +21,30 @@ QPushButton {
 QPushButton:hover {
     border: none;
     background-color: #656565;
-    min-height: 60px;
-    max-height: 60px;
     border: 1px solid gray;
 }
 
 QPushButton:pressed {
     border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 2px solid gray;
+    background-color: #757575;
+    /*background-color: rgba(223,74,22,100%);*/
+    border: 1px solid gray;
 }
 
 QPushButton:checked {
     border: none;
-    background-color: rgba(223,74,22,100%);
-    min-height: 60px;
-    max-height: 60px;
-    border: 2px solid gray;
+    background-color: #757575;
+    border: 1px solid rgba(223,74,22,100%);
 }
 
 QPushButton#CatQrenCode {
     qproperty-icon: url(:/Images/CatGray/QrenCode.png);
     qproperty-iconSize: 48px 48px;
+}
+
+QPushButton#CatImageTools {
+    qproperty-icon: url(:/Images/CatGray/ImageTools.png);
+    qproperty-iconSize: 40px 40px;
 }
 
 QScrollArea#ListingOptionsScroll {

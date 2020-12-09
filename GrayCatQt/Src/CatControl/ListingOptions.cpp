@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QScrollArea>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QPushButton>
 #include <QButtonGroup>
 #include <QSharedPointer>
@@ -148,22 +149,30 @@ void ListiongOptions::InitUi()
     m_pButtonLists = new QWidget();
     m_pButtonLists->setObjectName(QString::fromUtf8("ButtonLists"));
     m_pScrollArea->setWidget(m_pButtonLists);
+    m_pHboxLayoutButton = new QHBoxLayout(m_pButtonLists);
+    m_pHboxLayoutButton->setContentsMargins(0,0,0,0);
+    m_pHboxLayoutButton->setSpacing(0);
+
+    QSpacerItem *item_0 = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QSpacerItem *item_1 = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);
+    m_pHboxLayoutButton->addItem(item_0);
     switch (m_yLayout) {
         case VBox: {
-            m_pButtonListsLayout = new QVBoxLayout(m_pButtonLists);
+            m_pButtonListsLayout = new QVBoxLayout();
             static_cast<QVBoxLayout*>(m_pButtonListsLayout)->setContentsMargins(0,0,0,0);
             static_cast<QVBoxLayout*>(m_pButtonListsLayout)->setSpacing(0);
+            m_pHboxLayoutButton->addLayout(static_cast<QVBoxLayout*>(m_pButtonListsLayout));
             break;
         }
         case HBox: {
-            m_pButtonListsLayout = new QHBoxLayout(m_pButtonLists);
+            m_pButtonListsLayout = new QHBoxLayout();
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->setContentsMargins(0,0,0,0);
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->setSpacing(0);
+            m_pHboxLayoutButton->addLayout(static_cast<QHBoxLayout*>(m_pButtonListsLayout));
             break;
         }
     }
-
-
+    m_pHboxLayoutButton->addItem(item_1);
 
     m_pButtonGroup = new QButtonGroup(m_pButtonLists);
     m_pButtonGroup->setExclusive(true);

@@ -21,3 +21,4 @@ FORMS += \
     $$PWD/WinWidget.ui
 
 include(CatConfig/CatConfig.pri)
+include(WidgetTools/WidgetTools.pri)

@@ -66,5 +66,19 @@
         <file>qss/CatWhite/CatSettings.css</file>
         <file>qss/CatGray/CatWidget.css</file>
         <file>qss/CatWhite/CatWidget.css</file>
+        <file>qss/CatGray/ListingOptionCatWidgetTool.css</file>
+        <file>Images/CatGray/QrenCode.png</file>
+        <file>qss/CatWhite/ListingOptionCatWidgetTool.css</file>
+        <file>Images/CatWhite/QrenCode.png</file>
+        <file>Images/CatGray/ImageTools.png</file>
+        <file>Images/CatWhite/ImageTools.png</file>
+        <file>qss/CatGray/ImageTools.css</file>
+        <file>qss/CatWhite/ImageTools.css</file>
+        <file>Images/CatGray/ScreenShotTool.png</file>
+        <file>Images/CatWhite/ScreenShotTool.png</file>
+        <file>Images/CatGray/MagnifyingGlassTool.png</file>
+        <file>Images/CatGray/SpotLightTool.png</file>
+        <file>Images/CatWhite/MagnifyingGlassTool.png</file>
+        <file>Images/CatWhite/SpotLightTool.png</file>
     </qresource>
 </RCC>

@@ -13,6 +13,8 @@
 
 #include "ProcessObject.h"
 
+#include <CatLog>
+
 ScreenShot::ScreenShot(QWidget *parent)
     : ImageToolBase(parent)
 {
@@ -54,12 +56,12 @@ void ScreenShot::InitUi()
 
 void ScreenShot::InitProperty()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
-    QPalette pal = palette();
+    /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
     setPalette(pal);
-    setWindowOpacity(1);
+    setWindowOpacity(1);*/
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_TransparentForMouseEvents, true);
     setMouseTracking(true);

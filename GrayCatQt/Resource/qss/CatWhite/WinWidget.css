@@ -23,8 +23,8 @@ QWidget#TopWidget {
 
 QWidget#ToolListWidget {
     background-color: #ffffff;
-    max-width: 200;
-    min-width: 200;
+    max-width: 200px;
+    min-width: 200px;
 }
 
 QWidget#ExhibitionWidget {

@@ -41,7 +41,7 @@ void GernerateQRCode(const QString &text, QPixmap &qrPixmap, QSize size, QString
             unsigned char character = qrCode->data[y * qrCode->width + x];
             if(character & 1)
             {
-               QRect rect(margin*2 + x * scale, margin + y * scale, scale, scale);
+               QRect rect(margin*2 + x * scale, margin*2 + y * scale, scale, scale);
                painter.drawRects(&rect, 1);
             }
         }

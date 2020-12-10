@@ -60,7 +60,7 @@ void CatWidget::InitToolButtons()
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools"};
+    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools"};
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());

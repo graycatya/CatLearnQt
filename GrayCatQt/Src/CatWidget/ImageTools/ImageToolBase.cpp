@@ -15,7 +15,7 @@ ImageToolBase::ImageToolBase(QWidget *parent)
     , m_bCut(false)
     , m_bInit(false)
 {
-    this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
     /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);

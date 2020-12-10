@@ -1,4 +1,4 @@
-/***************************************************************************
+﻿/***************************************************************************
 **                                                                        **
 **  QCustomPlot, an easy to use, modern plotting widget for Qt            **
 **  Copyright (C) 2011-2018 Emanuel Eichhammer                            **
@@ -1105,7 +1105,7 @@ void QCPLayer::setMode(QCPLayer::LayerMode mode)
   {
     mMode = mode;
     if (!mPaintBuffer.isNull())
-      mPaintBuffer.data()->setInvalidated();
+      mPaintBuffer.toStrongRef()->setInvalidated();
   }
 }
 
@@ -1142,14 +1142,14 @@ void QCPLayer::drawToPaintBuffer()
 {
   if (!mPaintBuffer.isNull())
   {
-    if (QCPPainter *painter = mPaintBuffer.data()->startPainting())
+    if (QCPPainter *painter = mPaintBuffer.toStrongRef()->startPainting())
     {
       if (painter->isActive())
         draw(painter);
       else
         qDebug() << Q_FUNC_INFO << "paint buffer returned inactive painter";
       delete painter;
-      mPaintBuffer.data()->donePainting();
+      mPaintBuffer.toStrongRef()->donePainting();
     } else
       qDebug() << Q_FUNC_INFO << "paint buffer returned zero painter";
   } else
@@ -1175,9 +1175,9 @@ void QCPLayer::replot()
   {
     if (!mPaintBuffer.isNull())
     {
-      mPaintBuffer.data()->clear(Qt::transparent);
+      mPaintBuffer.toStrongRef()->clear(Qt::transparent);
       drawToPaintBuffer();
-      mPaintBuffer.data()->setInvalidated(false);
+      mPaintBuffer.toStrongRef()->setInvalidated(false);
       mParentPlot->update();
     } else
       qDebug() << Q_FUNC_INFO << "no valid paint buffer associated with this layer";
@@ -1204,7 +1204,7 @@ void QCPLayer::addChild(QCPLayerable *layerable, bool prepend)
     else
       mChildren.append(layerable);
     if (!mPaintBuffer.isNull())
-      mPaintBuffer.data()->setInvalidated();
+      mPaintBuffer.toStrongRef()->setInvalidated();
   } else
     qDebug() << Q_FUNC_INFO << "layerable is already child of this layer" << reinterpret_cast<quintptr>(layerable);
 }
@@ -1223,7 +1223,7 @@ void QCPLayer::removeChild(QCPLayerable *layerable)
   if (mChildren.removeOne(layerable))
   {
     if (!mPaintBuffer.isNull())
-      mPaintBuffer.data()->setInvalidated();
+      mPaintBuffer.toStrongRef()->setInvalidated();
   } else
     qDebug() << Q_FUNC_INFO << "layerable is not child of this layer" << reinterpret_cast<quintptr>(layerable);
 }
@@ -11334,12 +11334,12 @@ QCPItemAnchor::QCPItemAnchor(QCustomPlot *parentPlot, QCPAbstractItem *parentIte
 QCPItemAnchor::~QCPItemAnchor()
 {
   // unregister as parent at children:
-  foreach (QCPItemPosition *child, mChildrenX.toList())
+  foreach (QCPItemPosition *child, mChildrenX.values())
   {
     if (child->parentAnchorX() == this)
       child->setParentAnchorX(0); // this acts back on this anchor and child removes itself from mChildrenX
   }
-  foreach (QCPItemPosition *child, mChildrenY.toList())
+  foreach (QCPItemPosition *child, mChildrenY.values())
   {
     if (child->parentAnchorY() == this)
       child->setParentAnchorY(0); // this acts back on this anchor and child removes itself from mChildrenY
@@ -11512,12 +11512,12 @@ QCPItemPosition::~QCPItemPosition()
   // unregister as parent at children:
   // Note: this is done in ~QCPItemAnchor again, but it's important QCPItemPosition does it itself, because only then
   //       the setParentAnchor(0) call the correct QCPItemPosition::pixelPosition function instead of QCPItemAnchor::pixelPosition
-  foreach (QCPItemPosition *child, mChildrenX.toList())
+  foreach (QCPItemPosition *child, mChildrenX.values())
   {
     if (child->parentAnchorX() == this)
       child->setParentAnchorX(0); // this acts back on this anchor and child removes itself from mChildrenX
   }
-  foreach (QCPItemPosition *child, mChildrenY.toList())
+  foreach (QCPItemPosition *child, mChildrenY.values())
   {
     if (child->parentAnchorY() == this)
       child->setParentAnchorY(0); // this acts back on this anchor and child removes itself from mChildrenY
@@ -14134,7 +14134,7 @@ bool QCustomPlot::removeLayer(QCPLayer *layer)
     setCurrentLayer(targetLayer);
   // invalidate the paint buffer that was responsible for this layer:
   if (!layer->mPaintBuffer.isNull())
-    layer->mPaintBuffer.data()->setInvalidated();
+    layer->mPaintBuffer.toStrongRef()->setInvalidated();
   // remove layer:
   delete layer;
   mLayers.removeOne(layer);
@@ -14171,9 +14171,9 @@ bool QCustomPlot::moveLayer(QCPLayer *layer, QCPLayer *otherLayer, QCustomPlot::
   
   // invalidate the paint buffers that are responsible for the layers:
   if (!layer->mPaintBuffer.isNull())
-    layer->mPaintBuffer.data()->setInvalidated();
+    layer->mPaintBuffer.toStrongRef()->setInvalidated();
   if (!otherLayer->mPaintBuffer.isNull())
-    otherLayer->mPaintBuffer.data()->setInvalidated();
+    otherLayer->mPaintBuffer.toStrongRef()->setInvalidated();
   
   updateLayerIndices();
   return true;

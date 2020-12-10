@@ -47,6 +47,11 @@ QPushButton#CatImageTools {
     qproperty-iconSize: 40px 40px;
 }
 
+QPushButton#CatSliderTools {
+    qproperty-icon: url(:/Images/CatGray/SliderTools.png);
+    qproperty-iconSize: 40px 40px;
+}
+
 QScrollArea#ListingOptionsScroll {
     border: none;
     background-color: transparent;

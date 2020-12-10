@@ -41,7 +41,7 @@ void SpotLight::InitUi()
 
 void SpotLight::InitProperty()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
     /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
@@ -103,7 +103,7 @@ void SpotLight::InitProperty()
     m_pScreen->SetMaxParentSize(QApplication::desktop()->size());
     m_pScreen->SetMaxWidth(QApplication::desktop()->size().width());
     m_pScreen->SetMaxHeight(QApplication::desktop()->size().height());
-
+    this->setMinimumSize(QApplication::desktop()->size());
 
     m_pFullScreen = new QPixmap;
     m_bInit =true;
@@ -223,7 +223,8 @@ void SpotLight::paintEvent(QPaintEvent *event)
             //m_pZoom->show();
 
         } else {
-            painter.drawPixmap(x, y, m_pFullScreen->copy(x, y, w, h));
+            QPixmap pix = m_pFullScreen->copy(x, y, w, h);
+            painter.drawPixmap(x, y, pix);
             painter.drawRect(x, y, w, h);
 
             m_pZoom->move(x+w-m_pZoom->width()/2, y+h-m_pZoom->height()/2);

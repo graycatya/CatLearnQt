@@ -17,6 +17,7 @@
 
 ScreenShot::ScreenShot(QWidget *parent)
     : ImageToolBase(parent)
+    , m_pMousePress(false)
 {
     InitUi();
 
@@ -56,15 +57,31 @@ void ScreenShot::InitUi()
 
 void ScreenShot::InitProperty()
 {
-    this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
-    /*QPalette pal = palette();
+    QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
     setPalette(pal);
-    setWindowOpacity(1);*/
+    setWindowOpacity(1);
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_TransparentForMouseEvents, true);
     setMouseTracking(true);
+    m_pZoom_Top->installEventFilter(this);
+    m_pZoom_Top->setMouseTracking(true);
+    m_pZoom_Left->installEventFilter(this);
+    m_pZoom_Left->setMouseTracking(true);
+    m_pZoom_Right->installEventFilter(this);
+    m_pZoom_Right->setMouseTracking(true);
+    m_pZoom_Bottom->installEventFilter(this);
+    m_pZoom_Bottom->setMouseTracking(true);
+    m_pZoom_Left_Top->installEventFilter(this);
+    m_pZoom_Left_Top->setMouseTracking(true);
+    m_pZoom_Right_Top->installEventFilter(this);
+    m_pZoom_Right_Top->setMouseTracking(true);
+    m_pZoom_Left_Bottom->installEventFilter(this);
+    m_pZoom_Left_Bottom->setMouseTracking(true);
+    m_pZoom_Right_Bottom->installEventFilter(this);
+    m_pZoom_Right_Bottom->setMouseTracking(true);
 
     //添加自定义类控制
     setAttribute(Qt::WA_StyledBackground,true);
@@ -106,6 +123,7 @@ void ScreenShot::InitProperty()
     m_pScreen->SetMaxHeight(QApplication::desktop()->size().height());
     m_pScreen->SetMinWidth(0);
     m_pScreen->SetMinHeight(0);
+    this->setMinimumSize(QApplication::desktop()->size());
 
 
     m_pFullScreen = new QPixmap;
@@ -182,6 +200,7 @@ void ScreenShot::Save()
 
 void ScreenShot::mousePressEvent(QMouseEvent *event)
 {
+    m_pMousePress = true;
     //qDebug() << "press: " << event->pos();
     if(ZoomIsInArea(m_pZoom_Left_Top, event->pos()))
     {
@@ -308,6 +327,8 @@ void ScreenShot::mouseMoveEvent(QMouseEvent *event)
         {
             // 右边拖拽
             this->setCursor(Qt::SizeHorCursor);
+        } else if(!m_pMousePress) {
+            this->setCursor(Qt::ArrowCursor);
         }
     }
 
@@ -327,9 +348,9 @@ void ScreenShot::mouseMoveEvent(QMouseEvent *event)
         m_pScreen->SetEnd(QPoint(event->x(), m_pScreen->GetLeftTopPos().y()));
     } else if(m_pScreen->GetState() == ProcessObject::STATE::RIGHT_ZOOM) {
         m_pScreen->SetEnd(QPoint(event->x(), m_pScreen->GetRightBottomPos().y()));
-    } else {
-        this->setCursor(Qt::ArrowCursor);
-    }
+    } /*else {
+        //this->setCursor(Qt::ArrowCursor);
+    }*/
     m_qMovePos = event->pos();
 
     update();
@@ -338,6 +359,7 @@ void ScreenShot::mouseMoveEvent(QMouseEvent *event)
 void ScreenShot::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event)
+    m_pMousePress = false;
     if(m_pScreen->GetState() == ProcessObject::STATE::MOVE)
     {
         m_pButtonTool->setVisible(true);
@@ -376,7 +398,8 @@ void ScreenShot::paintEvent(QPaintEvent *event)
 
     if(w > 0 && h > 0)
     {
-        painter.drawPixmap(x, y, m_pFullScreen->copy(x,y,w,h));
+        QPixmap pix = m_pFullScreen->copy(x,y,w,h);
+        painter.drawPixmap(x, y, pix);
         painter.drawRect(x, y, w, h);
 
         // 动态变更按钮组位置
@@ -437,4 +460,9 @@ void ScreenShot::showEvent(QShowEvent *event)
         SetZoomVisible(false);
 
     }
+}
+
+bool ScreenShot::eventFilter(QObject *watched, QEvent *event)
+{
+    return QWidget::eventFilter(watched, event);
 }

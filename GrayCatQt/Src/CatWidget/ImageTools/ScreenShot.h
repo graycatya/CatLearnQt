@@ -26,6 +26,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent *) override;
     void paintEvent(QPaintEvent *) override;
     void showEvent(QShowEvent *) override;
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 private:
     QWidget *m_pZoom_Top;
@@ -37,7 +38,7 @@ private:
     QWidget *m_pZoom_Left_Bottom;
     QWidget *m_pZoom_Right_Bottom;
 
-
+    bool m_pMousePress;
 
 };
 

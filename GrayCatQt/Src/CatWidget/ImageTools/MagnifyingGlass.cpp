@@ -42,7 +42,7 @@ void MagnifyingGlass::InitUi()
 
 void MagnifyingGlass::InitProperty()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
     /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
@@ -244,7 +244,9 @@ void MagnifyingGlass::paintEvent(QPaintEvent *event)
             QBrush brush(pix);
             brush.setTransform(transform);
             painter.setBrush(brush);
-            painter.drawPixmap(x, y, m_pFullScreen->copy(x, y, w, h));
+
+            QPixmap pixmap = m_pFullScreen->copy(x, y, w, h);
+            painter.drawPixmap(x, y, pixmap);
             painter.drawRect(x, y, w, h);
 
             m_pZoom->move(x+w-m_pZoom->width()/2, y+h-m_pZoom->height()/2);

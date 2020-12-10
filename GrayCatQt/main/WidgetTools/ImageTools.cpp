@@ -63,6 +63,8 @@ void ImageTools::InitConnect()
         base->setGeometry(0,0,
                           QApplication::desktop()->size().width(),
                           QApplication::desktop()->size().height());
+        //base->setWindowState(base->windowState() ^ Qt::WindowFullScreen);
+
         base->show();
         //base->show();
     });

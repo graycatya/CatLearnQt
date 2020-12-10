@@ -82,5 +82,7 @@
         <file>Images/CatWhite/SpotLightTool.png</file>
         <file>Images/CatGray/SliderTools.png</file>
         <file>Images/CatWhite/SliderTools.png</file>
+        <file>qss/CatGray/SliderTools.css</file>
+        <file>qss/CatWhite/SliderTools.css</file>
     </qresource>
 </RCC>

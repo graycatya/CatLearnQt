@@ -399,6 +399,13 @@ void ScreenShot::paintEvent(QPaintEvent *event)
     if(w > 0 && h > 0)
     {
         QPixmap pix = m_pFullScreen->copy(x,y,w,h);
+        /*QScreen *screen = QApplication::primaryScreen();
+        QPixmap pix = screen->grabWindow(
+                                           QApplication::desktop()->winId(),
+                                           x,
+                                           y,
+                                           w,
+                                           h);*/
         painter.drawPixmap(x, y, pix);
         painter.drawRect(x, y, w, h);
 

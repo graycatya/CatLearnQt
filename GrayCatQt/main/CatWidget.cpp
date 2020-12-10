@@ -11,6 +11,7 @@
 
 #include "WidgetTools/QrenCodeTool.h"
 #include "WidgetTools/ImageTools.h"
+#include "WidgetTools/SliderTools.h"
 
 
 
@@ -82,6 +83,9 @@ void CatWidget::InitToolWidgets()
 
     ImageTools *m_pImageTools = new ImageTools;
     ui->ToolStackedWidget->addWidget(m_pImageTools);
+
+    SliderTools *m_pSliderTools = new SliderTools;
+    ui->ToolStackedWidget->addWidget(m_pSliderTools);
 }
 
 void CatWidget::UpdateStyle()

@@ -1,5 +1,8 @@
 HEADERS += \
-    $$PWD/ListingOptions.h
+    $$PWD/CatSlider.h \
+    $$PWD/ListingOptions.h \ \
+    $$PWD/RangeSlider.h
 
 SOURCES += \
-    $$PWD/ListingOptions.cpp
+    $$PWD/CatSlider.cpp \
+    $$PWD/ListingOptions.cpp \

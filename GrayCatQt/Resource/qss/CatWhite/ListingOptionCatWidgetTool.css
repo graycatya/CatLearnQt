@@ -48,7 +48,7 @@ QPushButton#CatImageTools {
 }
 
 QPushButton#CatSliderTools {
-    qproperty-icon: url(:/Images/CatGray/SliderTools.png);
+    qproperty-icon: url(:/Images/CatWhite/SliderTools.png);
     qproperty-iconSize: 40px 40px;
 }
 

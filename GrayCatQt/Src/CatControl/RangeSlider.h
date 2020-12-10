@@ -1,0 +1,4 @@
+#ifndef RANGESLIDER_H
+#define RANGESLIDER_H
+
+#endif // RANGESLIDER_H

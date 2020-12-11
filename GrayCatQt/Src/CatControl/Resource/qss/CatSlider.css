@@ -1,0 +1,17 @@
+CatSlider {
+    background: transparent;
+}
+
+QWidget#SliderBackGround {
+    min-height: 4px;
+    max-height: 4px;
+    background-color: whitesmoke;
+    border: 1px solid gray;
+}
+
+QWidget#SliderMoveBackGround {
+    background-color: teal;
+    min-height: 4px;
+    max-height: 4px;
+    border: 1px solid transparent;
+}

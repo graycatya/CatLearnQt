@@ -7,33 +7,40 @@ Item {
 
     signal setTextCode(string str)
     Rectangle {
+        id : rectroot
         width: parent.width;
         height: parent.height;
         color: "white";
+        anchors.centerIn: parent
         ParentQrenCode {
             id: qrencode
-
-            width: parent.width;
-            height: parent.height;
+            //anchors.centerIn: rectroot
+            width: root.width;
+            height: root.height;
             qrmode: ParentQrenCode.MODE_8;
             qrlevel: ParentQrenCode.LEVEL_Q;
             casesen: true;
             text: root.textcode;
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
-
         }
     }
 
 
     onWidthChanged: {
-        qrencode.width = root.width;
-        qrencode.height = root.height;
+        rectroot.width = root.width;
+        rectroot.height = root.height;
+        qrencode.x = 10;
+        qrencode.y = 10;
+        qrencode.width = root.width - 10;
+        qrencode.height = root.height - 10;
     }
 
     onHeightChanged: {
-        qrencode.width = root.width;
-        qrencode.height = root.height;
+        rectroot.width = root.width;
+        rectroot.height = root.height;
+        qrencode.x = 10;
+        qrencode.y = 10;
+        qrencode.width = root.width - 10;
+        qrencode.height = root.height - 10;
     }
 
     onSetTextCode: {

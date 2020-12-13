@@ -42,6 +42,11 @@ QPushButton#CatQmlSliders {
     qproperty-iconSize: 40px 40px;
 }
 
+QPushButton#CatQmlQrenCode {
+    qproperty-icon: url(:/Images/CatGray/QrenCode.png);
+    qproperty-iconSize: 48px 48px;
+}
+
 
 QScrollArea#ListingOptionsScroll {
     border: none;

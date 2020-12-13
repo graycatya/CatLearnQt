@@ -1,10 +1,17 @@
 QWidget#ToolWidget {
     border: none;
-    background-color: #966f6f;
+    background-color: #f3f3f3;
 }
 
 QStackedWidget#ToolStackedWidget {
     border-radius: 4px;
     border: 2px solid #dddddd;
 	background-color: #fbfbfb;
+}
+
+QLineEdit#QrenCodeEdit {
+    color: black;
+    border: 1px solid #959595;
+    border-radius: 3px;
+    background-color: #f1f1f1;
 }

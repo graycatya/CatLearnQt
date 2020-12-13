@@ -1,4 +1,4 @@
-#ifndef QUICKQRENCODE_H
+﻿#ifndef QUICKQRENCODE_H
 #define QUICKQRENCODE_H
 
 #include <QWidget>
@@ -14,6 +14,11 @@ class QuickQrenCode : public QWidget
 public:
     explicit QuickQrenCode(QWidget *parent = nullptr);
     ~QuickQrenCode();
+
+private:
+    void InitProperty();
+    void InitConnect();
+
 
 private:
     Ui::QuickQrenCode *ui;

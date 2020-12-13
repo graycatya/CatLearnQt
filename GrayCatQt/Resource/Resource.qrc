@@ -94,5 +94,6 @@
         <file>qml/CatSliders.qml</file>
         <file>qss/CatGray/QuickSliders.css</file>
         <file>qss/CatWhite/QuickSliders.css</file>
+        <file>qml/CatQrenCode.qml</file>
     </qresource>
 </RCC>

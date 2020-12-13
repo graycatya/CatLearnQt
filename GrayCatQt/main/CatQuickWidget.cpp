@@ -9,6 +9,7 @@
 #include <QFile>
 
 #include "QuickWidgetTools/QuickSliders.h"
+#include "QuickWidgetTools/QuickQrenCode.h"
 
 CatQuickWidget::CatQuickWidget(QWidget *parent) :
     QWidget(parent),
@@ -56,7 +57,7 @@ void CatQuickWidget::InitToolButtons()
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatQmlSliders"};
+    QStringList ToolButtonList = {"CatQmlSliders", "CatQmlQrenCode"};
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -75,6 +76,11 @@ void CatQuickWidget::InitToolWidgets()
     QuickSliders *m_pQuickSliders = new QuickSliders;
     m_pQuickSliders->setObjectName("QuickSlidersWidget");
     ui->ToolStackedWidget->addWidget(m_pQuickSliders);
+
+    QuickQrenCode *m_pQuickQrenCode = new QuickQrenCode;
+    m_pQuickQrenCode->setObjectName("QuickQrenCodeWidget");
+    ui->ToolStackedWidget->addWidget(m_pQuickQrenCode);
+
 
 }
 

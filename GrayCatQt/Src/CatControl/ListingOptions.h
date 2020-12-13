@@ -36,6 +36,7 @@ private:
     void InitProperty( void );
 
 protected:
+    bool eventFilter(QObject *watched, QEvent *event);
     void showEvent(QShowEvent *event);
 
 private:

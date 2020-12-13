@@ -10,6 +10,7 @@ class CatDrawingBoard;
 class CatAbout;
 class CatSettings;
 class CatWidget;
+class CatQuickWidget;
 
 namespace Ui {
 class WinWidget;
@@ -65,6 +66,7 @@ private:
     CatAbout *m_pCatAbout;
     CatSettings *m_pCatSettings;
     CatWidget *m_pCatWidget;
+    CatQuickWidget *m_pCatQuickWidget;
 
     bool m_bFullScreen;
     QRect m_pLastRect;

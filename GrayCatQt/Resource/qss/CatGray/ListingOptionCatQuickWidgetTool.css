@@ -37,20 +37,11 @@ QPushButton:checked {
     border: 1px solid rgba(223,74,22,100%);
 }
 
-QPushButton#CatQrenCode {
-    qproperty-icon: url(:/Images/CatGray/QrenCode.png);
-    qproperty-iconSize: 48px 48px;
-}
-
-QPushButton#CatImageTools {
-    qproperty-icon: url(:/Images/CatGray/ImageTools.png);
-    qproperty-iconSize: 40px 40px;
-}
-
-QPushButton#CatSliderTools {
+QPushButton#CatQmlSliders {
     qproperty-icon: url(:/Images/CatGray/SliderTools.png);
     qproperty-iconSize: 40px 40px;
 }
+
 
 QScrollArea#ListingOptionsScroll {
     border: none;

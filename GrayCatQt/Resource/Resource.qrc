@@ -84,5 +84,15 @@
         <file>Images/CatWhite/SliderTools.png</file>
         <file>qss/CatGray/SliderTools.css</file>
         <file>qss/CatWhite/SliderTools.css</file>
+        <file>about/explain/explain_cn.html</file>
+        <file>about/explain/explain_en.html</file>
+        <file>about/Licence/Licence.html</file>
+        <file>qss/CatGray/CatQuickWidget.css</file>
+        <file>qss/CatGray/ListingOptionCatQuickWidgetTool.css</file>
+        <file>qss/CatWhite/CatQuickWidget.css</file>
+        <file>qss/CatWhite/ListingOptionCatQuickWidgetTool.css</file>
+        <file>qml/CatSliders.qml</file>
+        <file>qss/CatGray/QuickSliders.css</file>
+        <file>qss/CatWhite/QuickSliders.css</file>
     </qresource>
 </RCC>

@@ -181,10 +181,21 @@ void ListiongOptions::InitUi()
 void ListiongOptions::InitProperty()
 {
     m_lButtonList.clear();
+    m_pRootWidget->installEventFilter(this);
+    m_pRootWidget->setMouseTracking(true);
+    m_pScrollArea->installEventFilter(this);
+    m_pScrollArea->setMouseTracking(true);
+    m_pButtonLists->installEventFilter(this);
+    m_pButtonLists->setMouseTracking(true);
     /*QFile resourceqss(":/qss/CatGray/ListingOptions.css");
     resourceqss.open(QFile::ReadOnly);
     this->setStyleSheet(resourceqss.readAll());
     resourceqss.close();*/
+}
+
+bool ListiongOptions::eventFilter(QObject *watched, QEvent *event)
+{
+    return QWidget::eventFilter(watched, event);
 }
 
 void ListiongOptions::showEvent(QShowEvent *event)

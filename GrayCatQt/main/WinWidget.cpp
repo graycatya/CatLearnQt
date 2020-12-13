@@ -16,6 +16,7 @@
 #include "CatWidget.h"
 #include "CatConfig/CatConfig.h"
 #include "CatControl/ListingOptions.h"
+#include "CatQuickWidget.h"
 
 WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -46,6 +47,7 @@ void WinWidget::InitUi()
     ToolListWidgetLayout->setContentsMargins(0,0,0,0);
     ToolListWidgetLayout->setSpacing(0);
     m_pListiongOptions = new ListiongOptions(ListiongOptions::VBox, ui->ToolListWidget);
+    m_pListiongOptions->setObjectName("ListiongOptions");
     ToolListWidgetLayout->addWidget(m_pListiongOptions);
 
     InitButtonList();
@@ -89,6 +91,15 @@ void WinWidget::InitUi()
     m_pCatSettings->setObjectName("WinCatSettings");
     layout_Settings->addWidget(m_pCatSettings);
 
+    // QuickWidget 布局
+    QVBoxLayout *layout_QuickWidget = new QVBoxLayout(ui->QuickWidgetFunc);
+    layout_QuickWidget->setContentsMargins(0,0,0,0);
+    layout_QuickWidget->setSpacing(0);
+
+    m_pCatQuickWidget = new CatQuickWidget(ui->QuickWidgetFunc);
+    m_pCatQuickWidget->setObjectName("WinCatQuickWidget");
+    layout_QuickWidget->addWidget(m_pCatQuickWidget);
+
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
@@ -130,6 +141,12 @@ void WinWidget::InitProperty()
     m_pCatAbout->setMouseTracking(true);
     m_pCatSettings->installEventFilter(this);
     m_pCatSettings->setMouseTracking(true);
+    m_pCatWidget->installEventFilter(this);
+    m_pCatWidget->setMouseTracking(true);
+    m_pListiongOptions->installEventFilter(this);
+    m_pListiongOptions->setMouseTracking(true);
+    m_pCatQuickWidget->installEventFilter(this);
+    m_pCatQuickWidget->setMouseTracking(true);
 #endif
 
     UpdateStyle();
@@ -182,7 +199,9 @@ void WinWidget::InitConnect()
 
 void WinWidget::InitButtonList()
 {
-    QStringList buttonList = { "WidgetFunc", "GraphicsViewFunc", "Setting", "About" };
+    QStringList buttonList = { "WidgetFunc", "GraphicsViewFunc",
+                               "QuickWidgetFunc", "Setting",
+                               "About" };
     for(int i = 0; i < buttonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pListiongOptions->GetRootWidget());
@@ -193,8 +212,9 @@ void WinWidget::InitButtonList()
 
     m_pButtons[buttonList[0]]->setText(tr("QWidget"));
     m_pButtons[buttonList[1]]->setText(tr("QGraphicsView"));
-    m_pButtons[buttonList[2]]->setText(tr("Setting"));
-    m_pButtons[buttonList[3]]->setText(tr("About"));
+    m_pButtons[buttonList[2]]->setText(tr("QQuickWidget"));
+    m_pButtons[buttonList[3]]->setText(tr("Setting"));
+    m_pButtons[buttonList[4]]->setText(tr("About"));
 }
 
 void WinWidget::SetZoomButtonState(QString state)
@@ -269,7 +289,10 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     QStringList list = { "WidgetFunc", "GraphicsViewFunc",
                          "AboutFunc", "Setting",
                          "About", "WinCatDrawingBoard",
-                            "WinCatAbout", "WinCatSettings"};
+                            "WinCatAbout", "WinCatSettings",
+                         "WinCatWidget", "ToolListWidget",
+                            "ListiongOptions", "QuickWidgetFunc"
+                       , "WinCatQuickWidget"};
     for(auto temp : list)
     {
         if(watched->objectName() == temp && event->type() == QEvent::MouseMove)

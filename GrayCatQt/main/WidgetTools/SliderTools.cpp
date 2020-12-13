@@ -1,7 +1,6 @@
 ﻿#include "SliderTools.h"
 #include "ui_SliderTools.h"
 #include "../CatConfig/CatConfig.h"
-#include "CatControl/CatSlider.h"
 
 
 #include <CatLog>
@@ -84,15 +83,6 @@ void SliderTools::InitDefauleSlider()
     Slider3->setValue(30);
     ui->SilderHbLayout->addWidget(Slider3);
 
-
-    CatSlider *CatSlider0 = new CatSlider(this);
-    CatSlider0->setObjectName("CatSlider0");
-    CatSlider0->setMinimumHeight(50);
-    ui->CustomVbLayout->addWidget(CatSlider0);
-
-    connect(CatSlider0, &CatSlider::valueChanged, [=](int min, int max){
-        qDebug() << QString("min: %1, max: %2 var: %3").arg(QString::number(min)).arg(QString::number(max)).arg(QString::number(max - min));
-    });
 }
 
 

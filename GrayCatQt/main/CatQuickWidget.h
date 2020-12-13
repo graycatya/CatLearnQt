@@ -1,7 +1,10 @@
-#ifndef CATQUICKWIDGET_H
+﻿#ifndef CATQUICKWIDGET_H
 #define CATQUICKWIDGET_H
 
 #include <QWidget>
+
+class ListiongOptions;
+class QPushButton;
 
 namespace Ui {
 class CatQuickWidget;
@@ -16,7 +19,23 @@ public:
     ~CatQuickWidget();
 
 private:
+    void InitUi();
+    void InitProperty();
+    void InitConnect();
+
+    void InitToolButtons();
+    void InitToolWidgets();
+
+    void UpdateStyle();
+
+private slots:
+    void On_ToolButtons(int);
+
+private:
     Ui::CatQuickWidget *ui;
+    ListiongOptions *m_pToolListiongOptions;
+    QHash<QString, QPushButton*> m_pToolButtons;
+
 };
 
 #endif // CATQUICKWIDGET_H

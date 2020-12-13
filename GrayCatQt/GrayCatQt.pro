@@ -5,7 +5,6 @@ contains(QT_CONFIG, opengl): QT += opengl
 
 CONFIG += c++11
 # CONFIG += console
-CONFIG -= qml_debug
 
 
 # The following define makes your compiler emit warnings if you use

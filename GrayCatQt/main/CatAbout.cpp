@@ -36,7 +36,20 @@ void CatAbout::InitProperty()
 {
 
     UpdateStyle();
+#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
+    QFile file_licence(":/about/Licence/Licence.html");
+    file_licence.open(QIODevice::ReadOnly);
+    QString licencemd = QLatin1String(file_licence.readAll());
+    ui->LicenceTextEdit->setHtml(licencemd);
+    file_licence.close();
 
+    QFile file_explain(":/about/explain/explain_en.html");
+    file_explain.open(QIODevice::ReadOnly);
+    QString explain = QLatin1String(file_explain.readAll());
+    ui->Explain->setText(explain);
+    file_explain.close();
+
+#else
     QFile file_licence(":/about/Licence/Licence.md");
     file_licence.open(QIODevice::ReadOnly);
     QString licencemd = QLatin1String(file_licence.readAll());
@@ -48,6 +61,11 @@ void CatAbout::InitProperty()
     QString explain = QLatin1String(file_explain.readAll());
     ui->Explain->setText(explain);
     file_explain.close();
+
+#endif
+
+
+
 
     ui->AboutTabWidget->installEventFilter(this);
     ui->AboutTabWidget->setMouseTracking(true);

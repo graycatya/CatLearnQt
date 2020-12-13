@@ -1,0 +1,9 @@
+QWidget#ToolWidget {
+    border: none;
+    background-color: #272626;
+}
+
+QStackedWidget#ToolStackedWidget {
+    border-radius: 4px;
+	background-color: #343434;
+}

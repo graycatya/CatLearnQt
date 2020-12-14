@@ -12,6 +12,7 @@
 #include "WidgetTools/QrenCodeTool.h"
 #include "WidgetTools/ImageTools.h"
 #include "WidgetTools/SliderTools.h"
+#include "WidgetTools/RimlessWindowTool.h"
 
 
 
@@ -61,7 +62,7 @@ void CatWidget::InitToolButtons()
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools"};
+    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools", "CatRimlessWindowTool"};
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -86,6 +87,13 @@ void CatWidget::InitToolWidgets()
 
     SliderTools *m_pSliderTools = new SliderTools;
     ui->ToolStackedWidget->addWidget(m_pSliderTools);
+
+    RimlessWindowTool *m_pRimlessWindowTool = new RimlessWindowTool;
+    m_pRimlessWindowTool->setObjectName("CatRimlessWindowTool");
+    ui->ToolStackedWidget->addWidget(m_pRimlessWindowTool);
+    m_pRimlessWindowTool->installEventFilter(this);
+    m_pRimlessWindowTool->setMouseTracking(true);
+    ui->ToolStackedWidget->setMouseTracking(true);
 }
 
 void CatWidget::UpdateStyle()
@@ -116,4 +124,13 @@ void CatWidget::UpdateStyle()
 void CatWidget::On_ToolButtons(int id)
 {
     ui->ToolStackedWidget->setCurrentIndex(id);
+}
+
+bool CatWidget::eventFilter(QObject *watched, QEvent *event)
+{
+    if(watched->objectName() == "CatRimlessWindowTool")
+    {
+        watched->eventFilter(watched, event);
+    }
+    return QWidget::eventFilter(watched, event);
 }

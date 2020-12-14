@@ -95,5 +95,9 @@
         <file>qss/CatGray/QuickSliders.css</file>
         <file>qss/CatWhite/QuickSliders.css</file>
         <file>qml/CatQrenCode.qml</file>
+        <file>Images/CatGray/RimlessWindow.png</file>
+        <file>Images/CatWhite/RimlessWindow.png</file>
+        <file>qss/CatGray/RimlessWindowTool.css</file>
+        <file>qss/CatWhite/RimlessWindowTool.css</file>
     </qresource>
 </RCC>

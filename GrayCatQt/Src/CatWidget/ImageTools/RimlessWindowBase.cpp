@@ -40,6 +40,9 @@ void RimlessWindowBase::InitProperty()
     setMouseTracking(true);
     setAttribute(Qt::WA_TranslucentBackground);
 
+    //添加自定义类控制
+    setAttribute(Qt::WA_StyledBackground,true);
+
     // 初始化 处理屏幕的对象 并初始化 可活动范围
     m_pScreen = new ProcessObject;
 }

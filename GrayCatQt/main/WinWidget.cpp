@@ -112,7 +112,7 @@ void WinWidget::InitProperty()
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
     ui->TopWidget->setVisible(false);
-#else
+#endif
     // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
     ui->TopWidget->setMouseTracking(true);
@@ -147,7 +147,6 @@ void WinWidget::InitProperty()
     m_pListiongOptions->setMouseTracking(true);
     m_pCatQuickWidget->installEventFilter(this);
     m_pCatQuickWidget->setMouseTracking(true);
-#endif
 
     UpdateStyle();
 
@@ -284,8 +283,9 @@ void WinWidget::UpdateStyle()
 
 bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-#else
+    //qDebug() << watched->objectName() << event->type();
+/*#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
+#else*/
     QStringList list = { "WidgetFunc", "GraphicsViewFunc",
                          "AboutFunc", "Setting",
                          "About", "WinCatDrawingBoard",
@@ -293,6 +293,10 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
                          "WinCatWidget", "ToolListWidget",
                             "ListiongOptions", "QuickWidgetFunc"
                        , "WinCatQuickWidget"};
+    if(watched->objectName() == "WinCatWidget")
+    {
+        watched->eventFilter(watched, event);
+    }
     for(auto temp : list)
     {
         if(watched->objectName() == temp && event->type() == QEvent::MouseMove)
@@ -303,14 +307,16 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     }
     if(event->type() == QEvent::MouseMove)
     {
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
+#else
         SetMoveRect(ui->TopWidget->rect());
+#endif
         this->mouseMoveEvent((QMouseEvent*)event);
     } else if(event->type() == QEvent::MouseButtonRelease)
     {
         this->mouseReleaseEvent((QMouseEvent*)event);
     }
-#endif
-    //qDebug() << event;
+/*#endif*/
     return QWidget::eventFilter(watched, event);
 }
 

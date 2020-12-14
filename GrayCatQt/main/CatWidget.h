@@ -31,6 +31,9 @@ private:
 private slots:
     void On_ToolButtons(int);
 
+protected:
+    bool eventFilter(QObject *watched, QEvent *event) override;
+
 private:
     Ui::CatWidget *ui;
     ListiongOptions *m_pToolListiongOptions;

@@ -1,3 +1,25 @@
-RimlessWindowBase {
-    background-color: #C1C1C1;
+RimlessWindow#CatRimlessWindow {
+    background-color: transparent;
+}
+
+QWidget#Zoom {
+    border: none;
+    background-color: green;
+    min-width: 9x;
+    max-width: 9px;
+    min-height: 9px;
+    max-height: 9px;
+    width: 9px;
+    height: 9px;
+}
+
+QWidget#Zoom:hover {
+    border: none;
+    background-color: greenyellow;
+    min-width: 9x;
+    max-width: 9px;
+    min-height: 9px;
+    max-height: 9px;
+    width: 9px;
+    height: 9px;
 }

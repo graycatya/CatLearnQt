@@ -1,7 +1,8 @@
-#ifndef RIMLESSWINDOWTOOL_H
+﻿#ifndef RIMLESSWINDOWTOOL_H
 #define RIMLESSWINDOWTOOL_H
 
 #include <QWidget>
+class RimlessWindow;
 
 namespace Ui {
 class RimlessWindowTool;
@@ -16,7 +17,20 @@ public:
     ~RimlessWindowTool();
 
 private:
+    void InitUi();
+    void InitProperty();
+    void InitConnect();
+
+    void UpdateStyle();
+
+protected:
+    bool eventFilter(QObject *watched, QEvent *event);
+
+
+private:
     Ui::RimlessWindowTool *ui;
+    RimlessWindow *m_pRimlessWindow;
+
 };
 
 #endif // RIMLESSWINDOWTOOL_H

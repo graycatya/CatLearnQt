@@ -286,6 +286,18 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     //qDebug() << watched->objectName() << event->type();
 /*#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #else*/
+    if(event->type() == QEvent::MouseMove)
+    {
+#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
+#else
+        SetMoveRect(ui->TopWidget->rect());
+#endif
+        this->mouseMoveEvent((QMouseEvent*)event);
+    } else if(event->type() == QEvent::MouseButtonRelease)
+    {
+        this->mouseReleaseEvent((QMouseEvent*)event);
+    }
+
     QStringList list = { "WidgetFunc", "GraphicsViewFunc",
                          "AboutFunc", "Setting",
                          "About", "WinCatDrawingBoard",
@@ -305,17 +317,7 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
             return QWidget::eventFilter(watched, event);
         }
     }
-    if(event->type() == QEvent::MouseMove)
-    {
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-#else
-        SetMoveRect(ui->TopWidget->rect());
-#endif
-        this->mouseMoveEvent((QMouseEvent*)event);
-    } else if(event->type() == QEvent::MouseButtonRelease)
-    {
-        this->mouseReleaseEvent((QMouseEvent*)event);
-    }
+
 /*#endif*/
     return QWidget::eventFilter(watched, event);
 }

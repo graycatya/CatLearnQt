@@ -5,7 +5,7 @@ RimlessWindow#CatRimlessWindow {
 QWidget#Zoom {
     border: none;
     background-color: green;
-    min-width: 9x;
+    min-width: 9px;
     max-width: 9px;
     min-height: 9px;
     max-height: 9px;

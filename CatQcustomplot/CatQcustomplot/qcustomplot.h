@@ -1,4 +1,4 @@
-/***************************************************************************
+﻿/***************************************************************************
 **                                                                        **
 **  QCustomPlot, an easy to use, modern plotting widget for Qt            **
 **  Copyright (C) 2011-2018 Emanuel Eichhammer                            **
@@ -2343,6 +2343,7 @@ public:
                       ,ssCustom    ///< custom painter operations are performed per scatter (As QPainterPath, see \ref setCustomPath)
                     };
   Q_ENUMS(ScatterShape)
+  Q_ENUM(ScatterShape)
 
   QCPScatterStyle();
   QCPScatterStyle(ScatterShape shape, double size=6);

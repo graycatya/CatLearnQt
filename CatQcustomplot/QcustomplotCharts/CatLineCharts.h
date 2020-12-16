@@ -1,12 +1,14 @@
-#ifndef CATLINECHARTS_H
+﻿#ifndef CATLINECHARTS_H
 #define CATLINECHARTS_H
 
+#include "CatQcustomplot/CatQcustomplot.h"
 
-class CatLineCharts
+class CatLineCharts : public CatQcustomplot
 {
     Q_OBJECT
 public:
-    CatLineCharts();
+    explicit CatLineCharts(QWidget *parent = nullptr);
+    ~CatLineCharts();
 };
 
 #endif // CATLINECHARTS_H

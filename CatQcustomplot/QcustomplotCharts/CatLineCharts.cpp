@@ -1,6 +1,12 @@
-#include "CatLineCharts.h"
+﻿#include "CatLineCharts.h"
 
-CatLineCharts::CatLineCharts()
+CatLineCharts::CatLineCharts(QWidget *parent)
+    : CatQcustomplot(parent)
+{
+
+}
+
+CatLineCharts::~CatLineCharts()
 {
 
 }

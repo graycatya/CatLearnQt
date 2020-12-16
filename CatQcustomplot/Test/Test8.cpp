@@ -22,13 +22,13 @@ void Test8::InitUi()
 
 void Test8::InitProperty()
 {
-    QCustomPlot *customPlot = ui->widget;
+    CatQcustomplot *customPlot = ui->widget;
     // set dark background gradient:
     QLinearGradient gradient(0, 0, 0, 400);
     gradient.setColorAt(0, QColor(90, 90, 90));
     gradient.setColorAt(0.38, QColor(105, 105, 105));
     gradient.setColorAt(1, QColor(70, 70, 70));
-    customPlot->setBackground(QBrush(gradient));
+    customPlot->SetBackground(QBrush(gradient));
 
     // create empty bar chart objects:
     QCPBars *regen = new QCPBars(customPlot->xAxis, customPlot->yAxis);

@@ -1,7 +1,9 @@
-#ifndef TEST10_H
+﻿#ifndef TEST10_H
 #define TEST10_H
 
 #include <QWidget>
+
+class QTimer;
 
 namespace Ui {
 class Test10;
@@ -15,8 +17,16 @@ public:
     explicit Test10(QWidget *parent = nullptr);
     ~Test10();
 
+private slots:
+    void on_pushButton_clicked();
+
+private:
+    void InitUi();
+    void InitProperty();
+
 private:
     Ui::Test10 *ui;
+    QTimer *dataTimer;
 };
 
 #endif // TEST10_H

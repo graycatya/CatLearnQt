@@ -1,4 +1,4 @@
-#ifndef TEST11_H
+﻿#ifndef TEST11_H
 #define TEST11_H
 
 #include <QWidget>
@@ -14,6 +14,10 @@ class Test11 : public QWidget
 public:
     explicit Test11(QWidget *parent = nullptr);
     ~Test11();
+
+private:
+    void InitUi();
+    void InitProperty();
 
 private:
     Ui::Test11 *ui;

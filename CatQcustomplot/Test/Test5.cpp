@@ -1,6 +1,7 @@
 ﻿#include "Test5.h"
 #include "ui_Test5.h"
 #include <QTimer>
+#include <QDebug>
 
 
 Test5::Test5(QWidget *parent) :
@@ -19,6 +20,8 @@ Test5::~Test5()
 
 void Test5::InitUi()
 {
+    ui->widget->setOpenGl(true);
+    qDebug() << "opengl : " << ui->widget->openGl();
     dataTimer = new QTimer(this);
 }
 

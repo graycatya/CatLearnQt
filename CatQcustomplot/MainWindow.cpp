@@ -1,5 +1,7 @@
 ﻿#include "MainWindow.h"
 #include "ui_MainWindow.h"
+#include "CatQcustomplot/CatQcustomplot.h"
+#include <QDebug>
 
 #include "Test/Test0.h"
 #include "Test/Test1.h"
@@ -10,6 +12,9 @@
 #include "Test/Test6.h"
 #include "Test/Test7.h"
 #include "Test/Test8.h"
+#include "Test/Test9.h"
+#include "Test/Test10.h"
+#include "Test/Test11.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
@@ -27,6 +32,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::InitUi()
 {
+    CatQcustomplot plot;
+    qDebug() <<  plot.ScatterShapeList();
     ui->splitter->setStretchFactor(0, 1);
     ui->splitter->setStretchFactor(1, 9);
 
@@ -92,6 +99,27 @@ void MainWindow::InitUi()
     pagelayout_8->setSpacing(0);
 
     pagelayout_8->addWidget(m_pTest_8);
+
+    Test9 *m_pTest_9 = new Test9(ui->page_9);
+    QVBoxLayout *pagelayout_9 = new QVBoxLayout(ui->page_9);
+    pagelayout_9->setContentsMargins(0,0,0,0);
+    pagelayout_9->setSpacing(0);
+
+    pagelayout_9->addWidget(m_pTest_9);
+
+    Test10 *m_pTest_10 = new Test10(ui->page_10);
+    QVBoxLayout *pagelayout_10 = new QVBoxLayout(ui->page_10);
+    pagelayout_10->setContentsMargins(0,0,0,0);
+    pagelayout_10->setSpacing(0);
+
+    pagelayout_10->addWidget(m_pTest_10);
+
+    Test11 *m_pTest_11 = new Test11(ui->page_11);
+    QVBoxLayout *pagelayout_11 = new QVBoxLayout(ui->page_11);
+    pagelayout_11->setContentsMargins(0,0,0,0);
+    pagelayout_11->setSpacing(0);
+
+    pagelayout_11->addWidget(m_pTest_11);
 
 }
 

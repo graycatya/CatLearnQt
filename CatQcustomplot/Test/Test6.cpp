@@ -22,11 +22,15 @@ void Test6::InitUi()
 
 void Test6::InitProperty()
 {
+    ui->widget->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
+                                          QCP::iSelectLegend | QCP::iSelectPlottables);
     QCustomPlot *customPlot = ui->widget;
     customPlot->legend->setVisible(true);
     customPlot->legend->setFont(QFont("Helvetica", 9));
     customPlot->legend->setRowSpacing(-3);
     QVector<QCPScatterStyle::ScatterShape> shapes;
+    shapes << QCPScatterStyle::ssNone;
+    shapes << QCPScatterStyle::ssDot;
     shapes << QCPScatterStyle::ssCross;
     shapes << QCPScatterStyle::ssPlus;
     shapes << QCPScatterStyle::ssCircle;

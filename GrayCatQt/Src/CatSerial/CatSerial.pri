@@ -1,16 +1,12 @@
 QT += serialport
 
-include(SerialProtocol/SerialProtocol.pri)
-
 HEADERS += \
     $$PWD/CatSerial \
     $$PWD/CatSerialPort.h \
-    $$PWD/MonitorSerial.h \
-    $$PWD/SerialDevFilter.h
+    $$PWD/MonitorSerial.h
 
 SOURCES += \
     $$PWD/CatSerialPort.cpp \
-    $$PWD/MonitorSerial.cpp \
-    $$PWD/SerialDevFilter.cpp
+    $$PWD/MonitorSerial.cpp
 
 INCLUDEPATH += $$PWD

@@ -1,7 +1,3 @@
 ﻿#include "CatSerialPort.h"
 #include "MonitorSerial.h"
-#include "SerialProtocol/SerialProtocolFactory.h"
-#include "SerialProtocol/SerialProtocolFactoryBase.h"
-#include "SerialProtocol/SerialProtocolBase.h"
-#include "SerialDevFilter.h"
 

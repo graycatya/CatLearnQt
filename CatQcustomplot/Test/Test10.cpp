@@ -24,6 +24,7 @@ void Test10::InitProperty()
 {
     ui->widget->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectAxes |
                                           QCP::iSelectLegend | QCP::iSelectPlottables);
+    ui->widget->setOpenGl(true);
     dataTimer = new QTimer(this);
     QCustomPlot *customPlot = ui->widget;
     customPlot->addGraph(); // blue line

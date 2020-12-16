@@ -25,10 +25,10 @@ QStringList CatQcustomplot::ScatterShapeList()
 {
     QStringList list;
     list.clear();
-    QMetaEnum metaEnum = QMetaEnum::fromType<QCPScatterStyle::ScatterShape>();
+    /*QMetaEnum metaEnum = QMetaEnum::fromType<QCPScatterStyle::ScatterShape>();
     for (int i = 0; i < metaEnum.keyCount(); i++) {
         list += metaEnum.valueToKey(metaEnum.value(i));
-    }
+    }*/
     return list;
 }
 

@@ -34,6 +34,7 @@ void MainWindow::InitUi()
 {
     CatQcustomplot plot;
     qDebug() <<  plot.ScatterShapeList();
+    qDebug() <<  plot.GraphLineStyleList();
     ui->splitter->setStretchFactor(0, 1);
     ui->splitter->setStretchFactor(1, 9);
 

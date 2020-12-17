@@ -2,6 +2,7 @@
 #define TEST10_H
 
 #include <QWidget>
+#include <QPen>
 
 class QTimer;
 
@@ -27,6 +28,7 @@ private:
 private:
     Ui::Test10 *ui;
     QTimer *dataTimer;
+    QPen pen;
 };
 
 #endif // TEST10_H

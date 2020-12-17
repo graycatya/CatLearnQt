@@ -31,5 +31,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 include(CatQcustomplot/CatQcustomplot.pri)
-include(QcustomplotCharts/QcustomplotCharts.pri)
+include(CatCharts/CatCharts.pri)
 include(Test/Test.pri)

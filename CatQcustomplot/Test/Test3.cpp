@@ -84,7 +84,7 @@ void Test3::InitProperty()
     // set some pens, brushes and backgrounds:
     customPlot->xAxis->setBasePen(QPen(Qt::white, 1));
     customPlot->yAxis->setBasePen(QPen(Qt::white, 1));
-    customPlot->xAxis->setTickPen(QPen(Qt::white, 1));
+    customPlot->xAxis->setTickPen(QPen(Qt::red, 1));
     customPlot->yAxis->setTickPen(QPen(Qt::white, 1));
     customPlot->xAxis->setSubTickPen(QPen(Qt::white, 1));
     customPlot->yAxis->setSubTickPen(QPen(Qt::white, 1));

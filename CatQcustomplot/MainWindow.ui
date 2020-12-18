@@ -80,6 +80,11 @@
         <string>Test11</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Test12</string>
+       </property>
+      </item>
      </widget>
      <widget class="QStackedWidget" name="ToolsStackedWidget">
       <widget class="QWidget" name="page_0"/>
@@ -94,6 +99,7 @@
       <widget class="QWidget" name="page_9"/>
       <widget class="QWidget" name="page_10"/>
       <widget class="QWidget" name="page_11"/>
+      <widget class="QWidget" name="page_12"/>
      </widget>
     </widget>
    </item>

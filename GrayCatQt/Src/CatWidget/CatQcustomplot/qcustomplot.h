@@ -1,4 +1,4 @@
-/***************************************************************************
+﻿/***************************************************************************
 **                                                                        **
 **  QCustomPlot, an easy to use, modern plotting widget for Qt            **
 **  Copyright (C) 2011-2018 Emanuel Eichhammer                            **
@@ -1986,6 +1986,7 @@ public:
                    ,lsOutside  ///< Tick labels will be displayed outside the axis rect
                  };
   Q_ENUMS(LabelSide)
+  Q_ENUM(LabelSide)
   /*!
     Defines the scale of an axis.
     \see setScaleType
@@ -1994,6 +1995,7 @@ public:
                    ,stLogarithmic ///< Logarithmic scaling with correspondingly transformed axis coordinates (possibly also \ref setTicker to a \ref QCPAxisTickerLog instance).
                  };
   Q_ENUMS(ScaleType)
+  Q_ENUM(ScaleType)
   /*!
     Defines the selectable parts of an axis.
     \see setSelectableParts, setSelectedParts
@@ -2343,6 +2345,7 @@ public:
                       ,ssCustom    ///< custom painter operations are performed per scatter (As QPainterPath, see \ref setCustomPath)
                     };
   Q_ENUMS(ScatterShape)
+  Q_ENUM(ScatterShape)
 
   QCPScatterStyle();
   QCPScatterStyle(ScatterShape shape, double size=6);
@@ -5185,6 +5188,7 @@ public:
                    ,lsImpulse    ///< each data point is represented by a line parallel to the value axis, which reaches from the data point to the zero-value-line
                  };
   Q_ENUMS(LineStyle)
+  Q_ENUM(LineStyle)
   
   explicit QCPGraph(QCPAxis *keyAxis, QCPAxis *valueAxis);
   virtual ~QCPGraph();
@@ -5503,6 +5507,7 @@ public:
                    ,wtPlotCoords    ///< Bar width is in key coordinates and thus scales with the key axis range
                  };
   Q_ENUMS(WidthType)
+  Q_ENUM(WidthType)
   
   explicit QCPBars(QCPAxis *keyAxis, QCPAxis *valueAxis);
   virtual ~QCPBars();

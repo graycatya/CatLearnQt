@@ -127,7 +127,8 @@ void CatDrawingBoard::InitConnect()
 
 void CatDrawingBoard::InitTeachingTool()
 {
-    QStringList list = {"TeachingToolRuler", "TeachingToolTrangle", "TeachingToolProtractor", "TeachingToolCompass"};
+    QStringList list = {"TeachingToolRuler", "TeachingToolTrangle",
+                        "TeachingToolProtractor", "TeachingToolCompass"};
     for(int i = 0; i < list.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pTeachingOptions->GetRootWidget());

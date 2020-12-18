@@ -2,6 +2,7 @@
 
 CatLineChart::CatLineChart(QWidget *parent)
     : CatQcustomplot(parent)
+    , m_pSelectGraph(nullptr)
 {
     InitUi();
     InitProperty();

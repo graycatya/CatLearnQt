@@ -18,6 +18,7 @@ private:
 
 private:
     QPen m_pSelectionGraphPen;
+    QCPGraph *m_pSelectGraph;
 };
 
 #endif // CATLINECHART_H

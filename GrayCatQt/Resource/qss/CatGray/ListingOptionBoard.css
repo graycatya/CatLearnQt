@@ -13,6 +13,11 @@ QLabel#BoardLabel {
     max-width: 60px;
 }
 
+QScrollArea#ListingOptionsScroll {
+    border: none;
+    background-color: transparent;
+}
+
 QScrollBar:horizontal
 {
     height:4px;

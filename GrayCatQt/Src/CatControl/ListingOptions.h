@@ -27,6 +27,7 @@ public:
     void AddWidget(QWidget *widget);
     void AddItem(QSpacerItem *item);
     QWidget *GetRootWidget( void ) const;
+    QWidget *GetWidget( void ) const;
     QButtonGroup *GetButtonGroup( void ) const;
     void Clear();
     void *GetButtonlayout( void );
@@ -45,7 +46,7 @@ private:
     QVBoxLayout *m_pRootWidgetLayout;
     QScrollArea *m_pScrollArea;
     QWidget *m_pButtonLists;
-    QHBoxLayout *m_pHboxLayoutButton;
+    void *m_pHboxLayoutButton;
     void *m_pButtonListsLayout;
     QList<QPushButton*> m_lButtonList;
     QList<QSpacerItem*> m_lItemList;

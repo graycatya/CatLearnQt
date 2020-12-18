@@ -1986,6 +1986,7 @@ public:
                    ,lsOutside  ///< Tick labels will be displayed outside the axis rect
                  };
   Q_ENUMS(LabelSide)
+  Q_ENUM(LabelSide)
   /*!
     Defines the scale of an axis.
     \see setScaleType
@@ -1994,6 +1995,7 @@ public:
                    ,stLogarithmic ///< Logarithmic scaling with correspondingly transformed axis coordinates (possibly also \ref setTicker to a \ref QCPAxisTickerLog instance).
                  };
   Q_ENUMS(ScaleType)
+  Q_ENUM(ScaleType)
   /*!
     Defines the selectable parts of an axis.
     \see setSelectableParts, setSelectedParts

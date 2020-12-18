@@ -30,6 +30,7 @@ void Test10::InitProperty()
     dataTimer = new QTimer(this);
 
     QCustomPlot *customPlot = ui->widget;
+
     customPlot->legend->setVisible(true);
     customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignHCenter);
     customPlot->setNoAntialiasingOnDrag(true);//禁用抗锯齿，以提高性能
@@ -43,7 +44,21 @@ void Test10::InitProperty()
 
     QSharedPointer<QCPAxisTickerDateTime> timeTicker(new QCPAxisTickerDateTime);
     timeTicker->setDateTimeFormat("yyyy-MM-dd hh:mm:ss");
+    /*QSharedPointer<QCPAxisTickerPi> timeTicker0(new QCPAxisTickerPi);
+    timeTicker0->set*/
     customPlot->xAxis->setTicker(timeTicker);
+    /*
+        便利功能，可在尚未有任何轴的每一侧创建一个轴，并将其可见性设置为true。
+        此外，为上/右轴分配了下/左轴的以下属性：
+        范围（QCPAxis :: setRange）
+        范围反转（QCPAxis :: setRangeReversed）
+        比例尺类型（QCPAxis :: setScaleType）
+        刻度可见性（QCPAxis :: setTicks）
+        数字格式（QCPAxis :: setNumberFormat）
+        数字精度（QCPAxis :: setNumberPrecision）
+        股票代号的股票代号（QCPAxisTicker :: setTickCount）
+        股票行情的股票行情起源（QCPAxisTicker :: setTickOrigin）
+    */
     customPlot->axisRect()->setupFullAxesBox();
     customPlot->yAxis->setRange(-1.2, 1.2);
 

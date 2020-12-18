@@ -65,6 +65,11 @@ QStringList CatQcustomplot::BarsWidthType()
     return list;
 }
 
+void CatQcustomplot::SetLegenAlignment(int index, Qt::Alignment alignment)
+{
+    axisRect()->insetLayout()->setInsetAlignment(index, alignment);
+}
+
 void CatQcustomplot::InitProperty()
 {
     //添加自定义类控制
@@ -99,4 +104,84 @@ void CatQcustomplot::SetAxisBasePen_x(QPen pen)
 void CatQcustomplot::SetAxisBasePen_y(QPen pen)
 {
     yAxis->setBasePen(pen);
+}
+
+void CatQcustomplot::SetAxisTickPen_x(QPen pen)
+{
+    xAxis->setTickPen(pen);
+}
+
+void CatQcustomplot::SetAxisTickPen_y(QPen pen)
+{
+    yAxis->setTickPen(pen);
+}
+
+void CatQcustomplot::SetAxisSubTickPen_x(QPen pen)
+{
+    xAxis->setSubTickPen(pen);
+}
+
+void CatQcustomplot::SetAxisSubTickPen_y(QPen pen)
+{
+    yAxis->setSubTickPen(pen);
+}
+
+void CatQcustomplot::SetAxisGridPen_x(QPen pen)
+{
+    xAxis->grid()->setPen(pen);
+}
+
+void CatQcustomplot::SetAxisGridPen_y(QPen pen)
+{
+    yAxis->grid()->setPen(pen);
+}
+
+void CatQcustomplot::SetAxisSubGridPen_x(QPen pen)
+{
+    xAxis->grid()->setSubGridPen(pen);
+}
+
+void CatQcustomplot::SetAxisSubGridPen_y(QPen pen)
+{
+    yAxis->grid()->setSubGridPen(pen);
+}
+
+void CatQcustomplot::SetAxisLabelColor_x(QColor color)
+{
+    xAxis->setLabelColor(color);
+}
+
+void CatQcustomplot::SetAxisLabelColor_y(QColor color)
+{
+    yAxis->setLabelColor(color);
+}
+
+void CatQcustomplot::SetAxisLabelFont_x(QFont font)
+{
+    xAxis->setLabelFont(font);
+}
+
+void CatQcustomplot::SetAxisLabelFont_y(QFont font)
+{
+    yAxis->setLabelFont(font);
+}
+
+void CatQcustomplot::SetAxisTickLabelColor_x(QColor color)
+{
+    xAxis->setTickLabelColor(color);
+}
+
+void CatQcustomplot::SetAxisTickLabelColor_y(QColor color)
+{
+    yAxis->setTickLabelColor(color);
+}
+
+void CatQcustomplot::SetAxisTickLabelFont_x(QFont font)
+{
+    xAxis->setTickLabelFont(font);
+}
+
+void CatQcustomplot::SetAxisTickLabelFont_y(QFont font)
+{
+    yAxis->setTickLabelFont(font);
 }

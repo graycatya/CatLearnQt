@@ -15,6 +15,7 @@
 #include "Test/Test9.h"
 #include "Test/Test10.h"
 #include "Test/Test11.h"
+#include "Test/Test12.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QWidget(parent),
@@ -35,6 +36,7 @@ void MainWindow::InitUi()
     CatQcustomplot plot;
     qDebug() <<  plot.ScatterShapeList();
     qDebug() <<  plot.GraphLineStyleList();
+    qDebug() << plot.BarsWidthType();
     ui->splitter->setStretchFactor(0, 1);
     ui->splitter->setStretchFactor(1, 9);
 
@@ -121,6 +123,13 @@ void MainWindow::InitUi()
     pagelayout_11->setSpacing(0);
 
     pagelayout_11->addWidget(m_pTest_11);
+
+    Test12 *m_pTest_12 = new Test12(ui->page_12);
+    QVBoxLayout *pagelayout_12 = new QVBoxLayout(ui->page_12);
+    pagelayout_12->setContentsMargins(0,0,0,0);
+    pagelayout_12->setSpacing(0);
+
+    pagelayout_12->addWidget(m_pTest_12);
 
 }
 

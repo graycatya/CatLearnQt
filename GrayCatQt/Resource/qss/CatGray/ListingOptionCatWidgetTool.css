@@ -57,6 +57,11 @@ QPushButton#CatRimlessWindowTool {
     qproperty-iconSize: 48px 48px;
 }
 
+QPushButton#CatQcustomplotTools {
+    qproperty-icon: url(:/Images/CatGray/CatQcustomplot.png);
+    qproperty-iconSize: 48px 48px;
+}
+
 QScrollArea#ListingOptionsScroll {
     border: none;
     background-color: transparent;

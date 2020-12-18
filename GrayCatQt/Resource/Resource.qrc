@@ -99,5 +99,11 @@
         <file>Images/CatWhite/RimlessWindow.png</file>
         <file>qss/CatGray/RimlessWindowTool.css</file>
         <file>qss/CatWhite/RimlessWindowTool.css</file>
+        <file>Images/CatGray/CatQcustomplot.png</file>
+        <file>Images/CatWhite/CatQcustomplot.png</file>
+        <file>qss/CatGray/CatQcustomplotTools.css</file>
+        <file>qss/CatWhite/CatQcustomplotTools.css</file>
+        <file>qss/CatGray/ListingOptionQcustompCharts.css</file>
+        <file>qss/CatWhite/ListingOptionQcustompCharts.css</file>
     </qresource>
 </RCC>

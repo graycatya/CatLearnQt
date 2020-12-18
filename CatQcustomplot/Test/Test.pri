@@ -3,6 +3,7 @@ FORMS += \
     $$PWD/Test1.ui \
     $$PWD/Test10.ui \
     $$PWD/Test11.ui \
+    $$PWD/Test12.ui \
     $$PWD/Test2.ui \
     $$PWD/Test3.ui \
     $$PWD/Test4.ui \
@@ -17,6 +18,7 @@ HEADERS += \
     $$PWD/Test1.h \
     $$PWD/Test10.h \
     $$PWD/Test11.h \
+    $$PWD/Test12.h \
     $$PWD/Test2.h \
     $$PWD/Test3.h \
     $$PWD/Test4.h \
@@ -31,6 +33,7 @@ SOURCES += \
     $$PWD/Test1.cpp \
     $$PWD/Test10.cpp \
     $$PWD/Test11.cpp \
+    $$PWD/Test12.cpp \
     $$PWD/Test2.cpp \
     $$PWD/Test3.cpp \
     $$PWD/Test4.cpp \

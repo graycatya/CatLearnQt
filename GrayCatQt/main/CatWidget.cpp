@@ -13,6 +13,7 @@
 #include "WidgetTools/ImageTools.h"
 #include "WidgetTools/SliderTools.h"
 #include "WidgetTools/RimlessWindowTool.h"
+#include "WidgetTools/CatQcustomplotTools.h"
 
 
 
@@ -62,7 +63,7 @@ void CatWidget::InitToolButtons()
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools", "CatRimlessWindowTool"};
+    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools", "CatRimlessWindowTool", "CatQcustomplotTools"};
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -93,6 +94,14 @@ void CatWidget::InitToolWidgets()
     ui->ToolStackedWidget->addWidget(m_pRimlessWindowTool);
     m_pRimlessWindowTool->installEventFilter(this);
     m_pRimlessWindowTool->setMouseTracking(true);
+
+
+    CatQcustomplotTools *m_pCatQcustomplotTools = new CatQcustomplotTools;
+    m_pCatQcustomplotTools->setObjectName("CatQcustomplotTools");
+    ui->ToolStackedWidget->addWidget(m_pCatQcustomplotTools);
+    m_pCatQcustomplotTools->installEventFilter(this);
+    m_pCatQcustomplotTools->setMouseTracking(true);
+
     ui->ToolStackedWidget->setMouseTracking(true);
 }
 

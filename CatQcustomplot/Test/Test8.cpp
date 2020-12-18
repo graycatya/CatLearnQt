@@ -70,8 +70,11 @@ void Test8::InitProperty()
     customPlot->xAxis->setTickPen(QPen(Qt::white));
     customPlot->xAxis->grid()->setVisible(true);
     customPlot->xAxis->grid()->setPen(QPen(QColor(130, 130, 130), 0, Qt::DotLine));
-    customPlot->xAxis->setTickLabelColor(Qt::white);
-    customPlot->xAxis->setLabelColor(Qt::white);
+    customPlot->xAxis->setTickLabelColor(Qt::red);
+    customPlot->xAxis->setTickLabelFont(QFont());
+
+    customPlot->xAxis->setLabelColor(Qt::green);
+    customPlot->xAxis->setLabelFont(QFont());
 
     // prepare y axis:
     customPlot->yAxis->setRange(0, 12.1);

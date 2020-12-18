@@ -1,21 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>CatQcustomplotTools</class>
- <widget name="CatQcustomplotTools" class="QWidget">
+ <widget class="QWidget" name="CatQcustomplotTools">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>618</width>
+    <height>457</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QWidget" name="QCustomplptToolWidget" native="true"/>
+   </item>
+   <item>
+    <widget class="QStackedWidget" name="QCustomplptToolStacked"/>
+   </item>
+  </layout>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

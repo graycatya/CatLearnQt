@@ -4,6 +4,7 @@
 #include <QWidget>
 
 class QCPGraph;
+class QComboBox;
 
 namespace Ui {
 class CatLineChart;
@@ -32,11 +33,13 @@ private slots:
     void StartTimer(bool);
     void UpdateGraphScatterStyle(int id);
     void UpdateGraphLineStyle(int id);
+    void On_UpdateDxva(QString dxva);
 
 private:
     Ui::CatLineChart *ui;
     QVector<QCPGraph*> m_pGraphs;
     QTimer *m_pDataTimer;
+    QComboBox *m_pDxvaBox;
 };
 
 #endif // CATLINECHART_H

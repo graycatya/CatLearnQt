@@ -211,3 +211,30 @@ QPushButton#StartButton:checked {
     max-height: 30px;
     border: 1px solid rgba(223,74,22,100%);
 }
+
+CatQcustomplot#ChartWidget {
+    qproperty-Background: white;
+    qproperty-LegendBorderColor: black;
+    qproperty-LegendTextColor: black;
+    qproperty-AxisBasePenColor_x: black;
+    qproperty-Axis2BasePenColor_x: black;
+    qproperty-AxisBasePenColor_y: black;
+    qproperty-Axis2BasePenColor_y: black;
+    qproperty-AxisTickPenColor_x: black;
+    qproperty-Axis2TickPenColor_x: black;
+    qproperty-AxisTickPenColor_y: black;
+    qproperty-Axis2TickPenColor_y: black;
+    qproperty-AxisSubTickPenColor_x: black;
+    qproperty-Axis2SubTickPenColor_x: black;
+    qproperty-AxisSubTickPenColor_y: black;
+    qproperty-Axis2SubTickPenColor_y: black;
+    qproperty-AxisGridPenColor_x: black;
+    qproperty-Axis2GridPenColor_x: black;
+    qproperty-AxisGridPenColor_y: black;
+    qproperty-Axis2GridPenColor_y: black;
+    qproperty-AxisTickLabelColor_x: black;
+    qproperty-Axis2TickLabelColor_x: black;
+    qproperty-AxisTickLabelColor_y: black;
+    qproperty-Axis2TickLabelColor_y: black;
+    qproperty-LegendBackground: rgba(255,255,255,100%);
+}

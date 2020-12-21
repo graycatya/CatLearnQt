@@ -111,4 +111,6 @@ Thumbs.db
 *.exe
 *.ini
 
-！freeglut.lib
+!*.lib
+!*.dll
+!*.a

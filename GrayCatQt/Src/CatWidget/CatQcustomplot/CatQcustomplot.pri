@@ -7,33 +7,29 @@ DEFINES += QCUSTOMPLOT_USE_OPENGL
 win32 {
 
 msvc {
- #   INCLUDEPATH += $$PWD/Freeglut/MSVC/include/
+    INCLUDEPATH += $$PWD/Freeglut/MSVC/include/
 contains(QT_ARCH, i386) {
-#    LIBS += -L$$PWD/Freeglut/MSVC/lib/ -lfreeglut
+    LIBS += -L$$PWD/Freeglut/MSVC/lib/ -lfreeglut
 } else {
-#    LIBS += -L$$PWD/Freeglut/MSVC/lib/x64 -lfreeglut
+    LIBS += -L$$PWD/Freeglut/MSVC/lib/x64 -lfreeglut
 }
-
-# LIBS += -lOpengl32
-
+    LIBS += -lOpengl32
 }
 
 mingw {
-#    INCLUDEPATH += $$PWD/Freeglut/MinGW/include/
+    INCLUDEPATH += $$PWD/Freeglut/MinGW/include/
 contains(QT_ARCH, i386) {
-#    LIBS += -L$$PWD/Freeglut/MinGW/lib/ -lfreeglut_static
+    LIBS += -L$$PWD/Freeglut/MinGW/lib/ -lfreeglut_static
 } else {
-#   LIBS += -L$$PWD/Freeglut/MinGW/lib/x64 -lfreeglut_static
+    LIBS += -L$$PWD/Freeglut/MinGW/lib/x64 -lfreeglut_static
 }
-
-#LIBS += -lOpengl32
-
+    LIBS += -lOpengl32
 }
 
 }
 
 unix {
-#   LIBS += -lGL -lglut
+    LIBS += -lGL -lglut
 }
 
 greaterThan(QT_MAJOR_VERSION, 4) printsupport

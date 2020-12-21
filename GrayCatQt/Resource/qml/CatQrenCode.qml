@@ -18,7 +18,7 @@ Item {
             width: root.width;
             height: root.height;
             qrmode: ParentQrenCode.MODE_8;
-            qrlevel: ParentQrenCode.LEVEL_Q;
+            qrlevel: ParentQrenCode.CATLOG_LEVEL_Q;
             casesen: true;
             text: root.textcode;
         }

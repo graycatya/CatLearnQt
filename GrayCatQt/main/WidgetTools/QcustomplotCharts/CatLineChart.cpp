@@ -3,6 +3,8 @@
 
 #include "../../CatConfig/CatConfig.h"
 
+#include <CatLog>
+
 CatLineChart::CatLineChart(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CatLineChart),
@@ -42,11 +44,31 @@ void CatLineChart::InitUi()
     ui->LineStyleBox->addItems(ui->ChartWidget->GraphLineStyleList());
     ui->LineStyleBox->setCurrentIndex(1);
     StartTimer(false);
+
+    // 如果支持opengl
+    if(ui->ChartWidget->openGl())
+    {
+        QLabel *m_pDXVALabel = new QLabel(ui->FunctionWidget);
+        m_pDXVALabel->setObjectName(QString::fromUtf8("DxvaLabel"));
+        ui->formLayout->setWidget(2, QFormLayout::LabelRole, m_pDXVALabel);
+
+        m_pDxvaBox = new QComboBox(ui->FunctionWidget);
+        m_pDxvaBox->setObjectName(QString::fromUtf8("DxvaBox"));
+        ui->formLayout->setWidget(2, QFormLayout::LabelRole, m_pDxvaBox);
+
+        QListView *view_2 = new QListView();
+        view_2->setObjectName("StyleComboBoxView");
+        m_pDxvaBox->setView(view_2);
+
+        m_pDxvaBox->addItems({"Not", "OpenGL"});
+    }
 }
 
 
 void CatLineChart::InitProperty()
 {
+    QString log = QString("CatLineChart Opengl: %1").arg(ui->ChartWidget->openGl());
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     UpdateStyle();
     InitCharts();
 }
@@ -97,7 +119,7 @@ void CatLineChart::UpdateStyle()
 void CatLineChart::InitCharts()
 {
     QCustomPlot *customPlot = ui->ChartWidget;
-    customPlot->legend->setVisible(true);
+    customPlot->legend->setVisible(false);
     customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignLeft);
     for(int i = 0; i < 10; i++)
     {
@@ -142,6 +164,11 @@ void CatLineChart::InitChartConnect()
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
 
+    if(customPlot->openGl())
+    {
+        connect(m_pDxvaBox, SIGNAL(currentIndexChanged(QString)),
+                this, SLOT(On_UpdateDxva(QString)));
+    }
     // 用户更改QCustomPlot中的选择后（例如通过单击），将发出此信号。
     connect(customPlot, &QCustomPlot::selectionChangedByUser, this, [=](){
         for (int i = 0; i < customPlot->graphCount(); ++i)
@@ -163,6 +190,7 @@ void CatLineChart::InitChartConnect()
 
     });
 
+    // 定时更新动态数据
     connect(m_pDataTimer, &QTimer::timeout, this, [=](){
 
         double currtime = (double)(QDateTime::currentMSecsSinceEpoch()) / 1000.0;
@@ -221,4 +249,14 @@ void CatLineChart::UpdateGraphLineStyle(int id)
         temp->setLineStyle((QCPGraph::LineStyle)id);
     }
     ui->ChartWidget->replot();
+}
+
+void CatLineChart::On_UpdateDxva(QString dxva)
+{
+    if(dxva == "Not")
+    {
+        ui->ChartWidget->setOpenGl(false);
+    } else if(dxva == "OpenGL") {
+        ui->ChartWidget->setOpenGl(true);
+    }
 }

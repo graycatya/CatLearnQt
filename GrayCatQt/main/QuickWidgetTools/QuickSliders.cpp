@@ -77,35 +77,42 @@ void QuickSliders::UpdateStyle()
 
 void QuickSliders::SetRootBackgroundColor(QColor color)
 {
+    rootBackgroundColor = color;
     emit setRootBackgroundColor(color);
 }
 
 void QuickSliders::SetSliderBackgroundColor(QColor color)
 {
+    sliderBackgroundColor = color;
     emit setSliderBackgroundColor(color);
 }
 
 void QuickSliders::SetSliderColor(QColor color)
 {
+    sliderColor = color;
     emit setSliderColor(color);
 }
 
 void QuickSliders::SetSlidingBlockColor(QColor color)
 {
+    slidingBlockColor = color;
     emit setSlidingBlockColor(color);
 }
 
 void QuickSliders::SetSlidingBlockPressColor(QColor color)
 {
+    slidingBlockPressColor = color;
     emit setSlidingBlockPressColor(color);
 }
 
 void QuickSliders::SetSlidingBorderColor(QColor color)
 {
+    slidingBorderColor = color;
     emit setSlidingBorderColor(color);
 }
 
 void QuickSliders::SetTextColor(QColor color)
 {
+    textColor = color;
     emit setTextColor(color);
 }

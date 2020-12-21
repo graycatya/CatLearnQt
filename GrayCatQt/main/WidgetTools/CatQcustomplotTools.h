@@ -26,6 +26,10 @@ private:
     void UpdateStyle();
 
     void InitChartsTool();
+    void InitChartWidgets();
+
+private slots:
+    void On_ToolButtons(int);
 
 private:
     Ui::CatQcustomplotTools *ui;

@@ -19,6 +19,7 @@ private:
     void InitUi();
     void InitProperty();
     void InitConnect();
+    void InitSettings();
 
     void UpdateStyle();
 

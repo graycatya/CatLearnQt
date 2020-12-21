@@ -4,9 +4,12 @@
 #include <CatLog>
 #include <QFile>
 #include <QPushButton>
+#include <QButtonGroup>
 
 #include "../CatConfig/CatConfig.h"
 #include "CatControl/ListingOptions.h"
+
+#include "QcustomplotCharts/CatLineChart.h"
 
 CatQcustomplotTools::CatQcustomplotTools(QWidget *parent) :
     QWidget(parent),
@@ -26,15 +29,18 @@ CatQcustomplotTools::~CatQcustomplotTools()
 void CatQcustomplotTools::InitUi()
 {
     InitChartsTool();
+    InitChartWidgets();
 }
 
 void CatQcustomplotTools::InitProperty()
 {
     UpdateStyle();
+    m_pToolButtons["CatLineChart"]->setChecked(true);
 }
 
 void CatQcustomplotTools::InitConnect()
 {
+    connect(m_pToolListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ToolButtons(int)));
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
@@ -84,3 +90,16 @@ void CatQcustomplotTools::InitChartsTool()
 
     static_cast<QHBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 }
+
+void CatQcustomplotTools::InitChartWidgets()
+{
+    CatLineChart *m_pCatLineChart = new CatLineChart;
+    m_pCatLineChart->setObjectName("CatLineChart");
+    ui->QCustomplptToolStacked->addWidget(m_pCatLineChart);
+}
+
+void CatQcustomplotTools::On_ToolButtons(int id)
+{
+    ui->QCustomplptToolStacked->setCurrentIndex(id);
+}
+

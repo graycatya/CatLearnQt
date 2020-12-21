@@ -34,6 +34,7 @@ void CatSettings::InitUi()
 
 void CatSettings::InitProperty()
 {
+    InitSettings();
     UpdateStyle();
 }
 
@@ -53,6 +54,18 @@ void CatSettings::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
+}
+
+void CatSettings::InitSettings()
+{
+    ui->StyleComboBox->clear();
+
+    QMultiMap<QString, QVariant> styles = CatConfig::GetArray("StyleSheets", {"style", "style"});
+    for (QMultiMap<QString, QVariant>::iterator i = styles.begin(); i != styles.end(); i++)
+    {
+        ui->StyleComboBox->addItem(i.value().toString());
+    }
+    ui->StyleComboBox->setCurrentText(CatConfig::GetValue("style", "Defaule").toString());
 }
 
 void CatSettings::UpdateStyle()
@@ -75,15 +88,5 @@ void CatSettings::UpdateStyle()
 void CatSettings::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
-    ui->StyleComboBox->clear();
-
-    m_bShowWidget = true;
-
-    QMultiMap<QString, QVariant> styles = CatConfig::GetArray("StyleSheets", {"style", "style"});
-    for (QMultiMap<QString, QVariant>::iterator i = styles.begin(); i != styles.end(); i++)
-    {
-        ui->StyleComboBox->addItem(i.value().toString());
-    }
-    ui->StyleComboBox->setCurrentText(CatConfig::GetValue("style", "Defaule").toString());
-
+    //m_bShowWidget = true;
 }

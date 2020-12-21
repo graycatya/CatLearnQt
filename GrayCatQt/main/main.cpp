@@ -10,9 +10,10 @@
 
 int main(int argc, char *argv[])
 {
+    // 共享窗体上下文，并且防止黑屏出现
+    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     // [0] 进程单例 - 不可重复打开
     SingleApplication a(argc, argv);
-
     // [1] 配置初始化
     CatConfig::Instance();
 

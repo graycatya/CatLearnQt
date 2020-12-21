@@ -105,5 +105,9 @@
         <file>qss/CatWhite/CatQcustomplotTools.css</file>
         <file>qss/CatGray/ListingOptionQcustompCharts.css</file>
         <file>qss/CatWhite/ListingOptionQcustompCharts.css</file>
+        <file>Images/CatGray/QcustomplotLineChart.png</file>
+        <file>Images/CatWhite/QcustomplotLineChart.png</file>
+        <file>qss/CatGray/CatLineChart.css</file>
+        <file>qss/CatWhite/CatLineChart.css</file>
     </qresource>
 </RCC>

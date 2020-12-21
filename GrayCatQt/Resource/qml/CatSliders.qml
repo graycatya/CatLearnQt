@@ -229,8 +229,7 @@ Item {
         root.setSlidingBorderColor.connect(root.onSlidingBorderColor)
         root.setTextColor.connect(root.onTextColor)
     }
-    Component.onDestruction:
-    {
+    Component.onDestruction: {
         root.setRootBackgroundColor.disconnect(root.onRootBackgroundColor)
         root.setSliderBackgroundColor.disconnect(root.onSliderBackgroundColor)
         root.setSliderColor.disconnect(root.onSliderColor)

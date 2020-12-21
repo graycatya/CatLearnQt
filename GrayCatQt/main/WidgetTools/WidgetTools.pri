@@ -20,3 +20,5 @@ SOURCES += \
     $$PWD/RimlessWindow.cpp \
     $$PWD/RimlessWindowTool.cpp \
     $$PWD/SliderTools.cpp
+
+include(QcustomplotCharts/QcustomplotCharts.pri)

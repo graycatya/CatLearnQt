@@ -1,0 +1,87 @@
+QLabel {
+    color: #C1C1C1;
+    font-size: 20px;
+}
+
+QComboBox {
+    color: #C1C1C1;
+    border: 1px solid #313131;
+    background-color: #484848;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 150px;
+    min-height: 30px;
+}
+
+
+QComboBox:editable {
+    color: #C1C1C1;
+    background: #484848;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+    border: 1px solid #313131;
+    background: #484848;
+}
+
+/* 当弹出窗口打开时，QComboBox将处于“on”状态 */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    border: 1px solid rgba(223,74,22,100%);
+    background: #484848;
+}
+
+QComboBox:on { /* 当弹出窗口打开时，移动文本 */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-top-right-radius: 3px; /* 半径与QComboBox相同 */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    padding-right: 6px;
+    image: url(:/Images/CatGray/PullDown.png);
+}
+
+QComboBox::down-arrow:on {
+    padding-right: 6px;
+    image: url(:/Images/CatGray/PullUp.png);
+}
+
+/*下拉项样式 背景蓝色*/
+QListView#StyleComboBoxView {
+    border: 1px solid #313131;
+    background-color: #484848;
+    outline:0px;
+}
+QListView#StyleComboBoxView::item {
+    color: #C1C1C1;
+    border: transparent;
+    min-height: 25px;
+    background-color: #484848;
+}  
+
+/*下拉项选中样式*/
+QListView#StyleComboBoxView::item:selected { 
+    color: #C1C1C1;
+    border: transparent;
+    background-color: rgba(223,74,22,100%);
+}   
+
+/*下拉项鼠标悬浮样式*/
+QListView#StyleComboBoxView::item:hover { 
+    color: #C1C1C1;
+    border: transparent;
+    background:#656565;
+}
+
+QWidget#WindowColorsWidget {
+    border: 2px solid #2d2d2d;
+    background-color: #343434;
+    border-radius: 5px;
+}

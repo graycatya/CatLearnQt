@@ -45,30 +45,28 @@ void CatLineChart::InitUi()
     ui->LineStyleBox->setCurrentIndex(1);
     StartTimer(false);
 
-    // 如果支持opengl
-    if(ui->ChartWidget->openGl())
-    {
-        QLabel *m_pDXVALabel = new QLabel(ui->FunctionWidget);
-        m_pDXVALabel->setObjectName(QString::fromUtf8("DxvaLabel"));
-        ui->formLayout->setWidget(2, QFormLayout::LabelRole, m_pDXVALabel);
+    // 支持opengl
+    QLabel *m_pDXVALabel = new QLabel(ui->FunctionWidget);
+    m_pDXVALabel->setObjectName(QString::fromUtf8("DxvaLabel"));
+    ui->formLayout->setWidget(2, QFormLayout::LabelRole, m_pDXVALabel);
 
-        m_pDxvaBox = new QComboBox(ui->FunctionWidget);
-        m_pDxvaBox->setObjectName(QString::fromUtf8("DxvaBox"));
-        ui->formLayout->setWidget(2, QFormLayout::LabelRole, m_pDxvaBox);
+    m_pDXVALabel->setText(QCoreApplication::translate("CatLineChart", "DxVa:", nullptr));
 
-        QListView *view_2 = new QListView();
-        view_2->setObjectName("StyleComboBoxView");
-        m_pDxvaBox->setView(view_2);
+    m_pDxvaBox = new QComboBox(ui->FunctionWidget);
+    m_pDxvaBox->setObjectName(QString::fromUtf8("DxvaBox"));
+    ui->formLayout->setWidget(2, QFormLayout::FieldRole, m_pDxvaBox);
 
-        m_pDxvaBox->addItems({"Not", "OpenGL"});
-    }
+    QListView *view_2 = new QListView();
+    view_2->setObjectName("StyleComboBoxView");
+    m_pDxvaBox->setView(view_2);
+
+    m_pDxvaBox->addItems({"Not", "OpenGL"});
+
 }
 
 
 void CatLineChart::InitProperty()
 {
-    QString log = QString("CatLineChart Opengl: %1").arg(ui->ChartWidget->openGl());
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     UpdateStyle();
     InitCharts();
 }
@@ -118,10 +116,12 @@ void CatLineChart::UpdateStyle()
 
 void CatLineChart::InitCharts()
 {
-    QCustomPlot *customPlot = ui->ChartWidget;
-    customPlot->legend->setVisible(false);
+    CatQcustomplot *customPlot = ui->ChartWidget;
+    customPlot->legend->setVisible(true);
+    customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
+    customPlot->SetGraphSelectionDecoratorWidth(3);
     customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignLeft);
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i < 4; i++)
     {
        customPlot->addGraph();
        m_pGraphs.push_back(customPlot->graph());
@@ -163,14 +163,28 @@ void CatLineChart::InitChartConnect()
     connect(ui->LineStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphLineStyle(int)));
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
+    connect(customPlot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(On_MousePress()));
 
-    if(customPlot->openGl())
-    {
-        connect(m_pDxvaBox, SIGNAL(currentIndexChanged(QString)),
-                this, SLOT(On_UpdateDxva(QString)));
-    }
+    connect(m_pDxvaBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(On_UpdateDxva(QString)));
+
     // 用户更改QCustomPlot中的选择后（例如通过单击），将发出此信号。
     connect(customPlot, &QCustomPlot::selectionChangedByUser, this, [=](){
+        // 使上下轴同步选择，并将轴和tick标签作为一个可选择对象处理:
+        // make top and bottom axes be selected synchronously, and handle axis and tick labels as one selectable object:
+        if (customPlot->xAxis->selectedParts().testFlag(QCPAxis::spAxis) || customPlot->xAxis->selectedParts().testFlag(QCPAxis::spTickLabels) ||
+          customPlot->xAxis2->selectedParts().testFlag(QCPAxis::spAxis) || customPlot->xAxis2->selectedParts().testFlag(QCPAxis::spTickLabels))
+        {
+            customPlot->xAxis2->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+            customPlot->xAxis->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+        }
+        // 使左右轴同步选择，并将轴和tick标签作为一个可选择对象处理:
+        // make left and right axes be selected synchronously, and handle axis and tick labels as one selectable object:
+        if (customPlot->yAxis->selectedParts().testFlag(QCPAxis::spAxis) || customPlot->yAxis->selectedParts().testFlag(QCPAxis::spTickLabels) ||
+          customPlot->yAxis2->selectedParts().testFlag(QCPAxis::spAxis) || customPlot->yAxis2->selectedParts().testFlag(QCPAxis::spTickLabels))
+        {
+            customPlot->yAxis2->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+            customPlot->yAxis->setSelectedParts(QCPAxis::spAxis|QCPAxis::spTickLabels);
+        }
         for (int i = 0; i < customPlot->graphCount(); ++i)
         {
             QCPGraph *graph = customPlot->graph(i);
@@ -178,13 +192,9 @@ void CatLineChart::InitChartConnect()
             QCPPlottableLegendItem *item = customPlot->legend->itemWithPlottable(graph);
             if (item->selected() || graph->selected())//选中了哪条曲线或者曲线的图例
             {
-                /*QPen pen;
-                pen.setWidth(1);
-                pen.setColor(QColor(0, 0, 255));*/
-                graph->selectionDecorator()->setPen(QColor(0,0,255));
+                graph->selectionDecorator()->setPen(ui->ChartWidget->GetGraphSelectionDecoratorPen());
                 item->setSelected(true);//同时选中曲线和图例
                 graph->setSelection(QCPDataSelection(graph->data()->dataRange()));
-                //traceGraph = graph;
             }
         }
 
@@ -259,4 +269,18 @@ void CatLineChart::On_UpdateDxva(QString dxva)
     } else if(dxva == "OpenGL") {
         ui->ChartWidget->setOpenGl(true);
     }
+    ui->ChartWidget->replot();
+}
+
+void CatLineChart::On_MousePress()
+{
+    //如果一个轴被选中，只允许该轴的方向被拖动
+    //如果没有选择轴，两个方向都可以拖动
+    QCustomPlot *customPlot = ui->ChartWidget;
+    if (customPlot->xAxis->selectedParts().testFlag(QCPAxis::spAxis))
+        customPlot->axisRect()->setRangeDrag(customPlot->xAxis->orientation());
+    else if (customPlot->yAxis->selectedParts().testFlag(QCPAxis::spAxis))
+        customPlot->axisRect()->setRangeDrag(customPlot->yAxis->orientation());
+    else
+        customPlot->axisRect()->setRangeDrag(Qt::Horizontal|Qt::Vertical);
 }

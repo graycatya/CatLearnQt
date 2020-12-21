@@ -218,7 +218,12 @@ QPushButton#StartButton:checked {
 CatQcustomplot#ChartWidget {
     qproperty-Background: #686868;
     qproperty-LegendBorderColor: transparent;
+    qproperty-LegendSelectBorderColor: rgba(223,74,22,60%);
     qproperty-LegendTextColor: white;
+    qproperty-LegendSelectTextColor: rgba(223,74,22,100%);
+    qproperty-LegendBackground: rgba(255,255,255,39%);
+    qproperty-LegendSelectBackground: rgba(255,255,255,39%);
+
     qproperty-AxisBasePenColor_x: white;
     qproperty-Axis2BasePenColor_x: white;
     qproperty-AxisBasePenColor_y: white;
@@ -239,5 +244,7 @@ CatQcustomplot#ChartWidget {
     qproperty-Axis2TickLabelColor_x: white;
     qproperty-AxisTickLabelColor_y: white;
     qproperty-Axis2TickLabelColor_y: white;
-    qproperty-LegendBackground: rgba(255,255,255,39%);
+
+    qproperty-GraphSelectionDecoratorColor: rgba(223,74,22,100%);
+    
 }

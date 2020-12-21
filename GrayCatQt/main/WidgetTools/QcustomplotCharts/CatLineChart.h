@@ -34,6 +34,7 @@ private slots:
     void UpdateGraphScatterStyle(int id);
     void UpdateGraphLineStyle(int id);
     void On_UpdateDxva(QString dxva);
+    void On_MousePress();
 
 private:
     Ui::CatLineChart *ui;

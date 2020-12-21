@@ -43,6 +43,3 @@ SOURCES += \
     $$PWD/CatAxisTag.cpp \
     $$PWD/CatQcustomplot.cpp \
     $$PWD/qcustomplot.cpp
-
-RESOURCES += \
-    $$PWD/Resource/CatQcustomplot.qrc

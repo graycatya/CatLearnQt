@@ -86,14 +86,29 @@ void CatQcustomplot::SetLegendBackground(QBrush brush)
     legend->setBrush(brush);
 }
 
+void CatQcustomplot::SetLegendSelectBackground(QBrush brush)
+{
+    legend->setSelectedBrush(brush);
+}
+
 void CatQcustomplot::SetLegendFont(QFont font)
 {
     legend->setFont(font);
 }
 
+void CatQcustomplot::SetLegendSelectFont(QFont font)
+{
+    legend->setSelectedFont(font);
+}
+
 void CatQcustomplot::SetLegendBorder(QPen border)
 {
     legend->setBorderPen(border);
+}
+
+void CatQcustomplot::SetLegendSelectBorder(QPen border)
+{
+    legend->setSelectedBorderPen(border);
 }
 
 void CatQcustomplot::SetLegendBorderColor(QColor color)
@@ -103,17 +118,37 @@ void CatQcustomplot::SetLegendBorderColor(QColor color)
     legend->setBorderPen(pen);
 }
 
-void CatQcustomplot::SetLegendTextColor(QColor color)
+void CatQcustomplot::SetLegendSelectBorderColor(QColor color)
 {
-    legend->setTextColor(color);
+    QPen pen = legend->selectedBorderPen();
+    pen.setColor(color);
+    legend->setSelectedBorderPen(pen);
 }
 
-void CatQcustomplot::SetLegendBorderWide(int width)
+void CatQcustomplot::SetLegendBorderWide(qint32 width)
 {
     QPen pen = legend->borderPen();
     pen.setWidth(width);
     legend->setBorderPen(pen);
 }
+
+void CatQcustomplot::SetLegendSelectBorderWide(qint32 width)
+{
+    QPen pen = legend->selectedBorderPen();
+    pen.setWidth(width);
+    legend->setSelectedBorderPen(pen);
+}
+
+void CatQcustomplot::SetLegendTextColor(QColor color)
+{
+    legend->setTextColor(color);
+}
+
+void CatQcustomplot::SetLegendSelectTextColor(QColor color)
+{
+    legend->setSelectedTextColor(color);
+}
+
 
 void CatQcustomplot::SetAxisBasePen_x(QPen pen)
 {
@@ -433,4 +468,14 @@ void CatQcustomplot::SetAxisTickLabelFont_y(QFont font)
 void CatQcustomplot::SetAxis2TickLabelFont_y(QFont font)
 {
     yAxis2->setTickLabelFont(font);
+}
+
+void CatQcustomplot::SetGraphSelectionDecoratorWidth(int width)
+{
+    m_qSelectionDecorator.setWidth(width);
+}
+
+void CatQcustomplot::SetGraphSelectionDecoratorColor(QColor color)
+{
+    m_qSelectionDecorator.setColor(color);
 }

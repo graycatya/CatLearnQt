@@ -11,11 +11,25 @@ class CatQcustomplot : public QCustomPlot
 
      // 图例 - 样式接口
     Q_PROPERTY(QBrush LegendBackground READ GetLegendBackground WRITE SetLegendBackground)
+    Q_PROPERTY(QBrush LegendSelectBackground READ GetLegendSelectBackground WRITE SetLegendSelectBackground)
+
     Q_PROPERTY(QFont LegendFont READ GetLegendFont WRITE SetLegendFont)
+    Q_PROPERTY(QFont LegendSelectFont READ GetLegendSelectFont WRITE SetLegendSelectFont)
+
     Q_PROPERTY(QPen LegendBorder READ GetLegendBorder WRITE SetLegendBorder)
+    Q_PROPERTY(QPen LegendSelectBorder READ GetLegendSelectBorder WRITE SetLegendSelectBorder)
+
     Q_PROPERTY(QColor LegendBorderColor READ GetLegendBorderColor WRITE SetLegendBorderColor)
+    Q_PROPERTY(QColor LegendSelectBorderColor READ GetLegendSelectBorderColor WRITE SetLegendSelectBorderColor)
+
     Q_PROPERTY(qint32 LegendBorderWide READ GetLegendBorderWide WRITE SetLegendBorderWide)
+    Q_PROPERTY(qint32 LegendSelectBorderWide READ GetLegendSelectBorderWide WRITE SetLegendSelectBorderWide)
+
     Q_PROPERTY(QColor LegendTextColor READ GetLegendTextColor WRITE SetLegendTextColor)
+    Q_PROPERTY(QColor LegendSelectTextColor READ GetLegendSelectTextColor WRITE SetLegendSelectTextColor)
+
+    Q_PROPERTY(int LegendSelectIconBorderWidth READ GetLegendSelectIconBorderWidth WRITE SetLegendSelectIconBorderWidth)
+    Q_PROPERTY(QColor LegendSelectIconBordeColor READ GetLegendSelectIconBordeColor WRITE SetLegendSelectIconBordeColor)
 
     // 刻度与边的颜色 - 样式接口
     Q_PROPERTY(QPen AxisBasePen_x READ GetAxisBasePen_x WRITE SetAxisBasePen_x)
@@ -102,6 +116,9 @@ class CatQcustomplot : public QCustomPlot
     Q_PROPERTY(QFont AxisTickLabelFont_y READ GetAxisTickLabelFont_y WRITE SetAxisTickLabelFont_y)
     Q_PROPERTY(QFont Axis2TickLabelFont_y READ GetAxis2TickLabelFont_y WRITE SetAxis2TickLabelFont_y)
 
+    Q_PROPERTY(int GraphSelectionDecoratorWidth READ GetGraphSelectionDecoratorWidth WRITE SetGraphSelectionDecoratorWidth)
+    Q_PROPERTY(QColor GraphSelectionDecoratorColor READ GetGraphSelectionDecoratorColor WRITE SetGraphSelectionDecoratorColor)
+
 public:
     explicit CatQcustomplot(QWidget *parent = nullptr);
     ~CatQcustomplot();
@@ -111,11 +128,25 @@ public:
 
     // 获取图列样式
     QBrush GetLegendBackground() const { return legend->brush(); }
+    QBrush GetLegendSelectBackground() const { return legend->selectedBrush(); }
+
     QFont GetLegendFont() const { return legend->font(); }
+    QFont GetLegendSelectFont() const { return legend->selectedFont(); }
+
     QPen GetLegendBorder() const { return legend->borderPen(); }
+    QPen GetLegendSelectBorder() const { return legend->selectedBorderPen(); }
+
     QColor GetLegendBorderColor() const { return legend->borderPen().color(); }
+    QColor GetLegendSelectBorderColor() const { return legend->selectedBorderPen().color(); }
+
     qint32 GetLegendBorderWide() const { return legend->borderPen().width(); }
+    qint32 GetLegendSelectBorderWide() const { return legend->selectedBorderPen().width(); }
+
     QColor GetLegendTextColor() const { return legend->textColor(); }
+    QColor GetLegendSelectTextColor() const { return legend->selectedTextColor(); }
+
+    int GetLegendSelectIconBorderWidth() const { return legend->selectedIconBorderPen().width(); }
+    QColor GetLegendSelectIconBordeColor() const { return legend->selectedIconBorderPen().color(); }
 
     // 获取坐标轴样式
     QPen GetAxisBasePen_x() const { return xAxis->basePen(); }
@@ -202,6 +233,10 @@ public:
     QFont GetAxisTickLabelFont_y() const { return yAxis->tickLabelFont(); }
     QFont GetAxis2TickLabelFont_y() const { return yAxis2->tickLabelFont(); }
 
+    int GetGraphSelectionDecoratorWidth() const { return m_qSelectionDecorator.width(); }
+    QColor GetGraphSelectionDecoratorColor() const { return m_qSelectionDecorator.color(); }
+    QPen GetGraphSelectionDecoratorPen() const { return m_qSelectionDecorator; }
+
     QStringList ScatterShapeList( void );
     QStringList GraphLineStyleList( void );
     QStringList BarsWidthType( void );
@@ -226,11 +261,22 @@ public slots:
     void SetBackground(QBrush brush);
 
     void SetLegendBackground(QBrush brush);
+    void SetLegendSelectBackground(QBrush brush);
+
     void SetLegendFont(QFont font);
+    void SetLegendSelectFont(QFont font);
+
     void SetLegendBorder(QPen border);
+    void SetLegendSelectBorder(QPen border);
+
     void SetLegendBorderColor(QColor color);
+    void SetLegendSelectBorderColor(QColor color);
+
     void SetLegendBorderWide(qint32 width);
+    void SetLegendSelectBorderWide(qint32 width);
+
     void SetLegendTextColor(QColor color);
+    void SetLegendSelectTextColor(QColor color);
 
     void SetAxisBasePen_x(QPen pen);
     void SetAxisBasePenColor_x(QColor color);
@@ -315,6 +361,12 @@ public slots:
 
     void SetAxisTickLabelFont_y(QFont font);
     void SetAxis2TickLabelFont_y(QFont font);
+
+    void SetGraphSelectionDecoratorWidth(int width);
+    void SetGraphSelectionDecoratorColor(QColor color);
+
+protected:
+    QPen m_qSelectionDecorator;
 
 };
 

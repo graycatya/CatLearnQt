@@ -223,6 +223,7 @@ CatQcustomplot#ChartWidget {
     qproperty-LegendSelectTextColor: rgba(223,74,22,100%);
     qproperty-LegendBackground: rgba(255,255,255,39%);
     qproperty-LegendSelectBackground: rgba(255,255,255,39%);
+    qproperty-LegendSelectIconBordeColor: rgba(223,74,22,100%);
 
     qproperty-AxisBasePenColor_x: white;
     qproperty-Axis2BasePenColor_x: white;

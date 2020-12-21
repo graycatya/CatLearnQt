@@ -479,3 +479,17 @@ void CatQcustomplot::SetGraphSelectionDecoratorColor(QColor color)
 {
     m_qSelectionDecorator.setColor(color);
 }
+
+void CatQcustomplot::SetLegendSelectIconBorderWidth(int width)
+{
+    QPen pen = legend->selectedIconBorderPen();
+    pen.setWidth(width);
+    legend->setSelectedIconBorderPen(pen);
+}
+
+void CatQcustomplot::SetLegendSelectIconBordeColor(QColor color)
+{
+    QPen pen = legend->selectedIconBorderPen();
+    pen.setColor(color);
+    legend->setSelectedIconBorderPen(pen);
+}

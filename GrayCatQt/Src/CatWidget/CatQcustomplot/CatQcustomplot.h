@@ -365,6 +365,10 @@ public slots:
     void SetGraphSelectionDecoratorWidth(int width);
     void SetGraphSelectionDecoratorColor(QColor color);
 
+    void SetLegendSelectIconBorderWidth(int width);
+    void SetLegendSelectIconBordeColor(QColor color);
+
+
 protected:
     QPen m_qSelectionDecorator;
 

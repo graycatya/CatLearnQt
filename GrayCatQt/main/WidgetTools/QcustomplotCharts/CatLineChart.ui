@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="RootLayout">
    <item>
-    <widget class="CatQcustomplot" name="ChartWidget" native="true">
+    <widget class="CatQcLineChart" name="ChartWidget" native="true">
      <property name="minimumSize">
       <size>
        <width>200</width>
@@ -119,9 +119,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CatQcustomplot</class>
+   <class>CatQcLineChart</class>
    <extends>QWidget</extends>
-   <header>CatWidget/CatQcustomplot/CatQcustomplot.h</header>
+   <header>CatWidget/CatQcustomplot/CatQcustomplotCharts/CatQcLineChart.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

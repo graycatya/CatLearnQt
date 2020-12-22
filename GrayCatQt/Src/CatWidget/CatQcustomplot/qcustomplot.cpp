@@ -28837,7 +28837,8 @@ QCPItemText::QCPItemText(QCustomPlot *parentPlot) :
   mText(QLatin1String("text")),
   mPositionAlignment(Qt::AlignCenter),
   mTextAlignment(Qt::AlignTop|Qt::AlignHCenter),
-  mRotation(0)
+  mRotation(0),
+  mBackgroundColor(QColor(255,255,255, 0))
 {
   position->setCoords(0, 0);
   
@@ -29030,6 +29031,7 @@ void QCPItemText::draw(QCPPainter *painter)
   if (transform.mapRect(boundingRect).intersects(painter->transform().mapRect(clipRect())))
   {
     painter->setTransform(transform);
+    painter->fillRect(textBoxRect, QBrush(mBackgroundColor));
     if ((mainBrush().style() != Qt::NoBrush && mainBrush().color().alpha() != 0) ||
         (mainPen().style() != Qt::NoPen && mainPen().color().alpha() != 0))
     {

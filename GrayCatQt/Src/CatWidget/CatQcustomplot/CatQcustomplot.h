@@ -401,6 +401,8 @@ public:
     QStringList ScatterShapeList( void );
     QStringList GraphLineStyleList( void );
     QStringList BarsWidthType( void );
+    QStringList TracerStyleList( void );
+    QStringList PositionTypeList( void );
 
     // 布局接口
     void SetLegenAlignment(int index, Qt::Alignment alignment);
@@ -611,6 +613,7 @@ public slots:
 
 protected:
     QPen m_qSelectionDecorator;
+
 
 };
 

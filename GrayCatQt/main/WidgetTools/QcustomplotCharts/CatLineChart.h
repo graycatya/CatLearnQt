@@ -44,6 +44,7 @@ private:
     QVector<QCPGraph*> m_pGraphs;
     QTimer *m_pDataTimer;
     QComboBox *m_pDxvaBox;
+
 };
 
 #endif // CATLINECHART_H

@@ -65,6 +65,28 @@ QStringList CatQcustomplot::BarsWidthType()
     return list;
 }
 
+QStringList CatQcustomplot::TracerStyleList()
+{
+    QStringList list;
+    list.clear();
+    QMetaEnum metaEnum = QMetaEnum::fromType<QCPItemTracer::TracerStyle>();
+    for (int i = 0; i < metaEnum.keyCount(); i++) {
+        list += metaEnum.valueToKey(metaEnum.value(i));
+    }
+    return list;
+}
+
+QStringList CatQcustomplot::PositionTypeList()
+{
+    QStringList list;
+    list.clear();
+    QMetaEnum metaEnum = QMetaEnum::fromType<QCPItemPosition::PositionType>();
+    for (int i = 0; i < metaEnum.keyCount(); i++) {
+        list += metaEnum.valueToKey(metaEnum.value(i));
+    }
+    return list;
+}
+
 void CatQcustomplot::SetLegenAlignment(int index, Qt::Alignment alignment)
 {
     axisRect()->insetLayout()->setInsetAlignment(index, alignment);

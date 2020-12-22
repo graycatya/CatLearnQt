@@ -43,3 +43,5 @@ SOURCES += \
     $$PWD/CatAxisTag.cpp \
     $$PWD/CatQcustomplot.cpp \
     $$PWD/qcustomplot.cpp
+
+include(CatQcustomplotCharts/CatQcustomplotCharts.pri)

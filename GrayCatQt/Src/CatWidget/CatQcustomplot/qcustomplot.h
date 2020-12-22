@@ -3463,6 +3463,7 @@ public:
                       ,ptPlotCoords     ///< Dynamic positioning at a plot coordinate defined by two axes (see \ref setAxes).
                     };
   Q_ENUMS(PositionType)
+  Q_ENUM(PositionType)
   
   QCPItemPosition(QCustomPlot *parentPlot, QCPAbstractItem *parentItem, const QString &name);
   virtual ~QCPItemPosition();
@@ -3649,6 +3650,7 @@ public:
   QCP::SelectionRectMode selectionRectMode() const { return mSelectionRectMode; }
   QCPSelectionRect *selectionRect() const { return mSelectionRect; }
   bool openGl() const { return mOpenGl; }
+  const QList<QCPGraph*> &getGraphs(){return mGraphs;}
   
   // setters:
   void setViewport(const QRect &rect);
@@ -6332,6 +6334,7 @@ public:
   Qt::Alignment textAlignment() const { return mTextAlignment; }
   double rotation() const { return mRotation; }
   QMargins padding() const { return mPadding; }
+  QColor backgroundColor() const { return mBackgroundColor; }
   
   // setters;
   void setColor(const QColor &color);
@@ -6347,6 +6350,7 @@ public:
   void setTextAlignment(Qt::Alignment alignment);
   void setRotation(double degrees);
   void setPadding(const QMargins &padding);
+  void setBackgroundColor(QColor _color){mBackgroundColor = _color;}
   
   // reimplemented virtual methods:
   virtual double selectTest(const QPointF &pos, bool onlySelectable, QVariant *details=0) const Q_DECL_OVERRIDE;
@@ -6374,7 +6378,8 @@ protected:
   Qt::Alignment mTextAlignment;
   double mRotation;
   QMargins mPadding;
-  
+  QColor mBackgroundColor;
+
   // reimplemented virtual methods:
   virtual void draw(QCPPainter *painter) Q_DECL_OVERRIDE;
   virtual QPointF anchorPixelPosition(int anchorId) const Q_DECL_OVERRIDE;
@@ -6551,6 +6556,7 @@ public:
                      ,tsSquare     ///< A square
                    };
   Q_ENUMS(TracerStyle)
+  Q_ENUM(TracerStyle)
 
   explicit QCPItemTracer(QCustomPlot *parentPlot);
   virtual ~QCPItemTracer();

@@ -100,11 +100,8 @@ void CatLineChart::UpdateStyle()
     if(CatConfig::ConfigExist())
     {
         stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
-        QString icon = ":/Images/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
-        this->setWindowIcon(QIcon(icon + "CATicon.png"));
     } else {
         stylePath = ":/qss/CatGray/";
-        this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
     }
 
     QFile file_0(stylePath + "CatLineChart.css");
@@ -116,7 +113,7 @@ void CatLineChart::UpdateStyle()
 
 void CatLineChart::InitCharts()
 {
-    CatQcustomplot *customPlot = ui->ChartWidget;
+    CatQcLineChart *customPlot = ui->ChartWidget;
     customPlot->legend->setVisible(true);
     customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
     customPlot->SetGraphSelectionDecoratorWidth(3);
@@ -158,7 +155,7 @@ void CatLineChart::InitCharts()
 
 void CatLineChart::InitChartConnect()
 {
-    QCustomPlot *customPlot = ui->ChartWidget;
+    CatQcLineChart *customPlot = ui->ChartWidget;
     connect(ui->ScatterShapeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphScatterStyle(int)));
     connect(ui->LineStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphLineStyle(int)));
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
@@ -192,6 +189,7 @@ void CatLineChart::InitChartConnect()
             QCPPlottableLegendItem *item = customPlot->legend->itemWithPlottable(graph);
             if (item->selected() || graph->selected())//选中了哪条曲线或者曲线的图例
             {
+                customPlot->SetSelectTraceGraph(graph);
                 graph->selectionDecorator()->setPen(ui->ChartWidget->GetGraphSelectionDecoratorPen());
                 item->setSelected(true);//同时选中曲线和图例
                 graph->setSelection(QCPDataSelection(graph->data()->dataRange()));

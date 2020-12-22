@@ -292,3 +292,9 @@ void CatLineChart::hideEvent(QHideEvent *event)
         ui->StartButton->click();
     }
 }
+
+void CatLineChart::showEvent(QShowEvent *event)
+{
+    Q_UNUSED(event)
+    ui->ChartWidget->replot();
+}

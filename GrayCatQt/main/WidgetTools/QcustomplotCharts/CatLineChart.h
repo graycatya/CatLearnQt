@@ -38,6 +38,7 @@ private slots:
 
 protected:
     void hideEvent(QHideEvent *event) override;
+    void showEvent(QShowEvent *event) override;
 
 private:
     Ui::CatLineChart *ui;

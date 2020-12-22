@@ -219,6 +219,7 @@ CatQcustomplot#ChartWidget {
     qproperty-LegendTextColor: black;
     qproperty-LegendBackground: rgba(255,255,255,90%);
     qproperty-LegendSelectBackground: rgba(255,255,255,90%);
+    qproperty-LegendSelectIconBordeColor: rgba(223,74,22,100%);
 
     qproperty-AxisBasePenColor_x: black;
     qproperty-Axis2BasePenColor_x: black;
@@ -242,5 +243,22 @@ CatQcustomplot#ChartWidget {
     qproperty-Axis2TickLabelColor_y: black;
 
     qproperty-GraphSelectionDecoratorColor: rgba(223,74,22,100%);
+
+    qproperty-AxisSelectedBasePenColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedBasePenColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedBasePenColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedBasePenColor_y: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-AxisSelectedSubTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedSubTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedSubTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedSubTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickLabelColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickLabelColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickLabelColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickLabelColor_y: rgba(223,74,22,100%);
     
 }

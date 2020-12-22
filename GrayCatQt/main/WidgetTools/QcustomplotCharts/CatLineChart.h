@@ -36,6 +36,9 @@ private slots:
     void On_UpdateDxva(QString dxva);
     void On_MousePress();
 
+protected:
+    void hideEvent(QHideEvent *event) override;
+
 private:
     Ui::CatLineChart *ui;
     QVector<QCPGraph*> m_pGraphs;

@@ -284,3 +284,13 @@ void CatLineChart::On_MousePress()
     else
         customPlot->axisRect()->setRangeDrag(Qt::Horizontal|Qt::Vertical);
 }
+
+void CatLineChart::hideEvent(QHideEvent *event)
+{
+    Q_UNUSED(event)
+
+    if(m_pDataTimer->isActive())
+    {
+        ui->StartButton->click();
+    }
+}

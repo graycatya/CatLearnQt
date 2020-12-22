@@ -32,6 +32,10 @@ unix {
     LIBS += -lGL -lglut
 }
 
+macos {
+    LIBS -= -lGL -lglut
+}
+
 greaterThan(QT_MAJOR_VERSION, 4) printsupport
 
 HEADERS += \

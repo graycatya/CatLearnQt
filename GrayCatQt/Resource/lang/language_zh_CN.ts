@@ -37,51 +37,51 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="97"/>
-        <source>关于我</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../main/CatAbout.ui" line="100"/>
+        <source>About</source>
+        <translation type="unfinished">关于</translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="154"/>
+        <location filename="../../main/CatAbout.ui" line="157"/>
         <source>AppName</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="164"/>
+        <location filename="../../main/CatAbout.ui" line="167"/>
         <source>AppVersion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="212"/>
+        <location filename="../../main/CatAbout.ui" line="215"/>
         <source>----------------</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="254"/>
+        <location filename="../../main/CatAbout.ui" line="257"/>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="261"/>
+        <location filename="../../main/CatAbout.ui" line="264"/>
         <source>GrayCatYa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="356"/>
-        <source>许可证</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../main/CatAbout.ui" line="359"/>
+        <source>Licence</source>
+        <translation type="unfinished">许可证</translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="395"/>
+        <location filename="../../main/CatAbout.ui" line="398"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;SimSun&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:&apos;Ubuntu&apos;; font-size:11pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="410"/>
+        <location filename="../../main/CatAbout.ui" line="413"/>
         <source>Context</source>
         <translation type="unfinished"></translation>
     </message>
@@ -157,11 +157,16 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../../main/CatSettings.ui" line="135"/>
-        <source>Window Colors</source>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatSettings.ui" line="162"/>
+        <location filename="../../main/CatSettings.ui" line="197"/>
+        <source>Lang:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../main/CatSettings.ui" line="174"/>
         <source>Style:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -322,7 +327,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../../main/WinWidget.cpp" line="216"/>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关于</translation>
     </message>
 </context>
 </TS>

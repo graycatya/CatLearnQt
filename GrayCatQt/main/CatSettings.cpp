@@ -30,6 +30,9 @@ void CatSettings::InitUi()
     QListView *view = new QListView();
     view->setObjectName("StyleComboBoxView");
     ui->StyleComboBox->setView(view);
+    QListView *view_1 = new QListView();
+    view_1->setObjectName("StyleComboBoxView");
+    ui->LangComboBox->setView(view_1);
 }
 
 void CatSettings::InitProperty()
@@ -50,6 +53,13 @@ void CatSettings::InitConnect()
         }
         m_bShowWidget = false;
     });
+    connect(ui->LangComboBox, &QComboBox::currentTextChanged, this, [=](QString lang){
+        if(!lang.isEmpty())
+        {
+            CatConfig::Instance()->SetTranslator(QVariant(lang));
+        }
+    });
+
 
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
@@ -66,6 +76,12 @@ void CatSettings::InitSettings()
         ui->StyleComboBox->addItem(i.value().toString());
     }
     ui->StyleComboBox->setCurrentText(CatConfig::GetValue("style", "Defaule").toString());
+    QMultiMap<QString, QVariant> langs = CatConfig::GetArray("Langs", {"lang", "lang"});
+    for (QMultiMap<QString, QVariant>::iterator i = langs.begin(); i != langs.end(); i++)
+    {
+        ui->LangComboBox->addItem(i.value().toString());
+    }
+    ui->LangComboBox->setCurrentText(CatConfig::GetValue("Language", "Defaule").toString());
 }
 
 void CatSettings::UpdateStyle()
@@ -89,4 +105,14 @@ void CatSettings::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
     //m_bShowWidget = true;
+}
+
+void CatSettings::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+        this->ui->retranslateUi(this);
+    } else {
+        QWidget::changeEvent(event);
+    }
 }

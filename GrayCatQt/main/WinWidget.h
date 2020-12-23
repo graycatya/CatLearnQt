@@ -50,9 +50,12 @@ private:
 
     void UpdateStyle();
 
+    void retranslateUi();
+
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
+    void changeEvent(QEvent *event);
 
 private slots:
     void On_ButtonFunc(int id);

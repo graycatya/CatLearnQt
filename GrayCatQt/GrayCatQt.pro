@@ -47,3 +47,6 @@ include(Src/CatControl/CatControl.pri)
 RESOURCES += \
     Resource/Resource.qrc
 
+TRANSLATIONS = Resource/lang/language_en.ts \
+               Resource/lang/language_zh_CN.ts
+

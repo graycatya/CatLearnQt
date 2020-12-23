@@ -63,8 +63,10 @@ protected:
 
 public slots:
     void SetTracerPen(QPen pen);
+    void SetTracerPenStyle(Qt::PenStyle style);
     void SetTracerPenWidth(int width);
     void SetTracerPenColor(QColor color);
+    void SetTracerStyle(QCPItemTracer::TracerStyle style);
 
     void SetTracerXTextPen(QPen pen);
     void SetTracerXTextPenWidth(int width);
@@ -72,6 +74,7 @@ public slots:
 
     void SetTracerXTextColor(QColor color);
     void SetTracerXTextBackgroundColor(QColor color);
+    void SetTracerXPositionType(QCPItemPosition::PositionType type);
 
     void SetTracerYTextPen(QPen pen);
     void SetTracerYTextPenWidth(int width);
@@ -79,6 +82,8 @@ public slots:
 
     void SetTracerYTextColor(QColor color);
     void SetTracerYTextBackgroundColor(QColor color);
+    void SetTracerYPositionType(QCPItemPosition::PositionType type);
+
 
 
 private:

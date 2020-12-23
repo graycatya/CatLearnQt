@@ -22,6 +22,11 @@ private:
 
     void UpdateStyle();
 
+    void retranslateUi();
+
+protected:
+    void changeEvent(QEvent *event) override;
+
 private:
     Ui::CatAbout *ui;
 };

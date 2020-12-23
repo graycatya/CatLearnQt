@@ -33,6 +33,8 @@ private slots:
     void StartTimer(bool);
     void UpdateGraphScatterStyle(int id);
     void UpdateGraphLineStyle(int id);
+    void UpdateTracerStyle(int id);
+    void UpdatePositionType(int id);
     void On_UpdateDxva(QString dxva);
     void On_MousePress();
 

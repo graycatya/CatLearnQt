@@ -261,5 +261,15 @@ CatQcLineChart#ChartWidget {
     qproperty-Axis2SelectedTickLabelColor_x: rgba(223,74,22,100%);
     qproperty-AxisSelectedTickLabelColor_y: rgba(223,74,22,100%);
     qproperty-Axis2SelectedTickLabelColor_y: rgba(223,74,22,100%);
+
+    qproperty-TracerPenColor: rgba(0, 0, 0,100%);
+
+    qproperty-TracerXTextPenColor: rgba(228,228,228, 100%);
+    qproperty-TracerXTextColor: rgba(25,25,25, 100%);
+    qproperty-TracerXTextBackgroundColor: rgba(200,200,200, 100%);
+
+    qproperty-TracerYTextPenColor: rgba(228,228,228, 100%);
+    qproperty-TracerYTextColor: rgba(25,25,25, 100%);
+    qproperty-TracerYTextBackgroundColor: rgba(200,200,200, 100%);
     
 }

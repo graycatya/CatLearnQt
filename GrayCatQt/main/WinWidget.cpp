@@ -103,7 +103,7 @@ void WinWidget::InitUi()
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-
+    retranslateUi();
 }
 
 void WinWidget::InitProperty()
@@ -209,11 +209,6 @@ void WinWidget::InitButtonList()
         m_pButtons[buttonList[i]] = button;
     }
 
-    m_pButtons[buttonList[0]]->setText(tr("QWidget"));
-    m_pButtons[buttonList[1]]->setText(tr("QGraphicsView"));
-    m_pButtons[buttonList[2]]->setText(tr("QQuickWidget"));
-    m_pButtons[buttonList[3]]->setText(tr("Setting"));
-    m_pButtons[buttonList[4]]->setText(tr("About"));
 }
 
 void WinWidget::SetZoomButtonState(QString state)
@@ -281,6 +276,26 @@ void WinWidget::UpdateStyle()
     }
 }
 
+void WinWidget::retranslateUi()
+{
+    if(!m_pButtons.isEmpty())
+    {
+        QStringList buttonList = { "WidgetFunc", "GraphicsViewFunc",
+                                   "QuickWidgetFunc", "Setting",
+                                   "About" };
+        m_pButtons[buttonList[0]]->setText(tr("QWidget"));
+        m_pButtons[buttonList[1]]->setText(tr("QGraphicsView"));
+        m_pButtons[buttonList[2]]->setText(tr("QQuickWidget"));
+        m_pButtons[buttonList[3]]->setText(tr("Setting"));
+        m_pButtons[buttonList[4]]->setText(tr("About"));
+
+    }
+
+    QString title = ui->FuncStackWidget->currentWidget()->objectName();
+    title.replace(title.size()-4, title.size(), "");
+    SetTitle(title);
+}
+
 bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 {
     //qDebug() << watched->objectName() << event->type();
@@ -330,6 +345,17 @@ void WinWidget::mouseDoubleClickEvent(QMouseEvent *event)
         {
             SetWindowZoom();
         }
+    }
+}
+
+void WinWidget::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+        this->ui->retranslateUi(this);
+        this->retranslateUi();
+    } else {
+        QWidget::changeEvent(event);
     }
 }
 

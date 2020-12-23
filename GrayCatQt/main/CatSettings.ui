@@ -91,7 +91,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>538</width>
+        <width>532</width>
         <height>619</height>
        </rect>
       </property>
@@ -124,7 +124,7 @@
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QLabel" name="WindowColors">
+             <widget class="QLabel" name="AppSettings">
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -132,38 +132,50 @@
                </size>
               </property>
               <property name="text">
-               <string>Window Colors</string>
+               <string>Settings</string>
               </property>
              </widget>
             </item>
             <item>
              <widget class="QWidget" name="WindowColorsWidget" native="true">
               <layout class="QVBoxLayout" name="verticalLayout_3">
-               <property name="spacing">
-                <number>5</number>
-               </property>
                <property name="leftMargin">
-                <number>50</number>
+                <number>20</number>
                </property>
                <property name="topMargin">
                 <number>20</number>
                </property>
                <property name="rightMargin">
-                <number>50</number>
+                <number>20</number>
                </property>
                <property name="bottomMargin">
                 <number>20</number>
                </property>
                <item>
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                 <item>
+                <layout class="QGridLayout" name="gridLayout">
+                 <property name="leftMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>5</number>
+                 </property>
+                 <property name="spacing">
+                  <number>5</number>
+                 </property>
+                 <item row="0" column="0">
                   <widget class="QLabel" name="SettingStyle">
                    <property name="text">
                     <string>Style:</string>
                    </property>
                   </widget>
                  </item>
-                 <item>
+                 <item row="0" column="1">
                   <spacer name="horizontalSpacer_3">
                    <property name="orientation">
                     <enum>Qt::Horizontal</enum>
@@ -176,8 +188,31 @@
                    </property>
                   </spacer>
                  </item>
-                 <item>
+                 <item row="0" column="2">
                   <widget class="QComboBox" name="StyleComboBox"/>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="Language">
+                   <property name="text">
+                    <string>Lang:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <spacer name="horizontalSpacer_4">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QComboBox" name="LangComboBox"/>
                  </item>
                 </layout>
                </item>

@@ -420,6 +420,10 @@ public:
 private:
     void InitProperty();
 
+protected:
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+
 public slots:
     void SetBackground(QBrush brush);
 

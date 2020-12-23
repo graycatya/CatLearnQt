@@ -109,7 +109,7 @@ QWidget#WindowColorsWidget {
 }
 
 
-QLabel#WindowColors {
+QLabel#AppSettings {
     color: #4b4642;
     font-weight: bold;
     font-size: 24px;

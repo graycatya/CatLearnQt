@@ -43,18 +43,28 @@ void CatLineChart::InitUi()
     ui->LineStyleBox->setView(view_1);
     ui->LineStyleBox->addItems(ui->ChartWidget->GraphLineStyleList());
     ui->LineStyleBox->setCurrentIndex(1);
-    StartTimer(false);
+
+    QListView *view_3 = new QListView();
+    view_3->setObjectName("StyleComboBoxView");
+    ui->TracerStyleBox->setView(view_3);
+    ui->TracerStyleBox->addItems(ui->ChartWidget->TracerStyleList());
+
+    QListView *view_4 = new QListView();
+    view_4->setObjectName("StyleComboBoxView");
+    ui->PositionTypeBox->setView(view_4);
+    ui->PositionTypeBox->addItems(ui->ChartWidget->PositionTypeList());
+
 
     // 支持opengl
     QLabel *m_pDXVALabel = new QLabel(ui->FunctionWidget);
     m_pDXVALabel->setObjectName(QString::fromUtf8("DxvaLabel"));
-    ui->formLayout->setWidget(2, QFormLayout::LabelRole, m_pDXVALabel);
+    ui->formLayout->setWidget(ui->formLayout->rowCount() + 1, QFormLayout::LabelRole, m_pDXVALabel);
 
     m_pDXVALabel->setText(QCoreApplication::translate("CatLineChart", "DxVa:", nullptr));
 
     m_pDxvaBox = new QComboBox(ui->FunctionWidget);
     m_pDxvaBox->setObjectName(QString::fromUtf8("DxvaBox"));
-    ui->formLayout->setWidget(2, QFormLayout::FieldRole, m_pDxvaBox);
+    ui->formLayout->setWidget(ui->formLayout->rowCount() - 1, QFormLayout::FieldRole, m_pDxvaBox);
 
     QListView *view_2 = new QListView();
     view_2->setObjectName("StyleComboBoxView");
@@ -62,6 +72,7 @@ void CatLineChart::InitUi()
 
     m_pDxvaBox->addItems({"Not", "OpenGL"});
 
+    StartTimer(false);
 }
 
 
@@ -118,6 +129,7 @@ void CatLineChart::InitCharts()
     customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
     customPlot->SetGraphSelectionDecoratorWidth(3);
     customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignLeft);
+    customPlot->SetTracerPenStyle(Qt::DashLine);
     for(int i = 0; i < 4; i++)
     {
        customPlot->addGraph();
@@ -158,6 +170,8 @@ void CatLineChart::InitChartConnect()
     CatQcLineChart *customPlot = ui->ChartWidget;
     connect(ui->ScatterShapeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphScatterStyle(int)));
     connect(ui->LineStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphLineStyle(int)));
+    connect(ui->TracerStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateTracerStyle(int)));
+    connect(ui->PositionTypeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdatePositionType(int)));
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(On_MousePress()));
@@ -235,8 +249,10 @@ void CatLineChart::StartTimer(bool start)
     if(start)
     {
         ui->StartButton->setText("Stop");
+        ui->ChartWidget->SetTracer(false);
     } else {
         ui->StartButton->setText("Start");
+        ui->ChartWidget->SetTracer(true);
     }
 }
 
@@ -257,6 +273,17 @@ void CatLineChart::UpdateGraphLineStyle(int id)
         temp->setLineStyle((QCPGraph::LineStyle)id);
     }
     ui->ChartWidget->replot();
+}
+
+void CatLineChart::UpdateTracerStyle(int id)
+{
+    ui->ChartWidget->SetTracerStyle((QCPItemTracer::TracerStyle)id);
+}
+
+void CatLineChart::UpdatePositionType(int id)
+{
+    ui->ChartWidget->SetTracerXPositionType((QCPItemPosition::PositionType)id);
+    ui->ChartWidget->SetTracerYPositionType((QCPItemPosition::PositionType)id);
 }
 
 void CatLineChart::On_UpdateDxva(QString dxva)

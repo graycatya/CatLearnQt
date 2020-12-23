@@ -25,6 +25,7 @@ private:
 
 protected:
     void showEvent(QShowEvent *event) override;
+    void changeEvent(QEvent *event) override;
 
 private:
     Ui::CatSettings *ui;

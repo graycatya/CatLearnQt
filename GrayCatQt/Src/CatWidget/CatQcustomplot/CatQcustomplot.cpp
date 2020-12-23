@@ -98,6 +98,16 @@ void CatQcustomplot::InitProperty()
     setAttribute(Qt::WA_StyledBackground,true);
 }
 
+void CatQcustomplot::mouseMoveEvent(QMouseEvent *event)
+{
+    QCustomPlot::mouseMoveEvent(event);
+}
+
+void CatQcustomplot::mousePressEvent(QMouseEvent *event)
+{
+    QCustomPlot::mousePressEvent(event);
+}
+
 void CatQcustomplot::SetBackground(QBrush brush)
 {
     setBackground(brush);

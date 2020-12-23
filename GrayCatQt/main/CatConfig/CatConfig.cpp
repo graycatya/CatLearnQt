@@ -4,12 +4,49 @@
 #include <QFileInfo>
 #include <QSettings>
 #include <QTimer>
+#include <QApplication>
+#include <QTranslator>
+#include <CatLog>
 
 CatConfig* CatConfig::_instance = nullptr;
 QMutex* CatConfig::m_pMutex = new QMutex;
 QString CatConfig::m_sConfigPath = "";
+QApplication* CatConfig::m_pApp = nullptr;
+QTranslator* CatConfig::m_pTranslator = nullptr;
 
+void CatConfig::SetTranslator(QApplication* app)
+{
+    if(m_pTranslator == nullptr && m_pApp == nullptr)
+    {
+        m_pApp = app;
+        m_pTranslator = new QTranslator;
+    }
+}
 
+void CatConfig::InitLang(QLocale::Language lang)
+{
+    bool arg = true;
+    switch (lang) {
+        case QLocale::Chinese: {
+            arg = m_pTranslator->load(QString(":/lang/language_zh_CN.qm"));
+            CatSettingBase::SetValue(m_sConfigPath, "Language", "chinese(china)", "Defaule");
+            break;
+        }
+        default: {
+            arg = m_pTranslator->load(QString(":/lang/language_en.qm"));
+            CatSettingBase::SetValue(m_sConfigPath, "Language", "english", "Defaule");
+            break;
+        }
+    }
+
+    m_pApp->installTranslator(m_pTranslator);
+
+    if(!arg)
+    {
+        QString log = QString("language init error!");
+        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+    }
+}
 
 void CatConfig::SetValue(QString key, QVariant var, QString node)
 {
@@ -57,6 +94,13 @@ void CatConfig::SetWindowStyle(QVariant var)
     emit UpdateStyleSheets();
 }
 
+void CatConfig::SetTranslator(QVariant var)
+{
+    CatSettingBase::SetValue(m_sConfigPath, "Language", var, "Defaule");
+    m_pApp->removeTranslator(m_pTranslator);
+    UpdateTranslator(var.toString());
+}
+
 bool CatConfig::ConfigExist()
 {
     return CatSettingBase::ConfigExist(m_sConfigPath);
@@ -65,12 +109,30 @@ bool CatConfig::ConfigExist()
 CatConfig::CatConfig()
 {
     m_sConfigPath = QCoreApplication::applicationDirPath() + "/config.ini";
-    InitConfig();
+    //InitConfig();
 }
 
 CatConfig::~CatConfig()
 {
 
+}
+
+void CatConfig::UpdateTranslator(QString translator)
+{
+    bool arg = true;
+    if(translator == "chinese(china)") {
+        arg = m_pTranslator->load(QString(":/lang/language_zh_CN.qm"));
+    } else {
+        arg = m_pTranslator->load(QString(":/lang/language_en.qm"));
+    }
+
+    m_pApp->installTranslator(m_pTranslator);
+
+    if(!arg)
+    {
+        QString log = QString("language init error!");
+        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+    }
 }
 
 void CatConfig::InitConfig()
@@ -93,7 +155,19 @@ void CatConfig::InitConfig()
         QStringList defaultKeys = { "style" };
         QVariantList defaultVars = { "CatGray" };
         CatSettingBase::SetGroup(m_sConfigPath, "Defaule", defaultKeys, defaultVars);
+        if(m_pApp != nullptr)
+        {
+            QStringList langtKeys = { "lang", "lang" };
+            QVariantList langVars = { "english", "chinese(china)" };
+            CatSettingBase::SetArray(m_sConfigPath, "Langs", langtKeys, langVars);
 
+            QLocale locale;
+            InitLang(locale.language());
+        }
+
+    } else {
+        QString lang = CatConfig::GetValue("Language", "Defaule").toString();
+        UpdateTranslator(lang);
     }
 }
 

@@ -109,5 +109,9 @@
         <file>Images/CatWhite/QcustomplotLineChart.png</file>
         <file>qss/CatGray/CatLineChart.css</file>
         <file>qss/CatWhite/CatLineChart.css</file>
+        <file>lang/language_en.qm</file>
+        <file>lang/language_en.ts</file>
+        <file>lang/language_zh_CN.qm</file>
+        <file>lang/language_zh_CN.ts</file>
     </qresource>
 </RCC>

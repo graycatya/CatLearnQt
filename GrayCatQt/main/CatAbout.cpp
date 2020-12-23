@@ -27,8 +27,6 @@ void CatAbout::InitUi()
     ui->LicenceTextEdit->setReadOnly(true);
     ui->AboutTabWidget->setAttribute(Qt::WA_StyledBackground);
     ui->AboutTabWidget->setAttribute(Qt::WA_TranslucentBackground);
-    ui->AppName->setText(APP_NAME);
-    ui->AppVersion->setText(APP_VERSION);
 
 }
 
@@ -61,11 +59,8 @@ void CatAbout::InitProperty()
     QString explain = QLatin1String(file_explain.readAll());
     ui->Explain->setText(explain);
     file_explain.close();
-
 #endif
-
-
-
+    retranslateUi();
 
     ui->AboutTabWidget->installEventFilter(this);
     ui->AboutTabWidget->setMouseTracking(true);
@@ -109,4 +104,37 @@ void CatAbout::UpdateStyle()
     file_0.close();
 
 
+}
+
+void CatAbout::retranslateUi()
+{
+#if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
+
+    QFile file_explain(":/about/explain/explain_en.html");
+    file_explain.open(QIODevice::ReadOnly);
+    QString explain = QLatin1String(file_explain.readAll());
+    ui->Explain->setText(explain);
+    file_explain.close();
+
+#else
+
+    QFile file_explain(":/about/explain/explain_en.md");
+    file_explain.open(QIODevice::ReadOnly);
+    QString explain = QLatin1String(file_explain.readAll());
+    ui->Explain->setText(explain);
+    file_explain.close();
+#endif
+    ui->AppName->setText(APP_NAME);
+    ui->AppVersion->setText(APP_VERSION);
+}
+
+void CatAbout::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+        this->ui->retranslateUi(this);
+        this->retranslateUi();
+    } else {
+        QWidget::changeEvent(event);
+    }
 }

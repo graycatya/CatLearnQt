@@ -3,6 +3,10 @@
 
 #include "CatUniversal/CatSettingBase.h"
 #include <QMutex>
+#include <QLocale>
+
+class QApplication;
+class QTranslator;
 
 class CatConfig : public CatSettingBase
 {
@@ -37,6 +41,9 @@ public:
         }
     }
 
+    static void SetTranslator(QApplication* app);
+    static void InitLang(QLocale::Language lang);
+
     static void SetValue(QString key, QVariant var, QString node = "");
     static void RemoveNodeValue(QString node, QString key);
     static void RemoveNode(QString node);
@@ -49,8 +56,12 @@ public:
     static QMultiMap<QString, QVariant> GetArray(QString node, QStringList keys);
 
     void SetWindowStyle(QVariant var);
+    void SetTranslator(QVariant var);
+
 
     static bool ConfigExist();
+
+    void InitConfig();
 
 signals:
     void UpdateStyleSheets();
@@ -60,13 +71,16 @@ private:
     CatConfig();
     ~CatConfig();
 
-    void InitConfig();
+
+    void UpdateTranslator(QString translator);
+
 
 private:
     static CatConfig* _instance;
     static QMutex* m_pMutex;
     static QString m_sConfigPath;
-
+    static QApplication *m_pApp;
+    static QTranslator *m_pTranslator;
 };
 
 #endif // CATCONFIG_H

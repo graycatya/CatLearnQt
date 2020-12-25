@@ -72,17 +72,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/CatAbout.ui" line="398"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../main/CatAbout.ui" line="413"/>
-        <source>Context</source>
+        <location filename="../../main/CatAbout.ui" line="425"/>
+        <source>Thank</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -305,27 +296,27 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/WinWidget.cpp" line="212"/>
+        <location filename="../../main/WinWidget.cpp" line="286"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/WinWidget.cpp" line="213"/>
+        <location filename="../../main/WinWidget.cpp" line="287"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/WinWidget.cpp" line="214"/>
+        <location filename="../../main/WinWidget.cpp" line="288"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/WinWidget.cpp" line="215"/>
+        <location filename="../../main/WinWidget.cpp" line="289"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../main/WinWidget.cpp" line="216"/>
+        <location filename="../../main/WinWidget.cpp" line="290"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

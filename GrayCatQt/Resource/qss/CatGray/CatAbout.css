@@ -255,6 +255,12 @@ QTextEdit#LicenceTextEdit {
 	background: transparent;
 }
 
+QTextBrowser#ThankTextBrowser {
+	color: #C1C1C1;
+	border: none;
+	background: transparent;
+}
+
 QPushButton#Log {
 	min-width: 150px;
 	min-height: 150px;

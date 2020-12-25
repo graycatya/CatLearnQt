@@ -25,6 +25,7 @@ void CatAbout::InitUi()
     ui->RootLayout->setStretchFactor(ui->LogVboxLayout, 2);
     ui->RootLayout->setStretchFactor(ui->AboutTabWidget, 8);
     ui->LicenceTextEdit->setReadOnly(true);
+    ui->ThankTextBrowser->setReadOnly(true);
     ui->AboutTabWidget->setAttribute(Qt::WA_StyledBackground);
     ui->AboutTabWidget->setAttribute(Qt::WA_TranslucentBackground);
 
@@ -40,34 +41,18 @@ void CatAbout::InitProperty()
     QString licencemd = QLatin1String(file_licence.readAll());
     ui->LicenceTextEdit->setHtml(licencemd);
     file_licence.close();
-
-    QFile file_explain(":/about/explain/explain_en.html");
-    file_explain.open(QIODevice::ReadOnly);
-    QString explain = QLatin1String(file_explain.readAll());
-    ui->Explain->setText(explain);
-    file_explain.close();
-
 #else
     QFile file_licence(":/about/Licence/Licence.md");
     file_licence.open(QIODevice::ReadOnly);
     QString licencemd = QLatin1String(file_licence.readAll());
     ui->LicenceTextEdit->setMarkdown(licencemd);
     file_licence.close();
-
-    QFile file_explain(":/about/explain/explain_en.md");
-    file_explain.open(QIODevice::ReadOnly);
-    QString explain = QLatin1String(file_explain.readAll());
-    ui->Explain->setText(explain);
-    file_explain.close();
 #endif
     retranslateUi();
 
     ui->AboutTabWidget->installEventFilter(this);
     ui->AboutTabWidget->setMouseTracking(true);
 
-    /*connect(ui->Test, &QTextBrowser::anchorClicked, this, [=](QUrl url){
-        QDesktopServices::openUrl(url);
-    });*/
 }
 
 void CatAbout::InitConnect()
@@ -85,6 +70,12 @@ void CatAbout::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
+
+    connect(ui->ThankTextBrowser, &QTextBrowser::anchorClicked, this, [=](QUrl url){
+        retranslateUi();
+        QDesktopServices::openUrl(url);
+    });
+    //connect(ui->ThankTextEdit, &QTextEdit::scrollToAnchor);
 }
 
 void CatAbout::UpdateStyle()
@@ -108,22 +99,38 @@ void CatAbout::UpdateStyle()
 
 void CatAbout::retranslateUi()
 {
+    QString lang = CatConfig::GetValue("Language", "Defaule").toString();
+    QString explain = ":/about/explain/explain";
+    QString thank = ":/about/thank/Thank";
+    if(lang == "chinese(china)") {
+        explain += "_cn";
+        thank += "_cn";
+    } else {
+        explain += "_en";
+        thank += "_en";
+    }
+    thank += ".html";
 #if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
-
-    QFile file_explain(":/about/explain/explain_en.html");
-    file_explain.open(QIODevice::ReadOnly);
-    QString explain = QLatin1String(file_explain.readAll());
-    ui->Explain->setText(explain);
-    file_explain.close();
-
+    explain += ".html";
 #else
-
-    QFile file_explain(":/about/explain/explain_en.md");
-    file_explain.open(QIODevice::ReadOnly);
-    QString explain = QLatin1String(file_explain.readAll());
-    ui->Explain->setText(explain);
-    file_explain.close();
+    explain += ".md";
 #endif
+    QFile file_explain(explain);
+    file_explain.open(QIODevice::ReadOnly);
+    QString str_explain = file_explain.readAll();
+    ui->Explain->setText(str_explain);
+    file_explain.close();
+
+    QFile file_thank(thank);
+    file_thank.open(QIODevice::ReadOnly);
+    QString str_thank = file_thank.readAll();
+    ui->ThankTextBrowser->setHtml(str_thank);
+
+    file_thank.close();
+
+
+
+
     ui->AppName->setText(APP_NAME);
     ui->AppVersion->setText(APP_VERSION);
 }

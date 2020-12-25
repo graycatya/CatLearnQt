@@ -13,5 +13,17 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 
 * 支持windwos，macOs，linux(ubuntu, kali)
 
-## 项目结构
 
+## 封面效果
+
+### windows 
+
+![win_gray](./Images/win_gray.png)
+
+![win_white](./Images/win_white.png)
+
+### linux
+
+![linux_gray](./Images/linux_gray.png)
+
+![linux_white](./Images/linux_white.png)

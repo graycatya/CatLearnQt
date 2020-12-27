@@ -36,6 +36,7 @@ WinWidget::WinWidget(QWidget *parent) :
 
 WinWidget::~WinWidget()
 {
+
     delete ui;
 }
 
@@ -108,6 +109,8 @@ void WinWidget::InitUi()
 
 void WinWidget::InitProperty()
 {
+    setAttribute(Qt::WA_DeleteOnClose, true);
+    setAttribute(Qt::WA_QuitOnClose, false);
     ui->BottomWidget->setVisible(false);
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
@@ -167,7 +170,7 @@ void WinWidget::InitConnect()
     });
 
     connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
-        QApplication::exit();
+        QApplication::quit();
     });
 #if defined (Q_OS_WIN)
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){

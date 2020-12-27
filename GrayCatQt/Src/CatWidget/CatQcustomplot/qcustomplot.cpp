@@ -29017,7 +29017,11 @@ void QCPItemText::draw(QCPPainter *painter)
 {
   QPointF pos(position->pixelPosition());
   QTransform transform = painter->transform();
-  transform.translate(pos.x(), pos.y());
+  // 判断数据是否为nan 让调试时不报nan日志
+  if(!std::isnan(pos.x()) && !std::isnan(pos.y()))
+  {
+    transform.translate(pos.x(), pos.y());
+  }
   if (!qFuzzyIsNull(mRotation))
     transform.rotate(mRotation);
   painter->setFont(mainFont());

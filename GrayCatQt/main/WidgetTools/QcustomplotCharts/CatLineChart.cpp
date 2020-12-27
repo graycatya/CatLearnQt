@@ -129,7 +129,7 @@ void CatLineChart::InitCharts()
     customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
     customPlot->SetGraphSelectionDecoratorWidth(3);
     customPlot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop | Qt::AlignLeft);
-    customPlot->SetTracerPenStyle(Qt::DashLine);
+    //customPlot->SetTracerPenStyle(Qt::DashLine);
     for(int i = 0; i < 4; i++)
     {
        customPlot->addGraph();

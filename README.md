@@ -27,3 +27,9 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 ![linux_gray](./Images/linux_gray.png)
 
 ![linux_white](./Images/linux_white.png)
+
+### mac
+
+![mac_gray](./Images/mac_gray.png)
+
+![mac_white](./Images/mac_white.png)

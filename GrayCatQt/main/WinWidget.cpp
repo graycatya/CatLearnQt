@@ -109,8 +109,8 @@ void WinWidget::InitUi()
 
 void WinWidget::InitProperty()
 {
-    setAttribute(Qt::WA_DeleteOnClose, true);
-    setAttribute(Qt::WA_QuitOnClose, false);
+    //setAttribute(Qt::WA_DeleteOnClose, true);
+    //setAttribute(Qt::WA_QuitOnClose, false);
     ui->BottomWidget->setVisible(false);
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);

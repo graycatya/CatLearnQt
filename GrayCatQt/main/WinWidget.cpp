@@ -170,7 +170,7 @@ void WinWidget::InitConnect()
     });
 
     connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
-        QApplication::quit();
+        QApplication::exit(0);
     });
 #if defined (Q_OS_WIN)
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){

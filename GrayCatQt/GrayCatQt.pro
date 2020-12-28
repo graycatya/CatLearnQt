@@ -1,5 +1,7 @@
 QT += core gui sql
 
+QT += quick quickwidgets
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
 
@@ -7,6 +9,7 @@ CONFIG += c++11
 # CONFIG += console
 
 DEFINES += QT_DEPRECATED_WARNINGS
+DEFINES += QT_QML_DEBUG_NO_WARNING
 
 
 # The following define makes your compiler emit warnings if you use

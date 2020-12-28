@@ -7,9 +7,12 @@
 #include <QButtonGroup>
 #include <CatLog>
 #include <QFile>
+#include <QQmlDebuggingEnabler>
+
 
 #include "QuickWidgetTools/QuickSliders.h"
 #include "QuickWidgetTools/QuickQrenCode.h"
+
 
 CatQuickWidget::CatQuickWidget(QWidget *parent) :
     QWidget(parent),

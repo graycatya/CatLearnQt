@@ -24,10 +24,10 @@ QuickSliders::~QuickSliders()
 void QuickSliders::InitUi()
 {
     QUrl source("qrc:/qml/CatSliders.qml");
-    this->setWindowFlags(Qt::FramelessWindowHint);
-    setAttribute(Qt::WA_TranslucentBackground, true);
+    //this->setWindowFlags(Qt::FramelessWindowHint);
+    //setAttribute(Qt::WA_TranslucentBackground, true);
     // 如果此属性设置为SizeRootObjectToView，视图将自动将根项调整为视图的大小。
-    ui->QuickSlidersWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
+    //ui->QuickSlidersWidget->setResizeMode(QQuickWidget::SizeRootObjectToView);
     ui->QuickSlidersWidget->setSource(source);
     ui->QuickSlidersWidget->setClearColor(QColor(Qt::transparent));
 

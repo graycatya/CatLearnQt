@@ -181,6 +181,7 @@ void WinWidget::InitConnect()
     connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
         QApplication::exit(0);
     });
+    /*
 #if defined (Q_OS_WIN)
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
         if(m_bMousePress && m_bFullScreen && m_bTopWidget)
@@ -197,7 +198,7 @@ void WinWidget::InitConnect()
             }
         }
     });
-#endif
+#endif*/
     // [初始化工具栏信号与槽]
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
 
@@ -359,6 +360,25 @@ void WinWidget::mouseDoubleClickEvent(QMouseEvent *event)
         if(ui->TopWidget->rect().contains(event->pos()))
         {
             SetWindowZoom();
+        }
+    }
+}
+
+void WinWidget::mouseMoveEvent(QMouseEvent *event)
+{
+    RimlessWindowBase::mouseMoveEvent(event);
+    QPoint pos = event->pos();
+    if(m_bMousePress && m_bFullScreen && m_bTopWidget)
+    {
+        //qDebug() << m_bMousePress;
+        if(ui->TopWidget->rect().contains(pos))
+        {
+            m_bFullScreen = !m_bFullScreen;
+            float ration = static_cast<float>(pos.x()) / static_cast<float>(this->width());
+            int x = static_cast<int>(static_cast<float>(m_pLastRect.width()) * ration);
+            SetProcessGeometry(pos.x() - x , 0, m_pLastRect.width(), m_pLastRect.height());
+            this->resize(QSize(m_pLastRect.size()));
+            SetZoomButtonState("Min");
         }
     }
 }

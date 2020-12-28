@@ -55,6 +55,7 @@ private:
 protected:
     bool eventFilter(QObject *watched, QEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
     void closeEvent(QCloseEvent *event);
 

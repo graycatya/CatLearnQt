@@ -28999,9 +28999,15 @@ double QCPItemText::selectTest(const QPointF &pos, bool onlySelectable, QVariant
   // coordinate system, so we can use the normal rectDistance function for non-rotated rects:
   QPointF positionPixels(position->pixelPosition());
   QTransform inputTransform;
-  inputTransform.translate(positionPixels.x(), positionPixels.y());
+  if(!std::isnan(positionPixels.x()) && !std::isnan(positionPixels.y()))
+  {
+    inputTransform.translate(positionPixels.x(), positionPixels.y());
+  }
   inputTransform.rotate(-mRotation);
-  inputTransform.translate(-positionPixels.x(), -positionPixels.y());
+  if(!std::isnan(-positionPixels.x()) && !std::isnan(-positionPixels.y()))
+  {
+    inputTransform.translate(-positionPixels.x(), -positionPixels.y());
+  }
   QPointF rotatedPos = inputTransform.map(pos);
   QFontMetrics fontMetrics(mFont);
   QRect textRect = fontMetrics.boundingRect(0, 0, 0, 0, Qt::TextDontClip|mTextAlignment, mText);
@@ -29055,7 +29061,10 @@ QPointF QCPItemText::anchorPixelPosition(int anchorId) const
   // get actual rect points (pretty much copied from draw function):
   QPointF pos(position->pixelPosition());
   QTransform transform;
-  transform.translate(pos.x(), pos.y());
+  if(!std::isnan(pos.x()) && !std::isnan(pos.y()))
+  {
+    transform.translate(pos.x(), pos.y());
+  }
   if (!qFuzzyIsNull(mRotation))
     transform.rotate(mRotation);
   QFontMetrics fontMetrics(mainFont());

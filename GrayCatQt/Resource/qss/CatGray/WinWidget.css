@@ -11,7 +11,7 @@ QWidget#WinWidget {
     background-color: transparent;
 }
 
-QWidget#MainWidget {
+QWidget#WinRootWidget {
     border: none;
     border-radius: 2px;
     background-color: rgba(130, 130, 130, 20%);

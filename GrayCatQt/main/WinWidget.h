@@ -56,6 +56,10 @@ protected:
     bool eventFilter(QObject *watched, QEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
+    void closeEvent(QCloseEvent *event);
+
+signals:
+    void Closeed();
 
 private slots:
     void On_ButtonFunc(int id);
@@ -72,6 +76,7 @@ private:
     CatQuickWidget *m_pCatQuickWidget;
 
     bool m_bFullScreen;
+    bool m_bTopWidget;
     QRect m_pLastRect;
 
 };

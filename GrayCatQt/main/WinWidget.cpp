@@ -9,6 +9,8 @@
 #include <QButtonGroup>
 #include <CatLog>
 #include <QDesktopWidget>
+#include <QTimer>
+#include <QQmlDebuggingEnabler>
 
 #include "CatDrawingBoard.h"
 #include "CatAbout.h"
@@ -25,7 +27,8 @@ WinWidget::WinWidget(QWidget *parent) :
     RimlessWindowBase(parent),
 #endif
     ui(new Ui::WinWidget) ,
-    m_bFullScreen(false)
+    m_bFullScreen(false) ,
+    m_bTopWidget(false)
 {
 
     ui->setupUi(this);
@@ -36,8 +39,14 @@ WinWidget::WinWidget(QWidget *parent) :
 
 WinWidget::~WinWidget()
 {
-
+    /*if(m_pCatQuickWidget != nullptr)
+    {
+        m_pCatQuickWidget->deleteLater();
+        m_pCatQuickWidget = nullptr;
+    }*/
     delete ui;
+    QString log = QString("WinWidget delete...");
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
 }
 
 void WinWidget::InitUi()
@@ -174,7 +183,7 @@ void WinWidget::InitConnect()
     });
 #if defined (Q_OS_WIN)
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
-        if(m_bMousePress && m_bFullScreen)
+        if(m_bMousePress && m_bFullScreen && m_bTopWidget)
         {
             //qDebug() << m_bMousePress;
             if(ui->TopWidget->rect().contains(pos))
@@ -327,6 +336,9 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     {
         watched->eventFilter(watched, event);
     }
+
+    m_bTopWidget = watched->objectName() == "TopWidget" ? true : false;
+
     for(auto temp : list)
     {
         if(watched->objectName() == temp && event->type() == QEvent::MouseMove)
@@ -360,6 +372,12 @@ void WinWidget::changeEvent(QEvent *event)
     } else {
         QWidget::changeEvent(event);
     }
+}
+
+void WinWidget::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event)
+    //this->deleteLater();
 }
 
 void WinWidget::On_ButtonFunc(int id)

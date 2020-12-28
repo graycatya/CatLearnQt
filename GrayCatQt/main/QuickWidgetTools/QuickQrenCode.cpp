@@ -2,6 +2,8 @@
 #include "ui_QuickQrenCode.h"
 #include "CatWidget/QrenCode/Src/QrenCodeQml/QuickQrenCodeParentItem.h"
 
+#include <CatLog>
+
 QuickQrenCode::QuickQrenCode(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::QuickQrenCode)
@@ -13,6 +15,8 @@ QuickQrenCode::QuickQrenCode(QWidget *parent) :
 
 QuickQrenCode::~QuickQrenCode()
 {
+    QString log = QString("QuickQrenCode Delete...");
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     delete ui;
 }
 

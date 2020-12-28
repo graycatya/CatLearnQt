@@ -1,6 +1,7 @@
 ﻿#include "QuickSliders.h"
 #include "ui_QuickSliders.h"
 #include <QQuickItem>
+#include <CatLog>
 
 #include "../CatConfig/CatConfig.h"
 
@@ -18,6 +19,8 @@ QuickSliders::QuickSliders(QWidget *parent) :
 
 QuickSliders::~QuickSliders()
 {
+    QString log = QString("QuickSliders Delete...");
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     delete ui;
 }
 

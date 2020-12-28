@@ -26,6 +26,8 @@ CatQuickWidget::CatQuickWidget(QWidget *parent) :
 
 CatQuickWidget::~CatQuickWidget()
 {
+    QString log = QString("CatQuickWidget Delete...");
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     delete ui;
 }
 
@@ -76,11 +78,11 @@ void CatQuickWidget::InitToolButtons()
 
 void CatQuickWidget::InitToolWidgets()
 {
-    QuickSliders *m_pQuickSliders = new QuickSliders;
+    m_pQuickSliders = new QuickSliders;
     m_pQuickSliders->setObjectName("QuickSlidersWidget");
     ui->ToolStackedWidget->addWidget(m_pQuickSliders);
 
-    QuickQrenCode *m_pQuickQrenCode = new QuickQrenCode;
+    m_pQuickQrenCode = new QuickQrenCode;
     m_pQuickQrenCode->setObjectName("QuickQrenCodeWidget");
     ui->ToolStackedWidget->addWidget(m_pQuickQrenCode);
 

@@ -6,6 +6,9 @@
 class ListiongOptions;
 class QPushButton;
 
+class QuickSliders;
+class QuickQrenCode;
+
 namespace Ui {
 class CatQuickWidget;
 }
@@ -35,6 +38,8 @@ private:
     Ui::CatQuickWidget *ui;
     ListiongOptions *m_pToolListiongOptions;
     QHash<QString, QPushButton*> m_pToolButtons;
+    QuickSliders *m_pQuickSliders;
+    QuickQrenCode *m_pQuickQrenCode;
 
 };
 

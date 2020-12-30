@@ -56,6 +56,34 @@ void MonitorSerial::run()
                 m_lSerialPortInfo.remove(port);
             }
 
+        }else if(m_lSerialPortInfo.size() == currentports.size())
+        {
+            QHash<QString, QSerialPortInfo>::const_iterator i = currentports.constBegin();
+            QList<QSerialPortInfo> adds;
+            QList<QSerialPortInfo> dels;
+            while(i != currentports.constEnd()){
+                if(!m_lSerialPortInfo.contains(i.key()))
+                {
+                    adds.push_back(i.value());
+                    QString log = "add " + i.key();
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+                }
+                i++;
+            }
+            i = m_lSerialPortInfo.constBegin();
+            while(i != m_lSerialPortInfo.constEnd()){
+
+                if(!currentports.contains(i.key()))
+                {
+                    dels.push_back(i.value());
+                    QString log = "del " + i.key();
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+                }
+                i++;
+            }
+            emit UpdateSerial(adds, dels);
+            //qDebug() << m_lSerialPortInfo.keys() << " | " << currentports.keys();
+            m_lSerialPortInfo = currentports;
         }
         QThread::msleep(FrequencyTime);
     }

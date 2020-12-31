@@ -36,16 +36,16 @@
        <number>0</number>
       </property>
       <property name="leftMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="topMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="rightMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <property name="bottomMargin">
-       <number>5</number>
+       <number>2</number>
       </property>
       <item>
        <widget class="QWidget" name="TopWidget" native="true">

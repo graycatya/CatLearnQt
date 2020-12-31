@@ -245,7 +245,7 @@ void WinWidget::SetWindowZoom()
     {
         m_pLastRect = QRect(this->pos().x(), this->pos().y(), this->width(), this->height());
         QRect rect = QApplication::desktop()->availableGeometry(this);
-        this->setGeometry(rect.x()-2, rect.y()-2, rect.width()+4, rect.height()+4);
+        this->setGeometry(rect.x()-5, rect.y()-5, rect.width()+10, rect.height()+10);
         SetZoomButtonState("Max");
     } else {
         this->setGeometry(m_pLastRect);

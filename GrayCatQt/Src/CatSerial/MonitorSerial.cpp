@@ -1,5 +1,6 @@
 ﻿#include "MonitorSerial.h"
 
+
 MonitorSerial* MonitorSerial::_instance = nullptr;
 QMutex* MonitorSerial::m_pMutex = new QMutex;
 bool MonitorSerial::m_bStart = false;
@@ -65,8 +66,8 @@ void MonitorSerial::run()
                 if(!m_lSerialPortInfo.contains(i.key()))
                 {
                     adds.push_back(i.value());
-                    QString log = "add " + i.key();
-                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+                    /*QString log = "add " + i.key();
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));*/
                 }
                 i++;
             }
@@ -76,8 +77,8 @@ void MonitorSerial::run()
                 if(!currentports.contains(i.key()))
                 {
                     dels.push_back(i.value());
-                    QString log = "del " + i.key();
-                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+                    /*QString log = "del " + i.key();
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));*/
                 }
                 i++;
             }

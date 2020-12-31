@@ -11,6 +11,8 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QQmlDebuggingEnabler>
+#include <QGraphicsDropShadowEffect>
+
 
 #include "CatDrawingBoard.h"
 #include "CatAbout.h"
@@ -109,6 +111,12 @@ void WinWidget::InitUi()
     m_pCatQuickWidget = new CatQuickWidget(ui->QuickWidgetFunc);
     m_pCatQuickWidget->setObjectName("WinCatQuickWidget");
     layout_QuickWidget->addWidget(m_pCatQuickWidget);
+
+    QGraphicsDropShadowEffect *m_pQGraphicsDropShadowEffect = new QGraphicsDropShadowEffect(this);
+    m_pQGraphicsDropShadowEffect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
+    m_pQGraphicsDropShadowEffect->setColor("#C2C2C3");       //设置阴影颜色，也可以setColor(QColor(220,220,220))
+    m_pQGraphicsDropShadowEffect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
+    ui->WinRootWidget->setGraphicsEffect(m_pQGraphicsDropShadowEffect);
 
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
@@ -366,6 +374,8 @@ void WinWidget::mouseDoubleClickEvent(QMouseEvent *event)
 
 void WinWidget::mouseMoveEvent(QMouseEvent *event)
 {
+
+#ifdef Q_OS_WIN
     RimlessWindowBase::mouseMoveEvent(event);
     QPoint pos = event->pos();
     if(m_bMousePress && m_bFullScreen && m_bTopWidget)
@@ -381,6 +391,9 @@ void WinWidget::mouseMoveEvent(QMouseEvent *event)
             SetZoomButtonState("Min");
         }
     }
+#else
+    Q_UNUSED(event)
+#endif
 }
 
 void WinWidget::changeEvent(QEvent *event)

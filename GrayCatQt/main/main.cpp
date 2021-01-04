@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
     // [0] 进程单例 - 不可重复打开
     SingleApplication *a = new SingleApplication(argc, argv);
 
+    //qDebug() << CatFont::SystemFontFamilys();
+
     // [1] 启动日志模块
     CATLOG::CatLog::Instance();
     CATLOG::CatLog::__Write_Log(INFO_LOG_T("Init System!"));

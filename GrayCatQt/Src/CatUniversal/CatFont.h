@@ -1,13 +1,19 @@
-#ifndef CATFONT_H
+﻿#ifndef CATFONT_H
 #define CATFONT_H
 
 #include <QObject>
 
-class CatFont
+class CatFont : public QObject
 {
     Q_OBJECT
 public:
-    CatFont();
+    explicit CatFont(QObject *parent = nullptr);
+    ~CatFont();
+
+    static QStringList SystemFontFamilys( void );
+
+private:
+
 };
 
 #endif // CATFONT_H

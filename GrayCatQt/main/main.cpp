@@ -17,8 +17,6 @@ int main(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
 
-    //qDebug() << CatFont::SystemFontFamilys();
-
     // [1] 启动日志模块
     CATLOG::CatLog::Instance();
     CATLOG::CatLog::__Write_Log(INFO_LOG_T("Init System!"));

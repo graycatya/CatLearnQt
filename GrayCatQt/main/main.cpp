@@ -12,10 +12,10 @@
 int main(int argc, char *argv[])
 {
     // 共享窗体上下文，并且防止黑屏出现
-    //QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
-
+    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     // [0] 进程单例 - 不可重复打开
-    SingleApplication *a = new SingleApplication(argc, argv);
+    SingleApplication app(argc, argv);
+
 
     //qDebug() << CatFont::SystemFontFamilys();
 
@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 
     // [2] 配置初始化
     CatConfig *config = CatConfig::Instance();
-    config->SetTranslator(a);
+    config->SetTranslator(&app);
     config->InitConfig();
 
     // [3] 启动串口热插拔检测
@@ -43,6 +43,6 @@ int main(int argc, char *argv[])
     WinWidget w;
     w.show();
 
-    return a->exec();
+    return app.exec();
 }
 

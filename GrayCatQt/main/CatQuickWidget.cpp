@@ -26,8 +26,6 @@ CatQuickWidget::CatQuickWidget(QWidget *parent) :
 
 CatQuickWidget::~CatQuickWidget()
 {
-    QString log = QString("CatQuickWidget Delete...");
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     delete ui;
 }
 

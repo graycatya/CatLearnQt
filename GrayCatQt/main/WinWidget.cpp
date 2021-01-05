@@ -41,14 +41,7 @@ WinWidget::WinWidget(QWidget *parent) :
 
 WinWidget::~WinWidget()
 {
-    /*if(m_pCatQuickWidget != nullptr)
-    {
-        m_pCatQuickWidget->deleteLater();
-        m_pCatQuickWidget = nullptr;
-    }*/
     delete ui;
-    QString log = QString("WinWidget delete...");
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
 }
 
 void WinWidget::InitUi()

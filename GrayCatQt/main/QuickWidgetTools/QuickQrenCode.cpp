@@ -15,8 +15,6 @@ QuickQrenCode::QuickQrenCode(QWidget *parent) :
 
 QuickQrenCode::~QuickQrenCode()
 {
-    QString log = QString("QuickQrenCode Delete...");
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     delete ui;
 }
 

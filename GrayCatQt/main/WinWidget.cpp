@@ -26,7 +26,7 @@ WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget(parent),
 #else
-    RimlessWindowBase(parent),
+    RimlessWindowBase(parent, true),
 #endif
     ui(new Ui::WinWidget) ,
     m_bFullScreen(false) ,
@@ -37,6 +37,7 @@ WinWidget::WinWidget(QWidget *parent) :
     InitUi();
     InitProperty();
     InitConnect();
+    retranslateUi();
 }
 
 WinWidget::~WinWidget()
@@ -105,16 +106,9 @@ void WinWidget::InitUi()
     m_pCatQuickWidget->setObjectName("WinCatQuickWidget");
     layout_QuickWidget->addWidget(m_pCatQuickWidget);
 
-    /*QGraphicsDropShadowEffect *m_pQGraphicsDropShadowEffect = new QGraphicsDropShadowEffect(this);
-    m_pQGraphicsDropShadowEffect->setOffset(0, 0);          //设置向哪个方向产生阴影效果(dx,dy)，特别地，(0,0)代表向四周发散
-    m_pQGraphicsDropShadowEffect->setColor("#C2C2C3");       //设置阴影颜色，也可以setColor(QColor(220,220,220))
-    m_pQGraphicsDropShadowEffect->setBlurRadius(15);        //设定阴影的模糊半径，数值越大越模糊
-    ui->WinRootWidget->setGraphicsEffect(m_pQGraphicsDropShadowEffect);*/
-
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
     //ui->Title->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
-    retranslateUi();
 }
 
 void WinWidget::InitProperty()
@@ -125,6 +119,9 @@ void WinWidget::InitProperty()
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
     ui->TopWidget->setVisible(false);
+#else
+    SetShadowWeight(5);
+    SetShadowColor(QColor(0, 0, 0, 50));
 #endif
     // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
@@ -160,13 +157,14 @@ void WinWidget::InitProperty()
     m_pListiongOptions->setMouseTracking(true);
     m_pCatQuickWidget->installEventFilter(this);
     m_pCatQuickWidget->setMouseTracking(true);
+    ui->Title->installEventFilter(this);
+    ui->Title->setMouseTracking(true);
 
     UpdateStyle();
 
 
-    QString title = ui->FuncStackWidget->currentWidget()->objectName();
-    title.replace(title.size()-4, title.size(), "");
-    SetTitle(title);
+    /*QString title = m_pListiongOptions->GetButtonGroup()->checkedButton()->text();
+    SetTitle(title);*/
 }
 
 void WinWidget::InitConnect()
@@ -203,11 +201,13 @@ void WinWidget::InitConnect()
     // [初始化工具栏信号与槽]
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
 
-    m_pButtons["WidgetFunc"]->setChecked(true);
+
 
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
+
+    m_pButtons["WidgetFunc"]->setChecked(true);
 }
 
 void WinWidget::InitButtonList()
@@ -255,6 +255,7 @@ void WinWidget::SetTitle(QString state)
     }
     this->setWindowTitle(title);
     ui->Title->setText(title);
+    ui->Title->adjustSize();
 }
 
 void WinWidget::UpdateStyle()
@@ -305,8 +306,7 @@ void WinWidget::retranslateUi()
 
     }
 
-    QString title = ui->FuncStackWidget->currentWidget()->objectName();
-    title.replace(title.size()-4, title.size(), "");
+    QString title = m_pListiongOptions->GetButtonGroup()->checkedButton()->text();
     SetTitle(title);
 }
 
@@ -408,13 +408,8 @@ void WinWidget::closeEvent(QCloseEvent *event)
 
 void WinWidget::On_ButtonFunc(int id)
 {
-    /*QString log = QString("On_ButtonFunc id: %1").arg(QString::number(id));
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));*/
+
     ui->FuncStackWidget->setCurrentIndex(id);
-    QString title = ui->FuncStackWidget->currentWidget()->objectName();
-    title.replace(title.size()-4, title.size(), "");
+    QString title = m_pListiongOptions->GetButtonGroup()->checkedButton()->text();
     SetTitle(title);
 }
-
-
-

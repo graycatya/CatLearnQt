@@ -28,14 +28,17 @@ int main(int argc, char *argv[])
 
     // [3] 启动串口热插拔检测
     MonitorSerial::Instance()->Start(200, true);
-    QObject::connect(MonitorSerial::Instance(), &MonitorSerial::AddSerial, [](QSerialPortInfo info){
-        QString log = "AddSerial: " + info.portName() + " " + QString::number(info.productIdentifier()) + " : " + QString::number(info.vendorIdentifier());
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-    });
-
-    QObject::connect(MonitorSerial::Instance(), &MonitorSerial::DeleteSerial, [](QSerialPortInfo info){
-        QString log = "DeleteSerial: " + info.portName() + " " + QString::number(info.productIdentifier()) + " : " + QString::number(info.vendorIdentifier());
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    QObject::connect(MonitorSerial::Instance(), &MonitorSerial::UpdateSerial, [](QList<QSerialPortInfo> adds, QList<QSerialPortInfo> dels){
+        for(auto info : adds)
+        {
+            QString log = "AddSerial: " + info.portName() + " " + QString::number(info.productIdentifier()) + " : " + QString::number(info.vendorIdentifier());
+            CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        }
+        for(auto info : dels)
+        {
+            QString log = "DeleteSerial: " + info.portName() + " " + QString::number(info.productIdentifier()) + " : " + QString::number(info.vendorIdentifier());
+            CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        }
     });
 
     WinWidget w;

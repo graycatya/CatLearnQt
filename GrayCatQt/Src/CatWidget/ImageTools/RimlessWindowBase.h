@@ -8,6 +8,8 @@ class ProcessObject;
 class RimlessWindowBase : public QWidget
 {
     Q_OBJECT
+    Q_PROPERTY(QColor ShadowColor READ GetShadowColor WRITE SetShadowColor)
+    Q_PROPERTY(int ShadowWeight READ GetShadowWeight WRITE SetShadowWeight)
 public:
     enum CURSORSTATE {
         NONE,
@@ -16,8 +18,18 @@ public:
         BOTTOMLEFT,
         BOTTOMRIGHT
     };
-    explicit RimlessWindowBase(QWidget *parent = nullptr);
+    explicit RimlessWindowBase(QWidget *parent = nullptr, bool shadow = false);
     ~RimlessWindowBase();
+
+    inline QColor GetShadowColor( void ) const
+    {
+        return ShadowColor;
+    }
+
+    inline int GetShadowWeight( void ) const
+    {
+        return ShadowWeight;
+    }
 
 private:
     void InitProperty();
@@ -41,10 +53,15 @@ protected:
     void moveEvent(QMoveEvent *event) override;
     void enterEvent(QEvent *event) override;
     void leaveEvent(QEvent *event) override;
+    void paintEvent(QPaintEvent *event) override;
 
 signals:
     void moveEvented();
     void mouseMoveed(QPoint pos);
+
+public slots:
+    void SetShadowColor(QColor color);
+    void SetShadowWeight(int weight);
 
 protected:
     bool m_bMousePress;
@@ -70,6 +87,13 @@ private:
     CURSORSTATE m_qCursorState;
 
     QRect m_pLast_Rect;
+
+    bool m_bShadow;
+
+    // 阴影属性
+    QColor ShadowColor;
+    int ShadowWeight;
+
 
 };
 

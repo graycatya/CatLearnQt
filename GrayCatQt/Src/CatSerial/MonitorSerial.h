@@ -72,9 +72,9 @@ protected:
 
 signals:
     // 端口插入
-    void AddSerial(QSerialPortInfo);
+    //void AddSerial(QSerialPortInfo);
     // 端口拔出
-    void DeleteSerial(QSerialPortInfo);
+    //void DeleteSerial(QSerialPortInfo);
     // 同时获取插入与拔出的端口
     void UpdateSerial(QList<QSerialPortInfo> adds, QList<QSerialPortInfo> dels);
 

@@ -14,7 +14,7 @@ QWidget#WinWidget {
 QWidget#WinRootWidget {
     border: none;
     border-radius: 2px;
-    background-color: rgba(130, 130, 130, 20%);
+    /*background-color: rgba(130, 130, 130, 20%);*/
 }
 
 QWidget#TopWidget {
@@ -104,6 +104,7 @@ QPushButton#CloseButton:pressed {
 
 QLabel#Title {
     max-width: 200px;
+    min-height: 30px;
     color: white;
 }
 /*

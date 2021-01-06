@@ -1,5 +1,7 @@
 ﻿#include "MonitorSerial.h"
-
+#include <CatLog>
+#include <QDebug>
+#include <QTimer>
 
 MonitorSerial* MonitorSerial::_instance = nullptr;
 QMutex* MonitorSerial::m_pMutex = new QMutex;
@@ -23,6 +25,8 @@ void MonitorSerial::run()
     while(m_bStart)
     {
         QHash<QString, QSerialPortInfo> currentports;
+        QList<QSerialPortInfo> adds;
+        QList<QSerialPortInfo> dels;
         for(auto temp : QSerialPortInfo::availablePorts())
         {
             currentports[temp.portName()] = temp;
@@ -35,7 +39,8 @@ void MonitorSerial::run()
                 if(!m_lSerialPortInfo.contains(i.key()))
                 {
                     m_lSerialPortInfo[i.key()] = i.value();
-                    emit AddSerial(i.value());
+                    //emit AddSerial(i.value());
+                    adds.push_back(i.value());
                 }
                 i++;
             }
@@ -48,7 +53,8 @@ void MonitorSerial::run()
                 if(!currentports.contains(i.key()))
                 {
                     list << i.key();
-                    emit DeleteSerial(i.value());
+                    //emit DeleteSerial(i.value());
+                    dels.push_back(i.value());
                 }
                 i++;
             }
@@ -57,17 +63,15 @@ void MonitorSerial::run()
                 m_lSerialPortInfo.remove(port);
             }
 
-        }else if(m_lSerialPortInfo.size() == currentports.size())
+        } else if(m_lSerialPortInfo.size() == currentports.size())
         {
             QHash<QString, QSerialPortInfo>::const_iterator i = currentports.constBegin();
-            QList<QSerialPortInfo> adds;
-            QList<QSerialPortInfo> dels;
             while(i != currentports.constEnd()){
                 if(!m_lSerialPortInfo.contains(i.key()))
                 {
                     adds.push_back(i.value());
-                    /*QString log = "add " + i.key();
-                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));*/
+                    QString log = "add " + i.key();
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
                 }
                 i++;
             }
@@ -77,15 +81,19 @@ void MonitorSerial::run()
                 if(!currentports.contains(i.key()))
                 {
                     dels.push_back(i.value());
-                    /*QString log = "del " + i.key();
-                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));*/
+                    QString log = "del " + i.key();
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
                 }
                 i++;
             }
-            emit UpdateSerial(adds, dels);
             //qDebug() << m_lSerialPortInfo.keys() << " | " << currentports.keys();
             m_lSerialPortInfo = currentports;
+        }
+        if(!adds.isEmpty() || !dels.isEmpty())
+        {
+            emit UpdateSerial(adds, dels);
         }
         QThread::msleep(FrequencyTime);
     }
 }
+

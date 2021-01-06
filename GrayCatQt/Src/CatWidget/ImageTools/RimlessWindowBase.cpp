@@ -7,6 +7,8 @@
 #include <QDesktopWidget>
 #include <QDebug>
 #include <QTimer>
+#include <QPainter>
+#include <QtMath>
 
 #ifdef Q_OS_LINUX
 #include <X11/Xlib.h>
@@ -19,11 +21,12 @@ const QSize AngleRect(5, 5);
 const int RectWidth = 2;
 
 
-RimlessWindowBase::RimlessWindowBase(QWidget *parent)
+RimlessWindowBase::RimlessWindowBase(QWidget *parent, bool shadow)
     : QWidget(parent)
     , m_bMousePress(false)
     , m_pScreen(nullptr)
     , m_qCursorState(NONE)
+    , m_bShadow(shadow)
 {
     InitProperty();
 }
@@ -422,4 +425,42 @@ void RimlessWindowBase::leaveEvent(QEvent *event)
         m_qCursorState = NONE;
         this->setCursor(Qt::ArrowCursor);
     }
+}
+
+void RimlessWindowBase::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRect(ShadowWeight, ShadowWeight,
+                 this->width()-ShadowWeight*2, this->height()-ShadowWeight*2);
+
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+
+    QColor color = ShadowColor;
+    for(int i=0; i<ShadowWeight; i++)
+    {
+        QPainterPath path;
+        path.setFillRule(Qt::WindingFill);
+        path.addRect(ShadowWeight-i, ShadowWeight-i,
+                     this->width()-(ShadowWeight-i)*2,
+                     this->height()-(ShadowWeight-i)*2);
+        color.setAlpha(150 - qSqrt(i)*50);
+        painter.setPen(color);
+        painter.drawPath(path);
+    }
+}
+
+void RimlessWindowBase::SetShadowColor(QColor color)
+{
+    ShadowColor = color;
+    update();
+}
+
+void RimlessWindowBase::SetShadowWeight(int weight)
+{
+    ShadowWeight = weight;
+    update();
 }

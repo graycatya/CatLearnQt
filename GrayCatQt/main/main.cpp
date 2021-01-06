@@ -9,13 +9,13 @@
 #include <QTimer>
 
 
+
 int main(int argc, char *argv[])
 {
     // 共享窗体上下文，并且防止黑屏出现
     QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
     // [0] 进程单例 - 不可重复打开
     SingleApplication app(argc, argv);
-
 
     // [1] 启动日志模块
     CATLOG::CatLog::Instance();

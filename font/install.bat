@@ -3,7 +3,7 @@
 
 cls
 
-chcp 936 
+chcp 936
 
 copy /-Y *.ttf %windir%\Fonts
 

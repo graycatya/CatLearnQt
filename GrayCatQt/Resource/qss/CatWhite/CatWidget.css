@@ -14,4 +14,6 @@ QLineEdit#QrenCodeEdit {
     border: 1px solid #959595;
     border-radius: 3px;
     background-color: #f1f1f1;
+    font-family: "Ubuntu";
+    font-size: 15px;
 }

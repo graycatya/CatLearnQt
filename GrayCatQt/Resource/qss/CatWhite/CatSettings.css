@@ -23,10 +23,12 @@ QWidget#CatSettingRoot {
 QLabel {
     color: #4b4642;
     font-size: 20px;
+    font-family: "Ubuntu";
 }
 
 QComboBox {
     color: #4b4642;
+    font-family: "Ubuntu";
     border: 1px solid #d2d2d2;
     background-color: #fdfdfd;
     border-radius: 3px;
@@ -80,9 +82,11 @@ QListView#StyleComboBoxView {
     border: 1px solid #c9c9c9;
     background-color: #fafafa;
     outline:0px;
+    font-family: "Ubuntu";
 }
 QListView#StyleComboBoxView::item {
     color: #4b4642;
+    font-family: "Ubuntu";
     border: transparent;
     min-height: 25px;
     background-color: #fafafa;
@@ -113,6 +117,7 @@ QLabel#AppSettings {
     color: #4b4642;
     font-weight: bold;
     font-size: 24px;
+    font-family: "Ubuntu";
 }
 
 

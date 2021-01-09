@@ -72,7 +72,10 @@ Item {
                 id: sliderText
                 text: qsTr("Slider");
                 color: textColor;
-                font.bold: true
+                font {
+                    bold: true
+                    family: "Ubuntu"
+                }
             }
 
             Slider {
@@ -141,7 +144,10 @@ Item {
                 id: rangesliderText
                 text: qsTr("RangeSlider");
                 color: textColor;
-                font.bold: true;
+                font {
+                    bold: true
+                    family: "Ubuntu"
+                }
             }
 
             RangeSlider {

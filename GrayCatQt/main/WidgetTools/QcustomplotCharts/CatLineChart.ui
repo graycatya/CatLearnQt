@@ -50,6 +50,9 @@
       </property>
       <item>
        <layout class="QFormLayout" name="formLayout">
+        <property name="horizontalSpacing">
+         <number>10</number>
+        </property>
         <property name="verticalSpacing">
          <number>10</number>
         </property>

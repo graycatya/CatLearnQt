@@ -1,10 +1,12 @@
 QLabel {
     color: #C1C1C1;
     font-size: 20px;
+    font-family: "Ubuntu";
 }
 
 QComboBox {
     color: #C1C1C1;
+    font-family: "Ubuntu";
     border: 1px solid #313131;
     background-color: #484848;
     border-radius: 3px;
@@ -58,6 +60,7 @@ QListView#StyleComboBoxView {
     border: 1px solid #313131;
     background-color: #484848;
     outline:0px;
+    font-family: "Ubuntu";
 }
 QListView#StyleComboBoxView::item {
     color: #C1C1C1;
@@ -190,6 +193,7 @@ QPushButton#StartButton {
     max-height: 30px;
     border-radius: 5px;
     color: #C1C1C1;
+    font-family: "Ubuntu";
     border: 1px solid gray;
     background-color: #272626;
 }
@@ -216,6 +220,7 @@ QPushButton#StartButton:checked {
 }
 
 CatQcLineChart#ChartWidget {
+    font-family: "Ubuntu";
     qproperty-Background: #686868;
     qproperty-LegendBorderColor: transparent;
     qproperty-LegendSelectBorderColor: rgba(223,74,22,60%);

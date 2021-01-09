@@ -11,7 +11,9 @@ QStackedWidget#ToolStackedWidget {
 
 QLineEdit#QrenCodeEdit {
     color: black;
+    font-family: "Ubuntu";
     border: 1px solid #959595;
     border-radius: 3px;
     background-color: #f1f1f1;
 }
+

@@ -1,10 +1,12 @@
 QLabel {
     color: #4b4642;
     font-size: 20px;
+    font-family: "Ubuntu";
 }
 
 QComboBox {
     color: #4b4642;
+    font-family: "Ubuntu";
     border: 1px solid #d2d2d2;
     background-color: #fdfdfd;
     border-radius: 3px;
@@ -58,6 +60,7 @@ QListView#StyleComboBoxView {
     border: 1px solid #c9c9c9;
     background-color: #fafafa;
     outline:0px;
+    font-family: "Ubuntu";
 }
 QListView#StyleComboBoxView::item {
     color: #4b4642;
@@ -184,6 +187,7 @@ QPushButton#StartButton {
     max-height: 30px;
     border-radius: 5px;
     color: #4b4642;
+    font-family: "Ubuntu";
     border: 1px solid #e4e4e4;
     background-color: #fcfcfc;
 }

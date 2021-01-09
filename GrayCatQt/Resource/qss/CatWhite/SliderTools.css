@@ -14,7 +14,8 @@ QWidget#SliderWidget {
 QLabel {
 	color: #424242;
 	font-weight:bold;
-	font-size: 24px;
+    font-size: 24px;
+    font-family: "Ubuntu";
 }
 
 /* 滚动条 */

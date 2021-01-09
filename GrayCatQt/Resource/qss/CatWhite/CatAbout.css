@@ -51,6 +51,10 @@ QTabWidget::tab-bar{
 	border-width:0px;
 }
 
+QTabWidget {
+	font-family: "Ubuntu";
+}
+
 QTabBar::tab{
 	border-bottom-color: #424242;
 	border-top-left-radius: 0px;
@@ -258,12 +262,14 @@ QTextEdit#LicenceTextEdit {
 	color: #424242;
 	border: none;
 	background: transparent;
+	font-family: "Ubuntu";
 }
 
 QTextBrowser#ThankTextBrowser {
 	color: #424242;
 	border: none;
 	background: transparent;
+	font-family: "Ubuntu";
 }
 
 QPushButton#Log {
@@ -282,24 +288,28 @@ QLabel#AppName {
 	color: #424242;
 	font-weight:bold;
 	font-size: 24px;
+	font-family: "Ubuntu";
 }
 
 QLabel#AppVersion {
 	color: #424242;
 	font-weight:bold;
 	font-size: 24px;
+	font-family: "Ubuntu";
 }
 
 QLabel#Author {
 	color: #424242;
 	font-weight:bold;
 	font-size: 16px;
+	font-family: "Ubuntu";
 }
 
 QLabel#AuthorName {
 	color: #424242;
 	font-weight:bold;
 	font-size: 16px;
+	font-family: "Ubuntu";
 }
 
 QLabel#Explain {
@@ -307,6 +317,7 @@ QLabel#Explain {
 	background-color: transparent;
 	border: 0px;
 	font-size: 16px;
+	font-family: "Ubuntu";
 }
 
 QPushButton#GrayCatYa {

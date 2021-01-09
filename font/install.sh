@@ -7,6 +7,7 @@ d="ubuntu"
 
 if [[ $a =~ $b ]];then
     echo "mac"
+    sudo cp *.ttf ~/Library/Fonts
 elif [[ $a =~ $d ]];then
     echo "ubuntu"
 else

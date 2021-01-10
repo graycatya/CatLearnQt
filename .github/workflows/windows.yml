@@ -59,7 +59,7 @@ jobs:
             msvc_arch: x64
             qt_arch_install: msvc2019_64          
     env:
-      targetName: GrayCatQt.exe
+      targetName: GrayCatQt/GrayCatQt.exe
     # 步骤
     steps:
       # 安装Qt

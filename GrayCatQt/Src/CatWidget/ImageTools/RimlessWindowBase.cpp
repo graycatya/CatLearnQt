@@ -9,6 +9,7 @@
 #include <QTimer>
 #include <QPainter>
 #include <QtMath>
+#include <QPainterPath>
 
 #ifdef Q_OS_LINUX
 #include <X11/Xlib.h>

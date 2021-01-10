@@ -108,7 +108,6 @@ QPushButton#CloseButton:pressed {
 }
 
 QLabel#Title {
-    max-width: 200px;
     min-height: 30px;
     font-family: "Ubuntu";
     font-size: 18px;

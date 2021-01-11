@@ -7,6 +7,9 @@ namespace Ui {
 class CatAbout;
 }
 
+class QTextBrowser;
+class QTextEdit;
+
 class CatAbout : public QWidget
 {
     Q_OBJECT
@@ -29,6 +32,8 @@ protected:
 
 private:
     Ui::CatAbout *ui;
+    QTextEdit *LicenceTextEdit;
+    QTextBrowser *ThankTextBrowser;
 };
 
 #endif // CATABOUT_H

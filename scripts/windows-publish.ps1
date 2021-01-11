@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param (
-    [string] $archiveName, [string] $targetName [string] $projectName
+    [string] $archiveName, [string] $targetName, [string] $projectName
 )
 # 外部环境变量包括:
 # VCINSTALLDIR: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC'

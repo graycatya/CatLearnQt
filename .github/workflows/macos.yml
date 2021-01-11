@@ -57,14 +57,14 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: ${targetName}_${{matrix.qt_ver}}.zip
-          path: ${projectName}/bin/release/${targetName}.app
+          path: ${projectName}/${targetName}.app
       # tag 上传Release
       - name: uploadRelease
         if: startsWith(github.event.ref, 'refs/tags/')
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: bin/release/${{ env.targetName }}.dmg
+          file: ${projectName}/${{ env.targetName }}.dmg
           asset_name: ${{ env.targetName }}_${{ matrix.os }}_${{ matrix.qt_ver }}.dmg
           tag: ${{ github.ref }}
           overwrite: true

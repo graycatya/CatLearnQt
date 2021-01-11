@@ -45,6 +45,3 @@ jobs:
         run: |
           qmake
           make
-      - name: tree
-        run: |
-          tree

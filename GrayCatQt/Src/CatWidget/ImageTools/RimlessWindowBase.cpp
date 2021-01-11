@@ -11,9 +11,11 @@
 #include <QtMath>
 #include <QPainterPath>
 
+#ifndef Q_OS_ANDROID
 #ifdef Q_OS_LINUX
 #include <X11/Xlib.h>
 #include <QX11Info>
+#endif
 #endif
 
 
@@ -87,6 +89,7 @@ void RimlessWindowBase::SetProcessGeometry(int x, int y, int width, int height)
 }
 
 #ifdef Q_OS_LINUX
+#ifndef Q_OS_ANDROID
 void RimlessWindowBase::LinuxMoveWidget(int type, QString event)
 {
     XEvent xevent;
@@ -114,6 +117,7 @@ void RimlessWindowBase::LinuxMoveWidget(int type, QString event)
                &xevent);
     XFlush(display);
 }
+#endif
 #endif
 
 void RimlessWindowBase::SetMoveRect(QRect rect)
@@ -232,8 +236,11 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
         m_pLast_Rect = QRect(m_pScreen->x(), m_pScreen->y(), m_pScreen->width(), m_pScreen->height());
         QPoint pos(event->globalX() - m_qMovePos.x(), event->globalY() - m_qMovePos.y());
         m_pScreen->Move(pos, true);
+
 #ifdef Q_OS_LINUX
+#ifndef Q_OS_ANDROID
         LinuxMoveWidget(ClientMessage);
+#endif
 #endif
     } else if(m_pScreen->GetState() == ProcessObject::STATE::ZOOM)
     {
@@ -338,6 +345,7 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
     if(m_pScreen->GetState() != ProcessObject::STATE::SELECT)
     {
 #ifdef Q_OS_LINUX
+#ifndef Q_OS_ANDROID
         if(m_pScreen->GetState() != ProcessObject::STATE::MOVE)
         {
             this->setGeometry(m_pScreen->x(), m_pScreen->y(),
@@ -355,6 +363,7 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
             this->setCursor(Qt::ArrowCursor);
             //m_pScreen->SetGeometry(this->x(), this->y(), this->width(), this->height());
         }
+#endif
 #else
         this->setGeometry(m_pScreen->x(), m_pScreen->y(),
                           m_pScreen->width(), m_pScreen->height());

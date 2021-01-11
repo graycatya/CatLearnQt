@@ -79,7 +79,7 @@ void CatAbout::InitProperty()
     QFile file_licence(":/about/Licence/Licence.md");
     file_licence.open(QIODevice::ReadOnly);
     QString licencemd = QLatin1String(file_licence.readAll());
-    ui->LicenceTextEdit->setMarkdown(licencemd);
+    LicenceTextEdit->setMarkdown(licencemd);
     file_licence.close();
 #endif
     retranslateUi();

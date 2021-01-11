@@ -37,7 +37,9 @@ private:
     void SetZoomGeometry(int x, int y, int width, int height);
 
 #ifdef Q_OS_LINUX
+#ifndef Q_OS_ANDROID
     void LinuxMoveWidget( int type, QString event = "_NET_WM_MOVERESIZE");
+#endif
 #endif
 
 protected:

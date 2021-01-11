@@ -44,7 +44,10 @@ jobs:
           qmake
           make
       - name: install font
-        run: ./font/install.sh
+        run: |
+          cd font
+          ./install.sh
+          cd ..
       - name: tree 
         run: |
           /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

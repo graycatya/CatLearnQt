@@ -36,6 +36,11 @@ macos {
     LIBS -= -lGL -lglut
 }
 
+#表示arm平台构建套件
+contains(QT_ARCH, arm) {
+    LIBS -= -lGL -lglut
+}
+
 greaterThan(QT_MAJOR_VERSION, 4) printsupport
 
 HEADERS += \

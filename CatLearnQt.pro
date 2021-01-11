@@ -1,5 +1,7 @@
 TEMPLATE = subdirs
 
+message($$QT_ARCH)
+
 OTHER_FILES += *.md \
     .qmake.conf \
     .github/workflows/* \

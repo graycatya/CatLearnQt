@@ -30,7 +30,7 @@ jobs:
         qt_ver: [5.15.2]
         qt_arch: [clang_64]
     env:
-      targetName: GrayCatQt/GrayCatQt
+      targetName: GrayCatQt
     steps: 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.10.0
@@ -44,6 +44,11 @@ jobs:
         run: |
           qmake
           make
+      - name: tree 
+        run: |
+          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+          brew install tree
+          tree
       # tag 打包
       - name: package
         run: |

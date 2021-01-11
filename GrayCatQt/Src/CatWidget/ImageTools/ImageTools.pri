@@ -10,6 +10,16 @@ macx {
     LIBS -= -lX11
 }
 
+android {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
+ios {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
 HEADERS += \
     $$PWD/ButtonTool.h \
     $$PWD/CatGifTool.h \

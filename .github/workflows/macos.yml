@@ -3,22 +3,20 @@ on:
   # push代码时触发workflow
   push:
     paths:
+      - '.qmake.conf'
+      - 'CatLearnQt.pro'
       - 'GrayCatQt/**'
       - 'doc/**'
       - 'font/**'
-      - 'scripts/windows-*.ps1'
-      - '.qmake.conf'
-      - 'CatLearnQt.pro'
       - '.github/workflows/macos.yml'
   # pull_request时触发workflow
   pull_request:
     paths:
+      - '.qmake.conf'
+      - 'CatLearnQt.pro'
       - 'GrayCatQt/**'
       - 'doc/**'
       - 'font/**'
-      - 'scripts/windows-*.ps1'
-      - '.qmake.conf'
-      - 'CatLearnQt.pro'
       - '.github/workflows/macos.yml'           
 jobs:
   build:
@@ -45,6 +43,8 @@ jobs:
         run: |
           qmake
           make
+      - name: install font
+        run: ./font/install.sh
       - name: tree 
         run: |
           /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"

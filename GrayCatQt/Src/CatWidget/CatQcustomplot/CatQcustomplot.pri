@@ -29,7 +29,7 @@ contains(QT_ARCH, i386) {
 }
 
 unix {
-    LIBS += -lGL #-lglut
+    #LIBS += -lGL #-lglut
 }
 
 macos {

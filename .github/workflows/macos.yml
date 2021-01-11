@@ -43,16 +43,19 @@ jobs:
         run: |
           qmake
           make
-      - name: tree 
-        run: |
-          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-          brew install tree
-          tree
+      #- name: tree 
+      #  run: |
+      #    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      #    brew install tree
+      #    tree
       # tag 打包
       - name: package
         run: |
           # 拷贝依赖
           macdeployqt ${projectName}/${targetName}.app -qmldir=. -verbose=1 -dmg
+      - name: pwd-dir
+        run: |
+          pwd
       # 上传artifacts          
       - uses: actions/upload-artifact@v2
         with:

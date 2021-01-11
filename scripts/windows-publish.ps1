@@ -28,7 +28,7 @@ Write-Host "scriptDir" $scriptDir
 function Main() {
     New-Item -ItemType Directory $archiveName
     # 拷贝exe
-    Copy-Item $projectName\bin\release\$targetName $archiveName\
+    Copy-Item $projectName\release\$targetName $archiveName\
     # 拷贝依赖
     windeployqt --qmldir . --plugindir $archiveName\plugins --no-translations --compiler-runtime $archiveName\$targetName
     # 删除不必要的文件

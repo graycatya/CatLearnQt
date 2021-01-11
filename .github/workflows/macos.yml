@@ -52,7 +52,7 @@ jobs:
       - name: package
         run: |
           # 拷贝依赖
-          macdeployqt ${projectName}/bin/release/${targetName}.app -qmldir=. -verbose=1 -dmg
+          macdeployqt ${projectName}/${targetName}.app -qmldir=. -verbose=1 -dmg
       # 上传artifacts          
       - uses: actions/upload-artifact@v2
         with:

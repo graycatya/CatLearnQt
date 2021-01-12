@@ -1,17 +1,16 @@
-[Github](https://github.com/graycatya/CatLearnQt)
-[Gitee](https://gitee.com/graycatya/CatLearnQt)
-
 
 ## 目录
 
 - [目录](#目录)
 - [CatLearnQt](#catlearnqt)
+- [项目地址](#项目地址)
 - [徽章预览](#徽章预览)
+  - [项目](#项目)
+  - [编译](#编译)
 - [开发环境](#开发环境)
 - [环境搭建](#环境搭建)
-  - [Windows](#windows)
-  - [Linux](#linux)
-  - [MacOs](#macos)
+- [项目结构](#项目结构)
+  - [项目根目录说明](#项目根目录说明)
 
 ## CatLearnQt
 
@@ -19,7 +18,20 @@ CatLearnQt 记录自己学习Qt过程.
 
 CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库，则必须遵守相关许可条款。
 
+
+## 项目地址
+
+| 镜像仓库 | 地址 |
+|:--:|:--:|
+| ![GitHub] | [Github](https://github.com/graycatya/CatLearnQt) |
+| ![Gitee] | [Gitee](https://gitee.com/graycatya/CatLearnQt) |
+
+[GitHub]: ./doc/Images/github.svg
+[Gitee]: ./doc/Images/gitee-fill-round.svg
+
 ## 徽章预览
+
+### 项目
 
 |[最佳实践计划][CII-link]|[许可][license-link]| [在线社区][Gitter-link] |
 |:--:|:--:|:--:|
@@ -35,7 +47,27 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 [Gitter]: https://badges.gitter.im/CatLearnQt/community.svg "community"
 
 
+### 编译
 
+| [Windows][win-link]| [Ubuntu][ubuntu-link]|[MacOS][macos-link]|[Android][android-link]|[IOS][ios-link]|
+|---------------|---------------|-----------------|-----------------|----------------|
+| ![win-badge]  | ![ubuntu-badge]      | ![macos-badge] |![android-badge]   |![ios-badge]   |
+
+
+[win-link]: https://github.com/graycatya/CatLearnQt/actions?query=workflow%3AWindows "WindowsAction"
+[win-badge]: https://github.com/graycatya/CatLearnQt/workflows/Windows/badge.svg  "Windows"
+
+[ubuntu-link]: https://github.com/graycatya/CatLearnQt/actions?query=workflow%3AUbuntu "UbuntuAction"
+[ubuntu-badge]: https://github.com/graycatya/CatLearnQt/workflows/Ubuntu/badge.svg "Ubuntu"
+
+[macos-link]: https://github.com/graycatya/CatLearnQt/actions?query=workflow%3AMacOS "MacOSAction"
+[macos-badge]: https://github.com/graycatya/CatLearnQt/workflows/MacOS/badge.svg "MacOS"
+
+[android-link]: https://github.com/graycatya/CatLearnQt/actions?query=workflow%3AAndroid "AndroidAction"
+[android-badge]: https://github.com/graycatya/CatLearnQt/workflows/Android/badge.svg "Android"
+
+[ios-link]: https://github.com/graycatya/CatLearnQt/actions?query=workflow%3AIOS "IOSAction"
+[ios-badge]: https://github.com/graycatya/CatLearnQt/workflows/IOS/badge.svg "IOS"
 
 
 ## 开发环境
@@ -44,18 +76,31 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 
 * 支持qt5.15
 
-* 支持windwos，macOs，linux
-
-
 ## 环境搭建
 
-### Windows
 
-[Windows](doc/windows.md)
+|系统|文档|
+|:--:|:--:|
+| Windows | [windows.md](doc/windows/windows.md) |
+| Linux | [linux.md](doc/linux/linux.md) |
+| MacOs | [macos.md](doc/macos/macos.md) |
+| Android | [android.md](doc/android/android.md) |
+| Ios | [ios.md](doc/ios/ios.md) |
 
-### Linux
 
-[Linux](doc/linux.md)
-### MacOs
+## 项目结构
 
-[MacOs](doc/macos.md)
+| 描述 | 文档 |
+|:--:|:--:|
+| 项目目录结构 | [ProjectDirectoryStructure](./doc/ProjectDirectoryStructure.md) |
+
+
+### 项目根目录说明
+
+| 目录 | 说明 | 备注 |
+|:--:|:--:|:--:|
+| doc | 文档目录 | 保存了项目所需的文档，描述了各个平台的配置，以及项目模块说明等。 |
+| font | 字体文件目录 | 提供了GrayCatQt项目所使用的字体(Ubuntu)。 |
+| GrayCatQt | 模块集成演示项目 | 该项目以QWidget为基础开发，演示了QWidget，QQuickWidget，QGraphicsView等模块的项目。 |
+| scripts | 脚步文件路径 | 持续集成相关配置，用于自动化构建、发布所需要的脚步 |
+| .github | github-Actions配置 | 持续集成相关配置，用于自动化构建、发布 |

@@ -1,13 +1,15 @@
 ﻿//#include <QApplication>
 #include <SingleApplication>
 #include <CatLog>
-#include <CatSerial>
 #include <QTranslator>
 #include "WinWidget.h"
 
 #include "CatConfig/CatConfig.h"
 #include <QTimer>
 
+#ifndef Q_OS_IOS
+#include <CatSerial>
+#endif
 
 
 int main(int argc, char *argv[])
@@ -25,7 +27,7 @@ int main(int argc, char *argv[])
     CatConfig *config = CatConfig::Instance();
     config->SetTranslator(&app);
     config->InitConfig();
-
+#ifndef Q_OS_IOS
     // [3] 启动串口热插拔检测
     MonitorSerial::Instance()->Start(200, true);
     QObject::connect(MonitorSerial::Instance(), &MonitorSerial::UpdateSerial, [](QList<QSerialPortInfo> adds, QList<QSerialPortInfo> dels){
@@ -40,6 +42,7 @@ int main(int argc, char *argv[])
             CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
         }
     });
+#endif
 
     WinWidget w;
     w.show();

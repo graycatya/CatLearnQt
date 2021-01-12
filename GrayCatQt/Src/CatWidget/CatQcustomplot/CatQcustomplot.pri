@@ -29,7 +29,7 @@ contains(QT_ARCH, i386) {
 }
 
 unix {
-    #LIBS += -lGL #-lglut
+    LIBS += -lGL #-lglut
 }
 
 macos {
@@ -37,9 +37,11 @@ macos {
 }
 
 #表示arm平台构建套件
-contains(QT_ARCH, arm) {
+contains(DEFINES,ANDROID_APP) {
     LIBS -= -lGL -lglut
 }
+
+
 
 greaterThan(QT_MAJOR_VERSION, 4) printsupport
 

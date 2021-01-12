@@ -70,7 +70,9 @@ include(Src/CatNetWork/CatNetWork.pri)
 include(Src/CatLog/CatLog.pri)
 include(Src/CatWidget/CatWidget.pri)
 include(Src/CatGraphicsView/CatGraphicsView.pri)
+if(!contains(DEFINES,IOS_APP)) {
 include(Src/CatSerial/CatSerial.pri)
+}
 include(Src/CatControl/CatControl.pri)
 
 RESOURCES += \

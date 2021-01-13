@@ -11,6 +11,8 @@
 - [环境搭建](#环境搭建)
 - [项目结构](#项目结构)
   - [项目根目录说明](#项目根目录说明)
+  - [现成模块](#现成模块)
+    - [GrayCatQt 项目模块](#graycatqt-项目模块)
 
 ## CatLearnQt
 
@@ -104,3 +106,20 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | GrayCatQt | 模块集成演示项目 | 该项目以QWidget为基础开发，演示了QWidget，QQuickWidget，QGraphicsView等模块的项目。 |
 | scripts | 脚步文件路径 | 持续集成相关配置，用于自动化构建、发布所需要的脚步 |
 | .github | github-Actions配置 | 持续集成相关配置，用于自动化构建、发布 |
+
+
+
+### 现成模块
+
+#### GrayCatQt 项目模块
+
+| 目录 | 说明 | 文档 |
+|:--:|:--:|:--:|
+| GrayCatQt/Src/CatControl | 提供了自定义子控件 ||
+| GrayCatQt/Src/CatGraphiceView | 提供了基于GraphiceView模块与控件集 ||
+| GrayCatQt/Src/CatLog | 日志模块 ||
+| GrayCatQt/Src/CatNetWork | 网络模块 ||
+| GrayCatQt/Src/CatSerial | 串口模块 ||
+| GrayCatQt/Src/CatUniversal | 通用模块，文件，字体，QSetting配置，线程，与线程池 ||
+| GrayCatQt/Src/CatWidget | 提供了基于Widget实现的模块，与CatControl不同的是它是由多个子控件实现的一整个模块体系。 ||
+| GrayCatQt/Src/SingleApplication | 程序单例模块 | [doc](./GrayCatQt/Src/SingleApplication/README.md) |

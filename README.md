@@ -12,7 +12,7 @@
 - [项目结构](#项目结构)
   - [项目根目录说明](#项目根目录说明)
   - [现成模块](#现成模块)
-    - [GrayCatQt 项目模块](#graycatqt-项目模块)
+    - [GrayCatQt 模块](#graycatqt-模块)
 
 ## CatLearnQt
 
@@ -111,7 +111,7 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 
 ### 现成模块
 
-#### GrayCatQt 项目模块
+#### GrayCatQt 模块
 
 | 目录 | 说明 | 文档 |
 |:--:|:--:|:--:|

@@ -6,4 +6,5 @@ OTHER_FILES += *.md \
     .qmake.conf \
     .github/workflows/* \
 
-SUBDIRS += $$PWD/GrayCatQt/GrayCatQt.pro \
+SUBDIRS += $$PWD/Examples/Examples.pro \
+           $$PWD/GrayCatQt/GrayCatQt.pro \

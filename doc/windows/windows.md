@@ -8,3 +8,9 @@
 
 ![win_white](../Images/win_white.png)
 
+
+## 字体配置
+
+```
+复制(CatLearnQt/font/*.ttf)所有字体到(C:\Windows\Fonts)目录下。
+```

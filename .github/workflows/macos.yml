@@ -31,7 +31,7 @@ jobs:
         qt_arch: [clang_64]
     env:
       projectName: Examples
-      targetName: Examples
+      targetName: CatLearnQt
     steps: 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.10.0

@@ -62,7 +62,7 @@ jobs:
             qt_arch_install: msvc2019_64          
     env:
       projectName: Examples
-      targetName: Examples.exe
+      targetName: CatLearnQt.exe
     # 步骤
     steps:
       # 安装Qt

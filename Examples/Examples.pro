@@ -10,6 +10,8 @@ CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
+TARGET = CatLearnQt
+
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings
@@ -32,8 +34,8 @@ DEFINES += APP_VERSION=\\\"'v1.0.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
 DEFINES += APP_NAME=\\\"'CatLearnQt'\\\"
 
-include(CatWidget/CatWidget.pri)
-include(CatQuick/CatQuick.pri)
+include(CatWidgetExamples/CatWidgetExamples.pri)
+include(CatQuickExamples/CatQuickExamples.pri)
 include($$PWD/../GrayCatQt/GrayCatQt.pri)
 
 RESOURCES += \

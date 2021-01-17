@@ -32,7 +32,8 @@ DEFINES += APP_VERSION=\\\"'v1.0.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
 DEFINES += APP_NAME=\\\"'CatLearnQt'\\\"
 
-include(main/main.pri)
+include(CatWidget/CatWidget.pri)
+include(CatQuick/CatQuick.pri)
 include($$PWD/../GrayCatQt/GrayCatQt.pri)
 
 RESOURCES += \
@@ -40,3 +41,6 @@ RESOURCES += \
 
 TRANSLATIONS = Resource/lang/language_en.ts \
                Resource/lang/language_zh_CN.ts
+
+SOURCES += \
+    main.cpp

@@ -2,9 +2,9 @@
 #include <SingleApplication>
 #include <CatLog>
 #include <QTranslator>
-#include "WinWidget.h"
+#include "CatWidget/WinWidget.h"
 
-#include "CatConfig/CatConfig.h"
+#include "CatWidget/CatConfig/CatConfig.h"
 #include <QTimer>
 
 #ifndef Q_OS_IOS

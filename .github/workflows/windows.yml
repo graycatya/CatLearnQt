@@ -4,6 +4,7 @@ on:
   # push代码时触发workflow
   push:
     paths:
+      - 'Examples/**'
       - '.qmake.conf'
       - 'CatLearnQt.pro'
       - 'GrayCatQt/**'
@@ -14,6 +15,7 @@ on:
   # pull_request时触发workflow
   pull_request:
     paths:
+      - 'Examples/**'
       - '.qmake.conf'
       - 'CatLearnQt.pro'
       - 'GrayCatQt/**'
@@ -59,8 +61,8 @@ jobs:
             msvc_arch: x64
             qt_arch_install: msvc2019_64          
     env:
-      projectName: GrayCatQt
-      targetName: GrayCatQt.exe
+      projectName: Examples
+      targetName: Examples.exe
     # 步骤
     steps:
       # 安装Qt

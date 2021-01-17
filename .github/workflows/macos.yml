@@ -3,6 +3,7 @@ on:
   # push代码时触发workflow
   push:
     paths:
+      - 'Examples/**'
       - '.qmake.conf'
       - 'CatLearnQt.pro'
       - 'GrayCatQt/**'
@@ -12,6 +13,7 @@ on:
   # pull_request时触发workflow
   pull_request:
     paths:
+      - 'Examples/**'
       - '.qmake.conf'
       - 'CatLearnQt.pro'
       - 'GrayCatQt/**'
@@ -28,8 +30,8 @@ jobs:
         qt_ver: [5.15.2]
         qt_arch: [clang_64]
     env:
-      projectName: GrayCatQt
-      targetName: GrayCatQt
+      projectName: Examples
+      targetName: Examples
     steps: 
       - name: Install Qt
         uses: jurplel/install-qt-action@v2.10.0

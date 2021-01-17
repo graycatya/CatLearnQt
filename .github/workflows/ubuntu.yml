@@ -4,6 +4,7 @@ on:
   # push代码时触发workflow
   push:
     paths:
+      - 'Examples/**'
       - 'GrayCatQt/**'
       - 'doc/**'
       - 'font/**'
@@ -14,6 +15,7 @@ on:
   # pull_request时触发workflow
   pull_request:
     paths:
+      - 'Examples/**'
       - 'GrayCatQt/**'
       - 'doc/**'
       - 'font/**'

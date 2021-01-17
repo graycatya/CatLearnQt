@@ -129,6 +129,6 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 #### Examples 项目
 
 | 目录 | 说明 |
-|:--:|:--:|:--:|
+|:--:|:--:|
 | Examples/CatQuickExamples | 演示项目开发中 |
 | Examples/CatWidgetExamples | Widgdet版项目演示 |

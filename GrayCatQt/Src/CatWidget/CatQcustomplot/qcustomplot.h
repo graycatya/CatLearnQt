@@ -1304,6 +1304,7 @@ public:
   // non-virtual methods:
   bool removeAt(int index);
   bool remove(QCPLayoutElement* element);
+  bool removeNotDel(QCPLayoutElement* element);
   void clear();
   
 protected:

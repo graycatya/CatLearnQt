@@ -5,6 +5,7 @@
 
 class QCPGraph;
 class QComboBox;
+class QCPLayoutElement;
 
 namespace Ui {
 class CatLineChart;
@@ -37,6 +38,7 @@ private slots:
     void UpdatePositionType(int id);
     void On_UpdateDxva(QString dxva);
     void On_MousePress();
+    void On_LineCheck(int line, bool state);
 
 protected:
     void hideEvent(QHideEvent *event) override;
@@ -45,6 +47,7 @@ protected:
 private:
     Ui::CatLineChart *ui;
     QVector<QCPGraph*> m_pGraphs;
+    QList<QCPLayoutElement*> m_pLayoutElements;
     QTimer *m_pDataTimer;
     QComboBox *m_pDxvaBox;
 

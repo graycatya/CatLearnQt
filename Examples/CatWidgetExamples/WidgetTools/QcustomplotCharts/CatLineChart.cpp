@@ -73,6 +73,11 @@ void CatLineChart::InitUi()
     m_pDxvaBox->addItems({"Not", "OpenGL"});
 
     StartTimer(false);
+
+    ui->Line_0->setChecked(true);
+    ui->Line_1->setChecked(true);
+    ui->Line_2->setChecked(true);
+    ui->Line_3->setChecked(true);
 }
 
 
@@ -242,6 +247,42 @@ void CatLineChart::InitChartConnect()
           frameCount = 0;
         }
     });
+
+    connect(ui->Line_0, &QCheckBox::stateChanged, this, [=](int state){
+        if(state == 2)
+        {
+            On_LineCheck(0, true);
+        } else {
+            On_LineCheck(0, false);
+        }
+    });
+
+    connect(ui->Line_1, &QCheckBox::stateChanged, this, [=](int state){
+        if(state == 2)
+        {
+            On_LineCheck(1, true);
+        } else {
+            On_LineCheck(1, false);
+        }
+    });
+
+    connect(ui->Line_2, &QCheckBox::stateChanged, this, [=](int state){
+        if(state == 2)
+        {
+            On_LineCheck(2, true);
+        } else {
+            On_LineCheck(2, false);
+        }
+    });
+
+    connect(ui->Line_3, &QCheckBox::stateChanged, this, [=](int state){
+        if(state == 2)
+        {
+            On_LineCheck(3, true);
+        } else {
+            On_LineCheck(3, false);
+        }
+    });
 }
 
 void CatLineChart::StartTimer(bool start)
@@ -308,6 +349,36 @@ void CatLineChart::On_MousePress()
         customPlot->axisRect()->setRangeDrag(customPlot->yAxis->orientation());
     else
         customPlot->axisRect()->setRangeDrag(Qt::Horizontal|Qt::Vertical);
+}
+
+void CatLineChart::On_LineCheck(int line, bool state)
+{
+    if(m_pLayoutElements.isEmpty())
+    {
+        m_pLayoutElements = ui->ChartWidget->legend->elements(true);
+    }
+    m_pGraphs.at(line)->setVisible(state);
+    m_pLayoutElements.at(line)->setVisible(state);
+    bool legendVisible = false;
+    for(int i = 0; i < m_pLayoutElements.size(); i++)
+    {
+        if(m_pLayoutElements.at(i)->visible())
+        {
+            legendVisible = true;
+        }
+        ui->ChartWidget->legend->removeNotDel(m_pLayoutElements.at(i));
+    }
+    for(int i = 0; i < m_pLayoutElements.size(); i++)
+    {
+        if(m_pLayoutElements.at(i)->visible())
+        {
+            ui->ChartWidget->legend->addElement(m_pLayoutElements.at(i));
+        }
+    }
+
+
+    ui->ChartWidget->legend->setVisible(legendVisible);
+    ui->ChartWidget->replot();
 }
 
 void CatLineChart::hideEvent(QHideEvent *event)

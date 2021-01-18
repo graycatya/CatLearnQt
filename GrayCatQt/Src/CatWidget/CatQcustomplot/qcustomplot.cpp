@@ -3738,7 +3738,16 @@ bool QCPLayout::remove(QCPLayoutElement *element)
     delete element;
     return true;
   } else
-    return false;
+      return false;
+}
+
+bool QCPLayout::removeNotDel(QCPLayoutElement *element)
+{
+    if (take(element))
+    {
+      return true;
+    } else
+        return false;
 }
 
 /*!

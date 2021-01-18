@@ -277,3 +277,8 @@ CatQcLineChart#ChartWidget {
     qproperty-TracerYTextBackgroundColor: rgba(200,200,200, 100%);
     
 }
+
+QCheckBox {
+    color: #4b4642;
+    font-family: "Ubuntu";
+}

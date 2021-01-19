@@ -47,7 +47,6 @@ protected:
 private:
     Ui::CatLineChart *ui;
     QVector<QCPGraph*> m_pGraphs;
-    QList<QCPLayoutElement*> m_pLayoutElements;
     QTimer *m_pDataTimer;
     QComboBox *m_pDxvaBox;
 

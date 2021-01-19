@@ -204,14 +204,16 @@ void CatLineChart::InitChartConnect()
         for (int i = 0; i < customPlot->graphCount(); ++i)
         {
             QCPGraph *graph = customPlot->graph(i);
-
-            QCPPlottableLegendItem *item = customPlot->legend->itemWithPlottable(graph);
-            if (item->selected() || graph->selected())//选中了哪条曲线或者曲线的图例
+            if(graph->visible())
             {
-                customPlot->SetSelectTraceGraph(graph);
-                graph->selectionDecorator()->setPen(ui->ChartWidget->GetGraphSelectionDecoratorPen());
-                item->setSelected(true);//同时选中曲线和图例
-                graph->setSelection(QCPDataSelection(graph->data()->dataRange()));
+                QCPPlottableLegendItem *item = customPlot->legend->itemWithPlottable(graph);
+                if (item->selected() || graph->selected())//选中了哪条曲线或者曲线的图例
+                {
+                    customPlot->SetSelectTraceGraph(graph);
+                    graph->selectionDecorator()->setPen(ui->ChartWidget->GetGraphSelectionDecoratorPen());
+                    item->setSelected(true);//同时选中曲线和图例
+                    graph->setSelection(QCPDataSelection(graph->data()->dataRange()));
+                }
             }
         }
 
@@ -353,31 +355,26 @@ void CatLineChart::On_MousePress()
 
 void CatLineChart::On_LineCheck(int line, bool state)
 {
-    if(m_pLayoutElements.isEmpty())
-    {
-        m_pLayoutElements = ui->ChartWidget->legend->elements(true);
-    }
+    QCustomPlot *customPlot = ui->ChartWidget;
     m_pGraphs.at(line)->setVisible(state);
-    m_pLayoutElements.at(line)->setVisible(state);
-    bool legendVisible = false;
-    for(int i = 0; i < m_pLayoutElements.size(); i++)
+
+    for(int i = 0; i < m_pGraphs.size(); i++)
     {
-        if(m_pLayoutElements.at(i)->visible())
-        {
-            legendVisible = true;
-        }
-        ui->ChartWidget->legend->removeNotDel(m_pLayoutElements.at(i));
+        m_pGraphs.at(i)->removeFromLegend(customPlot->legend);
     }
-    for(int i = 0; i < m_pLayoutElements.size(); i++)
+
+    bool showlegend = false;
+
+    for(int i = 0; i < m_pGraphs.size(); i++)
     {
-        if(m_pLayoutElements.at(i)->visible())
+        if(m_pGraphs.at(i)->visible())
         {
-            ui->ChartWidget->legend->addElement(m_pLayoutElements.at(i));
+            showlegend = true;
+            m_pGraphs.at(i)->addToLegend(customPlot->legend);
         }
     }
 
-
-    ui->ChartWidget->legend->setVisible(legendVisible);
+    customPlot->legend->setVisible(showlegend);
     ui->ChartWidget->replot();
 }
 

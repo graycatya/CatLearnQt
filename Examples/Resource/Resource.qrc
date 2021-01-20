@@ -117,5 +117,11 @@
         <file>about/thank/Thank_cn.md</file>
         <file>about/thank/Thank_en.html</file>
         <file>about/thank/Thank_en.md</file>
+        <file>Images/CatGray/CheckOff_gray.png</file>
+        <file>Images/CatGray/CheckOff_orange.png</file>
+        <file>Images/CatGray/CheckOn_orange.png</file>
+        <file>Images/CatWhite/CheckOff_gray.png</file>
+        <file>Images/CatWhite/CheckOff_orange.png</file>
+        <file>Images/CatWhite/CheckOn_orange.png</file>
     </qresource>
 </RCC>

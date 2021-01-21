@@ -33,6 +33,11 @@ public:
     void *GetButtonlayout( void );
     void RemoveBackGaugeItem();
 
+    void RemoveItem(QSpacerItem *item);
+    void RemoveWidget(QWidget *widget);
+
+    QScrollArea* GetScrollArea() const { return m_pScrollArea; };
+
 private:
     void InitUi( void );
     void InitProperty( void );
@@ -56,4 +61,5 @@ private:
     QSpacerItem *m_pItem_left;
     QSpacerItem *m_pItem_right;
 };
+
 

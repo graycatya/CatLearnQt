@@ -151,6 +151,34 @@ void ListiongOptions::RemoveBackGaugeItem()
 
 }
 
+void ListiongOptions::RemoveItem(QSpacerItem *item)
+{
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->removeItem(item);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeItem(item);
+            break;
+        }
+    }
+}
+
+void ListiongOptions::RemoveWidget(QWidget *widget)
+{
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->removeWidget(widget);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeWidget(widget);
+            break;
+        }
+    }
+}
+
 void ListiongOptions::InitUi()
 {
     m_pRootLayout = new QVBoxLayout(this);
@@ -230,10 +258,6 @@ void ListiongOptions::InitProperty()
     m_pScrollArea->setMouseTracking(true);
     m_pButtonLists->installEventFilter(this);
     m_pButtonLists->setMouseTracking(true);
-    /*QFile resourceqss(":/qss/CatGray/ListingOptions.css");
-    resourceqss.open(QFile::ReadOnly);
-    this->setStyleSheet(resourceqss.readAll());
-    resourceqss.close();*/
 }
 
 bool ListiongOptions::eventFilter(QObject *watched, QEvent *event)

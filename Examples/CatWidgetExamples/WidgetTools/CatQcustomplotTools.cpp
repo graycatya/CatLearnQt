@@ -10,6 +10,7 @@
 #include "CatControl/ListingOptions.h"
 
 #include "QcustomplotCharts/CatLineChart.h"
+#include "QcustomplotCharts/CatBarChart.h"
 
 CatQcustomplotTools::CatQcustomplotTools(QWidget *parent) :
     QWidget(parent),
@@ -77,7 +78,7 @@ void CatQcustomplotTools::InitChartsTool()
     m_pToolListiongOptions = new ListiongOptions(ListiongOptions::HBox, ui->QCustomplptToolWidget);
     //m_pToolListiongOptions->GetWidget()->setObjectName("CatQcustomplotListOptions");
     layout_0->addWidget(m_pToolListiongOptions);
-    QStringList list = { "CatLineChart" };
+    QStringList list = { "CatLineChart", "CatBarGraph" };
     for(int i = 0; i < list.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -96,6 +97,10 @@ void CatQcustomplotTools::InitChartWidgets()
     CatLineChart *m_pCatLineChart = new CatLineChart;
     m_pCatLineChart->setObjectName("CatLineChart");
     ui->QCustomplptToolStacked->addWidget(m_pCatLineChart);
+
+    CatBarChart *m_pCatBarChart = new CatBarChart;
+    m_pCatBarChart->setObjectName("CatBarChart");
+    ui->QCustomplptToolStacked->addWidget(m_pCatBarChart);
 }
 
 void CatQcustomplotTools::On_ToolButtons(int id)

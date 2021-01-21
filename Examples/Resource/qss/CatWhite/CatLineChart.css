@@ -216,7 +216,7 @@ QPushButton#StartButton:checked {
     border: 1px solid rgba(223,74,22,100%);
 }
 
-CatQcLineChart#ChartWidget {
+CatCustomChart#ChartWidget {
     qproperty-Background: white;
     qproperty-LegendBorderColor: rgba(0,0,0,60%);
     qproperty-LegendSelectBorderColor: rgba(223,74,22,60%);

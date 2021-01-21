@@ -10,6 +10,8 @@
 ListiongOptions::ListiongOptions(ListiongOptions::LAYOUT layout, QWidget *parent)
  : QWidget(parent)
  , m_yLayout(layout)
+ , m_pItem_left(nullptr)
+ , m_pItem_right(nullptr)
 {
     InitUi();
 
@@ -131,6 +133,24 @@ void *ListiongOptions::GetButtonlayout()
     return m_pButtonListsLayout;
 }
 
+void ListiongOptions::RemoveBackGaugeItem()
+{
+
+    switch (m_yLayout) {
+        case VBox: {
+            static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_left);
+            static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_right);
+            break;
+        }
+        case HBox: {
+            static_cast<QHBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_left);
+            static_cast<QHBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_right);
+            break;
+        }
+    }
+
+}
+
 void ListiongOptions::InitUi()
 {
     m_pRootLayout = new QVBoxLayout(this);
@@ -186,6 +206,15 @@ void ListiongOptions::InitUi()
             static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->addItem(item_1);
             break;
         }
+    }
+
+    if(item_0 != nullptr)
+    {
+        m_pItem_left = item_0;
+    }
+    if(item_1 != nullptr)
+    {
+        m_pItem_right = item_1;
     }
 
     m_pButtonGroup = new QButtonGroup(m_pButtonLists);

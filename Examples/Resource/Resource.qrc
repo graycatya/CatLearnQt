@@ -123,5 +123,9 @@
         <file>Images/CatWhite/CheckOff_gray.png</file>
         <file>Images/CatWhite/CheckOff_orange.png</file>
         <file>Images/CatWhite/CheckOn_orange.png</file>
+        <file>Images/CatGray/QcustomplotBarGraph.png</file>
+        <file>Images/CatWhite/QcustomplotBarGraph.png</file>
+        <file>qss/CatGray/CatBarChart.css</file>
+        <file>qss/CatWhite/CatBarChart.css</file>
     </qresource>
 </RCC>

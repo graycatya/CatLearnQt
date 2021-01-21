@@ -31,6 +31,7 @@ public:
     QButtonGroup *GetButtonGroup( void ) const;
     void Clear();
     void *GetButtonlayout( void );
+    void RemoveBackGaugeItem();
 
 private:
     void InitUi( void );
@@ -52,5 +53,7 @@ private:
     QList<QSpacerItem*> m_lItemList;
     QButtonGroup *m_pButtonGroup;
     LAYOUT m_yLayout;
+    QSpacerItem *m_pItem_left;
+    QSpacerItem *m_pItem_right;
 };
 

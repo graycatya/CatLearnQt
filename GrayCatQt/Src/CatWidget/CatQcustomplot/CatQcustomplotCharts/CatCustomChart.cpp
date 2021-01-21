@@ -1,6 +1,6 @@
-﻿#include "CatQcLineChart.h"
+﻿#include "CatCustomChart.h"
 
-CatQcLineChart::CatQcLineChart(QWidget *parent)
+CatCustomChart::CatCustomChart(QWidget *parent)
     : CatQcustomplot(parent)
     , m_bTracer(false)
     , m_pTracer(new QCPItemTracer(this))
@@ -11,12 +11,12 @@ CatQcLineChart::CatQcLineChart(QWidget *parent)
     InitProperty();
 }
 
-CatQcLineChart::~CatQcLineChart()
+CatCustomChart::~CatCustomChart()
 {
 
 }
 
-void CatQcLineChart::SetTracer(bool tracer)
+void CatCustomChart::SetTracer(bool tracer)
 {
     m_bTracer = tracer;
     m_pTracer->setVisible(m_bTracer);
@@ -24,15 +24,15 @@ void CatQcLineChart::SetTracer(bool tracer)
     m_pTracerYText->setVisible(m_bTracer);
 }
 
-void CatQcLineChart::SetSelectTraceGraph(QCPGraph *graph)
+void CatCustomChart::SetSelectTraceGraph(QCPGraph *graph)
 {
     m_pTraceGraph = graph;
 }
 
-void CatQcLineChart::InitUi()
+void CatCustomChart::InitUi()
 {
     QFont font;
-    font.setFamily("Arial");
+    font.setFamily("Ubuntu");
     font.setPixelSize(11);
     m_pTracer->setVisible(false);
     m_pTracer->setInterpolating(false);
@@ -53,12 +53,12 @@ void CatQcLineChart::InitUi()
 
 }
 
-void CatQcLineChart::InitProperty()
+void CatCustomChart::InitProperty()
 {
     setMouseTracking(true);
 }
 
-void CatQcLineChart::mouseMoveEvent(QMouseEvent *event)
+void CatCustomChart::mouseMoveEvent(QMouseEvent *event)
 {
     CatQcustomplot::mouseMoveEvent(event);
     if(m_bTracer)
@@ -94,7 +94,7 @@ void CatQcLineChart::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void CatQcLineChart::showEvent(QShowEvent *event)
+void CatCustomChart::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
     if(graphCount() > 0)
@@ -107,13 +107,13 @@ void CatQcLineChart::showEvent(QShowEvent *event)
     }
 }
 
-void CatQcLineChart::SetTracerPen(QPen pen)
+void CatCustomChart::SetTracerPen(QPen pen)
 {
     m_pTracer->setPen(pen);
     replot();
 }
 
-void CatQcLineChart::SetTracerPenStyle(Qt::PenStyle style)
+void CatCustomChart::SetTracerPenStyle(Qt::PenStyle style)
 {
     QPen pen = m_pTracer->pen();
     pen.setStyle(style);
@@ -121,7 +121,7 @@ void CatQcLineChart::SetTracerPenStyle(Qt::PenStyle style)
     replot();
 }
 
-void CatQcLineChart::SetTracerPenWidth(int width)
+void CatCustomChart::SetTracerPenWidth(int width)
 {
     QPen pen = m_pTracer->pen();
     pen.setWidth(width);
@@ -129,7 +129,7 @@ void CatQcLineChart::SetTracerPenWidth(int width)
     replot();
 }
 
-void CatQcLineChart::SetTracerPenColor(QColor color)
+void CatCustomChart::SetTracerPenColor(QColor color)
 {
     QPen pen = m_pTracer->pen();
     pen.setColor(color);
@@ -137,19 +137,19 @@ void CatQcLineChart::SetTracerPenColor(QColor color)
     replot();
 }
 
-void CatQcLineChart::SetTracerStyle(QCPItemTracer::TracerStyle style)
+void CatCustomChart::SetTracerStyle(QCPItemTracer::TracerStyle style)
 {
     m_pTracer->setStyle(style);
     replot();
 }
 
-void CatQcLineChart::SetTracerXTextPen(QPen pen)
+void CatCustomChart::SetTracerXTextPen(QPen pen)
 {
     m_pTracerXText->setPen(pen);
     replot();
 }
 
-void CatQcLineChart::SetTracerXTextPenWidth(int width)
+void CatCustomChart::SetTracerXTextPenWidth(int width)
 {
     QPen pen = m_pTracerXText->pen();
     pen.setWidth(width);
@@ -157,7 +157,7 @@ void CatQcLineChart::SetTracerXTextPenWidth(int width)
     replot();
 }
 
-void CatQcLineChart::SetTracerXTextPenColor(QColor color)
+void CatCustomChart::SetTracerXTextPenColor(QColor color)
 {
     QPen pen = m_pTracerXText->pen();
     pen.setColor(color);
@@ -165,19 +165,19 @@ void CatQcLineChart::SetTracerXTextPenColor(QColor color)
     replot();
 }
 
-void CatQcLineChart::SetTracerXTextColor(QColor color)
+void CatCustomChart::SetTracerXTextColor(QColor color)
 {
     m_pTracerXText->setColor(color);
     replot();
 }
 
-void CatQcLineChart::SetTracerXTextBackgroundColor(QColor color)
+void CatCustomChart::SetTracerXTextBackgroundColor(QColor color)
 {
     m_pTracerXText->setBackgroundColor(color);
     replot();
 }
 
-void CatQcLineChart::SetTracerXPositionType(QCPItemPosition::PositionType type)
+void CatCustomChart::SetTracerXPositionType(QCPItemPosition::PositionType type)
 {
     m_pTracerXText->position->setType(type);
     switch (type) {
@@ -197,13 +197,13 @@ void CatQcLineChart::SetTracerXPositionType(QCPItemPosition::PositionType type)
     replot();
 }
 
-void CatQcLineChart::SetTracerYTextPen(QPen pen)
+void CatCustomChart::SetTracerYTextPen(QPen pen)
 {
     m_pTracerYText->setPen(pen);
     replot();
 }
 
-void CatQcLineChart::SetTracerYTextPenWidth(int width)
+void CatCustomChart::SetTracerYTextPenWidth(int width)
 {
     QPen pen = m_pTracerYText->pen();
     pen.setWidth(width);
@@ -211,7 +211,7 @@ void CatQcLineChart::SetTracerYTextPenWidth(int width)
     replot();
 }
 
-void CatQcLineChart::SetTracerYTextPenColor(QColor color)
+void CatCustomChart::SetTracerYTextPenColor(QColor color)
 {
     QPen pen = m_pTracerYText->pen();
     pen.setColor(color);
@@ -219,19 +219,19 @@ void CatQcLineChart::SetTracerYTextPenColor(QColor color)
     replot();
 }
 
-void CatQcLineChart::SetTracerYTextColor(QColor color)
+void CatCustomChart::SetTracerYTextColor(QColor color)
 {
     m_pTracerYText->setColor(color);
     replot();
 }
 
-void CatQcLineChart::SetTracerYTextBackgroundColor(QColor color)
+void CatCustomChart::SetTracerYTextBackgroundColor(QColor color)
 {
     m_pTracerYText->setBackgroundColor(color);
     replot();
 }
 
-void CatQcLineChart::SetTracerYPositionType(QCPItemPosition::PositionType type)
+void CatCustomChart::SetTracerYPositionType(QCPItemPosition::PositionType type)
 {
     m_pTracerYText->position->setType(type);
     switch (type) {

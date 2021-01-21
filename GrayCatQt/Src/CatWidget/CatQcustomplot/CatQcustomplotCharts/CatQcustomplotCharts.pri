@@ -1,5 +1,5 @@
 HEADERS += \
-    $$PWD/CatQcLineChart.h
+    $$PWD/CatCustomChart.h
 
 SOURCES += \
-    $$PWD/CatQcLineChart.cpp
+    $$PWD/CatCustomChart.cpp

@@ -5546,6 +5546,7 @@ public:
   virtual QCPRange getKeyRange(bool &foundRange, QCP::SignDomain inSignDomain=QCP::sdBoth) const Q_DECL_OVERRIDE;
   virtual QCPRange getValueRange(bool &foundRange, QCP::SignDomain inSignDomain=QCP::sdBoth, const QCPRange &inKeyRange=QCPRange()) const Q_DECL_OVERRIDE;
   virtual QPointF dataPixelPosition(int index) const Q_DECL_OVERRIDE;
+  double getStackedBaseValue(double key, bool positive) const;
   
 protected:
   // property members:
@@ -5564,7 +5565,7 @@ protected:
   void getVisibleDataBounds(QCPBarsDataContainer::const_iterator &begin, QCPBarsDataContainer::const_iterator &end) const;
   QRectF getBarRect(double key, double value) const;
   void getPixelWidth(double key, double &lower, double &upper) const;
-  double getStackedBaseValue(double key, bool positive) const;
+
   static void connectBars(QCPBars* lower, QCPBars* upper);
   
   friend class QCustomPlot;

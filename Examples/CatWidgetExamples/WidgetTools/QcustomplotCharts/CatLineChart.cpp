@@ -102,7 +102,7 @@ void CatLineChart::InitConnect()
                                              QCP::iSelectAxes | QCP::iSelectLegend |
                                              QCP::iSelectPlottables);
         } else {
-            m_pDataTimer->start(20);
+            m_pDataTimer->start(50);
             StartTimer(true);
             ui->ChartWidget->setInteractions(QCP::iRangeZoom | QCP::iSelectAxes |
                                              QCP::iSelectLegend | QCP::iSelectPlottables );
@@ -129,7 +129,7 @@ void CatLineChart::UpdateStyle()
 
 void CatLineChart::InitCharts()
 {
-    CatQcLineChart *customPlot = ui->ChartWidget;
+    CatCustomChart *customPlot = ui->ChartWidget;
     customPlot->legend->setVisible(true);
     customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
     customPlot->SetGraphSelectionDecoratorWidth(3);
@@ -172,7 +172,7 @@ void CatLineChart::InitCharts()
 
 void CatLineChart::InitChartConnect()
 {
-    CatQcLineChart *customPlot = ui->ChartWidget;
+    CatCustomChart *customPlot = ui->ChartWidget;
     connect(ui->ScatterShapeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphScatterStyle(int)));
     connect(ui->LineStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphLineStyle(int)));
     connect(ui->TracerStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateTracerStyle(int)));

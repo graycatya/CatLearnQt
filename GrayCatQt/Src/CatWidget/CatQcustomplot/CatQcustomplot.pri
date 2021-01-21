@@ -47,11 +47,13 @@ greaterThan(QT_MAJOR_VERSION, 4) printsupport
 
 HEADERS += \
     $$PWD/CatAxisTag.h \
+    $$PWD/CatBars.h \
     $$PWD/CatQcustomplot.h \
     $$PWD/qcustomplot.h
 
 SOURCES += \
     $$PWD/CatAxisTag.cpp \
+    $$PWD/CatBars.cpp \
     $$PWD/CatQcustomplot.cpp \
     $$PWD/qcustomplot.cpp
 

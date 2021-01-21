@@ -398,11 +398,11 @@ public:
     QFont GetAxisSelectedTickLabelFont_y() const { return yAxis->selectedTickLabelFont(); }
     QFont GetAxis2SelectedTickLabelFont_y() const { return yAxis2->selectedTickLabelFont(); }
 
-    QStringList ScatterShapeList( void );
-    QStringList GraphLineStyleList( void );
-    QStringList BarsWidthType( void );
-    QStringList TracerStyleList( void );
-    QStringList PositionTypeList( void );
+    static QStringList ScatterShapeList( void );
+    static QStringList GraphLineStyleList( void );
+    static QStringList BarsWidthType( void );
+    static QStringList TracerStyleList( void );
+    static QStringList PositionTypeList( void );
 
     // 布局接口
     void SetLegenAlignment(int index, Qt::Alignment alignment);
@@ -416,6 +416,8 @@ public:
     // 添加 矩形图元项
     QCPBars *AddBars(int width, QPen pen, QBrush brush, QString name = "",
                      QCPBars::WidthType type = QCPBars::WidthType::wtAbsolute);
+
+    QVector<QCPBars*> GetBars( void );
 
 private:
     void InitProperty();
@@ -617,7 +619,7 @@ public slots:
 
 protected:
     QPen m_qSelectionDecorator;
-
+    QVector<QCPBars*> m_pBars;
 
 };
 

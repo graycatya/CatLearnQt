@@ -98,3 +98,8 @@ QPushButton#CatLineChart {
     qproperty-icon: url(:/Images/CatWhite/QcustomplotLineChart.png);
     qproperty-iconSize: 26px 26px;
 }
+
+QPushButton#CatBarGraph {
+    qproperty-icon: url(:/Images/CatWhite/QcustomplotBarGraph.png);
+    qproperty-iconSize: 26px 26px;
+}

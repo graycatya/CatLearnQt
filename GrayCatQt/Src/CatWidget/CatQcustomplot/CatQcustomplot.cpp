@@ -1,4 +1,5 @@
 ﻿#include "CatQcustomplot.h"
+#include "CatBars.h"
 
 CatQcustomplot::CatQcustomplot(QWidget *parent)
     : QCustomPlot(parent)
@@ -23,13 +24,19 @@ QCPGraph *CatQcustomplot::AddGraph(QPen pen, QString name, QCPScatterStyle style
 
 QCPBars *CatQcustomplot::AddBars(int width, QPen pen, QBrush brush, QString name, QCPBars::WidthType type)
 {
-    QCPBars *bars = new QCPBars(xAxis, yAxis);
+    CatBars *bars = new CatBars(xAxis, yAxis);
+    m_pBars.push_back(bars);
     bars->setWidth(width);
     bars->setPen(pen);
     bars->setBrush(brush);
     bars->setWidthType(type);
     bars->setName(name);
     return bars;
+}
+
+QVector<QCPBars *> CatQcustomplot::GetBars()
+{
+    return m_pBars;
 }
 
 QStringList CatQcustomplot::ScatterShapeList()

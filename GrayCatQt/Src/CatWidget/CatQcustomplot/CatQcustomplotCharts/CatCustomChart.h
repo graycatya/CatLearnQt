@@ -3,7 +3,7 @@
 
 #include "../CatQcustomplot.h"
 
-class CatQcLineChart : public CatQcustomplot
+class CatCustomChart : public CatQcustomplot
 {
     Q_OBJECT
     Q_PROPERTY(QPen TracerPen READ GetTracerPen WRITE SetTracerPen)
@@ -25,8 +25,8 @@ class CatQcLineChart : public CatQcustomplot
     Q_PROPERTY(QColor TracerYTextBackgroundColor READ GetTracerYTextBackgroundColor WRITE SetTracerYTextBackgroundColor)
 
 public:
-    explicit CatQcLineChart(QWidget *parent = nullptr);
-    ~CatQcLineChart();
+    explicit CatCustomChart(QWidget *parent = nullptr);
+    ~CatCustomChart();
 
     // 游标
     void SetTracer(bool tracer);

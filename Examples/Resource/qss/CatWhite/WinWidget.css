@@ -91,19 +91,22 @@ QPushButton#CloseButton {
     min-height: 30px;
     border: none;
     background-color: transparent;
-    qproperty-icon: url(:/Images/CatWhite/Close.png);
-    qproperty-iconSize: 16px 16px;
+    background-image: url(:/Images/CatWhite/Close.png);
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 QPushButton#CloseButton:hover {
-    qproperty-icon: url(:/Images/CatWhite/Close_Gray.png);
-    qproperty-iconSize: 16px 16px;
+    background-image: url(:/Images/CatWhite/Close_Gray.png);
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: #d71526;
 }
 
 QPushButton#CloseButton:pressed {
-    qproperty-icon: url(:/Images/CatWhite/Close_Gray.png);
-    qproperty-iconSize: 16px 16px;
+    background-image: url(:/Images/CatWhite/Close_Gray.png);
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: #d71526;
 }
 

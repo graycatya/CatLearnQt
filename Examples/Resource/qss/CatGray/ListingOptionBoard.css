@@ -83,18 +83,19 @@ QPushButton:hover {
 
 QPushButton:pressed {
     border: none;
-    background-color: rgba(223,74,22,100%);
     min-height: 30px;
     max-height: 30px;
-    border: 2px solid gray;
+    background-color: #757575;
+    /*background-color: rgba(223,74,22,100%);*/
+    border: 1px solid gray;
 }
 
 QPushButton:checked {
     border: none;
-    background-color: rgba(223,74,22,100%);
     min-height: 30px;
     max-height: 30px;
-    border: 2px solid gray;
+    background-color: #757575;
+    border: 1px solid rgba(223,74,22,100%);
 }
 
 QPushButton#BoardClear {

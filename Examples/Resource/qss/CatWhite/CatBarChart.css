@@ -24,6 +24,7 @@ QScrollBar:vertical
     padding-bottom:0px;
 }
 
+
 QScrollBar::handle:vertical
 {
     width:8px;

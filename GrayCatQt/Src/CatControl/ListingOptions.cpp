@@ -23,7 +23,7 @@ ListiongOptions::~ListiongOptions()
 
 }
 
-void ListiongOptions::AddButton(QPushButton *button, int id)
+void ListiongOptions::AddButton(QPushButton *button, int id, int row, int colum, Qt::Alignment alignment)
 {
     switch (m_yLayout) {
         case VBox: {
@@ -32,6 +32,10 @@ void ListiongOptions::AddButton(QPushButton *button, int id)
         }
         case HBox: {
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addWidget(button);
+            break;
+        }
+        case Grid: {
+            static_cast<QGridLayout*>(m_pButtonListsLayout)->addWidget(button, row, colum,  alignment);
             break;
         }
     }
@@ -40,7 +44,7 @@ void ListiongOptions::AddButton(QPushButton *button, int id)
     //button->setChecked(true);
 }
 
-void ListiongOptions::AddButtonNoGroup(QPushButton *button)
+void ListiongOptions::AddButtonNoGroup(QPushButton *button, int row, int colum, Qt::Alignment alignment)
 {
     switch (m_yLayout) {
         case VBox: {
@@ -51,10 +55,14 @@ void ListiongOptions::AddButtonNoGroup(QPushButton *button)
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addWidget(button);
             break;
         }
+        case Grid: {
+            static_cast<QGridLayout*>(m_pButtonListsLayout)->addWidget(button, row, colum,  alignment);
+            break;
+        }
     }
 }
 
-void ListiongOptions::AddWidget(QWidget *widget)
+void ListiongOptions::AddWidget(QWidget *widget, int row, int colum, Qt::Alignment alignment)
 {
     switch (m_yLayout) {
         case VBox: {
@@ -65,10 +73,14 @@ void ListiongOptions::AddWidget(QWidget *widget)
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addWidget(widget);
             break;
         }
+        case Grid: {
+            static_cast<QGridLayout*>(m_pButtonListsLayout)->addWidget(widget, row, colum,  alignment);
+            break;
+        }
     }
 }
 
-void ListiongOptions::AddItem(QSpacerItem *item)
+void ListiongOptions::AddItem(QSpacerItem *item, int row, int colum, Qt::Alignment alignment)
 {
     switch (m_yLayout) {
         case VBox: {
@@ -77,6 +89,10 @@ void ListiongOptions::AddItem(QSpacerItem *item)
         }
         case HBox: {
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->addItem(item);
+            break;
+        }
+        case Grid: {
+            static_cast<QGridLayout*>(m_pButtonListsLayout)->addItem(item, row, colum,  alignment);
             break;
         }
     }
@@ -110,6 +126,10 @@ void ListiongOptions::Clear()
                 static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeWidget(button);
                 break;
             }
+            case Grid: {
+                static_cast<QGridLayout*>(m_pButtonListsLayout)->removeWidget(button);
+                break;
+            }
         }
         m_pButtonGroup->removeButton(button);
     }
@@ -122,6 +142,10 @@ void ListiongOptions::Clear()
             }
             case HBox: {
                 static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeItem(item);
+                break;
+            }
+            case Grid: {
+                static_cast<QGridLayout*>(m_pButtonListsLayout)->removeItem(item);
                 break;
             }
         }
@@ -147,6 +171,11 @@ void ListiongOptions::RemoveBackGaugeItem()
             static_cast<QHBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_right);
             break;
         }
+        case Grid: {
+            static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_left);
+            static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->removeItem(m_pItem_right);
+            break;
+        }
     }
 
 }
@@ -162,6 +191,10 @@ void ListiongOptions::RemoveItem(QSpacerItem *item)
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeItem(item);
             break;
         }
+        case Grid: {
+            static_cast<QGridLayout*>(m_pButtonListsLayout)->removeItem(item);
+            break;
+        }
     }
 }
 
@@ -174,6 +207,10 @@ void ListiongOptions::RemoveWidget(QWidget *widget)
         }
         case HBox: {
             static_cast<QHBoxLayout*>(m_pButtonListsLayout)->removeWidget(widget);
+            break;
+        }
+        case Grid: {
+            static_cast<QGridLayout*>(m_pButtonListsLayout)->removeWidget(widget);
             break;
         }
     }
@@ -234,6 +271,20 @@ void ListiongOptions::InitUi()
             static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->addItem(item_1);
             break;
         }
+        case Grid: {
+            m_pHboxLayoutButton = new QHBoxLayout(m_pButtonLists);
+            static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->setContentsMargins(0,0,0,0);
+            static_cast<QVBoxLayout*>(m_pHboxLayoutButton)->setSpacing(0);
+            item_0 = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);
+            item_1 = new QSpacerItem(5, 5, QSizePolicy::Expanding, QSizePolicy::Expanding);
+            static_cast<QHBoxLayout*>(m_pHboxLayoutButton)->addItem(item_0);
+            m_pButtonListsLayout = new QGridLayout();
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->setContentsMargins(0,0,0,0);
+            static_cast<QVBoxLayout*>(m_pButtonListsLayout)->setSpacing(0);
+            static_cast<QHBoxLayout*>(m_pHboxLayoutButton)->addLayout(static_cast<QVBoxLayout*>(m_pButtonListsLayout));
+            static_cast<QHBoxLayout*>(m_pHboxLayoutButton)->addItem(item_1);
+            break;
+        }
     }
 
     if(item_0 != nullptr)
@@ -258,6 +309,10 @@ void ListiongOptions::InitProperty()
     m_pScrollArea->setMouseTracking(true);
     m_pButtonLists->installEventFilter(this);
     m_pButtonLists->setMouseTracking(true);
+    /*QFile resourceqss(":/qss/CatGray/ListingOptions.css");
+    resourceqss.open(QFile::ReadOnly);
+    this->setStyleSheet(resourceqss.readAll());
+    resourceqss.close();*/
 }
 
 bool ListiongOptions::eventFilter(QObject *watched, QEvent *event)

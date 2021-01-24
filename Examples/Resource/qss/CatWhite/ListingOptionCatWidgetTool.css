@@ -62,7 +62,10 @@ QPushButton#CatQcustomplotTools {
     qproperty-iconSize: 48px 48px;
 }
 
-
+QPushButton#CatPagingNavigationTool {
+    qproperty-icon: url(:/Images/CatWhite/PagingNavigation.png);
+    qproperty-iconSize: 48px 48px;
+}
 
 QScrollArea#ListingOptionsScroll {
     border: none;

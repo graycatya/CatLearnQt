@@ -127,5 +127,7 @@
         <file>Images/CatWhite/QcustomplotBarGraph.png</file>
         <file>qss/CatGray/CatBarChart.css</file>
         <file>qss/CatWhite/CatBarChart.css</file>
+        <file>Images/CatGray/PagingNavigation.png</file>
+        <file>Images/CatWhite/PagingNavigation.png</file>
     </qresource>
 </RCC>

@@ -1,11 +1,13 @@
 FORMS += \
     $$PWD/ImageTools.ui \
+    $$PWD/PagingNavigationTools.ui \
     $$PWD/QrenCodeTool.ui \
     $$PWD/RimlessWindowTool.ui \
     $$PWD/SliderTools.ui
 
 HEADERS += \
     $$PWD/ImageTools.h \
+    $$PWD/PagingNavigationTools.h \
     $$PWD/QrenCodeTool.h \
     $$PWD/RimlessWindow.h \
     $$PWD/RimlessWindowTool.h \
@@ -13,6 +15,7 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/ImageTools.cpp \
+    $$PWD/PagingNavigationTools.cpp \
     $$PWD/QrenCodeTool.cpp \
     $$PWD/RimlessWindow.cpp \
     $$PWD/RimlessWindowTool.cpp \

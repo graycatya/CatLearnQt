@@ -13,6 +13,7 @@
 #include "WidgetTools/ImageTools.h"
 #include "WidgetTools/SliderTools.h"
 #include "WidgetTools/RimlessWindowTool.h"
+#include "WidgetTools/PagingNavigationTools.h"
 #ifndef Q_OS_IOS
 #include "WidgetTools/CatQcustomplotTools.h"
 #endif
@@ -65,7 +66,7 @@ void CatWidget::InitToolButtons()
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools", "CatRimlessWindowTool"};
+    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools", "CatRimlessWindowTool", "CatPagingNavigationTool"};
 #ifndef Q_OS_IOS
     ToolButtonList << "CatQcustomplotTools";
 #endif
@@ -99,6 +100,12 @@ void CatWidget::InitToolWidgets()
     ui->ToolStackedWidget->addWidget(m_pRimlessWindowTool);
     m_pRimlessWindowTool->installEventFilter(this);
     m_pRimlessWindowTool->setMouseTracking(true);
+
+    PagingNavigationTools *m_pPagingNavigationTools = new PagingNavigationTools;
+    m_pPagingNavigationTools->setObjectName("PagingNavigationTools");
+    ui->ToolStackedWidget->addWidget(m_pPagingNavigationTools);
+    m_pPagingNavigationTools->installEventFilter(this);
+    m_pPagingNavigationTools->setMouseTracking(true);
 
 #ifndef Q_OS_IOS
     CatQcustomplotTools *m_pCatQcustomplotTools = new CatQcustomplotTools;

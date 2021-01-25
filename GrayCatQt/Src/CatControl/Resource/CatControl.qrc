@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/CatControl/">
-        <file>qss/CatSlider.css</file>
+    <qresource prefix="/CatControl">
+        <file>PagingNavigation.css</file>
     </qresource>
 </RCC>

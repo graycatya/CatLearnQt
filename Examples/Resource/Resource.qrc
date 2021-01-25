@@ -129,5 +129,7 @@
         <file>qss/CatWhite/CatBarChart.css</file>
         <file>Images/CatGray/PagingNavigation.png</file>
         <file>Images/CatWhite/PagingNavigation.png</file>
+        <file>qss/CatGray/PagingNavigationTools.css</file>
+        <file>qss/CatWhite/PagingNavigationTools.css</file>
     </qresource>
 </RCC>

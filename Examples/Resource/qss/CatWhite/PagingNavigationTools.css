@@ -62,9 +62,7 @@ QPushButton#PreviousSeveralPage,
 QPushButton#NextPage, 
 QPushButton#NextPageSeveralPage {
     min-width: 20px;
-    max-width: 20px;
     min-height: 20px;
-    max-height: 20px;
     background: transparent;
     background-color: transparent;
     border: 0px solid transparent;
@@ -93,9 +91,7 @@ QPushButton#PreviousPage:hover, QPushButton#NextPage:hover {
 
 QPushButton#PageButton {
     min-width: 20px;
-    max-width: 20px;
     min-height: 20px;
-    max-height: 20px;
     background: transparent;
     background-color: transparent;
     border: 0px solid transparent;

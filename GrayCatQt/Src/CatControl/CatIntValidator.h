@@ -1,13 +1,18 @@
 #ifndef CATINTVALIDATOR_H
 #define CATINTVALIDATOR_H
 
-#include <QObject>
+#include <QIntValidator>
 
-class CatIntValidator
+class CatIntValidator : public QIntValidator
 {
     Q_OBJECT
 public:
-    CatIntValidator();
+    explicit CatIntValidator(QObject *parent = nullptr);
+    ~CatIntValidator();
+
+public:
+    virtual QValidator::State validate(QString &input, int &pos) const override;
+    virtual void fixup(QString &input) const override;
 };
 
 #endif // CATINTVALIDATOR_H

@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+class CatIntValidator;
+
 namespace Ui {
 class PagingNavigationTools;
 }
@@ -15,6 +17,13 @@ public:
     explicit PagingNavigationTools(QWidget *parent = nullptr);
     ~PagingNavigationTools();
 
+private slots:
+    void on_InitPagingNavigationButton_clicked();
+
+    void on_UpdatePagingNavigationButton_clicked();
+
+    void on_SetCurrentPageButton_clicked();
+
 private:
     void InitUi();
     void InitProperty();
@@ -24,6 +33,7 @@ private:
 
 private:
     Ui::PagingNavigationTools *ui;
+    CatIntValidator *currentpageval;
 };
 
 #endif // PAGINGNAVIGATIONTOOLS_H

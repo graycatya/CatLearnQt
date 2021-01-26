@@ -26,6 +26,8 @@ public:
 
     QHBoxLayout *Layout( void ) const { return m_pRootLayout; }
 
+    void ClearStyle();
+
 private:
     void InitUi();
     void InitProperty();

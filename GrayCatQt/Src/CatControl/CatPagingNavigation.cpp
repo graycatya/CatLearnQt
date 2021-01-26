@@ -10,9 +10,9 @@
 CatPagingNavigation::CatPagingNavigation(QWidget *parent)
     : QWidget(parent) ,
       m_nDataSum(0) ,
-      m_nItemsPerPages(0) ,
+      m_nItemsPerPages(1) ,
       m_nTotalPages(0) ,
-      m_nCurrentPage(0)
+      m_nCurrentPage(1)
 {
     InitUi();
     InitProperty();
@@ -48,9 +48,12 @@ void CatPagingNavigation::SetDataSum(qulonglong datasum)
     if(datasum > 0)
     {
         m_nDataSum = datasum;
+        //int temp = datasum%m_nItemsPerPages;
         m_nTotalPages = datasum/m_nItemsPerPages + (datasum%m_nItemsPerPages > 0 ? 1 : 0);
+        m_nCurrentPage = m_nTotalPages > m_nCurrentPage ? m_nCurrentPage : 1;
         UpdatePagingNavigation();
         emit TotalPageeed(m_nTotalPages);
+        emit CurrentPageed(m_nCurrentPage);
     }
 }
 
@@ -60,9 +63,16 @@ void CatPagingNavigation::SetItemsPerPages(qulonglong itemsperpages)
     {
         m_nItemsPerPages = itemsperpages;
         m_nTotalPages = m_nDataSum/itemsperpages + (m_nDataSum%itemsperpages > 0 ? 1 : 0);
+        m_nCurrentPage = m_nTotalPages > m_nCurrentPage ? m_nCurrentPage : 1;
         UpdatePagingNavigation();
         emit TotalPageeed(m_nTotalPages);
+        emit CurrentPageed(m_nCurrentPage);
     }
+}
+
+void CatPagingNavigation::ClearStyle()
+{
+    this->setStyleSheet("");
 }
 
 void CatPagingNavigation::InitUi()
@@ -110,6 +120,7 @@ void CatPagingNavigation::InitUi()
         m_pRootLayout->addWidget(m_pPageButtons.at(i));
     }
     m_pRootLayout->addWidget(m_pNextPage);
+    m_pPageButtons.at(0)->setChecked(true);
 }
 
 void CatPagingNavigation::InitProperty()
@@ -194,8 +205,6 @@ void CatPagingNavigation::UpdatePagingNavigation()
     } else if(m_nTotalPages > static_cast<qulonglong>(m_pPageButtons.size()))
     {
         m_pPreviousPage->setVisible(true);
-        m_pPreviousSeveralPage->setVisible(false);
-        m_pNextPageSeveralPage->setVisible(false);
         m_pNextPage->setVisible(true);
         for(int i = 0; i < m_pPageButtons.size(); i++)
         {
@@ -208,6 +217,13 @@ void CatPagingNavigation::UpdatePagingNavigation()
         }
         UpdatePageButtonState();
     }
+    for(auto button : m_pPageButtons)
+    {
+        if(button->text().toULongLong() == m_nCurrentPage)
+        {
+            button->setChecked(true);
+        }
+    }
 }
 
 void CatPagingNavigation::UpdatePageButtonState()
@@ -218,14 +234,16 @@ void CatPagingNavigation::UpdatePageButtonState()
         {
             m_pPageButtons.at(i)->setText(QString::number(m_pPageButtons.at(i-1)->text().toULongLong() + 1));
         }
+        m_pPreviousSeveralPage->setVisible(false);
         m_pNextPageSeveralPage->setVisible(true);
     } else if(m_pPageButtons.at(m_pPageButtons.size()-1)->text().toULongLong() - m_nCurrentPage <= 3)
     {
-        for(int i = 6; i > 3; i--)
+        for(int i = 5; i >= 3; i--)
         {
             m_pPageButtons.at(i)->setText(QString::number(m_pPageButtons.at(i+1)->text().toULongLong() - 1));
         }
         m_pPreviousSeveralPage->setVisible(true);
+        m_pNextPageSeveralPage->setVisible(false);
     } else {
         qulonglong pages = m_nCurrentPage - 1;
         for(int i = 3; i < 6; i++)
@@ -235,13 +253,6 @@ void CatPagingNavigation::UpdatePageButtonState()
         }
         m_pPreviousSeveralPage->setVisible(true);
         m_pNextPageSeveralPage->setVisible(true);
-    }
-    for(auto button : m_pPageButtons)
-    {
-        if(button->text().toULongLong() == m_nCurrentPage)
-        {
-            button->setChecked(true);
-        }
     }
 }
 
@@ -259,18 +270,10 @@ bool CatPagingNavigation::eventFilter(QObject *watched, QEvent *event)
         if(event->type() == QEvent::Type::HoverLeave) {
             if(watched->objectName() == "PreviousSeveralPage") m_pPreviousSeveralPage->setText("...");
             if(watched->objectName() == "NextPageSeveralPage") m_pNextPageSeveralPage->setText("...");
-        } else if(event->type() == QEvent::Type::HoverEnter
-              || event->type() == QEvent::Type::MouseMove
-              || event->type() == QEvent::Type::MouseButtonPress)
+        } else if(event->type() == QEvent::Type::HoverEnter || event->type() == QEvent::Type::MouseButtonPress)
         {
-            if(watched->objectName() == "PreviousSeveralPage")
-            {
-                m_pPreviousSeveralPage->setText("<<");
-            }
-            if(watched->objectName() == "NextPageSeveralPage")
-            {
-                m_pNextPageSeveralPage->setText(">>");
-            }
+            if(watched->objectName() == "PreviousSeveralPage") m_pPreviousSeveralPage->setText("<<");
+            if(watched->objectName() == "NextPageSeveralPage") m_pNextPageSeveralPage->setText(">>");
         }
     }
     return QWidget::eventFilter(watched, event);

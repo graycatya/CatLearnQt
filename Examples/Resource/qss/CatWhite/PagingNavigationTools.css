@@ -1,0 +1,115 @@
+QLabel#PagingNavigationLabel {
+	color: #424242;
+	font-weight:bold;
+    font-size: 24px;
+    font-family: "Ubuntu";
+}
+
+
+QPushButton {
+    min-width: 150px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+}
+
+QPushButton:hover {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid #424242;
+}
+
+QPushButton:pressed {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QPushButton:checked {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QLabel {
+    color: #4b4642;
+    font-size: 16px;
+    font-family: "Ubuntu";
+}
+
+QLineEdit {
+    min-height: 25px;
+    color: black;
+    border: 1px solid #959595;
+    border-radius: 3px;
+    background-color: #f1f1f1;
+    font-family: "Ubuntu";
+    font-size: 15px;
+}
+
+QPushButton#PreviousPage, 
+QPushButton#PreviousSeveralPage, 
+QPushButton#NextPage, 
+QPushButton#NextPageSeveralPage {
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    background: transparent;
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-radius: 10px;
+    color: #4b4642;
+    font-family: "Ubuntu";
+
+}
+
+QPushButton#PreviousSeveralPage:hover, 
+QPushButton#NextPageSeveralPage:hover {
+    background-color: #efefef;
+    color: #4b4642;
+}
+
+QPushButton#PreviousSeveralPage:checked, 
+QPushButton#NextPageSeveralPage:checked {
+    background-color: #888888;
+    color: #ffffff;
+}
+
+QPushButton#PreviousPage:hover, QPushButton#NextPage:hover {
+    background-color: #efefef;
+    color: #4b4642;
+}
+
+QPushButton#PageButton {
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    background: transparent;
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-radius: 10px;
+    color: #4b4642;
+    font-family: "Ubuntu";
+}
+
+QPushButton#PageButton:hover {
+    background-color: #efefef;
+    color: #4b4642;
+}
+
+QPushButton#PageButton:checked {
+    background-color: #888888;
+    color: #ffffff;
+}

@@ -31,7 +31,7 @@
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>20</height>
+       <height>16777215</height>
       </size>
      </property>
      <property name="text">
@@ -86,31 +86,85 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="DataSumLabel">
-       <property name="text">
-        <string>DataSum: </string>
+      <layout class="QGridLayout" name="gridLayout">
+       <property name="leftMargin">
+        <number>10</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-     <item>
-      <widget class="QLabel" name="ItemsPerPagesLabel">
-       <property name="text">
-        <string>ItemsPerPages:</string>
+       <property name="topMargin">
+        <number>10</number>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton">
-       <property name="text">
-        <string>Init</string>
+       <property name="rightMargin">
+        <number>10</number>
        </property>
-      </widget>
+       <property name="bottomMargin">
+        <number>10</number>
+       </property>
+       <item row="1" column="0">
+        <widget class="QLabel" name="ItemsPerPagesLabel">
+         <property name="text">
+          <string>ItemsPerPages:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="DataSumLabel">
+         <property name="text">
+          <string>DataSum: </string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="CurrentPageLabel">
+         <property name="text">
+          <string>CurrentPage:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLineEdit" name="ItemsPerPagesEdit"/>
+       </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="InitPagingNavigationButton">
+         <property name="text">
+          <string>InitPagingNavigation</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QPushButton" name="UpdatePagingNavigationButton">
+         <property name="text">
+          <string>UpdatePagingNavigation</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="TotalPagesLabel">
+         <property name="text">
+          <string>TotalPages:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLineEdit" name="CurrentPageEdit"/>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="DataSumEdit"/>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="SetCurrentPageButton">
+         <property name="text">
+          <string>SetCurrentPage</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QLineEdit" name="TotalPagesEdit">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <spacer name="horizontalSpacer_6">
@@ -156,68 +210,6 @@
      </item>
      <item>
       <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
-     <property name="spacing">
-      <number>10</number>
-     </property>
-     <property name="leftMargin">
-      <number>10</number>
-     </property>
-     <property name="topMargin">
-      <number>10</number>
-     </property>
-     <property name="rightMargin">
-      <number>10</number>
-     </property>
-     <property name="bottomMargin">
-      <number>10</number>
-     </property>
-     <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="text">
-        <string>LCurrentPage:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit_3"/>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushButton_2">
-       <property name="text">
-        <string>PushButton</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_7">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

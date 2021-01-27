@@ -855,11 +855,21 @@ QCPPainter *QCPPaintBufferGlFbo::startPainting()
     qDebug() << Q_FUNC_INFO << "OpenGL frame buffer object doesn't exist, reallocateBuffer was not called?";
     return 0;
   }
-  
-  if (QOpenGLContext::currentContext() != mGlContext.data())
-    mGlContext.data()->makeCurrent(mGlContext.data()->surface());
-  mGlFrameBuffer->bind();
-  QCPPainter *result = new QCPPainter(mGlPaintDevice.data());
+#if (QT_VERSION < QT_VERSION_CHECK(5, 11, 0))
+    if (QOpenGLContext::currentContext() != mGlContext.data())
+    {
+        mGlContext.data()->makeCurrent(mGlContext.data()->surface());
+    }
+    mGlFrameBuffer->bind();
+    QCPPainter *result = new QCPPainter(mGlPaintDevice.data());
+#else
+    if (QOpenGLContext::currentContext() != mGlContext.toStrongRef().data())
+    {
+        mGlContext.toStrongRef().data()->makeCurrent(mGlContext.toStrongRef().data()->surface());
+    }
+    mGlFrameBuffer->bind();
+    QCPPainter *result = new QCPPainter(mGlPaintDevice.toStrongRef().data());
+#endif
   result->setRenderHint(QPainter::HighQualityAntialiasing);
   return result;
 }
@@ -902,9 +912,17 @@ void QCPPaintBufferGlFbo::clear(const QColor &color)
     qDebug() << Q_FUNC_INFO << "OpenGL frame buffer object doesn't exist, reallocateBuffer was not called?";
     return;
   }
-  
-  if (QOpenGLContext::currentContext() != mGlContext.data())
-    mGlContext.data()->makeCurrent(mGlContext.data()->surface());
+#if (QT_VERSION < QT_VERSION_CHECK(5, 11, 0))
+    if (QOpenGLContext::currentContext() != mGlContext.data())
+    {
+        mGlContext.data()->makeCurrent(mGlContext.data()->surface());
+    }
+#else
+  if (QOpenGLContext::currentContext() != mGlContext.toStrongRef().data())
+  {
+      mGlContext.toStrongRef().data()->makeCurrent(mGlContext.toStrongRef().data()->surface());
+  }
+#endif
   mGlFrameBuffer->bind();
   glClearColor(color.redF(), color.greenF(), color.blueF(), color.alphaF());
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -935,6 +953,7 @@ void QCPPaintBufferGlFbo::reallocateBuffer()
   }
   
   // create new fbo with appropriate size:
+#if (QT_VERSION < QT_VERSION_CHECK(5, 11, 0))
   mGlContext.data()->makeCurrent(mGlContext.data()->surface());
   QOpenGLFramebufferObjectFormat frameBufferFormat;
   frameBufferFormat.setSamples(mGlContext.data()->format().samples());
@@ -944,6 +963,18 @@ void QCPPaintBufferGlFbo::reallocateBuffer()
     mGlPaintDevice.data()->setSize(mSize*mDevicePixelRatio);
 #ifdef QCP_DEVICEPIXELRATIO_SUPPORTED
   mGlPaintDevice.data()->setDevicePixelRatio(mDevicePixelRatio);
+#endif
+#else
+  mGlContext.toStrongRef().data()->makeCurrent(mGlContext.toStrongRef().data()->surface());
+  QOpenGLFramebufferObjectFormat frameBufferFormat;
+  frameBufferFormat.setSamples(mGlContext.toStrongRef().data()->format().samples());
+  frameBufferFormat.setAttachment(QOpenGLFramebufferObject::CombinedDepthStencil);
+  mGlFrameBuffer = new QOpenGLFramebufferObject(mSize*mDevicePixelRatio, frameBufferFormat);
+  if (mGlPaintDevice.toStrongRef().data()->size() != mSize*mDevicePixelRatio)
+    mGlPaintDevice.toStrongRef().data()->setSize(mSize*mDevicePixelRatio);
+#ifdef QCP_DEVICEPIXELRATIO_SUPPORTED
+  mGlPaintDevice.toStrongRef().data()->setDevicePixelRatio(mDevicePixelRatio);
+#endif
 #endif
 }
 #endif // QCP_OPENGL_FBO

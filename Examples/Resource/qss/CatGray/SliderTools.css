@@ -356,3 +356,9 @@ RangeSlider::handle:horizontal:hover {
     margin-right: -1px;
     border-radius: 7px;
 }  
+
+CatDoubleSlider {
+    qproperty-SlideLeftOrTopWidth: 200;
+    qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
+    qproperty-MySliderStyle: "CatDoubleSlider::SliderRect";
+}

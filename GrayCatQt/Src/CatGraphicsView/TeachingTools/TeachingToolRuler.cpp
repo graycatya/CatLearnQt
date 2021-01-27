@@ -79,6 +79,11 @@ void TeachingToolRuler::SetRulerScaleColor(QColor color)
     RulerScaleColor = color;
 }
 
+void TeachingToolRuler::SetRulerRotateColor(QColor color)
+{
+    RulerRotateColor = color;
+}
+
 void TeachingToolRuler::SetCloseButtonSvg(QString svg)
 {
     if(CloseButtonSvg != svg)
@@ -140,7 +145,8 @@ void TeachingToolRuler::InitProperty()
     SetRulerBackgroundColor(QColor(255, 255, 255, 204));
     SetRulerBorderColor(QColor(102, 102, 102));
     SetRulerScaleTextColor(RulerBorderColor);
-    SetRulerScaleColor(RulerScaleColor);
+    SetRulerScaleColor(RulerScaleTextColor);
+    SetRulerRotateColor(RulerScaleColor);
     //qDebug() << CurrentPath();
 
     setAcceptHoverEvents(true);
@@ -289,6 +295,9 @@ void TeachingToolRuler::PaintScale(QPainter *painter)
 
 void TeachingToolRuler::PaintRotate(QPainter *painter)
 {
+    QPen pen = painter->pen();
+    pen.setColor(RulerRotateColor);
+    painter->setPen(pen);
     qreal longscaleheight = CatMath::CmtoPx(1);
     painter->drawArc(QRectF(-(longscaleheight/2) + 10, -(longscaleheight/2), longscaleheight, longscaleheight), 0 * 16, -90 * 16);
 }

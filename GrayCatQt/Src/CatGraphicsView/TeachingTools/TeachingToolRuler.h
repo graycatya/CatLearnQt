@@ -22,6 +22,7 @@ public:
     void SetRulerBorderColor(QColor color);
     void SetRulerScaleTextColor(QColor color);
     void SetRulerScaleColor(QColor color);
+    void SetRulerRotateColor(QColor color);
 
     void SetCloseButtonSvg(QString svg);
     void SetResizeButtonSvg(QString svg);
@@ -72,6 +73,7 @@ private:
     QColor RulerBorderColor;
     QColor RulerScaleTextColor;
     QColor RulerScaleColor;
+    QColor RulerRotateColor;
 
     QCursor RotateCursor;           // 旋转时鼠标显示的图标
     QCursor DrawLineRulerCursor;    // 与白板交互时绘制功能，鼠标显示图标

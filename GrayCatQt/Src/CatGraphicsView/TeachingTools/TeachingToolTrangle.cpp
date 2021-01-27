@@ -111,6 +111,9 @@ void TeachingToolTrangle::paint(QPainter *painter, const QStyleOptionGraphicsIte
 
     // 绘制改变大小按钮
     painter->save();
+    QPen pen = painter->pen();
+    pen.setColor(TrangleResizeButtonColor);
+    painter->setPen(pen);
     painter->setBrush(TrangleResizeButtonColor);
 
     if(mShowResize1)

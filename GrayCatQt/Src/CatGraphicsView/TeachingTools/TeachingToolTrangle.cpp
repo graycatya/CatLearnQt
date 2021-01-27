@@ -1118,6 +1118,9 @@ void TeachingToolTrangle::paintGraduations(QPainter *painter)
 
             if (shouldDisplayAllNumbers || millimeters % millimetersPerHalfCentimeter == 0)
             {
+                QPen pen = painter->pen();
+                pen.setColor(TrangleScaleColor);
+                painter->setPen(pen);
                 painter->setBrush(TrangleScaleColor);
                 painter->drawLine(QLineF(graduationX, rotationCenter().y(),
                                          graduationX, rotationCenter().y()
@@ -1139,6 +1142,9 @@ void TeachingToolTrangle::paintGraduations(QPainter *painter)
                                                             - centimeterGraduationHeight
                                                             - textHeight)
                         : static_cast<int>(rotationCenter().y() + SEPARATOR + centimeterGraduationHeight);
+                    QPen pen = painter->pen();
+                    pen.setColor(TrangleScaleTextColor);
+                    painter->setPen(pen);
                     painter->setBrush(TrangleScaleTextColor);
                     painter->drawText(QRectF(graduationX - textWidth / 2,
                                              textY, textWidth, textHeight),

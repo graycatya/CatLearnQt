@@ -209,6 +209,9 @@ QRectF TeachingToolRuler::RotateButtonRect() const
 
 void TeachingToolRuler::PaintBody(QPainter *painter)
 {
+    QPen pen = painter->pen();
+    pen.setColor(RulerBorderColor);
+    painter->setPen(pen);
     painter->setBrush(QBrush(RulerBackgroundColor));
     painter->drawRoundedRect(QRectF(QPointF(0,0), Rect().size()), RulerBorderRadius, RulerBorderRadius);
 }
@@ -229,6 +232,9 @@ void TeachingToolRuler::PaintScale(QPainter *painter)
 {
     QFont font = painter->font();
     font.setPixelSize(14);
+    QPen pen = painter->pen();
+    pen.setColor(RulerScaleColor);
+    painter->setPen(pen);
     painter->setFont(font);
     int scalevalue = 0;
     int value = 0;

@@ -1,4 +1,4 @@
-#include "CatDoubleSlider.h"
+﻿#include "CatDoubleSlider.h"
 #include <QPainter>
 #include <QPainterPath>
 
@@ -48,36 +48,42 @@ void CatDoubleSlider::Painter_Slide_RightOrBottom(QPainter *painter)
 void CatDoubleSlider::setSlideLeftOrTopWidth(int width)
 {
     m_ySlide_LeftOrTop.setWidth(width);
+    emit SlideLeftOrTopWidthChanged(width);
     update();
 }
 
 void CatDoubleSlider::setSlideLeftOrTopHeight(int height)
 {
     m_ySlide_LeftOrTop.setHeight(height);
+    emit SlideLeftOrTopHeightChanged(height);
     update();
 }
 
 void CatDoubleSlider::setSlideRightOrBottomWidth(int width)
 {
     m_ySlide_RightOrBottom.setWidth(width);
+    emit SlideRightOrBottomWidthChanged(width);
     update();
 }
 
 void CatDoubleSlider::setSlideRightOrBottomHeight(int height)
 {
     m_ySlide_RightOrBottom.setHeight(height);
+    emit SlideRightOrBottomHeightChanged(height);
     update();
 }
 
 void CatDoubleSlider::setSlideOrientationState(CatDoubleSlider::OrientationState state)
 {
     m_ySlideOrientationState = state;
+    emit SlideOrientationStateChanged(state);
     update();
 }
 
 void CatDoubleSlider::setMySliderStyle(CatDoubleSlider::SliderStyle style)
 {
     m_ySliderStyle = style;
+    emit MySliderStyleChanged(style);
     update();
 }
 

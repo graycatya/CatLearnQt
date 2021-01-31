@@ -100,6 +100,7 @@ private:
     qreal m_nSlideRadius;
 
     SelectStyle m_ySelectStyle;
+    QPointF m_pPressPoint;
 };
 
 #endif // CATDOUBLESLIDER_H

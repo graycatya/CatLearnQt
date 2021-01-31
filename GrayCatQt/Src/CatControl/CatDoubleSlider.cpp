@@ -172,11 +172,33 @@ void CatDoubleSlider::resizeEvent(QResizeEvent *event)
 
 void CatDoubleSlider::mouseMoveEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event)
+    QPointF movepos = event->pos() - m_pPressPoint;
+    qDebug() << movepos;
+    switch (m_ySelectStyle) {
+        case LeftOrTopSelect: {
+            m_ySlide_LeftOrTop.setX(m_ySlide_LeftOrTop.x() + movepos.rx());
+            m_ySlide_LeftOrTop.setSize(QSizeF(DEFINEWIDTH, DEFINEWIDTH));
+            break;
+        }
+        case RightOrBottomSelect: {
+            break;
+        }
+        case BackgroundSlideSelect: {
+            break;
+        }
+        default:{
+            break;
+        }
+    }
+    qDebug() << m_ySlide_LeftOrTop;
+    m_pPressPoint = event->pos();
+    update();
 }
 
 void CatDoubleSlider::mousePressEvent(QMouseEvent *event)
 {
+    m_pPressPoint = event->pos();
+
     QPainterPath slideLeftOrTopPath;
     QPainterPath slideRightOrBottomPath;
     QPainterPath backgroundSlideRectPath;
@@ -187,13 +209,13 @@ void CatDoubleSlider::mousePressEvent(QMouseEvent *event)
 
     if(slideLeftOrTopPath.contains(event->pos()))
     {
-        qDebug() << "m_ySlide_LeftOrTop";
+        m_ySelectStyle = LeftOrTopSelect;
     } else if(slideRightOrBottomPath.contains(event->pos()))
     {
-        qDebug() << "m_ySlide_RightOrBottom";
+        m_ySelectStyle = RightOrBottomSelect;
     } else if(backgroundSlideRectPath.contains(event->pos()))
     {
-        qDebug() << "backgroundSlideRectPath";
+        m_ySelectStyle = BackgroundSlideSelect;
     }
 }
 

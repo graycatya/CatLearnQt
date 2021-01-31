@@ -358,7 +358,7 @@ RangeSlider::handle:horizontal:hover {
 }  
 
 CatDoubleSlider {
-    qproperty-SlideLeftOrTopWidth: 200;
+    /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
     qproperty-MySliderStyle: "CatDoubleSlider::SliderRect";
 }

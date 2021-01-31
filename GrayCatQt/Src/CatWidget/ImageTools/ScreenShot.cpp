@@ -57,14 +57,14 @@ void ScreenShot::InitUi()
 
 void ScreenShot::InitProperty()
 {
-    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setWindowFlags(this->windowFlags() | Qt::FramelessWindowHint);
     setAutoFillBackground(true);
-    QPalette pal = palette();
+    /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
     setPalette(pal);
-    setWindowOpacity(1);
-    setAttribute(Qt::WA_TranslucentBackground);
-    setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    setWindowOpacity(1);*/
+    /*setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_TransparentForMouseEvents, true);*/
     setMouseTracking(true);
     m_pZoom_Top->installEventFilter(this);
     m_pZoom_Top->setMouseTracking(true);

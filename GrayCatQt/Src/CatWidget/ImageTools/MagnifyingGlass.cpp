@@ -42,13 +42,14 @@ void MagnifyingGlass::InitUi()
 
 void MagnifyingGlass::InitProperty()
 {
-    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setWindowFlags(this->windowFlags() | Qt::FramelessWindowHint);
     setAutoFillBackground(true);
     /*QPalette pal = palette();
     pal.setColor(QPalette::Background,Qt::transparent);
     setPalette(pal);
     setWindowOpacity(1);*/
-    setAttribute(Qt::WA_TranslucentBackground);
+    /*setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_TransparentForMouseEvents, true);*/
 
     //添加自定义类控制
     setAttribute(Qt::WA_StyledBackground,true);

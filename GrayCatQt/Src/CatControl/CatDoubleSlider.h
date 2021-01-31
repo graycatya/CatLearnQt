@@ -26,6 +26,12 @@ public:
         SliderRound
     };
     Q_ENUM(SliderStyle)
+    enum SelectStyle {
+        LeftOrTopSelect,
+        RightOrBottomSelect,
+        BackgroundSlideSelect,
+        NotSelect
+    };
 
     explicit CatDoubleSlider(QWidget *parent = nullptr);
     ~CatDoubleSlider();
@@ -40,6 +46,10 @@ public:
 private:
     void InitUi();
     void InitProperty();
+
+    void InitRectfProperty();
+
+    void UpdateProperty();
 
     void Painter_Background_Rect(QPainter *painter);
     void Painter_BackgroundSlide_Rect(QPainter *painter);
@@ -75,13 +85,21 @@ protected:
 
 
 private:
-    QRect m_ySlide_LeftOrTop;
-    QRect m_ySlide_RightOrBottom;
-    QRect m_yBackground_Rect;
-    QRect m_yBackgroundSlide_Rect;
+    QRectF m_ySlide_LeftOrTop;
+    QRectF m_ySlide_RightOrBottom;
+    QRectF m_yBackground_Rect;
+    QRectF m_yBackgroundSlide_Rect;
     OrientationState m_ySlideOrientationState;
     SliderStyle m_ySliderStyle;
+    QColor SlideLeftColor;
+    QColor SlideRightColor;
+    QColor BackgroundRectColor;
+    QColor BackgroundSlideRectColor;
 
+    qreal m_nBackgroundRadius;
+    qreal m_nSlideRadius;
+
+    SelectStyle m_ySelectStyle;
 };
 
 #endif // CATDOUBLESLIDER_H

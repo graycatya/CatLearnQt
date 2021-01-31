@@ -1,12 +1,17 @@
 ﻿#include "CatDoubleSlider.h"
 #include <QPainter>
 #include <QPainterPath>
+#include <QMouseEvent>
+#include <QDebug>
+
+#define DEFINEWIDTH 10
 
 CatDoubleSlider::CatDoubleSlider(QWidget *parent)
     : QWidget(parent)
 {
     InitUi();
     InitProperty();
+    update();
 }
 
 CatDoubleSlider::~CatDoubleSlider()
@@ -16,33 +21,96 @@ CatDoubleSlider::~CatDoubleSlider()
 
 void CatDoubleSlider::InitUi()
 {
-
+    this->setMinimumSize(QSize(100, DEFINEWIDTH));
 }
 
 void CatDoubleSlider::InitProperty()
 {
     //添加自定义类控制
     setAttribute(Qt::WA_StyledBackground,true);
+    m_ySelectStyle = NotSelect;
+    InitRectfProperty();
+}
+
+void CatDoubleSlider::InitRectfProperty()
+{
+    m_nBackgroundRadius = 2;
+    m_nSlideRadius = 5;
+    m_ySlide_LeftOrTop.setRect(0.0, 0.0, DEFINEWIDTH, DEFINEWIDTH);
+    m_ySlide_RightOrBottom.setRect(this->width() - DEFINEWIDTH, 0,
+                                   DEFINEWIDTH, DEFINEWIDTH);
+    m_yBackground_Rect.setRect(static_cast<qreal>(DEFINEWIDTH)/2.0,
+                       static_cast<qreal>(DEFINEWIDTH)/4.0 + 0.5,
+                       this->width() - DEFINEWIDTH,
+                       static_cast<qreal>(DEFINEWIDTH)/2.0);
+    m_yBackgroundSlide_Rect.setRect(static_cast<qreal>(DEFINEWIDTH)/2.0,
+                                    static_cast<qreal>(DEFINEWIDTH)/4.0 + 0.5,
+                                    this->width() - DEFINEWIDTH,
+                                    static_cast<qreal>(DEFINEWIDTH)/2.0);
+}
+
+void CatDoubleSlider::UpdateProperty()
+{
+    switch (m_ySlideOrientationState) {
+        case SliderHorizontal: {
+            break;
+        }
+        case SliderVertical: {
+            break;
+        }
+    }
 }
 
 void CatDoubleSlider::Painter_Background_Rect(QPainter *painter)
 {
-    Q_UNUSED(painter)
+    //Q_UNUSED(painter)
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing);
+    QPen pen = painter->pen();
+    QBrush brush = painter->brush();
+    painter->setPen(pen);
+    painter->setBrush(brush);
+    painter->drawRoundedRect(m_yBackground_Rect, m_nBackgroundRadius , m_nBackgroundRadius);
+    painter->restore();
 }
 
 void CatDoubleSlider::Painter_BackgroundSlide_Rect(QPainter *painter)
 {
-    Q_UNUSED(painter)
+    //Q_UNUSED(painter)
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing);
+    QPen pen = painter->pen();
+    QBrush brush = painter->brush();
+    painter->setPen(pen);
+    painter->setBrush(brush);
+    painter->drawRoundedRect(m_yBackgroundSlide_Rect, m_nBackgroundRadius , m_nBackgroundRadius);
+    painter->restore();
 }
 
 void CatDoubleSlider::Painter_Slide_LeftOrTop(QPainter *painter)
 {
-    Q_UNUSED(painter)
+    //Q_UNUSED(painter)
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing);
+    QPen pen = painter->pen();
+    QBrush brush = painter->brush();
+    painter->setPen(pen);
+    painter->setBrush(brush);
+    painter->drawRoundedRect(m_ySlide_LeftOrTop, m_nSlideRadius , m_nSlideRadius);
+    painter->restore();
 }
 
 void CatDoubleSlider::Painter_Slide_RightOrBottom(QPainter *painter)
 {
-    Q_UNUSED(painter)
+    //Q_UNUSED(painter)
+    painter->save();
+    painter->setRenderHint(QPainter::Antialiasing);
+    QPen pen = painter->pen();
+    QBrush brush = painter->brush();
+    painter->setPen(pen);
+    painter->setBrush(brush);
+    painter->drawRoundedRect(m_ySlide_RightOrBottom, m_nSlideRadius , m_nSlideRadius);
+    painter->restore();
 }
 
 void CatDoubleSlider::setSlideLeftOrTopWidth(int width)
@@ -109,18 +177,37 @@ void CatDoubleSlider::mouseMoveEvent(QMouseEvent *event)
 
 void CatDoubleSlider::mousePressEvent(QMouseEvent *event)
 {
-    Q_UNUSED(event)
+    QPainterPath slideLeftOrTopPath;
+    QPainterPath slideRightOrBottomPath;
+    QPainterPath backgroundSlideRectPath;
+
+    slideLeftOrTopPath.addRoundedRect(m_ySlide_LeftOrTop, m_nSlideRadius, m_nSlideRadius);
+    slideRightOrBottomPath.addRoundedRect(m_ySlide_RightOrBottom, m_nSlideRadius, m_nSlideRadius);
+    backgroundSlideRectPath.addRoundedRect(m_yBackgroundSlide_Rect, m_nBackgroundRadius, m_nBackgroundRadius);
+
+    if(slideLeftOrTopPath.contains(event->pos()))
+    {
+        qDebug() << "m_ySlide_LeftOrTop";
+    } else if(slideRightOrBottomPath.contains(event->pos()))
+    {
+        qDebug() << "m_ySlide_RightOrBottom";
+    } else if(backgroundSlideRectPath.contains(event->pos()))
+    {
+        qDebug() << "backgroundSlideRectPath";
+    }
 }
 
 void CatDoubleSlider::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event)
+    m_ySelectStyle = NotSelect;
 }
 
 void CatDoubleSlider::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
+    UpdateProperty();
     Painter_Background_Rect(&painter);
     Painter_BackgroundSlide_Rect(&painter);
     Painter_Slide_LeftOrTop(&painter);

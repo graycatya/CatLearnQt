@@ -181,6 +181,8 @@ void CatDoubleSlider::mouseMoveEvent(QMouseEvent *event)
             break;
         }
         case RightOrBottomSelect: {
+            m_ySlide_RightOrBottom.setX(m_ySlide_RightOrBottom.x() + movepos.rx());
+            m_ySlide_RightOrBottom.setSize(QSize(DEFINEWIDTH, DEFINEWIDTH));
             break;
         }
         case BackgroundSlideSelect: {

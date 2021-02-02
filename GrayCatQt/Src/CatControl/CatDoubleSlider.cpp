@@ -172,8 +172,9 @@ void CatDoubleSlider::resizeEvent(QResizeEvent *event)
 
 void CatDoubleSlider::mouseMoveEvent(QMouseEvent *event)
 {
+
     QPointF movepos = event->pos() - m_pPressPoint;
-    qDebug() << movepos;
+    qDebug() << event->pos();
     switch (m_ySelectStyle) {
         case LeftOrTopSelect: {
             m_ySlide_LeftOrTop.setX(m_ySlide_LeftOrTop.x() + movepos.rx());
@@ -181,8 +182,11 @@ void CatDoubleSlider::mouseMoveEvent(QMouseEvent *event)
             break;
         }
         case RightOrBottomSelect: {
-            m_ySlide_RightOrBottom.setX(m_ySlide_RightOrBottom.x() + movepos.rx());
-            m_ySlide_RightOrBottom.setSize(QSize(DEFINEWIDTH, DEFINEWIDTH));
+            if((m_ySlide_RightOrBottom.x() + movepos.rx()) > m_ySlide_LeftOrTop.x() + m_ySlide_LeftOrTop.width())
+            {
+                m_ySlide_RightOrBottom.setX(m_ySlide_RightOrBottom.x() + movepos.rx());
+                m_ySlide_RightOrBottom.setSize(QSize(DEFINEWIDTH, DEFINEWIDTH));
+            }
             break;
         }
         case BackgroundSlideSelect: {

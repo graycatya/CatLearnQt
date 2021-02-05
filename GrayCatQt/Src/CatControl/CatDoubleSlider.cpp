@@ -22,6 +22,7 @@ CatDoubleSlider::~CatDoubleSlider()
 void CatDoubleSlider::InitUi()
 {
     this->setMinimumSize(QSize(100, DEFINEWIDTH));
+    this->setMaximumSize(QSize(100, DEFINEWIDTH));
 }
 
 void CatDoubleSlider::InitProperty()

@@ -357,8 +357,15 @@ RangeSlider::handle:horizontal:hover {
     border-radius: 7px;
 }  
 
-CatDoubleSlider {
+CatDoubleSlider#CatSlider {
     /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
-    qproperty-MySliderStyle: "CatDoubleSlider::SliderRect";
+    qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+    /*qproperty-BackgroundSlideRectColor: #773f72;*/
+}
+
+CatDoubleSlider#CatVbSlider {
+    /*qproperty-SlideLeftOrTopWidth: 200;*/
+    qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
+    qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
 }

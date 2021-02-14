@@ -303,3 +303,15 @@ QSlider#Slider3::handle:vertical:hover {
     margin-bottom: -1px;
     border-radius: 7px;
 }
+
+CatDoubleSlider#CatSlider {
+    /*qproperty-SlideLeftOrTopWidth: 200;*/
+    qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
+    qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+}
+
+CatDoubleSlider#CatVbSlider {
+    /*qproperty-SlideLeftOrTopWidth: 200;*/
+    qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
+    qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+}

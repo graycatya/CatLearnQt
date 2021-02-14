@@ -30,6 +30,7 @@ void SliderTools::InitUi()
 
 void SliderTools::InitProperty()
 {
+    //ui->CatVbSlider->setSlideOrientationState(CatDoubleSlider::OrientationState::SliderVertical);
     UpdateStyle();
 }
 
@@ -64,6 +65,9 @@ void SliderTools::InitDefauleSlider()
     Slider0->setOrientation(Qt::Horizontal);
     Slider0->setValue(50);
     ui->SilderVbLayout->addWidget(Slider0);
+    connect(Slider0, &QSlider::sliderMoved, this, [=](int value){
+        qDebug() << "value: " << value;
+    });
 
     QSlider *Slider1 = new QSlider(this);
     Slider1->setObjectName("Slider1");

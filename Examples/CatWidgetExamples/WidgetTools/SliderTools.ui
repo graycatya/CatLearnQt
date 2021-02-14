@@ -44,7 +44,7 @@
         <x>0</x>
         <y>0</y>
         <width>308</width>
-        <height>415</height>
+        <height>411</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -125,6 +125,32 @@
                <size>
                 <width>0</width>
                 <height>20</height>
+               </size>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <property name="topMargin">
+             <number>10</number>
+            </property>
+            <property name="bottomMargin">
+             <number>10</number>
+            </property>
+            <item>
+             <widget class="CatDoubleSlider" name="CatVbSlider" native="true">
+              <property name="minimumSize">
+               <size>
+                <width>20</width>
+                <height>100</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>20</width>
+                <height>16777215</height>
                </size>
               </property>
              </widget>

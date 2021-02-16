@@ -369,3 +369,8 @@ CatDoubleSlider#CatVbSlider {
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
 }
+
+CatDoubleSlider {
+    background-color: aqua;
+    max-height: 10px;
+}

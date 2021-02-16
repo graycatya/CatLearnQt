@@ -88,6 +88,7 @@ private:
     void InitRectfProperty();
 
     void UpdateProperty();
+    void UpdateBackgroundSlide();
 
     void Painter_Background_Rect(QPainter *painter);
     void Painter_BackgroundSlide_Rect(QPainter *painter);

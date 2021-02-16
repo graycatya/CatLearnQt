@@ -70,6 +70,32 @@ void CatDoubleSlider::UpdateProperty()
     }
 }
 
+void CatDoubleSlider::UpdateBackgroundSlide()
+{
+    switch (m_ySlideOrientationState) {
+        case SliderHorizontal: {
+            qreal x = static_cast<qreal>(m_nSlideWidth)/2.0 + m_ySlide_LeftOrTop.x();
+            qreal w = this->width() - m_nSlideWidth - m_ySlide_LeftOrTop.x() - (this->width() - m_ySlide_RightOrBottom.right());
+            m_yBackgroundSlide_Rect.setRect(x,
+                                            static_cast<qreal>(m_nSlideWidth)/4.0 + m_nBackgroundSlideRectBorderWidth/2.0,
+                                            w,
+                                            m_nBackgroundSlideHeight);
+
+            break;
+        }
+        case SliderVertical: {
+            qreal y = static_cast<qreal>(m_nSlideWidth)/2.0 + m_ySlide_LeftOrTop.y();
+            qreal h = this->height() - m_nSlideWidth - m_ySlide_LeftOrTop.y() - (this->height() - m_ySlide_RightOrBottom.bottom());
+
+            m_yBackgroundSlide_Rect.setRect(m_nBackgroundHeight/2.0 + m_nBackgroundSlideRectBorderWidth/2.0,
+                               y,
+                               m_nBackgroundHeight,
+                               h);
+            break;
+        }
+    }
+}
+
 void CatDoubleSlider::Painter_Background_Rect(QPainter *painter)
 {
     //Q_UNUSED(painter)
@@ -137,16 +163,14 @@ void CatDoubleSlider::Painter_Slide_RightOrBottom(QPainter *painter)
 void CatDoubleSlider::LeftOrTopSelectDisPose(QMouseEvent *event)
 {
     QPointF movepos = event->pos() - m_pPressPoint;
+
     if(m_ySlideOrientationState == SliderHorizontal)
     {
         if(m_ySlide_LeftOrTop.x() + movepos.rx() < 0)
         {
             m_ySlide_LeftOrTop.setX(0);
             m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            return;
-        }
-
-        if((m_ySlide_LeftOrTop.x() + m_ySlide_LeftOrTop.width() + movepos.rx()) < m_ySlide_RightOrBottom.x())
+        } else if((m_ySlide_LeftOrTop.right() + movepos.rx()) < m_ySlide_RightOrBottom.x())
         {
             m_ySlide_LeftOrTop.setX(m_ySlide_LeftOrTop.x() + movepos.rx());
             m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
@@ -167,10 +191,7 @@ void CatDoubleSlider::LeftOrTopSelectDisPose(QMouseEvent *event)
         {
             m_ySlide_LeftOrTop.setY(0);
             m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            return;
-        }
-
-        if(m_ySlide_LeftOrTop.y() + m_ySlide_LeftOrTop.height() + movepos.ry() < m_ySlide_RightOrBottom.y())
+        } else if(m_ySlide_LeftOrTop.y() + m_ySlide_LeftOrTop.height() + movepos.ry() < m_ySlide_RightOrBottom.y())
         {
             m_ySlide_LeftOrTop.setY(m_ySlide_LeftOrTop.y() + movepos.ry());
             m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
@@ -194,10 +215,6 @@ void CatDoubleSlider::RightOrBottomSelectDisPose(QMouseEvent *event)
     QPointF movepos = event->pos() - m_pPressPoint;
     if(m_ySlideOrientationState == SliderHorizontal)
     {
-        if(event->pos().x() <= 0 || event->pos().x() >= this->width())
-        {
-            return;
-        }
 
         if(m_ySlide_RightOrBottom.x() + m_ySlide_RightOrBottom.width() + movepos.rx() > this->width())
         {
@@ -220,10 +237,6 @@ void CatDoubleSlider::RightOrBottomSelectDisPose(QMouseEvent *event)
                                         m_nBackgroundSlideHeight);
 
     } else if(m_ySlideOrientationState == SliderVertical) {
-        if(event->pos().y() <= 0 || event->pos().y() >= this->height())
-        {
-            return;
-        }
 
         if(m_ySlide_RightOrBottom.y() + m_ySlide_RightOrBottom.width() + movepos.ry() > this->height())
         {
@@ -252,119 +265,73 @@ void CatDoubleSlider::RightOrBottomSelectDisPose(QMouseEvent *event)
 void CatDoubleSlider::BackgroundSlideRectPose(QMouseEvent *event)
 {
     QPointF movepos = event->pos() - m_pPressPoint;
-    qDebug() << "SliderDistance: " << m_nSliderDistance;
+
     if(m_ySlideOrientationState == SliderHorizontal)
     {
-        /*if(event->pos().x() <= 0 || event->pos().x() >= this->width())
+        if(movepos.rx() < 0)
         {
-            return;
-        }*/
+            if(m_ySlide_LeftOrTop.x() + movepos.rx() < 0)
+            {
+                m_ySlide_LeftOrTop.setX(0);
+                m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            } else {
+                m_ySlide_LeftOrTop.setX(m_ySlide_LeftOrTop.x() + movepos.rx());
+                m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            }
 
-        if(m_ySlide_LeftOrTop.left() + movepos.rx() <= 0)
-        {
-            qDebug() << "SliderDistance1: " << m_ySlide_RightOrBottom.right() - m_ySlide_LeftOrTop.left();
-            m_ySlide_LeftOrTop.setLeft(0);
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            qDebug() << "m_ySlide_LeftOrTop: " << m_ySlide_LeftOrTop;
-            m_ySlide_RightOrBottom.setRight(m_nSliderDistance);
+            m_ySlide_RightOrBottom.setX(m_ySlide_LeftOrTop.left() + m_nSliderDistance - m_nSlideWidth);
             m_ySlide_RightOrBottom.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            qDebug() << "m_ySlide_RightOrBottom: " << m_ySlide_RightOrBottom;
-            qDebug() << "SliderDistance2: " << m_ySlide_RightOrBottom.right() - m_ySlide_LeftOrTop.left();
-            goto updateslide;
-        } else if(m_ySlide_RightOrBottom.right() + movepos.rx() >= this->width())
+
+            UpdateBackgroundSlide();
+        } else if(movepos.rx() > 0)
         {
-            m_ySlide_RightOrBottom.setRight(this->width());
-            m_ySlide_RightOrBottom.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            qDebug() << "m_ySlide_RightOrBottom.right() - m_nSliderDistance: " << m_ySlide_RightOrBottom.right() - m_nSliderDistance;
-            m_ySlide_LeftOrTop.setLeft(m_ySlide_RightOrBottom.right() - m_nSliderDistance);
+            if(m_ySlide_RightOrBottom.right() + movepos.rx() > this->width())
+            {
+                m_ySlide_RightOrBottom.setX(this->width() - m_ySlide_RightOrBottom.width());
+                m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            } else {
+                m_ySlide_RightOrBottom.setX(m_ySlide_RightOrBottom.x() + movepos.rx());
+                m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            }
+
+            m_ySlide_LeftOrTop.setX(m_ySlide_RightOrBottom.right() - m_nSliderDistance);
             m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            qDebug() << "SliderDistance2: " << m_ySlide_RightOrBottom.right() - m_ySlide_LeftOrTop.left();
-            goto updateslide;
+
+            UpdateBackgroundSlide();
         }
-
-
-        if(m_ySlide_RightOrBottom.x() + m_ySlide_RightOrBottom.width() + movepos.rx() > this->width())
-        {
-            m_ySlide_RightOrBottom.setX(this->width() - m_ySlide_RightOrBottom.width());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
-        } else if((m_ySlide_RightOrBottom.x() + movepos.rx()) > m_ySlide_LeftOrTop.x() + m_ySlide_LeftOrTop.width())
-        {
-            m_ySlide_RightOrBottom.setX(m_ySlide_RightOrBottom.x() + movepos.rx());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
-        } else {
-            m_ySlide_RightOrBottom.setX(m_ySlide_LeftOrTop.x() + m_ySlide_LeftOrTop.width());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
-        }
-
-        if((m_ySlide_LeftOrTop.x() + m_ySlide_LeftOrTop.width() + movepos.rx()) < m_ySlide_RightOrBottom.x())
-        {
-            m_ySlide_LeftOrTop.setX(m_ySlide_LeftOrTop.x() + movepos.rx());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-        } else {
-            m_ySlide_LeftOrTop.setX(m_ySlide_RightOrBottom.x() - m_ySlide_LeftOrTop.width());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-        }
-
-        updateslide:
-        qreal x = static_cast<qreal>(m_nSlideWidth)/2.0 + m_ySlide_LeftOrTop.x();
-        qreal w = this->width() - m_nSlideWidth - m_ySlide_LeftOrTop.x() - (this->width() - m_ySlide_RightOrBottom.right());
-        m_yBackgroundSlide_Rect.setRect(x,
-                                        static_cast<qreal>(m_nSlideWidth)/4.0 + m_nBackgroundSlideRectBorderWidth/2.0,
-                                        w,
-                                        m_nBackgroundSlideHeight);
-
     } else if(m_ySlideOrientationState == SliderVertical) {
-        /*if(event->pos().y() <= 0 || event->pos().y() >= this->height())
+        if(movepos.ry() < 0)
         {
-            return;
-        }*/
+            if(m_ySlide_LeftOrTop.y() + movepos.ry() < 0)
+            {
+                m_ySlide_LeftOrTop.setY(0);
+                m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            } else {
+                m_ySlide_LeftOrTop.setY(m_ySlide_LeftOrTop.y() + movepos.ry());
+                m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            }
+            m_ySlide_RightOrBottom.setX(0);
+            m_ySlide_RightOrBottom.setY(m_ySlide_LeftOrTop.top() + m_nSliderDistance - m_nSlideWidth);
+            m_ySlide_RightOrBottom.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
 
-        if(m_ySlide_LeftOrTop.y() + movepos.ry() < 0)
+            UpdateBackgroundSlide();
+        } else if(movepos.ry() > 0)
         {
-            m_ySlide_LeftOrTop.setY(0);
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            m_ySlide_RightOrBottom.setBottom(m_nSliderDistance);
-            m_ySlide_RightOrBottom.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            return;
-        } else if(m_ySlide_RightOrBottom.bottom() + movepos.ry() > this->height())
-        {
-            m_ySlide_RightOrBottom.setBottom(this->height());
-            m_ySlide_RightOrBottom.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            if(m_ySlide_RightOrBottom.y() + m_ySlide_RightOrBottom.width() + movepos.ry() > this->height())
+            {
+                m_ySlide_RightOrBottom.setY(this->height() - m_ySlide_RightOrBottom.height());
+                m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            } else {
+                m_ySlide_RightOrBottom.setY(m_ySlide_RightOrBottom.y() + movepos.ry());
+                m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            }
+
+            m_ySlide_LeftOrTop.setX(0);
             m_ySlide_LeftOrTop.setY(m_ySlide_RightOrBottom.bottom() - m_nSliderDistance);
             m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-            return;
+
+            UpdateBackgroundSlide();
         }
-
-        if(m_ySlide_RightOrBottom.y() + m_ySlide_RightOrBottom.width() + movepos.ry() > this->height())
-        {
-            m_ySlide_RightOrBottom.setY(this->height() - m_ySlide_RightOrBottom.height());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
-        } else if(m_ySlide_RightOrBottom.y() + movepos.ry() > m_ySlide_LeftOrTop.y() + m_ySlide_LeftOrTop.height())
-        {
-            m_ySlide_RightOrBottom.setY(m_ySlide_RightOrBottom.y() + movepos.ry());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
-        } else {
-            m_ySlide_RightOrBottom.setY(m_ySlide_LeftOrTop.y() + m_ySlide_LeftOrTop.height());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
-        }
-
-        if(m_ySlide_LeftOrTop.y() + m_ySlide_LeftOrTop.height() + movepos.ry() < m_ySlide_RightOrBottom.y())
-        {
-            m_ySlide_LeftOrTop.setY(m_ySlide_LeftOrTop.y() + movepos.ry());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-        } else {
-            m_ySlide_LeftOrTop.setY(m_ySlide_RightOrBottom.y() - m_ySlide_LeftOrTop.height());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
-        }
-
-        qreal y = static_cast<qreal>(m_nSlideWidth)/2.0 + m_ySlide_LeftOrTop.y();
-        qreal h = this->height() - m_nSlideWidth - m_ySlide_LeftOrTop.y() - (this->height() - m_ySlide_RightOrBottom.bottom());
-
-        m_yBackgroundSlide_Rect.setRect(m_nBackgroundHeight/2.0 + m_nBackgroundSlideRectBorderWidth/2.0,
-                           y,
-                           m_nBackgroundHeight,
-                           h);
-
     }
 }
 
@@ -599,7 +566,7 @@ void CatDoubleSlider::mousePressEvent(QMouseEvent *event)
     QPainterPath slideLeftOrTopPath;
     QPainterPath slideRightOrBottomPath;
     QPainterPath backgroundSlideRectPath;
-
+    qDebug() << event->pos() << " this pos " << this->pos() << " this gemod " << this->geometry();
     slideLeftOrTopPath.addRoundedRect(m_ySlide_LeftOrTop, m_nSlideRadius, m_nSlideRadius);
     slideRightOrBottomPath.addRoundedRect(m_ySlide_RightOrBottom, m_nSlideRadius, m_nSlideRadius);
     backgroundSlideRectPath.addRoundedRect(m_yBackgroundSlide_Rect, m_nBackgroundRadius, m_nBackgroundRadius);

@@ -31,6 +31,11 @@ void CatDoubleSlider::InitProperty()
     //添加自定义类控制
     setAttribute(Qt::WA_StyledBackground,true);
     m_ySelectStyle = NotSelect;
+
+    m_nFrom = 0;
+    m_nTo = 100;
+    m_nFirst = 0;
+    m_nSecond = 100;
     InitRectfProperty();
 }
 
@@ -566,7 +571,6 @@ void CatDoubleSlider::mousePressEvent(QMouseEvent *event)
     QPainterPath slideLeftOrTopPath;
     QPainterPath slideRightOrBottomPath;
     QPainterPath backgroundSlideRectPath;
-    qDebug() << event->pos() << " this pos " << this->pos() << " this gemod " << this->geometry();
     slideLeftOrTopPath.addRoundedRect(m_ySlide_LeftOrTop, m_nSlideRadius, m_nSlideRadius);
     slideRightOrBottomPath.addRoundedRect(m_ySlide_RightOrBottom, m_nSlideRadius, m_nSlideRadius);
     backgroundSlideRectPath.addRoundedRect(m_yBackgroundSlide_Rect, m_nBackgroundRadius, m_nBackgroundRadius);

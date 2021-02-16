@@ -199,6 +199,12 @@ private:
 
     SelectStyle m_ySelectStyle;
     QPointF m_pPressPoint;
+
+    qlonglong m_nFrom;
+    qlonglong m_nTo;
+    qlonglong m_nFirst;
+    qlonglong m_nSecond;
+
 };
 
 #endif // CATDOUBLESLIDER_H

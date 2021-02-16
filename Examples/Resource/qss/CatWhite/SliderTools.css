@@ -305,12 +305,15 @@ QSlider#Slider3::handle:vertical:hover {
 }
 
 CatDoubleSlider#CatSlider {
+    max-height: 10px;
     /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+    /*qproperty-BackgroundSlideRectColor: #773f72;*/
 }
 
 CatDoubleSlider#CatVbSlider {
+    max-width: 10px;
     /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";

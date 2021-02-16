@@ -358,6 +358,7 @@ RangeSlider::handle:horizontal:hover {
 }  
 
 CatDoubleSlider#CatSlider {
+    max-height: 10px;
     /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
@@ -365,12 +366,8 @@ CatDoubleSlider#CatSlider {
 }
 
 CatDoubleSlider#CatVbSlider {
+    max-width: 10px;
     /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
-}
-
-CatDoubleSlider {
-    background-color: aqua;
-    max-height: 10px;
 }

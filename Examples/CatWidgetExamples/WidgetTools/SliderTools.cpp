@@ -39,6 +39,14 @@ void SliderTools::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
+
+    connect(ui->CatSlider, &CatDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
+        qDebug() << first << " : " << second;
+    });
+
+    connect(ui->CatVbSlider, &CatDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
+        qDebug() << first << " : " << second;
+    });
 }
 
 void SliderTools::UpdateStyle()

@@ -81,6 +81,10 @@ public:
     qreal BackgroundRectBorderWidth() const { return m_nBackgroundRectBorderWidth; }
     qreal BackgroundSlideRectBorderWidth() const { return m_nBackgroundSlideRectBorderWidth; }
 
+    void SetFromTo(qreal from, qreal to);
+    void SetFirst(qreal first);
+    void SetSecond(qreal second);
+
 private:
     void InitUi();
     void InitProperty();
@@ -100,6 +104,7 @@ private:
     void BackgroundSlideRectPose(QMouseEvent *event);
 
     void UpdateOrientation();
+    void UpdateFirstSecond();
 
 
 signals:
@@ -128,6 +133,9 @@ signals:
     void SlideRightBorderWidthChanged(qreal);
     void BackgroundRectBorderWidthChanged(qreal);
     void BackgroundSlideRectBorderWidthChanged(qreal);
+
+signals:
+    void UpdateFirstSeconded(qreal, qreal);
 
 public slots:
     void setSlideLeftOrTopWidth(int width);
@@ -198,12 +206,13 @@ private:
     qreal m_nSliderDistance;
 
     SelectStyle m_ySelectStyle;
+    SelectStyle m_yLastSelectStyle;
     QPointF m_pPressPoint;
 
-    qlonglong m_nFrom;
-    qlonglong m_nTo;
-    qlonglong m_nFirst;
-    qlonglong m_nSecond;
+    qreal m_nFrom;
+    qreal m_nTo;
+    qreal m_nFirst;
+    qreal m_nSecond;
 
 };
 

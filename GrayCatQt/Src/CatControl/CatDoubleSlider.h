@@ -57,11 +57,13 @@ public:
         SliderHorizontal,
         SliderVertical
     };
+
     Q_ENUM(OrientationState)
     enum SliderStyles {
         SliderRect,
         SliderRound
     };
+
     Q_ENUM(SliderStyles)
     enum SelectStyle {
         LeftOrTopSelect,

@@ -305,16 +305,30 @@ QSlider#Slider3::handle:vertical:hover {
 }
 
 CatDoubleSlider#CatSlider {
-    max-height: 10px;
-    /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
-    /*qproperty-BackgroundSlideRectColor: #773f72;*/
+    qproperty-SlideLeftColor: #ebebeb;  
+    qproperty-SlideRightColor: #ebebeb;  
+    qproperty-BackgroundSlideRectColor :#773f72; 
+    qproperty-HoverSlideLeftColor: rgba(223,74,22,100%);
+    qproperty-HoverSlideRightColor: rgba(223,74,22,100%);
+    qproperty-PressSlideLeftColor: rgba(223,74,22,100%);
+    qproperty-PressSlideRightColor: rgba(223,74,22,100%);
+    qproperty-HoverBackgroundSlideRectColor :#773f72CC; 
+    qproperty-BackgroundRectColor: #dedede;
 }
 
 CatDoubleSlider#CatVbSlider {
-    max-width: 10px;
-    /*qproperty-SlideLeftOrTopWidth: 200;*/
     qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
     qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+    qproperty-SlideLeftColor: #ebebeb;  
+    qproperty-SlideRightColor: #ebebeb;  
+    qproperty-BackgroundSlideRectColor :#773f72; 
+    qproperty-HoverSlideLeftColor: rgba(223,74,22,100%);
+    qproperty-HoverSlideRightColor: rgba(223,74,22,100%);
+    qproperty-PressSlideLeftColor: rgba(223,74,22,100%);
+    qproperty-PressSlideRightColor: rgba(223,74,22,100%);
+    qproperty-HoverBackgroundSlideRectColor :#773f72CC; 
+    qproperty-BackgroundRectColor: #dedede;
+
 }

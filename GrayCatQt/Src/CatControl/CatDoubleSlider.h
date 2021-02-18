@@ -12,6 +12,7 @@ class CatDoubleSlider : public QWidget
     Q_PROPERTY(int SlideRightOrBottomHeight READ SlideRightOrBottomHeight WRITE setSlideRightOrBottomHeight NOTIFY SlideRightOrBottomHeightChanged)
     Q_PROPERTY(OrientationState SlideOrientationState READ SlideOrientationState WRITE setSlideOrientationState NOTIFY SlideOrientationStateChanged)
     Q_PROPERTY(SliderStyles SliderStyle READ SliderStyle WRITE setSliderStyle NOTIFY SliderStyleChanged)
+
     Q_PROPERTY(QBrush SlideLeftColor READ SlideLeftColor WRITE setSlideLeftColor NOTIFY SlideLeftColorChanged)
     Q_PROPERTY(QBrush SlideRightColor READ SlideRightColor WRITE setSlideRightColor NOTIFY SlideRightColorChanged)
     Q_PROPERTY(QBrush BackgroundRectColor READ BackgroundRectColor WRITE setBackgroundRectColor NOTIFY BackgroundRectColorChanged)
@@ -20,6 +21,24 @@ class CatDoubleSlider : public QWidget
     Q_PROPERTY(QBrush SlideRightBorderColor READ SlideRightBorderColor WRITE setSlideRightBorderColor NOTIFY SlideRightBorderColorChanged)
     Q_PROPERTY(QBrush BackgroundRectBorderColor READ BackgroundRectBorderColor WRITE setBackgroundRectBorderColor NOTIFY BackgroundRectBorderColorChanged)
     Q_PROPERTY(QBrush BackgroundSlideRectBorderColor READ BackgroundSlideRectBorderColor WRITE setBackgroundSlideRectBorderColor NOTIFY BackgroundSlideRectBorderColorChanged)
+
+    Q_PROPERTY(QBrush HoverSlideLeftColor READ HoverSlideLeftColor WRITE setHoverSlideLeftColor NOTIFY HoverSlideLeftColorChanged)
+    Q_PROPERTY(QBrush HoverSlideRightColor READ HoverSlideRightColor WRITE setHoverSlideRightColor NOTIFY HoverSlideRightColorChanged)
+    Q_PROPERTY(QBrush HoverBackgroundRectColor READ HoverBackgroundRectColor WRITE setHoverBackgroundRectColor NOTIFY HoverBackgroundRectColorChanged)
+    Q_PROPERTY(QBrush HoverBackgroundSlideRectColor READ HoverBackgroundSlideRectColor WRITE setHoverBackgroundSlideRectColor NOTIFY HoverBackgroundSlideRectColorChanged)
+    Q_PROPERTY(QBrush HoverSlideLeftBorderColor READ HoverSlideLeftBorderColor WRITE setHoverSlideLeftBorderColor NOTIFY HoverSlideLeftBorderColorChanged)
+    Q_PROPERTY(QBrush HoverSlideRightBorderColor READ HoverSlideRightBorderColor WRITE setHoverSlideRightBorderColor NOTIFY HoverSlideRightBorderColorChanged)
+    Q_PROPERTY(QBrush HoverBackgroundRectBorderColor READ HoverBackgroundRectBorderColor WRITE setHoverBackgroundRectBorderColor NOTIFY HoverBackgroundRectBorderColorChanged)
+    Q_PROPERTY(QBrush HoverBackgroundSlideRectBorderColor READ HoverBackgroundSlideRectBorderColor WRITE setHoverBackgroundSlideRectBorderColor NOTIFY HoverBackgroundSlideRectBorderColorChanged)
+
+    Q_PROPERTY(QBrush PressSlideLeftColor READ PressSlideLeftColor WRITE setPressSlideLeftColor NOTIFY PressSlideLeftColorChanged)
+    Q_PROPERTY(QBrush PressSlideRightColor READ PressSlideRightColor WRITE setPressSlideRightColor NOTIFY PressSlideRightColorChanged)
+    Q_PROPERTY(QBrush PressBackgroundRectColor READ PressBackgroundRectColor WRITE setPressBackgroundRectColor NOTIFY PressBackgroundRectColorChanged)
+    Q_PROPERTY(QBrush PressBackgroundSlideRectColor READ PressBackgroundSlideRectColor WRITE setPressBackgroundSlideRectColor NOTIFY PressBackgroundSlideRectColorChanged)
+    Q_PROPERTY(QBrush PressSlideLeftBorderColor READ PressSlideLeftBorderColor WRITE setPressSlideLeftBorderColor NOTIFY PressSlideLeftBorderColorChanged)
+    Q_PROPERTY(QBrush PressSlideRightBorderColor READ PressSlideRightBorderColor WRITE setPressSlideRightBorderColor NOTIFY PressSlideRightBorderColorChanged)
+    Q_PROPERTY(QBrush PressBackgroundRectBorderColor READ PressBackgroundRectBorderColor WRITE setPressBackgroundRectBorderColor NOTIFY PressBackgroundRectBorderColorChanged)
+    Q_PROPERTY(QBrush PressBackgroundSlideRectBorderColor READ PressBackgroundSlideRectBorderColor WRITE setPressBackgroundSlideRectBorderColor NOTIFY PressBackgroundSlideRectBorderColorChanged)
 
     Q_PROPERTY(int BackgroundRadius READ BackgroundRadius WRITE setBackgroundRadius NOTIFY BackgroundRadiusChanged)
     Q_PROPERTY(int SlideRadius READ SlideRadius WRITE setSlideRadius NOTIFY SlideRadiusChanged)
@@ -70,6 +89,24 @@ public:
     QBrush BackgroundRectBorderColor() const { return m_cBackgroundRectBorderColor; }
     QBrush BackgroundSlideRectBorderColor() const { return m_cBackgroundSlideRectBorderColor; }
 
+    QBrush HoverSlideLeftColor() const { return m_cHoverSlideLeftColor; }
+    QBrush HoverSlideRightColor() const { return m_cHoverSlideRightColor; }
+    QBrush HoverBackgroundRectColor() const { return m_cHoverBackgroundRectColor; }
+    QBrush HoverBackgroundSlideRectColor() const { return m_cHoverBackgroundSlideRectColor; }
+    QBrush HoverSlideLeftBorderColor() const { return m_cHoverSlideLeftBorderColor; }
+    QBrush HoverSlideRightBorderColor() const { return m_cHoverSlideRightBorderColor; }
+    QBrush HoverBackgroundRectBorderColor() const { return m_cHoverBackgroundRectBorderColor; }
+    QBrush HoverBackgroundSlideRectBorderColor() const { return m_cHoverBackgroundSlideRectBorderColor; }
+
+    QBrush PressSlideLeftColor() const { return m_cPressSlideLeftColor; }
+    QBrush PressSlideRightColor() const { return m_cPressSlideRightColor; }
+    QBrush PressBackgroundRectColor() const { return m_cPressBackgroundRectColor; }
+    QBrush PressBackgroundSlideRectColor() const { return m_cPressBackgroundSlideRectColor; }
+    QBrush PressSlideLeftBorderColor() const { return m_cPressSlideLeftBorderColor; }
+    QBrush PressSlideRightBorderColor() const { return m_cPressSlideRightBorderColor; }
+    QBrush PressBackgroundRectBorderColor() const { return m_cPressBackgroundRectBorderColor; }
+    QBrush PressBackgroundSlideRectBorderColor() const { return m_cPressBackgroundSlideRectBorderColor; }
+
     int BackgroundRadius() const { return m_nBackgroundRadius; }
     int SlideRadius() const { return m_nSlideRadius; }
 
@@ -91,7 +128,6 @@ private:
 
     void InitRectfProperty();
 
-    void UpdateProperty();
     void UpdateBackgroundSlide();
 
     void Painter_Background_Rect(QPainter *painter);
@@ -106,6 +142,7 @@ private:
     void UpdateOrientation();
     void UpdateFirstSecond();
 
+    void UpdateSlideCoordinates();
 
 signals:
     void SlideLeftOrTopWidthChanged(int);
@@ -124,6 +161,24 @@ signals:
     void BackgroundRectBorderColorChanged(QBrush);
     void BackgroundSlideRectBorderColorChanged(QBrush);
 
+    void HoverSlideLeftColorChanged(QBrush);
+    void HoverSlideRightColorChanged(QBrush);
+    void HoverBackgroundRectColorChanged(QBrush);
+    void HoverBackgroundSlideRectColorChanged(QBrush);
+    void HoverSlideLeftBorderColorChanged(QBrush);
+    void HoverSlideRightBorderColorChanged(QBrush);
+    void HoverBackgroundRectBorderColorChanged(QBrush);
+    void HoverBackgroundSlideRectBorderColorChanged(QBrush);
+
+    void PressSlideLeftColorChanged(QBrush);
+    void PressSlideRightColorChanged(QBrush);
+    void PressBackgroundRectColorChanged(QBrush);
+    void PressBackgroundSlideRectColorChanged(QBrush);
+    void PressSlideLeftBorderColorChanged(QBrush);
+    void PressSlideRightBorderColorChanged(QBrush);
+    void PressBackgroundRectBorderColorChanged(QBrush);
+    void PressBackgroundSlideRectBorderColorChanged(QBrush);
+
     void BackgroundRadiusChanged(int);
     void SlideRadiusChanged(int);
     void SlideWidthChanged(qreal);
@@ -134,7 +189,6 @@ signals:
     void BackgroundRectBorderWidthChanged(qreal);
     void BackgroundSlideRectBorderWidthChanged(qreal);
 
-signals:
     void UpdateFirstSeconded(qreal, qreal);
 
 public slots:
@@ -144,6 +198,7 @@ public slots:
     void setSlideRightOrBottomHeight(int height);
     void setSlideOrientationState(CatDoubleSlider::OrientationState state);
     void setSliderStyle(CatDoubleSlider::SliderStyles style);
+
     void setSlideLeftColor(QBrush brush);
     void setSlideRightColor(QBrush brush);
     void setBackgroundRectColor(QBrush brush);
@@ -152,6 +207,24 @@ public slots:
     void setSlideRightBorderColor(QBrush color);
     void setBackgroundRectBorderColor(QBrush color);
     void setBackgroundSlideRectBorderColor(QBrush color);
+
+    void setHoverSlideLeftColor(QBrush brush);
+    void setHoverSlideRightColor(QBrush brush);
+    void setHoverBackgroundRectColor(QBrush brush);
+    void setHoverBackgroundSlideRectColor(QBrush brush);
+    void setHoverSlideLeftBorderColor(QBrush color);
+    void setHoverSlideRightBorderColor(QBrush color);
+    void setHoverBackgroundRectBorderColor(QBrush color);
+    void setHoverBackgroundSlideRectBorderColor(QBrush color);
+
+    void setPressSlideLeftColor(QBrush brush);
+    void setPressSlideRightColor(QBrush brush);
+    void setPressBackgroundRectColor(QBrush brush);
+    void setPressBackgroundSlideRectColor(QBrush brush);
+    void setPressSlideLeftBorderColor(QBrush color);
+    void setPressSlideRightBorderColor(QBrush color);
+    void setPressBackgroundRectBorderColor(QBrush color);
+    void setPressBackgroundSlideRectBorderColor(QBrush color);
 
     void setBackgroundRadius(int radius);
     void setSlideRadius(int radius);
@@ -172,9 +245,7 @@ protected:
     void mousePressEvent(QMouseEvent *event) override;
     void mouseReleaseEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *event) override;
-
-
-
+    bool eventFilter(QObject *o, QEvent *e) override;
 
 private:
     QRectF m_ySlide_LeftOrTop;
@@ -183,6 +254,16 @@ private:
     QRectF m_yBackgroundSlide_Rect;
     OrientationState m_ySlideOrientationState;
     SliderStyles m_ySliderStyle;
+
+    QBrush m_cCurrentSlideLeftColor;
+    QBrush m_cCurrentSlideRightColor;
+    QBrush m_cCurrentBackgroundRectColor;
+    QBrush m_cCurrentBackgroundSlideRectColor;
+    QBrush m_cCurrentSlideLeftBorderColor;
+    QBrush m_cCurrentSlideRightBorderColor;
+    QBrush m_cCurrentBackgroundRectBorderColor;
+    QBrush m_cCurrentBackgroundSlideRectBorderColor;
+
     QBrush m_cSlideLeftColor;
     QBrush m_cSlideRightColor;
     QBrush m_cBackgroundRectColor;
@@ -191,6 +272,24 @@ private:
     QBrush m_cSlideRightBorderColor;
     QBrush m_cBackgroundRectBorderColor;
     QBrush m_cBackgroundSlideRectBorderColor;
+
+    QBrush m_cHoverSlideLeftColor;
+    QBrush m_cHoverSlideRightColor;
+    QBrush m_cHoverBackgroundRectColor;
+    QBrush m_cHoverBackgroundSlideRectColor;
+    QBrush m_cHoverSlideLeftBorderColor;
+    QBrush m_cHoverSlideRightBorderColor;
+    QBrush m_cHoverBackgroundRectBorderColor;
+    QBrush m_cHoverBackgroundSlideRectBorderColor;
+
+    QBrush m_cPressSlideLeftColor;
+    QBrush m_cPressSlideRightColor;
+    QBrush m_cPressBackgroundRectColor;
+    QBrush m_cPressBackgroundSlideRectColor;
+    QBrush m_cPressSlideLeftBorderColor;
+    QBrush m_cPressSlideRightBorderColor;
+    QBrush m_cPressBackgroundRectBorderColor;
+    QBrush m_cPressBackgroundSlideRectBorderColor;
 
     int m_nBackgroundRadius;
     int m_nSlideRadius;
@@ -213,6 +312,8 @@ private:
     qreal m_nTo;
     qreal m_nFirst;
     qreal m_nSecond;
+
+    bool m_bMousePress;
 
 };
 

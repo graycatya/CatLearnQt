@@ -33,7 +33,7 @@ protected:
 private:
     Ui::CatAbout *ui;
     QTextEdit *LicenceTextEdit;
-    QTextBrowser *ThankTextBrowser;
+    //QTextBrowser *ThankTextBrowser;
 };
 
 #endif // CATABOUT_H

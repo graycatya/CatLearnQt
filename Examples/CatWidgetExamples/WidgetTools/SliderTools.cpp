@@ -39,7 +39,7 @@ void SliderTools::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
-
+/*
     connect(ui->CatSlider, &CatDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
         qDebug() << first << " : " << second;
     });
@@ -47,6 +47,7 @@ void SliderTools::InitConnect()
     connect(ui->CatVbSlider, &CatDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
         qDebug() << first << " : " << second;
     });
+*/
 }
 
 void SliderTools::UpdateStyle()
@@ -73,9 +74,9 @@ void SliderTools::InitDefauleSlider()
     Slider0->setOrientation(Qt::Horizontal);
     Slider0->setValue(50);
     ui->SilderVbLayout->addWidget(Slider0);
-    connect(Slider0, &QSlider::sliderMoved, this, [=](int value){
+    /*connect(Slider0, &QSlider::sliderMoved, this, [=](int value){
         qDebug() << "value: " << value;
-    });
+    });*/
 
     QSlider *Slider1 = new QSlider(this);
     Slider1->setObjectName("Slider1");

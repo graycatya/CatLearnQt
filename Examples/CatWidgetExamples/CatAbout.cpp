@@ -40,7 +40,7 @@ void CatAbout::InitUi()
     LicenceTextEdit->setAccessibleName(QString::fromUtf8(""));
 #endif // QT_NO_ACCESSIBILITY
     ui->horizontalLayout->addWidget(LicenceTextEdit);
-
+/*
     ThankTextBrowser = new QTextBrowser(ui->ThankWidget);
     ThankTextBrowser->setObjectName(QString::fromUtf8("ThankTextBrowser"));
 #ifndef QT_NO_TOOLTIP
@@ -54,12 +54,12 @@ void CatAbout::InitUi()
 #endif // QT_NO_WHATSTHIS
 
     ui->verticalLayout_4->addWidget(ThankTextBrowser);
-
+*/
 
     ui->RootLayout->setStretchFactor(ui->LogVboxLayout, 2);
     ui->RootLayout->setStretchFactor(ui->AboutTabWidget, 8);
     LicenceTextEdit->setReadOnly(true);
-    ThankTextBrowser->setReadOnly(true);
+    //ThankTextBrowser->setReadOnly(true);
     ui->AboutTabWidget->setAttribute(Qt::WA_StyledBackground);
     ui->AboutTabWidget->setAttribute(Qt::WA_TranslucentBackground);
 
@@ -104,11 +104,12 @@ void CatAbout::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
-
+/*
     connect(ThankTextBrowser, &QTextBrowser::anchorClicked, this, [=](QUrl url){
         retranslateUi();
         QDesktopServices::openUrl(url);
     });
+*/
     //connect(ui->ThankTextEdit, &QTextEdit::scrollToAnchor);
 }
 
@@ -135,15 +136,15 @@ void CatAbout::retranslateUi()
 {
     QString lang = CatConfig::GetValue("Language", "Defaule").toString();
     QString explain = ":/about/explain/explain";
-    QString thank = ":/about/thank/Thank";
+    //QString thank = ":/about/thank/Thank";
     if(lang == "chinese(china)") {
         explain += "_cn";
-        thank += "_cn";
+        //thank += "_cn";
     } else {
         explain += "_en";
-        thank += "_en";
+        //thank += "_en";
     }
-    thank += ".html";
+    //thank += ".html";
 #if (QT_VERSION < QT_VERSION_CHECK(5, 14, 0))
     explain += ".html";
 #else
@@ -155,12 +156,13 @@ void CatAbout::retranslateUi()
     ui->Explain->setText(str_explain);
     file_explain.close();
 
-    QFile file_thank(thank);
+    /*QFile file_thank(thank);
     file_thank.open(QIODevice::ReadOnly);
     QString str_thank = file_thank.readAll();
-    ThankTextBrowser->setHtml(str_thank);
+    //ThankTextBrowser->setHtml(str_thank);
 
-    file_thank.close();
+    //file_thank.close();
+    */
 
 
 

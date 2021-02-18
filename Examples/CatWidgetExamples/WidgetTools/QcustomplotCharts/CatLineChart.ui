@@ -162,6 +162,13 @@
          </spacer>
         </item>
         <item>
+         <widget class="QPushButton" name="SaveButton">
+          <property name="text">
+           <string>SaveImage</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="StartButton">
           <property name="text">
            <string>PushButton</string>

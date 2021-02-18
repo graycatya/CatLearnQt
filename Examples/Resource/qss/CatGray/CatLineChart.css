@@ -187,7 +187,7 @@ QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
     border: none;
 }
 
-QPushButton#StartButton {
+QPushButton#StartButton, QPushButton#SaveButton {
     min-width: 100px;
     min-height: 30px;
     max-height: 30px;
@@ -198,7 +198,7 @@ QPushButton#StartButton {
     background-color: #272626;
 }
 
-QPushButton#StartButton:hover {
+QPushButton#StartButton:hover, QPushButton#SaveButton:hover {
     border: none;
     background-color: #353526;
     min-height: 30px;
@@ -206,14 +206,14 @@ QPushButton#StartButton:hover {
     border: 1px solid gray;
 }
 
-QPushButton#StartButton:pressed {
+QPushButton#StartButton:pressed, QPushButton#SaveButton:pressed {
     border: none;
     background-color: #353526;
     /*background-color: rgba(223,74,22,100%);*/
     border: 1px solid gray
 }
 
-QPushButton#StartButton:checked {
+QPushButton#StartButton:checked, QPushButton#SaveButton:checked {
     border: none;
     background-color: #353526;
     border: 1px solid rgba(223,74,22,100%);

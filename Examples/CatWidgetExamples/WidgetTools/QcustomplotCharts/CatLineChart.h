@@ -54,6 +54,7 @@ private:
     QDateTime m_pStopTime;
     bool m_bFirstStart;
 
+    double m_nDataSize;
 };
 
 #endif // CATLINECHART_H

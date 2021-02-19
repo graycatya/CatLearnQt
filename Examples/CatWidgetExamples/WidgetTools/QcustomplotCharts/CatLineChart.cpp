@@ -9,7 +9,8 @@ CatLineChart::CatLineChart(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CatLineChart),
     m_pDataTimer(new QTimer(this)),
-    m_bFirstStart(true)
+    m_bFirstStart(true),
+    m_nDataSize(0)
 {
     ui->setupUi(this);
     InitUi();
@@ -104,7 +105,7 @@ void CatLineChart::InitConnect()
                                              QCP::iSelectAxes | QCP::iSelectLegend |
                                              QCP::iSelectPlottables);
         } else {
-            m_pDataTimer->start(50);
+            m_pDataTimer->start(500);
             StartTimer(true);
             ui->ChartWidget->setInteractions(QCP::iRangeZoom | QCP::iSelectAxes |
                                              QCP::iSelectLegend | QCP::iSelectPlottables );
@@ -250,6 +251,7 @@ void CatLineChart::InitChartConnect()
           lastFpsKey = currtime;
           frameCount = 0;
         }
+        m_nDataSize++;
     });
 
     connect(ui->Line_0, &QCheckBox::stateChanged, this, [=](int state){
@@ -296,18 +298,21 @@ void CatLineChart::StartTimer(bool start)
         ui->StartButton->setText("Stop");
         ui->ChartWidget->SetTracer(false);
         ui->SaveButton->setVisible(false);
-        m_pStopTime = QDateTime::currentDateTime();
-        QCustomPlot *customPlot = ui->ChartWidget;
-        customPlot->xAxis->setRange((double)(m_pStartTime.toMSecsSinceEpoch()) / 1000.0, 100, Qt::AlignRight);
-    } else {
-        ui->StartButton->setText("Start");
-        ui->ChartWidget->SetTracer(true);
-        ui->SaveButton->setVisible(true);
         if(m_bFirstStart)
         {
             m_pStartTime = QDateTime::currentDateTime();
         }
         m_bFirstStart = false;
+    } else {
+        ui->StartButton->setText("Start");
+        ui->ChartWidget->SetTracer(true);
+        ui->SaveButton->setVisible(true);
+        m_pStopTime = QDateTime::currentDateTime();
+        QCustomPlot *customPlot = ui->ChartWidget;
+        qDebug() << "..." << m_nDataSize;
+        customPlot->xAxis->setRange((double)(m_pStopTime.toMSecsSinceEpoch()) / 1000.0, m_nDataSize/2, Qt::AlignRight);
+        customPlot->replot();
+
     }
 }
 

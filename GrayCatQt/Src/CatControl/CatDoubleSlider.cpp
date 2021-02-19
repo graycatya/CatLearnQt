@@ -718,6 +718,14 @@ void CatDoubleSlider::enterEvent(QEvent *event)
 void CatDoubleSlider::leaveEvent(QEvent *event)
 {
     Q_UNUSED(event)
+    m_cCurrentSlideLeftColor = m_cSlideLeftColor;
+    m_cCurrentSlideRightColor = m_cSlideRightColor;
+    m_cCurrentBackgroundRectColor = m_cBackgroundRectColor;
+    m_cCurrentBackgroundSlideRectColor = m_cBackgroundSlideRectColor;
+    m_cCurrentSlideLeftBorderColor = m_cSlideLeftBorderColor;
+    m_cCurrentSlideRightBorderColor = m_cSlideRightBorderColor;
+    m_cCurrentBackgroundRectBorderColor = m_cBackgroundRectBorderColor;
+    m_cCurrentBackgroundSlideRectBorderColor = m_cBackgroundSlideRectBorderColor;
 }
 
 void CatDoubleSlider::resizeEvent(QResizeEvent *event)

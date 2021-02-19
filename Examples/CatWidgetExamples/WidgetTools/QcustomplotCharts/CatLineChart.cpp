@@ -8,7 +8,8 @@
 CatLineChart::CatLineChart(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CatLineChart),
-    m_pDataTimer(new QTimer(this))
+    m_pDataTimer(new QTimer(this)),
+    m_bFirstStart(true)
 {
     ui->setupUi(this);
     InitUi();
@@ -78,6 +79,7 @@ void CatLineChart::InitUi()
     ui->Line_1->setChecked(true);
     ui->Line_2->setChecked(true);
     ui->Line_3->setChecked(true);
+    ui->SaveButton->setVisible(false);
 }
 
 
@@ -293,9 +295,19 @@ void CatLineChart::StartTimer(bool start)
     {
         ui->StartButton->setText("Stop");
         ui->ChartWidget->SetTracer(false);
+        ui->SaveButton->setVisible(false);
+        m_pStopTime = QDateTime::currentDateTime();
+        QCustomPlot *customPlot = ui->ChartWidget;
+        customPlot->xAxis->setRange((double)(m_pStartTime.toMSecsSinceEpoch()) / 1000.0, 100, Qt::AlignRight);
     } else {
         ui->StartButton->setText("Start");
         ui->ChartWidget->SetTracer(true);
+        ui->SaveButton->setVisible(true);
+        if(m_bFirstStart)
+        {
+            m_pStartTime = QDateTime::currentDateTime();
+        }
+        m_bFirstStart = false;
     }
 }
 

@@ -2,6 +2,7 @@
 #define CATLINECHART_H
 
 #include <QWidget>
+#include <QDateTime>
 
 class QCPGraph;
 class QComboBox;
@@ -49,6 +50,9 @@ private:
     QVector<QCPGraph*> m_pGraphs;
     QTimer *m_pDataTimer;
     QComboBox *m_pDxvaBox;
+    QDateTime m_pStartTime;
+    QDateTime m_pStopTime;
+    bool m_bFirstStart;
 
 };
 

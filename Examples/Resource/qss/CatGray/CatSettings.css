@@ -106,20 +106,61 @@ QListView#StyleComboBoxView::item:hover {
     background:#656565;
 }
 
-QWidget#WindowColorsWidget {
+QWidget#WindowColorsWidget, QWidget#SaveWidget {
     border: 2px solid #2d2d2d;
     background-color: #343434;
     border-radius: 5px;
 }
 
 
-QLabel#AppSettings {
+QLabel#AppSettings, QLabel#AppSave {
     color: white;
     font-weight: bold;
     font-size: 24px;
     font-family: "Ubuntu";
 }
 
+
+QLineEdit#SavePathEdit {
+    color: #C1C1C1;
+    font-family: "Ubuntu";
+    border: 1px solid #313131;
+    background-color: #484848;
+    border-radius: 3px;
+    min-height: 30px;
+}
+
+QPushButton#ChangeButton {
+    min-width: 100px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    color: #C1C1C1;
+    font-family: "Ubuntu";
+    border: 1px solid gray;
+    background-color: #272626;
+}
+
+QPushButton#ChangeButton:hover {
+    border: none;
+    background-color: #353526;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid gray;
+}
+
+QPushButton#ChangeButton:pressed{
+    border: none;
+    background-color: #353526;
+    /*background-color: rgba(223,74,22,100%);*/
+    border: 1px solid gray
+}
+
+QPushButton#ChangeButton:checked {
+    border: none;
+    background-color: #353526;
+    border: 1px solid rgba(223,74,22,100%);
+}
 
 /* 滚动条 */
 QScrollBar:vertical

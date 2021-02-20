@@ -2,8 +2,9 @@
 #include "ui_CatLineChart.h"
 
 #include "../../CatConfig/CatConfig.h"
-
+#include <CatUniversal/CatFile.h>
 #include <CatLog>
+#include <QFileDialog>
 
 CatLineChart::CatLineChart(QWidget *parent) :
     QWidget(parent),
@@ -251,7 +252,7 @@ void CatLineChart::InitChartConnect()
           lastFpsKey = currtime;
           frameCount = 0;
         }
-        m_nDataSize++;
+        //m_nDataSize++;
     });
 
     connect(ui->Line_0, &QCheckBox::stateChanged, this, [=](int state){
@@ -308,11 +309,6 @@ void CatLineChart::StartTimer(bool start)
         ui->ChartWidget->SetTracer(true);
         ui->SaveButton->setVisible(true);
         m_pStopTime = QDateTime::currentDateTime();
-        QCustomPlot *customPlot = ui->ChartWidget;
-        qDebug() << "..." << m_nDataSize;
-        customPlot->xAxis->setRange((double)(m_pStopTime.toMSecsSinceEpoch()) / 1000.0, m_nDataSize/2, Qt::AlignRight);
-        customPlot->replot();
-
     }
 }
 
@@ -409,4 +405,37 @@ void CatLineChart::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
     ui->ChartWidget->replot();
+}
+
+void CatLineChart::on_SaveButton_clicked()
+{
+    QCustomPlot *customPlot = ui->ChartWidget;
+
+    QDateTime lastxlower;
+    lastxlower.setSecsSinceEpoch(customPlot->xAxis->range().lower);
+    QDateTime lastxupper;
+    lastxupper.setSecsSinceEpoch(customPlot->xAxis->range().upper);
+    double lastylower = customPlot->yAxis->range().lower;
+    double lastyupper = customPlot->yAxis->range().upper;
+    QString filename = QDateTime::currentDateTime().toString("yyMMddhhmmss") + ".png";
+    CatFile::Existe(CatConfig::GetValue("SaveFilePath").toString(), true);
+    QString definepath = CatConfig::GetValue("SaveFilePath").toString() + "/" + filename;
+
+    QString file = QFileDialog::getSaveFileName(this, tr("Save file"), definepath, "png(*.png)");
+    if(!file.isEmpty())
+    {
+        m_nDataSize = static_cast<double>(m_pStartTime.secsTo(m_pStopTime));
+        customPlot->xAxis->setRange((double)(m_pStopTime.toMSecsSinceEpoch()) / 1000.0, m_nDataSize, Qt::AlignRight);
+        customPlot->yAxis->setRange(0.0, 100.0);
+        ui->ChartWidget->SetTracer(false);
+        customPlot->replot();
+        customPlot->toPixmap(customPlot->width(), customPlot->height()).save(file);
+        qDebug() << file;
+        customPlot->xAxis->setRange(lastxlower.toTime_t(), lastxupper.toTime_t());
+        customPlot->yAxis->setRange(lastylower, lastyupper);
+        ui->ChartWidget->SetTracer(true);
+        customPlot->replot();
+    }
+
+
 }

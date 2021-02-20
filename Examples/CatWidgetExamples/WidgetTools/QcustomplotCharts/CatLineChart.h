@@ -41,6 +41,8 @@ private slots:
     void On_MousePress();
     void On_LineCheck(int line, bool state);
 
+    void on_SaveButton_clicked();
+
 protected:
     void hideEvent(QHideEvent *event) override;
     void showEvent(QShowEvent *event) override;

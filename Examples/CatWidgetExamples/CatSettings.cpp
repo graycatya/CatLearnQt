@@ -6,6 +6,7 @@
 #include "CatConfig/CatConfig.h"
 #include <QDebug>
 #include <QTimer>
+#include <QFileDialog>
 
 CatSettings::CatSettings(QWidget *parent) :
     QWidget(parent),
@@ -101,9 +102,22 @@ void CatSettings::UpdateStyle()
     file_0.close();
 }
 
+void CatSettings::SetSaveFilePathLineEdit(QString str)
+{
+    QFontMetrics fontMetrics(ui->SavePathEdit->font());
+    if(fontMetrics.horizontalAdvance(str) > ui->SavePathEdit->width() - 5)
+    {
+        str = QFontMetrics(ui->SavePathEdit->font())
+                .elidedText(str, Qt::ElideRight,
+                            ui->SavePathEdit->width() - 5);
+    }
+    ui->SavePathEdit->setText(str);
+}
+
 void CatSettings::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
+    SetSaveFilePathLineEdit(CatConfig::GetValue("SaveFilePath").toString());
     //m_bShowWidget = true;
 }
 
@@ -115,4 +129,22 @@ void CatSettings::changeEvent(QEvent *event)
     } else {
         QWidget::changeEvent(event);
     }
+}
+
+void CatSettings::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+    SetSaveFilePathLineEdit(CatConfig::GetValue("SaveFilePath").toString());
+}
+
+void CatSettings::on_ChangeButton_clicked()
+{
+    QString filepath = QFileDialog::getExistingDirectory(this,
+                                      tr("Select the road strength to be saved"),
+                                      CatConfig::GetValue("SaveFilePath").toString());
+    if(!filepath.isEmpty())
+    {
+        CatConfig::SetValue("SaveFilePath", filepath);
+    }
+    SetSaveFilePathLineEdit(CatConfig::GetValue("SaveFilePath").toString());
 }

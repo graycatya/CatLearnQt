@@ -106,18 +106,62 @@ QListView#StyleComboBoxView::item:hover {
     background:#dedede;
 }
 
-QWidget#WindowColorsWidget {
+QWidget#WindowColorsWidget, QWidget#SaveWidget  {
     border: 1px solid #ebebeb;
     background-color: #ffffff;
     border-radius: 1px;
 }
 
 
-QLabel#AppSettings {
+QLabel#AppSettings, QLabel#AppSave {
     color: #4b4642;
     font-weight: bold;
     font-size: 24px;
     font-family: "Ubuntu";
+}
+
+QLineEdit#SavePathEdit {
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+    border-radius: 3px;
+    min-height: 30px;
+}
+
+QPushButton#ChangeButton {
+    min-width: 100px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+}
+
+QPushButton#ChangeButton:hover {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid #424242;
+}
+
+QPushButton#ChangeButton:pressed {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QPushButton#ChangeButton:checked {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
 }
 
 

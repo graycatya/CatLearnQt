@@ -148,6 +148,9 @@ void CatConfig::InitConfig()
         setting.setValue("AppVersion", APP_VERSION);
         setting.setValue("HomePage", "www.graycatya.com");
 
+        QString savefilepath = QCoreApplication::applicationDirPath() + "/" + "SaveFile";
+        setting.setValue("SaveFilePath", savefilepath);
+
         QStringList style = {"style", "style"};
         QVariantList styleNames = { "CatGray", "CatWhite" };
         CatSettingBase::SetArray(m_sConfigPath, "StyleSheets", style, styleNames);

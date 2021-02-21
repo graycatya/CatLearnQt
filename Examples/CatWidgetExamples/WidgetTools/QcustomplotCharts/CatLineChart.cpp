@@ -430,7 +430,6 @@ void CatLineChart::on_SaveButton_clicked()
         ui->ChartWidget->SetTracer(false);
         customPlot->replot();
         customPlot->toPixmap(customPlot->width(), customPlot->height()).save(file);
-        qDebug() << file;
         customPlot->xAxis->setRange(lastxlower.toTime_t(), lastxupper.toTime_t());
         customPlot->yAxis->setRange(lastylower, lastyupper);
         ui->ChartWidget->SetTracer(true);

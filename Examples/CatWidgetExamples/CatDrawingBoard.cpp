@@ -144,8 +144,10 @@ void CatDrawingBoard::InitTeachingTool()
 
 void CatDrawingBoard::InitBoardTool()
 {
-    QStringList list = {"BoardClear", "BoardZoomIn", "BoardZoomOut", "BoardReset"};
+    //"BoardSelect", "BoardBrushes",
+    QStringList list = {"BoardSelect", "BoardBrushes", "BoardClear", "BoardZoomIn", "BoardZoomOut", "BoardReset"};
     // 占位
+
     QLabel *label = new QLabel(m_pTeachingOptions->GetRootWidget());
     label->setObjectName("BoardLabel");
     m_pBoardOptions->AddWidget(label);
@@ -153,7 +155,12 @@ void CatDrawingBoard::InitBoardTool()
     {
         QPushButton *button = new QPushButton(m_pTeachingOptions->GetRootWidget());
         button->setObjectName(list[i]);
-        m_pBoardOptions->AddButtonNoGroup(button);
+        if(i == 0 || i == 1)
+        {
+            m_pBoardOptions->AddButton(button, i);
+        } else {
+            m_pBoardOptions->AddButtonNoGroup(button);
+        }
         m_pBoardButtons[list[i]] = button;
     }
     QSpacerItem* item = new QSpacerItem(60, 10, QSizePolicy::Expanding, QSizePolicy::Minimum);

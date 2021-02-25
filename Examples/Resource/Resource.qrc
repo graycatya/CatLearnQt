@@ -127,5 +127,9 @@
         <file>Images/CatWhite/PagingNavigation.png</file>
         <file>qss/CatGray/PagingNavigationTools.css</file>
         <file>qss/CatWhite/PagingNavigationTools.css</file>
+        <file>Images/CatGray/BoardBrushes.png</file>
+        <file>Images/CatWhite/BoardBrushes.png</file>
+        <file>Images/CatGray/BoardSelect.png</file>
+        <file>Images/CatWhite/BoardSelect.png</file>
     </qresource>
 </RCC>

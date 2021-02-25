@@ -35,8 +35,10 @@ void CatSerialPort::InitConnect()
     connect(m_pReadPortDataWork, &ReadPortDataWork::UpdateReadWork, [=](){
         if(!m_yReadData.isEmpty())
         {
+            m_qMutex.lock();
             emit ReadSerialPort(m_yReadData);
             m_yReadData.clear();
+            m_qMutex.unlock();
         }
     });
 
@@ -45,7 +47,9 @@ void CatSerialPort::InitConnect()
         {
             m_pReadPortDataWork->Start(50);
         }
+        m_qMutex.lock();
         m_yReadData += m_qPort.readAll();
+        m_qMutex.unlock();
     });
 
     connect(&m_qPort, &QSerialPort::errorOccurred, this, [=](QSerialPort::SerialPortError error){

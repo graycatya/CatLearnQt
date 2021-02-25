@@ -8,6 +8,7 @@
 #include <QSerialPortInfo>
 #include <QTimer>
 #include <CatLog>
+#include <QMutex>
 
 
 class ReadPortDataWork : public QThread
@@ -94,6 +95,7 @@ private:
     QByteArray m_yWriteData;
     QByteArray m_yReadData;
     QSerialPort m_qPort;
+    QMutex m_qMutex;
 
     ReadPortDataWork *m_pReadPortDataWork;
 

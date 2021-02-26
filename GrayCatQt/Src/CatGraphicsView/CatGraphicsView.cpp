@@ -1,5 +1,7 @@
 ﻿#include "CatGraphicsView.h"
 #include <QDebug>
+#include <QMouseEvent>
+#include <QGraphicsScale>
 
 CatGraphicsView::CatGraphicsView(QWidget *parent)
     : QGraphicsView(parent)

@@ -1,5 +1,9 @@
 QT += serialport
+if(contains(DEFINES,WEBASSEMBLY)) {
+QT -= serialport
+}
 
+if(!contains(DEFINES,WEBASSEMBLY)) {
 HEADERS += \
     $$PWD/CatSerial \
     $$PWD/CatSerialPort.h \
@@ -10,3 +14,4 @@ SOURCES += \
     $$PWD/MonitorSerial.cpp
 
 INCLUDEPATH += $$PWD
+}

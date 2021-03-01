@@ -38,3 +38,19 @@ void CatGraphicsView::InitProperty()
 {
     scale(1.0 , 1.0);
 }
+
+void CatGraphicsView::mousePressEvent(QMouseEvent *event)
+{
+    QGraphicsView::mousePressEvent(event);
+}
+
+void CatGraphicsView::mouseMoveEvent(QMouseEvent *event)
+{
+    qDebug() << event->pos();
+    QGraphicsView::mouseMoveEvent(event);
+}
+
+void CatGraphicsView::mouseReleaseEvent(QMouseEvent *event)
+{
+    QGraphicsView::mouseReleaseEvent(event);
+}

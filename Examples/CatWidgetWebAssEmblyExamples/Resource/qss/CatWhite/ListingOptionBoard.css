@@ -1,0 +1,123 @@
+QWidget#ListiongOptionsRootWidget {
+    border: none;
+    background-color: #f3f3f3;
+}
+
+QWidget#ButtonLists {
+    border: none;
+    background-color: transparent;
+}
+
+QLabel#BoardLabel {
+    min-width: 60px;
+    max-width: 60px;
+}
+
+QScrollBar:horizontal
+{
+    height:4px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+QScrollBar::handle:horizontal
+{
+    height:4px;
+    background:rgba(130,130,130,50%);
+    border-radius:2px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:4px;
+    background:rgba(130,130,130,75%);
+    border-radius:2px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:4px;
+    background:rgba(223,74,22,100%);
+    border-radius:2px;
+    min-width:20;
+}
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QPushButton {
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+}
+
+QPushButton:hover {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid #424242;
+}
+
+QPushButton:pressed {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QPushButton:checked {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QPushButton#BoardSelect {
+    qproperty-icon: url(:/Images/CatWhite/BoardSelect.png);
+    qproperty-iconSize: 26px 26px;
+}
+
+QPushButton#BoardBrushes {
+    qproperty-icon: url(:/Images/CatWhite/BoardBrushes.png);
+    qproperty-iconSize: 26px 26px;
+}
+
+QPushButton#BoardClear {
+    qproperty-icon: url(:/Images/CatWhite/BoardClear.png);
+    qproperty-iconSize: 26px 26px;
+}
+
+QPushButton#BoardZoomIn {
+    qproperty-icon: url(:/Images/CatWhite/BoardZoomIn.png);
+    qproperty-iconSize: 26px 26px;
+}
+
+QPushButton#BoardZoomOut {
+    qproperty-icon: url(:/Images/CatWhite/BoardZoomOut.png);
+    qproperty-iconSize: 26px 26px;
+}
+
+QPushButton#BoardReset {
+    qproperty-icon: url(:/Images/CatWhite/BoardReset.png);
+    qproperty-iconSize: 26px 26px;
+}

@@ -17,6 +17,11 @@ public:
 private:
     void InitProperty();
 
+protected:
+    void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+
 private:
 
 

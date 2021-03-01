@@ -1,0 +1,376 @@
+/*
+QTabWidget::pane{
+	border:none;
+}
+
+QTabWidget::tab-bar{
+        alignment:left;
+}
+
+QTabBar::tab{
+	background:transparent;
+	color:white;
+	min-width:30ex;
+	min-height:10ex;
+}
+
+QTabBar::tab:hover{
+	background:rgba(255, 255, 255, 100%);
+}
+
+QTabBar::tab:selected{
+	border-color: white;
+	background:white;
+	color:green;
+}*/
+
+QWidget#AboutWidget {
+	border-radius: 4px;
+	background-color: #343434;
+}
+QWidget#LicenceWidget {
+	border-radius: 4px;
+	background-color: #343434;
+}
+QWidget#ContextWidget {
+	border-radius: 4px;
+	background-color: #343434;
+}
+
+
+QTabWidget::pane {
+	border-radius: 4px;
+	background-color: #343434;
+}
+
+QTabWidget::tab-bar{
+	background-color: #343434;
+	border-width:0px;
+}
+
+QTabWidget {
+	font-family: "Ubuntu";
+}
+
+QTabBar::tab{
+	border-bottom-color: #C2C7CB;
+	border-top-left-radius: 0px;
+	border-top-right-radius: 0px;
+	max-width: 75px; 
+	min-width:75px; 
+	min-height:25px;
+	font:14px;
+	padding: 0px;
+}
+
+QTabBar::scroller {
+	width: 25px;
+	border:0;
+	padding: 0px;
+	color: #C1C1C1;
+}
+
+QTabBar QToolButton {
+	border: 0px;
+}
+
+QTabBar QToolButton::right-arrow {
+	background-color:#343434;
+	image: url(:/Images/CatGray/AboutRightArrow.png);
+	border-radius: 1px;
+}
+
+QTabBar QToolButton::right-arrow:hover {
+	background-color:#656565;
+}
+
+QTabBar QToolButton::right-arrow:disabled {
+	background-color:#656565;
+}
+
+QTabBar QToolButton::left-arrow {
+	background-color:#343434;
+	image: url(:/Images/CatGray/AboutLeftArrow.png);
+	border-radius: 1px;
+}
+
+QTabBar QToolButton::left-arrow:hover {
+	background-color:#656565;
+}
+
+QTabBar QToolButton::left-arrow:disabled {
+	background-color:#656565;
+}
+
+QTabBar::tab:first:selected {
+	color: rgba(223,74,22,100%);
+	border-bottom: 2px solid rgba(223,74,22,100%);
+}
+
+QTabBar::tab:first:!selected {
+	color: #C1C1C1;
+	
+}
+
+QTabBar::tab:first:hover:!selected {
+	color: rgba(220, 220, 220, 0.9);
+	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+}
+
+QTabBar::tab:middle:selected {
+	color: rgba(223,74,22,100%);
+	border-bottom: 2px solid rgba(223,74,22,100%);
+
+}
+
+QTabBar::tab:middle:!selected {
+	color: #C1C1C1;
+}
+
+QTabBar::tab:middle:hover:!selected {
+	color: rgba(220, 220, 220, 0.9);
+	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+}
+
+QTabBar::tab:last:selected {
+	color: rgba(223,74,22,100%);
+	border-bottom: 2px solid rgba(223,74,22,100%);
+}
+QTabBar::tab:last:!selected {
+	color: #C1C1C1;
+}
+							 
+QTabBar::tab:last:hover:!selected {
+	color: rgba(220, 220, 220, 0.9);
+	border-bottom: 2px solid rgba(220, 220, 220, 0.9);
+}
+
+QTabBar::tab:only-one {
+	margin: 0;
+}
+
+
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
+/* 上下箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar:horizontal
+{
+    height:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:horizontal
+{
+    height:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-width:20;
+}
+
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QWidget#Licence {
+	background-color: transparent;
+}
+
+QTextEdit#LicenceTextEdit {
+	color: #C1C1C1;
+	border: none;
+	background: transparent;
+	font-family: "Ubuntu";
+}
+
+QTextBrowser#ThankTextBrowser {
+	color: #C1C1C1;
+	border: none;
+	background: transparent;
+	font-family: "Ubuntu";
+}
+
+QPushButton#Log {
+	min-width: 150px;
+	min-height: 150px;
+	max-width: 150px;
+	max-height: 150px;
+	border-radius: 75px;
+	background-color: #C1C1C1;
+	qproperty-icon: url(:/Images/CatGray/CatLearnQt.png);
+	qproperty-iconSize: 100px 100px;
+	border: 2px solid rgba(223,74,22,100%);
+}
+
+QLabel#AppName {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 24px;
+	font-family: "Ubuntu";
+}
+
+QLabel#AppVersion {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 24px;
+	font-family: "Ubuntu";
+}
+
+QLabel#Author {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 16px;
+	font-family: "Ubuntu";
+}
+
+QLabel#AuthorName {
+	color: #C1C1C1;
+	font-weight:bold;
+	font-size: 16px;
+	font-family: "Ubuntu";
+}
+
+QLabel#Explain {
+	color: #C1C1C1;
+	background-color: transparent;
+	border: 0px;
+	font-size: 16px;
+	font-family: "Ubuntu";
+}
+
+QPushButton#GrayCatYa {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	background-color: #343434;
+	border: 1px solid gray;
+	border-radius: 4px;
+	qproperty-icon: url(:/Images/CatGray/Home.png);
+	qproperty-iconSize: 32px 32px;
+}
+
+QPushButton#GrayCatYa:hover {
+	background-color: #656565;
+}
+
+QPushButton#GrayCatYa:checked {
+	background-color: #343434;
+}
+
+QPushButton#GitHub {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	background-color: #343434;
+	border: 1px solid gray;
+	border-radius: 4px;
+	qproperty-icon: url(:/Images/CatGray/Github.png);
+	qproperty-iconSize: 32px 32px;
+}
+
+QPushButton#GitHub:hover {
+	background-color: #656565;
+}
+
+QPushButton#GitHub:checked {
+	background-color: #343434;
+}
+
+QPushButton#Gitee {
+	min-width: 40px;
+	max-width: 40px;
+	min-height: 40px;
+	max-height: 40px;
+	background-color: #343434;
+	border: 1px solid gray;
+	border-radius: 4px;
+	qproperty-icon: url(:/Images/CatGray/Gitee.png);
+	qproperty-iconSize: 32px 32px;
+}
+
+QPushButton#Gitee:hover {
+	background-color: #656565;
+}
+
+QPushButton#Gitee:checked {
+	background-color: #343434;
+}

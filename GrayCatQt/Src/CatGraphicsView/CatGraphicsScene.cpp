@@ -53,21 +53,3 @@ void CatGraphicsScene::AddTeachingToolCompass()
     TeachingToolCompass *Teaching = new TeachingToolCompass;
     this->addItem(Teaching);
 }
-
-void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
-{
-    Q_UNUSED(event)
-    QGraphicsScene::mousePressEvent(event);
-}
-
-void CatGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
-{
-    qDebug() << event->pos();
-    QGraphicsScene::mouseMoveEvent(event);
-}
-
-void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
-{
-    Q_UNUSED(event)
-    QGraphicsScene::mouseReleaseEvent(event);
-}

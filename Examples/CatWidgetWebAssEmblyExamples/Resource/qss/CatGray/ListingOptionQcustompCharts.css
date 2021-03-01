@@ -1,0 +1,102 @@
+QWidget#ListiongOptionsRootWidget {
+    border: none;
+    /*background-color: #272626;*/
+    background: transparent;
+}
+
+QWidget#ButtonLists {
+    border: none;
+    background: transparent;
+}
+
+QScrollArea#ListingOptionsScroll {
+    border: none;
+    background-color: transparent;
+}
+
+QScrollBar:horizontal
+{
+    height:4px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+QScrollBar::handle:horizontal
+{
+    height:4px;
+    background:rgba(130,130,130,50%);
+    border-radius:2px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:4px;
+    background:rgba(130,130,130,75%);
+    border-radius:2px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:4px;
+    background:rgba(223,74,22,100%);
+    border-radius:2px;
+    min-width:20;
+}
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QPushButton {
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    background-color: #272626;
+}
+
+QPushButton:hover {
+    border: none;
+    background-color: #353526;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid gray;
+}
+
+QPushButton:pressed {
+    border: none;
+    background-color: #353526;
+    /*background-color: rgba(223,74,22,100%);*/
+    border: 1px solid gray
+}
+
+QPushButton:checked {
+    border: none;
+    background-color: #353526;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+
+QPushButton#CatLineChart {
+    qproperty-icon: url(:/Images/CatGray/QcustomplotLineChart.png);
+    qproperty-iconSize: 26px 26px;
+}
+
+QPushButton#CatBarGraph {
+    qproperty-icon: url(:/Images/CatGray/QcustomplotBarGraph.png);
+    qproperty-iconSize: 26px 26px;
+}

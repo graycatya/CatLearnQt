@@ -25,10 +25,6 @@ public:
     void AddTeachingToolTrangle();
     void AddTeachingToolCompass();
 
-protected:
-    void mousePressEvent(QGraphicsSceneMouseEvent * event);
-    void mouseMoveEvent(QGraphicsSceneMouseEvent * event);
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent * event);
 
 
 private:

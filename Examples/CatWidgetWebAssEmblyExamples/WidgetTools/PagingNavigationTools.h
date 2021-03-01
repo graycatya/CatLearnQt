@@ -1,0 +1,39 @@
+﻿#ifndef PAGINGNAVIGATIONTOOLS_H
+#define PAGINGNAVIGATIONTOOLS_H
+
+#include <QWidget>
+
+class CatIntValidator;
+
+namespace Ui {
+class PagingNavigationTools;
+}
+
+class PagingNavigationTools : public QWidget
+{
+    Q_OBJECT
+
+public:
+    explicit PagingNavigationTools(QWidget *parent = nullptr);
+    ~PagingNavigationTools();
+
+private slots:
+    void on_InitPagingNavigationButton_clicked();
+
+    void on_UpdatePagingNavigationButton_clicked();
+
+    void on_SetCurrentPageButton_clicked();
+
+private:
+    void InitUi();
+    void InitProperty();
+    void InitConnect();
+
+    void UpdateStyle();
+
+private:
+    Ui::PagingNavigationTools *ui;
+    CatIntValidator *currentpageval;
+};
+
+#endif // PAGINGNAVIGATIONTOOLS_H

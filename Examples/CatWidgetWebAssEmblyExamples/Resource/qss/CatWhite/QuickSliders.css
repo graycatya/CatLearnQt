@@ -1,0 +1,9 @@
+QuickSliders {
+    qproperty-rootBackgroundColor: #fbfbfb;
+    qproperty-sliderBackgroundColor: #dedede;
+    qproperty-sliderColor: #773f72;
+    qproperty-slidingBlockColor: #ebebeb;
+    qproperty-slidingBlockPressColor: #db4a15;
+    qproperty-slidingBorderColor: transparent;
+    qproperty-textColor: #424242;
+}

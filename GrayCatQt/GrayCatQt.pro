@@ -1,8 +1,12 @@
 TEMPLATE = lib
 
-QT += core gui sql
+QT += core gui
+if(!contains(DEFINES,WEBASSEMBLY)) {
+QT += sql
+}
 
 QT += quick quickwidgets
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
@@ -27,14 +31,18 @@ Debug:RCC_DIR = debug/.rcc
 
 
 INCLUDEPATH += Src
-include(Src/SingleApplication/singleapplication.pri)
+if(!contains(DEFINES,WEBASSEMBLY)) {
+include($$PWD/Src/SingleApplication/singleapplication.pri)
+include($$PWD/Src/CatNetWork/CatNetWork.pri)
+}
 include(Src/CatUniversal/CatUniversal.pri)
-include(Src/CatNetWork/CatNetWork.pri)
 include(Src/CatLog/CatLog.pri)
 include(Src/CatWidget/CatWidget.pri)
 include(Src/CatGraphicsView/CatGraphicsView.pri)
 if(!contains(DEFINES,IOS_APP)) {
+if(!contains(DEFINES,WEBASSEMBLY)) {
 include(Src/CatSerial/CatSerial.pri)
+}
 }
 include(Src/CatControl/CatControl.pri)
 

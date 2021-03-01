@@ -20,6 +20,11 @@ ios {
     LIBS -= -lX11
 }
 
+if(contains(DEFINES,WEBASSEMBLY)) {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
 HEADERS += \
     $$PWD/ButtonTool.h \
     $$PWD/CatGifTool.h \

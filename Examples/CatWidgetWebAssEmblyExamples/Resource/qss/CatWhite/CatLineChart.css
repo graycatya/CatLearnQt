@@ -1,0 +1,303 @@
+QLabel {
+    color: #4b4642;
+    font-size: 20px;
+    font-family: "Ubuntu";
+}
+
+QComboBox {
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 150px;
+    min-height: 30px;
+}
+
+
+QComboBox:editable {
+    color: #4b4642;
+    background-color: #fdfdfd;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+}
+
+/* 当弹出窗口打开时，QComboBox将处于“on”状态 */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    border: 1px solid rgba(223,74,22,100%);
+    background-color: #fdfdfd;
+}
+
+QComboBox:on { /* 当弹出窗口打开时，移动文本 */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-top-right-radius: 3px; /* 半径与QComboBox相同 */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    padding-right: 6px;
+    image: url(:/Images/CatWhite/PullDown.png);
+}
+
+QComboBox::down-arrow:on {
+    padding-right: 6px;
+    image: url(:/Images/CatWhite/PullUp.png);
+}
+
+/*下拉项样式 背景蓝色*/
+QListView#StyleComboBoxView {
+    border: 1px solid #c9c9c9;
+    background-color: #fafafa;
+    outline:0px;
+    font-family: "Ubuntu";
+}
+QListView#StyleComboBoxView::item {
+    color: #4b4642;
+    border: transparent;
+    min-height: 25px;
+    background-color: #fafafa;
+}  
+
+/*下拉项选中样式*/
+QListView#StyleComboBoxView::item:selected { 
+    color: #C1C1C1;
+    border: transparent;
+    background-color: rgba(223,74,22,100%);
+}   
+
+/*下拉项鼠标悬浮样式*/
+QListView#StyleComboBoxView::item:hover { 
+    color: #4b4642;
+    border: transparent;
+    background:#dedede;
+}
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
+/* 上下箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar:horizontal
+{
+    height:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:horizontal
+{
+    height:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-width:20;
+}
+
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QPushButton#StartButton, QPushButton#SaveButton {
+    min-width: 100px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+}
+
+QPushButton#StartButton:hover, QPushButton#SaveButton:hover {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid #424242;
+}
+
+QPushButton#StartButton:pressed, QPushButton#SaveButton:pressed {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QPushButton#StartButton:checked, QPushButton#SaveButton:checked {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+CatCustomChart#ChartWidget {
+    qproperty-Background: white;
+    qproperty-LegendBorderColor: rgba(0,0,0,60%);
+    qproperty-LegendSelectBorderColor: rgba(223,74,22,60%);
+    qproperty-LegendTextColor: black;
+    qproperty-LegendSelectTextColor: rgba(223,74,22,100%);
+    qproperty-LegendBackground: rgba(255,255,255,90%);
+    qproperty-LegendSelectBackground: rgba(255,255,255,90%);
+    qproperty-LegendSelectIconBordeColor: rgba(223,74,22,100%);
+
+    qproperty-AxisBasePenColor_x: black;
+    qproperty-Axis2BasePenColor_x: black;
+    qproperty-AxisBasePenColor_y: black;
+    qproperty-Axis2BasePenColor_y: black;
+    qproperty-AxisTickPenColor_x: black;
+    qproperty-Axis2TickPenColor_x: black;
+    qproperty-AxisTickPenColor_y: black;
+    qproperty-Axis2TickPenColor_y: black;
+    qproperty-AxisSubTickPenColor_x: black;
+    qproperty-Axis2SubTickPenColor_x: black;
+    qproperty-AxisSubTickPenColor_y: black;
+    qproperty-Axis2SubTickPenColor_y: black;
+    qproperty-AxisGridPenColor_x: black;
+    qproperty-Axis2GridPenColor_x: black;
+    qproperty-AxisGridPenColor_y: black;
+    qproperty-Axis2GridPenColor_y: black;
+    qproperty-AxisTickLabelColor_x: black;
+    qproperty-Axis2TickLabelColor_x: black;
+    qproperty-AxisTickLabelColor_y: black;
+    qproperty-Axis2TickLabelColor_y: black;
+
+    qproperty-GraphSelectionDecoratorColor: rgba(223,74,22,100%);
+
+    qproperty-AxisSelectedBasePenColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedBasePenColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedBasePenColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedBasePenColor_y: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-AxisSelectedSubTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedSubTickPenColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedSubTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedSubTickPenColor_y: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickLabelColor_x: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickLabelColor_x: rgba(223,74,22,100%);
+    qproperty-AxisSelectedTickLabelColor_y: rgba(223,74,22,100%);
+    qproperty-Axis2SelectedTickLabelColor_y: rgba(223,74,22,100%);
+
+    qproperty-TracerPenColor: rgba(0, 0, 0,100%);
+
+    qproperty-TracerXTextPenColor: rgba(228,228,228, 100%);
+    qproperty-TracerXTextColor: rgba(25,25,25, 100%);
+    qproperty-TracerXTextBackgroundColor: rgba(200,200,200, 100%);
+
+    qproperty-TracerYTextPenColor: rgba(228,228,228, 100%);
+    qproperty-TracerYTextColor: rgba(25,25,25, 100%);
+    qproperty-TracerYTextBackgroundColor: rgba(200,200,200, 100%);
+    
+}
+
+QCheckBox {
+    color: #4b4642;
+    font-family: "Ubuntu";
+    font-size: 16px;
+    font-weight: bold;
+}
+
+QCheckBox::indicator {
+    width: 20px;
+    height: 20px;
+}
+
+QCheckBox::indicator:unchecked {
+    image: url(":/Images/CatWhite/CheckOff_gray.png");
+}
+
+QCheckBox::indicator:unchecked:hover {
+    image: url(":/Images/CatWhite/CheckOff_orange.png");
+}
+
+QCheckBox::indicator:checked {
+    image: url(":/Images/CatWhite/CheckOn_orange.png");
+}

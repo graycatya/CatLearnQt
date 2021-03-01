@@ -1,0 +1,116 @@
+QWidget#ListiongOptionsRootWidget {
+    border: none;
+    background-color: #ffffff;
+}
+
+QWidget#ButtonLists {
+    border: none;
+    background-color: transparent;
+}
+
+QPushButton {
+    border: none;
+    color:#424242;
+    max-width: 200px;
+    min-width: 200px;
+    background-color: #ffffff;
+    min-height: 40px;
+    font-family: "Ubuntu";
+    font-size: 15px;
+}
+
+QPushButton:hover {
+    border: none;
+    color:#424242;
+    background-color: #f6f6f6;
+    min-height: 40px;
+}
+
+QPushButton:pressed {
+    border: none;
+    color:#424242;
+    background-color: #f6f6f6;
+    min-height: 40px;
+}
+
+QPushButton:checked {
+    color:#ffffff;
+    /*border: 1px solid #7C7C7C;*/
+    background-color: rgba(223,74,22,100%);
+    min-height: 40px;
+}
+
+QScrollArea#ListingOptionsScroll {
+    border: none;
+    background-color: transparent;
+}
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:4px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:4px;
+    background:rgba(130,130,130,50%);
+    border-radius:2px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:4px;
+    background:rgba(130,130,130,75%);
+    border-radius:2px;
+    min-height:20;
+}
+
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    background:rgba(0,0,0,0%);
+    border-radius:2px;
+}
+
+/*
+QScrollBar:horizontal
+{
+    height:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+QScrollBar::handle:horizontal
+{
+    height:8px;
+    background:rgba(0,0,0,25%);
+    border-radius:4px;
+    min-width:20;
+}
+QScrollBar::handle:horizontal:hover
+{
+    height:8px;
+    background:rgba(0,0,0,50%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    background:rgba(0,0,0,0%);
+    border-radius:4px;
+}*/
+
+QScrollBar::sub-line{
+        border: none;
+}
+
+QScrollBar::add-line{
+        border: none;
+}

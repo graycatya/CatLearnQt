@@ -27,7 +27,7 @@ Debug:UI_DIR = debug/.ui
 
 DEFINES += APP_VERSION=\\\"'v1.0.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
-DEFINES += APP_NAME=\\\"'CatLearnQtWidgetExamples'\\\"
+DEFINES += APP_NAME=\\\"'CatWidgetWebAssEmblyExamples'\\\"
 
 include($$PWD/CatWidgetWebAssEmblyExamples.pri)
 include($$PWD/../../GrayCatQt/GrayCatQt.pri)

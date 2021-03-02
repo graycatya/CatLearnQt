@@ -89,6 +89,8 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | MacOs | [macos.md](doc/macos/macos.md) |
 | Android | [android.md](doc/android/android.md) |
 | Ios | [ios.md](doc/ios/ios.md) |
+| WebAssEmblyExamples | [webassembly.md](doc/webassembly/webassembly.md) |
+
 
 
 ## 项目结构
@@ -132,3 +134,4 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 |:--:|:--:|
 | Examples/CatQuickExamples | 演示项目开发中 |
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
+| Examples/CatWidgetWebAssEmblyExamples | Widget裁减版WebAssmbly版项目演示 |

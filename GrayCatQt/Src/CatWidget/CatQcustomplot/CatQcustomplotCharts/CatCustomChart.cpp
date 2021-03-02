@@ -77,6 +77,7 @@ void CatCustomChart::mouseMoveEvent(QMouseEvent *event)
             //游标文本框
             m_pTracerXText->setText(QDateTime::fromMSecsSinceEpoch(traceX * 1000.0).toString("MM-dd hh:mm:ss"));
             m_pTracerYText->setText(QString::number(traceY));
+        
 
             /*
             //计算游标X值对应的所有曲线的Y值

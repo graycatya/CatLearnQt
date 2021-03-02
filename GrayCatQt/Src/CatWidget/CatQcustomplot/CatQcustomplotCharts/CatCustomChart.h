@@ -93,6 +93,7 @@ private:
     QCPGraph *m_pTraceGraph;    // 需要使用的游标项
     QCPItemText *m_pTracerXText;    // 游标 x 值
     QCPItemText *m_pTracerYText;    // 游标 y 值
+
 };
 
 #endif // CATQCLINECHART_H

@@ -53,6 +53,8 @@ void CatWidget::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
+
+    m_pToolButtons["CatImageTools"]->setVisible(false);
 }
 
 void CatWidget::InitToolButtons()

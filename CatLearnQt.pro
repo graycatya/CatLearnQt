@@ -2,7 +2,7 @@ TEMPLATE = subdirs
 
 message($$QT_ARCH)
 
-DEFINES += WEBASSEMBLY
+#DEFINES += WEBASSEMBLY
 
 OTHER_FILES += *.md \
     .qmake.conf \

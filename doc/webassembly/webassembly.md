@@ -53,13 +53,22 @@ $ source ./emsdk_env.sh
 
 在windows下这样只是应用了临时环境变量，需要永久生效的话，要手动去设置
 
+将emsdk目录下的.emscripten文件复制到C:\Users\Administrator目录下（即用户目录），Qt for WebAssEmbly构建套件编译的时候会去这里找编译器和各种编译需要的变量。
 
 ```
-Setting environment variables:
-EMSDK = emsdk绝对路径
-EM_CONFIG = emsdk绝对路径\.emscripten
-EM_CACHE = emsdk绝对路径\upstream\emscripten\cache
-EMSDK_NODE = emsdk绝对路径\node\12.18.1_64bit\bin\node.exe
-EMSDK_PYTHON = emsdk绝对路径\python\3.7.4-pywin32_64bit\python.exe
-JAVA_HOME = emsdk绝对路径\java\8.152_64bit
+import os
+NODE_JS = 'emsdk绝对路径/node/14.15.5_64bit/bin/node.exe'
+PYTHON = 'emsdk绝对路径/python/3.7.4-pywin32_64bit/python.exe'
+JAVA = 'emsdk绝对路径/java/8.152_64bit/bin/java.exe'
+LLVM_ROOT = 'emsdk绝对路径/upstream/bin'
+BINARYEN_ROOT = 'emsdk绝对路径/upstream'
+EMSCRIPTEN_ROOT = 'emsdk绝对路径/upstream/emscripten'
+TEMP_DIR = 'emsdk绝对路径/tmp'
+COMPILER_ENGINE = NODE_JS
+JS_ENGINES = [NODE_JS]
 ```
+
+之后在Qt Creator 选项中配置即可
+
+![webassembly_doc](../Images/webassembly_doc.png)
+

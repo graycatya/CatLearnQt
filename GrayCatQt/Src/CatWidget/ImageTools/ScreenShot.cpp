@@ -13,8 +13,6 @@
 
 #include "ProcessObject.h"
 
-#include <CatLog>
-
 ScreenShot::ScreenShot(QWidget *parent)
     : ImageToolBase(parent)
     , m_pMousePress(false)

@@ -2,19 +2,69 @@ QT       += core svg widgets gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+TEMPLATE = lib
 CONFIG += c++11
+CONFIG += staticlib
 
-Release:DESTDIR = release
-Release:OBJECTS_DIR = release/.obj
-Release:MOC_DIR = release/.moc
-Release:RCC_DIR = release/.rcc
-Release:UI_DIR = release/.ui
+DEFINES += IMAGETOOL_VERSION=\\\"'v1.0.0'\\\"
 
-Debug:DESTDIR = debug
-Debug:OBJECTS_DIR = debug/.obj
-Debug:MOC_DIR = debug/.moc
-Debug:RCC_DIR = debug/.rcc
-Debug:UI_DIR = debug/.ui
+unix {
+    QT += x11extras
+    LIBS += -lX11
+}
+
+macx {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
+android {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
+ios {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
+if(contains(DEFINES,WEBASSEMBLY)) {
+    QT -= x11extras
+    LIBS -= -lX11
+}
+
+HEADERS += \
+    $$PWD/ButtonTool.h \
+    $$PWD/CatGifTool.h \
+    $$PWD/GifButtonWidget.h \
+    $$PWD/ImageToolBase.h \
+    $$PWD/ImageToolFactory.h \
+    $$PWD/MagnifyingGlass.h \
+    $$PWD/ProcessObject.h \
+    $$PWD/RimlessWindowBase.h \
+    $$PWD/ScreenShot.h \
+    $$PWD/SpotLight.h \
+    $$PWD/gif.h
+
+SOURCES += \
+    $$PWD/ButtonTool.cpp \
+    $$PWD/CatGifTool.cpp \
+    $$PWD/GifButtonWidget.cpp \
+    $$PWD/ImageToolBase.cpp \
+    $$PWD/ImageToolFactory.cpp \
+    $$PWD/MagnifyingGlass.cpp \
+    $$PWD/ProcessObject.cpp \
+    $$PWD/RimlessWindowBase.cpp \
+    $$PWD/ScreenShot.cpp \
+    $$PWD/SpotLight.cpp
+
+INCLUDEPATH += $$PWD
+
+RESOURCES += \
+    $$PWD/ImageTools/ImageTools.qrc
+
+FORMS += \
+    $$PWD/GifButtonWidget.ui
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

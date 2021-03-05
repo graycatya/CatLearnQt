@@ -28,6 +28,9 @@ public:
 
     void ClearStyle();
 
+    void SetPreviousText(QString text);
+    void SetNextText(QString text);
+
 private:
     void InitUi();
     void InitProperty();

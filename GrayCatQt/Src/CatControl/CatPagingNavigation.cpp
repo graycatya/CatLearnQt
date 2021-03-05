@@ -75,6 +75,16 @@ void CatPagingNavigation::ClearStyle()
     this->setStyleSheet("");
 }
 
+void CatPagingNavigation::SetPreviousText(QString text)
+{
+    m_pPreviousPage->setText(text);
+}
+
+void CatPagingNavigation::SetNextText(QString text)
+{
+    m_pNextPage->setText(text);
+}
+
 void CatPagingNavigation::InitUi()
 {
     m_pRootLayout = new QHBoxLayout(this);
@@ -232,7 +242,8 @@ void CatPagingNavigation::UpdatePageButtonState()
     {
         for(int i = 3; i < 6; i++)
         {
-            m_pPageButtons.at(i)->setText(QString::number(m_pPageButtons.at(i-1)->text().toULongLong() + 1));
+            QString num = " " + QString::number(m_pPageButtons.at(i-1)->text().toULongLong() + 1) + " ";
+            m_pPageButtons.at(i)->setText(num);
         }
         m_pPreviousSeveralPage->setVisible(false);
         m_pNextPageSeveralPage->setVisible(true);
@@ -240,7 +251,8 @@ void CatPagingNavigation::UpdatePageButtonState()
     {
         for(int i = 5; i >= 3; i--)
         {
-            m_pPageButtons.at(i)->setText(QString::number(m_pPageButtons.at(i+1)->text().toULongLong() - 1));
+            QString num = " " + QString::number(m_pPageButtons.at(i+1)->text().toULongLong() - 1) + " ";
+            m_pPageButtons.at(i)->setText(num);
         }
         m_pPreviousSeveralPage->setVisible(true);
         m_pNextPageSeveralPage->setVisible(false);
@@ -248,7 +260,8 @@ void CatPagingNavigation::UpdatePageButtonState()
         qulonglong pages = m_nCurrentPage - 1;
         for(int i = 3; i < 6; i++)
         {
-            m_pPageButtons.at(i)->setText(QString::number(pages));
+            QString num = " " + QString::number(pages) + " ";
+            m_pPageButtons.at(i)->setText(num);
             pages++;
         }
         m_pPreviousSeveralPage->setVisible(true);
@@ -293,4 +306,3 @@ void CatPagingNavigation::SetCurrentPage(qulonglong currentpage)
         emit CurrentPageed(m_nCurrentPage);
     }
 }
-

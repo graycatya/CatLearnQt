@@ -3,6 +3,7 @@
 #include <QPainterPath>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QDateTime>
 
 #define DEFINEWIDTH 10
 
@@ -60,6 +61,26 @@ void CatDoubleSlider::SetSecond(qreal second)
     UpdateSlideCoordinates();
     update();
     emit UpdateFirstSeconded(m_nFirst, m_nSecond);
+}
+
+void CatDoubleSlider::SetFirstSecond(qreal first, qreal second)
+{
+    m_nFirst = first;
+    m_nSecond = second;
+    UpdateSlideCoordinates();
+    update();
+    emit UpdateFirstSeconded(m_nFirst, m_nSecond);
+}
+
+void CatDoubleSlider::SetFromToNotUpdate(qreal from, qreal to)
+{
+    if(from != to)
+    {
+        m_nFrom = from;
+        m_nTo = to;
+        UpdateSlideCoordinates();
+        update();
+    }
 }
 
 void CatDoubleSlider::InitUi()
@@ -130,6 +151,7 @@ void CatDoubleSlider::InitRectfProperty()
     m_cPressBackgroundSlideRectBorderColor = m_cBackgroundSlideRectBorderColor;
 
     m_nSlideWidth = DEFINEWIDTH;
+    m_nSlideHeight = DEFINEWIDTH;
     m_nBackgroundHeight = m_nSlideWidth/2.0;
     m_nBackgroundSlideHeight = m_nSlideWidth/2.0;
 
@@ -151,8 +173,8 @@ void CatDoubleSlider::UpdateBackgroundSlide()
             break;
         }
         case SliderVertical: {
-            qreal y = static_cast<qreal>(m_nSlideWidth)/2.0 + m_ySlide_LeftOrTop.y();
-            qreal h = this->height() - m_nSlideWidth - m_ySlide_LeftOrTop.y() - (this->height() - m_ySlide_RightOrBottom.bottom());
+            qreal y = static_cast<qreal>(m_nSlideHeight)/2.0 + m_ySlide_LeftOrTop.y();
+            qreal h = this->height() - m_nSlideHeight - m_ySlide_LeftOrTop.y() - (this->height() - m_ySlide_RightOrBottom.bottom());
 
             m_yBackgroundSlide_Rect.setRect((this->width() - m_nBackgroundHeight)/2.0,
                                y,
@@ -236,14 +258,14 @@ void CatDoubleSlider::LeftOrTopSelectDisPose(QMouseEvent *event)
         if(m_ySlide_LeftOrTop.x() + movepos.rx() < 0)
         {
             m_ySlide_LeftOrTop.setX(0);
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
         } else if((m_ySlide_LeftOrTop.right() + movepos.rx()) < m_ySlide_RightOrBottom.right())
         {
             m_ySlide_LeftOrTop.setX(m_ySlide_LeftOrTop.x() + movepos.rx());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
         } else {
             m_ySlide_LeftOrTop.setX(m_ySlide_RightOrBottom.right() - m_ySlide_LeftOrTop.width());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
         }
 
         UpdateBackgroundSlide();
@@ -252,14 +274,14 @@ void CatDoubleSlider::LeftOrTopSelectDisPose(QMouseEvent *event)
         if(m_ySlide_LeftOrTop.y() + movepos.ry() < 0)
         {
             m_ySlide_LeftOrTop.setY(0);
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
         } else if(m_ySlide_LeftOrTop.bottom() + movepos.ry() < m_ySlide_RightOrBottom.bottom())
         {
             m_ySlide_LeftOrTop.setY(m_ySlide_LeftOrTop.y() + movepos.ry());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
         } else {
             m_ySlide_LeftOrTop.setY(m_ySlide_RightOrBottom.top());
-            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
         }
 
         UpdateBackgroundSlide();
@@ -274,14 +296,14 @@ void CatDoubleSlider::RightOrBottomSelectDisPose(QMouseEvent *event)
         if(m_ySlide_RightOrBottom.x() + m_ySlide_RightOrBottom.width() + movepos.rx() > this->width())
         {
             m_ySlide_RightOrBottom.setX(this->width() - m_ySlide_RightOrBottom.width());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideHeight));
         } else if((m_ySlide_RightOrBottom.x() + movepos.rx()) > m_ySlide_LeftOrTop.x())
         {
             m_ySlide_RightOrBottom.setX(m_ySlide_RightOrBottom.x() + movepos.rx());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideHeight));
         } else {
             m_ySlide_RightOrBottom.setX(m_ySlide_LeftOrTop.x());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideHeight));
         }
 
         UpdateBackgroundSlide();
@@ -290,14 +312,14 @@ void CatDoubleSlider::RightOrBottomSelectDisPose(QMouseEvent *event)
         if(m_ySlide_RightOrBottom.y() + m_ySlide_RightOrBottom.width() + movepos.ry() > this->height())
         {
             m_ySlide_RightOrBottom.setY(this->height() - m_ySlide_RightOrBottom.height());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideHeight));
         } else if(m_ySlide_RightOrBottom.y() + movepos.ry() > m_ySlide_LeftOrTop.top())
         {
             m_ySlide_RightOrBottom.setY(m_ySlide_RightOrBottom.y() + movepos.ry());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideHeight));
         } else {
             m_ySlide_RightOrBottom.setY(m_ySlide_LeftOrTop.top());
-            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideWidth));
+            m_ySlide_RightOrBottom.setSize(QSize(m_nSlideWidth, m_nSlideHeight));
         }
 
         UpdateBackgroundSlide();
@@ -315,14 +337,14 @@ void CatDoubleSlider::BackgroundSlideRectPose(QMouseEvent *event)
             if(m_ySlide_LeftOrTop.x() + movepos.rx() < 0)
             {
                 m_ySlide_LeftOrTop.setRect(0, m_nSlideLeftBorderWidth/2.0,
-                                           m_nSlideWidth, m_nSlideWidth);
+                                           m_nSlideWidth, m_nSlideHeight);
             } else {
                 m_ySlide_LeftOrTop.setRect(m_ySlide_LeftOrTop.x() + movepos.rx(), m_nSlideLeftBorderWidth/2.0,
-                                           m_nSlideWidth, m_nSlideWidth);
+                                           m_nSlideWidth, m_nSlideHeight);
             }
             m_ySlide_RightOrBottom.setRect(m_ySlide_LeftOrTop.left() + m_nSliderDistance - m_nSlideWidth,
                                            m_nSlideRightBorderWidth/2.0,
-                                           m_nSlideWidth, m_nSlideWidth);
+                                           m_nSlideWidth, m_nSlideHeight);
 
             UpdateBackgroundSlide();
         } else if(movepos.rx() > 0)
@@ -330,13 +352,13 @@ void CatDoubleSlider::BackgroundSlideRectPose(QMouseEvent *event)
             if(m_ySlide_RightOrBottom.right() + movepos.rx() > this->width())
             {
                 m_ySlide_RightOrBottom.setRect(this->width() - m_ySlide_RightOrBottom.width(), m_nSlideRightBorderWidth/2.0,
-                                               m_nSlideWidth, m_nSlideWidth);
+                                               m_nSlideWidth, m_nSlideHeight);
             } else {
                 m_ySlide_RightOrBottom.setRect(m_ySlide_RightOrBottom.x() + movepos.rx(), m_nSlideRightBorderWidth/2.0,
-                                               m_nSlideWidth, m_nSlideWidth);
+                                               m_nSlideWidth, m_nSlideHeight);
             }
             m_ySlide_LeftOrTop.setRect(m_ySlide_RightOrBottom.right() - m_nSliderDistance, m_nSlideLeftBorderWidth/2.0,
-                                       m_nSlideWidth, m_nSlideWidth);
+                                       m_nSlideWidth, m_nSlideHeight);
 
             UpdateBackgroundSlide();
         }
@@ -346,16 +368,16 @@ void CatDoubleSlider::BackgroundSlideRectPose(QMouseEvent *event)
             if(m_ySlide_LeftOrTop.y() + movepos.ry() < 0)
             {
                 m_ySlide_LeftOrTop.setRect(m_nSlideLeftBorderWidth/2.0, 0,
-                                           m_nSlideWidth, m_nSlideWidth);
+                                           m_nSlideWidth, m_nSlideHeight);
                 m_ySlide_LeftOrTop.setY(0);
-                m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideWidth));
+                m_ySlide_LeftOrTop.setSize(QSizeF(m_nSlideWidth, m_nSlideHeight));
             } else {
                 m_ySlide_LeftOrTop.setRect(m_nSlideLeftBorderWidth/2.0, m_ySlide_LeftOrTop.y() + movepos.ry(),
-                                           m_nSlideWidth, m_nSlideWidth);
+                                           m_nSlideWidth, m_nSlideHeight);
             }
             m_ySlide_RightOrBottom.setRect(m_nSlideRightBorderWidth/2.0,
-                                           m_ySlide_LeftOrTop.top() + m_nSliderDistance - m_nSlideWidth,
-                                           m_nSlideWidth, m_nSlideWidth);
+                                           m_ySlide_LeftOrTop.top() + m_nSliderDistance - m_nSlideHeight,
+                                           m_nSlideWidth, m_nSlideHeight);
 
             UpdateBackgroundSlide();
         } else if(movepos.ry() > 0)
@@ -364,15 +386,15 @@ void CatDoubleSlider::BackgroundSlideRectPose(QMouseEvent *event)
             {
                 m_ySlide_RightOrBottom.setRect(m_nSlideRightBorderWidth/2.0,
                                                this->height() - m_ySlide_RightOrBottom.height(),
-                                               m_nSlideWidth, m_nSlideWidth);
+                                               m_nSlideWidth, m_nSlideHeight);
             } else {
                 m_ySlide_RightOrBottom.setRect(m_nSlideRightBorderWidth/2.0,
                                                m_ySlide_RightOrBottom.y() + movepos.ry(),
-                                               m_nSlideWidth, m_nSlideWidth);
+                                               m_nSlideWidth, m_nSlideHeight);
             }
             m_ySlide_LeftOrTop.setRect(m_nSlideLeftBorderWidth/2.0,
                                        m_ySlide_RightOrBottom.bottom() - m_nSliderDistance,
-                                       m_nSlideWidth, m_nSlideWidth);
+                                       m_nSlideWidth, m_nSlideHeight);
 
             UpdateBackgroundSlide();
         }
@@ -391,9 +413,9 @@ void CatDoubleSlider::UpdateOrientation()
     } else if(m_ySlideOrientationState == OrientationState::SliderVertical)
     {
         m_yBackground_Rect.setRect((this->width() - m_nBackgroundHeight)/2.0,
-                           static_cast<qreal>(m_nSlideWidth)/2.0,
+                           static_cast<qreal>(m_nSlideHeight)/2.0,
                            m_nBackgroundHeight,
-                           this->height() - m_nSlideWidth);
+                           this->height() - m_nSlideHeight);
         UpdateSlideCoordinates();
     }
 }
@@ -411,7 +433,7 @@ void CatDoubleSlider::UpdateFirstSecond()
             first = (m_ySlide_LeftOrTop.left()/width)*(m_nTo - m_nFrom);
             second = (m_ySlide_RightOrBottom.left()/width)*(m_nTo - m_nFrom);
         } else {
-            width = this->height() - m_nSlideWidth;
+            width = this->height() - m_nSlideHeight;
             first = (m_ySlide_LeftOrTop.top()/width)*(m_nTo - m_nFrom);
             second = (m_ySlide_RightOrBottom.top()/width)*(m_nTo - m_nFrom);
         }
@@ -423,7 +445,7 @@ void CatDoubleSlider::UpdateFirstSecond()
             first = m_nFrom - (m_ySlide_LeftOrTop.left()/width)*(m_nFrom - m_nTo);
             second = m_nFrom - (m_ySlide_RightOrBottom.left()/width)*(m_nFrom - m_nTo);
         } else {
-            width = this->height() - m_nSlideWidth;
+            width = this->height() - m_nSlideHeight;
             first = m_nFrom - (m_ySlide_LeftOrTop.top()/width)*(m_nFrom - m_nTo);
             second = m_nFrom - (m_ySlide_RightOrBottom.top()/width)*(m_nFrom - m_nTo);
         }
@@ -443,50 +465,22 @@ void CatDoubleSlider::UpdateSlideCoordinates()
     {
         qreal width = this->width() - m_nSlideWidth;
         m_ySlide_LeftOrTop.setRect(m_nFirst/(m_nTo - m_nFrom)*width,
-                                   (this->height() - m_nSlideWidth)/2.0,
-                                   m_nSlideWidth, m_nSlideWidth);
+                                   (this->height() - m_nSlideHeight)/2.0,
+                                   m_nSlideWidth, m_nSlideHeight);
         m_ySlide_RightOrBottom.setRect(m_nSecond/(m_nTo - m_nFrom)*width,
-                                       (this->height() - m_nSlideWidth)/2.0,
-                                       m_nSlideWidth, m_nSlideWidth);
+                                       (this->height() - m_nSlideHeight)/2.0,
+                                       m_nSlideWidth, m_nSlideHeight);
     } else {
-        qreal width = this->height() - m_nSlideWidth;
+        qreal width = this->height() - m_nSlideHeight;
         m_ySlide_LeftOrTop.setRect((this->width() - m_nSlideWidth)/2.0,
                                    m_nFirst/(m_nTo - m_nFrom)*width,
-                                   m_nSlideWidth, m_nSlideWidth);
+                                   m_nSlideWidth, m_nSlideHeight);
         m_ySlide_RightOrBottom.setRect((this->width() - m_nSlideWidth)/2.0,
                                        m_nSecond/(m_nTo - m_nFrom)*width,
-                                       m_nSlideWidth, m_nSlideWidth);
+                                       m_nSlideWidth, m_nSlideHeight);
     }
 
     UpdateBackgroundSlide();
-}
-
-void CatDoubleSlider::setSlideLeftOrTopWidth(int width)
-{
-    m_ySlide_LeftOrTop.setWidth(width);
-    emit SlideLeftOrTopWidthChanged(width);
-    update();
-}
-
-void CatDoubleSlider::setSlideLeftOrTopHeight(int height)
-{
-    m_ySlide_LeftOrTop.setHeight(height);
-    emit SlideLeftOrTopHeightChanged(height);
-    update();
-}
-
-void CatDoubleSlider::setSlideRightOrBottomWidth(int width)
-{
-    m_ySlide_RightOrBottom.setWidth(width);
-    emit SlideRightOrBottomWidthChanged(width);
-    update();
-}
-
-void CatDoubleSlider::setSlideRightOrBottomHeight(int height)
-{
-    m_ySlide_RightOrBottom.setHeight(height);
-    emit SlideRightOrBottomHeightChanged(height);
-    update();
 }
 
 void CatDoubleSlider::setSlideOrientationState(CatDoubleSlider::OrientationState state)
@@ -664,6 +658,14 @@ void CatDoubleSlider::setSlideRadius(int radius)
 void CatDoubleSlider::setSlideWidth(qreal width)
 {
     m_nSlideWidth = width;
+    emit SlideWidthChanged(width);
+    update();
+}
+
+void CatDoubleSlider::setSlideHeight(qreal height)
+{
+    m_nSlideHeight = height;
+    emit SlideHeightChanged(height);
     update();
 }
 
@@ -710,6 +712,12 @@ void CatDoubleSlider::setSliderStyle(CatDoubleSlider::SliderStyles style)
     update();
 }
 
+void CatDoubleSlider::setSliderDataType(CatDoubleSlider::SliderDataTypes type)
+{
+    m_ySliderDataType = type;
+    emit SliderDataTypeChanged(type);
+}
+
 void CatDoubleSlider::enterEvent(QEvent *event)
 {
     Q_UNUSED(event)
@@ -726,6 +734,7 @@ void CatDoubleSlider::leaveEvent(QEvent *event)
     m_cCurrentSlideRightBorderColor = m_cSlideRightBorderColor;
     m_cCurrentBackgroundRectBorderColor = m_cBackgroundRectBorderColor;
     m_cCurrentBackgroundSlideRectBorderColor = m_cBackgroundSlideRectBorderColor;
+    update();
 }
 
 void CatDoubleSlider::resizeEvent(QResizeEvent *event)
@@ -929,6 +938,7 @@ void CatDoubleSlider::mousePressEvent(QMouseEvent *event)
             break;
         }
     }
+    emit SliderPress();
     update();
 }
 
@@ -946,6 +956,8 @@ void CatDoubleSlider::mouseReleaseEvent(QMouseEvent *event)
     m_cCurrentBackgroundRectBorderColor = m_cBackgroundRectBorderColor;
     m_cCurrentBackgroundSlideRectBorderColor = m_cBackgroundSlideRectBorderColor;
     this->mouseMoveEvent(event);
+
+    emit SliderRelease();
     update();
 }
 

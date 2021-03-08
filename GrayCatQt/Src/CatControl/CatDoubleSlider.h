@@ -6,12 +6,9 @@
 class CatDoubleSlider : public QWidget
 {
     Q_OBJECT
-    Q_PROPERTY(int SlideLeftOrTopWidth READ SlideLeftOrTopWidth WRITE setSlideLeftOrTopWidth NOTIFY SlideLeftOrTopWidthChanged)
-    Q_PROPERTY(int SlideLeftOrTopHeight READ SlideLeftOrTopHeight WRITE setSlideLeftOrTopHeight NOTIFY SlideLeftOrTopHeightChanged)
-    Q_PROPERTY(int SlideRightOrBottomWidth READ SlideRightOrBottomWidth WRITE setSlideRightOrBottomWidth NOTIFY SlideRightOrBottomWidthChanged)
-    Q_PROPERTY(int SlideRightOrBottomHeight READ SlideRightOrBottomHeight WRITE setSlideRightOrBottomHeight NOTIFY SlideRightOrBottomHeightChanged)
     Q_PROPERTY(OrientationState SlideOrientationState READ SlideOrientationState WRITE setSlideOrientationState NOTIFY SlideOrientationStateChanged)
     Q_PROPERTY(SliderStyles SliderStyle READ SliderStyle WRITE setSliderStyle NOTIFY SliderStyleChanged)
+    Q_PROPERTY(SliderDataTypes SliderDataType READ SliderDataType WRITE setSliderDataType NOTIFY SliderDataTypeChanged)
 
     Q_PROPERTY(QBrush SlideLeftColor READ SlideLeftColor WRITE setSlideLeftColor NOTIFY SlideLeftColorChanged)
     Q_PROPERTY(QBrush SlideRightColor READ SlideRightColor WRITE setSlideRightColor NOTIFY SlideRightColorChanged)
@@ -44,6 +41,7 @@ class CatDoubleSlider : public QWidget
     Q_PROPERTY(int SlideRadius READ SlideRadius WRITE setSlideRadius NOTIFY SlideRadiusChanged)
 
     Q_PROPERTY(qreal SlideWidth READ SlideWidth WRITE setSlideWidth NOTIFY SlideWidthChanged)
+    Q_PROPERTY(qreal SlideHeight READ SlideHeight WRITE setSlideHeight NOTIFY SlideHeightChanged)
     Q_PROPERTY(qreal BackgroundHeight READ BackgroundHeight WRITE setBackgroundHeight NOTIFY BackgroundHeightChanged)
     Q_PROPERTY(qreal BackgroundSlideHeight READ BackgroundSlideHeight WRITE setBackgroundSlideHeight NOTIFY BackgroundSlideHeightChanged)
     Q_PROPERTY(qreal SlideLeftBorderWidth READ SlideLeftBorderWidth WRITE setSlideLeftBorderWidth NOTIFY SlideLeftBorderWidthChanged)
@@ -57,30 +55,34 @@ public:
         SliderHorizontal,
         SliderVertical
     };
-
     Q_ENUM(OrientationState)
+
     enum SliderStyles {
         SliderRect,
         SliderRound
     };
-
     Q_ENUM(SliderStyles)
+
     enum SelectStyle {
         LeftOrTopSelect,
         RightOrBottomSelect,
         BackgroundSlideSelect,
         NotSelect
     };
+    Q_ENUM(SelectStyle)
+
+    enum SliderDataTypes {
+        QREALTYPE,
+        QDATETIMETYPE
+    };
+    Q_ENUM(SliderDataTypes)
 
     explicit CatDoubleSlider(QWidget *parent = nullptr);
     ~CatDoubleSlider();
 
-    int SlideLeftOrTopWidth() const { return m_ySlide_LeftOrTop.width(); }
-    int SlideLeftOrTopHeight() const { return m_ySlide_LeftOrTop.height(); }
-    int SlideRightOrBottomWidth() const { return m_ySlide_RightOrBottom.width(); }
-    int SlideRightOrBottomHeight() const { return m_ySlide_RightOrBottom.height(); }
     OrientationState SlideOrientationState() const { return m_ySlideOrientationState; }
     SliderStyles SliderStyle() const { return m_ySliderStyle; }
+    SliderDataTypes SliderDataType() const { return m_ySliderDataType; }
 
     QBrush SlideLeftColor() const { return m_cSlideLeftColor; }
     QBrush SlideRightColor() const { return m_cSlideRightColor; }
@@ -113,6 +115,7 @@ public:
     int SlideRadius() const { return m_nSlideRadius; }
 
     qreal SlideWidth() const { return m_nSlideWidth; }
+    qreal SlideHeight() const { return m_nSlideHeight; }
     qreal BackgroundHeight() const { return m_nBackgroundHeight; }
     qreal BackgroundSlideHeight() const { return m_nBackgroundSlideHeight; }
     qreal SlideLeftBorderWidth() const { return m_nSlideLeftBorderWidth; }
@@ -123,6 +126,8 @@ public:
     void SetFromTo(qreal from, qreal to);
     void SetFirst(qreal first);
     void SetSecond(qreal second);
+    void SetFirstSecond(qreal first, qreal second);
+    void SetFromToNotUpdate(qreal from, qreal to);
 
 private:
     void InitUi();
@@ -147,12 +152,9 @@ private:
     void UpdateSlideCoordinates();
 
 signals:
-    void SlideLeftOrTopWidthChanged(int);
-    void SlideLeftOrTopHeightChanged(int);
-    void SlideRightOrBottomWidthChanged(int);
-    void SlideRightOrBottomHeightChanged(int);
     void SlideOrientationStateChanged(CatDoubleSlider::OrientationState);
     void SliderStyleChanged(CatDoubleSlider::SliderStyles);
+    void SliderDataTypeChanged(CatDoubleSlider::SliderDataTypes);
 
     void SlideLeftColorChanged(QBrush);
     void SlideRightColorChanged(QBrush);
@@ -184,6 +186,7 @@ signals:
     void BackgroundRadiusChanged(int);
     void SlideRadiusChanged(int);
     void SlideWidthChanged(qreal);
+    void SlideHeightChanged(qreal);
     void BackgroundHeightChanged(qreal);
     void BackgroundSlideHeightChanged(qreal);
     void SlideLeftBorderWidthChanged(qreal);
@@ -193,13 +196,13 @@ signals:
 
     void UpdateFirstSeconded(qreal, qreal);
 
+    void SliderPress();
+    void SliderRelease();
+
 public slots:
-    void setSlideLeftOrTopWidth(int width);
-    void setSlideLeftOrTopHeight(int height);
-    void setSlideRightOrBottomWidth(int width);
-    void setSlideRightOrBottomHeight(int height);
     void setSlideOrientationState(CatDoubleSlider::OrientationState state);
     void setSliderStyle(CatDoubleSlider::SliderStyles style);
+    void setSliderDataType(CatDoubleSlider::SliderDataTypes type);
 
     void setSlideLeftColor(QBrush brush);
     void setSlideRightColor(QBrush brush);
@@ -232,6 +235,7 @@ public slots:
     void setSlideRadius(int radius);
 
     void setSlideWidth(qreal width);
+    void setSlideHeight(qreal height);
     void setBackgroundHeight(qreal height);
     void setBackgroundSlideHeight(qreal height);
     void setSlideLeftBorderWidth(qreal width);
@@ -254,8 +258,14 @@ private:
     QRectF m_ySlide_RightOrBottom;
     QRectF m_yBackground_Rect;
     QRectF m_yBackgroundSlide_Rect;
+
+    int m_nSlideLeftOrTopWidth;
+    int m_nSlideLeftOrTopHeight;
+    int m_nSlideRightOrBottomWidth;
+    int m_nSlideRightOrBottomHeight;
     OrientationState m_ySlideOrientationState;
     SliderStyles m_ySliderStyle;
+    SliderDataTypes m_ySliderDataType;
 
     QBrush m_cCurrentSlideLeftColor;
     QBrush m_cCurrentSlideRightColor;
@@ -297,6 +307,7 @@ private:
     int m_nSlideRadius;
 
     qreal m_nSlideWidth;
+    qreal m_nSlideHeight;
     qreal m_nBackgroundHeight;
     qreal m_nBackgroundSlideHeight;
     qreal m_nSlideLeftBorderWidth;

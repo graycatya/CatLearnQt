@@ -1,0 +1,43 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ArcPathway.qml</file>
+        <file>CurrentStationUi.qml</file>
+        <file>DoorOpen.qml</file>
+        <file>DoorOtherOpened.qml</file>
+        <file>NextStationUi.qml</file>
+        <file>Pathway.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>RunMain.qml</file>
+        <file>Station.qml</file>
+        <file>StationAnimation.qml</file>
+        <file>StationName.qml</file>
+        <file>Train.qml</file>
+        <file>UiConfig.js</file>
+        <file>WelcomeUi.qml</file>
+        <file>png/arrowright.png</file>
+        <file>png/background.png</file>
+        <file>png/beach_ball.png</file>
+        <file>png/door.png</file>
+        <file>png/doorleft.png</file>
+        <file>png/doorright.png</file>
+        <file>png/doorsonopened.png</file>
+        <file>png/doorsonthis.png</file>
+        <file>png/endstation.png</file>
+        <file>png/first.png</file>
+        <file>png/forbid.png</file>
+        <file>png/logo.png</file>
+        <file>png/logotext.png</file>
+        <file>png/nextstation.png</file>
+        <file>png/qt.png</file>
+        <file>png/qtmeitu.png</file>
+        <file>png/roundblack.png</file>
+        <file>png/roundblue.png</file>
+        <file>png/roundgreen.png</file>
+        <file>png/thisstation.png</file>
+        <file>png/train.png</file>
+        <file>png/train1.png</file>
+        <file>svg/fps.svg</file>
+        <file>svg/Particle.svg</file>
+        <file>svg/rotate.svg</file>
+    </qresource>
+</RCC>

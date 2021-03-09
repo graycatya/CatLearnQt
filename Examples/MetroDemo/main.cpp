@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     QGuiApplication app(argc, argv);
     // 设置全局字体，用于解决Qt for WebAssembly中文显示异常
-    int fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/SIMYOU.TTF"));
+    int fontId = QFontDatabase::addApplicationFont(QStringLiteral(":/font/STKAITI.TTF"));
 
     QStringList fontFamilies = QFontDatabase::applicationFontFamilies(fontId);
 

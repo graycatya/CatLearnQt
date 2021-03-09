@@ -40,7 +40,7 @@ Window {
     }
 
     Fps {
-        x: welcomeui.x + welcomeui.width - 100; y: welcomeui.y
+        x: welcomeui.x + welcomeui.width - 90; y: welcomeui.y
         implicitHeight: 26
         implicitWidth: 26
         textSize: 26

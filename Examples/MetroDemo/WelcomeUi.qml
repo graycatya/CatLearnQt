@@ -1,4 +1,4 @@
-import QtQuick 2.12 
+﻿import QtQuick 2.12 
 
 import "qrc:/CustomControl"
 
@@ -32,7 +32,7 @@ Item {
         textVar: ["欢", " 迎", " 乘", " 坐", " 惠", " 州", " 地", " 铁"]
         textfont {
             pixelSize: 72;
-            family: "华文楷体";
+            /*family: "Ubuntu";*/
         }
         color: "#8b1d22"
     }

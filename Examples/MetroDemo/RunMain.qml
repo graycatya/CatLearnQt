@@ -1,4 +1,4 @@
-﻿import QtQuick 2.12 
+﻿import QtQuick 2.12
 import QtQuick.Window 2.12
 import "qrc:/CustomControl"
 
@@ -17,27 +17,30 @@ Window {
     WelcomeUi {
         id: welcomeui
         visible: true
+        anchors.centerIn: parent
     }
 
     CurrentStationUi {
-        id: currentstationui 
+        id: currentstationui
         visible: false
         endstation: root.endstation
         thisstation: root.startstation
         doorOpen: root.doorOpen
-        just: root.just 
+        just: root.just
+        anchors.centerIn: parent
     }
     NextStationUi {
         id: nextstationui
         visible: false
         startstation: root.startstation
-        endstation: root.endstation 
-        nextstation: root.nextstation 
-        just: root.just 
+        endstation: root.endstation
+        nextstation: root.nextstation
+        just: root.just
+        anchors.centerIn: parent
     }
 
     Fps {
-        x: 1270; y: 0
+        x: welcomeui.x + welcomeui.width - 100; y: welcomeui.y
         implicitHeight: 26
         implicitWidth: 26
         textSize: 26
@@ -46,7 +49,7 @@ Window {
     Timer {
         id: timer
         interval: 14000
-        repeat: true 
+        repeat: true
         running: true
         property bool berth: true
         onTriggered: {
@@ -58,18 +61,18 @@ Window {
                 if(berth)
                 {
                     if(root.startstation >= root.endstation)
-                    { 
+                    {
                         root.startstation = 25
                         root.endstation = 0
                         root.nextstation = 25
                         root.just = false
                     }
                     root.startstation = root.nextstation;
-                    currentstationui.visible = true 
-                    nextstationui.visible = false 
+                    currentstationui.visible = true
+                    nextstationui.visible = false
                     timer.berth = false
                 } else {
-                    currentstationui.visible = false 
+                    currentstationui.visible = false
                     nextstationui.visible = true
                     root.nextstation = root.startstation + 1;
                     root.doorOpen = !root.doorOpen;
@@ -88,11 +91,11 @@ Window {
                         root.just = true
                     }
                     root.startstation = root.nextstation;
-                    currentstationui.visible = true 
-                    nextstationui.visible = false 
+                    currentstationui.visible = true
+                    nextstationui.visible = false
                     timer.berth = false
                 } else {
-                    currentstationui.visible = false 
+                    currentstationui.visible = false
                     nextstationui.visible = true
                     root.nextstation = root.startstation - 1;
                     root.doorOpen = !root.doorOpen;
@@ -102,3 +105,4 @@ Window {
         }
     }
 }
+

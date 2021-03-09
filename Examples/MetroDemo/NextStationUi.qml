@@ -60,7 +60,7 @@ Item {
                 anchors.centerIn: parent
                 text: Uidefine.textstation[endstation]
                 font.pixelSize: 18
-                font.family: "微软雅黑"
+                font.family: "Ubuntu"
                 font.weight: Font.Bold
             }
         }
@@ -72,7 +72,7 @@ Item {
                 anchors.centerIn: parent
                 text: Uidefine.textstationenglish[endstation]
                 font.pixelSize: 10
-                font.family: "微软雅黑"
+                font.family: "Ubuntu"
                 font.weight: Font.Bold
             }
         }
@@ -108,7 +108,7 @@ Item {
                 anchors.centerIn: parent
                 text: Uidefine.textstation[nextstation]
                 font.pixelSize: 24
-                font.family: "微软雅黑"
+                font.family: "Ubuntu"
                 font.weight: Font.Bold
             }
         }
@@ -120,7 +120,7 @@ Item {
                 anchors.centerIn: parent
                 text: Uidefine.textstationenglish[nextstation]
                 font.pixelSize: 12
-                font.family: "微软雅黑"
+                font.family: "Ubuntu"
                 font.weight: Font.Bold
             }
         }

@@ -36,6 +36,7 @@ void CatGraphicsView::Reset()
 
 void CatGraphicsView::InitProperty()
 {
+    m_bPress = false;
     scale(1.0 , 1.0);
 }
 
@@ -46,7 +47,6 @@ void CatGraphicsView::mousePressEvent(QMouseEvent *event)
 
 void CatGraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
-    qDebug() << event->pos();
     QGraphicsView::mouseMoveEvent(event);
 }
 

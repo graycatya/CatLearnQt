@@ -25,11 +25,16 @@ public:
     void AddTeachingToolTrangle();
     void AddTeachingToolCompass();
 
+protected:
 
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 private:
     CatGraphicsView *m_yView;
-
+    QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
+    bool m_bpen;
 };
 
 #endif // CATGRAPHICSSCENE_H

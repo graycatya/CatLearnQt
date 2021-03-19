@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QFileDialog>
+#include "CatControl/CatToolTip.h"
 
 CatSettings::CatSettings(QWidget *parent) :
     QWidget(parent),
@@ -40,6 +41,8 @@ void CatSettings::InitProperty()
 {
     InitSettings();
     UpdateStyle();
+    ui->SavePathEdit->installEventFilter(this);
+    ui->SavePathEdit->setMouseTracking(true);
 }
 
 void CatSettings::InitConnect()
@@ -135,6 +138,21 @@ void CatSettings::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
     SetSaveFilePathLineEdit(CatConfig::GetValue("SaveFilePath").toString());
+}
+
+bool CatSettings::eventFilter(QObject *object, QEvent *event)
+{
+    if(object->objectName() == "SavePathEdit")
+    {
+        if(event->type() == QEvent::Type::Enter)
+        {
+            CatToolTip::Instance()->ShowToolTip(CatConfig::GetValue("SaveFilePath").toString());
+        } else if(event->type() == QEvent::Type::Leave)
+        {
+            CatToolTip::Instance()->HideToolTip();
+        }
+    }
+    return QWidget::eventFilter(object, event);
 }
 
 void CatSettings::on_ChangeButton_clicked()

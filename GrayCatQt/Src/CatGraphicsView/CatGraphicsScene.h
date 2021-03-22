@@ -33,7 +33,7 @@ protected:
 
 private:
     CatGraphicsView *m_yView;
-    QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
+    //QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
     bool m_bpen;
 };
 

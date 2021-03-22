@@ -28,7 +28,7 @@ void CatGraphicsView::ScaleZoomOut()
 
 void CatGraphicsView::Reset()
 {
-    this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+    //this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
     QMatrix q;
     q.setMatrix(1, matrix().m12(), matrix().m21(),1, matrix().dx(), matrix().dy());
     setMatrix(q,false);
@@ -36,6 +36,7 @@ void CatGraphicsView::Reset()
 
 void CatGraphicsView::InitProperty()
 {
+    this->setDragMode(QGraphicsView::RubberBandDrag);
     m_bPress = false;
     scale(1.0 , 1.0);
 }

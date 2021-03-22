@@ -20,16 +20,16 @@ class AbsTeachingTool : public QObject
 public:
 
     enum TEAHINGTOOLSTATE {
-        TEAHINGTOOL_STATE_NONE,
-        TEAHINGTOOL_STATE_MOVE,
-        TEAHINGTOOL_STATE_RESIZE_ONE,
-        TEAHINGTOOL_STATE_RESIZE_TWO,
-        TEAHINGTOOL_STATE_RESIZE_THREE,
-        TEANINGTOOL_STATE_RESIZE_FOUR,
-        TEAHINGTOOL_STATE_ROTATE,
-        TEAHINGTOOL_STATE_CLOSE,
-        TEAHINGTOOL_STATE_REST,
-        TEAHINGTOOL_STATE_PEN,
+        TEAHINGTOOL_STATE_NONE,             // 教具状态(无状态)
+        TEAHINGTOOL_STATE_MOVE,             // 教具状态(移动)
+        TEAHINGTOOL_STATE_RESIZE_ONE,       // 教具状态(改变大小-1)
+        TEAHINGTOOL_STATE_RESIZE_TWO,       // 教具状态(改变大小-2)
+        TEAHINGTOOL_STATE_RESIZE_THREE,     // 教具状态(改变大小-3)
+        TEANINGTOOL_STATE_RESIZE_FOUR,      // 教具状态(改变大小-4)
+        TEAHINGTOOL_STATE_ROTATE,           // 教具状态(旋转)
+        TEAHINGTOOL_STATE_CLOSE,            // 教具状态(关闭)
+        TEAHINGTOOL_STATE_REST,             // 教具状态(复位)
+        TEAHINGTOOL_STATE_PEN,              // 教具状态(画图状态,画线)
         TEAHINGTOOL_STATE_DORMANCY          // 启动该状态为不响应任何鼠标事件
     };
 
@@ -180,7 +180,7 @@ private:
     QRectF m_yMaxRectF;
 
     QPointF m_yPressPos;
-    QPointF m_yOriginPos;
+    QPointF m_yOriginPos;   // 原点坐标
 
     qreal PenWidthF;
 

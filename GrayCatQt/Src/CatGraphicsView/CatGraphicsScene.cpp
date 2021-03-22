@@ -57,19 +57,19 @@ void CatGraphicsScene::AddTeachingToolCompass()
 void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mousePressEvent(event);
-    if(event->button()==Qt::LeftButton) {
+    /*if(event->button()==Qt::LeftButton) {
         qDebug() << "event left";
         m_bpen = true;
         lastpoint=event->scenePos();
     }
-    endpoint=lastpoint;
+    endpoint=lastpoint;*/
 }
 
 void CatGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mouseMoveEvent(event);
 
-    if(m_bpen){
+    /*if(m_bpen){
         endpoint= event->scenePos();
         QGraphicsLineItem *line=new QGraphicsLineItem(lastpoint.x(),lastpoint.y(),endpoint.x(),endpoint.y());
         QPen pen;
@@ -82,7 +82,7 @@ void CatGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         this->addItem(line);
         lastpoint = endpoint;
         //update();
-    }
+    }*/
 }
 
 void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)

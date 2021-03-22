@@ -28,8 +28,11 @@ void TeachingToolRuler::paint(QPainter *painter, const QStyleOptionGraphicsItem 
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
+    // 打开抗锯齿
     painter->setRenderHint(QPainter::Antialiasing, true);
+    // 平滑的像素图转换算法
     painter->setRenderHint(QPainter::SmoothPixmapTransform, true);
+    // 指示引擎应尽可能消除文本的别名
     painter->setRenderHint(QPainter::TextAntialiasing, true);
     painter->save();
     // [0] 绘制直尺本体

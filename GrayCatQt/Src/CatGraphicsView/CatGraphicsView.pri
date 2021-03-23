@@ -1,4 +1,5 @@
 include($$PWD/TeachingTools/TeachingTool.pri)
+include($$PWD/DrawingBoardTools/DrawingBoardTools.pri)
 
 HEADERS += \
     $$PWD/CatGraphicsObject.h \

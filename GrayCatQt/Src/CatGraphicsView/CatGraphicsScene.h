@@ -31,8 +31,16 @@ protected:
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
+public slots:
+    void On_DrawingBoard_SelectState();
+    void On_DrawingBoard_PenState();
+
 private:
     CatGraphicsView *m_yView;
+    QVector<TeachingToolCompass*> m_pTeachingToolCompass;
+    QVector<TeachingToolProtractor*> m_pTeachingToolProtractor;
+    QVector<TeachingToolRuler*> m_pTeachingToolRuler;
+    QVector<TeachingToolTrangle*> m_pTeachingToolTrangle;
     //QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
     bool m_bpen;
 };

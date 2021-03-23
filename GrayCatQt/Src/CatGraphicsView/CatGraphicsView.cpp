@@ -36,7 +36,7 @@ void CatGraphicsView::Reset()
 
 void CatGraphicsView::InitProperty()
 {
-    this->setDragMode(QGraphicsView::RubberBandDrag);
+    //this->setDragMode(QGraphicsView::RubberBandDrag);
     m_bPress = false;
     scale(1.0 , 1.0);
 }

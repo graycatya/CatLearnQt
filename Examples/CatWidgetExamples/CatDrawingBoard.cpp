@@ -107,6 +107,14 @@ void CatDrawingBoard::InitConnect()
         m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->AddTeachingToolCompass();
     });
     // 画板工具栏
+    connect(m_pBoardButtons["BoardSelect"], &QPushButton::clicked, this, [=](){
+        m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->On_DrawingBoard_SelectState();
+    });
+
+    connect(m_pBoardButtons["BoardBrushes"], &QPushButton::clicked, this, [=](){
+        m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->On_DrawingBoard_PenState();
+    });
+
     connect(m_pBoardButtons["BoardClear"], &QPushButton::clicked, this, [=](){
         m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->clear();
     });
@@ -167,6 +175,8 @@ void CatDrawingBoard::InitBoardTool()
     m_pBoardOptions->AddItem(item);
 
     static_cast<QHBoxLayout*>(m_pBoardOptions->GetButtonlayout())->setSpacing(2);
+
+    m_pBoardButtons["BoardSelect"]->setChecked(true);
 }
 
 void CatDrawingBoard::UpdateStyle()

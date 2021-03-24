@@ -10,8 +10,9 @@
 CatGraphicsScene::CatGraphicsScene(QObject *parent)
     : QGraphicsScene(parent)
     , m_yView(nullptr)
+    , m_pCatGraphicsObject(new CatGraphicsObject(this))
 {
-    m_bpen = false;
+    InitProperty();
 }
 
 CatGraphicsScene::~CatGraphicsScene()
@@ -35,6 +36,11 @@ void CatGraphicsScene::AddTeachingToolProtractor()
     TeachingToolProtractor *Teaching = new TeachingToolProtractor;
     this->addItem(Teaching);
     m_pTeachingToolProtractor.push_back(Teaching);
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::PEN
+            || m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::ERASER)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
+    }
 }
 
 void CatGraphicsScene::AddTeachingToolRuler()
@@ -42,6 +48,14 @@ void CatGraphicsScene::AddTeachingToolRuler()
     TeachingToolRuler *Teaching = new TeachingToolRuler;
     this->addItem(Teaching);
     m_pTeachingToolRuler.push_back(Teaching);
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::PEN)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
+    }
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::ERASER)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
+    }
 }
 
 void CatGraphicsScene::AddTeachingToolTrangle()
@@ -49,6 +63,14 @@ void CatGraphicsScene::AddTeachingToolTrangle()
     TeachingToolTrangle *Teaching = new TeachingToolTrangle;
     this->addItem(Teaching);
     m_pTeachingToolTrangle.push_back(Teaching);
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::PEN)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
+    }
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::ERASER)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
+    }
 }
 
 void CatGraphicsScene::AddTeachingToolCompass()
@@ -56,6 +78,17 @@ void CatGraphicsScene::AddTeachingToolCompass()
     TeachingToolCompass *Teaching = new TeachingToolCompass;
     this->addItem(Teaching);
     m_pTeachingToolCompass.push_back(Teaching);
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::PEN
+            || m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::ERASER)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
+    }
+}
+
+void CatGraphicsScene::InitProperty()
+{
+    m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
+    m_bpen = false;
 }
 
 void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -98,6 +131,7 @@ void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void CatGraphicsScene::On_DrawingBoard_SelectState()
 {
+    m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
     for(auto temp : m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
@@ -118,6 +152,7 @@ void CatGraphicsScene::On_DrawingBoard_SelectState()
 
 void CatGraphicsScene::On_DrawingBoard_PenState()
 {
+    m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::PEN);
     for(auto temp : m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);

@@ -3,6 +3,8 @@
 
 #include <QGraphicsScene>
 
+#include "CatGraphicsObject.h"
+
 class CatGraphicsView;
 class TeachingToolCompass;
 class TeachingToolProtractor;
@@ -25,6 +27,9 @@ public:
     void AddTeachingToolTrangle();
     void AddTeachingToolCompass();
 
+private:
+    void InitProperty();
+
 protected:
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -43,6 +48,8 @@ private:
     QVector<TeachingToolTrangle*> m_pTeachingToolTrangle;
     //QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
     bool m_bpen;
+
+    CatGraphicsObject *m_pCatGraphicsObject;
 };
 
 #endif // CATGRAPHICSSCENE_H

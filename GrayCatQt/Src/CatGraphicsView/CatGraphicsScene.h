@@ -11,6 +11,8 @@ class TeachingToolProtractor;
 class TeachingToolRuler;
 class TeachingToolTrangle;
 
+class CatGraphicPen;
+
 class CatGraphicsScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -46,10 +48,12 @@ private:
     QVector<TeachingToolProtractor*> m_pTeachingToolProtractor;
     QVector<TeachingToolRuler*> m_pTeachingToolRuler;
     QVector<TeachingToolTrangle*> m_pTeachingToolTrangle;
+    QList<CatGraphicPen*> m_PCatGraphicPens;
     //QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
     bool m_bpen;
 
     CatGraphicsObject *m_pCatGraphicsObject;
+    CatGraphicPen* m_pCurrentCatGraphicPen;
 };
 
 #endif // CATGRAPHICSSCENE_H

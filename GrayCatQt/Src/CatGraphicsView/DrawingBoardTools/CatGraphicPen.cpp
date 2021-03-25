@@ -1,5 +1,7 @@
 ﻿#include "CatGraphicPen.h"
 
+#include <QDebug>
+
 CatGraphicPen::CatGraphicPen(QGraphicsItem *parent)
     : QGraphicsItem(parent)
 {
@@ -30,15 +32,20 @@ QPainterPath CatGraphicPen::shape() const
 
 void CatGraphicPen::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
-
+    QGraphicsItem::mousePressEvent(event);
+    qDebug() << "CatGraphicPen press";
 }
 
 void CatGraphicPen::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
+    QGraphicsItem::mouseMoveEvent(event);
 
+    qDebug() << "CatGraphicPen move";
 }
 
 void CatGraphicPen::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
+    QGraphicsItem::mouseReleaseEvent(event);
 
+    qDebug() << "CatGraphicPen release";
 }

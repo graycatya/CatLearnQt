@@ -4,8 +4,12 @@
 #include "TeachingTools/TeachingToolRuler.h"
 #include "TeachingTools/TeachingToolTrangle.h"
 #include "CatGraphicsView.h"
+
+#include "DrawingBoardTools/CatGraphicPen.h"
+
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
+
 
 CatGraphicsScene::CatGraphicsScene(QObject *parent)
     : QGraphicsScene(parent)
@@ -89,11 +93,18 @@ void CatGraphicsScene::InitProperty()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
     m_bpen = false;
+    m_pCurrentCatGraphicPen = nullptr;
 }
 
 void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mousePressEvent(event);
+
+    CatGraphicPen *CurrentPen = new CatGraphicPen;
+    m_pCurrentCatGraphicPen = CurrentPen;
+    m_pCurrentCatGraphicPen->mousePressEvent(event);
+
+    m_PCatGraphicPens.push_back(CurrentPen);
     /*if(event->button()==Qt::LeftButton) {
         qDebug() << "event left";
         m_bpen = true;
@@ -105,6 +116,10 @@ void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void CatGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mouseMoveEvent(event);
+    if(m_pCurrentCatGraphicPen != nullptr)
+    {
+        m_pCurrentCatGraphicPen->mouseMoveEvent(event);
+    }
 
     /*if(m_bpen){
         endpoint= event->scenePos();
@@ -126,6 +141,9 @@ void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     m_bpen = false;
     QGraphicsScene::mouseReleaseEvent(event);
+
+    m_pCurrentCatGraphicPen->mouseReleaseEvent(event);
+    m_pCurrentCatGraphicPen = nullptr;
     update();
 }
 

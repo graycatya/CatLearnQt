@@ -18,7 +18,7 @@ public:
                QWidget *widget);
     QPainterPath shape() const;
 
-protected:
+public:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);

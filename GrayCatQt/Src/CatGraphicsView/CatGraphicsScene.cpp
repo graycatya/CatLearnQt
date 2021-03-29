@@ -92,77 +92,95 @@ void CatGraphicsScene::AddTeachingToolCompass()
 void CatGraphicsScene::InitProperty()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
-    m_bpen = false;
     m_pCurrentCatGraphicPen = nullptr;
+    m_bMousePress = false;
+}
+
+void CatGraphicsScene::mousePressEventPenState(QGraphicsSceneMouseEvent *event)
+{
+    CatGraphicPen *pen = new CatGraphicPen;
+    this->addItem(pen);
+    qDebug() << "s: " << event->screenPos() << " : " << event->scenePos();
+    pen->GraphicPenAddPoint(event->scenePos());
+    m_pCurrentCatGraphicPen = pen;
+}
+
+void CatGraphicsScene::mouseMoveEventPenState(QGraphicsSceneMouseEvent *event)
+{
+    if(m_bMousePress)
+    {
+        qDebug() << "s: " << event->screenPos() << " : " << event->scenePos();
+        m_pCurrentCatGraphicPen->GraphicPenAddPoint(event->scenePos());
+    }
+}
+
+void CatGraphicsScene::mouseReleaseEventPenState(QGraphicsSceneMouseEvent *event)
+{
+    m_pCurrentCatGraphicPen  = nullptr;
 }
 
 void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
+    m_bMousePress = true;
     QGraphicsScene::mousePressEvent(event);
-
-    CatGraphicPen *CurrentPen = new CatGraphicPen;
-    m_pCurrentCatGraphicPen = CurrentPen;
-    m_pCurrentCatGraphicPen->mousePressEvent(event);
-
-    m_PCatGraphicPens.push_back(CurrentPen);
-    /*if(event->button()==Qt::LeftButton) {
-        qDebug() << "event left";
-        m_bpen = true;
-        lastpoint=event->scenePos();
+    switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN: {
+            mousePressEventPenState(event);
+            break;
+        }
+        default: {
+            break;
+        }
     }
-    endpoint=lastpoint;*/
+    this->update();
 }
 
 void CatGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mouseMoveEvent(event);
-    if(m_pCurrentCatGraphicPen != nullptr)
-    {
-        m_pCurrentCatGraphicPen->mouseMoveEvent(event);
+    switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN: {
+            mouseMoveEventPenState(event);
+            break;
+        }
+        default: {
+            break;
+        }
     }
-
-    /*if(m_bpen){
-        endpoint= event->scenePos();
-        QGraphicsLineItem *line=new QGraphicsLineItem(lastpoint.x(),lastpoint.y(),endpoint.x(),endpoint.y());
-        QPen pen;
-        pen.setCapStyle(Qt::RoundCap);
-        pen.setJoinStyle(Qt::RoundJoin);
-        pen.setWidth(1);
-        pen.setColor(QColor("#FFFFFF"));
-        //qDebug() << "add line";
-        line->setPen(pen);
-        this->addItem(line);
-        lastpoint = endpoint;
-        //update();
-    }*/
+    this->update();
 }
 
 void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
-    m_bpen = false;
+    m_bMousePress = false;
     QGraphicsScene::mouseReleaseEvent(event);
-
-    m_pCurrentCatGraphicPen->mouseReleaseEvent(event);
-    m_pCurrentCatGraphicPen = nullptr;
-    update();
+    switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN: {
+            mouseReleaseEventPenState(event);
+            break;
+        }
+        default: {
+            break;
+        }
+    }
 }
 
 void CatGraphicsScene::On_DrawingBoard_SelectState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
-    for(auto temp : m_pTeachingToolCompass)
+    foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
     }
-    for(auto temp : m_pTeachingToolProtractor)
+    foreach(auto temp, m_pTeachingToolProtractor)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
     }
-    for(auto temp : m_pTeachingToolRuler)
+    foreach(auto temp, m_pTeachingToolRuler)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
     }
-    for(auto temp : m_pTeachingToolTrangle)
+    foreach(auto temp, m_pTeachingToolTrangle)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
     }
@@ -171,19 +189,19 @@ void CatGraphicsScene::On_DrawingBoard_SelectState()
 void CatGraphicsScene::On_DrawingBoard_PenState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::PEN);
-    for(auto temp : m_pTeachingToolCompass)
+    foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
     }
-    for(auto temp : m_pTeachingToolProtractor)
+    foreach(auto temp, m_pTeachingToolProtractor)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
     }
-    for(auto temp : m_pTeachingToolRuler)
+    foreach(auto temp, m_pTeachingToolRuler)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
     }
-    for(auto temp : m_pTeachingToolTrangle)
+    foreach(auto temp, m_pTeachingToolTrangle)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
     }

@@ -16,7 +16,11 @@ protected:
     QRectF GetBaseItemSize() const { return m_ySize; }
 
 private:
-    QRectF m_ySize;
+    void InitProperty();
+
+private:
+    QRectF m_ySize;     // Item 大小
+    qint32 m_yPadding;  // 内边距 为透明部分
 
 };
 

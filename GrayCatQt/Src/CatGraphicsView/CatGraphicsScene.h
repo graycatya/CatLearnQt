@@ -32,6 +32,10 @@ public:
 private:
     void InitProperty();
 
+    void mousePressEventPenState(QGraphicsSceneMouseEvent *event);
+    void mouseMoveEventPenState(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEventPenState(QGraphicsSceneMouseEvent *event);
+
 protected:
 
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -49,11 +53,11 @@ private:
     QVector<TeachingToolRuler*> m_pTeachingToolRuler;
     QVector<TeachingToolTrangle*> m_pTeachingToolTrangle;
     QList<CatGraphicPen*> m_PCatGraphicPens;
-    //QPointF lastpoint,endpoint; //存储鼠标的按下和放开时的坐标
-    bool m_bpen;
 
     CatGraphicsObject *m_pCatGraphicsObject;
     CatGraphicPen* m_pCurrentCatGraphicPen;
+
+    bool m_bMousePress;
 };
 
 #endif // CATGRAPHICSSCENE_H

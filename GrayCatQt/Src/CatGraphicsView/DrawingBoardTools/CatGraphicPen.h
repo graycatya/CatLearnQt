@@ -4,6 +4,12 @@
 #include <QGraphicsItem>
 #include "AbsDrawingBoardBase.h"
 
+struct Bezier {
+    QPointF c1;
+    QPointF c2;
+    QPointF endpoint;
+};
+
 
 class CatGraphicPen : public AbsDrawingBoardBase, public QGraphicsItem
 {
@@ -18,12 +24,23 @@ public:
                QWidget *widget);
     QPainterPath shape() const;
 
+    void GraphicPenAddPoint(QPointF point);
+   // void
+
+private:
+    void InitProperty();
+
+    void UpdateRectSize(QPointF point);
+
 public:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 private:
+    QVector<QLineF> m_pLines;
+    QPainterPath m_pBeziner;
+    QPointF m_pLastPoint;
 
 };
 

@@ -5,9 +5,10 @@
 #include "TeachingTools/TeachingToolTrangle.h"
 #include "CatGraphicsView.h"
 
-#include "DrawingBoardTools/CatGraphicPen.h"
+#include "DrawingBoardTools/CatCanvasItem.h"
 
 #include <QGraphicsSceneMouseEvent>
+#include <QPixmapCache>
 #include <QDebug>
 
 
@@ -16,7 +17,7 @@ CatGraphicsScene::CatGraphicsScene(QObject *parent)
     , m_yView(nullptr)
     , m_pCatGraphicsObject(new CatGraphicsObject(this))
 {
-    InitProperty();
+    //InitProperty();
 }
 
 CatGraphicsScene::~CatGraphicsScene()
@@ -89,34 +90,101 @@ void CatGraphicsScene::AddTeachingToolCompass()
     }
 }
 
+void CatGraphicsScene::Clear()
+{
+    this->clear();
+    m_pTeachingToolCompass.clear();
+    m_pTeachingToolProtractor.clear();
+    m_pTeachingToolRuler.clear();
+    m_pTeachingToolTrangle.clear();
+    m_pCatCanvasItem = nullptr;
+}
+
 void CatGraphicsScene::InitProperty()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
-    m_pCurrentCatGraphicPen = nullptr;
+
+    m_pCatCanvasItem = new CatCanvasItem(sceneRect().size());
+    m_pCatCanvasItem->SetBackgroundColor(Qt::transparent);
+    this->addItem(m_pCatCanvasItem);
+    //QPixmapCache::setCacheLimit(204800);
+
     m_bMousePress = false;
 }
 
 void CatGraphicsScene::mousePressEventPenState(QGraphicsSceneMouseEvent *event)
 {
-    CatGraphicPen *pen = new CatGraphicPen;
-    this->addItem(pen);
-    qDebug() << "s: " << event->screenPos() << " : " << event->scenePos();
-    pen->GraphicPenAddPoint(event->scenePos());
-    m_pCurrentCatGraphicPen = pen;
+    m_bMousePress = true;
+
+    switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+        case CatGraphicsObject::PEN:
+        case CatGraphicsObject::ERASER:
+        {
+            scenePress(1,event->scenePos());
+        }
+        default:
+        {
+            break;
+        }
+    }
+    QGraphicsScene::mousePressEvent(event);
 }
 
 void CatGraphicsScene::mouseMoveEventPenState(QGraphicsSceneMouseEvent *event)
 {
     if(m_bMousePress)
     {
-        qDebug() << "s: " << event->screenPos() << " : " << event->scenePos();
-        m_pCurrentCatGraphicPen->GraphicPenAddPoint(event->scenePos());
+        switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+            case CatGraphicsObject::PEN:
+            case CatGraphicsObject::ERASER:
+            {
+                sceneMove(1, event->lastScenePos(), event->scenePos());
+            }
+            default:
+            {
+                break;
+            }
+        }
     }
+    QGraphicsScene::mouseMoveEvent(event);
 }
 
 void CatGraphicsScene::mouseReleaseEventPenState(QGraphicsSceneMouseEvent *event)
 {
-    m_pCurrentCatGraphicPen  = nullptr;
+    m_bMousePress = false;
+
+    switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+        case CatGraphicsObject::PEN:
+        case CatGraphicsObject::ERASER:
+        {
+            sceneRelease(1, event->scenePos());
+        }
+        default:
+        {
+            break;
+        }
+    }
+
+    QGraphicsScene::mouseReleaseEvent(event);
+}
+
+bool CatGraphicsScene::event(QEvent *event)
+{
+    switch (event->type())
+    {
+        case QEvent::TouchEnd:
+        case QEvent::TouchBegin:
+        case QEvent::TouchUpdate:
+        {
+            if(touchEvent(static_cast<QTouchEvent*>(event)))
+            {
+                return true;
+            }
+            break;
+        }
+        default: break;
+    }
+    return QGraphicsScene::event(event);
 }
 
 void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -124,7 +192,9 @@ void CatGraphicsScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     m_bMousePress = true;
     QGraphicsScene::mousePressEvent(event);
     switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
-        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN: {
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN:
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::ERASER:
+        {
             mousePressEventPenState(event);
             break;
         }
@@ -139,7 +209,9 @@ void CatGraphicsScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
     QGraphicsScene::mouseMoveEvent(event);
     switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
-        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN: {
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN:
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::ERASER:
+        {
             mouseMoveEventPenState(event);
             break;
         }
@@ -155,7 +227,9 @@ void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     m_bMousePress = false;
     QGraphicsScene::mouseReleaseEvent(event);
     switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
-        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN: {
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::PEN:
+        case CatGraphicsObject::CAT_DRAWINGBOARD_STATE::ERASER:
+        {
             mouseReleaseEventPenState(event);
             break;
         }
@@ -163,6 +237,37 @@ void CatGraphicsScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             break;
         }
     }
+}
+
+bool CatGraphicsScene::touchEvent(QTouchEvent *event)
+{
+    Q_UNUSED(event)
+    bool rel = true;
+    return rel;
+}
+
+bool CatGraphicsScene::scenePress(int id, const QPointF &pos)
+{
+    if(m_pCatCanvasItem == nullptr)
+    {
+        m_pCatCanvasItem = new CatCanvasItem(sceneRect().size());
+        m_pCatCanvasItem->SetBackgroundColor(Qt::transparent);
+        this->addItem(m_pCatCanvasItem);
+    }
+    m_pCatCanvasItem->DrawPress(id, pos);
+    return true;
+}
+
+bool CatGraphicsScene::sceneMove(int id, const QPointF &presspos, const QPointF &pos)
+{
+    m_pCatCanvasItem->DrawMove(id, presspos, pos);
+    return true;
+}
+
+bool CatGraphicsScene::sceneRelease(int id, const QPointF &pos)
+{
+    m_pCatCanvasItem->DrawRelease(id, pos);
+    return true;
 }
 
 void CatGraphicsScene::On_DrawingBoard_SelectState()
@@ -189,6 +294,7 @@ void CatGraphicsScene::On_DrawingBoard_SelectState()
 void CatGraphicsScene::On_DrawingBoard_PenState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::PEN);
+    m_pCatCanvasItem->SetMode(CatCanvasItem::DrawMode);
     foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
@@ -204,5 +310,27 @@ void CatGraphicsScene::On_DrawingBoard_PenState()
     foreach(auto temp, m_pTeachingToolTrangle)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
+    }
+}
+
+void CatGraphicsScene::On_DrawingBoard_EraserState()
+{
+    m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::ERASER);
+    m_pCatCanvasItem->SetMode(CatCanvasItem::EraserMode);
+    foreach(auto temp, m_pTeachingToolCompass)
+    {
+        temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
+    }
+    foreach(auto temp, m_pTeachingToolProtractor)
+    {
+        temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
+    }
+    foreach(auto temp, m_pTeachingToolRuler)
+    {
+        temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
+    }
+    foreach(auto temp, m_pTeachingToolTrangle)
+    {
+        temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);
     }
 }

@@ -49,7 +49,10 @@ CatGraphicsView *CatDrawingBoard::CreateBoard()
     view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);*/
     view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     scene->SetView(view);
+    view->resize(scene->sceneRect().size().toSize());
     layout->addWidget(view);
+
+    scene->InitProperty();
 
     ui->GraphicsStacked->addWidget(widget);
     m_pBoardScenes.push_back(scene);
@@ -115,8 +118,12 @@ void CatDrawingBoard::InitConnect()
         m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->On_DrawingBoard_PenState();
     });
 
+    connect(m_pBoardButtons["BoardErasure"], &QPushButton::clicked, this, [=](){
+        m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->On_DrawingBoard_EraserState();
+    });
+
     connect(m_pBoardButtons["BoardClear"], &QPushButton::clicked, this, [=](){
-        m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->clear();
+        m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->Clear();
     });
     connect(m_pBoardButtons["BoardZoomIn"], &QPushButton::clicked, this, [=](){
         m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->View()->ScaleZoomIn();
@@ -153,7 +160,7 @@ void CatDrawingBoard::InitTeachingTool()
 void CatDrawingBoard::InitBoardTool()
 {
     //"BoardSelect", "BoardBrushes",
-    QStringList list = {"BoardSelect", "BoardBrushes", "BoardClear", "BoardZoomIn", "BoardZoomOut", "BoardReset"};
+    QStringList list = {"BoardSelect", "BoardBrushes", "BoardErasure", "BoardClear", "BoardZoomIn", "BoardZoomOut", "BoardReset"};
     // 占位
 
     QLabel *label = new QLabel(m_pTeachingOptions->GetRootWidget());
@@ -163,7 +170,7 @@ void CatDrawingBoard::InitBoardTool()
     {
         QPushButton *button = new QPushButton(m_pTeachingOptions->GetRootWidget());
         button->setObjectName(list[i]);
-        if(i == 0 || i == 1)
+        if(i == 0 || i == 1 || i == 2)
         {
             m_pBoardOptions->AddButton(button, i);
         } else {

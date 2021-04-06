@@ -1,7 +1,12 @@
+#HEADERS +=
+
+#SOURCES +=
+
 HEADERS += \
-    $$PWD/AbsDrawingBoardBase.h \
-    $$PWD/CatGraphicPen.h
+    $$PWD/CatCanvasDoubleBuffering.h \
+    $$PWD/CatCanvasItem.h \
+    $$PWD/CatLineObject.h
 
 SOURCES += \
-    $$PWD/AbsDrawingBoardBase.cpp \
-    $$PWD/CatGraphicPen.cpp
+    $$PWD/CatCanvasDoubleBuffering.cpp \
+    $$PWD/CatCanvasItem.cpp

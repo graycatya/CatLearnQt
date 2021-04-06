@@ -102,6 +102,11 @@ QPushButton#BoardBrushes {
     qproperty-iconSize: 26px 26px;
 }
 
+QPushButton#BoardErasure {
+    qproperty-icon: url(:/Images/CatWhite/BoardErasure.png);
+    qproperty-iconSize: 26px 26px;
+}
+
 QPushButton#BoardClear {
     qproperty-icon: url(:/Images/CatWhite/BoardClear.png);
     qproperty-iconSize: 26px 26px;

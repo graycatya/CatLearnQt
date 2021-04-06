@@ -98,6 +98,23 @@ void CatGraphicsScene::Clear()
     m_pTeachingToolRuler.clear();
     m_pTeachingToolTrangle.clear();
     m_pCatCanvasItem = nullptr;
+    m_pCatCanvasItem = new CatCanvasItem(sceneRect().size());
+    m_pCatCanvasItem->SetBackgroundColor(Qt::transparent);
+    this->addItem(m_pCatCanvasItem);
+    switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
+        case CatGraphicsObject::PEN:
+        {
+            m_pCatCanvasItem->SetMode(CatCanvasItem::DrawMode);
+        }
+        case CatGraphicsObject::ERASER:
+        {
+            m_pCatCanvasItem->SetMode(CatCanvasItem::EraserMode);
+        }
+        default:
+        {
+            break;
+        }
+    }
 }
 
 void CatGraphicsScene::InitProperty()
@@ -248,12 +265,6 @@ bool CatGraphicsScene::touchEvent(QTouchEvent *event)
 
 bool CatGraphicsScene::scenePress(int id, const QPointF &pos)
 {
-    if(m_pCatCanvasItem == nullptr)
-    {
-        m_pCatCanvasItem = new CatCanvasItem(sceneRect().size());
-        m_pCatCanvasItem->SetBackgroundColor(Qt::transparent);
-        this->addItem(m_pCatCanvasItem);
-    }
     m_pCatCanvasItem->DrawPress(id, pos);
     return true;
 }

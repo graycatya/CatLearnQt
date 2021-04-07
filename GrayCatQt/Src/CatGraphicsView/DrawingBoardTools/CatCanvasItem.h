@@ -6,6 +6,8 @@
 #include "CatLineObject.h"
 #include "CatCanvasDoubleBuffering.h"
 
+#define LINEOFVECTOR
+
 class CatCanvasItem : public QGraphicsObject
 {
     Q_OBJECT

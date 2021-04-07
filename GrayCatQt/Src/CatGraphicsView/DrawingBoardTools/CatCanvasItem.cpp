@@ -30,6 +30,7 @@ void CatCanvasItem::DrawPress(int id, const QPointF &point)
     CatLineObject *LineObject = new CatLineObject(point);
     LineObject->addToPath(point, point);
     m_yLineObjects.insert(id, LineObject);
+    qDebug() << "m_yLineObjects: " << m_yLineObjects.size();
     m_pCatCanvasDoubleBuffering->DrawToBuffering(LineObject);
 }
 

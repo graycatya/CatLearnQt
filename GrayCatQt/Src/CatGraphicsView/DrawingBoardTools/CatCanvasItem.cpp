@@ -43,11 +43,11 @@ void CatCanvasItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &cu
     }
     object->addToPath(lastPoint, curPoint);
 
-    if(m_yCanvasMode == DrawMode)
+    if(m_yCanvasMode == CatLineObject::DrawMode)
     {
         DrawToReal(object);
         object->createNewPath();
-    } else if(m_yCanvasMode == EraserMode)
+    } else if(m_yCanvasMode == CatLineObject::EraserMode)
     {
         DoErase(lastPoint, curPoint, 30);
     }
@@ -62,10 +62,10 @@ void CatCanvasItem::DrawRelease(int id, const QPointF &point)
     }
     object->addToPath(point, point);
 
-    if(m_yCanvasMode == DrawMode)
+    if(m_yCanvasMode == CatLineObject::DrawMode)
     {
         DrawToReal(object);
-    } else if(m_yCanvasMode == EraserMode)
+    } else if(m_yCanvasMode == CatLineObject::EraserMode)
     {
         DoErase(point, point, 30);
     }
@@ -81,7 +81,7 @@ void CatCanvasItem::SetBackgroundColor(const QColor &color)
     m_pRealCancvas->fill(color);
 }
 
-void CatCanvasItem::SetMode(CatCanvasItem::CanvasMode mode)
+void CatCanvasItem::SetMode(CatLineObject::CanvasMode mode)
 {
     m_yCanvasMode = mode;
 }

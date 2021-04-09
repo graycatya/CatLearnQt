@@ -12,10 +12,6 @@ class CatCanvasItem : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    enum CanvasMode {
-        DrawMode,
-        EraserMode
-    };
     explicit CatCanvasItem(const QSizeF &size, QGraphicsObject * parent = nullptr);
     ~CatCanvasItem();
 
@@ -23,7 +19,7 @@ public:
     void DrawMove(int id,const QPointF &lastPoint,const QPointF &curPoint);
     void DrawRelease(int id, const QPointF &point);
     void SetBackgroundColor(const QColor & color);
-    void SetMode(CanvasMode mode);
+    void SetMode(CatLineObject::CanvasMode mode);
 
     void Clear();
 
@@ -52,7 +48,7 @@ private:
 
     QColor m_yBgColor;
 
-    CanvasMode m_yCanvasMode = DrawMode;
+    CatLineObject::CanvasMode m_yCanvasMode = CatLineObject::DrawMode;
 };
 
 #endif // CATCANVASITEM_H

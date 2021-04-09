@@ -104,11 +104,11 @@ void CatGraphicsScene::Clear()
     switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
         case CatGraphicsObject::PEN:
         {
-            m_pCatCanvasItem->SetMode(CatCanvasItem::DrawMode);
+            m_pCatCanvasItem->SetMode(CatLineObject::DrawMode);
         }
         case CatGraphicsObject::ERASER:
         {
-            m_pCatCanvasItem->SetMode(CatCanvasItem::EraserMode);
+            m_pCatCanvasItem->SetMode(CatLineObject::EraserMode);
         }
         default:
         {
@@ -305,7 +305,7 @@ void CatGraphicsScene::On_DrawingBoard_SelectState()
 void CatGraphicsScene::On_DrawingBoard_PenState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::PEN);
-    m_pCatCanvasItem->SetMode(CatCanvasItem::DrawMode);
+    m_pCatCanvasItem->SetMode(CatLineObject::DrawMode);
     foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
@@ -327,7 +327,7 @@ void CatGraphicsScene::On_DrawingBoard_PenState()
 void CatGraphicsScene::On_DrawingBoard_EraserState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::ERASER);
-    m_pCatCanvasItem->SetMode(CatCanvasItem::EraserMode);
+    m_pCatCanvasItem->SetMode(CatLineObject::EraserMode);
     foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);

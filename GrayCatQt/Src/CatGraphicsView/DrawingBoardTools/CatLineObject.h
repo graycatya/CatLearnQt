@@ -7,6 +7,10 @@
 class CatLineObject
 {
 public:
+    enum CanvasMode {
+        DrawMode,
+        EraserMode
+    };
     CatLineObject(const QPointF &point)
     {
         m_yPath.moveTo(point);

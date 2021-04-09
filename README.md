@@ -111,7 +111,6 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | .github | github-Actions配置 | 持续集成相关配置，用于自动化构建、发布 |
 
 
-
 ### 现成模块
 
 #### GrayCatQt 模块
@@ -134,4 +133,4 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 |:--:|:--:|
 | Examples/CatQuickExamples | 演示项目开发中 |
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
-| Examples/CatWidgetWebAssEmblyExamples | Widget裁减版WebAssmbly版项目演示 |
+| Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples裁减版WebAssmbly版项目演示 |

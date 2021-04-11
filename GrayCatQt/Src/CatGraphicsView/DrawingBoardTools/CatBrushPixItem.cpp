@@ -111,7 +111,7 @@ void CatBrushPixItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
-    /*painter->setRenderHint(QPainter::SmoothPixmapTransform);
+    painter->setRenderHint(QPainter::SmoothPixmapTransform);
     if(m_pRealBrush != nullptr)
     {
         painter->save();
@@ -126,7 +126,7 @@ void CatBrushPixItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
         painter->setPen(pen);
         painter->drawRect(m_ySizeRect);
         painter->restore();
-    }*/
+    }
 }
 
 void CatBrushPixItem::InitProperty()

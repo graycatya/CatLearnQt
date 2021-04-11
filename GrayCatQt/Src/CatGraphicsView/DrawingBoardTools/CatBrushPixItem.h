@@ -1,16 +1,16 @@
-﻿#ifndef CATBRUSHITEM_H
-#define CATBRUSHITEM_H
+﻿#ifndef CATBRUSHPIXITEM_H
+#define CATBRUSHPIXITEM_H
 
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 
 #include "CatBrushObject.h"
-#include "CatBrushBufferItem.h"
+#include "CatBrushPixBufferItem.h"
 
-class CatBrushItem : public QGraphicsItem
+class CatBrushPixItem : public QGraphicsPixmapItem
 {
 public:
-    explicit CatBrushItem(QGraphicsItem *parent = nullptr);
-    ~CatBrushItem();
+    explicit CatBrushPixItem(QGraphicsItem *parent = nullptr);
+    ~CatBrushPixItem();
 
     void DrawPress(int id,const QPointF &point);
     void DrawMove(int id,const QPointF &lastPoint,const QPointF &curPoint);
@@ -36,7 +36,7 @@ private:
     QRectF m_ySizeRect;
     QRectF m_yLastSizeRect;
 
-    CatBrushBufferItem *m_pCatBrushBufferItem;
+    CatBrushPixBufferItem *m_pCatBrushPixBufferItem;
 
     QPixmap *m_pRealBrush;
     QPainter *m_pRealPainter;
@@ -49,4 +49,4 @@ private:
 
 };
 
-#endif // CATBRUSHITEM_H
+#endif // CATBRUSHPIXITEM_H

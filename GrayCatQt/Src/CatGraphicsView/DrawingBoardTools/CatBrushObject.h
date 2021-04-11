@@ -1,4 +1,4 @@
-#ifndef CATBRUSHOBJECT_H
+﻿#ifndef CATBRUSHOBJECT_H
 #define CATBRUSHOBJECT_H
 
 #include <QPainterPath>
@@ -6,7 +6,6 @@
 
 class CatBrushObject
 {
-    Q_OBJECT
 public:
     enum BrushMode {
         PenBrushMode,

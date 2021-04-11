@@ -39,6 +39,7 @@ void CatGraphicsView::InitProperty()
     //this->setDragMode(QGraphicsView::RubberBandDrag);
     m_bPress = false;
     scale(1.0 , 1.0);
+    this->setCacheMode(QGraphicsView::CacheBackground);
 }
 
 void CatGraphicsView::mousePressEvent(QMouseEvent *event)

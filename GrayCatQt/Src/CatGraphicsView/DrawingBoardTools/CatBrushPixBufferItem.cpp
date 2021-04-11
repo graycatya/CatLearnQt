@@ -1,15 +1,15 @@
-﻿#include "CatBrushBufferItem.h"
+﻿#include "CatBrushPixBufferItem.h"
 
 #include <QDebug>
 
-CatBrushBufferItem::CatBrushBufferItem(QGraphicsItem *parent)
-    : QGraphicsItem(parent)
+CatBrushPixBufferItem::CatBrushPixBufferItem(QGraphicsItem *parent)
+    : QGraphicsPixmapItem(parent)
 {
     InitProperty();
     InitBrush();
 }
 
-CatBrushBufferItem::~CatBrushBufferItem()
+CatBrushPixBufferItem::~CatBrushPixBufferItem()
 {
     if(m_pBufferPainter != nullptr)
     {
@@ -22,18 +22,15 @@ CatBrushBufferItem::~CatBrushBufferItem()
         delete m_pBufferBrush;
         m_pBufferBrush = nullptr;
     }
-
-
-
 }
 
-void CatBrushBufferItem::Clear()
+void CatBrushPixBufferItem::Clear()
 {
     m_pBufferBrush->fill(Qt::transparent);
     this->update();
 }
 
-void CatBrushBufferItem::DrawToBuffer(CatBrushObject *object)
+void CatBrushPixBufferItem::DrawToBuffer(CatBrushObject *object)
 {
     if(m_pBufferPainter != nullptr)
     {
@@ -45,7 +42,7 @@ void CatBrushBufferItem::DrawToBuffer(CatBrushObject *object)
     }
 }
 
-void CatBrushBufferItem::InitSizeRect(QRectF size)
+void CatBrushPixBufferItem::InitSizeRect(QRectF size)
 {
     m_yLastSizeRect = size;
     m_ySizeRect = size;
@@ -67,7 +64,7 @@ void CatBrushBufferItem::InitSizeRect(QRectF size)
     m_pBufferPainter = new QPainter(m_pBufferBrush);
 }
 
-void CatBrushBufferItem::UpdateSizeRect(QRectF size)
+void CatBrushPixBufferItem::UpdateSizeRect(QRectF size)
 {
     m_yLastSizeRect = m_ySizeRect;
     m_ySizeRect = size;
@@ -98,27 +95,26 @@ void CatBrushBufferItem::UpdateSizeRect(QRectF size)
 
     m_pBufferBrush = temp;
     m_pBufferPainter = tempPainter;
-
 }
 
-QRectF CatBrushBufferItem::boundingRect() const
+QRectF CatBrushPixBufferItem::boundingRect() const
 {
-    //qDebug() << "CatBrushBufferItem: " << m_ySizeRect;
     return m_ySizeRect;
 }
 
-void CatBrushBufferItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void CatBrushPixBufferItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
     if(m_pBufferBrush != nullptr)
     {
-        qDebug() << " m_pBufferBrush->size() : " << m_pBufferBrush->size();
         painter->drawPixmap(QRectF(0,0, m_ySizeRect.width(), m_ySizeRect.height()), *m_pBufferBrush, QRectF(0,0, m_ySizeRect.width(), m_ySizeRect.height()));
+        //this->setPixmap(*m_pBufferBrush);
     }
+    //this->setPixmap(*m_pBufferBrush);
 }
 
-void CatBrushBufferItem::InitProperty()
+void CatBrushPixBufferItem::InitProperty()
 {
     /*
      * 缓存是在绘制设备级别的设备坐标中启用的。
@@ -133,7 +129,7 @@ void CatBrushBufferItem::InitProperty()
     m_yLastSizeRect = QRectF(0,0,0,0);
 }
 
-void CatBrushBufferItem::InitBrush()
+void CatBrushPixBufferItem::InitBrush()
 {
     /*
      * 图像存储使用预乘32位ARGB格式(0xAARRGGBB)，

@@ -1,16 +1,17 @@
-﻿#ifndef CATBRUSHBUFFERITEM_H
-#define CATBRUSHBUFFERITEM_H
+﻿#ifndef CATBRUSHPIXBUFFERITEM_H
+#define CATBRUSHPIXBUFFERITEM_H
 
-#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
+
 #include <QPainter>
 
 #include "CatBrushObject.h"
 
-class CatBrushBufferItem : public QGraphicsItem
+class CatBrushPixBufferItem : public QGraphicsPixmapItem
 {
 public:
-    explicit CatBrushBufferItem(QGraphicsItem *parent = nullptr);
-    ~CatBrushBufferItem();
+    explicit CatBrushPixBufferItem(QGraphicsItem *parent = nullptr);
+    ~CatBrushPixBufferItem();
 
     void Clear();
     void DrawToBuffer(CatBrushObject *object);
@@ -32,7 +33,6 @@ private:
 
     QPixmap *m_pBufferBrush;
     QPainter *m_pBufferPainter;
-
 };
 
-#endif // CATBRUSHBUFFERITEM_H
+#endif // CATBRUSHPIXBUFFERITEM_H

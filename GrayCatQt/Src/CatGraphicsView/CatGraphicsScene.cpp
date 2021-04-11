@@ -5,7 +5,7 @@
 #include "TeachingTools/TeachingToolTrangle.h"
 #include "CatGraphicsView.h"
 
-#include "DrawingBoardTools/CatCanvasItem.h"
+#include "DrawingBoardTools/CatBrushPixItem.h"
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPixmapCache>
@@ -18,6 +18,31 @@ CatGraphicsScene::CatGraphicsScene(QObject *parent)
     , m_pCatGraphicsObject(new CatGraphicsObject(this))
 {
     //InitProperty();
+
+    QGraphicsPixmapItem *pixitem = new QGraphicsPixmapItem;
+    QPixmap *pixmap = new QPixmap(QSize(100, 100));
+    pixmap->fill(Qt::transparent);
+    QPainter *pinater = new QPainter(pixmap);
+    pinater->setPen(Qt::white);
+
+    pinater->drawLine(QLineF(QPointF(0, 0), QPointF(0, 200)));
+    pixitem->setPixmap(*pixmap);
+
+
+
+    pixitem->setOffset(-100, -100);
+    addItem(pixitem);
+
+    QPixmap *pixmap1 = new QPixmap(QSize(200, 200));
+    pixmap1->fill(Qt::transparent);
+
+    QPainter *pinater2 = new QPainter(pixmap1);
+    pinater2->setPen(Qt::red);
+    pinater2->drawPixmap(100, 100, pixmap->copy(0,0, 100, 100));
+    pinater2->drawLine(QLineF(QPointF(200, 200), QPointF(0, 0)));
+    pixitem->setPixmap(*pixmap1);
+    pixitem->setOffset(-200, -200);
+    pixitem->update();
 }
 
 CatGraphicsScene::~CatGraphicsScene()
@@ -97,18 +122,18 @@ void CatGraphicsScene::Clear()
     m_pTeachingToolProtractor.clear();
     m_pTeachingToolRuler.clear();
     m_pTeachingToolTrangle.clear();
-    m_pCatCanvasItem = nullptr;
-    m_pCatCanvasItem = new CatCanvasItem(sceneRect().size());
-    m_pCatCanvasItem->SetBackgroundColor(Qt::transparent);
-    this->addItem(m_pCatCanvasItem);
+    m_pCatBrushPixItem = nullptr;
+    m_pCatBrushPixItem = new CatBrushPixItem();
+    m_pCatBrushPixItem->SetBackgroundColor(Qt::transparent);
+    this->addItem(m_pCatBrushPixItem);
     switch (m_pCatGraphicsObject->GetDrawingBoardState()) {
         case CatGraphicsObject::PEN:
         {
-            m_pCatCanvasItem->SetMode(CatLineObject::DrawMode);
+            m_pCatBrushPixItem->SetMode(CatBrushObject::BrushMode::PenBrushMode);
         }
         case CatGraphicsObject::ERASER:
         {
-            m_pCatCanvasItem->SetMode(CatLineObject::EraserMode);
+            m_pCatBrushPixItem->SetMode(CatBrushObject::BrushMode::EraserMode);
         }
         default:
         {
@@ -121,9 +146,9 @@ void CatGraphicsScene::InitProperty()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
 
-    m_pCatCanvasItem = new CatCanvasItem(sceneRect().size());
-    m_pCatCanvasItem->SetBackgroundColor(Qt::transparent);
-    this->addItem(m_pCatCanvasItem);
+    m_pCatBrushPixItem = new CatBrushPixItem();
+    m_pCatBrushPixItem->SetBackgroundColor(Qt::transparent);
+    this->addItem(m_pCatBrushPixItem);
     //QPixmapCache::setCacheLimit(204800);
 
     m_bMousePress = false;
@@ -265,19 +290,19 @@ bool CatGraphicsScene::touchEvent(QTouchEvent *event)
 
 bool CatGraphicsScene::scenePress(int id, const QPointF &pos)
 {
-    m_pCatCanvasItem->DrawPress(id, pos);
+    m_pCatBrushPixItem->DrawPress(id, pos);
     return true;
 }
 
 bool CatGraphicsScene::sceneMove(int id, const QPointF &presspos, const QPointF &pos)
 {
-    m_pCatCanvasItem->DrawMove(id, presspos, pos);
+    m_pCatBrushPixItem->DrawMove(id, presspos, pos);
     return true;
 }
 
 bool CatGraphicsScene::sceneRelease(int id, const QPointF &pos)
 {
-    m_pCatCanvasItem->DrawRelease(id, pos);
+    m_pCatBrushPixItem->DrawRelease(id, pos);
     return true;
 }
 
@@ -305,7 +330,7 @@ void CatGraphicsScene::On_DrawingBoard_SelectState()
 void CatGraphicsScene::On_DrawingBoard_PenState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::PEN);
-    m_pCatCanvasItem->SetMode(CatLineObject::DrawMode);
+    m_pCatBrushPixItem->SetMode(CatBrushObject::BrushMode::PenBrushMode);
     foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
@@ -327,7 +352,7 @@ void CatGraphicsScene::On_DrawingBoard_PenState()
 void CatGraphicsScene::On_DrawingBoard_EraserState()
 {
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::ERASER);
-    m_pCatCanvasItem->SetMode(CatLineObject::EraserMode);
+    m_pCatBrushPixItem->SetMode(CatBrushObject::BrushMode::EraserMode);
     foreach(auto temp, m_pTeachingToolCompass)
     {
         temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_NONE);

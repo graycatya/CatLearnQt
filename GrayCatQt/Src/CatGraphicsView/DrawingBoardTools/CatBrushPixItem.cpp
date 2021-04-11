@@ -1,17 +1,17 @@
-﻿#include "CatBrushItem.h"
+﻿#include "CatBrushPixItem.h"
 #include <QPainter>
 #include <QGraphicsScene>
 
 #include <QDebug>
 
-CatBrushItem::CatBrushItem(QGraphicsItem *parent)
-    : QGraphicsItem(parent)
+CatBrushPixItem::CatBrushPixItem(QGraphicsItem *parent)
+    : QGraphicsPixmapItem(parent)
 {
     InitProperty();
     InitBrush();
 }
 
-CatBrushItem::~CatBrushItem()
+CatBrushPixItem::~CatBrushPixItem()
 {
     if(m_pRealPainter != nullptr)
     {
@@ -26,16 +26,16 @@ CatBrushItem::~CatBrushItem()
     }
 }
 
-void CatBrushItem::DrawPress(int id, const QPointF &point)
+void CatBrushPixItem::DrawPress(int id, const QPointF &point)
 {
     UpdateRectSize(point);
     CatBrushObject *BrushObject = new CatBrushObject(point);
     BrushObject->AddToPath(point, point);
     m_yBrushObjects.insert(id, BrushObject);
-    m_pCatBrushBufferItem->DrawToBuffer(BrushObject);
+    m_pCatBrushPixBufferItem->DrawToBuffer(BrushObject);
 }
 
-void CatBrushItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &curPoint)
+void CatBrushPixItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &curPoint)
 {
     CatBrushObject *BrushObject = m_yBrushObjects.value(id, nullptr);
     if(BrushObject == nullptr)
@@ -55,7 +55,7 @@ void CatBrushItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &cur
     }
 }
 
-void CatBrushItem::DrawRelease(int id, const QPointF &point)
+void CatBrushPixItem::DrawRelease(int id, const QPointF &point)
 {
     CatBrushObject *BrushObject = m_yBrushObjects.value(id, nullptr);
     if(BrushObject == nullptr)
@@ -77,10 +77,9 @@ void CatBrushItem::DrawRelease(int id, const QPointF &point)
     m_yBrushObjects.remove(id);
     delete BrushObject;
     BrushObject = nullptr;
-
 }
 
-void CatBrushItem::SetBackgroundColor(const QColor &color)
+void CatBrushPixItem::SetBackgroundColor(const QColor &color)
 {
     m_yBgColor = color;
     if(m_pRealBrush != nullptr)
@@ -89,12 +88,12 @@ void CatBrushItem::SetBackgroundColor(const QColor &color)
     }
 }
 
-void CatBrushItem::SetMode(CatBrushObject::BrushMode mode)
+void CatBrushPixItem::SetMode(CatBrushObject::BrushMode mode)
 {
     m_yBrushMode = mode;
 }
 
-void CatBrushItem::Clear()
+void CatBrushPixItem::Clear()
 {
     if(m_pRealBrush != nullptr)
     {
@@ -103,22 +102,21 @@ void CatBrushItem::Clear()
     }
 }
 
-QRectF CatBrushItem::boundingRect() const
+QRectF CatBrushPixItem::boundingRect() const
 {
-    //qDebug() << "CatBrushItem: " << m_ySizeRect;
     return m_ySizeRect;
 }
 
-void CatBrushItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
+void CatBrushPixItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option)
     Q_UNUSED(widget)
-    painter->setRenderHint(QPainter::SmoothPixmapTransform);
+    /*painter->setRenderHint(QPainter::SmoothPixmapTransform);
     if(m_pRealBrush != nullptr)
     {
         painter->save();
         painter->drawPixmap(QRectF(0, 0, m_ySizeRect.width(), m_ySizeRect.height()), *m_pRealBrush, QRectF(-10, -10, m_ySizeRect.width(), m_ySizeRect.height()));
-
+        //this->setPixmap(*m_pRealBrush);
         painter->restore();
 
         painter->save();
@@ -128,21 +126,21 @@ void CatBrushItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *opti
         painter->setPen(pen);
         painter->drawRect(m_ySizeRect);
         painter->restore();
-    }
+    }*/
 }
 
-void CatBrushItem::InitProperty()
+void CatBrushPixItem::InitProperty()
 {
     m_pRealBrush = nullptr;
     m_pRealPainter = nullptr;
-    m_pCatBrushBufferItem = nullptr;
+    m_pCatBrushPixBufferItem = nullptr;
     m_ySizeRect = QRectF(0,0,0,0);
     m_yLastSizeRect = QRectF(0,0,0,0);
 }
 
-void CatBrushItem::DrawToReal(CatBrushObject *object)
+void CatBrushPixItem::DrawToReal(CatBrushObject *object)
 {
-    if(m_pRealPainter != nullptr && m_pCatBrushBufferItem != nullptr)
+    if(m_pRealPainter != nullptr && m_pCatBrushPixBufferItem != nullptr)
     {
         m_pRealPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pRealPainter->setCompositionMode(QPainter::CompositionMode_Source);
@@ -150,18 +148,21 @@ void CatBrushItem::DrawToReal(CatBrushObject *object)
         QPainterPath path = object->StrokePath(5);
         m_pRealPainter->fillPath(path, Qt::red);
 
-        m_pCatBrushBufferItem->Clear();
+        m_pCatBrushPixBufferItem->Clear();
+        this->setPixmap(*m_pRealBrush);
+        this->setOffset(m_ySizeRect.x(), m_ySizeRect.y());
+        this->update();
         this->update(path.boundingRect());
     }
 }
 
-void CatBrushItem::InitBrush()
+void CatBrushPixItem::InitBrush()
 {
-    m_pCatBrushBufferItem = new CatBrushBufferItem(this);
-    m_pCatBrushBufferItem->setZValue(10);
+    m_pCatBrushPixBufferItem = new CatBrushPixBufferItem(this);
+    m_pCatBrushPixBufferItem->setZValue(10);
 }
 
-void CatBrushItem::DoErase(QPointF pos1, QPointF pos2, int width)
+void CatBrushPixItem::DoErase(QPointF pos1, QPointF pos2, int width)
 {
     if(m_pRealPainter != nullptr)
     {
@@ -171,12 +172,13 @@ void CatBrushItem::DoErase(QPointF pos1, QPointF pos2, int width)
         m_pRealPainter->setCompositionMode(QPainter::CompositionMode_Source);
         m_pRealPainter->setPen(QPen(Qt::transparent, width, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
         m_pRealPainter->fillPath(path, Qt::transparent);
-
-        update();
+        this->setPixmap(*m_pRealBrush);
+        this->setOffset(m_ySizeRect.x(), m_ySizeRect.y());
+        this->update();
     }
 }
 
-QPainterPath CatBrushItem::CreateStrokePath(const QPointF &pos1, const QPointF &pos2, int width)
+QPainterPath CatBrushPixItem::CreateStrokePath(const QPointF &pos1, const QPointF &pos2, int width)
 {
     QPainterPath path;
     path.moveTo(pos1);
@@ -196,7 +198,7 @@ QPainterPath CatBrushItem::CreateStrokePath(const QPointF &pos1, const QPointF &
     return stroker.createStroke(path);
 }
 
-void CatBrushItem::UpdateRectSize(QPointF point)
+void CatBrushPixItem::UpdateRectSize(QPointF point)
 {
     qDebug() << "Scene: " << scene()->sceneRect();
     qreal left = boundingRect().left();
@@ -240,7 +242,7 @@ void CatBrushItem::UpdateRectSize(QPointF point)
         m_pRealBrush->fill(Qt::transparent);
 
         m_pRealPainter = new QPainter(m_pRealBrush);
-        m_pCatBrushBufferItem->InitSizeRect(m_ySizeRect);
+        m_pCatBrushPixBufferItem->InitSizeRect(m_ySizeRect);
 
 
     } else {
@@ -248,7 +250,7 @@ void CatBrushItem::UpdateRectSize(QPointF point)
         temp->fill(Qt::transparent);
 
         QPainter *tempPainter = new QPainter(temp);
-        m_pCatBrushBufferItem->UpdateSizeRect(m_ySizeRect);
+        m_pCatBrushPixBufferItem->UpdateSizeRect(m_ySizeRect);
         int x = 0;
         int y = 0;
         if(m_yLastSizeRect.x() - m_ySizeRect.x() > 0)
@@ -260,6 +262,7 @@ void CatBrushItem::UpdateRectSize(QPointF point)
         {
             y = m_yLastSizeRect.y() - m_ySizeRect.y();
         }
+        this->setOffset(m_ySizeRect.x(), m_ySizeRect.y());
         tempPainter->drawPixmap(x, y, *m_pRealBrush);
 
         delete m_pRealPainter;
@@ -271,5 +274,4 @@ void CatBrushItem::UpdateRectSize(QPointF point)
         m_pRealBrush = temp;
         m_pRealPainter = tempPainter;
     }
-    update();
 }

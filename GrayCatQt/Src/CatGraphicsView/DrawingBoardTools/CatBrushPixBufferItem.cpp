@@ -37,8 +37,9 @@ void CatBrushPixBufferItem::DrawToBuffer(CatBrushObject *object)
         m_pBufferPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pBufferPainter->setCompositionMode(QPainter::CompositionMode_Source);
         m_pBufferPainter->setPen(QPen(Qt::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
-        m_pBufferPainter->fillPath(object->StrokePath(5), Qt::red);
-        this->update(object->upateRect());
+        m_pBufferPainter->fillPath(object->StrokePixmapPath(5), Qt::red);
+        qDebug() << "object->upateRect(): " << object->UpatePixmapRect();
+        this->update(object->UpatePixmapRect());
     }
 }
 
@@ -100,18 +101,6 @@ void CatBrushPixBufferItem::UpdateSizeRect(QRectF size)
 QRectF CatBrushPixBufferItem::boundingRect() const
 {
     return m_ySizeRect;
-}
-
-void CatBrushPixBufferItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
-{
-    Q_UNUSED(option)
-    Q_UNUSED(widget)
-    if(m_pBufferBrush != nullptr)
-    {
-        painter->drawPixmap(QRectF(0,0, m_ySizeRect.width(), m_ySizeRect.height()), *m_pBufferBrush, QRectF(0,0, m_ySizeRect.width(), m_ySizeRect.height()));
-        //this->setPixmap(*m_pBufferBrush);
-    }
-    //this->setPixmap(*m_pBufferBrush);
 }
 
 void CatBrushPixBufferItem::InitProperty()

@@ -80,7 +80,7 @@ public:
          *  返回一个新的矩形，分别在该矩形的现有坐标上添加dx1、dy1、dx2和dy2。
          */
         m_yUpdateRect = fixRect.adjusted(-200,-200,400,400);
-        m_yRealPath.addPath(m_yPath);
+        //m_yRealPath.addPath(m_yPath);
         if(item != nullptr)
         {
             tempPt1 = point1 - item->boundingRect().topLeft();
@@ -98,7 +98,7 @@ public:
             r = QRectF(tempPt1, tempPt2);
             fixRect = r.normalized();
             m_yUpdatePixmapRect = fixRect.adjusted(-200,-200,400,400);
-            m_yRealPixmapPath.addPath(m_yPixmapPath);
+            //m_yRealPixmapPath.addPath(m_yPixmapPath);
         }
     }
 

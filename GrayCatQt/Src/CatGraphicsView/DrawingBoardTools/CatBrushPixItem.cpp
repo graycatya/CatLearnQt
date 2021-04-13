@@ -46,8 +46,10 @@ void CatBrushPixItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &
     }
     UpdateRectSize(curPoint);
     qDebug() << "path size: " << BrushObject->ElementPixmapCount();
-
-    BrushObject->CreateNewPixmapPath();
+    /*if(BrushObject->ElementPixmapCount() > 100)
+    {*/
+        BrushObject->CreateNewPixmapPath(lastPoint, this);
+    //}
 
     BrushObject->AddToPath(lastPoint, curPoint, this);
 
@@ -127,8 +129,9 @@ void CatBrushPixItem::DrawToReal(CatBrushObject *object)
 {
     if(m_pRealPainter != nullptr && m_pCatBrushPixBufferItem != nullptr)
     {
-        m_pRealPainter->setRenderHint(QPainter::Antialiasing, true);
+
         m_pRealPainter->setCompositionMode(QPainter::CompositionMode_Source);
+        m_pRealPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pRealPainter->setPen(QPen(Qt::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
         QPainterPath path = object->StrokePixmapPath(5);
         m_pRealPainter->fillPath(path, Qt::red);
@@ -153,8 +156,8 @@ void CatBrushPixItem::DoErase(QPointF pos1, QPointF pos2, int width)
     {
         QPainterPath path = CreateStrokePath(pos1, pos2, width);
 
-        m_pRealPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pRealPainter->setCompositionMode(QPainter::CompositionMode_Source);
+        m_pRealPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pRealPainter->setPen(QPen(Qt::transparent, width, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
         m_pRealPainter->fillPath(path, Qt::transparent);
         this->setPixmap(*m_pRealBrush);
@@ -236,8 +239,8 @@ void CatBrushPixItem::UpdateRectSize(QPointF point)
 
         QPainter *tempPainter = new QPainter(temp);
         m_pCatBrushPixBufferItem->UpdateSizeRect(m_ySizeRect);
-        int x = 0;
-        int y = 0;
+        qreal x = 0.0;
+        qreal y = 0.0;
         if(m_yLastSizeRect.x() - m_ySizeRect.x() > 0)
         {
             x = m_yLastSizeRect.x() - m_ySizeRect.x();
@@ -247,7 +250,7 @@ void CatBrushPixItem::UpdateRectSize(QPointF point)
         {
             y = m_yLastSizeRect.y() - m_ySizeRect.y();
         }
-        tempPainter->drawPixmap(x, y, *m_pRealBrush);
+        tempPainter->drawPixmap(QPointF(x, y), *m_pRealBrush);
         this->setOffset(m_ySizeRect.x(), m_ySizeRect.y());
 
 

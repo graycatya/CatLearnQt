@@ -50,6 +50,25 @@ public:
         m_yPixmapPath.moveTo(endPoint);
     }
 
+    void CreateNewPixmapPath(const QPointF &point, QGraphicsItem *item = nullptr)
+    {
+        QPointF endPoint;
+        endPoint = m_yPixmapPath.currentPosition();
+        m_yPixmapPath &= QPainterPath();
+        m_yPixmapPath.moveTo(endPoint);
+        if(item != nullptr)
+        {
+            QPointF tempPt1 = endPoint;
+            QPointF tempPt2 = point - item->boundingRect().topLeft();
+            QPointF d = tempPt2 - tempPt1;
+            if(qAbs(d.x()) > 0 || qAbs(d.y()) > 0)
+            {
+                // 在当前点和带有(cx, cy)指定的控制点的端点(endPointX, endPointY)之间添加一条二次Bezier曲线。
+                m_yPixmapPath.quadTo(tempPt1, (tempPt1 + tempPt2) / 2);
+            }
+        }
+    }
+
     QPainterPath &GetPath()
     {
         return m_yPath;
@@ -98,7 +117,8 @@ public:
             r = QRectF(tempPt1, tempPt2);
             fixRect = r.normalized();
             m_yUpdatePixmapRect = fixRect.adjusted(-200,-200,400,400);
-            //m_yRealPixmapPath.addPath(m_yPixmapPath);
+            qDebug() << "UpdatePixmapRect: " << m_yUpdatePixmapRect;
+            m_yRealPixmapPath.addPath(m_yPixmapPath);
         }
     }
 

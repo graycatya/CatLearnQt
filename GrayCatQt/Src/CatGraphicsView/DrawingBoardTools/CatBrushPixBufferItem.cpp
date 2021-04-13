@@ -34,11 +34,10 @@ void CatBrushPixBufferItem::DrawToBuffer(CatBrushObject *object)
 {
     if(m_pBufferPainter != nullptr)
     {
-        m_pBufferPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pBufferPainter->setCompositionMode(QPainter::CompositionMode_Source);
+        m_pBufferPainter->setRenderHint(QPainter::Antialiasing, true);
         m_pBufferPainter->setPen(QPen(Qt::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
         m_pBufferPainter->fillPath(object->StrokePixmapPath(5), Qt::red);
-        qDebug() << "object->upateRect(): " << object->UpatePixmapRect();
         this->update(object->UpatePixmapRect());
     }
 }

@@ -2,6 +2,8 @@
 #include <QDebug>
 #include <QMouseEvent>
 #include <QGraphicsScale>
+#include <QGLWidget>
+#include "CatGraphicsScene.h"
 
 CatGraphicsView::CatGraphicsView(QWidget *parent)
     : QGraphicsView(parent)
@@ -44,15 +46,29 @@ void CatGraphicsView::InitProperty()
 
 void CatGraphicsView::mousePressEvent(QMouseEvent *event)
 {
+    m_bPress = true;
+    QPointF point = this->mapToScene(event->pos());
+    lastPoint = point;
+    dynamic_cast<CatGraphicsScene*>(this->scene())->mousePressEventPenState(point);
     QGraphicsView::mousePressEvent(event);
 }
 
 void CatGraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
+    if(m_bPress)
+    {
+        qDebug() << "CatGraphicsView::mouseMoveEvent";
+        QPointF point = this->mapToScene(event->pos());
+        dynamic_cast<CatGraphicsScene*>(this->scene())->mouseMoveEventPenState(lastPoint, point);
+        lastPoint = point;
+    }
     QGraphicsView::mouseMoveEvent(event);
 }
 
 void CatGraphicsView::mouseReleaseEvent(QMouseEvent *event)
 {
+    m_bPress = false;
+    QPointF point = this->mapToScene(event->pos());
+    dynamic_cast<CatGraphicsScene*>(this->scene())->mouseReleaseEventPenState(point);
     QGraphicsView::mouseReleaseEvent(event);
 }

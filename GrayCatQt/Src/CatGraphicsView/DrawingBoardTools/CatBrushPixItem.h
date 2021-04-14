@@ -17,6 +17,7 @@ public:
     void DrawRelease(int id, const QPointF &point);
     void SetBackgroundColor(const QColor & color);
     void SetMode(CatBrushObject::BrushMode mode);
+    void SetBrushSize(QRectF size);
 
     void Clear();
 
@@ -45,6 +46,8 @@ private:
     QColor m_yBgColor;
 
     CatBrushObject::BrushMode m_yBrushMode;
+
+    bool m_bFixedSize;
 
 };
 

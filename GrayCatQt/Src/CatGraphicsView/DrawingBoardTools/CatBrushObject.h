@@ -19,7 +19,7 @@ public:
         m_yPath.moveTo(point);
         if(parent != nullptr)
         {
-            qDebug() << "point - parent->pos(): " << point - parent->boundingRect().topLeft() << "point: " << point << " item pos: " << parent->boundingRect().topLeft();
+            //qDebug() << "point - parent->pos(): " << point - parent->boundingRect().topLeft() << "point: " << point << " item pos: " << parent->boundingRect().topLeft();
             m_yPixmapPath.moveTo(point - parent->boundingRect().topLeft());
         }
     }
@@ -105,7 +105,6 @@ public:
             tempPt1 = point1 - item->boundingRect().topLeft();
             tempPt2 = point2 - item->boundingRect().topLeft();
 
-            qDebug() << "temp pixmap: " << tempPt1 << " : " << tempPt2;
             d = tempPt2 - tempPt1;
             //   判断绝对值
             if(qAbs(d.x()) > 0 || qAbs(d.y()) > 0)
@@ -117,8 +116,7 @@ public:
             r = QRectF(tempPt1, tempPt2);
             fixRect = r.normalized();
             m_yUpdatePixmapRect = fixRect.adjusted(-200,-200,400,400);
-            qDebug() << "UpdatePixmapRect: " << m_yUpdatePixmapRect;
-            m_yRealPixmapPath.addPath(m_yPixmapPath);
+            //m_yRealPixmapPath.addPath(m_yPixmapPath);
         }
     }
 

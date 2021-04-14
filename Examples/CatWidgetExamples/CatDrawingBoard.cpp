@@ -38,7 +38,7 @@ CatGraphicsView *CatDrawingBoard::CreateBoard()
     scene->installEventFilter(this);
 
     //scene->setBackgroundBrush(QBrush(QColor("#244242")));
-    scene->setSceneRect(-5000, -5000, 10000, 10000);
+    scene->setSceneRect(-1000, -1000, 2000, 2000);
 
     CatGraphicsView *view = new CatGraphicsView(this);
     view->installEventFilter(this);

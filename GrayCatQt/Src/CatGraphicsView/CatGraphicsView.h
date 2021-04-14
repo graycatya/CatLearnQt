@@ -23,8 +23,8 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
 
 private:
-    QPoint lastPoint;
-    QPoint endPoint;
+    QPointF lastPoint;
+    QPointF endPoint;
     bool m_bPress;
 
 };

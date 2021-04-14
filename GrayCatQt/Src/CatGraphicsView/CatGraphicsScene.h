@@ -34,6 +34,10 @@ public:
 
     void Clear();
 
+    void mousePressEventPenState(QPointF &point);
+    void mouseMoveEventPenState(QPointF &lastpoint, QPointF &point);
+    void mouseReleaseEventPenState(QPointF &point);
+
 private:
 
     void mousePressEventPenState(QGraphicsSceneMouseEvent *event);

@@ -28,9 +28,10 @@ CatBrushPixItem::~CatBrushPixItem()
 
 void CatBrushPixItem::DrawPress(int id, const QPointF &point)
 {
-
-    UpdateRectSize(point);
-
+    if(!m_bFixedSize)
+    {
+        UpdateRectSize(point);
+    }
     CatBrushObject *BrushObject = new CatBrushObject(point, this);
     BrushObject->AddToPath(point, point, this);
     m_yBrushObjects.insert(id, BrushObject);
@@ -44,12 +45,15 @@ void CatBrushPixItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &
     {
         return;
     }
-    UpdateRectSize(curPoint);
-    qDebug() << "path size: " << BrushObject->ElementPixmapCount();
-    /*if(BrushObject->ElementPixmapCount() > 100)
-    {*/
-        BrushObject->CreateNewPixmapPath(lastPoint, this);
-    //}
+    if(!m_bFixedSize)
+    {
+        UpdateRectSize(curPoint);
+    }
+    if(BrushObject->ElementPixmapCount() > 100)
+    {
+        BrushObject->CreateNewPixmapPath();
+    }
+
 
     BrushObject->AddToPath(lastPoint, curPoint, this);
 
@@ -71,7 +75,10 @@ void CatBrushPixItem::DrawRelease(int id, const QPointF &point)
     {
         return;
     }
-    UpdateRectSize(point);
+    if(!m_bFixedSize)
+    {
+        UpdateRectSize(point);
+    }
     BrushObject->AddToPath(point, point, this);
 
     if(m_yBrushMode == CatBrushObject::BrushMode::PenBrushMode)
@@ -102,6 +109,28 @@ void CatBrushPixItem::SetMode(CatBrushObject::BrushMode mode)
     m_yBrushMode = mode;
 }
 
+void CatBrushPixItem::SetBrushSize(QRectF size)
+{
+    m_bFixedSize = true;
+    m_ySizeRect = size;
+    if(m_pRealBrush != nullptr)
+    {
+        delete m_pRealBrush;
+        m_pRealBrush = nullptr;
+    }
+    if(m_pRealPainter != nullptr)
+    {
+        delete m_pRealPainter;
+        m_pRealPainter = nullptr;
+    }
+    m_pRealBrush = new QPixmap(m_ySizeRect.size().toSize());
+    m_pRealBrush->fill(Qt::transparent);
+
+    m_pRealPainter = new QPainter(m_pRealBrush);
+    m_pCatBrushPixBufferItem->InitSizeRect(m_ySizeRect);
+    this->setOffset(m_ySizeRect.x(), m_ySizeRect.y());
+}
+
 void CatBrushPixItem::Clear()
 {
     if(m_pRealBrush != nullptr)
@@ -118,6 +147,7 @@ QRectF CatBrushPixItem::boundingRect() const
 
 void CatBrushPixItem::InitProperty()
 {
+    m_bFixedSize = false;
     m_pRealBrush = nullptr;
     m_pRealPainter = nullptr;
     m_pCatBrushPixBufferItem = nullptr;

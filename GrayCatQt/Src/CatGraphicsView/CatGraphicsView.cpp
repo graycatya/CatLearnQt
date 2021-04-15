@@ -57,7 +57,7 @@ void CatGraphicsView::mouseMoveEvent(QMouseEvent *event)
 {
     if(m_bPress)
     {
-        qDebug() << "CatGraphicsView::mouseMoveEvent";
+        //qDebug() << "CatGraphicsView::mouseMoveEvent";
         QPointF point = this->mapToScene(event->pos());
         dynamic_cast<CatGraphicsScene*>(this->scene())->mouseMoveEventPenState(lastPoint, point);
         lastPoint = point;

@@ -145,6 +145,7 @@ void CatGraphicsScene::mouseMoveEventPenState(QPointF &lastpoint, QPointF &point
             case CatGraphicsObject::PEN:
             case CatGraphicsObject::ERASER:
             {
+                qDebug() << "CatGraphicsScene::mouseMoveEventPenState";
                 sceneMove(1, lastpoint, point);
                 update();
             }

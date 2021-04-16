@@ -139,6 +139,7 @@ void CatGraphicsScene::mousePressEventPenState(QPointF &point)
 
 void CatGraphicsScene::mouseMoveEventPenState(QPointF &lastpoint, QPointF &point)
 {
+    qDebug() << "CatGraphicsScene::mouseMoveEventPenState1";
     if(m_bMousePress)
     {
         switch (m_pCatGraphicsObject->GetDrawingBoardState()) {

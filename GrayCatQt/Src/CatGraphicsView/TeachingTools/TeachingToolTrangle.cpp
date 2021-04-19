@@ -451,7 +451,7 @@ void TeachingToolTrangle::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
                 prepareGeometryChange();
             }
         } else {
-            emit LineEnd();
+            emit LineEnd(event->scenePos());
         }
     }
 }

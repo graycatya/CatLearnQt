@@ -16,6 +16,7 @@ public:
 
 private:
     void InitProperty();
+    void InitConnect();
 
 protected:
     void mousePressEvent(QMouseEvent *event);

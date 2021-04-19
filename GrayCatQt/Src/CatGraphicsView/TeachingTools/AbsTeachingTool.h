@@ -138,7 +138,7 @@ signals:
     // 画线更新结束点
     void LineUpdatePos(QPointF);
     // 退出画线
-    void LineEnd();
+    void LineEnd(QPointF);
     // 画圆起始点
     void ArcStartPos(QPointF);
     // 画圆更新结束点

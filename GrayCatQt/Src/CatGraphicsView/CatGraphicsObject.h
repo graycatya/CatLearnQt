@@ -12,7 +12,8 @@ public:
         NO_STATE,
         SELECT,
         PEN,
-        ERASER
+        ERASER,
+        TeachingPen
     };
     Q_ENUM(CAT_DRAWINGBOARD_STATE)
 
@@ -20,12 +21,19 @@ public:
     ~CatGraphicsObject();
 
     CAT_DRAWINGBOARD_STATE GetDrawingBoardState() const { return m_yDrawingState; }
-    void SetDrawingBoardState(CAT_DRAWINGBOARD_STATE state) { m_yDrawingState = state; }
+    CAT_DRAWINGBOARD_STATE GetLastDrawingBoardState() const { return m_yLastDrawingState; }
+
+    void SetDrawingBoardState(CAT_DRAWINGBOARD_STATE state)
+    {
+        m_yLastDrawingState = m_yDrawingState;
+        m_yDrawingState = state;
+    }
 
 private:
 
 private:
     CAT_DRAWINGBOARD_STATE m_yDrawingState;
+    CAT_DRAWINGBOARD_STATE m_yLastDrawingState;
 
 };
 

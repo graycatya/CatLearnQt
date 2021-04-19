@@ -45,6 +45,7 @@ public:
     void CreateNewPixmapPath()
     {
         QPointF endPoint;
+        //qDebug() << m_yPixmapPath.boundingRect();
         endPoint = m_yPixmapPath.currentPosition();
         m_yPixmapPath &= QPainterPath();
         m_yPixmapPath.moveTo(endPoint);

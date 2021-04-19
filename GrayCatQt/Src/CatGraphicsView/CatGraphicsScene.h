@@ -73,6 +73,7 @@ private:
     CatGraphicsObject *m_pCatGraphicsObject;
 
     bool m_bMousePress;
+    QPointF m_yLastTeachingPoint;
 };
 
 #endif // CATGRAPHICSSCENE_H

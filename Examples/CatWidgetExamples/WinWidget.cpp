@@ -11,6 +11,7 @@
 #include <QDesktopWidget>
 #include <QTimer>
 #include <QQmlDebuggingEnabler>
+#include <QDateTime>
 //#include <QGraphicsDropShadowEffect>
 
 
@@ -332,11 +333,18 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
                          "About", "WinCatDrawingBoard",
                             "WinCatAbout", "WinCatSettings",
                          "WinCatWidget", "ToolListWidget",
-                            "ListiongOptions", "QuickWidgetFunc"
-                       , "WinCatQuickWidget"};
+                            "ListiongOptions", "QuickWidgetFunc",
+                         "WinCatQuickWidget"};
     if(watched->objectName() == "WinCatWidget")
     {
         watched->eventFilter(watched, event);
+    } else if(watched->objectName() == "WinCatDrawingBoard") {
+        watched->eventFilter(watched, event);
+
+        if(event->type() == QEvent::Paint)
+        {
+            return watched->eventFilter(watched, event);
+        }
     }
 
     m_bTopWidget = watched->objectName() == "TopWidget" ? true : false;
@@ -345,7 +353,8 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     {
         if(watched->objectName() == temp && event->type() == QEvent::MouseMove)
         {
-            setCursor(Qt::ArrowCursor);
+
+            this->setCursor(Qt::ArrowCursor);
             return QWidget::eventFilter(watched, event);
         }
     }

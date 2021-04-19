@@ -38,15 +38,15 @@ CatGraphicsView *CatDrawingBoard::CreateBoard()
     scene->installEventFilter(this);
 
     //scene->setBackgroundBrush(QBrush(QColor("#244242")));
-    scene->setSceneRect(-1000, -1000, 2000, 2000);
+    scene->setSceneRect(-2000, -2000, 4000, 4000);
 
     CatGraphicsView *view = new CatGraphicsView(this);
     view->installEventFilter(this);
     view->setMouseTracking(true);
     view->setScene(scene);
     view->setRenderHints (QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::TextAntialiasing);
-    /*view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);*/
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     scene->SetView(view);
     view->resize(scene->sceneRect().size().toSize());

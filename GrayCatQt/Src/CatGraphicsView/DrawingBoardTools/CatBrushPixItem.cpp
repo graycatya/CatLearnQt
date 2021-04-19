@@ -1,6 +1,7 @@
 ﻿#include "CatBrushPixItem.h"
 #include <QPainter>
 #include <QGraphicsScene>
+#include <QCursor>
 
 #include <QDebug>
 
@@ -36,6 +37,7 @@ void CatBrushPixItem::DrawPress(int id, const QPointF &point)
     BrushObject->AddToPath(point, point, this);
     m_yBrushObjects.insert(id, BrushObject);
     m_pCatBrushPixBufferItem->DrawToBuffer(BrushObject);
+
 }
 
 void CatBrushPixItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &curPoint)
@@ -49,10 +51,10 @@ void CatBrushPixItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &
     {
         UpdateRectSize(curPoint);
     }
-    if(BrushObject->ElementPixmapCount() > 100)
-    {
+    /*if(BrushObject->ElementPixmapCount() > 100)
+    {*/
         BrushObject->CreateNewPixmapPath();
-    }
+    //}
 
 
     BrushObject->AddToPath(lastPoint, curPoint, this);

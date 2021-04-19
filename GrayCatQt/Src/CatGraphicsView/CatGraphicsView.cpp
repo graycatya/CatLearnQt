@@ -3,12 +3,14 @@
 #include <QMouseEvent>
 #include <QGraphicsScale>
 #include <QGLWidget>
+#include <QGraphicsScene>
 #include "CatGraphicsScene.h"
 
 CatGraphicsView::CatGraphicsView(QWidget *parent)
     : QGraphicsView(parent)
 {
     InitProperty();
+    InitConnect();
 }
 
 CatGraphicsView::~CatGraphicsView()
@@ -44,12 +46,19 @@ void CatGraphicsView::InitProperty()
     this->setCacheMode(QGraphicsView::CacheBackground);
 }
 
+void CatGraphicsView::InitConnect()
+{
+    connect(scene(), &QGraphicsScene::sceneRectChanged, this, [=](const QRectF &rect){
+        qDebug() << "scene Rect: " << rect;
+    });
+}
+
 void CatGraphicsView::mousePressEvent(QMouseEvent *event)
 {
     m_bPress = true;
-    QPointF point = this->mapToScene(event->pos());
+    /*QPointF point = this->mapToScene(event->pos());
     lastPoint = point;
-    dynamic_cast<CatGraphicsScene*>(this->scene())->mousePressEventPenState(point);
+    dynamic_cast<CatGraphicsScene*>(this->scene())->mousePressEventPenState(point);*/
     QGraphicsView::mousePressEvent(event);
 }
 
@@ -58,9 +67,9 @@ void CatGraphicsView::mouseMoveEvent(QMouseEvent *event)
     if(m_bPress)
     {
         //qDebug() << "CatGraphicsView::mouseMoveEvent";
-        QPointF point = this->mapToScene(event->pos());
+        /*QPointF point = this->mapToScene(event->pos());
         dynamic_cast<CatGraphicsScene*>(this->scene())->mouseMoveEventPenState(lastPoint, point);
-        lastPoint = point;
+        lastPoint = point;*/
     }
     QGraphicsView::mouseMoveEvent(event);
 }
@@ -68,7 +77,7 @@ void CatGraphicsView::mouseMoveEvent(QMouseEvent *event)
 void CatGraphicsView::mouseReleaseEvent(QMouseEvent *event)
 {
     m_bPress = false;
-    QPointF point = this->mapToScene(event->pos());
-    dynamic_cast<CatGraphicsScene*>(this->scene())->mouseReleaseEventPenState(point);
+    /*QPointF point = this->mapToScene(event->pos());
+    dynamic_cast<CatGraphicsScene*>(this->scene())->mouseReleaseEventPenState(point);*/
     QGraphicsView::mouseReleaseEvent(event);
 }

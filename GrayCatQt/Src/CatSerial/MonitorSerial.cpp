@@ -27,6 +27,8 @@ void MonitorSerial::run()
         QHash<QString, QSerialPortInfo> currentports;
         QList<QSerialPortInfo> adds;
         QList<QSerialPortInfo> dels;
+        adds.clear();
+        dels.clear();
         for(auto temp : QSerialPortInfo::availablePorts())
         {
             currentports[temp.portName()] = temp;
@@ -39,7 +41,8 @@ void MonitorSerial::run()
                 if(!m_lSerialPortInfo.contains(i.key()))
                 {
                     m_lSerialPortInfo[i.key()] = i.value();
-                    //emit AddSerial(i.value());
+                    QString log = "add " + i.key() + " : " + QString::number(i.value().productIdentifier()) + "," + QString::number(i.value().vendorIdentifier());
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
                     adds.push_back(i.value());
                 }
                 i++;
@@ -53,7 +56,8 @@ void MonitorSerial::run()
                 if(!currentports.contains(i.key()))
                 {
                     list << i.key();
-                    //emit DeleteSerial(i.value());
+                    QString log = "del " + i.key() + " : " + QString::number(i.value().productIdentifier()) + "," + QString::number(i.value().vendorIdentifier());
+                    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
                     dels.push_back(i.value());
                 }
                 i++;
@@ -86,11 +90,17 @@ void MonitorSerial::run()
                 }
                 i++;
             }
-            //qDebug() << m_lSerialPortInfo.keys() << " | " << currentports.keys();
             m_lSerialPortInfo = currentports;
         }
         if(!adds.isEmpty() || !dels.isEmpty())
         {
+            QString log = "UpdateSerial Adds: " +
+                    QString::number(adds.size()) +
+                    " Dels: " +
+                    QString::number(dels.size()) +
+                    " m_lSerialPortInfo Size: " +
+                    QString::number(m_lSerialPortInfo.size());
+            CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
             emit UpdateSerial(adds, dels);
         }
         QThread::msleep(FrequencyTime);

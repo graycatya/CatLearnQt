@@ -89,7 +89,7 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | MacOs | [macos.md](doc/macos/macos.md) |
 | Android | [android.md](doc/android/android.md) |
 | Ios | [ios.md](doc/ios/ios.md) |
-| WebAssEmblyExamples | [webassembly.md](doc/webassembly/webassembly.md) |
+| WebAssEmblyExamples | [webassembly.md](doc/QtDoc/webassembly/webassembly.md) |
 
 
 

@@ -30,15 +30,15 @@ Qt的每个次要版本都支持一个已知良好的Emscripten版本。该Emscr
 * Qt 5.12：1.38.16
 * Qt 5.13：1.38.27（多线程：1.38.30）
 * Qt 5.14：1.38.27（多线程：1.38.30）
-* Qt 5.15：1.39.8
+* Qt 5.15：1.39.7
 
 使用emsdk安装特定的emscripten版本。例如，要为Qt 5.15安装它，请输入：
 
 ```
 git clone https://github.com/juj/emsdk.git
 cd emsdk
-./emsdk install 1.39.8
-./emsdk activate --embedded 1.39.8
+./emsdk install 1.39.7
+./emsdk activate --embedded 1.39.7
 ```
 
 这些步骤完成以后，安装完成。将 Emscripten 的环境变量配置到当前的命令行窗口下。
@@ -70,5 +70,5 @@ JS_ENGINES = [NODE_JS]
 
 之后在Qt Creator 选项中配置即可
 
-![webassembly_doc](../Images/webassembly_doc.png)
+![webassembly_doc](../../Images/webassembly_doc.png)
 

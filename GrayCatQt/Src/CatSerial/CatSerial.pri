@@ -13,5 +13,16 @@ SOURCES += \
     $$PWD/CatSerialPort.cpp \
     $$PWD/MonitorSerial.cpp
 
+msvc {
+
+HEADERS += \
+    $$PWD/CatWinMonitorSerial.h \
+
+SOURCES += \
+    $$PWD/CatWinMonitorSerial.cpp \
+
+}
+
+
 INCLUDEPATH += $$PWD
 }

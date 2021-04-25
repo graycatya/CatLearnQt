@@ -24,33 +24,39 @@ message(STATUS ${STATIC_NAME})
 
 add_definitions("-Wall -g")
 
-find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
-
-aux_source_directory(. DIR_LIB_SRCS)
+find_package(Qt5 COMPONENTS Core Gui Widgets OpenGL REQUIRED)
 
 include_directories("./TeachingTools/")
 include_directories("./DrawingBoardTools/")
 
-add_library(${PROJECT_NAME} SHARED ${DIR_LIB_SRCS})
-add_library(${STATIC_NAME} STATIC ${DIR_LIB_SRCS})
+add_subdirectory(TeachingTools)
+add_subdirectory(DrawingBoardTools)
 
-target_include_directories(${PROJECT_NAME} PUBLIC "./TeachingTools/")
-target_include_directories(${PROJECT_NAME} PUBLIC "./DrawingBoardTools/")
+add_src_lib()
 
-target_include_directories(${STATIC_NAME} PUBLIC "./TeachingTools/")
-target_include_directories(${STATIC_NAME} PUBLIC "./DrawingBoardTools/")
+#target_include_directories(${PROJECT_NAME} PUBLIC "./TeachingTools/")
+#target_include_directories(${PROJECT_NAME} PUBLIC "./DrawingBoardTools/")
 
-SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
-SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::OpenGL)
 target_link_libraries(${PROJECT_NAME} PUBLIC TeachingTools)
 target_link_libraries(${PROJECT_NAME} PUBLIC DrawingBoardTools)
+
+#target_link_libraries(${STATIC_NAME} PUBLIC TeachingTools_static)
+#target_link_libraries(${STATIC_NAME} PUBLIC DrawingBoardTools_static)
+#target_include_directories(${STATIC_NAME} PUBLIC "./TeachingTools/")
+#target_include_directories(${STATIC_NAME} PUBLIC "./DrawingBoardTools/")
+
+
+
+SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${STATIC_NAME} PUBLIC TeachingTools)
-target_link_libraries(${STATIC_NAME} PUBLIC DrawingBoardTools)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt5::OpenGL)
 
 target_include_directories(CatGraphicsView PUBLIC ${PROJECT_SOURCE_DIR})

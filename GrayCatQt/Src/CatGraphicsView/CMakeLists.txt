@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
-project(DrawingBoardTools LANGUAGES CXX)
+project(CatGraphicsView LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -15,7 +15,7 @@ message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../../module/cmake")
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../module/cmake")
 
 include(GrayCatQt)
 
@@ -28,8 +28,17 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 aux_source_directory(. DIR_LIB_SRCS)
 
+include_directories("./TeachingTools/")
+include_directories("./DrawingBoardTools/")
+
 add_library(${PROJECT_NAME} SHARED ${DIR_LIB_SRCS})
 add_library(${STATIC_NAME} STATIC ${DIR_LIB_SRCS})
+
+target_include_directories(${PROJECT_NAME} PUBLIC "./TeachingTools/")
+target_include_directories(${PROJECT_NAME} PUBLIC "./DrawingBoardTools/")
+
+target_include_directories(${STATIC_NAME} PUBLIC "./TeachingTools/")
+target_include_directories(${STATIC_NAME} PUBLIC "./DrawingBoardTools/")
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
@@ -37,7 +46,11 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${PROJECT_NAME} PUBLIC TeachingTools)
+target_link_libraries(${PROJECT_NAME} PUBLIC DrawingBoardTools)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${STATIC_NAME} PUBLIC TeachingTools)
+target_link_libraries(${STATIC_NAME} PUBLIC DrawingBoardTools)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(CatGraphicsView PUBLIC ${PROJECT_SOURCE_DIR})

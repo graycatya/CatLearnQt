@@ -15,6 +15,13 @@ message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../../module/cmake")
+
+include(GrayCatQt)
+
+load_name_static(STATIC_NAME) 
+message(STATUS ${STATIC_NAME})
+
 add_definitions("-Wall -g")
 #add_definitions(-std=c++17)
 
@@ -25,18 +32,18 @@ qt5_add_resources(QRC_FILES ${QRC_SOURCE_FILES})
 
 aux_source_directory(. DIR_LIB_SRCS)
 
-add_library(TeachingTools SHARED ${DIR_LIB_SRCS} ${QRC_FILES})
-add_library(TeachingTools_static STATIC ${DIR_LIB_SRCS} ${QRC_FILES})
+add_library((${PROJECT_NAME} SHARED ${DIR_LIB_SRCS} ${QRC_FILES})
+add_library(${STATIC_NAME} STATIC ${DIR_LIB_SRCS} ${QRC_FILES})
 
-SET_TARGET_PROPERTIES(TeachingTools_static PROPERTIES OUTPUT_NAME "TeachingTools")
-SET_TARGET_PROPERTIES(TeachingTools PROPERTIES VERSION 1.0.0 SOVERSION 1)
-SET_TARGET_PROPERTIES(TeachingTools_static PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
+SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
-target_link_libraries(TeachingTools PRIVATE Qt5::Widgets)
-target_link_libraries(TeachingTools PRIVATE Qt5::Core)
-target_link_libraries(TeachingTools PRIVATE Qt5::Svg)
-target_link_libraries(TeachingTools_static PRIVATE Qt5::Widgets)
-target_link_libraries(TeachingTools_static PRIVATE Qt5::Core)
-target_link_libraries(TeachingTools_static PRIVATE Qt5::Svg)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Svg)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Svg)
 
-target_include_directories(TeachingTools PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

@@ -24,3 +24,31 @@ function(add_src_lib)
 	endif(ARGN)
 endfunction()
 
+# 添加Windows链接库
+function(link_win32_lib)
+	if(WIN32 AND ARGN)
+		foreach(arg IN LISTS ARGN)
+			link_libraries(${arg})
+		endforeach()
+	endif(WIN32 AND ARGN)
+endfunction(link_win32_lib)
+
+# 添加unix链接库
+function(link_apple_lib)
+	if(APPLE AND ARGN)
+		foreach(arg IN LISTS ARGN)
+			link_libraries(${arg})
+		endforeach()
+	endif(APPLE AND ARGN)
+endfunction(link_apple_lib)
+
+# 添加unix链接库
+function(link_unix_lib)
+	if(UNIX AND ARGN)
+		foreach(arg IN LISTS ARGN)
+			link_libraries(${arg})
+		endforeach()
+	endif(UNIX AND ARGN)
+endfunction(link_unix_lib)
+
+

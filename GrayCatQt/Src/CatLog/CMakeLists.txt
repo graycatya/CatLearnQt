@@ -19,21 +19,9 @@ message(STATUS ${STATIC_NAME})
 add_definitions("-Wall -g")
 add_definitions(-std=c++17)
 
-IF (WIN32)
-	MESSAGE(STATUS "Now is windows")
-ELSEIF (APPLE)
-	MESSAGE(STATUS "Now is Apple systens.")
-ELSEIF (UNIX)
-    link_libraries(pthread)
-	MESSAGE(STATUS "Now is UNIX-like OS's. Including aPPLE os x  and CygWin")
-ENDIF ()
+link_unix_lib(pthread)
 
-
-
-aux_source_directory(. DIR_LIB_SRCS)
-
-add_library(${PROJECT_NAME} SHARED ${DIR_LIB_SRCS})
-add_library(${STATIC_NAME} STATIC ${DIR_LIB_SRCS})
+add_src_lib()
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.1 SOVERSION 1)

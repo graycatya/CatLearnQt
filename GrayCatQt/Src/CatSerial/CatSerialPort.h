@@ -7,7 +7,6 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QTimer>
-#include <CatLog>
 
 
 class ReadPortDataWork : public QThread

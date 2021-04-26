@@ -33,7 +33,7 @@ function(link_win32_lib)
 	endif(WIN32 AND ARGN)
 endfunction(link_win32_lib)
 
-# 添加unix链接库
+# 添加apple链接库
 function(link_apple_lib)
 	if(APPLE AND ARGN)
 		foreach(arg IN LISTS ARGN)
@@ -50,5 +50,14 @@ function(link_unix_lib)
 		endforeach()
 	endif(UNIX AND ARGN)
 endfunction(link_unix_lib)
+
+# 添加android链接库
+function(link_android_lib)
+	if(ANDROID AND ARGN)
+		foreach(arg IN LISTS ARGN)
+			link_libraries(${arg})
+		endforeach()
+	endif(ANDROID AND ARGN)
+endfunction(link_apple_lib)
 
 

@@ -1,5 +1,4 @@
-#include "CatWinMonitorSerial.h"
-#include <CatLog>
+﻿#include "CatWinMonitorSerial.h"
 #include <QDataStream>
 
 #include <Windows.h>
@@ -8,6 +7,7 @@
 #include <setupapi.h>
 #include <iostream>
 #include <atlstr.h> // CString
+#include <atlconv.h>
 using namespace std;
 
 #pragma comment (lib, "Kernel32.lib")
@@ -63,10 +63,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr(CW2A(szTmp.GetString()));
-        QString log =  "win api add: " + QString::fromStdString(STDStr);
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+        std::string STDStr = szTmp.GetBuffer(0);
         QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
         mes = mes.at(1).split('&');
@@ -95,10 +92,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr(CW2A(szTmp.GetString()));
-        QString log =  "win api del: " + QString::fromStdString(STDStr);
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+        std::string STDStr = szTmp.GetBuffer(0);
 
         QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
@@ -244,8 +238,9 @@ CatWinMonitorSerial::CatWinMonitorSerial()
 {
     hThread = CreateThread(NULL, 0, ThrdFunc, NULL, 0, &iThread);
     if (hThread == NULL) {
-        QString log = "CatWinMonitorSerial CreateThread Error ";
-        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+        return;
+        /*QString log = "CatWinMonitorSerial CreateThread Error ";
+        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));*/
     }
 }
 

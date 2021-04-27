@@ -58,6 +58,6 @@ function(link_android_lib)
 			link_libraries(${arg})
 		endforeach()
 	endif(ANDROID AND ARGN)
-endfunction(link_apple_lib)
+endfunction(link_android_lib)
 
 

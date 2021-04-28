@@ -62,9 +62,8 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     if (DBT_DEVICEARRIVAL == wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
-
-        std::string STDStr = szTmp.GetBuffer(0);
-        QString dev = QString::fromStdString(STDStr);
+        //std::string str(CW2A(szTmp.GetString()));
+        QString dev =  QLatin1String((char*)(LPCTSTR)szTmp);
         QStringList mes = dev.split('\\');
         mes = mes.at(1).split('&');
         QString vid = mes.at(0).split('_').at(1);
@@ -92,9 +91,9 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr = szTmp.GetBuffer(0);
+        //std::string STDStr = szTmp.GetBuffer(0);
 
-        QString dev = QString::fromStdString(STDStr);
+        QString dev = QLatin1String((char*)(LPCTSTR)szTmp);
         QStringList mes = dev.split('\\');
         mes = mes.at(1).split('&');
         QString vid = mes.at(0).split('_').at(1);

@@ -25,6 +25,7 @@ message(STATUS ${STATIC_NAME})
 add_definitions("-Wall -g")
 
 find_package(Qt5 COMPONENTS Core Network REQUIRED)
+find_android_gui()
 
 add_src_lib()
 
@@ -34,6 +35,7 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Network)
+target_link_android_gui(${PROJECT_NAME})
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Network)
 

@@ -26,7 +26,7 @@ add_definitions("-Wall -g")
 #add_definitions(-std=c++17)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
-
+find_android_gui()
 #target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
 
 set(QRC_SOURCE_FILES ${PROJECT_SOURCE_DIR}/Resource/CatControl.qrc)
@@ -38,8 +38,11 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
+
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_link_android_gui(${PROJECT_NAME})
+
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 

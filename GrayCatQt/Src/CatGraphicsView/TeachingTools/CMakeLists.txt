@@ -26,6 +26,7 @@ add_definitions("-Wall -g")
 #add_definitions(-std=c++17)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets Svg REQUIRED)
+find_android_gui()
 
 set(QRC_SOURCE_FILES ${PROJECT_SOURCE_DIR}/TeachingTool/TeachingTool.qrc)
 qt5_add_resources(QRC_FILES ${QRC_SOURCE_FILES})
@@ -39,6 +40,8 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Svg)
+target_link_android_gui(${PROJECT_NAME})
+
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Svg)

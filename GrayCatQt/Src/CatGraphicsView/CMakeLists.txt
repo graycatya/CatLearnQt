@@ -24,7 +24,8 @@ message(STATUS ${STATIC_NAME})
 
 add_definitions("-Wall -g")
 
-find_package(Qt5 COMPONENTS Core Gui Widgets OpenGL REQUIRED)
+find_package(Qt5 COMPONENTS Core Widgets OpenGL REQUIRED)
+find_android_gui()
 
 include_directories("./TeachingTools/")
 include_directories("./DrawingBoardTools/")
@@ -44,6 +45,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::OpenGL)
 target_link_libraries(${PROJECT_NAME} PUBLIC TeachingTools)
 target_link_libraries(${PROJECT_NAME} PUBLIC DrawingBoardTools)
+target_link_android_gui(${PROJECT_NAME})
 
 #target_link_libraries(${STATIC_NAME} PUBLIC TeachingTools_static)
 #target_link_libraries(${STATIC_NAME} PUBLIC DrawingBoardTools_static)

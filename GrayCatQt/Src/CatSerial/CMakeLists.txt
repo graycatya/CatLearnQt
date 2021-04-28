@@ -24,7 +24,8 @@ message(STATUS ${STATIC_NAME})
 
 add_definitions("-Wall -g")
 
-find_package(Qt5 COMPONENTS Core SerialPort Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Core SerialPort REQUIRED)
+find_android_gui()
 
 #if(ANDROID)
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
@@ -36,12 +37,13 @@ find_package(Qt5 COMPONENTS Core SerialPort Widgets REQUIRED)
 #endif()
 
 if(WIN32)
-    aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} CURPATH_DIR_LIB_SRCS)
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 else()
-    aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} CURPATH_DIR_LIB_SRCS)
-    list(REMOVE_ITEM CURPATH_DIR_LIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/CatWinMonitorSerial.h)
-    list(REMOVE_ITEM CURPATH_DIR_LIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/CatWinMonitorSerial.cpp)
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS
+                                    CatWinMonitorSerial.h
+                                    CatWinMonitorSerial.cpp)
 endif(WIN32)
+
 
 
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS})
@@ -52,6 +54,7 @@ add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::SerialPort)
+target_link_android_gui(${PROJECT_NAME})
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)

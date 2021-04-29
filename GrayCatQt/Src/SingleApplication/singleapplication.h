@@ -1,4 +1,4 @@
-// The MIT License (MIT)
+﻿// The MIT License (MIT)
 //
 // Copyright (c) Itay Grudev 2015 - 2018
 //
@@ -27,6 +27,7 @@
 #include <QtNetwork/QLocalSocket>
 
 #ifndef QAPPLICATION_CLASS
+#include<QApplication>
   #define QAPPLICATION_CLASS QApplication
 #endif
 

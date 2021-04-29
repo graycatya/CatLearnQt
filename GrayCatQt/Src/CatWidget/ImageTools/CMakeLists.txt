@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
 project(ImageTools LANGUAGES CXX)
 
@@ -22,7 +22,6 @@ include(GrayCatQt)
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
-add_definitions("-Wall -g")
 #add_definitions(-std=c++17)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)

@@ -34,7 +34,7 @@ find_android_gui()
 
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
-aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR} CAT_QCUSTOMPLOTCHARTS_SRCS)
+aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/CatQcustomplotCharts CAT_QCUSTOMPLOTCHARTS_SRCS)
 
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS} ${CAT_QCUSTOMPLOTCHARTS_SRCS})
 

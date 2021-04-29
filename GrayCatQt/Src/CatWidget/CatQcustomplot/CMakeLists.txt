@@ -15,7 +15,7 @@ message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
 #ADD_DEFINITIONS(-D QCUSTOMPLOT_USE_OPENGL)
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../../module/cmake")
 
@@ -25,9 +25,6 @@ load_name_static(STATIC_NAME)
 message(STATUS ${STATIC_NAME})
 
 
-add_definitions("-Wall -g")
-#add_definitions(-std=c++17)
-
 find_package(Qt5 COMPONENTS Core Widgets PrintSupport REQUIRED)
 find_android_gui()
 #target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
@@ -36,9 +33,18 @@ find_android_gui()
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/CatQcustomplotCharts CAT_QCUSTOMPLOTCHARTS_SRCS)
 
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS} ${CAT_QCUSTOMPLOTCHARTS_SRCS})
+file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+file(GLOB CATQCUSTOMPLOT_SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/CatQcustomplotCharts/*.h")
 
-add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS} ${CAT_QCUSTOMPLOTCHARTS_SRCS})
+add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS} 
+                                    ${CAT_QCUSTOMPLOTCHARTS_SRCS}
+                                    ${SRC_HEAD_LIST}
+                                    ${CATQCUSTOMPLOT_SRC_HEAD_LIST})
+
+add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS} 
+                                    ${CAT_QCUSTOMPLOTCHARTS_SRCS}
+                                    ${SRC_HEAD_LIST}
+                                    ${CATQCUSTOMPLOT_SRC_HEAD_LIST})
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)

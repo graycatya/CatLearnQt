@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
+#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../module/cmake")
 
@@ -28,7 +28,16 @@ message(STATUS ${STATIC_NAME})
 find_package(Qt5 COMPONENTS Core Gui Widgets Network REQUIRED)
 #find_android_gui()
 
-add_src_lib()
+filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
+
+file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+
+add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
+                                   ${SRC_HEAD_LIST})
+
+add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
+                                  ${SRC_HEAD_LIST})
+
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
@@ -45,4 +54,4 @@ target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Network)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

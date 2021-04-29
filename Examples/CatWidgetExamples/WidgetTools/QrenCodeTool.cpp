@@ -1,6 +1,6 @@
 ﻿#include "QrenCodeTool.h"
 #include "ui_QrenCodeTool.h"
-#include "CatWidget/QrenCode/Src/QrenCodeWidget/QtQrenCode.h"
+#include "CatWidget/QrenCode/QtQrenCode.h"
 #include "../CatConfig/CatConfig.h"
 
 #include <CatLog>

@@ -1,6 +1,6 @@
 ﻿cmake_minimum_required(VERSION 3.10)
 
-project(CatNetWork LANGUAGES CXX)
+project(CatWidget LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -22,30 +22,31 @@ include(GrayCatQt)
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
-
-
-find_package(Qt5 COMPONENTS Core Network REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets Quick REQUIRED)
 find_android_gui()
 
-file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
-filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
+add_subdirectory(CatQcustomplot)
+add_subdirectory(ImageTools)
+add_subdirectory(QrenCode)
 
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
-                                   ${SRC_HEAD_LIST})
+add_library(${PROJECT_NAME} SHARED)
 
-add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
-                                  ${SRC_HEAD_LIST})
+add_library(${STATIC_NAME} STATIC)
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Network)
+
+target_link_libraries(${PROJECT_NAME} PUBLIC CatQcustomplot)
+target_link_libraries(${PROJECT_NAME} PUBLIC ImageTools)
+target_link_libraries(${PROJECT_NAME} PUBLIC QrenCode)
 target_link_android_gui(${PROJECT_NAME})
 
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Network)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+target_link_libraries(${STATIC_NAME} PUBLIC CatQcustomplot)
+target_link_libraries(${STATIC_NAME} PUBLIC ImageTools)
+target_link_libraries(${STATIC_NAME} PUBLIC QrenCode)
+
+#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

@@ -1,6 +1,4 @@
 ﻿#include "CatThread.h"
-#include <QTcpSocket>
-#include <QHostAddress>
 
 CatThread::CatThread(QObject *parent)
     : QThread(parent)

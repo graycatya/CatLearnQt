@@ -1,5 +1,8 @@
 ﻿#include "QtQrenCode.h"
-#include "../../qrencode.h"
+
+extern "C" {
+    #include "QrenCodeSrc/qrencode.h"
+}
 
 #include <QPainter>
 
@@ -12,10 +15,9 @@ void GernerateQRCode(const QString &text, QPixmap &qrPixmap, QSize size, QString
 
     //二维码数据
     QRcode *qrCode = nullptr;
-
     //这里二维码版本传入参数是2,实际上二维码生成后，它的版本是根据二维码内容来决定的
     qrCode = QRcode_encodeString(text.toStdString().c_str(), 2,
-                                 QR_ECLEVEL_Q, QR_MODE_8, 1);
+                                 QR_ECLEVEL_Q, QR_MODE_8, static_cast<int>(1));
 
     if(nullptr == qrCode)
     {

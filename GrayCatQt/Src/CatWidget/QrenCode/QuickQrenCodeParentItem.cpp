@@ -24,10 +24,10 @@ void QuickQrenCodeParentItem::paint(QPainter *painter)
     //二维码数据
     QRcode *qrCode = nullptr;
 
-    qrCode = QRcode_encodeString(m_sText.toStdString().c_str(), 2,
+    qrCode = QRcode_encodeString(const_cast<const char*>(m_sText.toStdString().c_str()), 2,
                                  static_cast<QRecLevel>(m_eQrlevel),
                                  static_cast<QRencodeMode>(m_eQrmode),
-                                 m_bCasesen ? 1 : 0);
+                                 static_cast<int>(m_bCasesen ? 1 : 0));
 
     if(nullptr == qrCode)
     {

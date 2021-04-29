@@ -2,7 +2,10 @@
 #define QTQMLPARENTQRENCODE_H
 
 #include <QQuickPaintedItem>
-#include "../../qrencode.h"
+
+extern "C" {
+    #include "QrenCodeSrc/qrencode.h"
+}
 
 class QuickQrenCodeParentItem : public QQuickPaintedItem
 {

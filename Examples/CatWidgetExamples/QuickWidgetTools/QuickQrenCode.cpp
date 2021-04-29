@@ -1,6 +1,6 @@
 ﻿#include "QuickQrenCode.h"
 #include "ui_QuickQrenCode.h"
-#include "CatWidget/QrenCode/Src/QrenCodeQml/QuickQrenCodeParentItem.h"
+#include "CatWidget/QrenCode/QuickQrenCodeParentItem.h"
 
 #include <CatLog>
 

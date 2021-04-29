@@ -12,12 +12,13 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
 
 CONFIG += c++11
-CONFIG += staticlib
+#CONFIG += staticlib
 
 TARGET = GrayCatQt
 # CONFIG += console
 
 DEFINES += QT_DEPRECATED_WARNINGS
+#DEFINES += ANDROID_APP
 
 Release:DESTDIR = release
 Release:OBJECTS_DIR = release/.obj

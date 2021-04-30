@@ -8,6 +8,7 @@
 #include <QTranslator>
 #include <CatLog>
 
+
 CatConfig* CatConfig::_instance = nullptr;
 QMutex* CatConfig::m_pMutex = new QMutex;
 QString CatConfig::m_sConfigPath = "";

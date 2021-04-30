@@ -14,12 +14,16 @@ public:
     enum HTTPSTATE {
         NONE,
         DOWNLOAD,
+        HTTPGET,
+        HTTPOST,
+        HTTPPUS
     };
     explicit CatNetWorkHttp(QObject *parent = nullptr);
     ~CatNetWorkHttp();
 
 public:
     int DownLoad(QUrl url, QString downloaddir, bool ssl = false);
+    int HttpGet(QUrl url);
 
 protected:
     void run() override;
@@ -43,6 +47,8 @@ private:
     bool m_bWork;
     QMutex m_yMutex;
     QWaitCondition m_yWaitCondition;
+    QMutex m_yStartMutex;
+    QWaitCondition m_yWaitStartCondition;
     QVariant m_pVar;
 
     QFile *m_pFile;

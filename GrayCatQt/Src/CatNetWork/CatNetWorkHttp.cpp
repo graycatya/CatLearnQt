@@ -11,6 +11,9 @@ CatNetWorkHttp::CatNetWorkHttp(QObject *parent)
     m_pFile = nullptr;
     m_bStart = true;
     this->start();
+    m_yStartMutex.lock();
+    m_yWaitStartCondition.wait(&m_yStartMutex);
+    m_yStartMutex.unlock();
 }
 
 CatNetWorkHttp::~CatNetWorkHttp()
@@ -35,6 +38,10 @@ int CatNetWorkHttp::DownLoad(QUrl url, QString downloaddir, bool ssl)
         }
         QFileInfo info(url.path());
         QString fileName(info.fileName());
+        if(downloaddir[downloaddir.size()-1] != "/")
+        {
+            downloaddir = downloaddir + "/";
+        }
         fileName = downloaddir+fileName;
         m_pFile = new QFile(fileName);
         if(!m_pFile->open(QIODevice::WriteOnly))
@@ -63,6 +70,7 @@ void CatNetWorkHttp::run()
     while(m_bStart)
     {
         m_yMutex.lock();
+        m_yWaitStartCondition.notify_all();
         m_yWaitCondition.wait(&m_yMutex);
         m_yMutex.unlock();
         switch (m_yState) {
@@ -132,7 +140,10 @@ void CatNetWorkHttp::httpDownReadyRead()
     QNetworkReply *m_pReply =qobject_cast<QNetworkReply *>(sender());
     if(m_pFile)
     {
-        m_pFile->write(m_pReply->readAll());
+        if(m_pReply->readBufferSize() > 0)
+        {
+            m_pFile->write(m_pReply->readAll());
+        }
     }
 }
 

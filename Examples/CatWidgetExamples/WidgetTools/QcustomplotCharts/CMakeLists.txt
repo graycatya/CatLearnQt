@@ -22,6 +22,8 @@ include(GrayCatQt)
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../../GrayCatQt/Src/CatLog)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
@@ -31,4 +33,6 @@ filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 add_library(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                             ${SRC_HEAD_LIST}
                             ${SRC_UI_LIST})
+
+target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Widgets)
 

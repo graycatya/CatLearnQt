@@ -40,6 +40,7 @@ endif((NOT WEBASSEMBLY) OR (NOT IOS))
 
 add_subdirectory(Src/CatUniversal)
 add_subdirectory(Src/CatWidget)
+
 if((NOT WEBASSEMBLY))
     add_subdirectory(Src/CatNetWork)
     add_subdirectory(Src/SingleApplication)
@@ -63,8 +64,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC CatLog_Sington)
 if((NOT WEBASSEMBLY) OR (NOT IOS))
     target_link_libraries(${PROJECT_NAME} PUBLIC CatSerial)
 endif((NOT WEBASSEMBLY) OR (NOT IOS))
+
 target_link_libraries(${PROJECT_NAME} PUBLIC CatUniversal)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatWidget)
+
 if((NOT WEBASSEMBLY))
     target_link_libraries(${PROJECT_NAME} PUBLIC CatNetWork)
     target_link_libraries(${PROJECT_NAME} PUBLIC SingleApplication)

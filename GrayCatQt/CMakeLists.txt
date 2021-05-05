@@ -46,10 +46,9 @@ if((NOT WEBASSEMBLY))
     add_subdirectory(Src/SingleApplication)
 endif((NOT WEBASSEMBLY))
 
+add_library(${STATIC_NAME} STATIC)
 
 add_library(${PROJECT_NAME} SHARED)
-
-add_library(${STATIC_NAME} STATIC)
 
 
 

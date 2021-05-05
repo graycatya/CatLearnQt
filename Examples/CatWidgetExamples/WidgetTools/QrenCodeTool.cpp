@@ -50,6 +50,6 @@ void QrenCodeTool::resizeEvent(QResizeEvent *event)
 void QrenCodeTool::showEvent(QShowEvent *event)
 {
     Q_UNUSED(event)
-    QPixmap qrPixmap;
+    //QPixmap qrPixmap;
     UpdateQrenCode();
 }

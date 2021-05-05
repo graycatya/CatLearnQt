@@ -30,9 +30,9 @@ add_subdirectory(CatQcustomplot)
 add_subdirectory(ImageTools)
 add_subdirectory(QrenCode)
 
-add_library(${PROJECT_NAME} SHARED)
-
 add_library(${STATIC_NAME} STATIC)
+
+add_library(${PROJECT_NAME} SHARED)
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
 project(DrawingBoardTools LANGUAGES CXX)
 
@@ -29,11 +29,11 @@ file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
-                                   ${SRC_HEAD_LIST})
-
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
                                   ${SRC_HEAD_LIST})
+
+add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
+                                   ${SRC_HEAD_LIST})
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
@@ -46,4 +46,4 @@ target_link_android_gui(${PROJECT_NAME})
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

@@ -46,11 +46,11 @@ if(NOT WIN32)
     list(REMOVE_ITEM SRC_HEAD_LIST ${CMAKE_CURRENT_SOURCE_DIR}/CatWinMonitorSerial.h)
 endif(NOT WIN32)
 
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
-                                   ${SRC_HEAD_LIST})
-
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
                                   ${SRC_HEAD_LIST})
+
+add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
+                                   ${SRC_HEAD_LIST})
 
 
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)

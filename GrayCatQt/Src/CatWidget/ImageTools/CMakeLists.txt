@@ -38,15 +38,16 @@ file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
-                                   ${SRC_HEAD_LIST}
-                                   ${QRC_FILES}
-                                   ${SRC_UI_LIST})
-
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
                                   ${SRC_HEAD_LIST}
                                   ${QRC_FILES}
                                   ${SRC_UI_LIST})
+
+
+add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
+                                   ${SRC_HEAD_LIST}
+                                   ${QRC_FILES}
+                                   ${SRC_UI_LIST})
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)

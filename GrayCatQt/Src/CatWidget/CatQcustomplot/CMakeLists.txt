@@ -36,12 +36,12 @@ aux_source_directory(${CMAKE_CURRENT_SOURCE_DIR}/CatQcustomplotCharts CAT_QCUSTO
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 file(GLOB CATQCUSTOMPLOT_SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/CatQcustomplotCharts/*.h")
 
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS} 
+add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS} 
                                     ${CAT_QCUSTOMPLOTCHARTS_SRCS}
                                     ${SRC_HEAD_LIST}
                                     ${CATQCUSTOMPLOT_SRC_HEAD_LIST})
 
-add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS} 
+add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS} 
                                     ${CAT_QCUSTOMPLOTCHARTS_SRCS}
                                     ${SRC_HEAD_LIST}
                                     ${CATQCUSTOMPLOT_SRC_HEAD_LIST})
@@ -53,11 +53,11 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::PrintSupport)
+target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::PrintSupport)
 target_link_android_gui(${PROJECT_NAME})
 
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::PrintSupport)
+target_link_libraries(${STATIC_NAME} PUBLIC Qt5::PrintSupport)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

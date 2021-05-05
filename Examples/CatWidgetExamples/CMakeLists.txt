@@ -23,6 +23,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../module/cmake")
 
 include(GrayCatQt)
 
+
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
@@ -30,26 +31,12 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/CatLog)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/SingleApplication)
 
-find_package(Qt5 COMPONENTS Core Gui Widgets Quick QuickWidgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui Widgets Quick QuickWidgets Svg REQUIRED)
 
 set(PROJECT_QRC_SOURCE_FILES ${PROJECT_SOURCE_DIR}/Resource/Resource.qrc)
 qt5_add_resources(PROJECT_QRC_FILES ${PROJECT_QRC_SOURCE_FILES})
 
-#需要加载翻译工具
-find_package(Qt5LinguistTools REQUIRED)
 
-
-FIND_PACKAGE(Qt5LinguistTools)
-
-set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_SOURCE_DIR})
-
-get_source_file_property(output_location ${CMAKE_CURRENT_SOURCE_DIR} OUTPUT_LOCATION)
-if(output_location)
-    file(MAKE_DIRECTORY "${output_location}")
-    set(qm "${output_location}/${qm}.qm")
-else()
-    set(qm "${CMAKE_CURRENT_BINARY_DIR}/${qm}.qm")
-endif()
 
 set(TS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/Resource/lang")
 
@@ -58,17 +45,7 @@ set(TS_FILES
     "${TS_DIR}/language_zh_CN.ts"
 )
 
-find_program(LUPDATE_EXECUTABLE lupdate)
-find_program(LRELEASE_EXECUTABLE lrelease)
-
-foreach(_ts_file ${TS_FILES})
-
-    execute_process(
-        COMMAND ${LUPDATE_EXECUTABLE} -recursive ${CMAKE_SOURCE_DIR} -ts ${_ts_file})
-    execute_process(
-        COMMAND ${LRELEASE_EXECUTABLE} ${_ts_file})
-
-endforeach()
+build_linguisttools(${TS_FILES})
 
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
@@ -95,4 +72,5 @@ target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Gui)
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::QuickWidgets)
+target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Svg)
 

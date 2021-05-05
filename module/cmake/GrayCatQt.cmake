@@ -1,4 +1,37 @@
 #--
+# cmake 国际化处理
+#--
+function(build_linguisttools)
+if(ARGN)
+	#需要加载翻译工具
+	find_package(Qt5LinguistTools REQUIRED)
+
+	#set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION ${CMAKE_CURRENT_SOURCE_DIR})
+
+	#get_source_file_property(output_location ${CMAKE_CURRENT_SOURCE_DIR} OUTPUT_LOCATION)
+	#if(output_location)
+	#    file(MAKE_DIRECTORY "${output_location}")
+	#    set(qm "${output_location}/${qm}.qm")
+	#else()
+	#    set(qm "${CMAKE_CURRENT_BINARY_DIR}/${qm}.qm")
+	#endif()
+
+	find_program(LUPDATE_EXECUTABLE lupdate)
+	find_program(LRELEASE_EXECUTABLE lrelease)
+
+	foreach(_ts_file IN LISTS ARGN)
+
+		execute_process(
+			COMMAND ${LUPDATE_EXECUTABLE} -recursive ${CMAKE_SOURCE_DIR} -ts ${_ts_file})
+		execute_process(
+			COMMAND ${LRELEASE_EXECUTABLE} ${_ts_file})
+
+	endforeach()
+endif(ARGN)
+endfunction(build_linguisttools)
+
+
+#--
 # 字符串处理方法
 #--
 

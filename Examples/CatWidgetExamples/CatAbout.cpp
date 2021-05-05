@@ -91,8 +91,8 @@ void CatAbout::InitProperty()
 
 void CatAbout::InitConnect()
 {
-    connect(ui->GrayCatYa, &QPushButton::clicked, this, [=](){
-        QDesktopServices::openUrl(QUrl("https://www.graycatya.com/"));
+    connect(ui->CodeChina, &QPushButton::clicked, this, [=](){
+        QDesktopServices::openUrl(QUrl("https://codechina.csdn.net/qq_32312307/CatLearnQt"));
     });
     connect(ui->GitHub, &QPushButton::clicked, this, [=](){
         QDesktopServices::openUrl(QUrl("https://github.com/graycatya/CatLearnQt"));

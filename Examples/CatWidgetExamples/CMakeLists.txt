@@ -33,7 +33,10 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/SingleApplic
 
 find_package(Qt5 COMPONENTS Core Gui Widgets Quick QuickWidgets Svg REQUIRED)
 
-set(PROJECT_QRC_SOURCE_FILES ${PROJECT_SOURCE_DIR}/Resource/Resource.qrc)
+set(PROJECT_QRC_SOURCE_FILES ${PROJECT_SOURCE_DIR}/Resource/Resource.qrc
+                                ${PROJECT_SOURCE_DIR}/../../GrayCatQt/Src/CatControl/Resource/CatControl.qrc
+                                ${PROJECT_SOURCE_DIR}/../../GrayCatQt/Src/CatGraphicsView/TeachingTools/TeachingTool/TeachingTool.qrc
+                                ${PROJECT_SOURCE_DIR}/../../GrayCatQt/Src/CatWidget/ImageTools/ImageTools/ImageTools.qrc)
 qt5_add_resources(PROJECT_QRC_FILES ${PROJECT_QRC_SOURCE_FILES})
 
 

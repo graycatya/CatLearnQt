@@ -301,7 +301,7 @@
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="GrayCatYa">
+             <widget class="QPushButton" name="CodeChina">
               <property name="text">
                <string/>
               </property>

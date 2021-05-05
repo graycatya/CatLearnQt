@@ -133,5 +133,7 @@
         <file>Images/CatWhite/BoardSelect.png</file>
         <file>Images/CatGray/BoardErasure.png</file>
         <file>Images/CatWhite/BoardErasure.png</file>
+        <file>Images/CatGray/CodeChina.png</file>
+        <file>Images/CatWhite/CodeChina.png</file>
     </qresource>
 </RCC>

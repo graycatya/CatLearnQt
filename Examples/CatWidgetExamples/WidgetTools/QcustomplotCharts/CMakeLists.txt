@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
 project(QcustomplotCharts LANGUAGES CXX)
 
@@ -30,9 +30,11 @@ file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
+#add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../../../GrayCatQt/Src/CatWidget/CatQcustomplot CatQcustomplot.out)
+
 add_library(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                             ${SRC_HEAD_LIST}
                             ${SRC_UI_LIST})
 
-target_link_libraries(${PROJECT_NAME} PUBLIC Qt5::Widgets)
-
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE CatQcustomplot)

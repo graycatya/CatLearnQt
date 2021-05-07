@@ -25,6 +25,7 @@ public:
         DOWNLOAD,
         HTTPGET,
         HTTPPOST,
+        HTTPMULTIPARTPOST,
         HTTPPUS
     };
     explicit CatNetWorkHttp(QObject *parent = nullptr);
@@ -34,6 +35,7 @@ public:
     int DownLoad(QUrl url, QString downloaddir, bool ssl = false);
     int HttpGet(QUrl url, QVariantHash heads, QUrlQuery query, bool ssl = false);
     int HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QByteArray& data, bool ssl = false);
+    int HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QHttpMultiPart* data, bool ssl = false);
 
 protected:
     void run() override;
@@ -42,12 +44,15 @@ private:
     void InitHttpDownLoad(QNetworkAccessManager *m_pManager);
     void InitHttpGet(QNetworkAccessManager *m_pManager);
     void InitHttpPost(QNetworkAccessManager *m_pManager);
+    void InitHttpMultiPartPost(QNetworkAccessManager *m_pManager);
 
 signals:
     void DownLoadFinished(QString filePath);
     void DownLoadError();
     void HttpPostError();
     void DownLoadProgress(qint64, qint64);
+
+    void ReplyDataed(QByteArray data);
 
 private slots:
     void httpDownFinished();

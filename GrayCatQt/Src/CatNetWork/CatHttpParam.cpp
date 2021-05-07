@@ -1,31 +1,44 @@
 ﻿#include "CatHttpParam.h"
-#include <QJsonDocument>
-#include <QJsonArray>
+#include <QFile>
+
 
 CatHttpParam::CatHttpParam(QObject *parent)
     : QObject(parent)
 {
-
+    m_yParts.clear();
 }
 
-void CatHttpParam::AddHttpParam(const QString &key, const QJsonValue &value)
+QHttpPart CatHttpParam::AddHttpParam(const QString &key, const QString &value)
 {
-    m_yParamObject.insert(key, value);
+    QHttpPart part;
+    part.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant(QString("form-data; name=\"%1\"").arg(key)));
+    part.setBody(value.toUtf8());
+    m_yParts.push_back(part);
+    return part;
 }
 
-void CatHttpParam::AddHttpParamObject(const QString &key, const QJsonObject &value)
+QHttpPart CatHttpParam::AddHttpImageParam(QHttpMultiPart *multipart, const QString &key, const QString &imagepath, const QString &type)
 {
-    m_yParamObject.insert(key, value);
+    QHttpPart imagePart;
+    if(multipart)
+    {
+        imagePart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(type));
+        imagePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant(QString("form-data; name=\"%1\"").arg(key)));
+        QFile *file = new QFile(imagepath);
+        file->open(QIODevice::ReadOnly);
+        imagePart.setBodyDevice(file);
+        file->setParent(multipart);
+    }
+    m_yParts.push_back(imagePart);
+    return imagePart;
 }
 
-void CatHttpParam::AddHttpParamArray(const QString &key, const QJsonArray &value)
+QVector<QHttpPart> CatHttpParam::GetHttpParams()
 {
-    m_yParamObject.insert(key, value);
+    return m_yParts;
 }
 
-QByteArray CatHttpParam::GetHttpParams()
+void CatHttpParam::ClearParams()
 {
-    QJsonDocument document = QJsonDocument(m_yParamObject);
-    QByteArray params = document.toJson();
-    return params;
+    m_yParts.clear();
 }

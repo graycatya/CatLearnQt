@@ -2,7 +2,7 @@
 #define CATHTTPPARAM_H
 
 #include <QObject>
-#include <QJsonObject>
+#include <QHttpPart>
 
 class CatHttpParam : public QObject
 {
@@ -10,13 +10,13 @@ class CatHttpParam : public QObject
 public:
     explicit CatHttpParam(QObject *parent = nullptr);
 
-    void AddHttpParam(const QString &key, const QJsonValue &value);
-    void AddHttpParamObject(const QString &key, const QJsonObject &value);
-    void AddHttpParamArray(const QString &key, const QJsonArray &value);
-    QByteArray GetHttpParams();
+    QHttpPart AddHttpParam(const QString &key, const QString &value);
+    QHttpPart AddHttpImageParam(QHttpMultiPart *multipart, const QString &key = "iamge", const QString &imagepath = "", const QString &type = "image/png");
+    QVector<QHttpPart> GetHttpParams();
+    void ClearParams();
 
 private:
-    QJsonObject m_yParamObject;
+    QVector<QHttpPart> m_yParts;
 };
 
 #endif // CATHTTPPARAM_H

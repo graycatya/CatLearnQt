@@ -3,6 +3,8 @@
 #include <QCoreApplication>
 #include <QUrlQuery>
 #include <QTextCodec>
+#include <QHttpMultiPart>
+#include <QJsonParseError>
 
 CatNetWorkHttp::CatNetWorkHttp(QObject *parent)
     : QThread(parent)
@@ -21,6 +23,7 @@ CatNetWorkHttp::CatNetWorkHttp(QObject *parent)
 CatNetWorkHttp::~CatNetWorkHttp()
 {
     m_bStart = false;
+    m_bWork = false;
     this->wait();
 }
 
@@ -115,6 +118,32 @@ int CatNetWorkHttp::HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QByt
     }
 }
 
+int CatNetWorkHttp::HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QHttpMultiPart *data, bool ssl)
+{
+    if(m_bStart)
+    {
+        m_bWork = true;
+        if(url.isEmpty())
+        {
+            m_bWork = false;
+            return URLERROR;
+        }
+        QUrl curUrl = url;
+        curUrl.setQuery(query);
+        QVariantHash hash;
+        hash["url"] = curUrl;
+        hash["heads"] = heads;
+        hash["data"] = QVariant::fromValue(reinterpret_cast<void*>(data));
+        hash["ssl"] = ssl;
+        m_pVar = hash;
+        m_yState = HTTPMULTIPARTPOST;
+        m_yWaitCondition.notify_one();
+        return NORMAL;
+    } else {
+        return ISSTART;
+    }
+}
+
 
 void CatNetWorkHttp::run()
 {
@@ -136,6 +165,10 @@ void CatNetWorkHttp::run()
             }
             case HTTPPOST: {
                 InitHttpPost(m_pManager);
+                break;
+            }
+            case HTTPMULTIPARTPOST: {
+                InitHttpMultiPartPost(m_pManager);
                 break;
             }
             default:{
@@ -195,11 +228,21 @@ void CatNetWorkHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
     connect(m_pManager, &QNetworkAccessManager::finished, this, [=](QNetworkReply *reply){
         QNetworkReply *m_pReply = reply;
         int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << "QNetworkAccessManager::finished: " << statusCode;
-        QByteArray datas = m_pReply->readAll();
-        QTextCodec::ConverterState state;
-        QTextCodec *tc = QTextCodec::codecForName("UTF-8");
-        qDebug() << "get real: " << tc->toUnicode(datas.constData(), datas.size(), &state);
+        qDebug() << "Http Reply statusCode: " << statusCode;
+
+        QNetworkReply::NetworkError error = reply->error();
+        if(error == reply->NoError)
+        {
+            QByteArray datas = m_pReply->readAll();
+
+            while (m_pReply->waitForReadyRead(50))
+            {
+                datas += m_pReply->readAll();
+            }
+
+            emit ReplyDataed(datas);
+        }
+
         m_yState = NONE;
         m_pVar.clear();
         m_bWork = false;
@@ -208,6 +251,10 @@ void CatNetWorkHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
 
     connect(m_pManager, &QNetworkAccessManager::sslErrors, this, [=](QNetworkReply *reply, const QList<QSslError> &errors){
         qDebug() << "sslerror: " << errors;
+        m_yState = NONE;
+        m_pVar.clear();
+        m_bWork = false;
+        reply->deleteLater();
     });
 
     if(hash["ssl"].toBool())
@@ -238,11 +285,21 @@ void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
     connect(m_pManager, &QNetworkAccessManager::finished, this, [=](QNetworkReply *reply){
         QNetworkReply *m_pReply = reply;
         int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-        qDebug() << "QNetworkAccessManager::finished: " << statusCode;
-        QByteArray datas = m_pReply->readAll();
-        QTextCodec::ConverterState state;
-        QTextCodec *tc = QTextCodec::codecForName("UTF-8");
-        qDebug() << "post real: " << tc->toUnicode(datas.constData(), datas.size(), &state);
+        qDebug() << "Http Reply statusCode: " << statusCode;
+
+        QNetworkReply::NetworkError error = reply->error();
+        if(error == reply->NoError)
+        {
+            QByteArray datas = m_pReply->readAll();
+
+            while (m_pReply->waitForReadyRead(50))
+            {
+                datas += m_pReply->readAll();
+            }
+
+            emit ReplyDataed(datas);
+        }
+
         m_yState = NONE;
         m_pVar.clear();
         m_bWork = false;
@@ -251,6 +308,10 @@ void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
 
     connect(m_pManager, &QNetworkAccessManager::sslErrors, this, [=](QNetworkReply *reply, const QList<QSslError> &errors){
         qDebug() << "sslerror: " << errors;
+        m_yState = NONE;
+        m_pVar.clear();
+        m_bWork = false;
+        reply->deleteLater();
     });
 
     if(hash["ssl"].toBool())
@@ -265,6 +326,75 @@ void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
     } else {
         request.setUrl(hash["url"].toUrl());
         m_pManager->post(request, hash["data"].toByteArray());
+    }
+}
+
+void CatNetWorkHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
+{
+    QHash<QString, QVariant> hash = m_pVar.toHash();
+    QNetworkRequest request;
+    QHash<QString, QVariant>::const_iterator heads = hash["heads"].toHash().constBegin();
+    while (heads != hash["heads"].toHash().constEnd() && !hash["heads"].toHash().isEmpty()) {
+        request.setRawHeader(heads.key().toUtf8(), heads.value().toByteArray());
+        ++heads;
+    }
+
+    connect(m_pManager, &QNetworkAccessManager::finished, this, [=](QNetworkReply *reply){
+        QNetworkReply *m_pReply = reply;
+        int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
+
+        qDebug() << "Http Reply statusCode: " << statusCode;
+
+        QNetworkReply::NetworkError error = reply->error();
+        if(error == reply->NoError)
+        {
+            QByteArray datas = m_pReply->readAll();
+
+            while (m_pReply->waitForReadyRead(50))
+            {
+                datas += m_pReply->readAll();
+            }
+
+            emit ReplyDataed(datas);
+        }
+
+        m_yState = NONE;
+        m_pVar.clear();
+        m_bWork = false;
+        QHttpMultiPart* part = reinterpret_cast<QHttpMultiPart*>(hash["data"].value<void*>());
+        part->deleteLater();
+        m_pReply->deleteLater();
+    });
+
+    connect(m_pManager, &QNetworkAccessManager::sslErrors, this, [=](QNetworkReply *reply, const QList<QSslError> &errors){
+        qDebug() << "sslerror: " << errors;
+        m_yState = NONE;
+        m_pVar.clear();
+        m_bWork = false;
+        QHttpMultiPart* part = reinterpret_cast<QHttpMultiPart*>(hash["data"].value<void*>());
+        part->deleteLater();
+        reply->deleteLater();
+    });
+
+    if(hash["ssl"].toBool())
+    {
+        QSslConfiguration config;
+        QSslConfiguration conf = request.sslConfiguration();
+        conf.setPeerVerifyMode(QSslSocket::VerifyNone);
+        conf.setProtocol(QSsl::TlsV1SslV3);
+        request.setSslConfiguration(conf);
+        request.setUrl(hash["url"].toUrl());
+        hash["data"].value<void*>();
+        QHttpMultiPart* part = reinterpret_cast<QHttpMultiPart*>(hash["data"].value<void*>());
+        //part->moveToThread(this);
+        m_pManager->post(request, part);
+        //part->setParent(reply);
+    } else {
+        request.setUrl(hash["url"].toUrl());
+        QHttpMultiPart* part = reinterpret_cast<QHttpMultiPart*>(hash["data"].value<void*>());
+        //part->moveToThread(this);
+        m_pManager->post(request, part);
+        //part->setParent(reply);
     }
 }
 

@@ -1,9 +1,11 @@
 HEADERS += \
-    $$PWD/CatNetWorkHttp.h \
+    $$PWD/CatHttp.h \
+    $$PWD/CatHttpJsonParam.h \
     $$PWD/CatHttpParam.h \
-    $$PWD/CatHttpJsonParam.h
+    $$PWD/CatNetWorkHttp.h
 
 SOURCES += \
-    $$PWD/CatNetWorkHttp.cpp \ 
+    $$PWD/CatHttp.cpp \
+    $$PWD/CatHttpJsonParam.cpp \
     $$PWD/CatHttpParam.cpp \
-    $$PWD/CatHttpJsonParam.cpp
+    $$PWD/CatNetWorkHttp.cpp

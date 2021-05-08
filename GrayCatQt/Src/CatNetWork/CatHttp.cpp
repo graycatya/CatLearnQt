@@ -1,4 +1,4 @@
-﻿#include "CatNetWorkHttp.h"
+﻿#include "CatHttp.h"
 #include <QDir>
 #include <QCoreApplication>
 #include <QUrlQuery>
@@ -6,192 +6,156 @@
 #include <QHttpMultiPart>
 #include <QJsonParseError>
 
-CatNetWorkHttp::CatNetWorkHttp(QObject *parent)
-    : QThread(parent)
-    , m_bStart(false)
-    , m_bWork(false)
-    , m_yState(NONE)
+CatHttp::CatHttp(QObject *parent)
+    : QObject(parent)
 {
-    m_pFile = nullptr;
-    m_bStart = true;
-    this->start();
-    m_yStartMutex.lock();
-    m_yWaitStartCondition.wait(&m_yStartMutex);
-    m_yStartMutex.unlock();
-}
-
-CatNetWorkHttp::~CatNetWorkHttp()
-{
-    m_bStart = false;
     m_bWork = false;
-    this->wait();
+    m_yState = NONE;
 }
 
-int CatNetWorkHttp::DownLoad(QUrl url, QString downloaddir, bool ssl)
+CatHttp::~CatHttp()
 {
-    if(m_bStart)
+    m_bWork = false;
+}
+
+int CatHttp::DownLoad(QUrl url, QString downloaddir, bool ssl)
+{
+
+    m_bWork = true;
+    QDir dir;
+    if(!dir.exists(downloaddir))
     {
-        m_bWork = true;
-        QDir dir;
-        if(!dir.exists(downloaddir))
-        {
-            if(!dir.mkpath(downloaddir))
-            {
-                m_bWork = false;
-                return DOWNLOADPATHERROR;
-            }
-        }
-        QFileInfo info(url.path());
-        QString fileName(info.fileName());
-        if(downloaddir[downloaddir.size()-1] != "/")
-        {
-            downloaddir = downloaddir + "/";
-        }
-        fileName = downloaddir+fileName;
-        m_pFile = new QFile(fileName);
-        if(!m_pFile->open(QIODevice::WriteOnly))
+        if(!dir.mkpath(downloaddir))
         {
             m_bWork = false;
-            m_pFile->deleteLater();
-            m_pFile = nullptr;
-            return FILEOPENERROR;
+            return DOWNLOADPATHERROR;
         }
-        QHash<QString, QVariant> hash;
-        hash["url"] = url;
-        hash["fileName"] = fileName;
-        hash["ssl"] = ssl;
-        m_pVar = hash;
-        m_yState = DOWNLOAD;
-        m_yWaitCondition.notify_one();
     }
+    QFileInfo info(url.path());
+    QString fileName(info.fileName());
+    if(downloaddir[downloaddir.size()-1] != "/")
+    {
+        downloaddir = downloaddir + "/";
+    }
+    fileName = downloaddir+fileName;
+    m_pFile = new QFile(fileName);
+    if(!m_pFile->open(QIODevice::WriteOnly))
+    {
+        m_pFile->deleteLater();
+        m_pFile = nullptr;
+        m_bWork = false;
+        return FILEOPENERROR;
+    }
+    QHash<QString, QVariant> hash;
+    hash["url"] = url;
+    hash["fileName"] = fileName;
+    hash["ssl"] = ssl;
+    m_pVar = hash;
+    m_yState = DOWNLOAD;
 
+    RunHttpFunc();
     return NORMAL;
 }
 
-int CatNetWorkHttp::HttpGet(QUrl url, QVariantHash heads, QUrlQuery query, bool ssl)
+int CatHttp::HttpGet(QUrl url, QVariantHash heads, QUrlQuery query, bool ssl)
 {
-    if(m_bStart)
+    m_bWork = true;
+    if(url.isEmpty())
     {
-        m_bWork = true;
-        if(url.isEmpty())
-        {
+        m_bWork = false;
+        return URLERROR;
+    }
+    url.setQuery(query);
+    QVariantHash hash;
+    hash["url"] = url;
+    hash["heads"] = heads;
+    hash["ssl"] = ssl;
+    m_pVar = hash;
+    m_yState = HTTPGET;
+
+    RunHttpFunc();
+    return NORMAL;
+}
+
+int CatHttp::HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QByteArray &data, bool ssl)
+{
+    m_bWork = true;
+    if(url.isEmpty())
+    {
+        m_bWork = false;
+        return URLERROR;
+    }
+    QUrl curUrl = url;
+    curUrl.setQuery(query);
+    QVariantHash hash;
+    hash["url"] = curUrl;
+    hash["heads"] = heads;
+    hash["data"] = data;
+    hash["ssl"] = ssl;
+    m_pVar = hash;
+    m_yState = HTTPPOST;
+
+    RunHttpFunc();
+    return NORMAL;
+}
+
+int CatHttp::HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QHttpMultiPart *data, bool ssl)
+{
+    m_bWork = true;
+    if(url.isEmpty())
+    {
+        m_bWork = false;
+        return URLERROR;
+    }
+    QUrl curUrl = url;
+    curUrl.setQuery(query);
+    QVariantHash hash;
+    hash["url"] = curUrl;
+    hash["heads"] = heads;
+    hash["data"] = QVariant::fromValue(reinterpret_cast<void*>(data));
+    hash["ssl"] = ssl;
+    m_pVar = hash;
+    m_yState = HTTPMULTIPARTPOST;
+
+    RunHttpFunc();
+    return NORMAL;
+}
+
+void CatHttp::RunHttpFunc()
+{
+    QNetworkAccessManager *m_pManager = new QNetworkAccessManager;
+    switch (m_yState) {
+        case DOWNLOAD: {
+            InitHttpDownLoad(m_pManager);
+            break;
+        }
+        case HTTPGET: {
+            InitHttpGet(m_pManager);
+            break;
+        }
+        case HTTPPOST: {
+            InitHttpPost(m_pManager);
+            break;
+        }
+        case HTTPMULTIPARTPOST: {
+            InitHttpMultiPartPost(m_pManager);
+            break;
+        }
+        default:{
+            m_yState = NONE;
             m_bWork = false;
-            return URLERROR;
+            break;
         }
-        url.setQuery(query);
-        QVariantHash hash;
-        hash["url"] = url;
-        hash["heads"] = heads;
-        hash["ssl"] = ssl;
-        m_pVar = hash;
-        m_yState = HTTPGET;
-        m_yWaitCondition.notify_one();
-        return NORMAL;
-    } else {
-        return ISSTART;
     }
-}
-
-int CatNetWorkHttp::HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QByteArray &data, bool ssl)
-{
-    if(m_bStart)
+    while(m_bWork)
     {
-        m_bWork = true;
-        if(url.isEmpty())
-        {
-            m_bWork = false;
-            return URLERROR;
-        }
-        QUrl curUrl = url;
-        curUrl.setQuery(query);
-        QVariantHash hash;
-        hash["url"] = curUrl;
-        hash["heads"] = heads;
-        hash["data"] = data;
-        hash["ssl"] = ssl;
-        m_pVar = hash;
-        m_yState = HTTPPOST;
-        m_yWaitCondition.notify_one();
-        return NORMAL;
-    } else {
-        return ISSTART;
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
     }
+    m_pManager->deleteLater();
+    m_pManager = nullptr;
 }
 
-int CatNetWorkHttp::HttpPost(QUrl url, QVariantHash heads, QUrlQuery query, QHttpMultiPart *data, bool ssl)
-{
-    if(m_bStart)
-    {
-        m_bWork = true;
-        if(url.isEmpty())
-        {
-            m_bWork = false;
-            return URLERROR;
-        }
-        QUrl curUrl = url;
-        curUrl.setQuery(query);
-        QVariantHash hash;
-        hash["url"] = curUrl;
-        hash["heads"] = heads;
-        hash["data"] = QVariant::fromValue(reinterpret_cast<void*>(data));
-        hash["ssl"] = ssl;
-        m_pVar = hash;
-        m_yState = HTTPMULTIPARTPOST;
-        m_yWaitCondition.notify_one();
-        return NORMAL;
-    } else {
-        return ISSTART;
-    }
-}
-
-
-void CatNetWorkHttp::run()
-{
-
-    while(m_bStart)
-    {
-        QNetworkAccessManager *m_pManager = new QNetworkAccessManager;
-        m_yMutex.lock();
-        m_yWaitStartCondition.notify_all();
-        m_yWaitCondition.wait(&m_yMutex);
-        m_yMutex.unlock();
-        QThread::msleep(1000);
-        switch (m_yState) {
-            case DOWNLOAD: {
-                InitHttpDownLoad(m_pManager);
-                break;
-            }
-            case HTTPGET: {
-                InitHttpGet(m_pManager);
-                break;
-            }
-            case HTTPPOST: {
-                InitHttpPost(m_pManager);
-                break;
-            }
-            case HTTPMULTIPARTPOST: {
-                InitHttpMultiPartPost(m_pManager);
-                break;
-            }
-            default:{
-                m_yState = NONE;
-                m_bWork = false;
-                break;
-            }
-        }
-        while(m_bWork)
-        {
-            QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
-        }
-        m_pManager->deleteLater();
-        m_pManager = nullptr;
-    }
-
-}
-
-
-
-void CatNetWorkHttp::InitHttpDownLoad(QNetworkAccessManager *m_pManager)
+void CatHttp::InitHttpDownLoad(QNetworkAccessManager *m_pManager)
 {
     QNetworkReply *m_pReply = nullptr;
     QHash<QString, QVariant> hash = m_pVar.toHash();
@@ -218,7 +182,7 @@ void CatNetWorkHttp::InitHttpDownLoad(QNetworkAccessManager *m_pManager)
     }
 }
 
-void CatNetWorkHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
+void CatHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
 {
     QHash<QString, QVariant> hash = m_pVar.toHash();
     QNetworkRequest request;
@@ -275,7 +239,7 @@ void CatNetWorkHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
     }
 }
 
-void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
+void CatHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
 {
     QHash<QString, QVariant> hash = m_pVar.toHash();
     QNetworkRequest request;
@@ -332,7 +296,7 @@ void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
     }
 }
 
-void CatNetWorkHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
+void CatHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
 {
     QHash<QString, QVariant> hash = m_pVar.toHash();
     QNetworkRequest request;
@@ -401,8 +365,7 @@ void CatNetWorkHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
     }
 }
 
-
-void CatNetWorkHttp::httpDownFinished()
+void CatHttp::httpDownFinished()
 {
     QNetworkReply *m_pReply =qobject_cast<QNetworkReply *>(sender());
     m_pReply->deleteLater();
@@ -422,7 +385,7 @@ void CatNetWorkHttp::httpDownFinished()
     m_pVar.clear();
 }
 
-void CatNetWorkHttp::httpDownReadyRead()
+void CatHttp::httpDownReadyRead()
 {
     QNetworkReply *m_pReply =qobject_cast<QNetworkReply *>(sender());
     if(m_pFile)
@@ -434,7 +397,7 @@ void CatNetWorkHttp::httpDownReadyRead()
     }
 }
 
-void CatNetWorkHttp::httpError(QNetworkReply::NetworkError)
+void CatHttp::httpError(QNetworkReply::NetworkError)
 {
     QNetworkReply *m_pReply =qobject_cast<QNetworkReply *>(sender());
     m_pReply->deleteLater();
@@ -468,7 +431,7 @@ void CatNetWorkHttp::httpError(QNetworkReply::NetworkError)
     m_pVar.clear();
 }
 
-void CatNetWorkHttp::updateDataReadProgress(qint64 bytesRead, qint64 totalBytes)
+void CatHttp::updateDataReadProgress(qint64 bytesRead, qint64 totalBytes)
 {
     emit DownLoadProgress(bytesRead, totalBytes);
 }

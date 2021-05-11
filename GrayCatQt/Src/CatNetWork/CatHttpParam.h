@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QHttpPart>
+#include <QVector>
 
 class CatHttpParam : public QObject
 {

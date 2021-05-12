@@ -13,6 +13,7 @@ class TeachingToolRuler;
 class TeachingToolTrangle;
 
 class CatBrushPixItem;
+//class CatBrushVectorPixItem;
 
 class CatGraphicsScene : public QGraphicsScene
 {
@@ -68,6 +69,7 @@ private:
     QVector<TeachingToolRuler*> m_pTeachingToolRuler;
     QVector<TeachingToolTrangle*> m_pTeachingToolTrangle;
     CatBrushPixItem *m_pCatBrushPixItem;
+    //CatBrushVectorPixItem  *m_pCatBrushPixItem;
 
 
     CatGraphicsObject *m_pCatGraphicsObject;

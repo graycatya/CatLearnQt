@@ -6,6 +6,7 @@
 #include "CatGraphicsView.h"
 
 #include "DrawingBoardTools/CatBrushPixItem.h"
+//#include "DrawingBoardTools/CatBrushVectorPixItem.h"
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPixmapCache>

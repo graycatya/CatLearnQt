@@ -232,7 +232,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
     case WM_NCCALCSIZE: {
         const auto mode = static_cast<BOOL>(msg->wParam);
         const auto clientRect = mode ? &(reinterpret_cast<LPNCCALCSIZE_PARAMS>(msg->lParam)->rgrc[0]) : reinterpret_cast<LPRECT>(msg->lParam);
-        if (mode == TRUE && d->borderless) {
+        if (mode == TRUE && m_pCatFrameLessViewPrivate->borderless) {
             *result = WVR_REDRAW;
             //规避 拖动border进行resize时界面闪烁
             if (!isMaxWin(this) && !isFullWin(this)) {
@@ -258,7 +258,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
         break;
     }
     case WM_NCHITTEST: {
-        if (d->borderless) {
+        if (m_pCatFrameLessViewPrivate->borderless) {
             RECT winrect;
             GetWindowRect(HWND(winId()), &winrect);
 
@@ -273,10 +273,12 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
                 }
             }
 
-            if (d->m_titleItem) {
-                auto titlePos = d->m_titleItem->mapToGlobal(d->m_titleItem->position());
+            if (m_pCatFrameLessViewPrivate->m_titleItem) {
+                auto titlePos = m_pCatFrameLessViewPrivate->m_titleItem->mapToGlobal(m_pCatFrameLessViewPrivate->m_titleItem->position());
                 titlePos = mapFromGlobal(titlePos.toPoint());
-                auto titleRect = QRect(titlePos.x(), titlePos.y(), d->m_titleItem->width(), d->m_titleItem->height());
+                auto titleRect = QRect(titlePos.x(), titlePos.y(),
+                                       m_pCatFrameLessViewPrivate->m_titleItem->width(),
+                                       m_pCatFrameLessViewPrivate->m_titleItem->height());
                 double dpr = qApp->devicePixelRatio();
                 QPoint pos = mapFromGlobal(QPoint(x / dpr, y / dpr));
                 if (titleRect.contains(pos)) {

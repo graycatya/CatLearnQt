@@ -15,6 +15,7 @@ public:
     void DrawPress(int id,const QPointF &point);
     void DrawMove(int id,const QPointF &lastPoint,const QPointF &curPoint);
     void DrawRelease(int id, const QPointF &point);
+    void DrawArcPress(const QRectF rect, qreal startangle, qreal updateangle);
     void SetBackgroundColor(const QColor & color);
     void SetMode(CatBrushObject::BrushMode mode);
     void SetBrushSize(QRectF size);

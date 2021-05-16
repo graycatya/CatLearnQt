@@ -55,8 +55,6 @@ void CatBrushPixItem::DrawMove(int id, const QPointF &lastPoint, const QPointF &
     {*/
         BrushObject->CreateNewPixmapPath();
     //}
-
-
     BrushObject->AddToPath(lastPoint, curPoint, this);
 
     if(m_yBrushMode == CatBrushObject::BrushMode::PenBrushMode)
@@ -95,6 +93,29 @@ void CatBrushPixItem::DrawRelease(int id, const QPointF &point)
     m_yBrushObjects.remove(id);
     delete BrushObject;
     BrushObject = nullptr;
+}
+
+void CatBrushPixItem::DrawArcPress(const QRectF rect, qreal startangle, qreal updateangle)
+{
+    if(m_pRealPainter != nullptr && m_pCatBrushPixBufferItem != nullptr)
+    {
+
+        m_pRealPainter->setCompositionMode(QPainter::CompositionMode_Source);
+        m_pRealPainter->setRenderHint(QPainter::Antialiasing, true);
+        m_pRealPainter->setPen(QPen(Qt::red, 5, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+        //QPainterPath path = object->StrokePixmapPath(5);
+        QPointF point = rect.topLeft() - boundingRect().topLeft();
+        qreal rectw = rect.width();
+        qreal recth = rect.height();
+
+
+        QRectF arcr = QRectF(point.rx(), point.ry(), rectw, recth);
+        m_pRealPainter->drawArc(arcr, startangle, updateangle);
+
+        this->setPixmap(*m_pRealBrush);
+        this->update();
+        //this->update(path.boundingRect());
+    }
 }
 
 void CatBrushPixItem::SetBackgroundColor(const QColor &color)

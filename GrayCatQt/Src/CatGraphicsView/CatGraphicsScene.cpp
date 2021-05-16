@@ -6,12 +6,14 @@
 #include "CatGraphicsView.h"
 
 #include "DrawingBoardTools/CatBrushPixItem.h"
-//#include "DrawingBoardTools/CatBrushVectorPixItem.h"
+#include "DrawingBoardTools/CatBrushArcBufferItem.h"
 
 #include <QGraphicsSceneMouseEvent>
 #include <QPixmapCache>
 #include <QDebug>
 #include <QTimer>
+#include <QSvgRenderer>
+#include <QSvgGenerator>
 
 QGraphicsView* GetView(QGraphicsScene* scene)
 {
@@ -24,7 +26,7 @@ CatGraphicsScene::CatGraphicsScene(QObject *parent)
     , m_yView(nullptr)
     , m_pCatGraphicsObject(new CatGraphicsObject(this))
 {
-
+    m_pCatBrushArcBufferItem = nullptr;
     //InitProperty();
 }
 
@@ -129,8 +131,35 @@ void CatGraphicsScene::AddTeachingToolCompass()
     TeachingToolCompass *Teaching = new TeachingToolCompass;
     this->addItem(Teaching);
     m_pTeachingToolCompass.push_back(Teaching);
-    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::PEN
-            || m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::ERASER)
+    connect(Teaching, &AbsTeachingTool::HoverEntered, this, [=](){
+        //qDebug() << "compass hover";
+        m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::CAT_DRAWINGBOARD_STATE::TeachingPen);
+    });
+    connect(Teaching, &AbsTeachingTool::HoverLeaveed, this, [=](){
+        m_pCatGraphicsObject->SetDrawingBoardState(m_pCatGraphicsObject->GetLastDrawingBoardState());
+    });
+    connect(Teaching, &AbsTeachingTool::ArcStart, this, [=](QRectF rect, qreal startAngle){
+        m_pCatBrushArcBufferItem = new CatBrushArcBufferItem();
+        m_pCatBrushArcBufferItem->SetProperty(Qt::red, 5);
+        m_pCatBrushArcBufferItem->ArcStart(rect, startAngle * 16);
+        this->addItem(m_pCatBrushArcBufferItem);
+    });
+    connect(Teaching, &AbsTeachingTool::ArcUpdate, this, [=](qreal updateAngle){
+        m_pCatBrushArcBufferItem->ArcUpdate(updateAngle * 16);
+    });
+    connect(Teaching, &AbsTeachingTool::ArcEnd, this, [=](){
+        m_pCatBrushPixItem->DrawArcPress(m_pCatBrushArcBufferItem->GetRectF(),
+                                         m_pCatBrushArcBufferItem->GetStartAngle(),
+                                         m_pCatBrushArcBufferItem->GetUpdateAngle());
+        this->removeItem(m_pCatBrushArcBufferItem);
+        m_pCatBrushArcBufferItem = nullptr;
+    });
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::PEN)
+    {
+        Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
+        Teaching->update();
+    }
+    if(m_pCatGraphicsObject->GetDrawingBoardState() == CatGraphicsObject::ERASER)
     {
         Teaching->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
     }
@@ -146,7 +175,7 @@ void CatGraphicsScene::Clear()
 
     m_pCatBrushPixItem = nullptr;
     m_pCatBrushPixItem = new CatBrushPixItem();
-    m_pCatBrushPixItem->SetBackgroundColor(Qt::transparent);
+    //m_pCatBrushPixItem->SetBackgroundColor(Qt::transparent);
     m_pCatBrushPixItem->SetBrushSize(this->sceneRect());
 
     this->addItem(m_pCatBrushPixItem);
@@ -231,7 +260,7 @@ void CatGraphicsScene::InitProperty()
     m_pCatGraphicsObject->SetDrawingBoardState(CatGraphicsObject::SELECT);
 
     m_pCatBrushPixItem = new CatBrushPixItem();
-    m_pCatBrushPixItem->SetBackgroundColor(Qt::transparent);
+    //m_pCatBrushPixItem->SetBackgroundColor(Qt::transparent);
     m_pCatBrushPixItem->SetBrushSize(this->sceneRect());
     this->addItem(m_pCatBrushPixItem);
     //QPixmapCache::setCacheLimit(204800);
@@ -429,7 +458,7 @@ void CatGraphicsScene::On_DrawingBoard_PenState()
     m_pCatBrushPixItem->SetMode(CatBrushObject::BrushMode::PenBrushMode);
     foreach(auto temp, m_pTeachingToolCompass)
     {
-        temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_DORMANCY);
+        temp->SetState(AbsTeachingTool::TEAHINGTOOL_STATE_PEN);
     }
     foreach(auto temp, m_pTeachingToolProtractor)
     {

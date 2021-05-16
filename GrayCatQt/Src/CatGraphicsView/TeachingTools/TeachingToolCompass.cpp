@@ -29,6 +29,7 @@ const qreal CompassesOutriggerHeight = 16;
 TeachingToolCompass::TeachingToolCompass()
 {
     InitProperty();
+    this->update();
 }
 
 TeachingToolCompass::~TeachingToolCompass()
@@ -331,8 +332,13 @@ void TeachingToolCompass::PaintCompassesSpindle(QPainter *painter)
     } else {
         rotation = 360 - angleInDegrees();
     }
+    if(rotation > 5000)
+    {
+        rotation = 0;
+    }
     if(GetState() != TEAHINGTOOL_STATE_NONE && GetState() != TEAHINGTOOL_STATE_DORMANCY)
     {
+
         QString angle = QString("%1°").arg(QString::number(rotation, 'f', 1));
         QFont font = painter->font();
         font.setPixelSize(11);

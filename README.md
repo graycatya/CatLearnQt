@@ -105,8 +105,9 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | 目录 | 说明 | 备注 |
 |:--:|:--:|:--:|
 | doc | 文档目录 | 保存了项目所需的文档，描述了各个平台的配置，以及项目模块说明等。 |
-| font | 字体文件目录 | 提供了GrayCatQt项目所使用的字体(Ubuntu)。 |
-| GrayCatQt | 模块集成演示项目 | 该项目以QWidget为基础开发，演示了QWidget，QQuickWidget，QGraphicsView等模块的项目。 |
+| GrayCatQt | GrayCatQt模块 | 提供了基于QWidget，QGraphicsView自定义控件集。 |
+| GrayCatQtQuick | GrayCatQtQuick模块 | 提供了基于Quick,Qml实现的自定义控件集合。 |
+| Examples | 模块集成演示项目 | 该项目以QWidget为基础开发，演示了QWidget，QQuickWidget，QGraphicsView等模块的项目。 |
 | scripts | 脚步文件路径 | 持续集成相关配置，用于自动化构建、发布所需要的脚步 |
 | .github | github-Actions配置 | 持续集成相关配置，用于自动化构建、发布 |
 

@@ -34,17 +34,9 @@ Debug:RCC_DIR = debug/.rcc
 INCLUDEPATH += Src
 if(!contains(DEFINES,WEBASSEMBLY)) {
 include($$PWD/Src/SingleApplication/singleapplication.pri)
-include($$PWD/Src/CatNetWork/CatNetWork.pri)
 }
-include(Src/CatUniversal/CatUniversal.pri)
-include(Src/CatLog/CatLog.pri)
 include(Src/CatWidget/CatWidget.pri)
 include(Src/CatGraphicsView/CatGraphicsView.pri)
-if(!contains(DEFINES,IOS_APP)) {
-if(!contains(DEFINES,WEBASSEMBLY)) {
-include(Src/CatSerial/CatSerial.pri)
-}
-}
 include(Src/CatControl/CatControl.pri)
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

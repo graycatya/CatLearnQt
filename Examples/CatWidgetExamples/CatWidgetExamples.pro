@@ -38,6 +38,7 @@ DEFINES += APP_NAME=\\\"'CatWidgetExamples'\\\"
 
 include($$PWD/CatWidgetExamples.pri)
 include($$PWD/../../GrayCatQt/GrayCatQt.pri)
+include($$PWD/../../GrayCatQtCore/GrayCatQtCore.pri)
 
 RESOURCES += \
     Resource/Resource.qrc

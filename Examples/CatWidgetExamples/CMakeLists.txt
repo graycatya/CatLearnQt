@@ -3,6 +3,7 @@
 project(CatWidgetExamples LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(QT_QMAKE_EXECUTABLE ON)
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -28,8 +29,8 @@ load_name_static(STATIC_NAME)
 message(STATUS ${STATIC_NAME})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/CatLog)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt/Src/SingleApplication)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQtCore/Src/CatLog)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQtCore/Src/SingleApplication)
 
 find_package(Qt5 COMPONENTS Core Gui Widgets Quick QuickWidgets Svg REQUIRED)
 
@@ -56,6 +57,7 @@ file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt GrayCatQt.out)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQtCore GrayCatQtCore.out)
 add_subdirectory(CatConfig)
 add_subdirectory(QuickWidgetTools)
 add_subdirectory(WidgetTools)
@@ -66,6 +68,7 @@ add_executable(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                                 ${PROJECT_QRC_FILES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE GrayCatQt)
+target_link_libraries(${PROJECT_NAME} PRIVATE GrayCatQtCore)
 target_link_libraries(${PROJECT_NAME} PRIVATE CatConfig)
 #target_link_libraries(${PROJECT_NAME} PUBLIC ImageTools)
 target_link_libraries(${PROJECT_NAME} PRIVATE WidgetTools)

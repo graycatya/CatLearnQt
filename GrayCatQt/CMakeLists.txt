@@ -32,19 +32,8 @@ find_android_gui()
 
 add_subdirectory(Src/CatControl)
 add_subdirectory(Src/CatGraphicsView)
-add_subdirectory(Src/CatLog)
-
-if((NOT WEBASSEMBLY) OR (NOT IOS))
-    add_subdirectory(Src/CatSerial)
-endif((NOT WEBASSEMBLY) OR (NOT IOS))
-
-add_subdirectory(Src/CatUniversal)
 add_subdirectory(Src/CatWidget)
 
-if((NOT WEBASSEMBLY))
-    add_subdirectory(Src/CatNetWork)
-    add_subdirectory(Src/SingleApplication)
-endif((NOT WEBASSEMBLY))
 
 add_library(${STATIC_NAME} STATIC)
 
@@ -59,33 +48,14 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatControl)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatGraphicsView)
-target_link_libraries(${PROJECT_NAME} PUBLIC CatLog_Sington)
-if((NOT WEBASSEMBLY) OR (NOT IOS))
-    target_link_libraries(${PROJECT_NAME} PUBLIC CatSerial)
-endif((NOT WEBASSEMBLY) OR (NOT IOS))
-
-target_link_libraries(${PROJECT_NAME} PUBLIC CatUniversal)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatWidget)
 
-if((NOT WEBASSEMBLY))
-    target_link_libraries(${PROJECT_NAME} PUBLIC CatNetWork)
-    target_link_libraries(${PROJECT_NAME} PUBLIC SingleApplication)
-endif((NOT WEBASSEMBLY))
 target_link_android_gui(${PROJECT_NAME})
 
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PUBLIC CatControl)
 target_link_libraries(${STATIC_NAME} PUBLIC CatGraphicsView)
-target_link_libraries(${STATIC_NAME} PUBLIC CatLog_Sington)
-if((NOT WEBASSEMBLY) OR (NOT IOS))
-    target_link_libraries(${STATIC_NAME} PUBLIC CatSerial)
-endif((NOT WEBASSEMBLY) OR (NOT IOS))
-target_link_libraries(${STATIC_NAME} PUBLIC CatUniversal)
 target_link_libraries(${STATIC_NAME} PUBLIC CatWidget)
-if((NOT WEBASSEMBLY))
-    target_link_libraries(${STATIC_NAME} PUBLIC CatNetWork)
-    target_link_libraries(${STATIC_NAME} PUBLIC SingleApplication)
-endif((NOT WEBASSEMBLY))
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

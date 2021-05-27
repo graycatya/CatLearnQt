@@ -22,7 +22,8 @@ include(GrayCatQt)
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../GrayCatQt/Src/CatLog)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../GrayCatQtCore/Src/CatLog)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../../../GrayCatQtCore/Src/CatUniversal)
 find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")

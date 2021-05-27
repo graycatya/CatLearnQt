@@ -45,4 +45,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Gui)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${DIR_LIB_SRCS})

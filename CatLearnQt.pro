@@ -11,6 +11,7 @@ OTHER_FILES += *.md \
 if(!contains(DEFINES,WEBASSEMBLY)) {
 SUBDIRS += $$PWD/Examples/CatWidgetExamples/CatWidgetExamples.pro \
            $$PWD/GrayCatQt/GrayCatQt.pro \
+           $$PWD/GrayCatQtCore/GrayCatQtCore.pro \
 }
 
 if(contains(DEFINES,WEBASSEMBLY)) {

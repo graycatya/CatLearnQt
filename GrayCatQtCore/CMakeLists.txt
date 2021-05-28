@@ -20,7 +20,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../module/cmake")
 
 include(GrayCatQt)
 
-load_name_static(STATIC_NAME) 
+load_name_static(STATIC_NAME)
 message(STATUS ${STATIC_NAME})
 
 find_package(Qt5 COMPONENTS Core REQUIRED)

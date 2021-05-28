@@ -25,7 +25,7 @@ Debug:MOC_DIR = debug/.moc
 Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
 
-DEFINES += APP_VERSION=\\\"'v1.0.0'\\\"
+DEFINES += APP_VERSION=\\\"'v1.2.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
 DEFINES += APP_NAME=\\\"'CatWidgetWebAssEmblyExamples'\\\"
 

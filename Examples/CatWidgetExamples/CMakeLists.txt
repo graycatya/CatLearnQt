@@ -13,7 +13,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_definitions(-DAPP_NAME="CatWidgetExamples")
-add_definitions(-DAPP_VERSION="v1.0.0")
+add_definitions(-DAPP_VERSION="v1.2.0")
 add_definitions(-DLOG_PATH="Logs/")
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})

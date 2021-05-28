@@ -34,9 +34,6 @@ defineTest(minQtVersion) {
 
 
 INCLUDEPATH += $$PWD/Src
-if(!contains(DEFINES,WEBASSEMBLY)) {
-include($$PWD/Src/SingleApplication/singleapplication.pri)
-}
 include($$PWD/Src/CatWidget/CatWidget.pri)
 include($$PWD/Src/CatGraphicsView/CatGraphicsView.pri)
 include($$PWD/Src/CatControl/CatControl.pri)

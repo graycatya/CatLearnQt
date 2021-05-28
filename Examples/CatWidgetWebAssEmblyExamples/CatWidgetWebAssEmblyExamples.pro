@@ -31,6 +31,7 @@ DEFINES += APP_NAME=\\\"'CatWidgetWebAssEmblyExamples'\\\"
 
 include($$PWD/CatWidgetWebAssEmblyExamples.pri)
 include($$PWD/../../GrayCatQt/GrayCatQt.pri)
+include($$PWD/../../GrayCatQtCore/GrayCatQtCore.pri)
 
 RESOURCES += \
     Resource/Resource.qrc

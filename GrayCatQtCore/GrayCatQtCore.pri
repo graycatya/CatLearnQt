@@ -28,6 +28,9 @@ defineTest(minQtVersion) {
 
 INCLUDEPATH += $$PWD/Src
 if(!contains(DEFINES,WEBASSEMBLY)) {
+include($$PWD/Src/SingleApplication/singleapplication.pri)
+}
+if(!contains(DEFINES,WEBASSEMBLY)) {
 include($$PWD/Src/CatNetWork/CatNetWork.pri)
 }
 include($$PWD/Src/CatUniversal/CatUniversal.pri)

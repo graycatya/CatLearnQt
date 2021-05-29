@@ -11,9 +11,9 @@
 - [环境搭建](#环境搭建)
 - [项目结构](#项目结构)
   - [项目根目录说明](#项目根目录说明)
-  - [现成模块](#现成模块)
-    - [GrayCatQt 模块](#graycatqt-模块)
+  - [核心库](#核心库)
     - [Examples 项目](#examples-项目)
+    - [赞助](#赞助)
 
 ## CatLearnQt
 
@@ -113,20 +113,15 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | .github | github-Actions配置 | 持续集成相关配置，用于自动化构建、发布 |
 
 
-### 现成模块
+### 核心库
 
-#### GrayCatQt 模块
-
-| 目录 | 说明 | 文档 |
-|:--:|:--:|:--:|
-| GrayCatQt/Src/CatControl | 提供了自定义子控件 | [doc](./GrayCatQt/Src/CatControl/README.md) |
-| GrayCatQt/Src/CatGraphiceView | 提供了基于GraphiceView模块与控件集 | [doc](./GrayCatQt/Src/CatGraphicsView/README.md) |
-| GrayCatQt/Src/CatLog | 日志模块 | [doc](./GrayCatQt/Src/CatLog/README.md) |
-| GrayCatQt/Src/CatNetWork | 网络模块 | [doc](./GrayCatQt/Src/CatNetWork/README.md) |
-| GrayCatQt/Src/CatSerial | 串口模块 | [doc](./GrayCatQt/Src/CatSerial/README.md) |
-| GrayCatQt/Src/CatUniversal | 通用模块，文件，字体，QSetting配置，线程，与线程池 | [doc](./GrayCatQt/Src/CatUniversal/README.md) |
-| GrayCatQt/Src/CatWidget | 提供了基于Widget实现的模块，与CatControl不同的是它是由多个子控件实现的一整个模块体系。 | [doc](./GrayCatQt/Src/CatWidget/README.md) |
-| GrayCatQt/Src/SingleApplication | 程序单例模块 | [doc](./GrayCatQt/Src/SingleApplication/README.md) |
+| 库 | 说明链接 |
+|:--:|:--:|
+| GrayCatQt/Src/CatControl | 提供了自定义子控件 |
+| GrayCatQt/Src/CatGraphiceView | 提供了基于GraphiceView模块与控件集 |
+| GrayCatQt/Src/CatLog | 日志模块 |
+| GrayCatQt/Src/CatNetWork | 网络模块 |
+| GrayCatQt/Src/CatSerial | 串口模块 |
 
 
 #### Examples 项目
@@ -136,3 +131,9 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | Examples/CatQuickExamples | 演示项目开发中 |
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
 | Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples裁减版WebAssmbly版项目演示 |
+
+#### 赞助
+
+觉得分享的内容还不错, 就赞助下作者吧~~~
+
+<img src="./doc/Images/Alipay.png" width="31%" height="30%" /><img src="./doc/Images/WeChat.png" width="35%" height="35%" />

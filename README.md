@@ -22,6 +22,8 @@
         - [qmake](#qmake-2)
         - [cmake](#cmake-2)
   - [Examples 项目](#examples-项目)
+    - [CatWidgetExamples效果预览](#catwidgetexamples效果预览)
+    - [MetroDemo惠州地铁案例效果预览](#metrodemo惠州地铁案例效果预览)
   - [赞助](#赞助)
 
 ## CatLearnQt
@@ -264,6 +266,31 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | Examples/CatQuickExamples | 演示项目开发中 |
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
 | Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples裁减版WebAssmbly版项目演示 |
+| Examples/MetroDemo | 基于Quick实现惠州地铁案例 |
+
+#### CatWidgetExamples效果预览
+
+* 基于Widget设计的控件
+
+![widgetdemo](./doc/PubImages/widgetdemo.png)
+
+* 基于QGraphicsView画板控件演示
+
+![boarddemo](./doc/PubImages/boarddemo.png)
+
+* 基于QQuickWidget控件演示
+
+![quickwidgetdemo](./doc/PubImages/quickwidgetdemo.png)
+
+* 设置相关
+
+![settingdemo](./doc/PubImages/settingdemo.png)
+
+#### MetroDemo惠州地铁案例效果预览
+
+[在线演示(https://graycatya.gitee.io/webassemblyExample/MetroDemo/MetroDemo.html)](https://graycatya.gitee.io/webassemblyExample/MetroDemo/MetroDemo.html)
+
+![metrodemo](./doc/PubImages/metrodemo.gif)
 
 ### 赞助
 

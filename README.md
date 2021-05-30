@@ -9,11 +9,10 @@
   - [编译](#编译)
 - [开发环境](#开发环境)
 - [环境搭建](#环境搭建)
-- [项目结构](#项目结构)
   - [项目根目录说明](#项目根目录说明)
   - [核心库](#核心库)
-    - [Examples 项目](#examples-项目)
-    - [赞助](#赞助)
+  - [Examples 项目](#examples-项目)
+  - [赞助](#赞助)
 
 ## CatLearnQt
 
@@ -28,9 +27,11 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 |:--:|:--:|
 | ![GitHub] | [Github](https://github.com/graycatya/CatLearnQt) |
 | ![Gitee] | [Gitee](https://gitee.com/graycatya/CatLearnQt) |
+| ![CodeChina] | [CodeChina](https://codechina.csdn.net/qq_32312307/CatLearnQt) |
 
 [GitHub]: ./doc/Images/github.svg
 [Gitee]: ./doc/Images/gitee-fill-round.svg
+[CodeChina]: ./doc/Images/codechina.png
 
 ## 徽章预览
 
@@ -82,22 +83,14 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 ## 环境搭建
 
 
-|系统|文档|
-|:--:|:--:|
-| Windows | [windows.md](doc/windows/windows.md) |
-| Linux | [linux.md](doc/linux/linux.md) |
-| MacOs | [macos.md](doc/macos/macos.md) |
-| Android | [android.md](doc/android/android.md) |
-| Ios | [ios.md](doc/ios/ios.md) |
-| WebAssEmblyExamples | [webassembly.md](doc/QtDoc/webassembly/webassembly.md) |
-
-
-
-## 项目结构
-
-| 描述 | 文档 |
-|:--:|:--:|
-| 项目目录结构 | [ProjectDirectoryStructure](./doc/ProjectDirectoryStructure.md) |
+|系统|
+|:--:|
+| [windows](doc/windows/windows.md) |
+| [linux](doc/linux/linux.md) |
+| [macos](doc/macos/macos.md) |
+| [android](doc/android/android.md) |
+| [ios](doc/ios/ios.md) |
+| [webassembly](doc/QtDoc/webassembly/webassembly.md) |
 
 
 ### 项目根目录说明
@@ -117,14 +110,11 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 
 | 库 | 说明链接 |
 |:--:|:--:|
-| GrayCatQt/Src/CatControl | 提供了自定义子控件 |
-| GrayCatQt/Src/CatGraphiceView | 提供了基于GraphiceView模块与控件集 |
-| GrayCatQt/Src/CatLog | 日志模块 |
-| GrayCatQt/Src/CatNetWork | 网络模块 |
-| GrayCatQt/Src/CatSerial | 串口模块 |
+| GrayCatQt | 提供了基于QWidget，QGraphicsView自定义控件集。 |
+| GrayCatQtQuick | 提供了基于GraphiceView模块与控件集 |
+| GrayCatQtCore | 提供了串口，网络，蓝牙，日志，线程等模块。 |
 
-
-#### Examples 项目
+### Examples 项目
 
 | 目录 | 说明 |
 |:--:|:--:|
@@ -132,8 +122,8 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
 | Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples裁减版WebAssmbly版项目演示 |
 
-#### 赞助
+### 赞助
 
 觉得分享的内容还不错, 就赞助下作者吧~~~
 
-<img src="./doc/Images/Alipay.png" width="31%" height="30%" /><img src="./doc/Images/WeChat.png" width="35%" height="35%" />
+<img src="./doc/Images/Alipay.png" width="35%" height="35%" /><img src="./doc/Images/WeChat.png" width="35%" height="35%" />

@@ -11,6 +11,16 @@
 - [环境搭建](#环境搭建)
   - [项目根目录说明](#项目根目录说明)
   - [核心库](#核心库)
+    - [使用核心库](#使用核心库)
+      - [GrayCatQt](#graycatqt)
+        - [qmake](#qmake)
+        - [cmake](#cmake)
+      - [GrayCatQtQuick](#graycatqtquick)
+        - [qmake](#qmake-1)
+        - [cmake](#cmake-1)
+      - [GrayCatQtCore](#graycatqtcore)
+        - [qmake](#qmake-2)
+        - [cmake](#cmake-2)
   - [Examples 项目](#examples-项目)
   - [赞助](#赞助)
 
@@ -113,6 +123,139 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | GrayCatQt | 提供了基于QWidget，QGraphicsView自定义控件集。 |
 | GrayCatQtQuick | 提供了基于GraphiceView模块与控件集 |
 | GrayCatQtCore | 提供了串口，网络，蓝牙，日志，线程等模块。 |
+
+#### 使用核心库
+
+##### GrayCatQt
+
+###### qmake
+
+* pri文件用法
+
+使用该核心库只需要导入，模块文件夹下的'.pri'文件
+
+GrayCatYa需要使用的资源将以qrc资源方式被引用，注意资源的路径名，不要跟新的qrc资源文件重路径。
+
+导入pri后不需要额外的编译，生成dll或插件
+
+>步骤
+
+```
+include(GrayCatQt/GrayCatQt.pri)
+```
+
+* pro文件用法
+
+如果需要编译成库,打开GrayCatQt目录下的pro文件编译即可。
+
+```
+cd GrayCatQt
+qmake GrayCatQt.pro
+```
+
+###### cmake
+
+1. 先拷贝module文件夹到你项目目录下，这里面有cmake要用到的模块
+
+```
+# 在你的CMakeLists.txt中使用该模块
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/module/cmake")
+include(GrayCatQt)
+```
+
+2. 拷贝GrayCatQt到你项目目录下，注意它跟module文件在同级目录
+
+```
+# 在你的CMakeLists.txt中使用该模块
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQt GrayCatQt.out)
+```
+
+
+##### GrayCatQtQuick
+
+###### qmake
+
+* pri文件用法
+
+使用该核心库只需要导入，模块文件夹下的'.pri'文件
+
+GrayCatQtQuick需要使用的资源将以qrc资源方式被引用，注意资源的路径名，不要跟新的qrc资源文件重路径。
+
+导入pri后不需要额外的编译，生成dll或插件
+
+>步骤
+
+```
+include(GrayCatQtQuick/GrayCatQtQuick.pri)
+```
+
+* pro文件用法
+
+如果需要编译成库,打开GrayCatQtQuick目录下的pro文件编译即可。
+
+```
+cd GrayCatQtQuick
+qmake GrayCatQtQuick.pro
+```
+
+###### cmake
+
+1. 先拷贝module文件夹到你项目目录下，这里面有cmake要用到的模块
+
+```
+# 在你的CMakeLists.txt中使用该模块
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/module/cmake")
+include(GrayCatQt)
+```
+
+2. 拷贝GrayCatQtQuick到你项目目录下，注意它跟module文件在同级目录
+
+```
+# 在你的CMakeLists.txt中使用该模块
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtQuick GrayCatQtQuick.out)
+```
+
+##### GrayCatQtCore
+
+###### qmake
+
+* pri文件用法
+
+使用该核心库只需要导入，模块文件夹下的'.pri'文件
+
+导入pri后不需要额外的编译，生成dll或插件
+
+>步骤
+
+```
+include(GrayCatQtCore/GrayCatQtCore.pri)
+```
+
+* pro文件用法
+
+如果需要编译成库,打开GrayCatQtCore目录下的pro文件编译即可。
+
+```
+cd GrayCatQtCore
+qmake GrayCatQtCore.pro
+```
+
+###### cmake
+
+1. 先拷贝module文件夹到你项目目录下，这里面有cmake要用到的模块
+
+```
+# 在你的CMakeLists.txt中使用该模块
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/module/cmake")
+include(GrayCatQt)
+```
+
+2. 拷贝GrayCatQtCore到你项目目录下，注意它跟module文件在同级目录
+
+```
+# 在你的CMakeLists.txt中使用该模块
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
+```
 
 ### Examples 项目
 

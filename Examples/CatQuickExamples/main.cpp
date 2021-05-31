@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     CatFrameLessView view;
+    view.engine()->addImportPath(GrayCatQtQuickImport);
+    qDebug() << "GrayCatQtQuickImportPath: " << GrayCatQtQuickImport;
     view.setMinimumSize({ 800, 600 });
     view.resize(1440, 960);
     view.moveToScreenCenter();

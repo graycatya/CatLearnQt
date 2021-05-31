@@ -24,10 +24,15 @@ defineTest(minQtVersion) {
 }
 
 !minQtVersion(5, 12, 0) {
-    error("GrayCatQt minimum supported Qt5 version is 5.12.0")
+    error("GrayCatQtQuick minimum supported Qt5 version is 5.12.0")
 }
+
+DEFINES += GrayCatQtQuickImportPath=\\\"qrc:/GrayCatQtQuick/\\\"
 
 
 INCLUDEPATH += $$PWD/Src
 
 include($$PWD/Src/CatFrameless/CatFrameless.pri)
+
+#RESOURCES += \
+#    $$PWD/GrayCatQtQuick.qrc

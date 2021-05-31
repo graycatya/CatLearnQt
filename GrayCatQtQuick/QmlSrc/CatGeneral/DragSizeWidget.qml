@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 Rectangle {
     id: root 
@@ -262,6 +262,7 @@ Rectangle {
     }
 
     //右上角拖动大小
+
     DragWidget {
         id: righttopdragsize
         x: parent.width - width  

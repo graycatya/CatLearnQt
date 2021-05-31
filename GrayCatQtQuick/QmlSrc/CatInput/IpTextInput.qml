@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 
 Rectangle{
@@ -28,7 +28,6 @@ Rectangle{
 
     
     
-
     TextInput {
         id: ipone
         clip: true

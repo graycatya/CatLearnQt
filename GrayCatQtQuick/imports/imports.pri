@@ -1,6 +1,6 @@
 CONFIG(debug,debug|release){
     # debug mode use local file
-    win32{
+    win32 {
         path=$$system("cd")
         path ~=s,\\\\,/,g
     } else {
@@ -12,11 +12,11 @@ CONFIG(debug,debug|release){
     #DEFINES += GrayCatQtQuickImagePath=\\\"file:///$${path}/GrayCatQtQuick/Images/\\\"
 } else {
     # release mode use qrc file
-    RESOURCES += $$PWD/GrayCatQtQuick.qrc
+    RESOURCES += $$PWD/GrayCatQtQuick/GrayCatQtQuick.qrc
     # release mode set importPath with 'qrc:///'
     GrayCatQtQuickImport=\"qrc:/\"
     #GrayCatQtQuickImage=\"qrc:/GrayCatQtQuick/Images/\"
-    DEFINES += GrayCatQtQuickImportPath=\\\"qrc:///GrayCatQtQuick///\\\"
+    DEFINES += GrayCatQtQuickImportPath=\\\"qrc:///\\\"
     #DEFINES += GrayCatQtQuickImagePath=\\\"qrc:/GrayCatQtQuick/Images/\\\"
 }
 

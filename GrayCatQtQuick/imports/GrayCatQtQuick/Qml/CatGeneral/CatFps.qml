@@ -1,11 +1,11 @@
-pragma Singleton
+﻿//pragma Singleton
 import QtQuick 2.12
 import QtGraphicalEffects 1.12
-Item {
+Rectangle {
     id: root
     property int fps: 60 
     property int fpsCount: 0
-
+    visible: true
     property color textColor: "white"
     property int textSize: 32
     implicitHeight: 32

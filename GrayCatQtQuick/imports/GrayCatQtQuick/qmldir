@@ -1,0 +1,18 @@
+module GrayCatQtQuick
+plugin GrayCatQtQuick
+
+ImageFlicker 1.0 Qml/CatAnimation/ImageFlicker.qml
+ImageFlipable 1.0 Qml/CatAnimation/ImageFlipable.qml
+ImageMove 1.0 Qml/CatAnimation/ImageMove.qml
+ImageScale 1.0 Qml/CatAnimation/ImageScale.qml
+Marquee 1.0 Qml/CatAnimation/Marquee.qml
+TextOneByOneShow 1.0 Qml/CatAnimation/TextOneByOneShow.qml
+DragSizeWidget 1.0 Qml/CatGeneral/DragSizeWidget.qml
+DragWidget 1.0 Qml/CatGeneral/DragWidget.qml
+singleton CatFps 1.0 Qml/CatGeneral/CatFps.qml
+RotateCursor 1.0 Qml/CatGeneral/RotateCursor.qml
+TemplateWidget 1.0 Qml/CatGeneral/TemplateWidget.qml
+IpTextInput 1.0 Qml/CatInput/IpTextInput.qml
+ArcProgressBar 1.0 Qml/CatProgressBar/ArcProgressBar.qml
+ArcProgressBarCanvas 1.0 Qml/CatProgressBar/ArcProgressBarCanvas.qml
+BarTypeProgressBar 1.0 Qml/CatProgressBar/BarTypeProgressBar.qml

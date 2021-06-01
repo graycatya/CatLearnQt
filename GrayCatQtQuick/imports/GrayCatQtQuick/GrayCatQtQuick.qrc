@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/GrayCatQtQuick">
+        <file>qmldir</file>
+        <file>Qml/CatProgressBar/BarTypeProgressBar.qml</file>
+        <file>Qml/CatProgressBar/ArcProgressBarCanvas.qml</file>
+        <file>Qml/CatProgressBar/ArcProgressBar.qml</file>
+        <file>Qml/CatInput/IpTextInput.qml</file>
+        <file>Qml/CatGeneral/TemplateWidget.qml</file>
+        <file>Qml/CatGeneral/RotateCursor.qml</file>
+        <file>Qml/CatGeneral/DragWidget.qml</file>
+        <file>Qml/CatGeneral/DragSizeWidget.qml</file>
+        <file>Qml/CatGeneral/CatFps.qml</file>
+        <file>Qml/CatAnimation/TextOneByOneShow.qml</file>
+        <file>Qml/CatAnimation/Marquee.qml</file>
+        <file>Qml/CatAnimation/ImageScale.qml</file>
+        <file>Qml/CatAnimation/ImageMove.qml</file>
+        <file>Qml/CatAnimation/ImageFlipable.qml</file>
+        <file>Qml/CatAnimation/ImageFlicker.qml</file>
+        <file>Qml/CatButton/CatButtonImage.qml</file>
+        <file>Qml/CatBasics/CatTransArea.qml</file>
+        <file>Qml/CatImage/CatImageBase.qml</file>
+        <file>Qml/CatBasics/CatBasicsText.qml</file>
+        <file>Qml/CatBasics/CatBasicsToolTip.qml</file> 
+    </qresource>
+</RCC>

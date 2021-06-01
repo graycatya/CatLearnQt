@@ -20,11 +20,9 @@ Debug:MOC_DIR = debug/.moc
 Debug:RCC_DIR = debug/.rcc
 
 include(Src/CatFrameless/CatFrameless.pri)
+include($$PWD/imports/imports.pri)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-RESOURCES += \
-    GrayCatQtQuick.qrc

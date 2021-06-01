@@ -1,6 +1,6 @@
-﻿import QtQuick 2.0
+﻿import QtQuick 2.12
 
-Item {
+Image {
     width: sourceSize.width
     height: sourceSize.height
 }

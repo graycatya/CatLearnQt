@@ -26,9 +26,9 @@ defineTest(minQtVersion) {
 }
 
 
-#INCLUDEPATH += $$PWD/Src
+INCLUDEPATH += $$PWD/Src
 
-#include($$PWD/Src/CatFrameless/CatFrameless.pri)
+include($$PWD/Src/CatFrameless/CatFrameless.pri)
 include($$PWD/imports/imports.pri)
 
 #RESOURCES += \

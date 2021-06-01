@@ -3,7 +3,7 @@ import QtQuick.Controls 2.12
 
 ToolTip {
     id: catbasictooltip
-    contentItem: Text {
+    contentItem: CatBasicsText {
         text: catbasictooltip.text
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
@@ -13,4 +13,7 @@ ToolTip {
         color: catbasictooltip.color
     }
 
+    background: Rectangle {
+        id: tooltiprectangle
+    }
 }

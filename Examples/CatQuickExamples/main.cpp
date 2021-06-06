@@ -1,19 +1,21 @@
 ﻿#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
-//#include "CatFrameless/CatFrameLessView.h"
+#include "CatFrameless/CatFrameLessView.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
-/*
+#ifdef QT_OS_WIN7
+    QQmlApplicationEngine engine;
+    engine.addImportPath(GrayCatQtQuickImportPath);
+    engine.load( QUrl( "qrc:/win7main.qml" ) );
+#else
     CatFrameLessView view;
     //view.engine()->addImportPath(TaoQuickImportPath);
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
-    //qDebug() << "TaoQuickImportPath: " << TaoQuickImportPath;
-    qDebug() << "GrayCatQtQuickImportPath: " << GrayCatQtQuickImportPath;
 
     for(QString path : view.engine()->importPathList())
         qDebug() << path;
@@ -24,12 +26,7 @@ int main(int argc, char *argv[])
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     view.setSource(url);
     view.show();
-*/
+#endif
 
-    QQmlApplicationEngine engine;
-    engine.addImportPath(GrayCatQtQuickImportPath);
-    /*engine.addImportPath(TaoQuickImportPath);
-    qDebug() << "TaoQuickImportPath: " << TaoQuickImportPath;*/
-    engine.load( QUrl( "qrc:/win7main.qml" ) );
     return app.exec();
 }

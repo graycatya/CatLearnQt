@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Images/about_blue.png</file>
+        <file>Images/about_gray.png</file>
+        <file>Images/about_white.png</file>
+        <file>Images/close.png</file>
+        <file>Images/close_hove.png</file>
+        <file>Images/language_blue.png</file>
+        <file>Images/language_gray.png</file>
+        <file>Images/language_white.png</file>
+        <file>Images/max_gray.png</file>
+        <file>Images/max_white.png</file>
+        <file>Images/minimal_gray.png</file>
+        <file>Images/minimal_white.png</file>
+        <file>Images/normal_gray.png</file>
+        <file>Images/normal_white.png</file>
+        <file>Images/setting_blue.png</file>
+        <file>Images/setting_gray.png</file>
+        <file>Images/setting_white.png</file>
+        <file>Images/style_blue.png</file>
+        <file>Images/style_gray.png</file>
+        <file>Images/style_white.png</file>
+        <file>Images/portrait.png</file>
+    </qresource>
+</RCC>

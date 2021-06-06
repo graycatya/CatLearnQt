@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>win7main.qml</file>
+        <file>ProjectObject.qml</file>
     </qresource>
 </RCC>

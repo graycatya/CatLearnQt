@@ -5,6 +5,8 @@ CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
+#DEFINES += QT_OS_WIN7
+
 TARGET = CatQuickExamples
 
 Release:DESTDIR = release
@@ -25,4 +27,5 @@ SOURCES += \
     main.cpp
 
 RESOURCES += \
-    QmlSrc/QmlSrc.qrc
+    QmlSrc/QmlSrc.qrc \
+    Resource/Resource.qrc

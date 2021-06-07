@@ -1,4 +1,5 @@
 ﻿#include "CatWinMonitorSerial.h"
+#include <CatLog>
 #include <QDataStream>
 
 #include <Windows.h>
@@ -7,7 +8,6 @@
 #include <setupapi.h>
 #include <iostream>
 #include <atlstr.h> // CString
-#include <atlconv.h>
 using namespace std;
 
 #pragma comment (lib, "Kernel32.lib")
@@ -62,58 +62,71 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     if (DBT_DEVICEARRIVAL == wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
-        //std::string str(CW2A(szTmp.GetString()));
-        QString dev =  QLatin1String((char*)(LPCTSTR)szTmp);
+
+        std::string STDStr(CW2A(szTmp.GetString()));
+        QString log =  "win api add: " + QString::fromStdString(STDStr);
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+        QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
-        mes = mes.at(1).split('&');
-        QString vid = mes.at(0).split('_').at(1);
-        QString pid = mes.at(1).split('_').at(1);
+        if(mes.at(0) == "USB")
+        {
+            mes = mes.at(1).split('&');
+            QString vid = mes.at(0).split('_').at(1);
+            QString pid = mes.at(1).split('_').at(1);
 
-        qint64 nvid = vid.toUInt(nullptr, 16), npid = pid.toUInt(nullptr, 16);
+            qint64 nvid = vid.toUInt(nullptr, 16), npid = pid.toUInt(nullptr, 16);
 
-        /*QByteArray vidbytes = QByteArray::fromHex(vid.toUtf8());
-        QDataStream vidstream(&vidbytes, QIODevice::ReadOnly);
-        // 注意字节大端小端
-        vidstream.setByteOrder(QDataStream::BigEndian);
-        vidstream >> nvid;
+            /*QByteArray vidbytes = QByteArray::fromHex(vid.toUtf8());
+            QDataStream vidstream(&vidbytes, QIODevice::ReadOnly);
+            // 注意字节大端小端
+            vidstream.setByteOrder(QDataStream::BigEndian);
+            vidstream >> nvid;
 
-        QByteArray pidbytes = QByteArray::fromHex(pid.toUtf8());
-        QDataStream pidstream(&pidbytes, QIODevice::ReadOnly);
-        // 注意字节大端小端
-        pidstream.setByteOrder(QDataStream::BigEndian);
-        pidstream >> npid;*/
+            QByteArray pidbytes = QByteArray::fromHex(pid.toUtf8());
+            QDataStream pidstream(&pidbytes, QIODevice::ReadOnly);
+            // 注意字节大端小端
+            pidstream.setByteOrder(QDataStream::BigEndian);
+            pidstream >> npid;*/
 
 
-        emit CatWinMonitorSerial::Instance()->AddSerial(npid, nvid);
+            emit CatWinMonitorSerial::Instance()->AddSerial(npid, nvid);
+        }
 
     }
     else
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        //std::string STDStr = szTmp.GetBuffer(0);
+        std::string STDStr(CW2A(szTmp.GetString()));
+        QString log =  "win api del: " + QString::fromStdString(STDStr);
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
 
-        QString dev = QLatin1String((char*)(LPCTSTR)szTmp);
+        QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
-        mes = mes.at(1).split('&');
-        QString vid = mes.at(0).split('_').at(1);
-        QString pid = mes.at(1).split('_').at(1);
+        if(mes.at(0) == "USB")
+        {
+            mes = mes.at(1).split('&');
+            QString vid = mes.at(0).split('_').at(1);
+            QString pid = mes.at(1).split('_').at(1);
 
-        qint64 nvid = vid.toUInt(nullptr, 16), npid = pid.toUInt(nullptr, 16);
+            qint64 nvid = vid.toUInt(nullptr, 16), npid = pid.toUInt(nullptr, 16);
 
-        /*QByteArray vidbytes = QByteArray::fromHex(vid.toUtf8());
-        QDataStream vidstream(&vidbytes, QIODevice::ReadOnly);
-        // 注意字节大端小端
-        vidstream.setByteOrder(QDataStream::BigEndian);
-        vidstream >> nvid;
+            /*QByteArray vidbytes = QByteArray::fromHex(vid.toUtf8());
+            QDataStream vidstream(&vidbytes, QIODevice::ReadOnly);
+            // 注意字节大端小端
+            vidstream.setByteOrder(QDataStream::BigEndian);
+            vidstream >> nvid;
 
-        QByteArray pidbytes = QByteArray::fromHex(pid.toUtf8());
-        QDataStream pidstream(&pidbytes, QIODevice::ReadOnly);
-        // 注意字节大端小端
-        pidstream.setByteOrder(QDataStream::BigEndian);
-        pidstream >> npid;*/
+            QByteArray pidbytes = QByteArray::fromHex(pid.toUtf8());
+            QDataStream pidstream(&pidbytes, QIODevice::ReadOnly);
+            // 注意字节大端小端
+            pidstream.setByteOrder(QDataStream::BigEndian);
+            pidstream >> npid;*/
 
-        emit CatWinMonitorSerial::Instance()->DeleteSerial(npid, nvid);
+            emit CatWinMonitorSerial::Instance()->DeleteSerial(npid, nvid);
+        }
     }
 
 }
@@ -221,7 +234,7 @@ DWORD WINAPI ThrdFunc(LPVOID lpParam)
     {
         if (msg.message == THRD_MESSAGE_EXIT)
         {
-            cout << "worker receive the exiting Message..." << endl;
+            //cout << "worker receive the exiting Message..." << endl;
             return 0;
         }
 
@@ -237,9 +250,8 @@ CatWinMonitorSerial::CatWinMonitorSerial()
 {
     hThread = CreateThread(NULL, 0, ThrdFunc, NULL, 0, &iThread);
     if (hThread == NULL) {
-        return;
-        /*QString log = "CatWinMonitorSerial CreateThread Error ";
-        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));*/
+        QString log = "CatWinMonitorSerial CreateThread Error ";
+        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
     }
 }
 

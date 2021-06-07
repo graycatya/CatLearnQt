@@ -1,4 +1,4 @@
-﻿<RCC>
+<RCC>
     <qresource prefix="/GrayCatQtQuick">
         <file>qmldir</file>
         <file>Qml/CatAnimation/ImageFlicker.qml</file>

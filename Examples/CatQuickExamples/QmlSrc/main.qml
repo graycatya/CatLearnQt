@@ -6,12 +6,15 @@ Rectangle {
     id: root
     width: 800
     height: 600
-    Image {
+
+
+    //color: ""
+    /*Image {
         id: img
         anchors.fill: parent
         source: "qrc:/Images/portrait.png"
         width: sourceSize.width
         height: sourceSize.height
-    }
+    }*/
 
 }

@@ -8,6 +8,8 @@ QtObject {
 
     property string fontFamily: "微软雅黑"
 
+    property string resourcePath: "qrc:/Images/"
+
     property ListModel themes: ListModel {
         ListElement {
             name: "Black"

@@ -112,6 +112,20 @@ MetaInfo {
         }
     }
     Type {
+        name: "GrayCatQtQuick.Qml.CatBasics.CatRectangle"
+        icon: "images/CatRectangle.png"
+
+        ItemLibraryEntry {
+            name: "CatRectangle"
+            category: "GrayCatQtQuick - CatBasics"
+            libraryIcon: "images/CatRectangle.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
         name: "GrayCatQtQuick.Qml.CatBasics.CatTransArea"
         icon: "images/CatTransArea.png"
 

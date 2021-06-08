@@ -7,6 +7,7 @@ Marquee 1.0 Qml/CatAnimation/Marquee.qml
 TextOneByOneShow 1.0 Qml/CatAnimation/TextOneByOneShow.qml
 CatBasicsText 1.0 Qml/CatBasics/CatBasicsText.qml
 CatBasicsToolTip 1.0 Qml/CatBasics/CatBasicsToolTip.qml
+CatRectangle 1.0 Qml/CatBasics/CatRectangle.qml
 CatTransArea 1.0 Qml/CatBasics/CatTransArea.qml
 CatButtonImage 1.0 Qml/CatButton/CatButtonImage.qml
 CatFps 1.0 Qml/CatGeneral/CatFps.qml

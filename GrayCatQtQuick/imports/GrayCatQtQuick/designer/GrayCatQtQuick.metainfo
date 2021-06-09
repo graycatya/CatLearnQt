@@ -140,6 +140,20 @@ MetaInfo {
         }
     }
     Type {
+        name: "GrayCatQtQuick.Qml.CatButton.CatButton"
+        icon: "images/CatButton.png"
+
+        ItemLibraryEntry {
+            name: "CatButton"
+            category: "GrayCatQtQuick - CatButton"
+            libraryIcon: "images/CatButton.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
         name: "GrayCatQtQuick.Qml.CatButton.CatButtonImage"
         icon: "images/CatButtonImage.png"
 

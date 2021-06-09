@@ -1,4 +1,4 @@
-﻿<RCC>
+<RCC>
     <qresource prefix="/GrayCatQtQuick">
         <file>qmldir</file>
         <file>Qml/CatAnimation/ImageFlicker.qml</file>
@@ -11,6 +11,7 @@
         <file>Qml/CatBasics/CatBasicsToolTip.qml</file>
         <file>Qml/CatBasics/CatRectangle.qml</file>
         <file>Qml/CatBasics/CatTransArea.qml</file>
+        <file>Qml/CatButton/CatButton.qml</file>
         <file>Qml/CatButton/CatButtonImage.qml</file>
         <file>Qml/CatGeneral/CatFps.qml</file>
         <file>Qml/CatGeneral/DragSizeWidget.qml</file>

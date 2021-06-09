@@ -7,17 +7,6 @@ Rectangle {
     width: 800
     height: 600
 
-    CatRectangle {
-        anchors.centerIn: root
-        width: 200
-        height: 200
-        backdropColor: "gray"
-        backdropRadius: 10
-        borderWidth: 3
-        borderColor: "red"
-        clip: false
-        leftBottomRound: false
-    }
     //color: ""
     /*Image {
         id: img

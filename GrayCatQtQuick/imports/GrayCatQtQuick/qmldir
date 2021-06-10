@@ -9,6 +9,7 @@ CatBasicsText 1.0 Qml/CatBasics/CatBasicsText.qml
 CatBasicsToolTip 1.0 Qml/CatBasics/CatBasicsToolTip.qml
 CatRectangle 1.0 Qml/CatBasics/CatRectangle.qml
 CatTransArea 1.0 Qml/CatBasics/CatTransArea.qml
+CatButton 1.0 Qml/CatButton/CatButton.qml
 CatButtonImage 1.0 Qml/CatButton/CatButtonImage.qml
 CatFps 1.0 Qml/CatGeneral/CatFps.qml
 DragSizeWidget 1.0 Qml/CatGeneral/DragSizeWidget.qml

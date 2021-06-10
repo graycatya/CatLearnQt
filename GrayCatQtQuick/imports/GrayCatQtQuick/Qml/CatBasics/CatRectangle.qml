@@ -13,10 +13,14 @@ Rectangle {
     property real borderWidth: 0
     property color borderColor: "transparent"
 
-    readonly property real radius: 0
-    readonly property color color: "transparent"
-    readonly property color bordercolor: border.color = "transparent"
+    property real radius: 0
+    //property color color: "transparent"
+    //property color bordercolor: border.color = "transparent"
     //readonly property real border:
+
+    color: "transparent"
+    border.color: "transparent"
+    border.width: 0
 
     Shape {
 
@@ -26,6 +30,7 @@ Rectangle {
         layer.samples: 8
         smooth: true
         antialiasing: true
+        asynchronous: true
 
         ShapePath {
             fillColor: catRectangle.backdropColor
@@ -33,7 +38,7 @@ Rectangle {
             startY: 0
             fillRule: ShapePath.WindingFill
             strokeColor: catRectangle.borderColor
-            strokeStyle:
+            strokeStyle: ShapePath.RoundJoin
             strokeWidth: catRectangle.borderWidth
             PathLine {
                 x: catRectangle.rightTopRound ?

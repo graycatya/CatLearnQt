@@ -32,6 +32,7 @@ public:
 public slots:
     void setIsMax(bool isMax);
     void setTitleItem(QQuickItem *item);
+    void setWork(bool work);
 
 signals:
     void isMaxChanged(bool isMax);
@@ -50,5 +51,6 @@ protected:
 
 private:
     CatFrameLessViewPrivate *m_pCatFrameLessViewPrivate;
+    bool m_bWork;
 
 };

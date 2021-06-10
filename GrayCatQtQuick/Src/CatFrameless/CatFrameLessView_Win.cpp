@@ -134,6 +134,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
 {
     setFlags(Qt::CustomizeWindowHint | Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
     setResizeMode(SizeRootObjectToView);
+    m_bWork = true;
 
     m_pCatFrameLessViewPrivate->setBorderLess((HWND)(winId()),
                                               m_pCatFrameLessViewPrivate->borderless);
@@ -151,6 +152,11 @@ CatFrameLessView::~CatFrameLessView()
 bool CatFrameLessView::isMax() const
 {
     return m_pCatFrameLessViewPrivate->m_isMax;
+}
+
+void CatFrameLessView::setWork(bool work)
+{
+    m_bWork = work;
 }
 
 QQuickItem *CatFrameLessView::titleItem() const
@@ -211,7 +217,11 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, q
 bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, long *result)
 #endif
 {
+
     const long border_width = 4;
+    if(!m_bWork) {
+        return false;
+    }
     if (!result) {
         //防御式编程
         //一般不会发生这种情况，win7一些极端情况，会传空指针进来。解决方案是升级驱动、切换到basic主题。

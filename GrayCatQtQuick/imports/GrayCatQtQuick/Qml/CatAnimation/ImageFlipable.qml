@@ -1,7 +1,8 @@
-import QtQuick 2.12 
+﻿import QtQuick 2.12 
  
 Flipable {
     id: filpable 
+    readonly property string version: "1.0"
     //width: image.source.width 
     //height: image.source.height
     state: "axisY"

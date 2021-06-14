@@ -3,6 +3,7 @@
 
 Rectangle{
     id: root
+    readonly property string version: "1.0"
     width: 180; height: 30
     implicitWidth: 180
     implicitHeight: 30

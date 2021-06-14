@@ -2,6 +2,7 @@
 
 Rectangle {
     id: root 
+    readonly property string version: "1.0"
     color: "transparent"
     border.width: 4
     border.color: "transparent"

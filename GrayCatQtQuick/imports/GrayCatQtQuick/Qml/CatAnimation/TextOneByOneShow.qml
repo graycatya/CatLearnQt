@@ -1,7 +1,8 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 Item {
     id: root 
+    readonly property string version: "1.0"
     property var textVar: ["h", "e", "l", "l", "o", " w", "o", "r", "l", "d", "!"]
     property var textIndex: 0
     property font textfont

@@ -1,6 +1,7 @@
 ﻿#include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QQmlContext>
 #include "CatFrameless/CatFrameLessView.h"
 
 int main(int argc, char *argv[])
@@ -16,10 +17,10 @@ int main(int argc, char *argv[])
     CatFrameLessView view;
     //view.engine()->addImportPath(TaoQuickImportPath);
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
-
+    view.engine()->rootContext()->setContextProperty("view", &view);
     for(QString path : view.engine()->importPathList())
         qDebug() << path;
-    //view.setMinimumSize({ 800, 600 });
+    view.setMinimumSize({ 800, 600 });
     view.resize(800, 600);
     view.moveToScreenCenter();
 

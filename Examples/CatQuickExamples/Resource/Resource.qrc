@@ -3,8 +3,6 @@
         <file>Images/Black/about_blue.png</file>
         <file>Images/Black/about_gray.png</file>
         <file>Images/Black/about_white.png</file>
-        <file>Images/Black/close.png</file>
-        <file>Images/Black/close_hove.png</file>
         <file>Images/Black/language_blue.png</file>
         <file>Images/Black/language_gray.png</file>
         <file>Images/Black/language_white.png</file>
@@ -21,5 +19,7 @@
         <file>Images/Black/style_blue.png</file>
         <file>Images/Black/style_gray.png</file>
         <file>Images/Black/style_white.png</file>
+        <file>Images/Black/close_gray.png</file>
+        <file>Images/Black/close_white.png</file>
     </qresource>
 </RCC>

@@ -1,7 +1,8 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 Rectangle {
     id: root 
+    readonly property string version: "1.0"
     color: "transparent"
     border.color: "transparent"
     antialiasing: true

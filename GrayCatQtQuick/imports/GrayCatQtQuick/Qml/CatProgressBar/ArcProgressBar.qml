@@ -1,8 +1,9 @@
-import QtQuick 2.12 
+﻿import QtQuick 2.12 
 import QtQuick.Shapes 1.12
 
 Rectangle {
     id: root
+    readonly property string version: "1.0"
     color: "transparent"
     width: 46; height: 46
     //anchors.centerIn: parent

@@ -3,6 +3,7 @@ import QtQuick.Shapes 1.12
 
 Rectangle {
     id: catRectangle
+    readonly property string version: "1.0"
     property bool leftTopRound: true
     property bool leftBottomRound: true
     property bool rightTopRound: true

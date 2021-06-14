@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 
 ToolTip {
+    readonly property string version: "1.0"
     id: catbasictooltip
     contentItem: CatBasicsText {
         text: catbasictooltip.text

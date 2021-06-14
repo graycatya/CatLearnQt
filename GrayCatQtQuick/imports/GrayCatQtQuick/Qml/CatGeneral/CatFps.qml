@@ -3,6 +3,7 @@ import QtQuick 2.12
 import QtGraphicalEffects 1.12
 Rectangle {
     id: root
+    readonly property string version: "1.0"
     property int fps: 60 
     property int fpsCount: 0
     visible: true

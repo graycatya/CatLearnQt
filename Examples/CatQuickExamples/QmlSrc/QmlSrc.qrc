@@ -4,5 +4,8 @@
         <file>win7main.qml</file>
         <file>ProjectObject.qml</file>
         <file>TitleItem.qml</file>
+        <file>qmldir</file>
+        <file>FlowView.qml</file>
+        <file>UiFlowView.qml</file>
     </qresource>
 </RCC>

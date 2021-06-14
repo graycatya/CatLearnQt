@@ -1,8 +1,9 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 
 Rectangle {
     id: root
+    readonly property string version: "1.0"
     //width: 200; height: 100
     color: "steelblue"
     clip: true

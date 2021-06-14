@@ -1,10 +1,11 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 //import QtQuick.Shapes 1.12
 import QtQuick.Controls 2.12
 
 
 Rectangle {
     id: root
+    readonly property string version: "1.0"
     property var control: parent
     //property int linewidth: 2
     readonly property int recSize: 12

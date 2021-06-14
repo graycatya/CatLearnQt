@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.12
 
 Button{
     id: root
+    readonly property string version: "1.0"
     //property alias backgroundRectangle: backgroundRectangle
 
     property alias tipText: catbasictooltip.text

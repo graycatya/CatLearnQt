@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 Item {
     id: root 
@@ -7,6 +7,7 @@ Item {
     property alias repeat: timer.repeat
     property alias running: timer.running
     property alias visibles: image.visible
+    readonly property string version: "1.0"
     width: image.source.width 
     height: image.source.height
     Image {

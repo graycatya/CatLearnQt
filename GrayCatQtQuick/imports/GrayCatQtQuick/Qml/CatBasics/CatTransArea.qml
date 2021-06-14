@@ -2,6 +2,7 @@
 import QtQuick.Controls 2.12
 
 MouseArea{
+    readonly property string version: "1.0"
     anchors.fill: parent 
     // 悬停事件是否被处理
     hoverEnabled: true

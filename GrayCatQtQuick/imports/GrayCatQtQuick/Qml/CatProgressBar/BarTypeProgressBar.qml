@@ -1,7 +1,8 @@
-import QtQuick 2.12 
+﻿import QtQuick 2.12 
 
 Rectangle {
     id: root 
+    readonly property string version: "1.0"
     //进度条颜色
     property alias progressbarColor: progressbar.color
     //进度条值

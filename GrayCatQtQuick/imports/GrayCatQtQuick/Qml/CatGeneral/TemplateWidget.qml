@@ -1,7 +1,8 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 
 Item {
         id: root 
+        readonly property string version: "1.0"
         x: 0
         y: 0
         width: parent.width  

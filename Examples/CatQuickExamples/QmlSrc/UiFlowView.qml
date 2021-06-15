@@ -29,8 +29,7 @@ anchors.bottomMargin: 50
             interactive: false
             spacing: 5
 
-            FlowView {
-
+            GridLayoutView {
             }
 
             onCurrentIndexChanged: {

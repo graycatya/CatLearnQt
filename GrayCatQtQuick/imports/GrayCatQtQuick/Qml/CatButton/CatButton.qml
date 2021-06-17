@@ -17,6 +17,8 @@ Button{
     property alias tipTextColor: catbasictooltiptext.color
     property alias tipBackground: tooltiprectangle
     property bool selected: false
+    signal buttonEntered()
+    signal buttonExited()
 
     /*property string btnImgNormal
     property string btnImgHovered
@@ -79,5 +81,7 @@ Button{
         onClicked:  { mouse.accepted = false;}
         onReleased: { mouse.accepted = false;}
         onWheel: { wheel.accepted = false; }
+        onEntered: { buttonEntered() }
+        onExited: { buttonExited() }
     }
 }

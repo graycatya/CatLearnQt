@@ -132,6 +132,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
     : QQuickView(parent)
     , m_pCatFrameLessViewPrivate(new CatFrameLessViewPrivate)
 {
+
     setFlags(Qt::CustomizeWindowHint | Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
     setResizeMode(SizeRootObjectToView);
     m_bWork = true;
@@ -302,4 +303,11 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
     } // end case WM_NCHITTEST
     }
     return QQuickView::nativeEvent(eventType, message, result);
+}
+
+void CatFrameLessView::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+    emit updateSize();
+    QQuickView::resizeEvent(event);
 }

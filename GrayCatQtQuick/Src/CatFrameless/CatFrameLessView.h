@@ -36,6 +36,7 @@ public slots:
 
 signals:
     void isMaxChanged(bool isMax);
+    void updateSize();
 
 protected:
 /*
@@ -48,6 +49,7 @@ protected:
 #    else
     bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
 #    endif
+    void resizeEvent(QResizeEvent *) override;
 
 private:
     CatFrameLessViewPrivate *m_pCatFrameLessViewPrivate;

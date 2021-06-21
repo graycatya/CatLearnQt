@@ -103,3 +103,10 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
 {
     return QQuickView::nativeEvent(eventType, message, result);
 }
+
+void CatFrameLessView::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+    emit updateSize();
+    QQuickView::resizeEvent(event);
+}

@@ -21,5 +21,16 @@
         <file>Images/Black/style_white.png</file>
         <file>Images/Black/close_gray.png</file>
         <file>Images/Black/close_white.png</file>
+        <file>Lang/language_en.ts</file>
+        <file>Lang/language_zh_CN.ts</file>
+        <file>Images/Black/style_blue.svg</file>
+        <file>Images/Black/style_gray.svg</file>
+        <file>Images/Black/style_white.svg</file>
+        <file>Images/Black/language_blue.svg</file>
+        <file>Images/Black/language_gray.svg</file>
+        <file>Images/Black/language_white.svg</file>
+        <file>Images/Black/setting_blue.svg</file>
+        <file>Images/Black/setting_gray.svg</file>
+        <file>Images/Black/setting_white.svg</file>
     </qresource>
 </RCC>

@@ -5,7 +5,7 @@ CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-#DEFINES += QT_OS_WIN7
+DEFINES += QT_OS_WIN10
 
 TARGET = CatQuickExamples
 
@@ -22,6 +22,7 @@ Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
 
 include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
+include($$PWD/QmlCatLog/QmlCatLog.pri)
 
 SOURCES += \
     main.cpp
@@ -29,3 +30,6 @@ SOURCES += \
 RESOURCES += \
     QmlSrc/QmlSrc.qrc \
     Resource/Resource.qrc
+
+TRANSLATIONS = $$PWD/Resource/Lang/language_en.ts \
+                $$PWD/Resource/lang/language_zh_CN.ts

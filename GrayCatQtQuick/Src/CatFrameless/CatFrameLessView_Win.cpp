@@ -275,6 +275,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
 
             long x = GET_X_LPARAM(msg->lParam);
             long y = GET_Y_LPARAM(msg->lParam);
+            //qDebug() << "x , y : " + QString::number(x) + " " + QString::number(y);
 
             *result = 0;
             if (!isMaxWin(this) && !isFullWin(this)) { //非最大化、非全屏时，进行命中测试，处理边框拖拽
@@ -292,6 +293,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
                                        m_pCatFrameLessViewPrivate->m_titleItem->height());
                 double dpr = qApp->devicePixelRatio();
                 QPoint pos = mapFromGlobal(QPoint(x / dpr, y / dpr));
+                //qDebug() << "pos : " << pos;
                 if (titleRect.contains(pos)) {
                     *result = HTCAPTION;
                     return true;

@@ -1,7 +1,7 @@
 ﻿//pragma Singleton
 import QtQuick 2.12
 import QtGraphicalEffects 1.12
-Rectangle {
+Item {
     id: root
     readonly property string version: "1.0"
     property int fps: 60 

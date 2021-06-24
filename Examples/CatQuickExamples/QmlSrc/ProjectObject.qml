@@ -6,7 +6,7 @@ QtObject {
     id: projectobject
     objectName: "projectobject"
 
-    property string fontFamily: "微软雅黑"
+    property string fontFamily: "Ubuntu"
 
     property string resourcePath: "qrc:/Images/"
 
@@ -15,12 +15,14 @@ QtObject {
     property color appBackgroundColor: "#1F1F20"
     property color titleBackgroundColor: "#18181B"
     property color titleBottomWidthColor: "#000000"
+    property color titleLogoShadowColor: "#FFFFFF"
 
     onCurrentThemeChanged: {
         var t = projectobject.themes.get(currentTheme)
         projectobject.appBackgroundColor = t.appBackgroundColor
         projectobject.titleBackgroundColor = t.titleBackgroundColor
         projectobject.titleBottomWidthColor = t.titleBackgroundColor
+        projectobject.titleLogoShadowColor = t.titleLogoShadowColor
     }
 
     property ListModel themes: ListModel {
@@ -29,21 +31,25 @@ QtObject {
             appBackgroundColor: "#1F1F20"
             titleBackgroundColor: "#18181B"
             titleBottomWidthColor: "#000000"
-
+            titleLogoShadowColor: "#3FFFFFFF"
         }
     }
 
     Component.onCompleted: {
         projectobject.currentTheme = 0
-
         console.log("themes: " + getCurrentThemesName());
     }
 
+    /*
+     * 获取当前样式名
+    */
     function getCurrentThemesName()
     {
         return projectobject.themes.get(currentTheme).name
     }
-
+    /*
+     * 获取当前样式皮肤路径
+    */
     function getCurrentResourcePath()
     {
         return projectobject.resourcePath +

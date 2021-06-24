@@ -21,7 +21,13 @@ Rectangle {
         anchors.rightMargin: isMaxed ? 8 : 0
         anchors.bottomMargin: isMaxed ? 8 : 0
 
-        TitleItem {
+
+        Win10TitleItem {
+            id: win10titleitem
+            Layout.fillWidth: true
+            Layout.preferredHeight: 40
+            Layout.maximumHeight: 40
+            Layout.minimumHeight: 40
 
         }
 
@@ -31,17 +37,23 @@ Rectangle {
             color: ProjectObject.titleBottomWidthColor
         }
 
-        UiFlowView {
+        Rectangle {
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            color: ProjectObject.appBackgroundColor
         }
+
+
     }
 
-    //color: ""
-    /*Image {
-        id: img
-        anchors.fill: parent
-        source: "qrc:/Images/portrait.png"
-        width: sourceSize.width
-        height: sourceSize.height
-    }*/
+    CatFps {
+        anchors.right: parent.right
+        y: win10titleitem.height
+    }
+
+    Component.onCompleted: {
+        catLog.debug_print("run ui");
+    }
+
 
 }

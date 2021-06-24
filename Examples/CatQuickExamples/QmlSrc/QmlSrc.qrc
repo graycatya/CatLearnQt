@@ -1,12 +1,9 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>win7main.qml</file>
+        <file>generalmain.qml</file>
         <file>ProjectObject.qml</file>
-        <file>TitleItem.qml</file>
         <file>qmldir</file>
-        <file>FlowView.qml</file>
-        <file>UiFlowView.qml</file>
-        <file>GridLayoutView.qml</file>
+        <file>Win10TitleItem.qml</file>
     </qresource>
 </RCC>

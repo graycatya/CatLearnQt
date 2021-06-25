@@ -18,7 +18,9 @@ int main(int argc, char *argv[])
     view.engine()->rootContext()->setContextProperty("view", &view);
     view.engine()->rootContext()->setContextProperty("catLog", catlog);
     for(QString path : view.engine()->importPathList())
+    {
         qDebug() << path;
+    }
     view.setMinimumSize({ 800, 600 });
     view.resize(800, 600);
     view.moveToScreenCenter();
@@ -29,6 +31,10 @@ int main(int argc, char *argv[])
 #else
     QQmlApplicationEngine engine;
     engine.addImportPath(GrayCatQtQuickImportPath);
+    for(QString path : engine.importPathList())
+    {
+        qDebug() << path;
+    }
     engine.load( QUrl( "qrc:/generalmain.qml" ) );
 #endif
 

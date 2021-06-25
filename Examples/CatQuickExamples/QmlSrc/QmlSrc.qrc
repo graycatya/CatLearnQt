@@ -5,5 +5,7 @@
         <file>ProjectObject.qml</file>
         <file>qmldir</file>
         <file>Win10TitleItem.qml</file>
+        <file>FunctionLayout/DefaultLayout/DefaultLayout.qml</file>
+        <file>FunctionLayout/LayoutView.qml</file>
     </qresource>
 </RCC>

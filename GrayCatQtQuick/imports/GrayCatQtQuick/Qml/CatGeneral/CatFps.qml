@@ -9,8 +9,10 @@ Item {
     visible: true
     property color textColor: "white"
     property int textSize: 32
-    implicitHeight: 32
-    implicitWidth: 32
+    property int fpsWidth: 32
+    property int fpsHeight: 32
+    property color gradient0Color: "#87CEFF"
+    property color gradient1Color: "blue"
 
 /*
     Image {
@@ -34,8 +36,8 @@ Item {
     Rectangle
     { 
         id: rect
-        width: parent.width
-        height: parent.height
+        width: parent.fpsWidth
+        height: parent.fpsHeight
         color: Qt.rgba(0, 0, 0, 0)
         radius: width / 2
         border.width: width / 6
@@ -46,8 +48,8 @@ Item {
         height: rect.height 
         gradient: Gradient 
         {
-            GradientStop { position: 0.0; color: "#87CEFF" }
-            GradientStop { position: 1.0; color: "blue" }
+            GradientStop { position: 0.0; color: root.gradient0Color }
+            GradientStop { position: 1.0; color: root.gradient1Color }
         }
         source: rect 
         RotationAnimation on rotation {
@@ -64,7 +66,7 @@ Item {
         id: fpstext
         anchors.left: rect.right 
         anchors.verticalCenter: rect.verticalCenter
-        text: "FPS" + fps 
+        text: "FPS" + fps
         font.pixelSize: textSize
         style: Text.Outline 
         styleColor: "#606060"

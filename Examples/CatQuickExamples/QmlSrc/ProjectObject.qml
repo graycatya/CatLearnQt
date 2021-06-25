@@ -16,6 +16,8 @@ QtObject {
     property color titleBackgroundColor: "#18181B"
     property color titleBottomWidthColor: "#000000"
     property color titleLogoShadowColor: "#FFFFFF"
+    property color fpsgradient0Color: "#87CEFF"
+    property color fpsgradient1Color: "blue"
 
     onCurrentThemeChanged: {
         var t = projectobject.themes.get(currentTheme)
@@ -23,6 +25,8 @@ QtObject {
         projectobject.titleBackgroundColor = t.titleBackgroundColor
         projectobject.titleBottomWidthColor = t.titleBackgroundColor
         projectobject.titleLogoShadowColor = t.titleLogoShadowColor
+        projectobject.fpsgradient0Color = t.fpsgradient0Color
+        projectobject.fpsgradient1Color = t.fpsgradient1Color
     }
 
     property ListModel themes: ListModel {
@@ -32,6 +36,8 @@ QtObject {
             titleBackgroundColor: "#18181B"
             titleBottomWidthColor: "#000000"
             titleLogoShadowColor: "#3FFFFFFF"
+            fpsgradient0Color: "#9B9898"
+            fpsgradient1Color: "#4E4E4E"
         }
     }
 

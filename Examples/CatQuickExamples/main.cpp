@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
 #else
     QQmlApplicationEngine engine;
     engine.addImportPath(GrayCatQtQuickImportPath);
+    engine.rootContext()->setContextProperty("catLog", catlog);
     for(QString path : engine.importPathList())
     {
         qDebug() << path;

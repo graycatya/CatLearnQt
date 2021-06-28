@@ -35,9 +35,9 @@ Rectangle {
         interactive: false
         spacing: 5
 
-        Image3dRotation {
+        /*Image3dRotation {
 
-        }
+        }*/
     }
 
     function updatedemo(demoname, index)

@@ -2,7 +2,9 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QQmlContext>
+#ifdef Q_CC_MSVC
 #include "CatFrameless/CatFrameLessView.h"
+#endif
 #include <QmlCatLog.h>
 
 

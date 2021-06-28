@@ -28,7 +28,9 @@ defineTest(minQtVersion) {
 
 INCLUDEPATH += $$PWD/Src
 
-include($$PWD/Src/CatFrameless/CatFrameless.pri)
+win32 {
+    include($$PWD/Src/CatFrameless/CatFrameless.pri)
+}
 include($$PWD/imports/imports.pri)
 
 #RESOURCES += \

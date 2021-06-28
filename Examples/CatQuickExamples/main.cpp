@@ -10,6 +10,7 @@
 
 int main(int argc, char *argv[])
 {
+    //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
     QGuiApplication app(argc, argv);

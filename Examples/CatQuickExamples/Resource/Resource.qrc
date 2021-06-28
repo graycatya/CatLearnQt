@@ -36,5 +36,9 @@
         <file>Images/Black/Text.svg</file>
         <file>Images/qt_logo.png</file>
         <file>Images/Black/3drotation.svg</file>
+        <file>Images/Black/ImageFlipable.png</file>
+        <file>Images/applogo.ico</file>
+        <file>Images/Black/ImageFlicker.png</file>
+        <file>Images/Black/ImageFlickerGradient.png</file>
     </qresource>
 </RCC>

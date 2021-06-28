@@ -97,4 +97,11 @@ Rectangle {
         color: ProjectObject.controlVersionColor
     }
 
+    Component.onCompleted: {
+        if(index === 0)
+        {
+            opencontrol(controlName, index);
+        }
+    }
+
 }

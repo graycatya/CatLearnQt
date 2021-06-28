@@ -12,5 +12,8 @@
         <file>FunctionLayout/DefaultLayout/DemonstrationView.qml</file>
         <file>ControlDemos/Image3dRotation.qml</file>
         <file>GeneralTitleItem.qml</file>
+        <file>ControlDemos/DemoImageFlipable.qml</file>
+        <file>ControlDemos/DemoImageFlicker.qml</file>
+        <file>ControlDemos/DemoImageFlickerGradient.qml</file>
     </qresource>
 </RCC>

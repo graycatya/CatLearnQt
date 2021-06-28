@@ -55,13 +55,35 @@ QtObject {
 
     property var defaultControl: {
         "control": [
+
             {
+                "name": "ImageFlipable",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "ImageFlipable.png",
+                "index": 0
+            },
+            {
+                "name": "ImageFlicker",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "ImageFlicker.png",
+                "index": 1
+            },
+            {
+                "name": "ImageFlickerGradient",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "ImageFlickerGradient.png",
+                "index": 2
+            },
+            /*{
                 "name": "Image3dRotation",
                 "author" : "Qt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "3drotation.svg",
-                "index": 0
-            }
+                "index": 1
+            }*/
         ]
     }
 

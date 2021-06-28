@@ -14,6 +14,7 @@ Window {
     minimumHeight: 600
     visible: true
 
+
     color: ProjectObject.appBackgroundColor
 
     ColumnLayout {
@@ -22,13 +23,13 @@ Window {
         anchors.fill: parent
 
 
-        /*GeneralTitleItem {
+        GeneralTitleItem {
             id: win10titleitem
             Layout.fillWidth: true
             Layout.preferredHeight: 40
             Layout.maximumHeight: 40
             Layout.minimumHeight: 40
-        }*/
+        }
 
         Rectangle {
             Layout.fillWidth: true

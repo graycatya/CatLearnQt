@@ -14,6 +14,20 @@ MetaInfo {
         }
     }
     Type {
+        name: "GrayCatQtQuick.Qml.CatAnimation.ImageFlickerGradient"
+        icon: "images/ImageFlickerGradient.png"
+
+        ItemLibraryEntry {
+            name: "ImageFlickerGradient"
+            category: "GrayCatQtQuick - CatAnimation"
+            libraryIcon: "images/ImageFlickerGradient.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
         name: "GrayCatQtQuick.Qml.CatAnimation.ImageFlipable"
         icon: "images/ImageFlipable.png"
 

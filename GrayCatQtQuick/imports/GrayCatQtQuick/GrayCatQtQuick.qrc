@@ -1,7 +1,8 @@
-<RCC>
+﻿<RCC>
     <qresource prefix="/GrayCatQtQuick">
         <file>qmldir</file>
         <file>Qml/CatAnimation/ImageFlicker.qml</file>
+        <file>Qml/CatAnimation/ImageFlickerGradient.qml</file>
         <file>Qml/CatAnimation/ImageFlipable.qml</file>
         <file>Qml/CatAnimation/ImageMove.qml</file>
         <file>Qml/CatAnimation/ImageScale.qml</file>

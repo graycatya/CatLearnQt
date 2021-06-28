@@ -1,5 +1,6 @@
 ﻿module GrayCatQtQuick
 ImageFlicker 1.0 Qml/CatAnimation/ImageFlicker.qml
+ImageFlickerGradient 1.0 Qml/CatAnimation/ImageFlickerGradient.qml
 ImageFlipable 1.0 Qml/CatAnimation/ImageFlipable.qml
 ImageMove 1.0 Qml/CatAnimation/ImageMove.qml
 ImageScale 1.0 Qml/CatAnimation/ImageScale.qml

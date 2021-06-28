@@ -11,6 +11,7 @@ Rectangle {
     }
 
     ListView {
+        id: listview
         anchors.fill: parent
 
         spacing: 10
@@ -18,10 +19,12 @@ Rectangle {
         model: listModel
 
         delegate: Component {
+
             Rectangle {
                 width: 300
                 height: 100
                 color: "transparent"
+
                 DefaultListItem {
                     id: listitemrec
                     anchors.fill: parent
@@ -30,9 +33,15 @@ Rectangle {
                     author: modelauthor
                     version: modelversion
                     logoSource: modellogosource
+                    index: modelindex
                     onOpencontrol: {
                         updateDemo(controlname, index)
                     }
+                }
+
+                function openDemo()
+                {
+                    listitemrec.openDemo()
                 }
                 /*
                 Rectangle {
@@ -84,7 +93,8 @@ Rectangle {
                  "modelcontrolname": ProjectObject.defaultControl.control[i].name,
                  "modelauthor": ProjectObject.defaultControl.control[i].author,
                  "modelversion": ProjectObject.defaultControl.control[i].version,
-                 "modellogosource": ProjectObject.defaultControl.control[i].logoSource
+                 "modellogosource": ProjectObject.defaultControl.control[i].logoSource,
+                 "modelindex": ProjectObject.defaultControl.control[i].index
              });
         }
     }

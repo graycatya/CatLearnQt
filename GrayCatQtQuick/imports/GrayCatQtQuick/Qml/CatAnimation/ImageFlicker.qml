@@ -8,10 +8,9 @@ Item {
     property alias running: timer.running
     property alias visibles: image.visible
     readonly property string version: "1.0"
-    width: image.source.width 
-    height: image.source.height
     Image {
         id: image 
+        anchors.fill: parent
         visible: true
         asynchronous: true
     }

@@ -35,14 +35,22 @@ Rectangle {
         interactive: false
         spacing: 5
 
-        /*Image3dRotation {
+        DemoImageFlipable {
+        }
 
-        }*/
+        DemoImageFlicker {
+        }
+
+        DemoImageFlickerGradient {
+        }
+
+        clip: true
     }
 
     function updatedemo(demoname, index)
     {
         controlname = demoname
+        catLog.debug_print("controlname: " + controlname + " index: " + index)
         functionswipeview.currentIndex = index
     }
 

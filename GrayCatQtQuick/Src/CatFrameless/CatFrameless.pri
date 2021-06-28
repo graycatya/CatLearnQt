@@ -1,4 +1,4 @@
-QT += core gui quick
+QT += core gui quick qml
 
 HEADERS += \
     $$PWD/CatFrameLessView.h

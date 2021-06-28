@@ -25,6 +25,8 @@ defineTest(minQtVersion) {
     error("GrayCatQtQuick minimum supported Qt5 version is 5.12.0")
 }
 
+QT += qml quick
+
 
 INCLUDEPATH += $$PWD/Src
 

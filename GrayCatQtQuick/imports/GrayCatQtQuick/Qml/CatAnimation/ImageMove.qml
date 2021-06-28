@@ -1,12 +1,12 @@
 ﻿import QtQuick 2.12
 
-Rectangle {
+Item {
     id: root 
     readonly property string version: "1.0"
     clip: true 
-    color: "steelblue"
-    width: imageroll.width 
-    height: imageroll.height
+    //color: "steelblue"
+    width: 100
+    height: 100
     
     //anchors.centerIn: parent
 
@@ -16,6 +16,8 @@ Rectangle {
     //SequentialAnimation元素抛出
     property alias animation_loops: imageroll_sequential.loops 
     property alias animation_running: imageroll_sequential.running
+    property alias imagewidth: imageroll.width
+    property alias imageheight: imageroll.height
 
     //PropertyAnimation元素抛出
     property int animation_duration: 4000

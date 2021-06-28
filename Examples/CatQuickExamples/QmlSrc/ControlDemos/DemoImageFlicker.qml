@@ -3,7 +3,7 @@ import GrayCatQtQuick 1.0
 import "../"
 
 Rectangle {
-    id: demoimageflipable
+    //id: demoimageflipable
     color: "transparent"
 
     ImageFlicker {

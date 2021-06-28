@@ -15,5 +15,9 @@
         <file>ControlDemos/DemoImageFlipable.qml</file>
         <file>ControlDemos/DemoImageFlicker.qml</file>
         <file>ControlDemos/DemoImageFlickerGradient.qml</file>
+        <file>ControlDemos/DemoImageMove.qml</file>
+        <file>ControlDemos/DemoImageScale.qml</file>
+        <file>ControlDemos/DemoMarquee.qml</file>
+        <file>ControlDemos/DemoTextOneByOneShow.qml</file>
     </qresource>
 </RCC>

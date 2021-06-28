@@ -77,6 +77,34 @@ QtObject {
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlickerGradient.png",
                 "index": 2
             },
+            {
+                "name": "ImageMove",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "ImageMove.png",
+                "index": 3
+            },
+            {
+                "name": "ImageScale",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "ImageScale.png",
+                "index": 4
+            },
+            {
+                "name": "Marquee",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "Marquee.png",
+                "index": 5
+            },
+            {
+                "name": "TextOneByOneShow",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "TextOneByOneShow.png",
+                "index": 6
+            },
             /*{
                 "name": "Image3dRotation",
                 "author" : "Qt",

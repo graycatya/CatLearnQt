@@ -5,16 +5,17 @@ Item {
     readonly property string version: "1.0"
     property var textVar: ["h", "e", "l", "l", "o", " w", "o", "r", "l", "d", "!"]
     property var textIndex: 0
-    property font textfont
+    property alias textfont: textshow.font
+    property alias text: textshow
     property var color: "blue"
     property int interval: 500
-    height: textshow.font.pixelSize
+    clip: true
+
 
     Text {
         id: textshow 
-        height: parent.height 
         color: root.color
-        font: textfont
+        //font: textfont
         verticalAlignment: Text.AlignVCenter
         text: ""
     }

@@ -44,7 +44,23 @@ Rectangle {
         DemoImageFlickerGradient {
         }
 
+        DemoImageMove {
+        }
+
+        DemoImageScale {
+        }
+
+        DemoMarquee {
+        }
+
+        DemoTextOneByOneShow {
+        }
+
         clip: true
+
+        Component.onCompleted:{
+            contentItem.highlightMoveDuration = 0       //将移动时间设为0
+        }
     }
 
     function updatedemo(demoname, index)

@@ -1,4 +1,4 @@
-QT += core gui quick 
+QT += core gui quick quick3d
 
 CONFIG += c++11
 # CONFIG += console

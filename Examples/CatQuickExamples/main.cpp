@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 #ifdef QT_OS_WIN10
     CatFrameLessView view;
+
     //view.engine()->addImportPath(TaoQuickImportPath);
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
     view.engine()->rootContext()->setContextProperty("view", &view);

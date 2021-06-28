@@ -7,5 +7,9 @@
         <file>Win10TitleItem.qml</file>
         <file>FunctionLayout/DefaultLayout/DefaultLayout.qml</file>
         <file>FunctionLayout/LayoutView.qml</file>
+        <file>FunctionLayout/DefaultLayout/DefaultListItem.qml</file>
+        <file>FunctionLayout/DefaultLayout/DefaultListView.qml</file>
+        <file>FunctionLayout/DefaultLayout/DemonstrationView.qml</file>
+        <file>ControlDemos/Image3dRotation.qml</file>
     </qresource>
 </RCC>

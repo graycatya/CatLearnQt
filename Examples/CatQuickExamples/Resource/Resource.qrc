@@ -32,5 +32,9 @@
         <file>Images/Black/setting_blue.svg</file>
         <file>Images/Black/setting_gray.svg</file>
         <file>Images/Black/setting_white.svg</file>
+        <file>Images/Black/Demonstrate.svg</file>
+        <file>Images/Black/Text.svg</file>
+        <file>Images/qt_logo.png</file>
+        <file>Images/Black/3drotation.svg</file>
     </qresource>
 </RCC>

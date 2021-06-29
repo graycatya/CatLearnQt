@@ -15,9 +15,6 @@ Rectangle {
     property color borderColor: "transparent"
 
     property real radius: 0
-    //property color color: "transparent"
-    //property color bordercolor: border.color = "transparent"
-    //readonly property real border:
 
     color: "transparent"
     border.color: "transparent"
@@ -33,25 +30,31 @@ Rectangle {
         antialiasing: true
         asynchronous: true
 
+
         ShapePath {
             fillColor: catRectangle.backdropColor
-            startX: catRectangle.leftTopRound ? catRectangle.backdropRadius : 0
-            startY: 0
+
+            startX: catRectangle.leftTopRound ?
+                        catRectangle.backdropRadius + catRectangle.borderWidth
+                      : 0 + catRectangle.borderWidth
+            startY: 0 + catRectangle.borderWidth
+
             fillRule: ShapePath.WindingFill
+            joinStyle: ShapePath.RoundJoin
             strokeColor: catRectangle.borderColor
-            strokeStyle: ShapePath.RoundJoin
             strokeWidth: catRectangle.borderWidth
+
             PathLine {
                 x: catRectangle.rightTopRound ?
-                       catRectangle.width - catRectangle.backdropRadius
-                     : catRectangle.width
-                y: 0
+                       catRectangle.width - catRectangle.backdropRadius - catRectangle.borderWidth
+                     : catRectangle.width - catRectangle.borderWidth
+                y: 0 + catRectangle.borderWidth
             }
             PathArc {
-                x: catRectangle.width
+                x: catRectangle.width - catRectangle.borderWidth
                 y: catRectangle.rightTopRound ?
-                       catRectangle.backdropRadius
-                     : 0
+                       catRectangle.backdropRadius + catRectangle.borderWidth
+                     : 0 + catRectangle.borderWidth
                 radiusX: catRectangle.rightTopRound ?
                              catRectangle.backdropRadius
                            : 0
@@ -61,42 +64,62 @@ Rectangle {
             }
 
             PathLine {
-                x: catRectangle.width
+                x: catRectangle.width - catRectangle.borderWidth
                 y: catRectangle.rightBottomRound ?
-                       catRectangle.height - catRectangle.backdropRadius
-                     : catRectangle.height
+                       catRectangle.height - catRectangle.backdropRadius - catRectangle.borderWidth
+                     : catRectangle.height - catRectangle.borderWidth
             }
             PathArc {
                 x: catRectangle.rightBottomRound ?
-                       catRectangle.width - catRectangle.backdropRadius
-                     : catRectangle.width
-                y: catRectangle.height
-                radiusX: catRectangle.rightBottomRound ? catRectangle.backdropRadius : 0
-                radiusY: catRectangle.rightBottomRound ? catRectangle.backdropRadius : 0
+                       catRectangle.width - catRectangle.backdropRadius - catRectangle.borderWidth
+                     : catRectangle.width - catRectangle.borderWidth
+                y: catRectangle.height - catRectangle.borderWidth
+
+                radiusX: catRectangle.rightBottomRound ?
+                             catRectangle.backdropRadius
+                           : 0
+                radiusY: catRectangle.rightBottomRound ?
+                             catRectangle.backdropRadius
+                           : 0
             }
 
             PathLine {
-                x: catRectangle.leftBottomRound ? catRectangle.backdropRadius : 0
-                y: catRectangle.height
+                x: catRectangle.leftBottomRound ?
+                       catRectangle.backdropRadius + catRectangle.borderWidth
+                     : 0 + catRectangle.borderWidth
+                y: catRectangle.height - catRectangle.borderWidth
             }
             PathArc {
-                x: 0
+                x: 0 + catRectangle.borderWidth
                 y: catRectangle.leftBottomRound ?
-                       catRectangle.height - catRectangle.backdropRadius
-                     : catRectangle.height
-                radiusX: catRectangle.leftBottomRound ? catRectangle.backdropRadius : 0
-                radiusY: catRectangle.leftBottomRound ? catRectangle.backdropRadius : 0
+                       catRectangle.height - catRectangle.backdropRadius - catRectangle.borderWidth
+                     : catRectangle.height - catRectangle.borderWidth
+
+                radiusX: catRectangle.leftBottomRound ?
+                             catRectangle.backdropRadius
+                         : 0
+                radiusY: catRectangle.leftBottomRound ?
+                             catRectangle.backdropRadius
+                           : 0
             }
 
             PathLine {
-                x: 0
-                y: catRectangle.leftTopRound ? catRectangle.backdropRadius : 0
+                x: 0 + catRectangle.borderWidth
+                y: catRectangle.leftTopRound ?
+                       catRectangle.backdropRadius + catRectangle.borderWidth
+                     : 0 + catRectangle.borderWidth
             }
             PathArc {
-                x: catRectangle.leftTopRound ? catRectangle.backdropRadius : 0
-                y: 0
-                radiusX: catRectangle.leftTopRound ? catRectangle.backdropRadius : 0
-                radiusY: catRectangle.leftTopRound ? catRectangle.backdropRadius : 0
+                x: catRectangle.leftTopRound ?
+                       catRectangle.backdropRadius + catRectangle.borderWidth
+                     : 0 - catRectangle.borderWidth
+                y: 0 + catRectangle.borderWidth
+                radiusX: catRectangle.leftTopRound ?
+                             catRectangle.backdropRadius
+                           : 0
+                radiusY: catRectangle.leftTopRound ?
+                             catRectangle.backdropRadius
+                           : 0
             }
         }
     }

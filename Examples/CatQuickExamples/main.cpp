@@ -5,6 +5,7 @@
 #ifdef Q_CC_MSVC
 #include "CatFrameless/CatFrameLessView.h"
 #endif
+#include "QrenCode/QuickQrenCodeParentItem.h"
 #include <QmlCatLog.h>
 
 
@@ -14,6 +15,8 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
     QGuiApplication app(argc, argv);
+
+    qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
 #ifdef QT_OS_WIN10
     CatFrameLessView view;
 

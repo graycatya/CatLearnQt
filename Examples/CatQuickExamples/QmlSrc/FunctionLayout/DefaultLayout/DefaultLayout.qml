@@ -32,7 +32,7 @@ Rectangle {
                 id: demonstrationview
                 anchors.fill: parent
                 anchors.margins: 5
-                color: "#2C2C2C"
+                color: ProjectObject.defaultRectangleColor
                 radius: 5
             }
             DropShadow {

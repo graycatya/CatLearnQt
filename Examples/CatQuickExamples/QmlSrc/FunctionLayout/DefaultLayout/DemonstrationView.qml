@@ -56,6 +56,12 @@ Rectangle {
         DemoTextOneByOneShow {
         }
 
+        DemoCatRectangle {
+        }
+
+        DemoQParentQrenCode {
+        }
+
         clip: true
 
         Component.onCompleted:{

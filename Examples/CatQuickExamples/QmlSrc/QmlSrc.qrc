@@ -19,5 +19,7 @@
         <file>ControlDemos/DemoImageScale.qml</file>
         <file>ControlDemos/DemoMarquee.qml</file>
         <file>ControlDemos/DemoTextOneByOneShow.qml</file>
+        <file>ControlDemos/DemoCatRectangle.qml</file>
+        <file>ControlDemos/DemoQParentQrenCode.qml</file>
     </qresource>
 </RCC>

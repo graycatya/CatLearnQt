@@ -14,6 +14,7 @@ Button {
     property alias tipFont: catbasictooltip.font
     property alias tipTextColor: catbasictooltiptext.color
     property alias tipBackground: tooltiprectangle
+    property alias backImage: backimage
     property bool selected: false
     property string btnImgNormal
     property string btnImgHovered
@@ -83,7 +84,7 @@ Button {
                              catbuttonimage.backgroundColor)
         }
         Image {
-            id: backImage
+            id: backimage
             anchors.centerIn: parent
             width: sourceSize.width
             height: sourceSize.height

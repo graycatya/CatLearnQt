@@ -22,6 +22,7 @@ Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
 
 include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
+include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
 
 SOURCES += \

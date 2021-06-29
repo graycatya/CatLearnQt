@@ -22,6 +22,8 @@ QtObject {
     property color controlNameColor: "#FFFFFF"
     property color controlAuthorColor: "#9B9898"
     property color controlVersionColor: "#9B9898"
+    property color defaultRectangleColor: "#2C2C2C"
+    property color controlRectangleColor: "#4E4E4E"
 
     onCurrentThemeChanged: {
         var t = projectobject.themes.get(currentTheme)
@@ -35,6 +37,8 @@ QtObject {
         projectobject.controlNameColor = t.controlNameColor
         projectobject.controlAuthorColor = t.controlAuthorColor
         projectobject.controlVersionColor= t.controlVersionColor
+        projectobject.defaultRectangleColor = t.defaultRectangleColor
+        projectobject.controlRectangleColor = t.controlRectangleColor
     }
 
     property ListModel themes: ListModel {
@@ -50,6 +54,8 @@ QtObject {
             controlNameColor: "#FFFFFF"
             controlAuthorColor: "#9B9898"
             controlVersionColor: "#9B9898"
+            controlRectangleColor: "#4E4E4E"
+            defaultRectangleColor: "#2C2C2C"
         }
     }
 
@@ -104,6 +110,20 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "TextOneByOneShow.png",
                 "index": 6
+            },
+            {
+                "name": "CatRectangle",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "CatRectangle.png",
+                "index": 7
+            },
+            {
+                "name": "QParentQrenCode",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "QrenCode.svg",
+                "index": 8
             },
             /*{
                 "name": "Image3dRotation",

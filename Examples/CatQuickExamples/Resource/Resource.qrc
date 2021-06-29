@@ -44,5 +44,9 @@
         <file>Images/Black/ImageScale.png</file>
         <file>Images/Black/Marquee.png</file>
         <file>Images/Black/TextOneByOneShow.png</file>
+        <file>Images/Black/CatRectangle.png</file>
+        <file>Images/Black/checkbox_false.svg</file>
+        <file>Images/Black/checkbox_true.svg</file>
+        <file>Images/Black/QrenCode.svg</file>
     </qresource>
 </RCC>

@@ -22,9 +22,11 @@ Rectangle {
             id: qrencode
             //anchors.centerIn: rectroot
             anchors.fill: parent
-            anchors.margins: 5
+            //anchors.margins: 5
             qrmode: ParentQrenCode.MODE_8;
             qrlevel: ParentQrenCode.LEVEL_Q;
+            backgroundColor: ProjectObject.defaultRectangleColor
+            qrencodeColor: ProjectObject.controlNameColor
             casesen: true;
             text: root.textcode;
         }

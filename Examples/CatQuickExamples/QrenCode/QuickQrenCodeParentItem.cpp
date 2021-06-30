@@ -35,12 +35,12 @@ void QuickQrenCodeParentItem::paint(QPainter *painter)
     }
     int w = qMin(width(),height());
 
-    QColor background(Qt::white);
+    QColor background(m_qBackgroundColor);
     painter->setBrush(background);
     painter->setPen(Qt::NoPen);
     painter->drawRect(0, 0, w, w);
     double scale = w / qrCode->width;
-    QColor foreground(Qt::black);
+    QColor foreground(m_qQrencodeColor);
     painter->setBrush(foreground);
     for(int y = 0; y < qrCode->width; y++)
     {
@@ -79,6 +79,8 @@ void QuickQrenCodeParentItem::InitProperty()
     m_eQrlevel = LEVEL_Q;
     m_bCasesen = true;
     m_qQrPercent = 0.23;
+    m_qBackgroundColor = Qt::white;
+    m_qQrencodeColor = Qt::black;
     m_sQrLogo.clear();
     connect(this, &QQuickPaintedItem::widthChanged, this, [=](){
         update();

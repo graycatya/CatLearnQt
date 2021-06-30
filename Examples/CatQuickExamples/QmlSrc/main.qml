@@ -53,6 +53,7 @@ Rectangle {
             }
 
             CatFps {
+                id: catfps
                 anchors.right: parent.right
                 anchors.top: parent.top
                 anchors.rightMargin: -15
@@ -68,7 +69,11 @@ Rectangle {
 
 
     Component.onCompleted: {
-        catLog.debug_print("run ui");
+        catLog.debug_print("run ui, system is: " + Qt.platform.os);
+        if(Qt.platform.os === "osx")
+        {
+            catfps.anchors.rightMargin = 0
+        }
     }
 
 

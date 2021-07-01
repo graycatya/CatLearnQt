@@ -63,7 +63,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr(CW2A(szTmp.GetString()));
+        std::string STDStr(CW2A(szTmp));
         QString log =  "win api add: " + QString::fromStdString(STDStr);
         CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
         CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
@@ -98,7 +98,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr(CW2A(szTmp.GetString()));
+        std::string STDStr(CW2A(szTmp));
         QString log =  "win api del: " + QString::fromStdString(STDStr);
         CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
         CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));

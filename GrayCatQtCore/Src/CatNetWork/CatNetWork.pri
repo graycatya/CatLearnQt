@@ -1,3 +1,5 @@
+QT += network
+
 HEADERS += \
     $$PWD/CatHttp.h \
     $$PWD/CatHttpJsonParam.h \

@@ -62,12 +62,15 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     if (DBT_DEVICEARRIVAL == wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
+        char *ch = szTmp.GetBuffer(szTmp.GetLength() + 1);
+        szTmp.ReleaseBuffer();
+        QString STDStr = QString(QLatin1String(ch));
 
-        std::string STDStr(CW2A(szTmp));
-        QString log =  "win api add: " + QString::fromStdString(STDStr);
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
-        QString dev = QString::fromStdString(STDStr);
+        //QString log =  "win api add: " + STDStr;
+        //CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        //CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+
+        QString dev = STDStr;
         QStringList mes = dev.split('\\');
         if(mes.at(0) == "USB")
         {
@@ -97,13 +100,15 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     else
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
+        char *ch = szTmp.GetBuffer(szTmp.GetLength() + 1);
+        szTmp.ReleaseBuffer();
+        QString STDStr = QString(QLatin1String(ch));
+        //std::string STDStr(CW2A(szTmp.GetString()));
+        //QString log =  "win api del: " + STDStr;
+        //CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        //CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
 
-        std::string STDStr(CW2A(szTmp));
-        QString log =  "win api del: " + QString::fromStdString(STDStr);
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
-
-        QString dev = QString::fromStdString(STDStr);
+        QString dev = STDStr;
         QStringList mes = dev.split('\\');
         if(mes.at(0) == "USB")
         {
@@ -250,8 +255,8 @@ CatWinMonitorSerial::CatWinMonitorSerial()
 {
     hThread = CreateThread(NULL, 0, ThrdFunc, NULL, 0, &iThread);
     if (hThread == NULL) {
-        QString log = "CatWinMonitorSerial CreateThread Error ";
-        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+        //QString log = "CatWinMonitorSerial CreateThread Error ";
+        //CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
     }
 }
 

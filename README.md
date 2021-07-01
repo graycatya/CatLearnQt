@@ -24,6 +24,7 @@
     - [CatQuickExamples效果预览](#catquickexamples效果预览)
       - [控件列表](#控件列表)
       - [效果演示](#效果演示)
+      - [Figma原型](#figma原型)
     - [CatWidgetExamples效果预览](#catwidgetexamples效果预览)
     - [MetroDemo惠州地铁案例效果预览](#metrodemo惠州地铁案例效果预览)
   - [赞助](#赞助)
@@ -281,6 +282,10 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 ![QuickExamples_1](./doc/PubImages/QuickExamples_1.png)
 
 ![QuickExamples_2](./doc/PubImages/QuickExamples_2.png)
+
+##### Figma原型
+
+[CatQuickExamples_Figma](https://www.figma.com/proto/jKdeZOe3MzJelVOrRuG37d/CatQuickExamples?page-id=0%3A1&node-id=1%3A2&viewport=564%2C381%2C0.2137753665447235&scaling=contain)
 
 
 #### CatWidgetExamples效果预览

@@ -57,7 +57,7 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 [CII-link]: https://bestpractices.coreinfrastructure.org/zh-CN/projects/4578
 
 [license-link]: https://github.com/graycatya/CatLearnQt/blob/main/Licence.md "LICENSE"
-[license-badge]: https://img.shields.io/cran/l/devtools "GPL 3"
+[license-badge]: https://img.shields.io/github/license/graycatya/CatLearnQt?style=plastic
 
 [Gitter-link]: https://gitter.im/CatLearnQt/community
 [Gitter]: https://badges.gitter.im/CatLearnQt/community.svg "community"

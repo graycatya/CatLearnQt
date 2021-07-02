@@ -8,7 +8,6 @@
   - [项目](#项目)
   - [编译](#编译)
 - [开发环境](#开发环境)
-- [环境搭建](#环境搭建)
   - [项目根目录说明](#项目根目录说明)
   - [核心库](#核心库)
     - [使用核心库](#使用核心库)
@@ -22,6 +21,9 @@
         - [qmake](#qmake-2)
         - [cmake](#cmake-2)
   - [Examples 项目](#examples-项目)
+    - [CatQuickExamples效果预览](#catquickexamples效果预览)
+      - [控件列表](#控件列表)
+      - [效果演示](#效果演示)
     - [CatWidgetExamples效果预览](#catwidgetexamples效果预览)
     - [MetroDemo惠州地铁案例效果预览](#metrodemo惠州地铁案例效果预览)
   - [赞助](#赞助)
@@ -91,18 +93,6 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 * Qt5.12以上
 
 * 支持qt5.15
-
-## 环境搭建
-
-
-|系统|
-|:--:|
-| [windows](doc/windows/windows.md) |
-| [linux](doc/linux/linux.md) |
-| [macos](doc/macos/macos.md) |
-| [android](doc/android/android.md) |
-| [ios](doc/ios/ios.md) |
-| [webassembly](doc/QtDoc/webassembly/webassembly.md) |
 
 
 ### 项目根目录说明
@@ -263,10 +253,35 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 
 | 目录 | 说明 |
 |:--:|:--:|
-| Examples/CatQuickExamples | 演示项目开发中 |
+| Examples/CatQuickExamples | 基于Quick版项目演示 |
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
 | Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples裁减版WebAssmbly版项目演示 |
 | Examples/MetroDemo | 基于Quick实现惠州地铁案例 |
+
+#### CatQuickExamples效果预览
+
+##### 控件列表
+
+| 控件 | 说明 |
+|:--:|:--:|
+| ImageFlipable | 图片翻转 |
+| ImageFlicker | 图片闪烁 |
+| ImageFlickerGradient | 图片闪烁渐进式 |
+| ImageMove | 图片移动 |
+| ImageScale | 图片缩放 |
+| Marquee | 文字滚动，弹幕 |
+| TextOneByOneShow | 文字逐个显示 |
+| CatRectangle | 自定义圆角矩形，可单圆角 |
+| QParentQrenCode | qml二维码 |
+
+##### 效果演示
+
+![QuickExamples_0](./doc/PubImages/QuickExamples_0.png)
+
+![QuickExamples_1](./doc/PubImages/QuickExamples_1.png)
+
+![QuickExamples_2](./doc/PubImages/QuickExamples_2.png)
+
 
 #### CatWidgetExamples效果预览
 

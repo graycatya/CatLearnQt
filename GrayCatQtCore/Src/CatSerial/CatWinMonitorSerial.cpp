@@ -62,7 +62,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     if (DBT_DEVICEARRIVAL == wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
-        char *ch = szTmp.GetBuffer(szTmp.GetLength() + 1);
+        char *ch = reinterpret_cast<char*>(szTmp.GetBuffer(szTmp.GetLength() + 1));
         szTmp.ReleaseBuffer();
         QString STDStr = QString(QLatin1String(ch));
 
@@ -100,7 +100,7 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     else
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
-        char *ch = szTmp.GetBuffer(szTmp.GetLength() + 1);
+        char *ch = reinterpret_cast<char*>(szTmp.GetBuffer(szTmp.GetLength() + 1));
         szTmp.ReleaseBuffer();
         QString STDStr = QString(QLatin1String(ch));
         //std::string STDStr(CW2A(szTmp.GetString()));

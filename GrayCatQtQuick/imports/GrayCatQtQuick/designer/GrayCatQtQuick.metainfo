@@ -280,6 +280,20 @@ MetaInfo {
         }
     }
     Type {
+        name: "GrayCatQtQuick.Qml.CatModule.CatCalendar"
+        icon: "images/CatCalendar.png"
+
+        ItemLibraryEntry {
+            name: "CatCalendar"
+            category: "GrayCatQtQuick - CatModule"
+            libraryIcon: "images/CatCalendar.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
         name: "GrayCatQtQuick.Qml.CatProgressBar.ArcProgressBar"
         icon: "images/ArcProgressBar.png"
 

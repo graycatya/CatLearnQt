@@ -48,5 +48,6 @@
         <file>Images/Black/checkbox_false.svg</file>
         <file>Images/Black/checkbox_true.svg</file>
         <file>Images/Black/QrenCode.svg</file>
+        <file>Images/Black/CatCalendar.png</file>
     </qresource>
 </RCC>

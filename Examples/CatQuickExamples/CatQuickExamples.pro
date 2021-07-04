@@ -5,7 +5,9 @@ CONFIG += c++11
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-#DEFINES += QT_OS_WIN10
+win32 {
+    DEFINES += QT_OS_WIN10
+}
 
 TARGET = CatQuickExamples
 

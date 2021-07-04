@@ -19,6 +19,7 @@ RotateCursor 1.0 Qml/CatGeneral/RotateCursor.qml
 TemplateWidget 1.0 Qml/CatGeneral/TemplateWidget.qml
 CatImageBase 1.0 Qml/CatImage/CatImageBase.qml
 IpTextInput 1.0 Qml/CatInput/IpTextInput.qml
+CatCalendar 1.0 Qml/CatModule/CatCalendar.qml
 ArcProgressBar 1.0 Qml/CatProgressBar/ArcProgressBar.qml
 ArcProgressBarCanvas 1.0 Qml/CatProgressBar/ArcProgressBarCanvas.qml
 BarTypeProgressBar 1.0 Qml/CatProgressBar/BarTypeProgressBar.qml

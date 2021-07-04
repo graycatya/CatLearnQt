@@ -21,6 +21,7 @@
         <file>Qml/CatGeneral/TemplateWidget.qml</file>
         <file>Qml/CatImage/CatImageBase.qml</file>
         <file>Qml/CatInput/IpTextInput.qml</file>
+        <file>Qml/CatModule/CatCalendar.qml</file>
         <file>Qml/CatProgressBar/ArcProgressBar.qml</file>
         <file>Qml/CatProgressBar/ArcProgressBarCanvas.qml</file>
         <file>Qml/CatProgressBar/BarTypeProgressBar.qml</file>

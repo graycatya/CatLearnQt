@@ -67,13 +67,13 @@ Rectangle {
 
     }
 
-
     Component.onCompleted: {
         catLog.debug_print("run ui, system is: " + Qt.platform.os);
         if(Qt.platform.os === "osx")
         {
             catfps.anchors.rightMargin = 0
         }
+
     }
 
 

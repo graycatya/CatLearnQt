@@ -1,5 +1,6 @@
 ﻿pragma Singleton //声明单例
 import QtQuick 2.12
+import QtQml 2.12
 
 
 QtObject {
@@ -67,6 +68,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlipable.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlipable.qml",
                 "index": 0
             },
             {
@@ -74,6 +76,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlicker.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlicker.qml",
                 "index": 1
             },
             {
@@ -81,6 +84,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlickerGradient.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlickerGradient.qml",
                 "index": 2
             },
             {
@@ -88,6 +92,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageMove.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageMove.qml",
                 "index": 3
             },
             {
@@ -95,6 +100,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageScale.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageScale.qml",
                 "index": 4
             },
             {
@@ -102,6 +108,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "Marquee.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoMarquee.qml",
                 "index": 5
             },
             {
@@ -109,6 +116,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "TextOneByOneShow.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoTextOneByOneShow.qml",
                 "index": 6
             },
             {
@@ -116,6 +124,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "CatRectangle.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatRectangle.qml",
                 "index": 7
             },
             {
@@ -123,6 +132,7 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "QrenCode.svg",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoQParentQrenCode.qml",
                 "index": 8
             },
             {
@@ -130,7 +140,8 @@ QtObject {
                 "author" : "GrayCatQt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "CatCalendar.png",
-                "index": 8
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatCalendar.qml",
+                "index": 9
             },
             /*{
                 "name": "Image3dRotation",
@@ -162,6 +173,11 @@ QtObject {
         return projectobject.resourcePath +
                 projectobject.themes.get(currentTheme).name +
                 "/"
+    }
+
+    function getProjectQmlControlPath()
+    {
+        return "qrc:/ControlDemos/"
     }
 
 }

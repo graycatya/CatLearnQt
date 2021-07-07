@@ -12,6 +12,6 @@ Item {
         text.font.bold: true
         textVar: ["H", "e", "l", "l", "o", " ", "Q", "t", "!"]
         width: 300
-        height: 32
+        height: 40
     }
 }

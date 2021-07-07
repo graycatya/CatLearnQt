@@ -1,10 +1,11 @@
 ﻿import QtQuick 2.12
+import QtQml 2.12
 import QtGraphicalEffects 1.12
 import "../../"
 
 Rectangle {
     id: defaultlistview
-    signal updateDemo(string demoname, int index)
+    signal updateDemo(string demoname, int index, string qmlsource)
 
     ListModel {
             id: listModel
@@ -33,9 +34,10 @@ Rectangle {
                     author: modelauthor
                     version: modelversion
                     logoSource: modellogosource
+                    qmlSource: modelqmlsource
                     index: modelindex
                     onOpencontrol: {
-                        updateDemo(controlname, index)
+                        updateDemo(controlname, index, qmlsource)
                     }
                 }
 
@@ -94,6 +96,7 @@ Rectangle {
                  "modelauthor": ProjectObject.defaultControl.control[i].author,
                  "modelversion": ProjectObject.defaultControl.control[i].version,
                  "modellogosource": ProjectObject.defaultControl.control[i].logoSource,
+                 "modelqmlsource": ProjectObject.defaultControl.control[i].qmlSource,
                  "modelindex": ProjectObject.defaultControl.control[i].index
              });
         }

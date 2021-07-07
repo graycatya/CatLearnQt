@@ -25,5 +25,9 @@
         <file>Qml/CatProgressBar/ArcProgressBar.qml</file>
         <file>Qml/CatProgressBar/ArcProgressBarCanvas.qml</file>
         <file>Qml/CatProgressBar/BarTypeProgressBar.qml</file>
+        <file>IconResource/LeftButton_gray.svg</file>
+        <file>IconResource/LeftLeftButton_gray.svg</file>
+        <file>IconResource/RightButton_gray.svg</file>
+        <file>IconResource/RightRightButton_gray.svg</file>
     </qresource>
 </RCC>

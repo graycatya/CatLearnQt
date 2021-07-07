@@ -21,7 +21,7 @@ Rectangle {
             border.width: 1
             radius: 5*/
             onUpdateDemo: {
-                updatedemo(demoname, index)
+                demonstrationview.updatedemo(demoname, index, qmlsource)
             }
         }
         Rectangle {
@@ -47,8 +47,8 @@ Rectangle {
         }
     }
 
-    function updatedemo(demoname, index)
+    /*function updatedemo(demoname, index, qmlsource)
     {
-        demonstrationview.updatedemo(demoname, index)
-    }
+        demonstrationview.updatedemo(demoname, index, qmlsource)
+    }*/
 }

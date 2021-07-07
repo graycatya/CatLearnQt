@@ -1,4 +1,5 @@
 ﻿import QtQuick 2.12
+import QtQml 2.12
 import QtQuick.Layouts 1.12
 import GrayCatQtQuick 1.0
 import "../../"
@@ -11,7 +12,8 @@ Rectangle {
     property string version: "------"
     property int index: 0
     property string logoSource: ""
-    signal opencontrol(string controlname, int index)
+    property string qmlSource: ""
+    signal opencontrol(string controlname, int index, string qmlsource)
     anchors.fill: parent
     anchors.margins: 5
     color: "#2C2C2C"
@@ -42,7 +44,7 @@ Rectangle {
         font.family: ProjectObject.fontFamily
         text: defaultlistitem.controlName
         verticalAlignment: Text.AlignVCenter
-        font.pixelSize: 16
+        font.pixelSize: 14
         color: ProjectObject.controlNameColor
     }
 
@@ -65,7 +67,7 @@ Rectangle {
         imagebackground.border.color: "#1171AE"
         imagebackground.radius: 5
         onClicked: {
-            opencontrol(controlName, index);
+            opencontrol(controlName, index, qmlSource);
         }
     }
 
@@ -100,7 +102,7 @@ Rectangle {
     Component.onCompleted: {
         if(index === 0)
         {
-            opencontrol(controlName, index);
+            opencontrol(controlName, index, qmlSource);
         }
     }
 

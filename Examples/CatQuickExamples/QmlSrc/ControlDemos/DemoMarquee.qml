@@ -23,7 +23,7 @@ Rectangle {
             animation_running: true
             animation_duration: 2000
             width: 150
-            height: 32
+            height: 40
             state: "lefttoright"
         }
         Marquee {
@@ -35,7 +35,7 @@ Rectangle {
             animation_running: true
             animation_duration: 2000
             width: 150
-            height: 32
+            height: 40
             state: "righttoleft"
         }
         Marquee {

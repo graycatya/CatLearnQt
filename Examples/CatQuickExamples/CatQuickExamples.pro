@@ -1,4 +1,10 @@
 QT += core gui quick
+QT += quick3d
+
+contains(DEFINES, QT_QUICK3D_LIB) {
+    message("quick3d")
+    QT += quick3d
+}
 
 CONFIG += c++11
 # CONFIG += console

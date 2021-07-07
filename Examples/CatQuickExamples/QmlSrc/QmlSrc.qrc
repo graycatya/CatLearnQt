@@ -21,5 +21,6 @@
         <file>ControlDemos/DemoTextOneByOneShow.qml</file>
         <file>ControlDemos/DemoCatRectangle.qml</file>
         <file>ControlDemos/DemoQParentQrenCode.qml</file>
+        <file>ControlDemos/DemoCatCalendar.qml</file>
     </qresource>
 </RCC>

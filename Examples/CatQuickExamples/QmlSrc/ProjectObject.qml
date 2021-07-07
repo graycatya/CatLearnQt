@@ -125,6 +125,13 @@ QtObject {
                 "logoSource": projectobject.getCurrentResourcePath() + "QrenCode.svg",
                 "index": 8
             },
+            {
+                "name": "CatCalendar",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "CatCalendar.png",
+                "index": 8
+            },
             /*{
                 "name": "Image3dRotation",
                 "author" : "Qt",

@@ -33,5 +33,8 @@
         <file>IconResource/LeftLeftButton_default.svg</file>
         <file>IconResource/RightButton_default.svg</file>
         <file>IconResource/RightRightButton_default.svg</file>
+        <file>Qml/CatModule/CalendarRelyon/CatWeek.qml</file>
+        <file>Qml/CatModule/CalendarRelyon/DaysItem.qml</file>
+        <file>Qml/CatModule/CalendarRelyon/NumberItem.qml</file>
     </qresource>
 </RCC>

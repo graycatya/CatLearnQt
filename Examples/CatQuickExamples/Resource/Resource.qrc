@@ -49,5 +49,13 @@
         <file>Images/Black/checkbox_true.svg</file>
         <file>Images/Black/QrenCode.svg</file>
         <file>Images/Black/CatCalendar.png</file>
+        <file>Images/Black/LeftButton_default.svg</file>
+        <file>Images/Black/LeftButton_gray.svg</file>
+        <file>Images/Black/LeftLeftButton_default.svg</file>
+        <file>Images/Black/LeftLeftButton_gray.svg</file>
+        <file>Images/Black/RightButton_default.svg</file>
+        <file>Images/Black/RightButton_gray.svg</file>
+        <file>Images/Black/RightRightButton_default.svg</file>
+        <file>Images/Black/RightRightButton_gray.svg</file>
     </qresource>
 </RCC>

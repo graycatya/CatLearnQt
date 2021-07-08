@@ -11,7 +11,31 @@ Rectangle {
     CatCalendar {
         id: catcalendar
         anchors.centerIn: parent
+
+        preiousYearButton.btnImgNormal: ProjectObject.getCurrentResourcePath() + "LeftLeftButton_default.svg"
+        preiousYearButton.btnImgHovered: ProjectObject.getCurrentResourcePath() + "LeftLeftButton_gray.svg"
+        preiousYearButton.btnImgPressed: ProjectObject.getCurrentResourcePath() + "LeftLeftButton_gray.svg"
+        preiousYearButton.btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "LeftLeftButton_gray.svg"
+
+        lastMonthButton.btnImgNormal: ProjectObject.getCurrentResourcePath() + "LeftButton_default.svg"
+        lastMonthButton.btnImgHovered: ProjectObject.getCurrentResourcePath() + "LeftButton_gray.svg"
+        lastMonthButton.btnImgPressed: ProjectObject.getCurrentResourcePath() + "LeftButton_gray.svg"
+        lastMonthButton.btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "LeftButton_gray.svg"
+
+        nextMonthButton.btnImgNormal: ProjectObject.getCurrentResourcePath() + "RightButton_default.svg"
+        nextMonthButton.btnImgHovered: ProjectObject.getCurrentResourcePath() + "RightButton_gray.svg"
+        nextMonthButton.btnImgPressed: ProjectObject.getCurrentResourcePath() + "RightButton_gray.svg"
+        nextMonthButton.btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "RightButton_gray.svg"
+
+        nextYearButton.btnImgNormal: ProjectObject.getCurrentResourcePath() + "RightRightButton_default.svg"
+        nextYearButton.btnImgHovered: ProjectObject.getCurrentResourcePath() + "RightRightButton_gray.svg"
+        nextYearButton.btnImgPressed: ProjectObject.getCurrentResourcePath() + "RightRightButton_gray.svg"
+        nextYearButton.btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "RightRightButton_gray.svg"
+
+
+
     }
+
     DropShadow {
         anchors.fill: catcalendar
         horizontalOffset: 0

@@ -17,7 +17,8 @@ Rectangle {
     property alias nextMonthButton: nextMonth
     property alias nextYearButton: nextYear
 
-    property date calendarDate: { new Date() }
+    property date selectCalendarDate: { new Date() }
+    property date calendarDate: selectCalendarDate
 
     signal previousYearClicked()
     signal lastMonthClicked()
@@ -217,9 +218,9 @@ Rectangle {
 
     function getEnMonth(month)
     {
-        let month_toEn = [qsTr("January"), qsTr("February"), qsTr("March"), qsTr("April"),
-                          qsTr("May"), qsTr("June"), qsTr("July"), qsTr("August"),
-                          qsTr("September"), qsTr("October"), qsTr("November"), qsTr("December")];
+        let month_toEn = [qsTr("Jan."), qsTr("Feb."), qsTr("Mar."), qsTr("Apr."),
+                          qsTr("May."), qsTr("Jun."), qsTr("Jul."), qsTr("Aug."),
+                          qsTr("Sept"), qsTr("Oct."), qsTr("Nov."), qsTr("Dec.")];
 
         return month_toEn[month];
     }

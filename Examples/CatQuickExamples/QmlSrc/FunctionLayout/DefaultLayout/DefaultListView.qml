@@ -90,6 +90,7 @@ Rectangle {
         console.log("length: " + length)
         for(let i = 0; i < length; i++)
         {
+
             console.log("ProjectObject.defaultControl.control[i].logoSource: " + ProjectObject.defaultControl.control[i].logoSource)
             listModel.append({
                  "modelcontrolname": ProjectObject.defaultControl.control[i].name,

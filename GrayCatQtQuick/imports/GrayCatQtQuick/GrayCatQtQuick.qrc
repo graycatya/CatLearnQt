@@ -29,5 +29,9 @@
         <file>IconResource/LeftLeftButton_gray.svg</file>
         <file>IconResource/RightButton_gray.svg</file>
         <file>IconResource/RightRightButton_gray.svg</file>
+        <file>IconResource/LeftButton_default.svg</file>
+        <file>IconResource/LeftLeftButton_default.svg</file>
+        <file>IconResource/RightButton_default.svg</file>
+        <file>IconResource/RightRightButton_default.svg</file>
     </qresource>
 </RCC>

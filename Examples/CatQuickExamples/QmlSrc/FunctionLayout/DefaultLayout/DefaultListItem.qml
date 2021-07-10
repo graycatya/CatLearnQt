@@ -10,10 +10,9 @@ Rectangle {
     property string controlName: "------"
     property string author: "------"
     property string version: "------"
-    property int index: 0
     property string logoSource: ""
     property string qmlSource: ""
-    signal opencontrol(string controlname, int index, string qmlsource)
+    signal opencontrol(string controlname, string qmlsource)
     anchors.fill: parent
     anchors.margins: 5
     color: "#2C2C2C"
@@ -67,7 +66,7 @@ Rectangle {
         imagebackground.border.color: "#1171AE"
         imagebackground.radius: 5
         onClicked: {
-            opencontrol(controlName, index, qmlSource);
+            opencontrol(controlName, qmlSource);
         }
     }
 
@@ -99,11 +98,9 @@ Rectangle {
         color: ProjectObject.controlVersionColor
     }
 
-    Component.onCompleted: {
-        if(index === 0)
-        {
-            opencontrol(controlName, index, qmlSource);
-        }
+    function setControlDemo()
+    {
+        opencontrol(controlName, qmlSource);
     }
 
 }

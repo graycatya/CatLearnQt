@@ -1,9 +1,30 @@
 QT += core gui quick
-QT += quick3d
 
-!contains(DEFINES, QT_QUICK3D_LIB) {
-    message("quick3d")
-    QT -= quick3d
+defineTest(minQtVersion) {
+    maj = $$1
+    min = $$2
+    patch = $$3
+    isEqual(QT_MAJOR_VERSION, $$maj) {
+        isEqual(QT_MINOR_VERSION, $$min) {
+            isEqual(QT_PATCH_VERSION, $$patch) {
+                return(true)
+            }
+            greaterThan(QT_PATCH_VERSION, $$patch) {
+                return(true)
+            }
+        }
+        greaterThan(QT_MINOR_VERSION, $$min) {
+            return(true)
+        }
+    }
+    greaterThan(QT_MAJOR_VERSION, $$maj) {
+        return(true)
+    }
+    return(false)
+}
+
+minQtVersion(5, 15, 0) {
+    QT += quick3d
 }
 
 CONFIG += c++11
@@ -30,10 +51,12 @@ Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
 
 include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
+include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
 
 SOURCES += \
+    CatConfig.cpp \
     main.cpp
 
 RESOURCES += \
@@ -46,3 +69,6 @@ TRANSLATIONS = $$PWD/Resource/Lang/language_en.ts \
 win32 {
     RC_ICONS += Resource\Images\applogo.ico
 }
+
+HEADERS += \
+    CatConfig.h

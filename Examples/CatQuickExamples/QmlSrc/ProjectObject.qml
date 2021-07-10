@@ -69,7 +69,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlipable.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlipable.qml",
-                "index": 0
+                "libs": "default",
             },
             {
                 "name": "ImageFlicker",
@@ -77,7 +77,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlicker.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlicker.qml",
-                "index": 1
+                "libs": "default",
             },
             {
                 "name": "ImageFlickerGradient",
@@ -85,7 +85,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageFlickerGradient.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlickerGradient.qml",
-                "index": 2
+                "libs": "default",
             },
             {
                 "name": "ImageMove",
@@ -93,7 +93,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageMove.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageMove.qml",
-                "index": 3
+                "libs": "default",
             },
             {
                 "name": "ImageScale",
@@ -101,7 +101,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "ImageScale.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageScale.qml",
-                "index": 4
+                "libs": "default",
             },
             {
                 "name": "Marquee",
@@ -109,7 +109,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "Marquee.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoMarquee.qml",
-                "index": 5
+                "libs": "default",
             },
             {
                 "name": "TextOneByOneShow",
@@ -117,7 +117,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "TextOneByOneShow.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoTextOneByOneShow.qml",
-                "index": 6
+                "libs": "default",
             },
             {
                 "name": "CatRectangle",
@@ -125,7 +125,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "CatRectangle.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatRectangle.qml",
-                "index": 7
+                "libs": "default",
             },
             {
                 "name": "QParentQrenCode",
@@ -133,7 +133,7 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "QrenCode.svg",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoQParentQrenCode.qml",
-                "index": 8
+                "libs": "default",
             },
             {
                 "name": "CatCalendar",
@@ -141,15 +141,16 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "CatCalendar.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatCalendar.qml",
-                "index": 9
+                "libs": "default",
             },
-            /*{
+            {
                 "name": "Image3dRotation",
                 "author" : "Qt",
                 "version" : "1.0",
                 "logoSource": projectobject.getCurrentResourcePath() + "3drotation.svg",
-                "index": 1
-            }*/
+                "qmlSource": projectobject.getProjectQmlControlPath() + "Image3dRotation.qml",
+                "libs": "quick3d",
+            },
         ]
     }
 

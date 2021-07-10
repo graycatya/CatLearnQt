@@ -5,7 +5,7 @@ import "../../"
 
 Rectangle {
     id: defaultlistview
-    signal updateDemo(string demoname, int index, string qmlsource)
+    signal updateDemo(string demoname, string qmlsource)
 
     ListModel {
             id: listModel
@@ -35,9 +35,8 @@ Rectangle {
                     version: modelversion
                     logoSource: modellogosource
                     qmlSource: modelqmlsource
-                    index: modelindex
                     onOpencontrol: {
-                        updateDemo(controlname, index, qmlsource)
+                        updateDemo(controlname, qmlsource)
                     }
                 }
 
@@ -90,16 +89,23 @@ Rectangle {
         console.log("length: " + length)
         for(let i = 0; i < length; i++)
         {
-
-            console.log("ProjectObject.defaultControl.control[i].logoSource: " + ProjectObject.defaultControl.control[i].logoSource)
-            listModel.append({
-                 "modelcontrolname": ProjectObject.defaultControl.control[i].name,
-                 "modelauthor": ProjectObject.defaultControl.control[i].author,
-                 "modelversion": ProjectObject.defaultControl.control[i].version,
-                 "modellogosource": ProjectObject.defaultControl.control[i].logoSource,
-                 "modelqmlsource": ProjectObject.defaultControl.control[i].qmlSource,
-                 "modelindex": ProjectObject.defaultControl.control[i].index
-             });
+            let add = true;
+            if(!catconfig.qtQuick3D() && ProjectObject.defaultControl.control[i].libs === "quick3d")
+            {
+                add = false;
+            }
+            if(add)
+            {
+                listModel.append({
+                     "modelcontrolname": ProjectObject.defaultControl.control[i].name,
+                     "modelauthor": ProjectObject.defaultControl.control[i].author,
+                     "modelversion": ProjectObject.defaultControl.control[i].version,
+                     "modellogosource": ProjectObject.defaultControl.control[i].logoSource,
+                     "modelqmlsource": ProjectObject.defaultControl.control[i].qmlSource,
+                 });
+            }
         }
+
+
     }
 }

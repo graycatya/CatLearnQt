@@ -7,6 +7,7 @@
 #endif
 #include "QrenCode/QuickQrenCodeParentItem.h"
 #include <QmlCatLog.h>
+#include "CatConfig.h"
 
 
 int main(int argc, char *argv[])
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
     //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
+    CatConfig *catconfig = CatConfig::Instance();
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
@@ -24,6 +26,7 @@ int main(int argc, char *argv[])
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
     view.engine()->rootContext()->setContextProperty("view", &view);
     view.engine()->rootContext()->setContextProperty("catLog", catlog);
+    view.engine()->rootContext()->setContextProperty("catconfig", catconfig);
     for(QString path : view.engine()->importPathList())
     {
         qDebug() << path;
@@ -39,6 +42,7 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     engine.addImportPath(GrayCatQtQuickImportPath);
     engine.rootContext()->setContextProperty("catLog", catlog);
+    engine.rootContext()->setContextProperty("catconfig", catconfig);
     for(QString path : engine.importPathList())
     {
         qDebug() << path;

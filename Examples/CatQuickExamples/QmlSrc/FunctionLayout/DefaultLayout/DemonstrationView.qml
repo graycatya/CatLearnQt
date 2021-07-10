@@ -85,12 +85,13 @@ Rectangle {
         source: ProjectObject.defaultControl.control[0].qmlSource
     }
 
-    function updatedemo(demoname, index, qmlsource)
+    function updatedemo(demoname, qmlsource)
     {
         controlname = demoname
-        catLog.debug_print("controlname: " + controlname + " index: " + index)
-        functionswipeview.currentIndex = index
         pageloader.source = qmlsource
     }
 
+    Component.onCompleted: {
+        controlname = ProjectObject.defaultControl.control[0].name
+    }
 }

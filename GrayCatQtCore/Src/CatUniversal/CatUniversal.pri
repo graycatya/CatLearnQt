@@ -11,3 +11,5 @@ SOURCES += \
     $$PWD/CatSettingBase.cpp \
     $$PWD/CatThread.cpp \
     $$PWD/CatThreadPool.cpp
+
+INCLUDEPATH += $$PWD

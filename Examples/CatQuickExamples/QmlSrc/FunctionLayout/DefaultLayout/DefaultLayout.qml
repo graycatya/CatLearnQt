@@ -21,7 +21,7 @@ Rectangle {
             border.width: 1
             radius: 5*/
             onUpdateDemo: {
-                demonstrationview.updatedemo(demoname, index, qmlsource)
+                demonstrationview.updatedemo(demoname, qmlsource)
             }
         }
         Rectangle {

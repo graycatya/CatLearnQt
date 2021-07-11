@@ -1,11 +1,11 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQml 2.12
 import QtQuick.Layouts 1.12
 
 Item {
     id: root
-    property color weekTextColor: "#FFFFFF"
-    property string weekTextFontFamily: "Ubuntu"
+    property color weekTextColor: catcalendar.weekTextColor
+    property string weekTextFontFamily: catcalendar.textFontFamily
 
     width: parent.width
     height: 40

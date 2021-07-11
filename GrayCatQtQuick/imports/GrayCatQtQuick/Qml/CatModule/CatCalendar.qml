@@ -6,7 +6,7 @@ import "../CatBasics"
 import "./CalendarRelyon"
 
 Rectangle {
-    id: root
+    id: catcalendar
     property color backdropColor: "#2C2C2C"
     property color titleColor: "#4C4C4C"
     property color titleTextColor: "#FFFFFF"
@@ -20,6 +20,88 @@ Rectangle {
     property date selectCalendarDate: { new Date() }
     property date calendarDate: selectCalendarDate
 
+    property color weekTextColor: "#FFFFFF"
+
+    property color daybackColorNormal_NotForTheMonth: "#01000000"
+    property color daybackColorHovered_NotForTheMonth: "#4C4C4C"
+    property color daybackColorPressed_NotForTheMonth: "#3C3C3C"
+    property color daybackColorDisbaled_NotForTheMonth: "#01000000"
+
+    property color daybackColorNormal_ThatVeryDay: "#01000000"
+    property color daybackColorHovered_ThatVeryDay: "#01000000"
+    property color daybackColorPressed_ThatVeryDay: "#01000000"
+    property color daybackColorDisbaled_ThatVeryDay: "#01000000"
+
+    property color daybackColorNormal_TheSameMonth: "#01000000"
+    property color daybackColorHovered_TheSameMonth: "#4C4C4C"
+    property color daybackColorPressed_TheSameMonth: "#3C3C3C"
+    property color daybackColorDisbaled_TheSameMonth: "#01000000"
+
+    property color daybackColorNormal_Selectday: "#4C4C4C"
+    property color daybackColorHovered_Selectday: "#4C4C4C"
+    property color daybackColorPressed_Selectday: "#4C4C4C"
+    property color daybackColorDisbaled_Selectday: "#4C4C4C"
+
+    property int daybackWidthNormal_NotForTheMonth: 0
+    property int daybackWidthHovered_NotForTheMonth: 0
+    property int daybackWidthPressed_NotForTheMonth: 0
+    property int daybackWidthDisbaled_NotForTheMonth: 0
+
+    property int daybackWidthNormal_ThatVeryDay: 0
+    property int daybackWidthHovered_ThatVeryDay: 0
+    property int daybackWidthPressed_ThatVeryDay: 0
+    property int daybackWidthDisbaled_ThatVeryDay: 0
+
+    property int daybackWidthNormal_TheSameMonth: 0
+    property int daybackWidthHovered_TheSameMonth: 0
+    property int daybackWidthPressed_TheSameMonth: 0
+    property int daybackWidthDisbaled_TheSameMonth: 0
+
+    property int daybackWidthNormal_Selectday: 0
+    property int daybackWidthHovered_Selectday: 0
+    property int daybackWidthPressed_Selectday: 0
+    property int daybackWidthDisbaled_Selectday: 0
+
+    property color dayBorderColorNormal_NotForTheMonth: "transparent"
+    property color dayBorderColorHovered_NotForTheMonth: "transparent"
+    property color dayBorderColorPressed_NotForTheMonth: "transparent"
+    property color dayBorderColorDisbaled_NotForTheMonth: "transparent"
+
+    property color dayBorderColorNormal_ThatVeryDay: "transparent"
+    property color dayBorderColorHovered_ThatVeryDay: "transparent"
+    property color dayBorderColorPressed_ThatVeryDay: "transparent"
+    property color dayBorderColorDisbaled_ThatVeryDay: "transparent"
+
+    property color dayBorderColorNormal_TheSameMonth: "transparent"
+    property color dayBorderColorHovered_TheSameMonth: "transparent"
+    property color dayBorderColorPressed_TheSameMonth: "transparent"
+    property color dayBorderColorDisbaled_TheSameMonth: "transparent"
+
+    property color dayBorderColorNormal_Selectday: "transparent"
+    property color dayBorderColorHovered_Selectday: "transparent"
+    property color dayBorderColorPressed_Selectday: "transparent"
+    property color dayBorderColorDisbaled_Selectday: "transparent"
+
+    property color dayTextColorNormal_NotForTheMonth: "#666666"
+    property color dayTextColorHovered_NotForTheMonth: "#666666"
+    property color dayTextColorPressed_NotForTheMonth: "#666666"
+    property color dayTextColorDisbaled_NotForTheMonth: "#666666"
+
+    property color dayTextColorNormal_ThatVeryDay: "#19A0FA"
+    property color dayTextColorHovered_ThatVeryDay: "#19A0FA"
+    property color dayTextColorPressed_ThatVeryDay: "#19A0FA"
+    property color dayTextColorDisbaled_ThatVeryDay: "#19A0FA"
+
+    property color dayTextColorNormal_TheSameMonth: "#FFFFFF"
+    property color dayTextColorHovered_TheSameMonth: "#FFFFFF"
+    property color dayTextColorPressed_TheSameMonth: "#FFFFFF"
+    property color dayTextColorDisbaled_TheSameMonth: "#FFFFFF"
+
+    property color dayTextColorNormal_Selectday: "#FFFFFF"
+    property color dayTextColorHovered_Selectday: "#FFFFFF"
+    property color dayTextColorPressed_Selectday: "#FFFFFF"
+    property color dayTextColorDisbaled_Selectday: "#FFFFFF"
+
     signal previousYearClicked()
     signal lastMonthClicked()
     signal nextMonthClicked()
@@ -30,23 +112,23 @@ Rectangle {
 
     radius: 5
 
-    color: root.backdropColor
+    color: catcalendar.backdropColor
 
     CatRectangle {
         id: functionItem
-        anchors.top: root.top
-        anchors.left: root.left
-        anchors.right: root.right
+        anchors.top: catcalendar.top
+        anchors.left: catcalendar.left
+        anchors.right: catcalendar.right
 
         implicitHeight: 40
 
-        backdropRadius: root.radius
+        backdropRadius: catcalendar.radius
         leftBottomRound: false
         rightBottomRound: false
-        leftTopRound: root.radius === 0 ? false : true
-        rightTopRound: root.radius === 0 ? false : true
+        leftTopRound: catcalendar.radius === 0 ? false : true
+        rightTopRound: catcalendar.radius === 0 ? false : true
 
-        backdropColor: root.titleColor
+        backdropColor: catcalendar.titleColor
 
         CatButtonImage {
             id: previousYear
@@ -180,6 +262,7 @@ Rectangle {
         let date = calendarDate.getDate()
         calendarDate = new Date(year, month, date)
         yaermonth.text = getTitleYearMonth();
+        daysItem.updateYearMonth();
     }
 
     function clicklastMonth()
@@ -189,7 +272,7 @@ Rectangle {
         let date = calendarDate.getDate()
         calendarDate = new Date(year, month, date)
         yaermonth.text = getTitleYearMonth();
-        console.log("lastMonthClicked")
+        daysItem.updateYearMonth();
     }
 
     function clicknextMonth()
@@ -199,7 +282,7 @@ Rectangle {
         let date = calendarDate.getDate()
         calendarDate = new Date(year, month, date)
         yaermonth.text = getTitleYearMonth();
-        console.log("nextMonthClicked")
+        daysItem.updateYearMonth();
     }
 
     function clicknextYear()
@@ -209,6 +292,7 @@ Rectangle {
         let date = calendarDate.getDate()
         calendarDate = new Date(year, month, date)
         yaermonth.text = getTitleYearMonth();
+        daysItem.updateYearMonth();
     }
 
     function getTitleYearMonth()
@@ -228,6 +312,12 @@ Rectangle {
     function initCalendar()
     {
 
+    }
+
+    onSelectCalendarDateChanged: {
+        catcalendar.calendarDate = catcalendar.selectCalendarDate;
+        yaermonth.text = getTitleYearMonth();
+        daysItem.updateYearMonth();
     }
 
     Component.onCompleted: {

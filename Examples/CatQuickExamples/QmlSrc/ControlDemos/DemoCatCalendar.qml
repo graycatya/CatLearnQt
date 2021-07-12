@@ -39,7 +39,7 @@ Rectangle {
 
         weekTextColor: ProjectObject.calendarweekTextColor
 
-        daybackColorNormal_NotForTheMonth: ProjectObject.calendardaybackColorNormal_Selectday
+        daybackColorNormal_NotForTheMonth: ProjectObject.calendardaybackColorNormal_NotForTheMonth
         daybackColorHovered_NotForTheMonth: ProjectObject.calendardaybackColorHovered_NotForTheMonth
         daybackColorPressed_NotForTheMonth: ProjectObject.calendardaybackColorPressed_NotForTheMonth
         daybackColorDisbaled_NotForTheMonth: ProjectObject.calendardaybackColorDisbaled_NotForTheMonth

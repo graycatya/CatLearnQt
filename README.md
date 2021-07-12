@@ -274,6 +274,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | TextOneByOneShow | 文字逐个显示 |
 | CatRectangle | 自定义圆角矩形，可单圆角 |
 | QParentQrenCode | qml二维码 |
+| CatCalendar | 日历模块 |
+| Image3dRotation | 图片3d旋转 |
 
 ##### 效果演示
 

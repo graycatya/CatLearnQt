@@ -409,6 +409,14 @@ QtObject {
                 "qmlSource": projectobject.getProjectQmlControlPath() + "Image3dRotation.qml",
                 "libs": "quick3d",
             },
+            {
+                "name": "CatECharts",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "CatECharts.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatEchars.qml",
+                "libs": "webengine",
+            },
         ]
     }
 

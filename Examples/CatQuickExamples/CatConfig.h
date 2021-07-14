@@ -50,6 +50,24 @@ public:
         #endif
     }
 
+    Q_INVOKABLE bool qtWebEngine()
+    {
+        #ifdef QT_WEBENGINE_LIB
+            return true;
+        #else
+            return false;
+        #endif
+    }
+
+    Q_INVOKABLE QString getWebResourcePath()
+    {
+    #ifdef QT_NO_DEBUG
+        return QCoreApplication::applicationDirPath() + "/WebResource";
+    #else
+        return WEBRESOURCEPATH;
+    #endif
+    }
+
 private:
     CatConfig();
     ~CatConfig();

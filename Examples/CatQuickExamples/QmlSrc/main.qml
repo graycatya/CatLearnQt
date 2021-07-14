@@ -64,11 +64,11 @@ Rectangle {
                 height: 32
             }
         }
-
     }
 
     Component.onCompleted: {
         catLog.debug_print("run ui, system is: " + Qt.platform.os);
+        catLog.debug_print("webresourcepath " + catconfig.getWebResourcePath())
         if(Qt.platform.os === "osx")
         {
             catfps.anchors.rightMargin = 0

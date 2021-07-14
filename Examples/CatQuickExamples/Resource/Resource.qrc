@@ -57,5 +57,6 @@
         <file>Images/Black/RightButton_gray.svg</file>
         <file>Images/Black/RightRightButton_default.svg</file>
         <file>Images/Black/RightRightButton_gray.svg</file>
+        <file>Images/Black/CatECharts.png</file>
     </qresource>
 </RCC>

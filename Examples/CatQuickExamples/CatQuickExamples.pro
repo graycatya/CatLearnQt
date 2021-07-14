@@ -1,5 +1,11 @@
 QT += core gui quick
 
+msvc {
+    QT += webengine webchannel
+}
+
+DEFINES += WEBRESOURCEPATH=\\\"$$PWD/WebResource\\\"
+
 defineTest(minQtVersion) {
     maj = $$1
     min = $$2
@@ -26,6 +32,8 @@ defineTest(minQtVersion) {
 minQtVersion(5, 15, 0) {
     QT += quick3d
 }
+
+
 
 CONFIG += c++11
 # CONFIG += console

@@ -93,7 +93,11 @@ Rectangle {
             if(!catconfig.qtQuick3D() && ProjectObject.defaultControl.control[i].libs === "quick3d")
             {
                 add = false;
+            } else if(!catconfig.qtWebEngine() && ProjectObject.defaultControl.control[i].libs === "webengine")
+            {
+                add = false;
             }
+
             if(add)
             {
                 listModel.append({

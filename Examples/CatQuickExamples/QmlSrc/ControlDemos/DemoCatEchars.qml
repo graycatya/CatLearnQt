@@ -12,6 +12,7 @@ Rectangle {
         id: webengine
         anchors.fill: parent
         anchors.margins: 10
+        backgroundColor: "transparent"
         url: catconfig.getWebResourcePath() + "/line-marker.html";
         onGeometryChangeRequested: function(geometry) {
             webengine.x = geometry.x

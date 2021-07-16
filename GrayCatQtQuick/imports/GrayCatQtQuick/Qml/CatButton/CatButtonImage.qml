@@ -86,8 +86,8 @@ Button {
         Image {
             id: backimage
             anchors.centerIn: parent
-            width: sourceSize.width
-            height: sourceSize.height
+            width: catbuttonimage.width
+            height: catbuttonimage.height
             source: catbuttonimage.btnImgUrl
         }
     }

@@ -1,0 +1,205 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=line-marker
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body style="height: 100%; margin: 0; overflow: hidden" >
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="./echarts/echarts.min.js"></script>
+        <script src="./style/customed.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+
+        //echarts.registerTheme('customed', config);
+
+            //echarts.registerTheme('customed', themeJSON)
+            var dom = document.getElementById("container");
+            var myChart = echarts.init(dom, 'customed');
+
+            var app = {};
+
+            var option;
+
+
+
+            option = {
+                grid: {
+                    top: 100,
+                    left: 100,
+                    right: 100,
+                    bottom: 100
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: 'none'
+                        },
+                        dataView: {readOnly: false},
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                dataZoom: [
+                    /*{   // 这个dataZoom组件，默认控制x轴。
+                        type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                        start: 0,      // 左边在 10% 的位置。
+                        end: 100,      // 右边在 60% 的位置。
+                        show: false,
+                    },
+                    {   // 这个dataZoom组件，默认控制x轴。
+                        type: 'inside', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+                        start: 0,      // 左边在 10% 的位置。
+                        end: 100,      // 右边在 60% 的位置。
+                    },*/
+                    {
+                        show: true,
+                        type: 'inside',
+                        filterMode: 'none',
+                        yAxisIndex: [0],
+                        startValue: 5000,
+                        endValue: -5000
+                    },
+                    {
+                        show: false,
+                        type: 'slider',
+                        filterMode: 'none',
+                        yAxisIndex: [0],
+                        startValue: 5000,
+                        endValue: -5000
+                    },
+                ],
+
+                xAxis: {
+                    type: 'category',
+                    //boundaryGap: false,
+                    show: true,
+                    data: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        //formatter: '{value} °C'
+                    },
+                    min: -5000,
+                    max: 5000
+                },
+                series: [
+                    {
+                        name: 'Measurements',
+                        type: 'line',
+                        data: [1, -2, 2, 5, 3, 2, 0, 2, 3 ,4],
+                        markPoint: {
+                            data: [
+                                {
+                                    //name: '周最低', 
+                                    value: -2, 
+                                    xAxis: 1, 
+                                    yAxis: -2,
+                                    itemStyle: {
+                                        color: "#00dd7d"
+                                    }
+                                },
+                                {
+                                    //name: '周最高', 
+                                    value: 5, 
+                                    xAxis: 3, 
+                                    yAxis: 5,
+                                    itemStyle: {
+                                        color: "#feae4b"
+                                    }
+                                },
+                            ],
+         
+                        },
+                        markLine: {
+                            data: [
+                             
+                                { name: '低限',
+                                  yAxis: -5000,
+                                  itemStyle: {
+                                    color: "#00dd7d"
+                                  }
+                                },
+                                { name: '高限',
+                                  yAxis: 5000,
+                                  itemStyle: {
+                                        color: "#feae4b"
+                                    }
+                                },
+                                /*{type: 'average', name: '平均值'},
+                                [ {
+                                    symbol: 'circle',
+
+                                    type: 'max',
+                                    name: '最高点'
+                                }, {
+                                    symbol: 'arrow',
+                                    x: '90%',
+                                    yAxis: 'max',
+                                    label: {
+                                        //position: 'start',
+                                        formatter: '最大值'
+                                    }
+                                }],
+                                [{
+                                    symbol: 'circle',
+                                    type: 'min',
+                                    name: '最低点' 
+                                }, {
+                                    symbol: 'arrow',
+                                    x: '90%',
+                                    yAxis: 'min',
+                                    label: {
+                                        //position: 'start',
+                                        formatter: '最小值'
+                                    }
+                                }]*/
+                            ]
+                        }
+                    }
+                ]
+            };
+
+            if (option && typeof option === 'object') {
+                
+                myChart.setOption(option);
+                window.onresize=function(){
+                myChart.resize();
+                }
+            }
+ 
+        //var myChart = echarts.init(dom);
+
+
+
+
+        </script>
+    </body>
+</html>

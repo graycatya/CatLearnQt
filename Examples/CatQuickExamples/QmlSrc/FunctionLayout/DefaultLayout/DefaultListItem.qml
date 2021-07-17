@@ -55,6 +55,8 @@ Rectangle {
         anchors.rightMargin: 25
         width: 30
         height: 30
+        backImage.width: backImage.sourceSize.width
+        backImage.height: backImage.sourceSize.height
         btnImgNormal: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"
         btnImgHovered: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"
         btnImgPressed: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"

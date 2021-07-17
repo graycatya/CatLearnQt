@@ -98,6 +98,8 @@ Rectangle {
                 //id: settingbutton
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
+                backImage.width: backImage.sourceSize.width
+                backImage.height: backImage.sourceSize.height
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "minimal_gray.png"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "minimal_white.png"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "minimal_white.png"
@@ -114,6 +116,8 @@ Rectangle {
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
                 visible: !isMaxed
+                backImage.width: backImage.sourceSize.width
+                backImage.height: backImage.sourceSize.height
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "max_gray.png"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "max_white.png"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "max_white.png"
@@ -130,6 +134,8 @@ Rectangle {
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
                 visible: isMaxed
+                backImage.width: backImage.sourceSize.width
+                backImage.height: backImage.sourceSize.height
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "normal_gray.png"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "normal_white.png"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "normal_white.png"
@@ -145,6 +151,8 @@ Rectangle {
                 //id: settingbutton
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
+                backImage.width: backImage.sourceSize.width
+                backImage.height: backImage.sourceSize.height
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "close_gray.png"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "close_white.png"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "close_white.png"

@@ -13,7 +13,7 @@ Rectangle {
         anchors.fill: parent
         anchors.margins: 10
         backgroundColor: "transparent"
-        url: catconfig.getWebResourcePath() + "/line-marker.html";
+        url: catconfig.getWebResourcePath() + "/charts.html";
         onGeometryChangeRequested: function(geometry) {
             webengine.x = geometry.x
             webengine.y = geometry.y

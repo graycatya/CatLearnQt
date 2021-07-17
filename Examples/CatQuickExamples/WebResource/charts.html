@@ -11,7 +11,9 @@
         <div id="container" style="height: 100%"></div>
 
         <script type="text/javascript" src="./echarts/echarts.min.js"></script>
-        <script src="./style/customed.js"></script>
+        <script type="text/javascript" src="./style/dark.js"></script>
+        <script type="text/javascript" src="./style/macarons.js"></script>
+        <script type="text/javascript" src="./qwebchannel.js"></script>
         <!-- Uncomment this line if you want to dataTool extension
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
         -->
@@ -32,11 +34,38 @@
 
         <script type="text/javascript">
 
+            var socket = new WebSocket("ws://127.0.0.1:14618");
+
+            socket.onopen = function()
+            {
+                new QWebChannel(socket, function(channel) {
+                    // 这里写信号与槽绑定
+                });
+            }
+
+            socket.onerror = function(evt)
+            {
+                let received_msg = evt.data;
+                console.log(received_msg);
+            }
+
+            socket.onmessage = function(evt)
+            {
+                let received_msg = evt.data;
+                console.log(received_msg);
+            }
+
+            socket.onclose = function(evt)
+            {
+                let received_msg = evt.data;
+                console.log(received_msg);   
+            }
+
         //echarts.registerTheme('customed', config);
 
             //echarts.registerTheme('customed', themeJSON)
             var dom = document.getElementById("container");
-            var myChart = echarts.init(dom, 'customed');
+            var myChart = echarts.init(dom, 'macarons');
 
             var app = {};
 

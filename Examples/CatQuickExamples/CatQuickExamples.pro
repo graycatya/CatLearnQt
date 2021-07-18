@@ -1,10 +1,14 @@
 QT += core gui quick
 
 msvc {
-    QT += webengine webchannel
+    QT += webengine webchannel websocket
 }
 
-DEFINES += WEBRESOURCEPATH=\\\"$$PWD/WebResource\\\"
+mac {
+    QT += webengine webchannel websocket
+}
+
+DEFINES += WEBRESOURCEPATH=\\\"file:///$$PWD/WebResource\\\"
 
 defineTest(minQtVersion) {
     maj = $$1
@@ -62,6 +66,7 @@ include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
 include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
+include($$PWD/src/WebChannelFunction/WebChannelFunction.pri)
 
 SOURCES += \
     CatConfig.cpp \

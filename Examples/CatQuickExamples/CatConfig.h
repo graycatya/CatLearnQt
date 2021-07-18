@@ -4,6 +4,7 @@
 #include "CatSettingBase.h"
 #include <QMutex>
 #include <QLocale>
+#include <QDebug>
 #include <QGuiApplication>
 
 class QTranslator;
@@ -64,6 +65,7 @@ public:
     #ifdef QT_NO_DEBUG
         return QCoreApplication::applicationDirPath() + "/WebResource";
     #else
+        qDebug() << WEBRESOURCEPATH;
         return WEBRESOURCEPATH;
     #endif
     }

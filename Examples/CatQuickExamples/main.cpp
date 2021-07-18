@@ -2,6 +2,9 @@
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QQmlContext>
+#ifdef QT_WEBENGINE_LIB
+#include <QtWebEngine>
+#endif
 #ifdef Q_CC_MSVC
 #include "CatFrameless/CatFrameLessView.h"
 #endif
@@ -14,6 +17,9 @@ int main(int argc, char *argv[])
 {
     //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#ifdef QT_WEBENGINE_LIB
+    QtWebEngine::initialize();
+#endif
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
     CatConfig *catconfig = CatConfig::Instance();
     QGuiApplication app(argc, argv);

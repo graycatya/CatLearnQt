@@ -4,6 +4,10 @@
 #include <QQmlContext>
 #ifdef QT_WEBENGINE_LIB
 #include <QtWebEngine>
+#include <QtWebView>
+#include <QWebChannel>
+#include <QWebSocketServer>
+#include "Src/WebChannelFunction/CatEchatswebChannel.h"
 #endif
 #ifdef Q_CC_MSVC
 #include "CatFrameless/CatFrameLessView.h"
@@ -25,6 +29,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
+#ifdef QT_WEBENGINE_LIB
+    qmlRegisterType<CatEchatswebChannel>("io.decovar.CatEchatswebChannel", 1, 0, "CatEchatswebChannel");
+#endif
 #ifdef QT_OS_WIN10
     CatFrameLessView view;
 

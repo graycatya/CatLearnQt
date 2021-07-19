@@ -4,16 +4,55 @@
 <!DOCTYPE html>
 <html style="height: 100%">
     <head>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="qwebchannel.js"></script>
+        <script type="text/javascript">
+            var catecharts;
+
+            window.onload = function()
+            {
+                console.log("window.onload");
+                var socket = new WebSocket("ws://127.0.0.1:14618");
+                
+                socket.onopen = function()
+                {
+                    new QWebChannel(socket, function(channel) {
+                        // 这里写信号与槽绑定
+                        catecharts = channel.objects.catecharts
+                        catecharts.updateForm.connect(function(form) {
+                            updateForm(form);
+                        });
+                    });
+                }
+
+                socket.onerror = function(evt)
+                {
+                    let received_msg = evt.data;
+                    console.log("on error: " + received_msg);
+                }
+
+                socket.onmessage = function(evt)
+                {
+                    let received_msg = evt.data;
+                    console.log("Message is received: " + received_msg);
+                }
+
+                socket.onclose = function(evt)
+                {
+                    console.log("Connection is closed: " + evt.code + " - " + evt.reason);   
+                }
+            }
+        </script>
+
     </head>
 
     <body style="height: 100%; margin: 0; overflow: hidden" >
         <div id="container" style="height: 100%"></div>
 
-        <script type="text/javascript" src="./echarts/echarts.min.js"></script>
-        <script type="text/javascript" src="./style/dark.js"></script>
-        <script type="text/javascript" src="./style/macarons.js"></script>
-        <script type="text/javascript" src="./qwebchannel.js"></script>
+        <script type="text/javascript" src="echarts/echarts.min.js"></script>
+        <script type="text/javascript" src="style/dark.js"></script>
+        <script type="text/javascript" src="style/macarons.js"></script>
+ 
         <!-- Uncomment this line if you want to dataTool extension
         <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
         -->
@@ -34,51 +73,13 @@
 
         <script type="text/javascript">
 
-            
-            var catecharts;
-
-            window.onload = function()
-            {
-
-                var socket = new WebSocket("ws://127.0.0.1:55555");
-
-                socket.onopen = function()
-                {
-                    new QWebChannel(socket, function(channel) {
-                        // 这里写信号与槽绑定
-                        catecharts = channel.objects.catecharts
-
-                        catecharts.updateForm.connect(function(form) {
-                            alert("update form")
-                            updateForm(form);
-                        });
-                    });
-                }
-
-                socket.onerror = function(evt)
-                {
-                    let received_msg = evt.data;
-                    console.log(received_msg);
-                }
-
-                socket.onmessage = function(evt)
-                {
-                    let received_msg = evt.data;
-                    console.log(received_msg);
-                }
-
-                socket.onclose = function(evt)
-                {
-                    let received_msg = evt.data;
-                    console.log(received_msg);   
-                }
-            }
+        console.log("init charts")
 
         //echarts.registerTheme('customed', config);
 
             //echarts.registerTheme('customed', themeJSON)
             var dom = document.getElementById("container");
-            var myChart = echarts.init(dom, 'macarons');
+            var myChart = echarts.init(dom, 'dark');
 
             var app = {};
 
@@ -240,11 +241,18 @@
             function updateForm(form)
             {
                 option.series[0].type = form;
-                var dom = document.getElementById("container");
-                var myChart = echarts.init(dom, 'macarons');
+                //var dom = document.getElementById("container");
+                //var myChart = echarts.init(dom, 'macarons');
                 myChart.setOption(option);
             }
  
+            myChart.on('dataZoom', function (params) {
+                console.log(params);
+                option.dataZoom[0].start = params.batch[0].start 
+                option.dataZoom[0].end = params.batch[0].end
+                option.dataZoom[1].start = params.batch[0].start 
+                option.dataZoom[1].end = params.batch[0].end
+            });
         //var myChart = echarts.init(dom);
 
 

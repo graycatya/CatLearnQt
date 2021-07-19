@@ -3,8 +3,10 @@ import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
 import QtWebEngine 1.10
+import QtWebView 1.1
 import QtWebChannel 1.0
 import QtWebSockets 1.1
+import io.decovar.CatEchatswebChannel 1.0
 import "../"
 
 Rectangle {
@@ -28,16 +30,22 @@ Rectangle {
         }*/
     }
 
+    CatEchatswebChannel {
+        id: catechatswebchannel
+    }
+
     //WebSocket
     WebSocketServer {
         id: websocketserver
         listen: true
-        port: 55555
+        port: 14618
 
         onClientConnected: {
-            if(webSocket.status === webSocket.Open)
+            if(webSocket.status === WebSocket.Open)
             {
-
+                channel.connectTo(catechatswebchannel)
+                webSocket.onTextMessageReceived.connect(catechatswebchannel.textMessageReceive)
+                catechatswebchannel.onMessageChanged.connect(webSocket.sendTextMessage);
             }
         }
 
@@ -98,7 +106,6 @@ Rectangle {
                     anchors.fill: parent
                     onClicked: {
                         chartfunctions.currentIndex = index  //实现item切换
-                        console.log("charts clicked")
                         chartObject.updateForm(chartform)
                     }
                 }
@@ -117,6 +124,11 @@ Rectangle {
                 webengine.width = geometry.width
                 webengine.height = geometry.height
             }
+        }
+
+        WebChannel {
+            id: channel
+            registeredObjects: [chartObject]
         }
 
     }

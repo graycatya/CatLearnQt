@@ -14,6 +14,12 @@ public:
     CatEchatswebChannel();
     ~CatEchatswebChannel();
 
+    Q_INVOKABLE void sendMessage(const QJsonObject &message) override;
+
+    Q_INVOKABLE void textMessageReceive(const QString &messageData);
+
+signals:
+    void messageChanged(const QString &message);
 
 };
 

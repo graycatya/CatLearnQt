@@ -1,7 +1,7 @@
 QT += core gui quick
 
 !mingw {
-    QT += webengine webchannel websockets
+    QT += webengine webchannel websockets webview
 }
 
 

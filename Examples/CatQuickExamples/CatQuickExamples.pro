@@ -1,12 +1,9 @@
 QT += core gui quick
 
-msvc {
-    QT += webengine webchannel websocket
+!mingw {
+    QT += webengine webchannel websockets
 }
 
-mac {
-    QT += webengine webchannel websocket
-}
 
 DEFINES += WEBRESOURCEPATH=\\\"file:///$$PWD/WebResource\\\"
 

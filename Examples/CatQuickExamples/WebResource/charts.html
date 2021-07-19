@@ -34,31 +34,44 @@
 
         <script type="text/javascript">
 
-            var socket = new WebSocket("ws://127.0.0.1:14618");
+            
+            var catecharts;
 
-            socket.onopen = function()
+            window.onload = function()
             {
-                new QWebChannel(socket, function(channel) {
-                    // 这里写信号与槽绑定
-                });
-            }
 
-            socket.onerror = function(evt)
-            {
-                let received_msg = evt.data;
-                console.log(received_msg);
-            }
+                var socket = new WebSocket("ws://127.0.0.1:55555");
 
-            socket.onmessage = function(evt)
-            {
-                let received_msg = evt.data;
-                console.log(received_msg);
-            }
+                socket.onopen = function()
+                {
+                    new QWebChannel(socket, function(channel) {
+                        // 这里写信号与槽绑定
+                        catecharts = channel.objects.catecharts
 
-            socket.onclose = function(evt)
-            {
-                let received_msg = evt.data;
-                console.log(received_msg);   
+                        catecharts.updateForm.connect(function(form) {
+                            alert("update form")
+                            updateForm(form);
+                        });
+                    });
+                }
+
+                socket.onerror = function(evt)
+                {
+                    let received_msg = evt.data;
+                    console.log(received_msg);
+                }
+
+                socket.onmessage = function(evt)
+                {
+                    let received_msg = evt.data;
+                    console.log(received_msg);
+                }
+
+                socket.onclose = function(evt)
+                {
+                    let received_msg = evt.data;
+                    console.log(received_msg);   
+                }
             }
 
         //echarts.registerTheme('customed', config);
@@ -75,15 +88,15 @@
 
             option = {
                 grid: {
-                    top: 100,
-                    left: 100,
-                    right: 100,
-                    bottom: 100
+                    top: 50,
+                    left: 50,
+                    right: 50,
+                    bottom: 50,
                 },
                 tooltip: {
                     trigger: 'axis'
                 },
-                toolbox: {
+                /*toolbox: {
                     show: false,
                     feature: {
                         dataZoom: {
@@ -94,7 +107,7 @@
                         restore: {},
                         saveAsImage: {}
                     }
-                },
+                },*/
                 dataZoom: [
                     /*{   // 这个dataZoom组件，默认控制x轴。
                         type: 'slider', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
@@ -222,6 +235,14 @@
                 window.onresize=function(){
                 myChart.resize();
                 }
+            }
+
+            function updateForm(form)
+            {
+                option.series[0].type = form;
+                var dom = document.getElementById("container");
+                var myChart = echarts.init(dom, 'macarons');
+                myChart.setOption(option);
             }
  
         //var myChart = echarts.init(dom);

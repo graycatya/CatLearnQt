@@ -11,11 +11,28 @@ Rectangle {
     //id: demoimageflipable
     color: "transparent"
 
+    QtObject {
+        id: chartObject
+
+        // ID, under which this object will be known at WebEngineView side
+        WebChannel.id: "catecharts"
+
+        //property string someProperty: "Break on through to the other side"
+
+        signal updateForm(string form);
+
+        /*function changeText(newText) {
+            console.log(newText);
+            txt.text = newText;
+            return "New text length: " + newText.length;
+        }*/
+    }
+
     //WebSocket
     WebSocketServer {
         id: websocketserver
         listen: true
-        port: 14618
+        port: 55555
 
         onClientConnected: {
             if(webSocket.status === webSocket.Open)
@@ -25,22 +42,83 @@ Rectangle {
         }
 
         onErrorStringChanged: {
-
+            console.log(qsTr("Server error: %1").arg(errorString));
         }
     }
 
-    WebEngineView {
-        id: webengine
+    ListModel {
+        id: chartModels
+        ListElement {
+            imagerec: "LineChart.png"
+            chartform: "line"
+        }
+        ListElement {
+            imagerec: "BarChart.png"
+            chartform: "bar"
+        }
+    }
+
+    RowLayout {
         anchors.fill: parent
         anchors.margins: 10
-        backgroundColor: "transparent"
-        url: catconfig.getWebResourcePath() + "/charts.html";
-        onGeometryChangeRequested: function(geometry) {
-            webengine.x = geometry.x
-            webengine.y = geometry.y
-            webengine.width = geometry.width
-            webengine.height = geometry.height
+
+        spacing: 10
+
+        ListView {
+            id: chartfunctions
+            Layout.fillHeight: true
+            Layout.preferredWidth: 30
+            Layout.minimumWidth: 30
+            Layout.maximumWidth: 30
+            spacing: 5
+            clip: true
+            focus: true
+
+
+            model: chartModels
+
+            delegate: Rectangle {
+                width: 30
+                height: 30
+
+                color: "#414141"
+
+                border.width: ListView.isCurrentItem ? 1 : 0
+                radius: 5
+                border.color: "#1171AE"
+
+                Image {
+                    anchors.fill: parent
+                    source: ProjectObject.getCurrentResourcePath() + imagerec
+                    width: 30
+                    height: 30
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        chartfunctions.currentIndex = index  //实现item切换
+                        console.log("charts clicked")
+                        chartObject.updateForm(chartform)
+                    }
+                }
+            }
         }
+
+        WebEngineView {
+            id: webengine
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            backgroundColor: "transparent"
+            url: catconfig.getWebResourcePath() + "/charts.html";
+            onGeometryChangeRequested: function(geometry) {
+                webengine.x = geometry.x
+                webengine.y = geometry.y
+                webengine.width = geometry.width
+                webengine.height = geometry.height
+            }
+        }
+
     }
 
 }

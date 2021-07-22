@@ -35,6 +35,24 @@ minQtVersion(5, 15, 0) {
 }
 
 
+# 配置file_copies
+CONFIG += file_copies
+
+# 创建examples变量并配置
+# 配置需要复制的文件或目录(支持通配符)
+examples.files = $$PWD/WebResource
+# 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+CONFIG += debug_and_release
+CONFIG(debug, debug|release){
+    examples.path = $$OUT_PWD/debug
+} else {
+    examples.path = $$OUT_PWD/release
+}
+
+
+
+# 配置COPIES
+COPIES += examples
 
 CONFIG += c++11
 # CONFIG += console

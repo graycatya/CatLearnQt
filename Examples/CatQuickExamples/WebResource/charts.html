@@ -6,21 +6,35 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script type="text/javascript" src="qwebchannel.js"></script>
+        <script type="text/javascript" src="reconnecting-websocket.min.js"></script>
         <script type="text/javascript">
             var catecharts;
-
             window.onload = function()
             {
                 console.log("window.onload");
-                var socket = new WebSocket("ws://127.0.0.1:14618");
+                var socket = new ReconnectingWebSocket("ws://127.0.0.1:14618");
                 
                 socket.onopen = function()
                 {
+                    var messageJson = JSON.stringify({"type": "heartBeat", "message": "charts heartBeat"});
+                    socket.send(messageJson);
                     new QWebChannel(socket, function(channel) {
                         // 这里写信号与槽绑定
                         catecharts = channel.objects.catecharts
                         catecharts.updateForm.connect(function(form) {
                             updateForm(form);
+                        });
+
+                        catecharts.addData.connect(function(){
+                            addData();
+                        });
+
+                        catecharts.subtractData.connect(function(){
+                            subtractData();
+                        });
+
+                        catecharts.clearData.connect(function(){
+                            clearData();
                         });
                     });
                 }
@@ -41,7 +55,20 @@
                 {
                     console.log("Connection is closed: " + evt.code + " - " + evt.reason);   
                 }
+
+                /*setInterval(function heartBeat()
+                {
+                    if(socket.readyState === 3)
+                    {
+                        socket = new WebSocket("ws://127.0.0.1:14618");
+                    }
+                }, 100);*/
             }
+
+
+
+            
+
         </script>
 
     </head>
@@ -85,6 +112,8 @@
 
             var option;
 
+
+
             option = {
                 grid: {
                     top: 50,
@@ -123,18 +152,34 @@
                         show: true,
                         type: 'inside',
                         filterMode: 'none',
+                        xAxisIndex: [0],
+                        start: 0,
+                        end: 100
+                    },
+                    {
+                        show: false,
+                        type: 'slider',
+                        filterMode: 'none',
+                        xAxisIndex: [0],
+                        start: 0,
+                        end: 100
+                    },
+                    /*{
+                        show: true,
+                        type: 'inside',
+                        filterMode: 'none',
                         yAxisIndex: [0],
-                        startValue: 5000,
-                        endValue: -5000
+                        start: 0,
+                        end: 100
                     },
                     {
                         show: false,
                         type: 'slider',
                         filterMode: 'none',
                         yAxisIndex: [0],
-                        startValue: 5000,
-                        endValue: -5000
-                    },
+                        start: 0,
+                        end: 100
+                    },*/
                 ],
 
                 xAxis: {
@@ -148,16 +193,16 @@
                     axisLabel: {
                         //formatter: '{value} °C'
                     },
-                    min: -5000,
-                    max: 5000
+                    min: -20,
+                    max: 20
                 },
                 series: [
                     {
-                        name: 'Measurements',
+                        name: 'TestData',
                         type: 'line',
                         data: [1, -2, 2, 5, 3, 2, 0, 2, 3 ,4],
                         markPoint: {
-                            data: [
+                            /*data: [
                                 {
                                     //name: '周最低', 
                                     value: -2, 
@@ -176,13 +221,13 @@
                                         color: "#feae4b"
                                     }
                                 },
-                            ],
+                            ],*/
          
                         },
                         markLine: {
                             data: [
                              
-                                { name: '低限',
+                                /*{ name: '低限',
                                   yAxis: -5000,
                                   itemStyle: {
                                     color: "#00dd7d"
@@ -193,7 +238,7 @@
                                   itemStyle: {
                                         color: "#feae4b"
                                     }
-                                },
+                                },*/
                                 /*{type: 'average', name: '平均值'},
                                 [ {
                                     symbol: 'circle',
@@ -243,6 +288,36 @@
                 //var myChart = echarts.init(dom, 'macarons');
                 myChart.setOption(option);
             }
+
+            function addData()
+            {
+                option.xAxis.data.push(option.xAxis.data.length+1);
+                option.series[0].data.push(Math.ceil(Math.random()*100));
+                option.yAxis.max = Math.max.apply(null, option.series[0].data) + 10;
+                option.yAxis.min = Math.min.apply(null, option.series[0].data) - 10;
+                updateOption();
+            }
+
+            function subtractData()
+            {
+                option.xAxis.data.pop();
+                option.series[0].data.pop();
+                option.yAxis.max = Math.max.apply(null, option.series[0].data) + 10;
+                option.yAxis.min = Math.min.apply(null, option.series[0].data) - 10;
+                updateOption();
+            }
+
+            function clearData()
+            {
+                option.xAxis.data.length = 0;
+                option.series[0].data.length = 0;
+                updateOption();
+            }
+
+            function updateOption()
+            {
+                myChart.setOption(option);
+            } 
  
             myChart.on('dataZoom', function (params) {
                 console.log(params);

@@ -60,5 +60,8 @@
         <file>Images/Black/CatECharts.png</file>
         <file>Images/Black/BarChart.png</file>
         <file>Images/Black/LineChart.png</file>
+        <file>Images/Black/AddImage.png</file>
+        <file>Images/Black/ClearImage.png</file>
+        <file>Images/Black/SubtractImage.png</file>
     </qresource>
 </RCC>

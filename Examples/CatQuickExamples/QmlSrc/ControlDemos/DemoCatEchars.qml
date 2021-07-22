@@ -28,6 +28,9 @@ Rectangle {
             txt.text = newText;
             return "New text length: " + newText.length;
         }*/
+        signal addData();
+        signal subtractData();
+        signal clearData();
     }
 
     CatEchatswebChannel {
@@ -45,6 +48,9 @@ Rectangle {
             {
                 channel.connectTo(catechatswebchannel)
                 webSocket.onTextMessageReceived.connect(catechatswebchannel.textMessageReceive)
+                webSocket.onTextMessageReceived.connect(function(data){
+                    catLog.debug_print("DemoCatEchars: " + data);
+                });
                 catechatswebchannel.onMessageChanged.connect(webSocket.sendTextMessage);
             }
         }
@@ -52,6 +58,8 @@ Rectangle {
         onErrorStringChanged: {
             console.log(qsTr("Server error: %1").arg(errorString));
         }
+
+
     }
 
     ListModel {
@@ -112,18 +120,109 @@ Rectangle {
             }
         }
 
-        WebEngineView {
-            id: webengine
+        ColumnLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
-            backgroundColor: "transparent"
-            url: catconfig.getWebResourcePath() + "/charts.html";
-            onGeometryChangeRequested: function(geometry) {
-                webengine.x = geometry.x
-                webengine.y = geometry.y
-                webengine.width = geometry.width
-                webengine.height = geometry.height
+            spacing: 5
+
+            WebEngineView {
+                id: webengine
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                backgroundColor: "transparent"
+                url: catconfig.getWebResourcePath() + "/charts.html";
+                onGeometryChangeRequested: function(geometry) {
+                    webengine.x = geometry.x
+                    webengine.y = geometry.y
+                    webengine.width = geometry.width
+                    webengine.height = geometry.height
+                }
             }
+
+            RowLayout {
+                Layout.preferredHeight: 30
+                Layout.maximumHeight: 30
+                Layout.fillWidth: true
+
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: "transparent"
+                }
+
+                CatButtonImage {
+                    id: addbutton
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
+
+                    backImage.width: addbutton.width
+                    backImage.height: addbutton.height
+                    btnImgNormal: ProjectObject.getCurrentResourcePath() + "AddImage.png"
+                    btnImgHovered: ProjectObject.getCurrentResourcePath() + "AddImage.png"
+                    btnImgPressed: ProjectObject.getCurrentResourcePath() + "AddImage.png"
+                    btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "AddImage.png"
+                    backgroundColor: "#414141"
+                    backgroundColor_hovered: "#414141"
+                    backgroundColor_pressed: "#414141"
+                    imagebackground.border.width: addbutton.pressed ? 3 : (addbutton.hovered ? 1 : 0)
+                    imagebackground.border.color: "#1171AE"
+                    imagebackground.radius: 5
+                    onClicked: {
+                        chartObject.addData();
+                    }
+                }
+
+                CatButtonImage {
+                    id: subtractbutton
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
+
+                    backImage.width: subtractbutton.width
+                    backImage.height: subtractbutton.height
+                    btnImgNormal: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
+                    btnImgHovered: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
+                    btnImgPressed: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
+                    btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
+                    backgroundColor: "#414141"
+                    backgroundColor_hovered: "#414141"
+                    backgroundColor_pressed: "#414141"
+                    imagebackground.border.width: subtractbutton.pressed ? 3 : (subtractbutton.hovered ? 1 : 0)
+                    imagebackground.border.color: "#1171AE"
+                    imagebackground.radius: 5
+                    onClicked: {
+                        chartObject.subtractData();
+                    }
+                }
+
+                CatButtonImage {
+                    id: clearbutton
+                    Layout.preferredWidth: 30
+                    Layout.preferredHeight: 30
+
+                    backImage.width: clearbutton.width
+                    backImage.height: clearbutton.height
+                    btnImgNormal: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
+                    btnImgHovered: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
+                    btnImgPressed: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
+                    btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
+                    backgroundColor: "#414141"
+                    backgroundColor_hovered: "#414141"
+                    backgroundColor_pressed: "#414141"
+                    imagebackground.border.width: clearbutton.pressed ? 3 : (clearbutton.hovered ? 1 : 0)
+                    imagebackground.border.color: "#1171AE"
+                    imagebackground.radius: 5
+                    onClicked: {
+                        chartObject.clearData();
+                    }
+                }
+
+                Rectangle {
+                    Layout.fillHeight: true
+                    Layout.fillWidth: true
+                    color: "transparent"
+                }
+            }
+
         }
 
         WebChannel {

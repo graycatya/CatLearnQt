@@ -1,5 +1,18 @@
 QT += core gui quick
 
+message(Qt version: $$[QT_VERSION])
+message(Qt is installed in $$[QT_INSTALL_PREFIX])
+message(Qt resources can be found in the following locations:)
+message(Documentation: $$[QT_INSTALL_DOCS])
+message(Header files: $$[QT_INSTALL_HEADERS])
+message(Libraries: $$[QT_INSTALL_LIBS])
+message(Binary files (executables): $$[QT_INSTALL_BINS])
+message(Plugins: $$[QT_INSTALL_PLUGINS])
+message(Data files: $$[QT_INSTALL_DATA])
+message(Translation files: $$[QT_INSTALL_TRANSLATIONS])
+message(Settings: $$[QT_INSTALL_CONFIGURATION])
+message(Examples: $$[QT_INSTALL_EXAMPLES])
+
 !mingw {
     QT += webengine webchannel websockets webview
 }
@@ -82,6 +95,23 @@ include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
 include($$PWD/src/WebChannelFunction/WebChannelFunction.pri)
+
+# 配置file_copies
+CONFIG += file_copies
+
+# 创建examples变量并配置
+# 配置需要复制的文件或目录(支持通配符)
+
+webresource.files = $$PWD/WebResource
+# 配置需要复制的目标目录, $$OUT_PWD为QMake内置变量，含义为程序输出目录
+CONFIG += debug_and_release
+CONFIG(debug, debug|release){
+    webresource.path = $$OUT_PWD/debug
+} else {
+    webresource.path = $$OUT_PWD/release
+}
+
+COPIES += webresource
 
 SOURCES += \
     CatConfig.cpp \

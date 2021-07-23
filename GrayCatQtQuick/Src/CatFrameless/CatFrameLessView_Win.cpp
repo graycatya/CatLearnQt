@@ -239,6 +239,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
     if (!msg || !msg->hwnd) {
         return false;
     }
+
     switch (msg->message) {
     case WM_NCCALCSIZE: {
         const auto mode = static_cast<BOOL>(msg->wParam);

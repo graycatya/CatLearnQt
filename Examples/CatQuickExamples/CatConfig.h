@@ -6,6 +6,7 @@
 #include <QLocale>
 #include <QDebug>
 #include <QGuiApplication>
+#include <QFontDatabase>
 
 class QTranslator;
 
@@ -41,6 +42,8 @@ public:
             _instance = nullptr;
         }
     }
+
+    Q_INVOKABLE QList<QString> systemFontFamily(QFontDatabase::WritingSystem writingSystem = QFontDatabase::Any);
 
     Q_INVOKABLE bool qtQuick3D()
     {

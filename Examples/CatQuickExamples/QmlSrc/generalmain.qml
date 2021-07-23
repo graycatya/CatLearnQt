@@ -74,5 +74,6 @@ Window {
         {
             catfps.anchors.rightMargin = 0
         }
+        catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
     }
 }

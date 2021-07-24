@@ -72,6 +72,10 @@ Rectangle {
             imagerec: "BarChart.png"
             chartform: "bar"
         }
+        ListElement {
+            imagerec: "ScatterChart.png"
+            chartform: "scatter"
+        }
     }
 
     RowLayout {

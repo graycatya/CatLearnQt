@@ -9,6 +9,8 @@ Rectangle {
     property int fontpixsize: 14
     property color fontcolor: "#FFFFFF"
     property alias listviewitem: listview
+    property bool showhighlight: false
+    property bool sideslip: true
 
     state: "hideText"
 
@@ -46,11 +48,17 @@ Rectangle {
         }
 
         onEntered: {
-            catsidecolumn.state = "showText"
+            if(sideslip)
+            {
+                catsidecolumn.state = "showText"
+            }
         }
 
         onExited: {
-            catsidecolumn.state = "hideText"
+            if(sideslip)
+            {
+                catsidecolumn.state = "hideText"
+            }
         }
 
         ListView {

@@ -41,6 +41,8 @@ Rectangle {
             anchors.top: sideitemrectangle.top
             anchors.bottom: sideitemrectangle.bottom
             listviewitem.model: functionstates
+            showhighlight: true
+            sideslip: true
 
 
 
@@ -54,7 +56,7 @@ Rectangle {
                 color: "transparent"
                 MouseArea {
                     id: transarea
-                    visible: false
+                    visible: true
 
                     anchors.fill: parent
                     // 悬停事件是否被处理
@@ -80,7 +82,10 @@ Rectangle {
                     onClicked: {
                         catsidecolumn.listviewitem.currentIndex = index
                         catsidecolumn.currentindex(index)
-                        color = "#3C3C3C"
+                        if(!catsidecolumn.showhighlight)
+                        {
+                            color = "#3C3C3C"
+                        }
                         mouse.accepted = false;
                     }
                     onReleased: {
@@ -88,15 +93,15 @@ Rectangle {
                     }
 
                     onEntered: {
-                        console.log("index: " + catsidecolumn.listviewitem.currentIndex)
-                        if(catsidecolumn.listviewitem.currentIndex !== index)
+                        //console.log("index: " + catsidecolumn.listviewitem.currentIndex)
+                        if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
                         {
                             color = "#4C4C4C"
                         }
                     }
 
                     onExited: {
-                        if(catsidecolumn.listviewitem.currentIndex !== index)
+                        if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
                         {
                             color = "transparent"
                         }
@@ -143,15 +148,18 @@ Rectangle {
 
                 Component.onCompleted: {
                     catsidecolumn.currentindex.connect(function(updateindex){
-                        console.log("updateindex: " + updateindex)
-                        if(updateindex !== index)
+                        //console.log("updateindex: " + updateindex)
+                        if(!catsidecolumn.showhighlight)
                         {
-                            color = "transparent"
-                        } else {
-                            color = "#3C3C3C"
+                            if(updateindex !== index)
+                            {
+                                color = "transparent"
+                            } else {
+                                color = "#3C3C3C"
+                            }
                         }
                     });
-                    if(index === 0)
+                    if(index === 0 && !catsidecolumn.showhighlight)
                     {
                         color = "#3C3C3C"
                     }
@@ -160,14 +168,15 @@ Rectangle {
 
 
             listviewitem.highlight: Rectangle {
-                height: minWidth
+                height: catsidecolumn.minWidth
                 width: catsidecolumn.width
                 color: "#3C3C3C"
+                visible: catsidecolumn.showhighlight
 
             }
 
-            listviewitem.highlightFollowsCurrentItem: true
-            focus: true
+            listviewitem.highlightFollowsCurrentItem: catsidecolumn.showhighlight;
+            listviewitem.focus: catsidecolumn.showhighlight;
 
             width: 60
         }

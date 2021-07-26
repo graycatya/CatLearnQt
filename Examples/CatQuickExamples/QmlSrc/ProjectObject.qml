@@ -417,6 +417,14 @@ QtObject {
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatEchars.qml",
                 "libs": "webengine",
             },
+            {
+                "name": "CatSideColumn",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": projectobject.getCurrentResourcePath() + "CatSideColumn.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatSideColumn.qml",
+                "libs": "default",
+            },
         ]
     }
 

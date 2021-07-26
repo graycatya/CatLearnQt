@@ -1,5 +1,19 @@
 MetaInfo {
     Type {
+        name: "GrayCatQtQuick.Qml.GrayCatQtQuickStyle"
+        icon: "images/GrayCatQtQuickStyle.png"
+
+        ItemLibraryEntry {
+            name: "GrayCatQtQuickStyle"
+            category: "GrayCatQtQuick - Qml"
+            libraryIcon: "images/GrayCatQtQuickStyle.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
         name: "GrayCatQtQuick.Qml.CatAnimation.ImageFlicker"
         icon: "images/ImageFlicker.png"
 
@@ -287,6 +301,62 @@ MetaInfo {
             name: "CatCalendar"
             category: "GrayCatQtQuick - CatModule"
             libraryIcon: "images/CatCalendar.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
+        name: "GrayCatQtQuick.Qml.CatModule.CatSideColumn"
+        icon: "images/CatSideColumn.png"
+
+        ItemLibraryEntry {
+            name: "CatSideColumn"
+            category: "GrayCatQtQuick - CatModule"
+            libraryIcon: "images/CatSideColumn.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
+        name: "GrayCatQtQuick.Qml.CatModule.CalendarRelyon.CatWeek"
+        icon: "images/CatWeek.png"
+
+        ItemLibraryEntry {
+            name: "CatWeek"
+            category: "GrayCatQtQuick - CalendarRelyon"
+            libraryIcon: "images/CatWeek.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
+        name: "GrayCatQtQuick.Qml.CatModule.CalendarRelyon.DaysItem"
+        icon: "images/DaysItem.png"
+
+        ItemLibraryEntry {
+            name: "DaysItem"
+            category: "GrayCatQtQuick - CalendarRelyon"
+            libraryIcon: "images/DaysItem.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
+        name: "GrayCatQtQuick.Qml.CatModule.CalendarRelyon.NumberItem"
+        icon: "images/NumberItem.png"
+
+        ItemLibraryEntry {
+            name: "NumberItem"
+            category: "GrayCatQtQuick - CalendarRelyon"
+            libraryIcon: "images/NumberItem.png"
             version: "1.0"
             requiredImport: "GrayCatQtQuick"
             Property { name: "width"; type: "int"; value: 120 }

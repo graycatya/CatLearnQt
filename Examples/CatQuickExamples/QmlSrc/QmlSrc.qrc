@@ -23,5 +23,6 @@
         <file>ControlDemos/DemoQParentQrenCode.qml</file>
         <file>ControlDemos/DemoCatCalendar.qml</file>
         <file>ControlDemos/DemoCatEchars.qml</file>
+        <file>ControlDemos/DemoCatSideColumn.qml</file>
     </qresource>
 </RCC>

@@ -64,5 +64,11 @@
         <file>Images/Black/ClearImage.png</file>
         <file>Images/Black/SubtractImage.png</file>
         <file>Images/Black/ScatterChart.png</file>
+        <file>Images/Black/KChart.png</file>
+        <file>Images/Black/CatSideColumn.png</file>
+        <file>Images/Black/Function_0.png</file>
+        <file>Images/Black/Function_1.png</file>
+        <file>Images/Black/Function_2.png</file>
+        <file>Images/Black/Function_3.png</file>
     </qresource>
 </RCC>

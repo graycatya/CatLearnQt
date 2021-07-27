@@ -112,6 +112,15 @@ QtObject {
     property color calendardayTextColorPressed_Selectday: "#FFFFFF"
     property color calendardayTextColorDisbaled_Selectday: "#FFFFFF"
 
+    property color democatsidecolumnback_color: "#3C3C3C"
+    property color sideitemrectangleback_color: "#2C2C2C"
+    property color catsidecolumnitem_SelectColor: "#3C3C3C"
+    property color catsidecolumnitem_HoverColor: "#4C4C4C"
+    property color catsidecolumnitem_DefaultColor: "transparent"
+
+    property color switchbuttonback_DefaultColor: "#9B9898"
+    property color switchbuttonback_CheckColor: "#4E4E4E"
+    property color switchbuttonCircle_Color: "#C4C4C4"
 
     onCurrentThemeChanged: {
         var t = projectobject.themes.get(currentTheme)
@@ -316,6 +325,16 @@ QtObject {
             calendardayTextColorHovered_Selectday: "#FFFFFF"
             calendardayTextColorPressed_Selectday: "#FFFFFF"
             calendardayTextColorDisbaled_Selectday: "#FFFFFF"
+
+            democatsidecolumnback_color: "#3C3C3C"
+            sideitemrectangleback_color: "#2C2C2C"
+            catsidecolumnitem_SelectColor: "#3C3C3C"
+            catsidecolumnitem_HoverColor: "#4C4C4C"
+            catsidecolumnitem_DefaultColor: "transparent"
+
+            switchbuttonback_DefaultColor: "#9B9898"
+            switchbuttonback_CheckColor: "#4E4E4E"
+            switchbuttonCircle_Color: "#C4C4C4"
         }
     }
 

@@ -48,5 +48,9 @@ RESOURCES += \
 TRANSLATIONS = Resource/lang/language_en.ts \
                Resource/lang/language_zh_CN.ts
 
+win32 {
+    RC_ICONS += Resource\Images\applogo.ico
+}
+
 SOURCES += \
     main.cpp

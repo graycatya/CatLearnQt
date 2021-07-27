@@ -1,4 +1,5 @@
 ﻿import QtQuick 2.12
+import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import GrayCatQtQuick 1.0
 import QtGraphicalEffects 1.12
@@ -9,11 +10,20 @@ Rectangle {
     id: democatsidecolumn
     color: "transparent"
 
+    property color democatsidecolumnbackcolor: ProjectObject.democatsidecolumnback_color
+    property color sideitemrectanglebackcolor: ProjectObject.sideitemrectangleback_color
+    property color catsidecolumnitem_SelectColor: ProjectObject.catsidecolumnitem_SelectColor
+    property color catsidecolumnitem_HoverColor: ProjectObject.catsidecolumnitem_HoverColor
+    property color catsidecolumnitem_DefaultColor: ProjectObject.catsidecolumnitem_DefaultColor
+    property color switchbuttonback_DefaultColor: ProjectObject.switchbuttonback_DefaultColor
+    property color switchbuttonback_CheckColor: ProjectObject.switchbuttonback_CheckColor
+    property color switchbuttonCircle_Color: ProjectObject.switchbuttonCircle_Color
+
     Rectangle {
         id: sideitemrectangle
         anchors.fill: parent
         anchors.margins: 30
-        color: "#3C3C3C"
+        color: democatsidecolumnbackcolor
 
         ListModel {
             id: functionstates
@@ -41,14 +51,14 @@ Rectangle {
             anchors.top: sideitemrectangle.top
             anchors.bottom: sideitemrectangle.bottom
             listviewitem.model: functionstates
-            showhighlight: true
+            showhighlight: false
             sideslip: true
 
 
 
             //anchors.centerIn: sideitemrectangle
 
-            color: "#2C2C2C"
+            color: sideitemrectanglebackcolor
 
             listviewitem.delegate: Rectangle {
                 height: catsidecolumn.minWidth
@@ -84,7 +94,7 @@ Rectangle {
                         catsidecolumn.currentindex(index)
                         if(!catsidecolumn.showhighlight)
                         {
-                            color = "#3C3C3C"
+                            color = catsidecolumnitem_SelectColor
                         }
                         mouse.accepted = false;
                     }
@@ -96,14 +106,14 @@ Rectangle {
                         //console.log("index: " + catsidecolumn.listviewitem.currentIndex)
                         if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
                         {
-                            color = "#4C4C4C"
+                            color = catsidecolumnitem_HoverColor
                         }
                     }
 
                     onExited: {
                         if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
                         {
-                            color = "transparent"
+                            color = catsidecolumnitem_DefaultColor
                         }
                     }
                 }
@@ -153,15 +163,17 @@ Rectangle {
                         {
                             if(updateindex !== index)
                             {
-                                color = "transparent"
+                                color = catsidecolumnitem_DefaultColor
                             } else {
-                                color = "#3C3C3C"
+                                color = catsidecolumnitem_SelectColor
                             }
+                        } else {
+                            color = catsidecolumnitem_DefaultColor
                         }
                     });
                     if(index === 0 && !catsidecolumn.showhighlight)
                     {
-                        color = "#3C3C3C"
+                        color = catsidecolumnitem_SelectColor
                     }
                 }
             }
@@ -170,15 +182,62 @@ Rectangle {
             listviewitem.highlight: Rectangle {
                 height: catsidecolumn.minWidth
                 width: catsidecolumn.width
-                color: "#3C3C3C"
+                color: catsidecolumn.showhighlight ? catsidecolumnitem_SelectColor : "transparent"
                 visible: catsidecolumn.showhighlight
 
             }
 
-            listviewitem.highlightFollowsCurrentItem: catsidecolumn.showhighlight;
-            listviewitem.focus: catsidecolumn.showhighlight;
+            listviewitem.highlightFollowsCurrentItem: true
+            listviewitem.focus: true
 
             width: 60
+        }
+
+        Item {
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.left: catsidecolumn.right
+            Repeater {
+                id: switchRepeater
+                model: [""]
+
+
+                Switch {
+                    id: switchshowhighlight
+                    anchors.centerIn: parent
+                    width: 60
+                    height: 36
+
+                    indicator: Rectangle {
+                        width: 60
+                        height: 36
+                        radius: height / 2
+                        color: switchshowhighlight.checked ? switchbuttonback_CheckColor : switchbuttonback_DefaultColor
+                        border.width: 2
+                        border.color: switchbuttonback_CheckColor
+
+                        Rectangle {
+                            x: switchshowhighlight.checked ? parent.width - width - 2 : 1
+                            width: switchshowhighlight.checked ? parent.height - 4 : parent.height - 2
+                            height: width
+                            radius: width / 2
+                            anchors.verticalCenter: parent.verticalCenter
+                            color: switchbuttonCircle_Color
+                            //border.color: "#C4C4C4"
+
+                            Behavior on x {
+                                NumberAnimation { duration: 200 }
+                            }
+                        }
+                    }
+
+                    onVisualPositionChanged: {
+                        catsidecolumn.showhighlight = visualPosition
+                        catsidecolumn.currentindex(catsidecolumn.listviewitem.currentIndex)
+                    }
+                }
+            }
         }
     }
 

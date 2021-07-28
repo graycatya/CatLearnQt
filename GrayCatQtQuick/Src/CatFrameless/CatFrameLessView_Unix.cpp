@@ -20,6 +20,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
     setFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
 
     setResizeMode(SizeRootObjectToView); //添加后可自适应布局
+    setColor(QColor(0, 0, 0, 0));
 
     setIsMax(windowState() == Qt::WindowMaximized);
 

@@ -43,7 +43,7 @@ RimlessWindowBase::~RimlessWindowBase()
 
 void RimlessWindowBase::InitProperty()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
     setAutoFillBackground(true);
     setMouseTracking(true);
     setAttribute(Qt::WA_TranslucentBackground);

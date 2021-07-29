@@ -135,6 +135,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
 
     setFlags(Qt::CustomizeWindowHint | Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
     setResizeMode(SizeRootObjectToView);
+    setColor(QColor(0, 0, 0, 0));
     m_bWork = true;
 
     m_pCatFrameLessViewPrivate->setBorderLess((HWND)(winId()),

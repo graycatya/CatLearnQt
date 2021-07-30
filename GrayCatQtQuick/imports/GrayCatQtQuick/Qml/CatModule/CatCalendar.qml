@@ -304,7 +304,7 @@ Rectangle {
     {
         let month_toEn = [qsTr("Jan."), qsTr("Feb."), qsTr("Mar."), qsTr("Apr."),
                           qsTr("May."), qsTr("Jun."), qsTr("Jul."), qsTr("Aug."),
-                          qsTr("Sept"), qsTr("Oct."), qsTr("Nov."), qsTr("Dec.")];
+                          qsTr("Sept."), qsTr("Oct."), qsTr("Nov."), qsTr("Dec.")];
 
         return month_toEn[month];
     }

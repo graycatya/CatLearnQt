@@ -126,7 +126,7 @@ Rectangle {
         verticalOffset: 0
         radius: 10.0
         samples: 16
-        color: "#3FFFFFFF"
+        color: ProjectObject.defaultShadowColor
         source: catcalendar
     }
 }

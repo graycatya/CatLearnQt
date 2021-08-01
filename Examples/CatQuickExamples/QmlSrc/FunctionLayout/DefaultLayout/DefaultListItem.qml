@@ -15,7 +15,7 @@ Rectangle {
     signal opencontrol(string controlname, string qmlsource)
     anchors.fill: parent
     anchors.margins: 5
-    color: "#2C2C2C"
+    color: ProjectObject.controlRectangleColor
     radius: 5
     height: 100
 
@@ -27,7 +27,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.topMargin: 15
         anchors.leftMargin: 25
-        source: logoSource
+        source: ProjectObject.getCurrentResourcePath() + logoSource
         width: 30
         height: 30
     }

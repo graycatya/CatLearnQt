@@ -2,6 +2,7 @@
 import QtQml 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import QtGraphicalEffects 1.12
 import Qt.labs.calendar 1.0
 import QtQuick.Window 2.12
 import GrayCatQtQuick 1.0
@@ -23,7 +24,6 @@ Window {
         spacing: 0
         anchors.fill: parent
 
-
         GeneralTitleItem {
             id: win10titleitem
             Layout.fillWidth: true
@@ -32,11 +32,17 @@ Window {
             Layout.minimumHeight: 40
         }
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 2
-            color: ProjectObject.titleBottomWidthColor
+
+        DropShadow {
+            anchors.fill: win10titleitem
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 8.0
+            samples: 18
+            color: ProjectObject.catPopupdropshadowColor
+            source: win10titleitem
         }
+
 
         Rectangle {
             id: functionRect
@@ -70,6 +76,8 @@ Window {
 
     Component.onCompleted: {
         catLog.debug_print("run ui, system is: " + Qt.platform.os);
+        ProjectObject.currentTheme = catconfig.getValue("Style");
+
         if(Qt.platform.os === "osx")
         {
             catfps.anchors.rightMargin = 0

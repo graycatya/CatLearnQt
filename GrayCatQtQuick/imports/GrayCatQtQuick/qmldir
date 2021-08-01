@@ -23,8 +23,9 @@ CatWeek 1.0 Qml/CatModule/CalendarRelyon/CatWeek.qml
 DaysItem 1.0 Qml/CatModule/CalendarRelyon/DaysItem.qml
 NumberItem 1.0 Qml/CatModule/CalendarRelyon/NumberItem.qml
 CatCalendar 1.0 Qml/CatModule/CatCalendar.qml
+CatPopup 1.0 Qml/CatModule/CatPopup.qml
 CatSideColumn 1.0 Qml/CatModule/CatSideColumn.qml
 ArcProgressBar 1.0 Qml/CatProgressBar/ArcProgressBar.qml
 ArcProgressBarCanvas 1.0 Qml/CatProgressBar/ArcProgressBarCanvas.qml
 BarTypeProgressBar 1.0 Qml/CatProgressBar/BarTypeProgressBar.qml
-singleton GrayCatQtQuickStyle 1.0 Qml/GrayCatQtQuickStyle.qml
+GrayCatQtQuickStyle 1.0 Qml/GrayCatQtQuickStyle.qml

@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
+import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
 import "FunctionLayout"
 
@@ -30,12 +31,17 @@ Rectangle {
             Layout.preferredHeight: 40
             Layout.maximumHeight: 40
             Layout.minimumHeight: 40
+
         }
 
-        Rectangle {
-            Layout.fillWidth: true
-            Layout.preferredHeight: 2
-            color: ProjectObject.titleBottomWidthColor
+        DropShadow {
+            anchors.fill: win10titleitem
+            horizontalOffset: 0
+            verticalOffset: 0
+            radius: 8.0
+            samples: 18
+            color: ProjectObject.catPopupdropshadowColor
+            source: win10titleitem
         }
 
         Rectangle {
@@ -69,12 +75,14 @@ Rectangle {
     Component.onCompleted: {
         catLog.debug_print("run ui, system is: " + Qt.platform.os);
         catLog.debug_print("webresourcepath " + catconfig.getWebResourcePath())
+        ProjectObject.currentTheme = catconfig.getValue("Style");
+
         if(Qt.platform.os === "osx")
         {
             catfps.anchors.rightMargin = 0
         }
 
-        catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
+        //catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
 
     }
 

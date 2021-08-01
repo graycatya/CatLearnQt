@@ -62,6 +62,106 @@ Rectangle {
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "style_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "style_blue.svg"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "style_gray.svg"
+                CatPopup {
+                    id: stylepopup
+                    anchors.top: stylebutton.bottom
+                    backgroundWidth: 100
+                    backgroundHeight: 200
+                    barColor: ProjectObject.catPopupColor
+                    dropshadowColor: ProjectObject.catPopupdropshadowColor
+
+                    contentItem: ListView {
+                        id: stylelistview
+                        anchors.fill: parent
+
+                        anchors.topMargin: 10
+                        anchors.bottomMargin: 10
+                        anchors.leftMargin: 7
+                        anchors.rightMargin: 7
+                        model: ProjectObject.themes
+
+                        boundsBehavior:Flickable.StopAtBounds
+
+                        clip: true
+                        spacing: 10
+
+
+                        delegate: Item {
+                            width: 85
+                            height: 85
+                            Rectangle {
+                                id: stylerect
+                                anchors.fill: parent
+                                anchors.margins: 5
+                                color: model.Stylecolor
+
+                                radius: 5
+
+                                border.color: ProjectObject.styleRectBorderColor
+                                border.width: 0
+                            }
+                            DropShadow {
+                                anchors.fill: stylerect
+                                horizontalOffset: 0
+                                verticalOffset: 0
+                                radius: 8.0
+                                samples: 18
+                                color: ProjectObject.catPopupdropshadowColor
+                                source: stylerect
+                            }
+
+                            MouseArea {
+                                id: mousea
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+
+                                onClicked: {
+                                    ProjectObject.currentTheme = index
+                                    stylerect.border.width = 2
+                                }
+
+                                onEntered: {
+                                    if(ProjectObject.currentTheme !== index)
+                                    {
+                                        stylerect.border.width = 1;
+                                    }
+                                }
+
+                                onExited: {
+                                    if(ProjectObject.currentTheme !== index)
+                                    {
+                                        stylerect.border.width = 0;
+                                    }
+
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                ProjectObject.updateCurrentThemeed.connect(function(){
+                                    if(ProjectObject.currentTheme === index)
+                                    {
+                                        stylerect.border.width = 2
+                                    } else {
+                                        stylerect.border.width = 0
+                                    }
+                                });
+                                if(ProjectObject.currentTheme === index)
+                                {
+                                    stylerect.border.width = 2
+                                }
+                            }
+                        }
+
+                        //orientation:ListView.Horizontal
+                    }
+
+                }
+
+                onClicked: {
+                    stylepopup.show();
+                }
+
             }
             CatButtonImage {
                 id: languagebutton

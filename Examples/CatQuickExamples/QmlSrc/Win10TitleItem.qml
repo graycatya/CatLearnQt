@@ -56,15 +56,119 @@ Rectangle {
                 id: stylebutton
                 width: 16
                 height: 16
+                backImage.sourceSize.width: 16
+                backImage.sourceSize.height: 16
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "style_gray.svg"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "style_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "style_blue.svg"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "style_gray.svg"
+
+                CatPopup {
+                    id: stylepopup
+                    anchors.top: stylebutton.bottom
+                    backgroundWidth: 200
+                    backgroundHeight: 100
+                    barColor: ProjectObject.catPopupColor
+                    dropshadowColor: ProjectObject.catPopupdropshadowColor
+
+                    contentItem: ListView {
+                        id: stylelistview
+                        anchors.fill: parent
+
+                        anchors.topMargin: 7
+                        anchors.bottomMargin: 7
+                        anchors.leftMargin: 10
+                        anchors.rightMargin: 10
+                        model: ProjectObject.themes
+
+                        boundsBehavior:Flickable.StopAtBounds
+
+                        clip: true
+                        spacing: 10
+
+
+                        delegate: Item {
+                            width: 85
+                            height: 85
+                            Rectangle {
+                                id: stylerect
+                                anchors.fill: parent
+                                anchors.margins: 5
+                                color: model.Stylecolor
+
+                                radius: 5
+
+                                border.color: ProjectObject.styleRectBorderColor
+                                border.width: 0
+                            }
+                            DropShadow {
+                                anchors.fill: stylerect
+                                horizontalOffset: 0
+                                verticalOffset: 0
+                                radius: 8.0
+                                samples: 18
+                                color: ProjectObject.catPopupdropshadowColor
+                                source: stylerect
+                            }
+
+                            MouseArea {
+                                id: mousea
+                                anchors.fill: parent
+                                hoverEnabled: true
+                                cursorShape: Qt.PointingHandCursor
+
+                                onClicked: {
+                                    ProjectObject.currentTheme = index
+                                    stylerect.border.width = 2
+                                }
+
+                                onEntered: {
+                                    if(ProjectObject.currentTheme !== index)
+                                    {
+                                        stylerect.border.width = 1;
+                                    }
+                                }
+
+                                onExited: {
+                                    if(ProjectObject.currentTheme !== index)
+                                    {
+                                        stylerect.border.width = 0;
+                                    }
+
+                                }
+                            }
+
+                            Component.onCompleted: {
+                                ProjectObject.updateCurrentThemeed.connect(function(){
+                                    if(ProjectObject.currentTheme === index)
+                                    {
+                                        stylerect.border.width = 2
+                                    } else {
+                                        stylerect.border.width = 0
+                                    }
+                                });
+                                if(ProjectObject.currentTheme === index)
+                                {
+                                    stylerect.border.width = 2
+                                }
+                            }
+                        }
+
+                        orientation:ListView.Horizontal
+                    }
+
+                }
+
+                onClicked: {
+                    stylepopup.show();
+                }
             }
             CatButtonImage {
                 id: languagebutton
                 width: 16
                 height: 16
+                backImage.sourceSize.width: 16
+                backImage.sourceSize.height: 16
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "language_gray.svg"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "language_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "language_blue.svg"
@@ -74,6 +178,8 @@ Rectangle {
                 id: settingbutton
                 width: 16
                 height: 16
+                backImage.sourceSize.width: 16
+                backImage.sourceSize.height: 16
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "setting_gray.svg"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "setting_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "setting_blue.svg"
@@ -105,8 +211,8 @@ Rectangle {
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "minimal_white.png"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "minimal_gray.png"
                 backgroundColor: "transparent"
-                backgroundColor_hovered: "#393939"
-                backgroundColor_pressed: "#4E4E4E"
+                backgroundColor_hovered: ProjectObject.titleButtonHoverColor
+                backgroundColor_pressed: ProjectObject.titleButtonPressColor
                 onClicked: {
                     view.showMinimized()
                 }
@@ -123,8 +229,8 @@ Rectangle {
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "max_white.png"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "max_gray.png"
                 backgroundColor: "transparent"
-                backgroundColor_hovered: "#393939"
-                backgroundColor_pressed: "#4E4E4E"
+                backgroundColor_hovered: ProjectObject.titleButtonHoverColor
+                backgroundColor_pressed: ProjectObject.titleButtonPressColor
                 onClicked: {
                     view.showMaximized()
                 }
@@ -141,8 +247,8 @@ Rectangle {
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "normal_white.png"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "normal_gray.png"
                 backgroundColor: "transparent"
-                backgroundColor_hovered: "#393939"
-                backgroundColor_pressed: "#4E4E4E"
+                backgroundColor_hovered: ProjectObject.titleButtonHoverColor
+                backgroundColor_pressed: ProjectObject.titleButtonPressColor
                 onClicked: {
                     view.showNormal()
                 }
@@ -158,8 +264,8 @@ Rectangle {
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "close_white.png"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "close_gray.png"
                 backgroundColor: "transparent"
-                backgroundColor_hovered: "#C14444"
-                backgroundColor_pressed: "#C15044"
+                backgroundColor_hovered: ProjectObject.titleCloseButtonHoverColor
+                backgroundColor_pressed: ProjectObject.titleCloseButtonPressColor
                 onClicked: {
                     view.close()
                 }

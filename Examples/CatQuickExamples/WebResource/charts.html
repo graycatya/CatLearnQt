@@ -36,6 +36,10 @@
                         catecharts.clearData.connect(function(){
                             clearData();
                         });
+
+                        catecharts.updateStyle.connect(function(style){
+                            updateStyle(style);
+                        });
                     });
                 }
 
@@ -105,8 +109,9 @@
         //echarts.registerTheme('customed', config);
 
             //echarts.registerTheme('customed', themeJSON)
-            var dom = document.getElementById("container");
-            var myChart = echarts.init(dom, 'dark');
+            var dom = null;
+            var myChart = null;
+            //initEchart();
 
             var app = {};
 
@@ -273,13 +278,6 @@
                 ]
             };
 
-            if (option && typeof option === 'object') {
-                
-                myChart.setOption(option);
-                window.onresize=function(){
-                myChart.resize();
-                }
-            }
 
             function updateForm(form)
             {
@@ -300,11 +298,14 @@
 
             function subtractData()
             {
-                option.xAxis.data.pop();
-                option.series[0].data.pop();
-                option.yAxis.max = Math.max.apply(null, option.series[0].data) + 10;
-                option.yAxis.min = Math.min.apply(null, option.series[0].data) - 10;
-                updateOption();
+                if(option.xAxis.data.length !== 0)
+                {
+                    option.xAxis.data.pop();
+                    option.series[0].data.pop();
+                    option.yAxis.max = Math.max.apply(null, option.series[0].data) + 10;
+                    option.yAxis.min = Math.min.apply(null, option.series[0].data) - 10;
+                    updateOption();
+                }
             }
 
             function clearData()
@@ -318,14 +319,48 @@
             {
                 myChart.setOption(option);
             } 
+
+            function updateStyle(style)
+            {
+                if(style === "Black")
+                {
+                    if(myChart !== null)
+                    {
+                        myChart.dispose();
+                    }
+                    dom = document.getElementById("container");
+                    myChart = echarts.init(dom, 'dark');
+                } else if(style === "White") {
+                    if(myChart !== null)
+                    {
+                        myChart.dispose();
+                    }
+                    dom = document.getElementById("container");
+                    myChart = echarts.init(dom, 'macarons');
+                }
+
+
+                myChart.on('dataZoom', function (params) {
+                    console.log(params);
+                    option.dataZoom[0].start = params.batch[0].start 
+                    option.dataZoom[0].end = params.batch[0].end
+                    option.dataZoom[1].start = params.batch[0].start 
+                    option.dataZoom[1].end = params.batch[0].end
+                    });
+                if (option && typeof option === 'object') {
+                    
+                    myChart.setOption(option);
+                    window.onresize=function(){
+                    myChart.resize();
+                    }
+                }
+
+                updateOption();
+
+
+            }
  
-            myChart.on('dataZoom', function (params) {
-                console.log(params);
-                option.dataZoom[0].start = params.batch[0].start 
-                option.dataZoom[0].end = params.batch[0].end
-                option.dataZoom[1].start = params.batch[0].start 
-                option.dataZoom[1].end = params.batch[0].end
-            });
+
         //var myChart = echarts.init(dom);
 
 

@@ -23,6 +23,7 @@
         <file>Qml/CatImage/CatImageBase.qml</file>
         <file>Qml/CatInput/IpTextInput.qml</file>
         <file>Qml/CatModule/CatCalendar.qml</file>
+        <file>Qml/CatModule/CatPopup.qml</file>
         <file>Qml/CatModule/CatSideColumn.qml</file>
         <file>Qml/CatModule/CalendarRelyon/CatWeek.qml</file>
         <file>Qml/CatModule/CalendarRelyon/DaysItem.qml</file>

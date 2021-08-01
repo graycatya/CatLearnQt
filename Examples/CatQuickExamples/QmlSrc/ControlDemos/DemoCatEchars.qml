@@ -22,6 +22,7 @@ Rectangle {
         //property string someProperty: "Break on through to the other side"
 
         signal updateForm(string form);
+        signal updateStyle(string style);
 
         /*function changeText(newText) {
             console.log(newText);
@@ -31,6 +32,12 @@ Rectangle {
         signal addData();
         signal subtractData();
         signal clearData();
+
+        function getStyle()
+        {
+            return
+        }
+
     }
 
     CatEchatswebChannel {
@@ -105,11 +112,11 @@ Rectangle {
                 width: 30
                 height: 30
 
-                color: "#414141"
+                color: ProjectObject.defaultButton_DefaultColor
 
                 border.width: ListView.isCurrentItem ? 1 : 0
                 radius: 5
-                border.color: "#1171AE"
+                border.color: ProjectObject.defaultButtonBorder_DefaultColor
 
                 Image {
                     anchors.fill: parent
@@ -145,6 +152,16 @@ Rectangle {
                     webengine.width = geometry.width
                     webengine.height = geometry.height
                 }
+
+                onLoadProgressChanged: {
+
+                    if(loadProgress == 100)
+                    {
+                        timer.start();
+                    }
+                }
+
+
             }
 
             RowLayout {
@@ -169,11 +186,11 @@ Rectangle {
                     btnImgHovered: ProjectObject.getCurrentResourcePath() + "AddImage.png"
                     btnImgPressed: ProjectObject.getCurrentResourcePath() + "AddImage.png"
                     btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "AddImage.png"
-                    backgroundColor: "#414141"
-                    backgroundColor_hovered: "#414141"
-                    backgroundColor_pressed: "#414141"
+                    backgroundColor: ProjectObject.defaultButton_DefaultColor
+                    backgroundColor_hovered: ProjectObject.defaultButton_HoverColor
+                    backgroundColor_pressed: ProjectObject.defaultButton_PressColor
                     imagebackground.border.width: addbutton.pressed ? 3 : (addbutton.hovered ? 1 : 0)
-                    imagebackground.border.color: "#1171AE"
+                    imagebackground.border.color: ProjectObject.defaultButtonBorder_DefaultColor
                     imagebackground.radius: 5
                     onClicked: {
                         chartObject.addData();
@@ -191,11 +208,11 @@ Rectangle {
                     btnImgHovered: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
                     btnImgPressed: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
                     btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "SubtractImage.png"
-                    backgroundColor: "#414141"
-                    backgroundColor_hovered: "#414141"
-                    backgroundColor_pressed: "#414141"
+                    backgroundColor: ProjectObject.defaultButton_DefaultColor
+                    backgroundColor_hovered: ProjectObject.defaultButton_HoverColor
+                    backgroundColor_pressed: ProjectObject.defaultButton_PressColor
                     imagebackground.border.width: subtractbutton.pressed ? 3 : (subtractbutton.hovered ? 1 : 0)
-                    imagebackground.border.color: "#1171AE"
+                    imagebackground.border.color: ProjectObject.defaultButtonBorder_DefaultColor
                     imagebackground.radius: 5
                     onClicked: {
                         chartObject.subtractData();
@@ -213,11 +230,11 @@ Rectangle {
                     btnImgHovered: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
                     btnImgPressed: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
                     btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "ClearImage.png"
-                    backgroundColor: "#414141"
-                    backgroundColor_hovered: "#414141"
-                    backgroundColor_pressed: "#414141"
+                    backgroundColor: ProjectObject.defaultButton_DefaultColor
+                    backgroundColor_hovered: ProjectObject.defaultButton_HoverColor
+                    backgroundColor_pressed: ProjectObject.defaultButton_PressColor
                     imagebackground.border.width: clearbutton.pressed ? 3 : (clearbutton.hovered ? 1 : 0)
-                    imagebackground.border.color: "#1171AE"
+                    imagebackground.border.color: ProjectObject.defaultButtonBorder_DefaultColor
                     imagebackground.radius: 5
                     onClicked: {
                         chartObject.clearData();
@@ -238,6 +255,20 @@ Rectangle {
             registeredObjects: [chartObject]
         }
 
+    }
+
+    Component.onCompleted: {
+        ProjectObject.updateCurrentThemeed.connect(function(){
+            chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
+        });
+    }
+
+    Timer {
+        id: timer
+        interval: 50
+        onTriggered: {
+            chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
+        }
     }
 
 }

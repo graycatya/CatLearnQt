@@ -11,20 +11,25 @@ QtObject {
 
     property string resourcePath: "qrc:/Images/"
 
-    property int currentTheme: -1
+    property int currentTheme: 0
 
     property color appBackgroundColor: "#1F1F20"
     property color titleBackgroundColor: "#18181B"
     property color titleBottomWidthColor: "#000000"
     property color titleLogoShadowColor: "#FFFFFF"
-    property color fpsgradient0Color: "#87CEFF"
-    property color fpsgradient1Color: "blue"
+    property color fpsgradient0Color: "#9B9898"
+    property color fpsgradient1Color: "#4E4E4E"
     property color defaultShadowColor: "#3FFFFFFF"
     property color controlNameColor: "#FFFFFF"
     property color controlAuthorColor: "#9B9898"
     property color controlVersionColor: "#9B9898"
     property color defaultRectangleColor: "#2C2C2C"
-    property color controlRectangleColor: "#4E4E4E"
+    property color controlRectangleColor: "#2C2C2C"
+
+    property color titleButtonHoverColor: "#393939"
+    property color titleButtonPressColor: "#4E4E4E"
+    property color titleCloseButtonHoverColor: "#C14444"
+    property color titleCloseButtonPressColor: "#C15044"
 
     //日历样式
     property color calendarbackdropColor: "#2C2C2C"
@@ -117,13 +122,28 @@ QtObject {
     property color catsidecolumnitem_SelectColor: "#3C3C3C"
     property color catsidecolumnitem_HoverColor: "#4C4C4C"
     property color catsidecolumnitem_DefaultColor: "transparent"
+    property color catsidecolumnitem_FunctionColor: "#FFFFFF"
 
     property color switchbuttonback_DefaultColor: "#9B9898"
     property color switchbuttonback_CheckColor: "#4E4E4E"
     property color switchbuttonCircle_Color: "#C4C4C4"
 
+
+    property color catPopupColor: "#2C2C2C"
+    property color catPopupdropshadowColor: "#63FFFFFF"
+    property color styleRectBorderColor: "#999999"
+
+    property color defaultButton_DefaultColor: "#414141"
+    property color defaultButton_HoverColor: "#414141"
+    property color defaultButton_PressColor: "#414141"
+    property color defaultButtonBorder_DefaultColor: "#1171AE"
+
+
+    signal updateCurrentThemeed();
+
     onCurrentThemeChanged: {
         var t = projectobject.themes.get(currentTheme)
+
         projectobject.appBackgroundColor = t.appBackgroundColor
         projectobject.titleBackgroundColor = t.titleBackgroundColor
         projectobject.titleBottomWidthColor = t.titleBackgroundColor
@@ -136,6 +156,12 @@ QtObject {
         projectobject.controlVersionColor= t.controlVersionColor
         projectobject.defaultRectangleColor = t.defaultRectangleColor
         projectobject.controlRectangleColor = t.controlRectangleColor
+
+
+        projectobject.titleButtonHoverColor = t.titleButtonHoverColor
+        projectobject.titleButtonPressColor = t.titleButtonPressColor
+        projectobject.titleCloseButtonHoverColor = t.titleCloseButtonHoverColor
+        projectobject.titleCloseButtonPressColor = t.titleCloseButtonPressColor
 
         // 日历样式
         projectobject.calendarbackdropColor = t.calendarbackdropColor
@@ -222,11 +248,33 @@ QtObject {
         projectobject.calendardayTextColorHovered_Selectday = t.calendardayTextColorHovered_Selectday
         projectobject.calendardayTextColorPressed_Selectday = t.calendardayTextColorPressed_Selectday
         projectobject.calendardayTextColorDisbaled_Selectday = t.calendardayTextColorDisbaled_Selectday
+
+        projectobject.democatsidecolumnback_color = t.democatsidecolumnback_color
+        projectobject.sideitemrectangleback_color = t.sideitemrectangleback_color
+        projectobject.catsidecolumnitem_SelectColor = t.catsidecolumnitem_SelectColor
+        projectobject.catsidecolumnitem_HoverColor = t.catsidecolumnitem_HoverColor
+        projectobject.catsidecolumnitem_DefaultColor = t.catsidecolumnitem_DefaultColor
+        projectobject.catsidecolumnitem_FunctionColor = t.catsidecolumnitem_FunctionColor
+
+        projectobject.switchbuttonback_DefaultColor = t.switchbuttonback_DefaultColor
+        projectobject.switchbuttonback_CheckColor = t.switchbuttonback_CheckColor
+        projectobject.switchbuttonCircle_Color = t.switchbuttonCircle_Color
+
+        projectobject.catPopupColor = t.catPopupColor
+        projectobject.catPopupdropshadowColor = t.catPopupdropshadowColor
+
+        projectobject.defaultButton_DefaultColor = t.defaultButton_DefaultColor
+        projectobject.defaultButton_HoverColor = t.defaultButton_HoverColor
+        projectobject.defaultButton_PressColor = t.defaultButton_PressColor
+        projectobject.defaultButtonBorder_DefaultColor = t.defaultButtonBorder_DefaultColor
+        catconfig.setValue("Style", currentTheme);
+        updateCurrentThemeed();
     }
 
     property ListModel themes: ListModel {
         ListElement {
             name: "Black"
+            Stylecolor: "#000000"
             appBackgroundColor: "#1F1F20"
             titleBackgroundColor: "#18181B"
             titleBottomWidthColor: "#000000"
@@ -237,8 +285,14 @@ QtObject {
             controlNameColor: "#FFFFFF"
             controlAuthorColor: "#9B9898"
             controlVersionColor: "#9B9898"
-            controlRectangleColor: "#4E4E4E"
+            controlRectangleColor: "#2C2C2C"
             defaultRectangleColor: "#2C2C2C"
+
+            titleButtonHoverColor: "#393939"
+            titleButtonPressColor: "#4E4E4E"
+            titleCloseButtonHoverColor: "#C14444"
+            titleCloseButtonPressColor: "#C15044"
+
 
             // 日历样式
             calendarbackdropColor: "#2C2C2C"
@@ -331,10 +385,148 @@ QtObject {
             catsidecolumnitem_SelectColor: "#3C3C3C"
             catsidecolumnitem_HoverColor: "#4C4C4C"
             catsidecolumnitem_DefaultColor: "transparent"
+            catsidecolumnitem_FunctionColor: "#FFFFFF"
 
             switchbuttonback_DefaultColor: "#9B9898"
             switchbuttonback_CheckColor: "#4E4E4E"
             switchbuttonCircle_Color: "#C4C4C4"
+
+            catPopupColor: "#2C2C2C"
+            catPopupdropshadowColor: "#63FFFFFF"
+
+            defaultButton_DefaultColor: "#414141"
+            defaultButton_HoverColor: "#414141"
+            defaultButton_PressColor: "#414141"
+            defaultButtonBorder_DefaultColor: "#1171AE"
+
+        }
+        ListElement {
+            name: "White"
+            Stylecolor: "#FFFFFF"
+            appBackgroundColor: "#EFEFEF"
+            titleBackgroundColor: "#EEEEEE"
+            titleBottomWidthColor: "#FFFFFF"
+            titleLogoShadowColor: "#3F000000"
+            fpsgradient0Color: "#9B9898"
+            fpsgradient1Color: "#4E4E4E"
+            defaultShadowColor: "#3F000000"
+            controlNameColor: "#333333"
+            controlAuthorColor: "#666666"
+            controlVersionColor: "#666666"
+            controlRectangleColor: "#FFFFFF"
+            defaultRectangleColor: "#FFFFFF"
+
+            titleButtonHoverColor: "#AA999999"
+            titleButtonPressColor: "#AAAAAAAA"
+            titleCloseButtonHoverColor: "#C14444"
+            titleCloseButtonPressColor: "#C15044"
+
+            // 日历样式
+            calendarbackdropColor: "#FFFFFF"
+            calendartitleColor: "#E6E6E6"
+            calendartitleTextColor: "#333333"
+            calendarweekTextColor: "#333333"
+
+            calendardaybackColorNormal_NotForTheMonth: "#01000000"
+            calendardaybackColorHovered_NotForTheMonth: "#19D0FA"
+            calendardaybackColorPressed_NotForTheMonth: "#19A0FA"
+            calendardaybackColorDisbaled_NotForTheMonth: "#01000000"
+
+            calendardaybackColorNormal_ThatVeryDay: "#01000000"
+            calendardaybackColorHovered_ThatVeryDay: "#01000000"
+            calendardaybackColorPressed_ThatVeryDay: "#01000000"
+            calendardaybackColorDisbaled_ThatVeryDay: "#01000000"
+
+            calendardaybackColorNormal_TheSameMonth: "#01000000"
+            calendardaybackColorHovered_TheSameMonth: "#19D0FA"
+            calendardaybackColorPressed_TheSameMonth: "#19A0FA"
+            calendardaybackColorDisbaled_TheSameMonth: "#01000000"
+
+            calendardaybackColorNormal_Selectday: "#19A0FA"
+            calendardaybackColorHovered_Selectday: "#19A0FA"
+            calendardaybackColorPressed_Selectday: "#19A0FA"
+            calendardaybackColorDisbaled_Selectday: "#19A0FA"
+
+            calendardaybackWidthNormal_NotForTheMonth: 0
+            calendardaybackWidthHovered_NotForTheMonth: 0
+            calendardaybackWidthPressed_NotForTheMonth: 0
+            calendardaybackWidthDisbaled_NotForTheMonth: 0
+
+            calendardaybackWidthNormal_ThatVeryDay: 0
+            calendardaybackWidthHovered_ThatVeryDay: 0
+            calendardaybackWidthPressed_ThatVeryDay: 0
+            calendardaybackWidthDisbaled_ThatVeryDay: 0
+
+            calendardaybackWidthNormal_TheSameMonth: 0
+            calendardaybackWidthHovered_TheSameMonth: 0
+            calendardaybackWidthPressed_TheSameMonth: 0
+            calendardaybackWidthDisbaled_TheSameMonth: 0
+
+            calendardaybackWidthNormal_Selectday: 0
+            calendardaybackWidthHovered_Selectday: 0
+            calendardaybackWidthPressed_Selectday: 0
+            calendardaybackWidthDisbaled_Selectday: 0
+
+            calendardayBorderColorNormal_NotForTheMonth: "transparent"
+            calendardayBorderColorHovered_NotForTheMonth: "transparent"
+            calendardayBorderColorPressed_NotForTheMonth: "transparent"
+            calendardayBorderColorDisbaled_NotForTheMonth: "transparent"
+
+            calendardayBorderColorNormal_ThatVeryDay: "transparent"
+            calendardayBorderColorHovered_ThatVeryDay: "transparent"
+            calendardayBorderColorPressed_ThatVeryDay: "transparent"
+            calendardayBorderColorDisbaled_ThatVeryDay: "transparent"
+
+            calendardayBorderColorNormal_TheSameMonth: "transparent"
+            calendardayBorderColorHovered_TheSameMonth: "transparent"
+            calendardayBorderColorPressed_TheSameMonth: "transparent"
+            calendardayBorderColorDisbaled_TheSameMonth: "transparent"
+
+            calendardayBorderColorNormal_Selectday: "transparent"
+            calendardayBorderColorHovered_Selectday: "transparent"
+            calendardayBorderColorPressed_Selectday: "transparent"
+            calendardayBorderColorDisbaled_Selectday: "transparent"
+
+            calendardayTextColorNormal_NotForTheMonth: "#666666"
+            calendardayTextColorHovered_NotForTheMonth: "#FFFFFF"
+            calendardayTextColorPressed_NotForTheMonth: "#FFFFFF"
+            calendardayTextColorDisbaled_NotForTheMonth: "#666666"
+
+            calendardayTextColorNormal_ThatVeryDay: "#19A0FA"
+            calendardayTextColorHovered_ThatVeryDay: "#19A0FA"
+            calendardayTextColorPressed_ThatVeryDay: "#19A0FA"
+            calendardayTextColorDisbaled_ThatVeryDay: "#19A0FA"
+
+            calendardayTextColorNormal_TheSameMonth: "#000000"
+            calendardayTextColorHovered_TheSameMonth: "#FFFFFF"
+            calendardayTextColorPressed_TheSameMonth: "#FFFFFF"
+            calendardayTextColorDisbaled_TheSameMonth: "#000000"
+
+            calendardayTextColorNormal_Selectday: "#FFFFFF"
+            calendardayTextColorHovered_Selectday: "#FFFFFF"
+            calendardayTextColorPressed_Selectday: "#FFFFFF"
+            calendardayTextColorDisbaled_Selectday: "#FFFFFF"
+
+            democatsidecolumnback_color: "#FFFFFF"
+            sideitemrectangleback_color: "#EFEFEF"
+            catsidecolumnitem_SelectColor: "#DDDDDD"
+            catsidecolumnitem_HoverColor: "#E1E1E1"
+            catsidecolumnitem_DefaultColor: "transparent"
+            catsidecolumnitem_FunctionColor: "#333333"
+
+            switchbuttonback_DefaultColor: "#EEEEEE"
+            switchbuttonback_CheckColor: "#41CD52"
+            switchbuttonCircle_Color: "#C4C4C4"
+
+            catPopupColor: "#FFFFFF"
+            catPopupdropshadowColor: "#63000000"
+
+            defaultButton_DefaultColor: "#FFFFFF"
+            defaultButton_HoverColor: "#FFFFFF"
+            defaultButton_PressColor: "#FFFFFF"
+            defaultButtonBorder_DefaultColor: "#1171AE"
+
+
         }
     }
 
@@ -344,7 +536,7 @@ QtObject {
                 "name": "ImageFlipable",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "ImageFlipable.png",
+                "logoSource": "ImageFlipable.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlipable.qml",
                 "libs": "default",
             },
@@ -352,7 +544,7 @@ QtObject {
                 "name": "ImageFlicker",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "ImageFlicker.png",
+                "logoSource": "ImageFlicker.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlicker.qml",
                 "libs": "default",
             },
@@ -360,7 +552,7 @@ QtObject {
                 "name": "ImageFlickerGradient",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "ImageFlickerGradient.png",
+                "logoSource": "ImageFlickerGradient.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageFlickerGradient.qml",
                 "libs": "default",
             },
@@ -368,7 +560,7 @@ QtObject {
                 "name": "ImageMove",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "ImageMove.png",
+                "logoSource": "ImageMove.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageMove.qml",
                 "libs": "default",
             },
@@ -376,7 +568,7 @@ QtObject {
                 "name": "ImageScale",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "ImageScale.png",
+                "logoSource": "ImageScale.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoImageScale.qml",
                 "libs": "default",
             },
@@ -384,7 +576,7 @@ QtObject {
                 "name": "Marquee",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "Marquee.png",
+                "logoSource": "Marquee.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoMarquee.qml",
                 "libs": "default",
             },
@@ -392,7 +584,7 @@ QtObject {
                 "name": "TextOneByOneShow",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "TextOneByOneShow.png",
+                "logoSource": "TextOneByOneShow.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoTextOneByOneShow.qml",
                 "libs": "default",
             },
@@ -400,7 +592,7 @@ QtObject {
                 "name": "CatRectangle",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "CatRectangle.png",
+                "logoSource": "CatRectangle.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatRectangle.qml",
                 "libs": "default",
             },
@@ -408,7 +600,7 @@ QtObject {
                 "name": "QParentQrenCode",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "QrenCode.svg",
+                "logoSource": "QrenCode.svg",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoQParentQrenCode.qml",
                 "libs": "default",
             },
@@ -416,7 +608,7 @@ QtObject {
                 "name": "CatCalendar",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "CatCalendar.png",
+                "logoSource": "CatCalendar.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatCalendar.qml",
                 "libs": "default",
             },
@@ -424,7 +616,7 @@ QtObject {
                 "name": "Image3dRotation",
                 "author" : "Qt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "3drotation.svg",
+                "logoSource": "3drotation.svg",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "Image3dRotation.qml",
                 "libs": "quick3d",
             },
@@ -432,7 +624,7 @@ QtObject {
                 "name": "CatECharts",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "CatECharts.png",
+                "logoSource": "CatECharts.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatEchars.qml",
                 "libs": "webengine",
             },
@@ -440,7 +632,7 @@ QtObject {
                 "name": "CatSideColumn",
                 "author" : "GrayCatQt",
                 "version" : "1.0",
-                "logoSource": projectobject.getCurrentResourcePath() + "CatSideColumn.png",
+                "logoSource": "CatSideColumn.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatSideColumn.qml",
                 "libs": "default",
             },

@@ -20,13 +20,16 @@
 int main(int argc, char *argv[])
 {
     //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #ifdef QT_WEBENGINE_LIB
     QtWebEngine::initialize();
 #endif
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
-    CatConfig *catconfig = CatConfig::Instance();
+
     QGuiApplication app(argc, argv);
+
+    CatConfig *catconfig = CatConfig::Instance();
+    catconfig->InitConfig();
 
     qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
 #ifdef QT_WEBENGINE_LIB

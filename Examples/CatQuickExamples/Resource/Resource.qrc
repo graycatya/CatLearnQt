@@ -70,5 +70,59 @@
         <file>Images/Black/Function_1.png</file>
         <file>Images/Black/Function_2.png</file>
         <file>Images/Black/Function_3.png</file>
+        <file>Images/White/3drotation.svg</file>
+        <file>Images/White/AddImage.png</file>
+        <file>Images/White/BarChart.png</file>
+        <file>Images/White/CatCalendar.png</file>
+        <file>Images/White/CatECharts.png</file>
+        <file>Images/White/CatRectangle.png</file>
+        <file>Images/White/CatSideColumn.png</file>
+        <file>Images/White/checkbox_false.svg</file>
+        <file>Images/White/checkbox_true.svg</file>
+        <file>Images/White/ClearImage.png</file>
+        <file>Images/White/Demonstrate.svg</file>
+        <file>Images/White/ImageFlicker.png</file>
+        <file>Images/White/ImageFlickerGradient.png</file>
+        <file>Images/White/ImageFlipable.png</file>
+        <file>Images/White/ImageMove.png</file>
+        <file>Images/White/ImageScale.png</file>
+        <file>Images/White/KChart.png</file>
+        <file>Images/White/LeftButton_default.svg</file>
+        <file>Images/White/LeftButton_gray.svg</file>
+        <file>Images/White/LeftLeftButton_default.svg</file>
+        <file>Images/White/LeftLeftButton_gray.svg</file>
+        <file>Images/White/LineChart.png</file>
+        <file>Images/White/Marquee.png</file>
+        <file>Images/White/portrait.png</file>
+        <file>Images/White/QrenCode.svg</file>
+        <file>Images/White/RightButton_default.svg</file>
+        <file>Images/White/RightButton_gray.svg</file>
+        <file>Images/White/RightRightButton_default.svg</file>
+        <file>Images/White/RightRightButton_gray.svg</file>
+        <file>Images/White/ScatterChart.png</file>
+        <file>Images/White/Text.svg</file>
+        <file>Images/White/TextOneByOneShow.png</file>
+        <file>Images/White/close_gray.png</file>
+        <file>Images/White/close_white.png</file>
+        <file>Images/White/max_gray.png</file>
+        <file>Images/White/max_white.png</file>
+        <file>Images/White/minimal_gray.png</file>
+        <file>Images/White/minimal_white.png</file>
+        <file>Images/White/normal_gray.png</file>
+        <file>Images/White/normal_white.png</file>
+        <file>Images/White/language_blue.svg</file>
+        <file>Images/White/language_gray.svg</file>
+        <file>Images/White/language_white.svg</file>
+        <file>Images/White/setting_blue.svg</file>
+        <file>Images/White/setting_gray.svg</file>
+        <file>Images/White/setting_white.svg</file>
+        <file>Images/White/style_blue.svg</file>
+        <file>Images/White/style_gray.svg</file>
+        <file>Images/White/style_white.svg</file>
+        <file>Images/White/Function_0.png</file>
+        <file>Images/White/Function_1.png</file>
+        <file>Images/White/Function_2.png</file>
+        <file>Images/White/Function_3.png</file>
+        <file>Images/White/SubtractImage.png</file>
     </qresource>
 </RCC>

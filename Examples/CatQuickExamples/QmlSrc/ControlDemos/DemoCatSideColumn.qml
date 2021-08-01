@@ -53,6 +53,7 @@ Rectangle {
             listviewitem.model: functionstates
             showhighlight: false
             sideslip: true
+            fontcolor: ProjectObject.catsidecolumnitem_FunctionColor
 
 
 
@@ -115,6 +116,21 @@ Rectangle {
                         {
                             color = catsidecolumnitem_DefaultColor
                         }
+                    }
+
+                    Component.onCompleted: {
+                        ProjectObject.updateCurrentThemeed.connect(function(){
+                            if (typeof(catsidecolumn.listviewitem) !== 'undefined')
+                            {
+                                if(catsidecolumn.listviewitem.currentIndex === index)
+                                {
+                                    if(!catsidecolumn.showhighlight)
+                                    {
+                                        color = catsidecolumnitem_SelectColor
+                                    }
+                                }
+                            }
+                        });
                     }
                 }
 

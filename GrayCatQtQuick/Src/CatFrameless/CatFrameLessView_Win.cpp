@@ -52,6 +52,7 @@ static void setShadow(HWND handle, bool enabled)
         static const MARGINS shadow_state[2] { {0,0,0,0}, {1,1,1,1} };
         // 半透明窗体设置
         ::DwmExtendFrameIntoClientArea(handle, &shadow_state[enabled]);
+        //SetWindowPos(handle, NULL, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
     }
 }
 
@@ -113,7 +114,7 @@ public:
             setShadow(handle, borderless_shadow && (newStyle != Style::windowed));
 
             // redraw frame
-            ::SetWindowPos(handle, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOMOVE | SWP_NOSIZE);
+            ::SetWindowPos(handle, nullptr, 0, 0, 0, 0, SWP_SHOWWINDOW | SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED);
             ::ShowWindow(handle, SW_SHOW);
         }
     }
@@ -135,7 +136,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
 
     setFlags(Qt::CustomizeWindowHint | Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
     setResizeMode(SizeRootObjectToView);
-    setColor(QColor(0, 0, 0, 0));
+    setColor(QColor(1, 0, 0, 0));
     m_bWork = true;
 
     m_pCatFrameLessViewPrivate->setBorderLess((HWND)(winId()),

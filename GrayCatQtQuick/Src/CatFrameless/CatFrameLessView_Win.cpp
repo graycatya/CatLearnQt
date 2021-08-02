@@ -5,6 +5,7 @@
 #include <QQuickItem>
 #include <QScreen>
 #include <QWindow>
+#include <QTimer>
 
 
 #include <WinUser.h> // Windows UI 相关的大部分 API 都是在 winuser.h 中定义的
@@ -90,6 +91,8 @@ static bool isFullWin(QQuickView *win)
     return win->windowState() == Qt::WindowFullScreen;
 }
 
+static QTimer *m_pTimer = nullptr;
+
 class CatFrameLessViewPrivate
 {
 public:
@@ -138,6 +141,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
     setResizeMode(SizeRootObjectToView);
     setColor(QColor(1, 0, 0, 0));
     m_bWork = true;
+    m_pTimer = new QTimer;
 
     m_pCatFrameLessViewPrivate->setBorderLess((HWND)(winId()),
                                               m_pCatFrameLessViewPrivate->borderless);
@@ -145,10 +149,21 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
 
     setIsMax(isMaxWin(this));
     connect(this, &QWindow::windowStateChanged, this, [&](Qt::WindowState state) { setIsMax(state == Qt::WindowMaximized); });
+
+    connect(m_pTimer, &QTimer::timeout, this, [=](){
+        QCoreApplication::processEvents();
+    });
+
+    m_pTimer->start(10);
 }
 
 CatFrameLessView::~CatFrameLessView()
 {
+    if(m_pTimer->isActive())
+    {
+        m_pTimer->stop();
+    }
+    delete m_pTimer;
     delete m_pCatFrameLessViewPrivate;
 }
 
@@ -307,6 +322,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
         break;
     } // end case WM_NCHITTEST
     }
+
     return QQuickView::nativeEvent(eventType, message, result);
 }
 

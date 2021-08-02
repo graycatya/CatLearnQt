@@ -7,6 +7,10 @@ import "./CalendarRelyon"
 
 Rectangle {
     id: catcalendar
+    property alias yearmonthstyle: yaermonth
+
+    signal updateSelectCalendarDate(date selectdata)
+
     property color backdropColor: "#2C2C2C"
     property color titleColor: "#4C4C4C"
     property color titleTextColor: "#FFFFFF"
@@ -187,6 +191,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 18
+            font.family: textFontFamily
             color: titleTextColor
 
         }
@@ -318,6 +323,7 @@ Rectangle {
         catcalendar.calendarDate = catcalendar.selectCalendarDate;
         yaermonth.text = getTitleYearMonth();
         daysItem.updateYearMonth();
+        updateSelectCalendarDate(catcalendar.selectCalendarDate);
     }
 
     Component.onCompleted: {

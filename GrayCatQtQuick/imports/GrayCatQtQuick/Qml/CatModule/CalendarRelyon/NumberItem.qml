@@ -321,7 +321,10 @@ Item {
                 thesamemonth: false
                 selectday: false
                 notforthemonth: true
-
+            }
+            PropertyChanges {
+                target: daytext
+                font.bold: false
             }
         },
         State {
@@ -332,7 +335,10 @@ Item {
                 notforthemonth: false
                 selectday: false
                 thatveryday: true
-
+            }
+            PropertyChanges {
+                target: daytext
+                font.bold: true
             }
         },
         State {
@@ -344,6 +350,10 @@ Item {
                 selectday: false
                 thesamemonth: true
             }
+            PropertyChanges {
+                target: daytext
+                font.bold: false
+            }
         },
         State {
             name: "Selectday"
@@ -353,6 +363,10 @@ Item {
                 thatveryday: false
                 thesamemonth: false
                 selectday: true
+            }
+            PropertyChanges {
+                target: daytext
+                font.bold: false
             }
         }
     ]

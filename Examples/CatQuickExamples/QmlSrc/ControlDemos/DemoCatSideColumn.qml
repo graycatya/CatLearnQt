@@ -120,7 +120,7 @@ Rectangle {
 
                     Component.onCompleted: {
                         ProjectObject.updateCurrentThemeed.connect(function(){
-                            if (typeof(catsidecolumn.listviewitem) !== 'undefined')
+                            if (typeof(catsidecolumn) !== 'undefined')
                             {
                                 if(catsidecolumn.listviewitem.currentIndex === index)
                                 {

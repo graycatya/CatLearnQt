@@ -24,23 +24,27 @@ Window {
         spacing: 0
         anchors.fill: parent
 
-        GeneralTitleItem {
-            id: win10titleitem
+        Item {
             Layout.fillWidth: true
             Layout.preferredHeight: 40
             Layout.maximumHeight: 40
             Layout.minimumHeight: 40
-        }
+            GeneralTitleItem {
+                id: win10titleitem
+                anchors.fill: parent
 
+            }
 
-        DropShadow {
-            anchors.fill: win10titleitem
-            horizontalOffset: 0
-            verticalOffset: 0
-            radius: 8.0
-            samples: 18
-            color: ProjectObject.catPopupdropshadowColor
-            source: win10titleitem
+            DropShadow {
+                anchors.fill: win10titleitem
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 8.0
+                samples: 18
+                color: ProjectObject.catPopupdropshadowColor
+                source: win10titleitem
+            }
+
         }
 
 

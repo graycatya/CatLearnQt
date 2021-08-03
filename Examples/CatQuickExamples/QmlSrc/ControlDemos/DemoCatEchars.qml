@@ -259,7 +259,10 @@ Rectangle {
 
     Component.onCompleted: {
         ProjectObject.updateCurrentThemeed.connect(function(){
-            chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
+            if(visible)
+            {
+                chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
+            }
         });
     }
 

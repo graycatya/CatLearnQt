@@ -1,6 +1,7 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtQuick 2.11 as Quick
 import TestModel 1.0
+import TestJs 1.0
 
 //import "http://graycatya.gitee.io/GrayCatQtQuick/imports/GrayCatQtQuick/"
 
@@ -26,11 +27,26 @@ Item {
                 font.pixelSize: 12
                 color: "#FFFFFF"
             }
-        }
-/*
-        CatFps {
 
+            TestModel0 {
+                anchors.fill: parent
+                anchors.margins: 50
+                color: "#663333333"
+                TestModel1 {
+                    anchors.fill: parent
+                    anchors.margins: 50
+                    color: "#443333333"
+                }
+            }
         }
-*/
+
+        /*CatFps {
+
+        }*/
+
+    }
+
+    Component.onCompleted: {
+        TestJs0.testJsHello();
     }
 }

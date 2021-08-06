@@ -1,7 +1,9 @@
 ﻿import QtQuick 2.12
 import QtQuick 2.11 as Quick
 import TestModel 1.0
-import TestJs 1.0
+//import TestJs 1.0
+import TestJs 1.0 as TempTesJs
+import "./TestJs3.js" as TestJs3
 
 //import "http://graycatya.gitee.io/GrayCatQtQuick/imports/GrayCatQtQuick/"
 
@@ -47,6 +49,7 @@ Item {
     }
 
     Component.onCompleted: {
-        TestJs0.testJsHello();
+        TempTesJs.TestJs0.testJsHello();
+        TestJs3.testJs3Function();
     }
 }

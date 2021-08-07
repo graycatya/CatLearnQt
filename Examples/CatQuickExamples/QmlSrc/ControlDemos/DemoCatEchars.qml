@@ -10,6 +10,7 @@ import io.decovar.CatEchatswebChannel 1.0
 import "../"
 
 Rectangle {
+    id: root
     //id: demoimageflipable
     color: "transparent"
 
@@ -259,7 +260,7 @@ Rectangle {
 
     Component.onCompleted: {
         ProjectObject.updateCurrentThemeed.connect(function(){
-            if(visible)
+            if(root.visible)
             {
                 chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
             }

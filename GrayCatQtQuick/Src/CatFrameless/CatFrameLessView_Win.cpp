@@ -8,11 +8,16 @@
 #include <QTimer>
 
 
+
 #include <WinUser.h> // Windows UI 相关的大部分 API 都是在 winuser.h 中定义的
 #include <dwmapi.h> //dwmapi获得Areo效果
 #include <objidl.h> // Fixes error C2504: 'IUnknown' : base class undefined
 #include <windows.h>
 #include <windowsx.h>
+#include <atltypes.h>
+
+static bool Titlecontains = false;
+
 
 #pragma comment(lib, "Dwmapi.lib")  // Adds missing library, fixes error LNK2019: unresolved
 #pragma comment(lib, "User32.lib")
@@ -138,6 +143,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
 {
 
     setFlags(Qt::CustomizeWindowHint | Qt::Window | Qt::FramelessWindowHint | Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint);
+    //setFrameStyle(QFrame::NoFrame);
     setResizeMode(SizeRootObjectToView);
     setColor(QColor(1, 0, 0, 0));
     m_bWork = true;
@@ -149,6 +155,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
 
     setIsMax(isMaxWin(this));
     connect(this, &QWindow::windowStateChanged, this, [&](Qt::WindowState state) { setIsMax(state == Qt::WindowMaximized); });
+
 
     connect(m_pTimer, &QTimer::timeout, this, [=](){
         QCoreApplication::processEvents();
@@ -222,10 +229,43 @@ void CatFrameLessView::setIsMax(bool isMax)
     {
         return;
     }
-
     m_pCatFrameLessViewPrivate->m_isMax = isMax;
 
     emit isMaxChanged(m_pCatFrameLessViewPrivate->m_isMax);
+}
+
+
+void CatFrameLessView::moveUpdateSize()
+{
+    emit moveWindow();
+    static int width = this->width();
+    static int height = this->height();
+    static int cursorwidth = QCursor::pos().x() - geometry().x();
+    static int cursorheight = QCursor::pos().y() - geometry().y();
+    //static QPoint lastPoint = QCursor::pos();
+    //QPoint offetPoint = QCursor::pos() - lastPoint;
+    //lastPoint = QCursor::pos();
+    if(Titlecontains && width != this->width() && height != this->height())
+    {
+        if(!isMax())
+        {
+            if(!isMax())
+            {
+                this->setGeometry(QCursor::pos().x() - cursorwidth,
+                                  QCursor::pos().y() - cursorheight,
+                                  width, height);
+            }
+        }
+        //this->setWidth(width);
+        //this->setHeight(height);
+    } else {
+        cursorwidth = QCursor::pos().x() - geometry().x();
+        cursorheight = QCursor::pos().y() - geometry().y();
+        width = this->width();
+        height = this->height();
+    }
+
+    //qDebug() << QCursor::pos();
 }
 
 
@@ -264,6 +304,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
         if (mode == TRUE && m_pCatFrameLessViewPrivate->borderless) {
             *result = WVR_REDRAW;
             //规避 拖动border进行resize时界面闪烁
+
             if (!isMaxWin(this) && !isFullWin(this)) {
                 if (clientRect->top != 0) {
                     clientRect->top -= 0.1;
@@ -282,12 +323,14 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
             // Prevents window frame reappearing on window activation
             // in "basic" theme, where no aero shadow is present.
             *result = 1;
+
             return true;
         }
         break;
     }
     case WM_NCHITTEST: {
         if (m_pCatFrameLessViewPrivate->borderless) {
+            //moveUpdateSize();
             RECT winrect;
             GetWindowRect(HWND(winId()), &winrect);
 
@@ -297,6 +340,7 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
 
             *result = 0;
             if (!isMaxWin(this) && !isFullWin(this)) { //非最大化、非全屏时，进行命中测试，处理边框拖拽
+                Titlecontains = false;
                 *result = hitTest(winrect, x, y, border_width);
                 if (0 != *result) {
                     return true;
@@ -311,16 +355,25 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
                                        m_pCatFrameLessViewPrivate->m_titleItem->height());
                 double dpr = qApp->devicePixelRatio();
                 QPoint pos = mapFromGlobal(QPoint(x / dpr, y / dpr));
-                //qDebug() << "pos : " << pos;
                 if (titleRect.contains(pos)) {
                     *result = HTCAPTION;
+                    moveUpdateSize();
+                    Titlecontains = true;
                     return true;
+                } else {
+                    Titlecontains = false;
                 }
             }
+
             return false;
         }
         break;
     } // end case WM_NCHITTEST
+    case WM_MOVE:
+    {
+        moveUpdateSize();
+        break;
+    }
     }
 
     return QQuickView::nativeEvent(eventType, message, result);
@@ -330,5 +383,11 @@ void CatFrameLessView::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
     emit updateSize();
+
     QQuickView::resizeEvent(event);
+}
+
+void CatFrameLessView::setTitlecontains(bool contain)
+{
+    Titlecontains = contain;
 }

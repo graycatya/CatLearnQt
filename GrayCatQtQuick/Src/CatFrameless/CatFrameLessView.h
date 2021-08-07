@@ -29,6 +29,12 @@ public:
 
     static QRect calcCenterGeo(const QRect &screenGeo, const QSize &normalSize);
 
+    void moveUpdateSize();
+
+#ifdef Q_OS_WIN32
+    Q_INVOKABLE void setTitlecontains(bool contain);
+#endif
+
 public slots:
     void setIsMax(bool isMax);
     void setTitleItem(QQuickItem *item);
@@ -37,6 +43,8 @@ public slots:
 signals:
     void isMaxChanged(bool isMax);
     void updateSize();
+    void moveWindow();
+
 
 protected:
 /*
@@ -50,9 +58,11 @@ protected:
     bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
 #    endif
     void resizeEvent(QResizeEvent *) override;
+    void dragMoveEvent(QDragMoveEvent *event);
 
 private:
     CatFrameLessViewPrivate *m_pCatFrameLessViewPrivate;
     bool m_bWork;
+    QRect m_yItemSize;
 
 };

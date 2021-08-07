@@ -1,4 +1,5 @@
 ﻿#include <QGuiApplication>
+#include <QApplication>
 #include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QQmlContext>
@@ -19,7 +20,7 @@
 
 int main(int argc, char *argv[])
 {
-    //QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
+    //QGuiApplication
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #ifdef QT_WEBENGINE_LIB
     QtWebEngine::initialize();
@@ -27,6 +28,8 @@ int main(int argc, char *argv[])
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
 
     QGuiApplication app(argc, argv);
+
+    //qDebug() <<  app.sessionId();
 
     CatConfig *catconfig = CatConfig::Instance();
     catconfig->InitConfig();

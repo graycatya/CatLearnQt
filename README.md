@@ -276,6 +276,8 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | QParentQrenCode | qml二维码 |
 | CatCalendar | 日历模块 |
 | Image3dRotation | 图片3d旋转 |
+| CatECharts | WebEngine演示ECharts图表 |
+| CatSideColumn | 滑动侧栏 |
 
 ##### 效果演示
 

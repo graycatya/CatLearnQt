@@ -81,6 +81,7 @@ QQuickItem *CatFrameLessView::titleItem() const
 
 void CatFrameLessView::setIsMax(bool isMax)
 {
+
     if(m_pCatFrameLessViewPrivate->m_isMax == isMax)
     {
         return;
@@ -109,5 +110,17 @@ void CatFrameLessView::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
     emit updateSize();
+    this->resize(this->geometry().size());
     QQuickView::resizeEvent(event);
+}
+
+void CatFrameLessView::dragMoveEvent(QDragMoveEvent *event)
+{
+
+}
+
+
+void CatFrameLessView::moveUpdateSize()
+{
+    emit moveWindow();
 }

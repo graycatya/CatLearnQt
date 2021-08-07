@@ -87,6 +87,12 @@ Rectangle {
             catfps.anchors.rightMargin = 0
         }
 
+        /*view.moveWindow.connect(function(){
+
+            view.moveupdateUi();
+
+        });*/
+
         //catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
 
     }

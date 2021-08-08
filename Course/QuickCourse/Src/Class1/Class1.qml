@@ -1,10 +1,15 @@
 ﻿import QtQuick 2.12
+// 导入不同版本的QtQuick库使用命名空间区分
 import QtQuick 2.11 as Quick
+// 导入本地qmldir库
 import TestModel 1.0
 //import TestJs 1.0
+// 导入带有qmldir本地js库
 import TestJs 1.0 as TempTesJs
+// 导入js本地文件
 import "./TestJs3.js" as TestJs3
 
+// 导入远程目录
 //import "http://graycatya.gitee.io/GrayCatQtQuick/imports/GrayCatQtQuick/"
 
 Item {
@@ -29,7 +34,7 @@ Item {
                 font.pixelSize: 12
                 color: "#FFFFFF"
             }
-
+            // 自定义的库TestModel
             TestModel0 {
                 anchors.fill: parent
                 anchors.margins: 50
@@ -42,6 +47,7 @@ Item {
             }
         }
 
+        // 远程库模块
         /*CatFps {
 
         }*/

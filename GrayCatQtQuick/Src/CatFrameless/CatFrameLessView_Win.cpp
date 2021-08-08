@@ -259,10 +259,16 @@ void CatFrameLessView::moveUpdateSize()
         //this->setWidth(width);
         //this->setHeight(height);
     } else {
-        cursorwidth = QCursor::pos().x() - geometry().x();
-        cursorheight = QCursor::pos().y() - geometry().y();
-        width = this->width();
-        height = this->height();
+        if(!isMax())
+        {
+            if(!isMax())
+            {
+                cursorwidth = QCursor::pos().x() - geometry().x();
+                cursorheight = QCursor::pos().y() - geometry().y();
+                width = this->width();
+                height = this->height();
+            }
+        }
     }
 
     //qDebug() << QCursor::pos();

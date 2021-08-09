@@ -260,7 +260,7 @@ Rectangle {
 
     Component.onCompleted: {
         ProjectObject.updateCurrentThemeed.connect(function(){
-            if(root.visible)
+            if(typeof(visible) != "undefined" && visible)
             {
                 chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
             }

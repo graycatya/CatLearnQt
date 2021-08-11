@@ -94,7 +94,7 @@ include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
 include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
-include($$PWD/src/WebChannelFunction/WebChannelFunction.pri)
+include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
 
 # 配置file_copies
 CONFIG += file_copies

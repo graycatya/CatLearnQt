@@ -636,6 +636,14 @@ QtObject {
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatSideColumn.qml",
                 "libs": "default",
             },
+            {
+                "name": "CatSorter",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": "CatSorter.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatSorter.qml",
+                "libs": "default",
+            }
         ]
     }
 

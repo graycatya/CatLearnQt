@@ -1,4 +1,4 @@
-<RCC>
+﻿<RCC>
     <qresource prefix="/GrayCatQtQuick">
         <file>qmldir</file>
         <file>Qml/GrayCatQtQuickStyle.qml</file>
@@ -25,9 +25,14 @@
         <file>Qml/CatModule/CatCalendar.qml</file>
         <file>Qml/CatModule/CatPopup.qml</file>
         <file>Qml/CatModule/CatSideColumn.qml</file>
+        <file>Qml/CatModule/CatSorter.qml</file>
         <file>Qml/CatModule/CalendarRelyon/CatWeek.qml</file>
         <file>Qml/CatModule/CalendarRelyon/DaysItem.qml</file>
         <file>Qml/CatModule/CalendarRelyon/NumberItem.qml</file>
+        <file>Qml/CatModule/CatSorter/CatSorterButton.qml</file>
+        <file>Qml/CatModule/CatSorter/SkitPageButton.qml</file>
+        <file>Qml/CatModule/CatSorter/UpdatePageButton.qml</file>
+        <file>Qml/CatModule/CatSorter/UpdatePageTextButton.qml</file>
         <file>Qml/CatProgressBar/ArcProgressBar.qml</file>
         <file>Qml/CatProgressBar/ArcProgressBarCanvas.qml</file>
         <file>Qml/CatProgressBar/BarTypeProgressBar.qml</file>

@@ -24,5 +24,6 @@
         <file>ControlDemos/DemoCatCalendar.qml</file>
         <file>ControlDemos/DemoCatEchars.qml</file>
         <file>ControlDemos/DemoCatSideColumn.qml</file>
+        <file>ControlDemos/DemoCatSorter.qml</file>
     </qresource>
 </RCC>

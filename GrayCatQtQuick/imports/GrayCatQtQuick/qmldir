@@ -1,4 +1,4 @@
-﻿module GrayCatQtQuick
+module GrayCatQtQuick
 ImageFlicker 1.0 Qml/CatAnimation/ImageFlicker.qml
 ImageFlickerGradient 1.0 Qml/CatAnimation/ImageFlickerGradient.qml
 ImageFlipable 1.0 Qml/CatAnimation/ImageFlipable.qml
@@ -19,12 +19,17 @@ RotateCursor 1.0 Qml/CatGeneral/RotateCursor.qml
 TemplateWidget 1.0 Qml/CatGeneral/TemplateWidget.qml
 CatImageBase 1.0 Qml/CatImage/CatImageBase.qml
 IpTextInput 1.0 Qml/CatInput/IpTextInput.qml
-CatWeek 1.0 Qml/CatModule/CalendarRelyon/CatWeek.qml
-DaysItem 1.0 Qml/CatModule/CalendarRelyon/DaysItem.qml
-NumberItem 1.0 Qml/CatModule/CalendarRelyon/NumberItem.qml
+internal CatWeek Qml/CatModule/CalendarRelyon/CatWeek.qml
+internal DaysItem Qml/CatModule/CalendarRelyon/DaysItem.qml
+internal NumberItem Qml/CatModule/CalendarRelyon/NumberItem.qml
+internal CatSorterButton Qml/CatModule/CatSorter/CatSorterButton.qml
+internal SkitPageButton Qml/CatModule/CatSorter/SkitPageButton.qml
+internal UpdatePageButton Qml/CatModule/CatSorter/UpdatePageButton.qml
+internal UpdatePageTextButton Qml/CatModule/CatSorter/UpdatePageTextButton.qml
 CatCalendar 1.0 Qml/CatModule/CatCalendar.qml
 CatPopup 1.0 Qml/CatModule/CatPopup.qml
 CatSideColumn 1.0 Qml/CatModule/CatSideColumn.qml
+CatSorter 1.0 Qml/CatModule/CatSorter.qml
 ArcProgressBar 1.0 Qml/CatProgressBar/ArcProgressBar.qml
 ArcProgressBarCanvas 1.0 Qml/CatProgressBar/ArcProgressBarCanvas.qml
 BarTypeProgressBar 1.0 Qml/CatProgressBar/BarTypeProgressBar.qml

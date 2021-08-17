@@ -6,6 +6,7 @@ Button {
     id: catbuttonimage
     readonly property string version: "1.0"
 
+    property alias buttonMouse: buttonmouse
     property alias tipText: catbasictooltip.text
     property alias tipItem: catbasictooltip
     property alias tipVisible: catbasictooltip.visible
@@ -93,6 +94,7 @@ Button {
     }
 
     MouseArea {
+        id: buttonmouse
         anchors.fill: parent
         hoverEnabled: true
         propagateComposedEvents: true

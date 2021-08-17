@@ -18,13 +18,11 @@ Item {
     property string previousPageButtonImg
     property string previousPageButtonImg_Hovered
     property string previousPageButtonImg_Pressed
-    property string previousPageButtonImg_Normal
     property string previousPageButtonImg_invalid
 
     property string nextPageButtonImg
     property string nextPageButtonImg_Hovered
     property string nextPageButtonImg_Pressed
-    property string nextPageButtonImg_Normal
     property string nextPageButtonImg_invalid
 
     property color buttonBackgroundColor
@@ -35,7 +33,7 @@ Item {
     property int buttonBackgroundBorderWidth: 0
     property int buttonBackgroundBorderWidth_hovered: 0
     property int buttonBackgroundBorderWidth_pressed: 0
-    property int buttonBackgroundColor_Invalid: 0
+    property int buttonBackgroundBorderWidth_Invalid: 0
 
     property color buttonBackgroundBorderColor
     property color buttonBackgroundBorderColor_hovered

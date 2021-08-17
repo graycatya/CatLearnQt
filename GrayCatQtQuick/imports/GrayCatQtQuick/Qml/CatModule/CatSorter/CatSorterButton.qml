@@ -14,8 +14,8 @@ Item {
     signal nextPage()
     signal updatePage(int page)
 
-    property int itemSize: 0
-    property int spacing: 0
+    property int itemSize: catsorter.itemSize
+    property int spacing: catsorter.itemSpacing
 
     enum State {
         PreviousButton,

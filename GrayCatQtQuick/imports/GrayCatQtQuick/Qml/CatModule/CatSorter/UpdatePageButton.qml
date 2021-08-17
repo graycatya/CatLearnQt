@@ -4,5 +4,8 @@ import "../../CatButton"
 CatButtonImage {
     id: updatePageButton
 
+    property bool invalid: false
+
+
 
 }

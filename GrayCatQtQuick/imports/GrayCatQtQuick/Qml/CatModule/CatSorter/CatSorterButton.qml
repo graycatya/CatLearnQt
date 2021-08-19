@@ -41,7 +41,7 @@ Item {
         id: sorterbutton
 
         anchors.fill: parent
-        anchors.leftMargin: spacing
+        anchors.leftMargin: showSpacing
         clip: true
 
         visible: status == Loader.Ready
@@ -143,61 +143,88 @@ Item {
 
     onUpdatePage: {
         catsorter.currentPage = page;
+        updatepage(catsorter.currentPage);
     }
 
     function updatepage(page)
     {
-        if(sorterbutton.visible)
+
+        if(catsorterbutton.buttonState === CatSorterButton.PreviousButton)
         {
-            if(catsorterbutton.buttonState === CatSorterButton.PreviousButton)
+            if(page <= 1)
             {
-                if(page <= 1)
+                if(sorterbutton.visible)
                 {
                     sorterbutton.item.invalid = true
-                } else {
+                }
+            } else {
+                if(sorterbutton.visible)
+                {
                     sorterbutton.item.invalid = false
-                }
-            } else if(catsorterbutton.buttonState === CatSorterButton.NextButton)
-            {
-                if(page >= catsorter.totalPage)
-                {
-                    sorterbutton.item.invalid = true
-                } else {
-                    sorterbutton.item.invalid = false
-                }
-            } else if(catsorterbutton.buttonState === CatSorterButton.PreviousSkitpageButton)
-            {
-                if( (catsorter.currentPage - 1) > 3)
-                {
-                    catsorterbutton.width = showItemSize + showSpacing
-                } else {
-                    catsorterbutton.width = 0
-                }
-            } else if(catsorterbutton.buttonState === CatSorterButton.NextSkitpageButton)
-            {
-                if( (catsorter.totalPage - catsorter.currentPage) > 3)
-                {
-                    catsorterbutton.width = showItemSize + showSpacing
-                } else {
-                    catsorterbutton.width = 0
                 }
             }
+        } else if(catsorterbutton.buttonState === CatSorterButton.NextButton)
+        {
+            if(page >= catsorter.totalPage)
+            {
+                if(sorterbutton.visible)
+                {
+                    sorterbutton.item.invalid = true
+                }
+            } else {
+                if(sorterbutton.visible)
+                {
+                    sorterbutton.item.invalid = false
+                }
+            }
+        } else if(catsorterbutton.buttonState === CatSorterButton.PreviousSkitpageButton)
+        {
+            if( (catsorter.currentPage - 1) > 3)
+            {
+                showItemSize = itemSize
+                showSpacing = spacing
+                catsorterbutton.width = showItemSize + showSpacing
+                catsorterbutton.height = showItemSize
 
-            if(catsorterbutton.buttonState === CatSorterButton.UpdatepagetextButton)
+            } else {
+                showItemSize = 0
+                showSpacing = 0
+                catsorterbutton.width = showItemSize + showSpacing
+                catsorterbutton.height = showItemSize
+            }
+            //console.log("PreviousSkitpageButton: " + showItemSize + " : " + catsorterbutton.width)
+        } else if(catsorterbutton.buttonState === CatSorterButton.NextSkitpageButton)
+        {
+            if( (catsorter.totalPage - catsorter.currentPage) > 3)
             {
-                if(sorterbutton.visible)
-                {
-                    sorterbutton.item.updateButtonText();
-                }
-            } else if(catsorterbutton.buttonState === CatSorterButton.PreviousSkitpageButton
-                      || catsorterbutton.buttonState === CatSorterButton.NextSkitpageButton)
+                showItemSize = itemSize
+                showSpacing = spacing
+                catsorterbutton.width = showItemSize + showSpacing
+                catsorterbutton.height = showItemSize
+            } else {
+                showItemSize = 0
+                showSpacing = 0
+                catsorterbutton.width = showItemSize + showSpacing
+                catsorterbutton.height = showItemSize
+            }
+            //console.log("NextSkitpageButton: " + showItemSize + " : " + catsorterbutton.width)
+        }
+
+        if(catsorterbutton.buttonState === CatSorterButton.UpdatepagetextButton)
+        {
+            if(sorterbutton.visible)
             {
-                if(sorterbutton.visible)
-                {
-                    sorterbutton.item.updateButton();
-                }
+                sorterbutton.item.updateButtonText();
+            }
+        } else if(catsorterbutton.buttonState === CatSorterButton.PreviousSkitpageButton
+                  || catsorterbutton.buttonState === CatSorterButton.NextSkitpageButton)
+        {
+            if(sorterbutton.visible)
+            {
+                //sorterbutton.item.updateButton();
             }
         }
+        //}
     }
 
 }

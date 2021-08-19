@@ -133,5 +133,10 @@ CatButtonImage {
         }
     }
 
-
+    Component.onCompleted: {
+        if(catsorterbutton.buttonState === CatSorterButton.NextButton)
+        {
+            catsorter.updateCurrentPage(catsorter.currentPage);
+        }
+    }
 }

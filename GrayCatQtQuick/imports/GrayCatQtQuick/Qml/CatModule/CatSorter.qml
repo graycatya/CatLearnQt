@@ -167,7 +167,7 @@ Item {
                     textbuttonNumber++;
                 }
                 sortermodel.get(sorterview.model.count - 1).connectsignal()
-
+                sortermodel.get(sorterview.model.count - 1).updatepage(currentPage)
                 sorterview.positionViewAtEnd();
             }
 
@@ -194,7 +194,7 @@ Item {
     }
 
     onTotalDataChanged: {
-        sorterProperty.totalPage = totalData / pageDataSize;
+        sorterProperty.totalPage = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
         sorterProperty.initPages();
     }
 
@@ -214,9 +214,10 @@ Item {
         if(pageDataSize < 1)
         {
             pageDataSize = 1;
+            sorterProperty.totalPage = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
             sorterProperty.initPages();
         } else {
-            sorterProperty.totalPage = totalData / pageDataSize;
+            sorterProperty.totalPage = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
             sorterProperty.initPages();
         }
     }
@@ -231,6 +232,14 @@ Item {
 
     onCurrentPageChanged: {
         updateCurrentPage(currentPage);
+    }
+
+    onTotalPageChanged: {
+        if(currentPage >= totalPage)
+        {
+            currentPage = totalPage;
+            updateCurrentPage(currentPage);
+        }
     }
 
     Component.onCompleted: {

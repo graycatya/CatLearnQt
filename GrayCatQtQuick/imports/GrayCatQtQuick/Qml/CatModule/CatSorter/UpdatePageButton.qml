@@ -136,6 +136,7 @@ CatButtonImage {
     Component.onCompleted: {
         if(catsorterbutton.buttonState === CatSorterButton.NextButton)
         {
+            //console.log("CatSorterButton.NextButton: " + catsorter.currentPage)
             catsorter.updateCurrentPage(catsorter.currentPage);
         }
     }

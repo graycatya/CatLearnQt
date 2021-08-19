@@ -243,7 +243,15 @@ Item {
     }
 
     Component.onCompleted: {
-        updateCurrentPage(currentPage);
+        timer.start();
+    }
+
+    Timer {
+        id: timer
+        interval: 300
+        onTriggered: {
+            updateCurrentPage(currentPage);
+        }
     }
 
 }

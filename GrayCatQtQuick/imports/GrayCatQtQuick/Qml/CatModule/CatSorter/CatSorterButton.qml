@@ -14,8 +14,14 @@ Item {
     signal nextPage()
     signal updatePage(int page)
 
-    property int itemSize: catsorter.itemSize
-    property int spacing: catsorter.itemSpacing
+    property int itemSize: 0
+    property int spacing: 0
+    property int showItemSize: 0
+    property int showSpacing: 0
+    property int textButtonNumber: 0
+    property int buttonPage: 0
+
+    property bool selectState: false
 
     enum State {
         PreviousButton,
@@ -28,8 +34,8 @@ Item {
     property int buttonState: CatSorterButton.PreviousButton
 
 
-    width: itemSize + spacing
-    height: itemSize
+    width: showItemSize + showSpacing
+    height: showItemSize
 
     Loader {
         id: sorterbutton
@@ -99,4 +105,100 @@ Item {
         }
     ]
 
+    function connectsignal()
+    {
+        catsorter.updateCurrentPage.connect(updatepage);
+    }
+
+    function disconnectsignal()
+    {
+        catsorter.updateCurrentPage.disconnect(updatepage);
+    }
+
+    onPreviousPage: {
+        if(catsorter.currentPage > 1)
+        {
+            catsorter.currentPage--;
+        }
+        updatepage(catsorter.currentPage)
+    }
+
+    onNextPage: {
+        if(catsorter.currentPage < catsorter.totalPage)
+        {
+            catsorter.currentPage++;
+        }
+        updatepage(catsorter.currentPage)
+    }
+
+    onTextButtonNumberChanged: {
+        if(catsorterbutton.buttonState === CatSorterButton.UpdatepagetextButton)
+        {
+            if(sorterbutton.visible)
+            {
+                sorterbutton.item.updateButtonText();
+            }
+        }
+    }
+
+    onUpdatePage: {
+        catsorter.currentPage = page;
+    }
+
+    function updatepage(page)
+    {
+        if(sorterbutton.visible)
+        {
+            if(catsorterbutton.buttonState === CatSorterButton.PreviousButton)
+            {
+                if(page <= 1)
+                {
+                    sorterbutton.item.invalid = true
+                } else {
+                    sorterbutton.item.invalid = false
+                }
+            } else if(catsorterbutton.buttonState === CatSorterButton.NextButton)
+            {
+                if(page >= catsorter.totalPage)
+                {
+                    sorterbutton.item.invalid = true
+                } else {
+                    sorterbutton.item.invalid = false
+                }
+            } else if(catsorterbutton.buttonState === CatSorterButton.PreviousSkitpageButton)
+            {
+                if( (catsorter.currentPage - 1) > 3)
+                {
+                    catsorterbutton.width = showItemSize + showSpacing
+                } else {
+                    catsorterbutton.width = 0
+                }
+            } else if(catsorterbutton.buttonState === CatSorterButton.NextSkitpageButton)
+            {
+                if( (catsorter.totalPage - catsorter.currentPage) > 3)
+                {
+                    catsorterbutton.width = showItemSize + showSpacing
+                } else {
+                    catsorterbutton.width = 0
+                }
+            }
+
+            if(catsorterbutton.buttonState === CatSorterButton.UpdatepagetextButton)
+            {
+                if(sorterbutton.visible)
+                {
+                    sorterbutton.item.updateButtonText();
+                }
+            } else if(catsorterbutton.buttonState === CatSorterButton.PreviousSkitpageButton
+                      || catsorterbutton.buttonState === CatSorterButton.NextSkitpageButton)
+            {
+                if(sorterbutton.visible)
+                {
+                    sorterbutton.item.updateButton();
+                }
+            }
+        }
+    }
+
 }
+

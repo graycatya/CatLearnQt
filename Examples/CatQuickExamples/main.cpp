@@ -50,8 +50,8 @@ int main(int argc, char *argv[])
     {
         qDebug() << path;
     }
-    view.setMinimumSize({ 800, 600 });
-    view.resize(800, 600);
+    view.setMinimumSize({ 900, 700 });
+    view.resize(900, 700);
     view.moveToScreenCenter();
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

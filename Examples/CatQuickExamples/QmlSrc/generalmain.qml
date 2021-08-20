@@ -10,9 +10,9 @@ import "FunctionLayout"
 
 Window {
     id: applicationWindow
-    width: 800
+    width: 900
     height: 600
-    minimumWidth: 800
+    minimumWidth: 900
     minimumHeight: 600
     visible: true
 
@@ -86,6 +86,6 @@ Window {
         {
             catfps.anchors.rightMargin = 0
         }
-        catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
+        //catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
     }
 }

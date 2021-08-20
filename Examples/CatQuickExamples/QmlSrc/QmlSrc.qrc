@@ -25,5 +25,6 @@
         <file>ControlDemos/DemoCatEchars.qml</file>
         <file>ControlDemos/DemoCatSideColumn.qml</file>
         <file>ControlDemos/DemoCatSorter.qml</file>
+        <file>AppControl/LanguageItem.qml</file>
     </qresource>
 </RCC>

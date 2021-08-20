@@ -138,6 +138,23 @@ QtObject {
     property color defaultButton_PressColor: "#414141"
     property color defaultButtonBorder_DefaultColor: "#1171AE"
 
+    property color defaultButtonTextBackgroundColor: "#01000000"
+    property color defaultButtonTextBackgroundColor_hovered: "#4C4C4C"
+    property color defaultButtonTextBackgroundColor_pressed: "#4C4C4C"
+    property color defaultButtonTextBackgroundColor_invalid: "#01000000"
+    property color defaultButtonTextBackgroundColor_select: "#3C3C3C"
+
+    property color defaultTextColor: "#FFFFFF"
+    property color defaultTextColor_hovered: "#FFFFFF"
+    property color defaultTextColor_pressed: "#FFFFFF"
+    property color defaultTextColor_select: "#FFFFFF"
+
+    property color defaultPopupTextColor: "#FFFFFF"
+    property color defaultPopupBorderColor: "#2C2C2C"
+    property color defaultPopupBackgroundColor: "#3C3C3C"
+
+    property color languageBackgroundColor: "#3C3C3C"
+
 
     signal updateCurrentThemeed();
 
@@ -267,6 +284,24 @@ QtObject {
         projectobject.defaultButton_HoverColor = t.defaultButton_HoverColor
         projectobject.defaultButton_PressColor = t.defaultButton_PressColor
         projectobject.defaultButtonBorder_DefaultColor = t.defaultButtonBorder_DefaultColor
+
+        projectobject.defaultButtonTextBackgroundColor = t.defaultButtonTextBackgroundColor
+        projectobject.defaultButtonTextBackgroundColor_hovered = t.defaultButtonTextBackgroundColor_hovered
+        projectobject.defaultButtonTextBackgroundColor_pressed = t.defaultButtonTextBackgroundColor_pressed
+        projectobject.defaultButtonTextBackgroundColor_invalid = t.defaultButtonTextBackgroundColor_invalid
+        projectobject.defaultButtonTextBackgroundColor_select = t.defaultButtonTextBackgroundColor_select
+
+        projectobject.defaultTextColor = t.defaultTextColor
+        projectobject.defaultTextColor_hovered = t.defaultTextColor_hovered
+        projectobject.defaultTextColor_pressed = t.defaultTextColor_pressed
+        projectobject.defaultTextColor_select = t.defaultTextColor_select
+
+        projectobject.defaultPopupTextColor = t.defaultPopupTextColor
+        projectobject.defaultPopupBorderColor = t.defaultPopupBorderColor
+        projectobject.defaultPopupBackgroundColor = t.defaultPopupBackgroundColor
+
+        projectobject.languageBackgroundColor = t.languageBackgroundColor
+
         catconfig.setValue("Style", currentTheme);
         updateCurrentThemeed();
     }
@@ -399,6 +434,23 @@ QtObject {
             defaultButton_PressColor: "#414141"
             defaultButtonBorder_DefaultColor: "#1171AE"
 
+            defaultButtonTextBackgroundColor: "#01000000"
+            defaultButtonTextBackgroundColor_hovered: "#4C4C4C"
+            defaultButtonTextBackgroundColor_pressed: "#4C4C4C"
+            defaultButtonTextBackgroundColor_invalid: "#01000000"
+            defaultButtonTextBackgroundColor_select: "#3C3C3C"
+
+            defaultTextColor: "#FFFFFF"
+            defaultTextColor_hovered: "#FFFFFF"
+            defaultTextColor_pressed: "#FFFFFF"
+            defaultTextColor_select: "#FFFFFF"
+
+            defaultPopupTextColor: "#FFFFFF"
+            defaultPopupBorderColor: "#2C2C2C"
+            defaultPopupBackgroundColor: "#3C3C3C"
+
+            languageBackgroundColor: "#3C3C3C"
+
         }
         ListElement {
             name: "White"
@@ -526,6 +578,22 @@ QtObject {
             defaultButton_PressColor: "#FFFFFF"
             defaultButtonBorder_DefaultColor: "#1171AE"
 
+            defaultButtonTextBackgroundColor: "#01000000"
+            defaultButtonTextBackgroundColor_hovered: "#19D0FA"
+            defaultButtonTextBackgroundColor_pressed: "#19A0FA"
+            defaultButtonTextBackgroundColor_invalid: "#01000000"
+            defaultButtonTextBackgroundColor_select: "#19A0FA"
+
+            defaultTextColor: "#333333"
+            defaultTextColor_hovered: "#FFFFFF"
+            defaultTextColor_pressed: "#FFFFFF"
+            defaultTextColor_select: "#FFFFFF"
+
+            defaultPopupTextColor: "#FFFFFF"
+            defaultPopupBorderColor: "#19A0FA"
+            defaultPopupBackgroundColor: "#19A0FA"
+
+            languageBackgroundColor: "#FFFFFF"
 
         }
     }

@@ -59,6 +59,11 @@ public:
     Q_INVOKABLE static QMultiMap<QString, QVariant> getArray(QString node, QStringList keys);
 
 
+    Q_INVOKABLE static QList<QString> getAppDefineLanguages();
+    Q_INVOKABLE static QString getCurrentLanguage();
+    Q_INVOKABLE static void setCurrentLanguage(QString lan);
+
+
     Q_INVOKABLE QList<QString> systemFontFamily(QFontDatabase::WritingSystem writingSystem = QFontDatabase::Any);
 
     Q_INVOKABLE bool qtQuick3D()
@@ -93,8 +98,12 @@ private:
     CatConfig();
     ~CatConfig();
 
+    static void InitLanguage(int l);
+    static bool FileExiste(const QString &filePath, bool newfile = false);
+
 signals:
-    void UpdateStyleSheets();
+    //void updateStyleSheets();
+    void updateLanguage();
 
 private:
     static CatConfig* _instance;
@@ -102,6 +111,7 @@ private:
     static QString m_sConfigPath;
     static QGuiApplication *m_pApp;
     static QTranslator *m_pTranslator;
+    static QTranslator *m_pTranslatorDi;
 };
 
 #endif // CATCONFIG_H

@@ -6,6 +6,7 @@ CONFIG(debug,debug|release){
     } else {
         path=$$system("pwd")
     }
+    RESOURCES += $$PWD/GrayCatQtQuick/GrayCatQtQuick.qrc
     GrayCatQtQuickImport=\"file:///$$path\"
     #GrayCatQtQuickImage=\"file:///$$path/GrayCatQtQuick/Images/\"
     DEFINES += GrayCatQtQuickImportPath=\\\"file:///$${path}\\\"

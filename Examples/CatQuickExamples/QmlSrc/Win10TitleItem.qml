@@ -1,5 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQml 2.12
+import QtQml.Models 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
@@ -173,6 +174,54 @@ Rectangle {
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "language_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "language_blue.svg"
                 btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "language_gray.svg"
+
+                ObjectModel {
+                    id: languageModel
+                }
+
+                CatPopup {
+                    id: languagepopup
+                    anchors.top: languagebutton.bottom
+                    backgroundWidth: 100
+                    backgroundHeight: 100
+                    barColor: ProjectObject.catPopupColor
+                    dropshadowColor: ProjectObject.catPopupdropshadowColor
+                    clip: true
+                    contentItem: ListView {
+                        id: languagelistview
+                        anchors.fill: parent
+                        spacing: 10
+
+                        anchors.topMargin: 15
+                        anchors.bottomMargin: 10
+                        anchors.leftMargin: 10
+                        anchors.rightMargin: 10
+                        model: languageModel
+
+                        boundsBehavior:Flickable.StopAtBounds
+
+
+                    }
+
+                    Component.onCompleted: {
+                        let languages = catconfig.getAppDefineLanguages()
+                        for(let i = 0; i < languages.length; i++)
+                         {
+                             let item = Qt.createComponent("qrc:/AppControl/LanguageItem.qml")
+                             languageModel.insert(languagelistview.model.count, item.createObject(languagelistview));
+
+                             languageModel.get(languagelistview.model.count - 1).languageNumber = i;
+                             languageModel.get(languagelistview.model.count - 1).languageStr = languages[i];
+
+                             languagelistview.positionViewAtEnd();
+                         }
+                         languagelistview.positionViewAtBeginning();
+                    }
+                }
+
+                onClicked: {
+                    languagepopup.show();
+                }
             }
             CatButtonImage {
                 id: settingbutton

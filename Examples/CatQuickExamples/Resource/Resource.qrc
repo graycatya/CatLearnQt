@@ -140,5 +140,8 @@
         <file>Images/White/SorterPreviousButtonHove.png</file>
         <file>Images/White/SorterPreviousButtonPressed.png</file>
         <file>Images/White/SorterSkitNextButtonDefault.png</file>
+        <file>Images/White/SorterPreviousButtonHover.png</file>
+        <file>Lang/language_en.qm</file>
+        <file>Lang/language_zh_CN.qm</file>
     </qresource>
 </RCC>

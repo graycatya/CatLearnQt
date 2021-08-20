@@ -120,6 +120,7 @@ Item {
 
 
         function clearPage() {
+            //console.log("sortermodel.count: " + sortermodel.count)
             while(sortermodel.count > 0)
             {
                 sortermodel.get(0).disconnectsignal()
@@ -248,7 +249,7 @@ Item {
 
     Timer {
         id: timer
-        interval: 300
+        interval: 400
         onTriggered: {
             updateCurrentPage(currentPage);
         }

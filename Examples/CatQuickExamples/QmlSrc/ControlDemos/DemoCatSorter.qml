@@ -47,11 +47,11 @@ Rectangle {
                 buttonBackgroundColor_pressed: "#01000000"
                 buttonBackgroundColor_invalid: "#01000000"
 
-                buttonTextBackgroundColor: "#01000000"
-                buttonTextBackgroundColor_hovered: "#4C4C4C"
-                buttonTextBackgroundColor_pressed: "#4C4C4C"
-                buttonTextBackgroundColor_invalid: "#01000000"
-                buttonTextBackgroundColor_select: "#3C3C3C"
+                buttonTextBackgroundColor: ProjectObject.defaultButtonTextBackgroundColor
+                buttonTextBackgroundColor_hovered: ProjectObject.defaultButtonTextBackgroundColor_hovered
+                buttonTextBackgroundColor_pressed: ProjectObject.defaultButtonTextBackgroundColor_pressed
+                buttonTextBackgroundColor_invalid: ProjectObject.defaultButtonTextBackgroundColor_invalid
+                buttonTextBackgroundColor_select: ProjectObject.defaultButtonTextBackgroundColor_select
 
                 buttonBackgroundBorderColor: "#01000000"
                 buttonBackgroundBorderColor_hovered: "#01000000"
@@ -80,17 +80,10 @@ Rectangle {
                 buttonRadius_select: 5
 
                 fontfamily: ProjectObject.fontFamily
-                textColor: "#FFFFFF"
-                textColor_hovered: "#FFFFFF"
-                textColor_pressed: "#FFFFFF"
-                textColor_select: "#FFFFFF"
-    /*
-                       skitPopupBorderWidth: 1
-                       skitPopupRadius: 5
-                       skitPopupTextColor: "#333333"
-                       skitPopupBorderColor: "#3399FF"
-                       skitPopupBackgroundColor: "#FFFFFF"
-                       */
+                textColor: ProjectObject.defaultTextColor
+                textColor_hovered: ProjectObject.defaultTextColor_hovered
+                textColor_pressed: ProjectObject.defaultTextColor_pressed
+                textColor_select: ProjectObject.defaultTextColor_select
 
 
                 onUpdateCurrentPage: {
@@ -140,11 +133,11 @@ Rectangle {
                 buttonBackgroundColor_pressed: "#01000000"
                 buttonBackgroundColor_invalid: "#01000000"
 
-                buttonTextBackgroundColor: "#01000000"
-                buttonTextBackgroundColor_hovered: "#4C4C4C"
-                buttonTextBackgroundColor_pressed: "#4C4C4C"
-                buttonTextBackgroundColor_invalid: "#01000000"
-                buttonTextBackgroundColor_select: "#3C3C3C"
+                buttonTextBackgroundColor: ProjectObject.defaultButtonTextBackgroundColor
+                buttonTextBackgroundColor_hovered: ProjectObject.defaultButtonTextBackgroundColor_hovered
+                buttonTextBackgroundColor_pressed: ProjectObject.defaultButtonTextBackgroundColor_pressed
+                buttonTextBackgroundColor_invalid: ProjectObject.defaultButtonTextBackgroundColor_invalid
+                buttonTextBackgroundColor_select: ProjectObject.defaultButtonTextBackgroundColor_select
 
                 buttonBackgroundBorderColor: "#01000000"
                 buttonBackgroundBorderColor_hovered: "#01000000"
@@ -173,16 +166,17 @@ Rectangle {
                 buttonRadius_select: 5
 
                 fontfamily: ProjectObject.fontFamily
-                textColor: "#FFFFFF"
-                textColor_hovered: "#FFFFFF"
-                textColor_pressed: "#FFFFFF"
-                textColor_select: "#FFFFFF"
+                textColor: ProjectObject.defaultTextColor
+                textColor_hovered: ProjectObject.defaultTextColor_hovered
+                textColor_pressed: ProjectObject.defaultTextColor_pressed
+                textColor_select: ProjectObject.defaultTextColor_select
+
 
                 skitPopupBorderWidth: 0
                 skitPopupRadius: 5
-                skitPopupTextColor: "#FFFFFF"
-                skitPopupBorderColor: "#2C2C2C"
-                skitPopupBackgroundColor: "#3C3C3C"
+                skitPopupTextColor: ProjectObject.defaultPopupTextColor
+                skitPopupBorderColor: ProjectObject.defaultPopupBorderColor
+                skitPopupBackgroundColor: ProjectObject.defaultPopupBackgroundColor
 
                 inputPageState: true
 
@@ -203,21 +197,5 @@ Rectangle {
         }
 
     }
-/*
-        CatSorter {
-            Layout.preferredHeight: 40
-            Layout.preferredWidth: sorterView.contentWidth
-            totalData: 1000
-            pageDataSize: 100
-        }
-
-        CatSorter {
-            Layout.preferredHeight: 40
-            Layout.preferredWidth: sorterView.contentWidth
-            totalData: 1000
-            pageDataSize: 100
-        }
-
-*/
 
 }

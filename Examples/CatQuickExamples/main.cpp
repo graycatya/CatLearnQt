@@ -28,6 +28,9 @@ int main(int argc, char *argv[])
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
 
     QGuiApplication app(argc, argv);
+    app.setOrganizationName("Some Company");
+    app.setOrganizationDomain("somecompany.com");
+    app.setApplicationName("CatQuickExamples");
 
     //qDebug() <<  app.sessionId();
 
@@ -41,27 +44,39 @@ int main(int argc, char *argv[])
 #ifdef QT_OS_WIN10
     CatFrameLessView view;
 
+    QObject::connect(&view, &QQuickView::statusChanged,
+                     [&view](QQuickView::Status status){
+        if(QQuickView::Ready == status)
+        {
+            view.show();
+        }
+    });
+
     //view.engine()->addImportPath(TaoQuickImportPath);
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
     view.engine()->rootContext()->setContextProperty("view", &view);
     view.engine()->rootContext()->setContextProperty("catLog", catlog);
     view.engine()->rootContext()->setContextProperty("catconfig", catconfig);
+
+    QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), view.engine(), SLOT(retranslate()));
     for(QString path : view.engine()->importPathList())
     {
         qDebug() << path;
     }
-    view.setMinimumSize({ 900, 700 });
-    view.resize(900, 700);
+    view.setMinimumSize({ 900, 600 });
+    view.resize(900, 600);
     view.moveToScreenCenter();
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     view.setSource(url);
-    view.show();
+
 #else
     QQmlApplicationEngine engine;
     engine.addImportPath(GrayCatQtQuickImportPath);
     engine.rootContext()->setContextProperty("catLog", catlog);
     engine.rootContext()->setContextProperty("catconfig", catconfig);
+
+    QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), &engine, SLOT(retranslate()));
     for(QString path : engine.importPathList())
     {
         qDebug() << path;

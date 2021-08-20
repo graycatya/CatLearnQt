@@ -269,7 +269,7 @@ Rectangle {
 
     Timer {
         id: timer
-        interval: 100
+        interval: 200
         onTriggered: {
             chartObject.updateStyle(ProjectObject.themes.get(ProjectObject.currentTheme).name);
         }

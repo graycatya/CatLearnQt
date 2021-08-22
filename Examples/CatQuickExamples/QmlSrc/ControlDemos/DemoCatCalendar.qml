@@ -129,4 +129,10 @@ Rectangle {
         color: ProjectObject.defaultShadowColor
         source: catcalendar
     }
+
+    Component.onCompleted: {
+        catconfig.updateLanguage.connect(function(){
+            catcalendar.updateEnMonth();
+        });
+    }
 }

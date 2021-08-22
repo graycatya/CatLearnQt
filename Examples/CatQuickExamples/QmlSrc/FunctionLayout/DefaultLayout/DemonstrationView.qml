@@ -93,10 +93,10 @@ Rectangle {
 
     Component.onCompleted: {
         controlname = ProjectObject.defaultControl.control[0].name
-        catconfig.updateLanguage.connect(function(){
+        /*catconfig.updateLanguage.connect(function(){
             let source = pageloader.source;
             pageloader.source = "";
             pageloader.source = source;
-        });
+        });*/
     }
 }

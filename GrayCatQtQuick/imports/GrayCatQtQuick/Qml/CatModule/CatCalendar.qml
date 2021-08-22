@@ -314,6 +314,11 @@ Rectangle {
         return month_toEn[month];
     }
 
+    function updateEnMonth()
+    {
+        yaermonth.text = getTitleYearMonth();
+    }
+
     function initCalendar()
     {
 

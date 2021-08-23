@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
+import CatEncp 1.0
 import "FunctionLayout"
 
 
@@ -77,10 +78,15 @@ Rectangle {
         }
     }
 
+
+
+
     Component.onCompleted: {
         catLog.debug_print("run ui, system is: " + Qt.platform.os);
         catLog.debug_print("webresourcepath " + catconfig.getWebResourcePath())
         ProjectObject.currentTheme = catconfig.getValue("Style");
+
+        //console.log("CatEncp.md5: " + CatEncp.md5("hello world", true));
 
         if(Qt.platform.os === "osx")
         {

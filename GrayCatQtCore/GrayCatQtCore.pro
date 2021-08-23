@@ -41,3 +41,4 @@ if(!contains(DEFINES,WEBASSEMBLY)) {
 include(Src/CatSerial/CatSerial.pri)
 }
 }
+include(Src/CatEncp/CatEncp.pri)

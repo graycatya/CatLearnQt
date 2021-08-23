@@ -68,6 +68,7 @@ CONFIG(debug, debug|release){
 COPIES += examples
 
 CONFIG += c++11
+CONFIG += object_with_source
 # CONFIG += console
 
 DEFINES += QT_DEPRECATED_WARNINGS
@@ -91,6 +92,7 @@ Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
 
 include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
+include($$PWD/../../GrayCatQtCore/Src/CatEncp/CatEncp.pri)
 include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)

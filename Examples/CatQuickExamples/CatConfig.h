@@ -94,6 +94,8 @@ public:
     #endif
     }
 
+    void InitQmlRegisterType();
+
 private:
     CatConfig();
     ~CatConfig();

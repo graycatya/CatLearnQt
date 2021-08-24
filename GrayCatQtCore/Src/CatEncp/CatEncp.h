@@ -40,7 +40,17 @@ public:
     // aes
     Q_INVOKABLE static QByteArray aes_128_Cbc_Encrypt(QByteArray in, QString key);
     Q_INVOKABLE static QByteArray aes_128_Cbc_Decrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_192_Cbc_Encrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_192_Cbc_Decrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_256_Cbc_Encrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_256_Cbc_Decrypt(QByteArray in, QString key);
 
+    Q_INVOKABLE static QByteArray aes_128_Ecb_Encrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_128_Ecb_Decrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_192_Ecb_Encrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_192_Ecb_Decrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_256_Ecb_Encrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_256_Ecb_Decrypt(QByteArray in, QString key);
 
     static CatEncp *qmlAttachedProperties(QObject *parent = nullptr);
 

@@ -26,9 +26,16 @@
 #include <QtCore/QtGlobal>
 #include <QtNetwork/QLocalSocket>
 
+#ifndef QGUIAPPLICATION_CLASS
 #ifndef QAPPLICATION_CLASS
 #include<QApplication>
   #define QAPPLICATION_CLASS QApplication
+#endif
+#else
+#ifndef QAPPLICATION_CLASS
+#include<QGuiApplication>
+  #define QAPPLICATION_CLASS QGuiApplication
+#endif
 #endif
 
 #include QT_STRINGIFY(QAPPLICATION_CLASS)

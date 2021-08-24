@@ -1,6 +1,4 @@
-﻿#include <QGuiApplication>
-#include <QApplication>
-#include <QQmlApplicationEngine>
+﻿#include <QQmlApplicationEngine>
 #include <QDebug>
 #include <QQmlContext>
 #ifdef QT_WEBENGINE_LIB
@@ -8,15 +6,13 @@
 #include <QtWebView>
 #include <QWebChannel>
 #include <QWebSocketServer>
-#include "Src/WebChannelFunction/CatEchatswebChannel.h"
 #endif
 #ifdef Q_CC_MSVC
 #include "CatFrameless/CatFrameLessView.h"
 #endif
-#include "QrenCode/QuickQrenCodeParentItem.h"
 #include <QmlCatLog.h>
 #include "CatConfig.h"
-#include "CatEncp.h"
+#include "SingleApplication"
 
 
 int main(int argc, char *argv[])
@@ -28,21 +24,15 @@ int main(int argc, char *argv[])
 #endif
     QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
 
-    QGuiApplication app(argc, argv);
-    app.setOrganizationName("Some Company");
-    app.setOrganizationDomain("somecompany.com");
+    SingleApplication app(argc, argv);
+    app.setOrganizationName("GrayCatYa");
+    app.setOrganizationDomain("graycatya.com");
     app.setApplicationName("CatQuickExamples");
-
-    //qDebug() <<  app.sessionId();
 
     CatConfig *catconfig = CatConfig::Instance();
     catconfig->InitConfig();
 
-    qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
-    qmlRegisterType<CatEncp>("CatEncp", 1, 0, "CatEncp");
-#ifdef QT_WEBENGINE_LIB
-    qmlRegisterType<CatEchatswebChannel>("io.decovar.CatEchatswebChannel", 1, 0, "CatEchatswebChannel");
-#endif
+
 #ifdef QT_OS_WIN10
     CatFrameLessView view;
 

@@ -329,12 +329,12 @@ std::string EncpSsl::Aes_128_Cbc_Encrypt(std::string in, std::string key)
     int datalen = 0, noticelen = 0;
     if(key.length() != AES_BLOCK_SIZE)
     {
-        return data;
+        return "";
     }
 
     if(AES_set_encrypt_key((unsigned char *)key.c_str(), 128, &aes) < 0)
     {
-        return data;
+        return "";
     }
 
     /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
@@ -372,9 +372,93 @@ std::string EncpSsl::Aes_128_Cbc_Decrypt(std::string in, std::string key)
     int datalen = 0, noticelen = 0;
     if(key.length() != AES_BLOCK_SIZE)
     {
-        return data;
+        return "";
     }
     if(AES_set_decrypt_key((unsigned char *)key.c_str(), 128, &aes) < 0)
+    {
+        return "";
+    }
+
+    /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
+    if((in.length()%AES_BLOCK_SIZE) != 0)
+    {
+        /**不是整数倍，用'0'填充**/
+        int blockNum = in.length() / AES_BLOCK_SIZE + 1;
+        datalen = blockNum * AES_BLOCK_SIZE;
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    } else {
+        datalen = in.length();
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    }
+    noticelen = (datalen/16+1)*16;
+    notice = (char*)calloc(noticelen, 1);
+    memset(notice, 0, noticelen);
+
+    AES_cbc_encrypt((unsigned char *)data, (unsigned char *)notice, datalen, &aes, iv, AES_DECRYPT);
+
+    std::string aesdata = notice;
+    free(data);
+    free(notice);
+    return aesdata;
+}
+
+std::string EncpSsl::Aes_192_Cbc_Encrypt(std::string in, std::string key)
+{
+    AES_KEY aes;
+    char *data = nullptr;
+    char *notice = nullptr;
+    unsigned char iv[AES_BLOCK_SIZE]={0}; //初始化向量
+    int datalen = 0, noticelen = 0;
+    if(key.length() != AES_BLOCK_SIZE+8)
+    {
+        return "";
+    }
+
+    if(AES_set_encrypt_key((unsigned char *)key.c_str(), 192, &aes) < 0)
+    {
+        return "";
+    }
+
+    /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
+    if((in.length()%AES_BLOCK_SIZE) != 0)
+    {
+        /**不是整数倍，用'0'填充**/
+        int blockNum = in.length() / AES_BLOCK_SIZE + 1;
+        datalen = blockNum * AES_BLOCK_SIZE;
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    } else {
+        datalen = in.length();
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    }
+    noticelen = (datalen/16+1)*16;
+    notice = (char*)calloc(noticelen, 1);
+    memset(notice, 0, noticelen);
+
+    AES_cbc_encrypt((unsigned char *)data, (unsigned char *)notice, datalen, &aes, iv, AES_ENCRYPT);
+
+    std::string aesdata = notice;
+    free(data);
+    free(notice);
+
+    return aesdata;
+}
+
+std::string EncpSsl::Aes_192_Cbc_Decrypt(std::string in, std::string key)
+{
+    AES_KEY aes;
+    char *data = nullptr;
+    char *notice = nullptr;
+    unsigned char iv[AES_BLOCK_SIZE]={0}; //初始化向量
+    int datalen = 0, noticelen = 0;
+    if(key.length() != AES_BLOCK_SIZE+8)
+    {
+        return data;
+    }
+    if(AES_set_decrypt_key((unsigned char *)key.c_str(), 192, &aes) < 0)
     {
         return data;
     }
@@ -402,6 +486,345 @@ std::string EncpSsl::Aes_128_Cbc_Decrypt(std::string in, std::string key)
     free(data);
     free(notice);
     return aesdata;
+}
+
+std::string EncpSsl::Aes_256_Cbc_Encrypt(std::string in, std::string key)
+{
+    AES_KEY aes;
+    char *data = nullptr;
+    char *notice = nullptr;
+    unsigned char iv[AES_BLOCK_SIZE]={0}; //初始化向量
+    int datalen = 0, noticelen = 0;
+    if(key.length() != AES_BLOCK_SIZE*2)
+    {
+        return data;
+    }
+
+    if(AES_set_encrypt_key((unsigned char *)key.c_str(), 256, &aes) < 0)
+    {
+        return data;
+    }
+
+    /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
+    if((in.length()%AES_BLOCK_SIZE) != 0)
+    {
+        /**不是整数倍，用'0'填充**/
+        int blockNum = in.length() / AES_BLOCK_SIZE + 1;
+        datalen = blockNum * AES_BLOCK_SIZE;
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    } else {
+        datalen = in.length();
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    }
+    noticelen = (datalen/16+1)*16;
+    notice = (char*)calloc(noticelen, 1);
+    memset(notice, 0, noticelen);
+
+    AES_cbc_encrypt((unsigned char *)data, (unsigned char *)notice, datalen, &aes, iv, AES_ENCRYPT);
+
+    std::string aesdata = notice;
+    free(data);
+    free(notice);
+
+    return aesdata;
+}
+
+std::string EncpSsl::Aes_256_Cbc_Decrypt(std::string in, std::string key)
+{
+    AES_KEY aes;
+    char *data = nullptr;
+    char *notice = nullptr;
+    unsigned char iv[AES_BLOCK_SIZE]={0}; //初始化向量
+    int datalen = 0, noticelen = 0;
+    if(key.length() != AES_BLOCK_SIZE*2)
+    {
+        return data;
+    }
+    if(AES_set_decrypt_key((unsigned char *)key.c_str(), 256, &aes) < 0)
+    {
+        return data;
+    }
+
+    /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
+    if((in.length()%AES_BLOCK_SIZE) != 0)
+    {
+        /**不是整数倍，用'0'填充**/
+        int blockNum = in.length() / AES_BLOCK_SIZE + 1;
+        datalen = blockNum * AES_BLOCK_SIZE;
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    } else {
+        datalen = in.length();
+        data = (char*)calloc(datalen, 1);
+        memcpy(data, in.c_str(), in.length());
+    }
+    noticelen = (datalen/16+1)*16;
+    notice = (char*)calloc(noticelen, 1);
+    memset(notice, 0, noticelen);
+
+    AES_cbc_encrypt((unsigned char *)data, (unsigned char *)notice, datalen, &aes, iv, AES_DECRYPT);
+
+    std::string aesdata = notice;
+    free(data);
+    free(notice);
+    return aesdata;
+}
+
+std::string EncpSsl::Aes_128_Ecb_Encrypt(std::string in, std::string key)
+{
+    EVP_CIPHER_CTX *ctx;
+    ctx = EVP_CIPHER_CTX_new();
+    int ret = EVP_EncryptInit_ex(ctx, EVP_aes_128_ecb(), nullptr, (const unsigned char*)key.data(), NULL);
+    if(ret != 1)
+    {
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    unsigned char* result = new unsigned char[in.length() + 64];
+    int len1 = 0;
+    ret = EVP_EncryptUpdate(ctx, result, &len1, (const unsigned char*)in.data(), in.length());
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    int len2 = 0;
+    ret = EVP_EncryptFinal_ex(ctx, result + len1, &len2);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    ret = EVP_CIPHER_CTX_cleanup(ctx);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    EVP_CIPHER_CTX_free(ctx);
+
+    std::string res((char*)result, len1 + len2);
+    delete[] result;
+    return res;
+}
+
+std::string EncpSsl::Aes_128_Ecb_Decrypt(std::string in, std::string key)
+{
+    EVP_CIPHER_CTX *ctx;
+    ctx = EVP_CIPHER_CTX_new();
+
+    int ret = EVP_DecryptInit_ex(ctx, EVP_aes_128_ecb(), NULL, (const unsigned char*)key.data(), NULL);
+    if(ret != 1)
+    {
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    unsigned char* result = new unsigned char[in.length() + 64];
+    int len1 = 0;
+    ret = EVP_DecryptUpdate(ctx, result, &len1, (const unsigned char*)in.data(), in.length());
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    int len2 = 0;
+    ret = EVP_DecryptFinal_ex(ctx, result + len1, &len2);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    ret = EVP_CIPHER_CTX_cleanup(ctx);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    EVP_CIPHER_CTX_free(ctx);
+    std::string res((char*)result, len1 + len2);
+    delete[] result;
+    return res;
+}
+
+std::string EncpSsl::Aes_192_Ecb_Encrypt(std::string in, std::string key)
+{
+    EVP_CIPHER_CTX *ctx;
+    ctx = EVP_CIPHER_CTX_new();
+    int ret = EVP_EncryptInit_ex(ctx, EVP_aes_192_ecb(), nullptr, (const unsigned char*)key.data(), NULL);
+    if(ret != 1)
+    {
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    unsigned char* result = new unsigned char[in.length() + 64];
+    int len1 = 0;
+    ret = EVP_EncryptUpdate(ctx, result, &len1, (const unsigned char*)in.data(), in.length());
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    int len2 = 0;
+    ret = EVP_EncryptFinal_ex(ctx, result + len1, &len2);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    ret = EVP_CIPHER_CTX_cleanup(ctx);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    EVP_CIPHER_CTX_free(ctx);
+
+    std::string res((char*)result, len1 + len2);
+    delete[] result;
+    return res;
+}
+
+std::string EncpSsl::Aes_192_Ecb_Decrypt(std::string in, std::string key)
+{
+    EVP_CIPHER_CTX *ctx;
+    ctx = EVP_CIPHER_CTX_new();
+
+    int ret = EVP_DecryptInit_ex(ctx, EVP_aes_192_ecb(), NULL, (const unsigned char*)key.data(), NULL);
+    if(ret != 1)
+    {
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    unsigned char* result = new unsigned char[in.length() + 64];
+    int len1 = 0;
+    ret = EVP_DecryptUpdate(ctx, result, &len1, (const unsigned char*)in.data(), in.length());
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    int len2 = 0;
+    ret = EVP_DecryptFinal_ex(ctx, result + len1, &len2);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    ret = EVP_CIPHER_CTX_cleanup(ctx);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    EVP_CIPHER_CTX_free(ctx);
+    std::string res((char*)result, len1 + len2);
+    delete[] result;
+    return res;
+}
+
+std::string EncpSsl::Aes_256_Ecb_Encrypt(std::string in, std::string key)
+{
+    EVP_CIPHER_CTX *ctx;
+    ctx = EVP_CIPHER_CTX_new();
+    int ret = EVP_EncryptInit_ex(ctx, EVP_aes_256_ecb(), nullptr, (const unsigned char*)key.data(), NULL);
+    if(ret != 1)
+    {
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    unsigned char* result = new unsigned char[in.length() + 64];
+    int len1 = 0;
+    ret = EVP_EncryptUpdate(ctx, result, &len1, (const unsigned char*)in.data(), in.length());
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    int len2 = 0;
+    ret = EVP_EncryptFinal_ex(ctx, result + len1, &len2);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    ret = EVP_CIPHER_CTX_cleanup(ctx);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    EVP_CIPHER_CTX_free(ctx);
+
+    std::string res((char*)result, len1 + len2);
+    delete[] result;
+    return res;
+}
+
+std::string EncpSsl::Aes_256_Ecb_Decrypt(std::string in, std::string key)
+{
+    EVP_CIPHER_CTX *ctx;
+    ctx = EVP_CIPHER_CTX_new();
+
+    int ret = EVP_DecryptInit_ex(ctx, EVP_aes_256_ecb(), NULL, (const unsigned char*)key.data(), NULL);
+    if(ret != 1)
+    {
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    unsigned char* result = new unsigned char[in.length() + 64];
+    int len1 = 0;
+    ret = EVP_DecryptUpdate(ctx, result, &len1, (const unsigned char*)in.data(), in.length());
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+
+    int len2 = 0;
+    ret = EVP_DecryptFinal_ex(ctx, result + len1, &len2);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    ret = EVP_CIPHER_CTX_cleanup(ctx);
+    if(ret != 1)
+    {
+        delete[] result;
+        EVP_CIPHER_CTX_free(ctx);
+        return "";
+    }
+    EVP_CIPHER_CTX_free(ctx);
+    std::string res((char*)result, len1 + len2);
+    delete[] result;
+    return res;
 }
 
 std::string EncpSsl::StrToHex_Lowercase(const unsigned char* str, int length)

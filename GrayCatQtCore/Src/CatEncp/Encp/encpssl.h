@@ -39,6 +39,17 @@ public:
     //aes
     std::string Aes_128_Cbc_Encrypt(std::string in, std::string key);
     std::string Aes_128_Cbc_Decrypt(std::string in, std::string key);
+    std::string Aes_192_Cbc_Encrypt(std::string in, std::string key);
+    std::string Aes_192_Cbc_Decrypt(std::string in, std::string key);
+    std::string Aes_256_Cbc_Encrypt(std::string in, std::string key);
+    std::string Aes_256_Cbc_Decrypt(std::string in, std::string key);
+
+    std::string Aes_128_Ecb_Encrypt(std::string in, std::string key);
+    std::string Aes_128_Ecb_Decrypt(std::string in, std::string key);
+    std::string Aes_192_Ecb_Encrypt(std::string in, std::string key);
+    std::string Aes_192_Ecb_Decrypt(std::string in, std::string key);
+    std::string Aes_256_Ecb_Encrypt(std::string in, std::string key);
+    std::string Aes_256_Ecb_Decrypt(std::string in, std::string key);
 
     /*
       * 此功能用于md5生成后，进行行转码Hex

@@ -86,8 +86,6 @@ Rectangle {
         catLog.debug_print("webresourcepath " + catconfig.getWebResourcePath())
         ProjectObject.currentTheme = catconfig.getValue("Style");
 
-        //console.log("CatEncp.md5: " + CatEncp.md5("hello world", true));
-
         if(Qt.platform.os === "osx")
         {
             catfps.anchors.rightMargin = 0

@@ -320,13 +320,13 @@ std::string EncpSsl::Get_Rsa_Pri_Key()
     return this->m_sRsaPrivate_Key;
 }
 
-char *EncpSsl::Aes_128_Cbc_Encrypt(char *in, size_t len, std::string key)
+std::string EncpSsl::Aes_128_Cbc_Encrypt(std::string in, std::string key)
 {
     AES_KEY aes;
     char *data = nullptr;
     char *notice = nullptr;
     unsigned char iv[AES_BLOCK_SIZE]={0}; //初始化向量
-    int datalen = 0;
+    int datalen = 0, noticelen = 0;
     if(key.length() != AES_BLOCK_SIZE)
     {
         return data;
@@ -338,31 +338,38 @@ char *EncpSsl::Aes_128_Cbc_Encrypt(char *in, size_t len, std::string key)
     }
 
     /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
-    if((len%AES_BLOCK_SIZE) != 0)
+    if((in.length()%AES_BLOCK_SIZE) != 0)
     {
         /**不是整数倍，用'0'填充**/
-        int blockNum = len / AES_BLOCK_SIZE + 1;
+        int blockNum = in.length() / AES_BLOCK_SIZE + 1;
         datalen = blockNum * AES_BLOCK_SIZE;
         data = (char*)calloc(datalen, 1);
-        memcpy(data, in, len);
+        memcpy(data, in.c_str(), in.length());
     } else {
-        datalen = len;
+        datalen = in.length();
         data = (char*)calloc(datalen, 1);
-        memcpy(data, in, len);
+        memcpy(data, in.c_str(), in.length());
     }
+    noticelen = (datalen/16+1)*16;
+    notice = (char*)calloc(noticelen, 1);
+    memset(notice, 0, noticelen);
 
     AES_cbc_encrypt((unsigned char *)data, (unsigned char *)notice, datalen, &aes, iv, AES_ENCRYPT);
 
-    return data;
+    std::string aesdata = notice;
+    free(data);
+    free(notice);
+
+    return aesdata;
 }
 
-char *EncpSsl::Aes_128_Cbc_Decrypt(char *in, size_t len, std::string key)
+std::string EncpSsl::Aes_128_Cbc_Decrypt(std::string in, std::string key)
 {
     AES_KEY aes;
     char *data = nullptr;
     char *notice = nullptr;
     unsigned char iv[AES_BLOCK_SIZE]={0}; //初始化向量
-    int datalen = 0;
+    int datalen = 0, noticelen = 0;
     if(key.length() != AES_BLOCK_SIZE)
     {
         return data;
@@ -373,22 +380,28 @@ char *EncpSsl::Aes_128_Cbc_Decrypt(char *in, size_t len, std::string key)
     }
 
     /**判断原始数据长度是否AES_BLOCK_SIZE的整数倍**/
-    if((len%AES_BLOCK_SIZE) != 0)
+    if((in.length()%AES_BLOCK_SIZE) != 0)
     {
         /**不是整数倍，用'0'填充**/
-        int blockNum = len / AES_BLOCK_SIZE + 1;
+        int blockNum = in.length() / AES_BLOCK_SIZE + 1;
         datalen = blockNum * AES_BLOCK_SIZE;
         data = (char*)calloc(datalen, 1);
-        memcpy(data, in, len);
+        memcpy(data, in.c_str(), in.length());
     } else {
-        datalen = len;
+        datalen = in.length();
         data = (char*)calloc(datalen, 1);
-        memcpy(data, in, len);
+        memcpy(data, in.c_str(), in.length());
     }
+    noticelen = (datalen/16+1)*16;
+    notice = (char*)calloc(noticelen, 1);
+    memset(notice, 0, noticelen);
 
     AES_cbc_encrypt((unsigned char *)data, (unsigned char *)notice, datalen, &aes, iv, AES_DECRYPT);
 
-    return data;
+    std::string aesdata = notice;
+    free(data);
+    free(notice);
+    return aesdata;
 }
 
 std::string EncpSsl::StrToHex_Lowercase(const unsigned char* str, int length)

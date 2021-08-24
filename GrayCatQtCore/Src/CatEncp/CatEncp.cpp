@@ -1,4 +1,4 @@
-#include "CatEncp.h"
+﻿#include "CatEncp.h"
 #include "Encp/encpssl.h"
 
 CatEncp::CatEncp(QObject *parent) : QObject(parent)
@@ -90,6 +90,18 @@ QString CatEncp::md5(QString input, bool length16)
 {
     EncpSsl encp;
     return QString::fromStdString(encp.Md5(input.toStdString(), length16));
+}
+
+QByteArray CatEncp::aes_128_Cbc_Encrypt(QByteArray in, QString key)
+{
+    EncpSsl encp;
+    return QByteArray::fromStdString(encp.Aes_128_Cbc_Encrypt(in.toStdString(), key.toStdString()));
+}
+
+QByteArray CatEncp::aes_128_Cbc_Decrypt(QByteArray in, QString key)
+{
+    EncpSsl encp;
+    return QByteArray::fromStdString(encp.Aes_128_Cbc_Decrypt(in.toStdString(), key.toStdString()));
 }
 
 

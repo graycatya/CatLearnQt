@@ -37,8 +37,8 @@ public:
     std::string Get_Rsa_Pri_Key();
 
     //aes
-    char* Aes_128_Cbc_Encrypt(char* in, size_t len, std::string key);
-    char* Aes_128_Cbc_Decrypt(char* in, size_t len, std::string key);
+    std::string Aes_128_Cbc_Encrypt(std::string in, std::string key);
+    std::string Aes_128_Cbc_Decrypt(std::string in, std::string key);
 
     /*
       * 此功能用于md5生成后，进行行转码Hex

@@ -1,4 +1,4 @@
-#ifndef CATENCP_H
+﻿#ifndef CATENCP_H
 #define CATENCP_H
 
 #include <QObject>
@@ -36,6 +36,11 @@ public:
 
     // md5
     Q_INVOKABLE static QString md5(QString input, bool length16 = false);
+
+    // aes
+    Q_INVOKABLE static QByteArray aes_128_Cbc_Encrypt(QByteArray in, QString key);
+    Q_INVOKABLE static QByteArray aes_128_Cbc_Decrypt(QByteArray in, QString key);
+
 
     static CatEncp *qmlAttachedProperties(QObject *parent = nullptr);
 

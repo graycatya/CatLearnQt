@@ -6,6 +6,7 @@ import QtGraphicalEffects 1.12
 import Qt.labs.calendar 1.0
 import QtQuick.Window 2.12
 import GrayCatQtQuick 1.0
+import CatEncp 1.0
 import "FunctionLayout"
 
 Window {
@@ -81,6 +82,12 @@ Window {
     Component.onCompleted: {
         catLog.debug_print("run ui, system is: " + Qt.platform.os);
         ProjectObject.currentTheme = catconfig.getValue("Style");
+        var key = CatEncp.md5("123456")
+
+        var data = CatEncp.aes_256_Cbc_Encrypt("hello world", key);
+        data = CatEncp.aes_256_Cbc_Decrypt(data, key);
+
+        catLog.debug_print(data);
 
         if(Qt.platform.os === "osx")
         {

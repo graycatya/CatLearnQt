@@ -1,6 +1,9 @@
 HEADERS += \
     $$PWD/CatEncp.h \
     $$PWD/Encp/encpssl.h \
+
+win32 {
+HEADERS += \
     $$PWD/openssl/__DECC_INCLUDE_EPILOGUE.H \
     $$PWD/openssl/__DECC_INCLUDE_PROLOGUE.H \
     $$PWD/openssl/aes.h \
@@ -107,6 +110,7 @@ HEADERS += \
     $$PWD/openssl/x509err.h \
     $$PWD/openssl/x509v3.h \
     $$PWD/openssl/x509v3err.h
+}
 
 #SOURCES += \
 #    $$PWD/openssl/applink.c
@@ -138,5 +142,6 @@ contains(DEFINES, WIN64) {
 }
 
 unix {
-    LIBS += -L$$PWD/lib/ -lcrypto -lssl
+  INCLUDEPATH += /usr/local/openssl/include
+  LIBS += -L/usr/local/openssl/lib -lcrypto -lssl
 }

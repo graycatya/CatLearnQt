@@ -44,7 +44,6 @@ int main(int argc, char *argv[])
         }
     });
 
-    //view.engine()->addImportPath(TaoQuickImportPath);
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
     view.engine()->rootContext()->setContextProperty("view", &view);
     view.engine()->rootContext()->setContextProperty("catLog", catlog);

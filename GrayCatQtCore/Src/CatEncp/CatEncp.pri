@@ -1,3 +1,5 @@
+QT += qml
+
 HEADERS += \
     $$PWD/CatEncp.h \
     $$PWD/Encp/encpssl.h \

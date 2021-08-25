@@ -36,9 +36,9 @@ Button {
         }
     }
 
-    property color backgroundColor: "transparent"
-    property color backgroundColor_pressed: "transparent"
-    property color backgroundColor_hovered: "transparent"
+    property color backgroundColor: "#01000000"
+    property color backgroundColor_pressed: "#01000000"
+    property color backgroundColor_hovered: "#01000000"
     property alias imagebackground: catbuttonimagebackground
 
     ToolTip {
@@ -86,9 +86,9 @@ Button {
         }
         Image {
             id: backimage
-            anchors.centerIn: parent
-            width: catbuttonimage.width
-            height: catbuttonimage.height
+            anchors.centerIn: catbuttonimagebackground
+            width: parent.width - (parent.border.width*2)
+            height: parent.height - (parent.border.width*2)
             source: catbuttonimage.btnImgUrl
         }
     }

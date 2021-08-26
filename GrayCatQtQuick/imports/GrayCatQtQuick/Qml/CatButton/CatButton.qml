@@ -16,6 +16,7 @@ Button{
     property alias tipFont: catbasictooltip.font
     property alias tipTextColor: catbasictooltiptext.color
     property alias tipBackground: tooltiprectangle
+    property alias mouseArea: mousearea
     property bool selected: false
     signal buttonEntered()
     signal buttonExited()
@@ -69,6 +70,7 @@ Button{
     }*/
 
     MouseArea {
+        id: mousearea
         anchors.fill: parent
         hoverEnabled: true
         propagateComposedEvents: true

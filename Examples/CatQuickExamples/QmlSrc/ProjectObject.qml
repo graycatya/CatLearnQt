@@ -13,6 +13,10 @@ QtObject {
 
     property int currentTheme: 0
 
+    property string codeChinaUrl: "https://codechina.csdn.net/qq_32312307/CatLearnQt"
+    property string githubUrl: "https://github.com/graycatya/CatLearnQt"
+    property string giteeUrl: "https://gitee.com/graycatya/CatLearnQt"
+
     property color appBackgroundColor: "#1F1F20"
     property color titleBackgroundColor: "#18181B"
     property color titleBottomWidthColor: "#000000"
@@ -154,6 +158,9 @@ QtObject {
     property color defaultPopupBackgroundColor: "#3C3C3C"
 
     property color languageBackgroundColor: "#3C3C3C"
+
+    property color moreViewBackColor: "#353538"
+    property color moreViewFuncBackColor: "#2F2F2F"
 
 
     signal updateCurrentThemeed();
@@ -301,6 +308,9 @@ QtObject {
         projectobject.defaultPopupBackgroundColor = t.defaultPopupBackgroundColor
 
         projectobject.languageBackgroundColor = t.languageBackgroundColor
+
+        projectobject.moreViewBackColor = t.moreViewBackColor
+        projectobject.moreViewFuncBackColor = t.moreViewFuncBackColor
 
         catconfig.setValue("Style", currentTheme);
         updateCurrentThemeed();
@@ -451,6 +461,9 @@ QtObject {
 
             languageBackgroundColor: "#3C3C3C"
 
+            moreViewBackColor: "#353538"
+            moreViewFuncBackColor: "#2F2F2F"
+
         }
         ListElement {
             name: "White"
@@ -594,6 +607,9 @@ QtObject {
             defaultPopupBackgroundColor: "#19A0FA"
 
             languageBackgroundColor: "#FFFFFF"
+
+            moreViewBackColor: "#FFFFFF"
+            moreViewFuncBackColor: "#66EEEEEE"
 
         }
     }

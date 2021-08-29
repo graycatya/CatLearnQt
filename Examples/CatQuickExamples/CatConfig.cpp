@@ -5,6 +5,7 @@
 #include <CatLog>
 #include <QFileInfo>
 #include <QDir>
+#include <QDesktopServices>
 
 #include "CatEncp.h"
 #include "QrenCode/QuickQrenCodeParentItem.h"
@@ -161,6 +162,25 @@ void CatConfig::setCurrentLanguage(QString lan)
          }
      }
      InitLanguage(getValue("Language").toInt());
+}
+
+QByteArray CatConfig::getLicenceHtml()
+{
+    QFile file_licence(":/Licence/Licence.html");
+    file_licence.open(QIODevice::ReadOnly);
+    QByteArray licencemd = file_licence.readAll();
+    file_licence.close();
+    return licencemd;
+}
+
+void CatConfig::openWebUrl(QString url)
+{
+    QDesktopServices::openUrl(QUrl(url));
+}
+
+QString CatConfig::getQtVersion()
+{
+    return QT_VERSION_STR;
 }
 
 QList<QString> CatConfig::systemFontFamily(QFontDatabase::WritingSystem writingSystem)

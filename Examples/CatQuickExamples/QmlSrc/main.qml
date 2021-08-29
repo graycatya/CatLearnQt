@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
 import CatEncp 1.0
 import "FunctionLayout"
+import "./MoreFunctionViews"
 
 
 Rectangle {
@@ -76,6 +77,12 @@ Rectangle {
                 height: 32
             }
         }
+    }
+
+
+    MoreView {
+        id: moreview
+        visible: false
     }
 
 

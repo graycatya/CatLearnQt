@@ -26,5 +26,9 @@
         <file>ControlDemos/DemoCatSideColumn.qml</file>
         <file>ControlDemos/DemoCatSorter.qml</file>
         <file>AppControl/LanguageItem.qml</file>
+        <file>MoreFunctionViews/MoreView.qml</file>
+        <file>MoreFunctionViews/SettingItem.qml</file>
+        <file>MoreFunctionViews/LicenceItem.qml</file>
+        <file>MoreFunctionViews/AboutItem.qml</file>
     </qresource>
 </RCC>

@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
+    <name>AboutItem</name>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/AboutItem.qml" line="32"/>
+        <source>This software is used to learn Qt development.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/AboutItem.qml" line="56"/>
+        <source>Author: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CatCalendar</name>
     <message>
         <location filename="../../../../GrayCatQtQuick/imports/GrayCatQtQuick/Qml/CatModule/CatCalendar.qml" line="305"/>
@@ -171,6 +184,24 @@
     <message>
         <location filename="../../QmlSrc/ControlDemos/DemoCatSideColumn.qml" line="45"/>
         <source>Function_3</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>MoreView</name>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="141"/>
+        <source>Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="184"/>
+        <source>Licence</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="228"/>
+        <source>About</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

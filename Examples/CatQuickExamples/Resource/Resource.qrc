@@ -143,5 +143,34 @@
         <file>Images/White/SorterPreviousButtonHover.png</file>
         <file>Lang/language_en.qm</file>
         <file>Lang/language_zh_CN.qm</file>
+        <file>Images/Black/More_blue.png</file>
+        <file>Images/Black/More_gray.png</file>
+        <file>Images/Black/More_white.png</file>
+        <file>Images/White/More_blue.png</file>
+        <file>Images/White/More_gray.png</file>
+        <file>Images/White/More_white.png</file>
+        <file>Images/Black/More_blue.svg</file>
+        <file>Images/Black/More_gray.svg</file>
+        <file>Images/Black/More_white.svg</file>
+        <file>Images/White/More_blue.svg</file>
+        <file>Images/White/More_gray.svg</file>
+        <file>Images/White/More_white.svg</file>
+        <file>Images/Black/MoreClose_default.png</file>
+        <file>Images/Black/MoreClose_hover.png</file>
+        <file>Images/White/MoreClose_default.png</file>
+        <file>Images/White/MoreClose_hover.png</file>
+        <file>Images/Black/About_default.png</file>
+        <file>Images/Black/Licence_default.png</file>
+        <file>Images/Black/Setting_default.png</file>
+        <file>Images/White/About_default.png</file>
+        <file>Images/White/Licence_default.png</file>
+        <file>Images/White/Setting_default.png</file>
+        <file>Licence/Licence.html</file>
+        <file>Images/Black/CodeChina.png</file>
+        <file>Images/Black/Gitee.png</file>
+        <file>Images/Black/Github.png</file>
+        <file>Images/White/CodeChina.png</file>
+        <file>Images/White/Gitee.png</file>
+        <file>Images/White/Github.png</file>
     </qresource>
 </RCC>

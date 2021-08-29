@@ -59,6 +59,8 @@ Rectangle {
                 height: 16
                 backImage.sourceSize.width: 16
                 backImage.sourceSize.height: 16
+                Layout.preferredWidth: 16
+                Layout.preferredHeight: 16
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "style_gray.svg"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "style_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "style_blue.svg"
@@ -170,6 +172,8 @@ Rectangle {
                 height: 16
                 backImage.sourceSize.width: 16
                 backImage.sourceSize.height: 16
+                Layout.preferredWidth: 16
+                Layout.preferredHeight: 16
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "language_gray.svg"
                 btnImgHovered: ProjectObject.getCurrentResourcePath() + "language_white.svg"
                 btnImgPressed: ProjectObject.getCurrentResourcePath() + "language_blue.svg"
@@ -224,15 +228,22 @@ Rectangle {
                 }
             }
             CatButtonImage {
-                id: settingbutton
+                id: morebutton
                 width: 16
                 height: 16
                 backImage.sourceSize.width: 16
                 backImage.sourceSize.height: 16
-                btnImgNormal: ProjectObject.getCurrentResourcePath() + "setting_gray.svg"
-                btnImgHovered: ProjectObject.getCurrentResourcePath() + "setting_white.svg"
-                btnImgPressed: ProjectObject.getCurrentResourcePath() + "setting_blue.svg"
-                btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "setting_gray.svg"
+                Layout.preferredWidth: 16
+                Layout.preferredHeight: 16
+                Layout.alignment: Qt.AlignVCenter
+                btnImgNormal: ProjectObject.getCurrentResourcePath() + "More_gray.svg"
+                btnImgHovered: ProjectObject.getCurrentResourcePath() + "More_white.svg"
+                btnImgPressed: ProjectObject.getCurrentResourcePath() + "More_blue.svg"
+                btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "More_gray.svg"
+
+                onClicked: {
+                    moreview.visible = true;
+                }
             }
         }
 

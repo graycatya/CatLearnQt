@@ -224,15 +224,21 @@ Rectangle {
                 }
             }
             CatButtonImage {
-                id: settingbutton
+                id: morebutton
                 Layout.preferredWidth: 16
                 Layout.preferredHeight: 16
                 Layout.alignment: Qt.AlignVCenter
-                btnImgNormal: ProjectObject.getCurrentResourcePath() + "setting_gray.svg"
-                btnImgHovered: ProjectObject.getCurrentResourcePath() + "setting_white.svg"
-                btnImgPressed: ProjectObject.getCurrentResourcePath() + "setting_blue.svg"
-                btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "setting_gray.svg"
+                btnImgNormal: ProjectObject.getCurrentResourcePath() + "More_gray.svg"
+                btnImgHovered: ProjectObject.getCurrentResourcePath() + "More_white.svg"
+                btnImgPressed: ProjectObject.getCurrentResourcePath() + "More_blue.svg"
+                btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "More_gray.svg"
+
+                onClicked: {
+                    moreview.visible = true;
+                }
             }
+
+
         }
 
     }

@@ -58,11 +58,13 @@ public:
     Q_INVOKABLE static QVariant getValue(QString key, QString node = "");
     Q_INVOKABLE static QMultiMap<QString, QVariant> getArray(QString node, QStringList keys);
 
-
     Q_INVOKABLE static QList<QString> getAppDefineLanguages();
     Q_INVOKABLE static QString getCurrentLanguage();
     Q_INVOKABLE static void setCurrentLanguage(QString lan);
 
+    Q_INVOKABLE static QByteArray getLicenceHtml();
+    Q_INVOKABLE static void openWebUrl(QString url);
+    Q_INVOKABLE static QString getQtVersion();
 
     Q_INVOKABLE QList<QString> systemFontFamily(QFontDatabase::WritingSystem writingSystem = QFontDatabase::Any);
 

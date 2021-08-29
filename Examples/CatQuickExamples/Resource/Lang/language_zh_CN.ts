@@ -2,6 +2,21 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>AboutItem</name>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/AboutItem.qml" line="32"/>
+        <source>This software is used to learn Qt development.</source>
+        <translatorcomment>本软件是用来学习Qt开发的.</translatorcomment>
+        <translation>本软件是用来学习Qt开发的.</translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/AboutItem.qml" line="56"/>
+        <source>Author: </source>
+        <translatorcomment>作者: </translatorcomment>
+        <translation>作者: </translation>
+    </message>
+</context>
+<context>
     <name>CatCalendar</name>
     <message>
         <location filename="../../../../GrayCatQtQuick/imports/GrayCatQtQuick/Qml/CatModule/CatCalendar.qml" line="305"/>
@@ -201,6 +216,27 @@
         <source>Function_3</source>
         <translatorcomment>功能_3</translatorcomment>
         <translation>功能_3</translation>
+    </message>
+</context>
+<context>
+    <name>MoreView</name>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="141"/>
+        <source>Setting</source>
+        <translatorcomment>设置</translatorcomment>
+        <translation>设置</translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="184"/>
+        <source>Licence</source>
+        <translatorcomment>许可证</translatorcomment>
+        <translation>许可证</translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="228"/>
+        <source>About</source>
+        <translatorcomment>关于</translatorcomment>
+        <translation>关于</translation>
     </message>
 </context>
 </TS>

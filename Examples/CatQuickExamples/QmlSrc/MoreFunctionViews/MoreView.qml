@@ -59,6 +59,17 @@ Rectangle {
             }
             return (parent.width - 800 - cmargin)/2
         }
+
+
+        // 解决button侧栏圆角问题 buttonsRect
+        layer.enabled: true
+        layer.effect: OpacityMask{
+            maskSource: Rectangle{
+                width: morerect.width
+                height: morerect.height
+                radius: 5
+            }
+        }
         //width: 800
 
         //anchors.centerIn: parent
@@ -96,16 +107,16 @@ Rectangle {
 
         color: moreview.moreViewBackColor
 
-        CatRectangle {
+        Rectangle {
             id: buttonsRect
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            rightBottomRound: false
-            rightTopRound: false
-            backdropRadius: 5
+            //rightBottomRound: false
+            //rightTopRound: false
+            //backdropRadius: 5
             width: 200
-            backdropColor: moreview.moreViewFuncBackColor
+            color: moreview.moreViewFuncBackColor
             //color: "#2F2F2F"
             ButtonGroup {
                 buttons: functionLayout.children
@@ -282,6 +293,18 @@ Rectangle {
         }
 
     }
+
+    /*OpacityMask{
+         anchors.centerIn: morerect
+         width: morerect.width
+         height: morerect.height
+         source: morerect
+         maskSource: Rectangle{
+             width: morerect.width
+             height: morerect.height
+             radius: 5
+         }
+     }*/
 
     DropShadow {
         anchors.fill: morerect

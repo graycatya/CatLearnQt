@@ -99,6 +99,7 @@ include($$PWD/../../GrayCatQtCore/Src/SingleApplication/singleapplication.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
 include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+include($$PWD/Src/TableFunction/TableFunction.pri)
 
 # 配置file_copies
 CONFIG += file_copies
@@ -133,4 +134,4 @@ win32 {
 }
 
 HEADERS += \
-    CatConfig.h
+    CatConfig.h \

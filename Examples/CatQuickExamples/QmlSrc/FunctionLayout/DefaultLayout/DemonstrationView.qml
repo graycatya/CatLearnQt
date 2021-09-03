@@ -83,6 +83,11 @@ Rectangle {
         asynchronous: true
         visible: status == Loader.Ready
         source: ProjectObject.defaultControl.control[0].qmlSource
+
+        onProgressChanged: {
+            console.log("Progress: " + progress)
+        }
+
     }
 
     function updatedemo(demoname, qmlsource)

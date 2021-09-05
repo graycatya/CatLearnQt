@@ -30,5 +30,8 @@
         <file>MoreFunctionViews/SettingItem.qml</file>
         <file>MoreFunctionViews/LicenceItem.qml</file>
         <file>MoreFunctionViews/AboutItem.qml</file>
+        <file>ControlDemos/DemoTableView.qml</file>
+        <file>FunctionLayout/GridLayout/CatGridLayout.qml</file>
+        <file>FunctionLayout/TreeLayout/CatTreeLayout.qml</file>
     </qresource>
 </RCC>

@@ -131,8 +131,13 @@ Rectangle {
     }
 
     Component.onCompleted: {
+
         catconfig.updateLanguage.connect(function(){
-            catcalendar.updateEnMonth();
+            if(catcalendar !== null)
+            {
+                catcalendar.updateEnMonth();
+            }
+
         });
     }
 }

@@ -1,5 +1,5 @@
 HEADERS += \
-    $$PWD/TableModelOne.h
+    $$PWD/TableViewModel.h
 
 SOURCES += \
-    $$PWD/TableModelOne.cpp
+    $$PWD/TableViewModel.cpp

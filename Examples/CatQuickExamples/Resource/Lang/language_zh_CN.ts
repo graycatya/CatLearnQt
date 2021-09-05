@@ -219,24 +219,59 @@
     </message>
 </context>
 <context>
+    <name>DemoTableView</name>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>Id</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>Button</source>
+        <translatorcomment>按钮</translatorcomment>
+        <translation>按钮</translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>Logo</source>
+        <translatorcomment>标志</translatorcomment>
+        <translation>标志</translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>String</source>
+        <translatorcomment>字符串</translatorcomment>
+        <translation>字符串</translation>
+    </message>
+</context>
+<context>
     <name>MoreView</name>
     <message>
-        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="141"/>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="152"/>
         <source>Setting</source>
         <translatorcomment>设置</translatorcomment>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="184"/>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="195"/>
         <source>Licence</source>
         <translatorcomment>许可证</translatorcomment>
         <translation>许可证</translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="228"/>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="239"/>
         <source>About</source>
         <translatorcomment>关于</translatorcomment>
         <translation>关于</translation>
+    </message>
+</context>
+<context>
+    <name>SettingItem</name>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/SettingItem.qml" line="24"/>
+        <source>Layout</source>
+        <translatorcomment>布局</translatorcomment>
+        <translation>布局</translation>
     </message>
 </context>
 </TS>

@@ -13,6 +13,7 @@
 #include <QmlCatLog.h>
 #include "CatConfig.h"
 #include "SingleApplication"
+#include "Src/TableFunction/TableViewModel.h"
 
 
 int main(int argc, char *argv[])
@@ -31,6 +32,8 @@ int main(int argc, char *argv[])
 
     CatConfig *catconfig = CatConfig::Instance();
     catconfig->InitConfig();
+
+    qmlRegisterType<TableViewModel>("TableViewModel",1,0,"TableViewModel");
 
 
 #ifdef QT_OS_WIN10

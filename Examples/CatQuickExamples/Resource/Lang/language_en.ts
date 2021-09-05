@@ -188,20 +188,51 @@
     </message>
 </context>
 <context>
+    <name>DemoTableView</name>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>Id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>Button</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>Logo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/ControlDemos/DemoTableView.qml" line="21"/>
+        <source>String</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MoreView</name>
     <message>
-        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="141"/>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="152"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="184"/>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="195"/>
         <source>Licence</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="228"/>
+        <location filename="../../QmlSrc/MoreFunctionViews/MoreView.qml" line="239"/>
         <source>About</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SettingItem</name>
+    <message>
+        <location filename="../../QmlSrc/MoreFunctionViews/SettingItem.qml" line="24"/>
+        <source>Layout</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

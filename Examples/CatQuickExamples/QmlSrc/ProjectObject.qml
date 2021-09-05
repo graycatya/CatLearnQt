@@ -7,6 +7,20 @@ QtObject {
     id: projectobject
     objectName: "projectobject"
 
+    enum LayoutState {
+        ListLayout,
+        GridLayout,
+        TreeLayout
+    }
+
+    property int layoutState: projectobject.ListLayout
+
+    signal updateLayoutState(int layoutstate);
+
+    onLayoutStateChanged: {
+        updateLayoutState(layoutState)
+    }
+
     property string fontFamily: "Ubuntu"
 
     property string resourcePath: "qrc:/Images/"
@@ -162,6 +176,8 @@ QtObject {
     property color moreViewBackColor: "#353538"
     property color moreViewFuncBackColor: "#2F2F2F"
 
+    property color lineColor: "#EEEEEE"
+
 
     signal updateCurrentThemeed();
 
@@ -311,6 +327,8 @@ QtObject {
 
         projectobject.moreViewBackColor = t.moreViewBackColor
         projectobject.moreViewFuncBackColor = t.moreViewFuncBackColor
+
+        projectobject.lineColor = t.lineColor
 
         catconfig.setValue("Style", currentTheme);
         updateCurrentThemeed();
@@ -464,6 +482,8 @@ QtObject {
             moreViewBackColor: "#353538"
             moreViewFuncBackColor: "#2F2F2F"
 
+            lineColor: "#EEEEEE"
+
         }
         ListElement {
             name: "White"
@@ -611,6 +631,8 @@ QtObject {
             moreViewBackColor: "#FFFFFF"
             moreViewFuncBackColor: "#66EEEEEE"
 
+            lineColor: "#333333"
+
         }
     }
 
@@ -727,6 +749,14 @@ QtObject {
                 "logoSource": "CatSorter.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatSorter.qml",
                 "libs": "default",
+            },
+            {
+                "name": "TableView",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": "CatTable.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoTableView.qml",
+                "libs": "default",
             }
         ]
     }
@@ -756,6 +786,11 @@ QtObject {
     function getProjectQmlControlPath()
     {
         return "qrc:/ControlDemos/"
+    }
+
+    function getProjectQmlLayoutPath()
+    {
+        return "qrc:/FunctionLayout/"
     }
 
 }

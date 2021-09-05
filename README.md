@@ -1,6 +1,8 @@
 
 ## 目录
 
+[English description](./README_English.md)
+
 - [目录](#目录)
 - [CatLearnQt](#catlearnqt)
 - [项目地址](#项目地址)
@@ -27,7 +29,7 @@
       - [Figma原型](#figma原型)
     - [CatWidgetExamples效果预览](#catwidgetexamples效果预览)
     - [MetroDemo惠州地铁案例效果预览](#metrodemo惠州地铁案例效果预览)
-  - [赞助](#赞助)
+  - [打赏](#打赏)
 
 ## CatLearnQt
 
@@ -105,7 +107,7 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | GrayCatQtQuick | GrayCatQtQuick模块 | 提供了基于Quick,Qml实现的自定义控件集合。 |
 | GrayCatQtCore | GrayCatQtCore模块 | 提供了串口，网络，蓝牙，日志，线程等模块。 |
 | Examples | 模块集成演示项目 | 该项目以QWidget为基础开发，演示了QWidget，QQuickWidget，QGraphicsView等模块的项目。 |
-| scripts | 脚步文件路径 | 持续集成相关配置，用于自动化构建、发布所需要的脚本，提供qml库裁剪脚本 |
+| scripts | 脚本文件路径 | 持续集成相关配置，用于自动化构建、发布所需要的脚本，提供qml库裁剪脚本 |
 | .github | github-Actions配置 | 持续集成相关配置，用于自动化构建、发布 |
 
 

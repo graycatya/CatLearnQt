@@ -172,5 +172,15 @@
         <file>Images/White/CodeChina.png</file>
         <file>Images/White/Gitee.png</file>
         <file>Images/White/Github.png</file>
+        <file>Images/Black/CatTable.png</file>
+        <file>Images/White/CatTable.png</file>
+        <file>Images/Black/Raspi-PGB001.png</file>
+        <file>Images/White/Raspi-PGB001.png</file>
+        <file>Images/Black/GridLayout.png</file>
+        <file>Images/Black/ListLayout.png</file>
+        <file>Images/Black/TreeLayout.png</file>
+        <file>Images/White/GridLayout.png</file>
+        <file>Images/White/ListLayout.png</file>
+        <file>Images/White/TreeLayout.png</file>
     </qresource>
 </RCC>

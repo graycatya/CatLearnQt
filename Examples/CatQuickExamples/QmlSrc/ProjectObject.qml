@@ -13,7 +13,7 @@ QtObject {
         TreeLayout
     }
 
-    property int layoutState: projectobject.ListLayout
+    property int layoutState: ProjectObject.ListLayout
 
     signal updateLayoutState(int layoutstate);
 

@@ -87,7 +87,6 @@ Rectangle {
         onProgressChanged: {
             console.log("Progress: " + progress)
         }
-
     }
 
     function updatedemo(demoname, qmlsource)

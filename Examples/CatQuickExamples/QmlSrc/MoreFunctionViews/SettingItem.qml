@@ -174,6 +174,70 @@ Item {
             }
         }
 
+        Rectangle {
+            id: line_0
+            Layout.fillWidth: true
+            Layout.preferredHeight: 1
+            Layout.topMargin: 10
+            color: ProjectObject.lineColor
+        }
+
+        Item {
+            id: transitionItem
+            Layout.fillWidth: true
+            Layout.preferredHeight: 50
+            Layout.topMargin: 10
+            CatBasicsText {
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                color: ProjectObject.defaultTextColor
+                text: qsTr("Transition")
+                font.family: ProjectObject.fontFamily
+                font.pixelSize: 18
+                font.bold: true
+                horizontalAlignment: Text.AlignLeft
+            }
+
+            Switch {
+                id: switchtransition
+                anchors.right: parent.right
+                anchors.top: parent.top
+                anchors.topMargin: 9
+                width: 60
+                height: 32
+                checked: ProjectObject.settingtransition
+                //checked: model.value["Value"]
+                indicator: Rectangle {
+                    width: 60
+                    height: 32
+                    radius: height / 2
+                    color: switchtransition.checked ? ProjectObject.switchbuttonback_CheckColor : ProjectObject.switchbuttonback_DefaultColor
+                    border.width: 2
+                    border.color: ProjectObject.switchbuttonback_CheckColor
+
+                    Rectangle {
+                        x: switchtransition.checked ? parent.width - width - 2 : 1
+                        width: switchtransition.checked ? parent.height - 4 : parent.height - 2
+                        height: width
+                        radius: width / 2
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: ProjectObject.switchbuttonCircle_Color
+                        //border.color: "#C4C4C4"
+
+                        Behavior on x {
+                            NumberAnimation { duration: 200 }
+                        }
+                    }
+                }
+
+                onVisualPositionChanged: {
+                    ProjectObject.settingtransition = checked
+                    //console.log("fsdafa; " + checked)
+                }
+            }
+        }
+
         Item {
             //color: "#000000"
             Layout.fillWidth: true

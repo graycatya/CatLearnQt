@@ -83,6 +83,19 @@
     </message>
 </context>
 <context>
+    <name>CatGridListItem</name>
+    <message>
+        <location filename="../../QmlSrc/FunctionLayout/GridLayout/CatGridListItem.qml" line="99"/>
+        <source>Author: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../QmlSrc/FunctionLayout/GridLayout/CatGridListItem.qml" line="113"/>
+        <source>Version: %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CatWeek</name>
     <message>
         <location filename="../../../../GrayCatQtQuick/imports/GrayCatQtQuick/Qml/CatModule/CalendarRelyon/CatWeek.qml" line="24"/>

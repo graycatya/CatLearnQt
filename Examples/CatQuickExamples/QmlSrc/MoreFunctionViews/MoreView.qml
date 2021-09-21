@@ -18,7 +18,7 @@ Rectangle {
     property color buttonBackColor_pressed: ProjectObject.catsidecolumnitem_SelectColor
     //property color buttonTextColor: ProjectObject.defaultTextColor
 
-    MouseArea{
+    MouseArea {
 
         anchors.fill: parent;
         hoverEnabled: true

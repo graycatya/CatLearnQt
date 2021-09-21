@@ -10,7 +10,7 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        text: "grid test"
+        text: "tree layout"
         font.family: ProjectObject.fontFamily
         font.pixelSize: 20
         color: ProjectObject.defaultTextColor

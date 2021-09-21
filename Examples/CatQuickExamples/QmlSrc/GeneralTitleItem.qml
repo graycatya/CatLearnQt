@@ -11,7 +11,7 @@ Rectangle {
     objectName: "win10titleitem"
 
 
-    color: ProjectObject.titleBackgroundColor
+    //color: ProjectObject.titleBackgroundColor
 
     RowLayout {
         anchors.right: parent.right
@@ -241,5 +241,21 @@ Rectangle {
 
         }
 
+    }
+
+    Component.onCompleted: {
+        color = ProjectObject.titleBackgroundColor
+        ProjectObject.updateCurrentThemeed.connect(function(){
+            animation.start();
+        });
+    }
+
+    PropertyAnimation  {
+        id: animation
+        target: win10titleitem;
+        property: "color";
+        from: color
+        to: ProjectObject.titleBackgroundColor
+        duration: ProjectObject.settingtransition ? 400 : 0
     }
 }

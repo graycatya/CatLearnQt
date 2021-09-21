@@ -13,13 +13,15 @@ QtObject {
         TreeLayout
     }
 
-    property int layoutState: projectobject.ListLayout
+    property int layoutState: ProjectObject.ListLayout
 
     signal updateLayoutState(int layoutstate);
 
     onLayoutStateChanged: {
         updateLayoutState(layoutState)
     }
+
+    property bool settingtransition: false
 
     property string fontFamily: "Ubuntu"
 
@@ -178,6 +180,8 @@ QtObject {
 
     property color lineColor: "#EEEEEE"
 
+    property color gridCardColor: "#0CFFFFFF"
+
 
     signal updateCurrentThemeed();
 
@@ -329,6 +333,8 @@ QtObject {
         projectobject.moreViewFuncBackColor = t.moreViewFuncBackColor
 
         projectobject.lineColor = t.lineColor
+
+        projectobject.gridCardColor = t.gridCardColor
 
         catconfig.setValue("Style", currentTheme);
         updateCurrentThemeed();
@@ -484,6 +490,8 @@ QtObject {
 
             lineColor: "#EEEEEE"
 
+            gridCardColor: "#0CFFFFFF"
+
         }
         ListElement {
             name: "White"
@@ -632,6 +640,8 @@ QtObject {
             moreViewFuncBackColor: "#66EEEEEE"
 
             lineColor: "#333333"
+
+            gridCardColor: "#0C888888"
 
         }
     }

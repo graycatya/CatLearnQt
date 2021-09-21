@@ -12,7 +12,7 @@ Rectangle {
 
     property alias blankItem: blankItem
 
-    color: ProjectObject.titleBackgroundColor
+    //color: ProjectObject.titleBackgroundColor
 
     RowLayout {
         spacing: 0
@@ -378,5 +378,22 @@ Rectangle {
                 view.y += yOffset
             }
         }
+    }
+
+
+    Component.onCompleted: {
+        color = ProjectObject.titleBackgroundColor
+        ProjectObject.updateCurrentThemeed.connect(function(){
+            animation.start();
+        });
+    }
+
+    PropertyAnimation  {
+        id: animation
+        target: win10titleitem;
+        property: "color";
+        from: color
+        to: ProjectObject.titleBackgroundColor
+        duration: ProjectObject.settingtransition ? 400 : 0
     }
 }

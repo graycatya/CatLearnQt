@@ -33,5 +33,7 @@
         <file>ControlDemos/DemoTableView.qml</file>
         <file>FunctionLayout/GridLayout/CatGridLayout.qml</file>
         <file>FunctionLayout/TreeLayout/CatTreeLayout.qml</file>
+        <file>FunctionLayout/GridLayout/CatGridListView.qml</file>
+        <file>FunctionLayout/GridLayout/CatGridListItem.qml</file>
     </qresource>
 </RCC>

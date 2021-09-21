@@ -52,9 +52,9 @@ Rectangle {
             {
                 layoutloader.source = ProjectObject.getProjectQmlLayoutPath() + "DefaultLayout/DefaultLayout.qml"
             } else if(ProjectObject.layoutState === ProjectObject.GridLayout) {
-                layoutloader.source = ProjectObject.getProjectQmlLayoutPath() + "GridLayout/CatGridLayout.qml"
-            } else if(ProjectObject.layoutState === ProjectObject.TreeLayout) {
                 layoutloader.source = ProjectObject.getProjectQmlLayoutPath() + "TreeLayout/CatTreeLayout.qml"
+            } else if(ProjectObject.layoutState === ProjectObject.TreeLayout) {
+                layoutloader.source = ProjectObject.getProjectQmlLayoutPath() + "GridLayout/CatGridLayout.qml"
             }
         });
     }

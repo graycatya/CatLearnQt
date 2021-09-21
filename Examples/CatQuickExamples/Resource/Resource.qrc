@@ -182,5 +182,7 @@
         <file>Images/White/GridLayout.png</file>
         <file>Images/White/ListLayout.png</file>
         <file>Images/White/TreeLayout.png</file>
+        <file>Images/Black/Return.png</file>
+        <file>Images/White/Return.png</file>
     </qresource>
 </RCC>

@@ -15,7 +15,7 @@ Rectangle {
 
     property bool isMaxed: view.isMax
 
-    color: ProjectObject.appBackgroundColor
+    //color: ProjectObject.appBackgroundColor
 
     ColumnLayout {
         id: rootLayout
@@ -51,7 +51,7 @@ Rectangle {
 
 
 
-        Rectangle {
+        Item {
             id: functionRect
             Layout.fillHeight: true
             Layout.fillWidth: true
@@ -59,7 +59,7 @@ Rectangle {
             Layout.leftMargin: 20
             Layout.rightMargin: 20
             Layout.bottomMargin: 20
-            color: ProjectObject.appBackgroundColor
+            //color: ProjectObject.appBackgroundColor
 
             LayoutView {
                 anchors.fill: functionRect
@@ -98,6 +98,11 @@ Rectangle {
             catfps.anchors.rightMargin = 0
         }
 
+        color = ProjectObject.appBackgroundColor
+        ProjectObject.updateCurrentThemeed.connect(function(){
+            animation.start();
+        });
+
         /*view.moveWindow.connect(function(){
 
             view.moveupdateUi();
@@ -106,6 +111,16 @@ Rectangle {
 
         //catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
 
+    }
+
+
+    PropertyAnimation  {
+        id: animation
+        target: root;
+        property: "color";
+        from: color
+        to: ProjectObject.appBackgroundColor
+        duration: ProjectObject.settingtransition ? 400 : 0
     }
 
 

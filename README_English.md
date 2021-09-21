@@ -109,7 +109,7 @@ CatLearnQt is released under the GPL v3 license. If you use CatLearnQt or its co
 | GrayCatQtCore | GrayCatQtCoremodule | Provides modules such as serial port, network, Bluetooth, log, thread, etc. |
 | Examples | Module Integrated demo project | This project is developed on the basis of QWidget and demonstrates the projects of modules such as QWidget, QQuickWidget, QGraphicsView, etc. |
 | scripts | Script file path | Continuous integration related configuration, used to automate the construction and release of scripts, and provide qml library tailoring scripts |
-| .github | github-Actions配置 | Continuous integration related configuration for automated construction and release |
+| .github | github-Actions configuration | Continuous integration related configuration for automated construction and release |
 
 
 ### CoreLibrary

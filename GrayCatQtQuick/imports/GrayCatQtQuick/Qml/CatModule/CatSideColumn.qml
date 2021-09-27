@@ -160,4 +160,8 @@ Rectangle {
         }
     ]
 
+    onCurrentindex: {
+        listview.currentIndex = index;
+    }
+
 }

@@ -8,7 +8,7 @@ Item {
     id: catsorter
 
     property int totalData: 0
-    readonly property int totalPage: sorterProperty.totalPage
+    readonly property int totalPage: sorterProperty.totalPageObject
     property int currentPage: 1
     property int pageButtonCount: 7
     property int pageDataSize: 1
@@ -116,7 +116,7 @@ Item {
     QtObject {
         id: sorterProperty
 
-        property int totalPage: 0
+        property int totalPageObject: 0
 
 
         function clearPage() {
@@ -195,7 +195,7 @@ Item {
     }
 
     onTotalDataChanged: {
-        sorterProperty.totalPage = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
+        sorterProperty.totalPageObject = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
         sorterProperty.initPages();
     }
 
@@ -215,10 +215,10 @@ Item {
         if(pageDataSize < 1)
         {
             pageDataSize = 1;
-            sorterProperty.totalPage = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
+            sorterProperty.totalPageObject = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
             sorterProperty.initPages();
         } else {
-            sorterProperty.totalPage = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
+            sorterProperty.totalPageObject = totalData / pageDataSize + ((totalData%pageDataSize != 0) ? 1 : 0);
             sorterProperty.initPages();
         }
     }

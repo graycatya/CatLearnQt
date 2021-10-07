@@ -21,6 +21,7 @@ Debug:RCC_DIR = debug/.rcc
 
 include(Src/CatFrameless/CatFrameless.pri)
 include($$PWD/imports/imports.pri)
+include(Src/CatModel/CatModel.pri)
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

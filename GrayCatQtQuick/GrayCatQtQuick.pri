@@ -34,6 +34,7 @@ win32 {
     include($$PWD/Src/CatFrameless/CatFrameless.pri)
 }
 include($$PWD/imports/imports.pri)
+include($$PWD/Src/CatModel/CatModel.pri)
 
 #RESOURCES += \
 #    $$PWD/GrayCatQtQuick.qrc

@@ -11,8 +11,10 @@ DEFINES += BENCHMARK
 INCLUDEPATH += $$PWD
 
 HEADERS += \
-    $$PWD/CatListModel.h
+    $$PWD/CatListModel.h \
+    $$PWD/CatTreeModel.h
 
 SOURCES += \
-    $$PWD/CatListModel.cpp
+    $$PWD/CatListModel.cpp \
+    $$PWD/CatTreeModel.cpp
 

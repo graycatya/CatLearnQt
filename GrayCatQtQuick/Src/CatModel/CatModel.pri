@@ -12,7 +12,8 @@ INCLUDEPATH += $$PWD
 
 HEADERS += \
     $$PWD/CatListModel.h \
-    $$PWD/CatTreeModel.h
+    $$PWD/CatTreeModel.h \
+    $$PWD/ModelTools.h
 
 SOURCES += \
     $$PWD/CatListModel.cpp \

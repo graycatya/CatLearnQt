@@ -8,6 +8,14 @@
 #include <QJsonObject>
 #include <QString>
 
+#include <QDir>
+#include <QFileInfo>
+#include <QObject>
+#include <QQmlEngine>
+#include <QUrl>
+
+#include <type_traits>
+
 namespace CatModel {
 
 /*************************************************
@@ -311,14 +319,202 @@ static bool writeJsonFile(const QString &filePath, const QJsonDocument &doc, boo
 {
     return writeFile(filePath, doc.toJson(compact ? QJsonDocument::Compact : QJsonDocument::Indented));
 }
+
+/*************************************************
+// 函数名称
+Function: writeJsonFile
+// 函数功能、性能等的描述
+Description: 读取文件
+// 被本函数调用的函数清单
+Calls: ---
+// 被访问的表
+Table Accessed: ---
+// 被修改的表
+Table Updated: ---
+// 输入参数说明，包括每个参数的作
+Input:
+    filePath - 传入文件路径
+// 对输出参数的说明。
+Output:
+    jsonArray - 传出文件解析后的json数组
+// 函数返回值的说明
+Return:
+    解析成功返回true,失败返回false
+// 其它说明
+Others:
+*************************************************/
 static bool writeJsonFile(const QString &filePath, const QJsonArray &jsonArray, bool compact = true)
 {
     return writeJsonFile(filePath, QJsonDocument(jsonArray), compact);
 }
+
+/*************************************************
+// 函数名称
+Function: writeJsonFile
+// 函数功能、性能等的描述
+Description: 读取文件
+// 被本函数调用的函数清单
+Calls: ---
+// 被访问的表
+Table Accessed: ---
+// 被修改的表
+Table Updated: ---
+// 输入参数说明，包括每个参数的作
+Input:
+    filePath - 传入文件路径
+// 对输出参数的说明。
+Output:
+    QJsonObject - 传出文件解析后的json数组
+// 函数返回值的说明
+Return:
+    解析成功返回true,失败返回false
+// 其它说明
+Others:
+*************************************************/
 static bool writeJsonFile(const QString &filePath, const QJsonObject &jsonObj, bool compact = true)
 {
     return writeJsonFile(filePath, QJsonDocument(jsonObj), compact);
 }
+
+class ModelTool : public QObject {
+    Q_OBJECT
+public:
+    // 返回格式化为本地文件路径的URL的路径
+    Q_INVOKABLE static inline QString toLocalFile(const QString& urlStr)
+    {
+        return QUrl(urlStr).toLocalFile();
+    }
+    Q_INVOKABLE static inline QString toLocalFile(const QUrl& url)
+    {
+        return url.toLocalFile();
+    }
+
+    // 返回localFile的QUrl表示，解释为本地文件
+    Q_INVOKABLE static inline QUrl fromLocalFile(const QString& file)
+    {
+        return QUrl::fromLocalFile(file);
+    }
+    // 如果文件存在则返回true; 否则返回false
+    Q_INVOKABLE static inline bool isExist(const QString& file)
+    {
+        return QFileInfo::exists(file);
+    }
+    // 返回文件名，包括路径(可以是绝对路径也可以是相对路径)
+    Q_INVOKABLE static inline QString filePath(const QString& file)
+    {
+        return QFileInfo(file).filePath();
+    }
+    // 返回包含文件名的绝对路径
+    Q_INVOKABLE static inline QString absoluteFilePath(const QString& file)
+    {
+        return QFileInfo(file).absoluteFilePath();
+    }
+    // 返回包含文件名的规范路径，即没有符号链接或冗余的"."或".."元素的绝对路径
+    Q_INVOKABLE static inline QString canonicalFilePath(const QString& file)
+    {
+        return QFileInfo(file).canonicalFilePath();
+    }
+
+    // 返回文件的名称，不包括路径
+    Q_INVOKABLE static inline QString fileName(const QString& file)
+    {
+        return QFileInfo(file).fileName();
+    }
+
+    // 返回不含路径的文件的基本名称
+    Q_INVOKABLE static inline QString baseName(const QString& file)
+    {
+        return QFileInfo(file).baseName();
+    }
+
+    // 返回不含路径的文件的完整基名
+    Q_INVOKABLE static inline QString completeBaseName(const QString& file)
+    {
+        return QFileInfo(file).completeBaseName();
+    }
+
+    // 返回文件的后缀(扩展名)
+    Q_INVOKABLE static inline QString suffix(const QString& file)
+    {
+        return QFileInfo(file).suffix();
+    }
+
+    // 返回包的名称
+    Q_INVOKABLE static inline QString bundleName(const QString& file)
+    {
+        return QFileInfo(file).bundleName();
+    }
+
+    // 返回文件的完整后缀(扩展名)
+    Q_INVOKABLE static inline QString completeSuffix(const QString& file)
+    {
+        return QFileInfo(file).completeSuffix();
+    }
+
+    // 返回文件的路径。 这并不包括文件名
+    Q_INVOKABLE static inline QString path(const QString& file)
+    {
+        return QFileInfo(file).path();
+    }
+
+    // 返回文件的绝对路径。 这并不包括文件名
+    Q_INVOKABLE static inline QString absolutePath(const QString& file)
+    {
+        return QFileInfo(file).absolutePath();
+    }
+
+    // 创建的子目录
+    Q_INVOKABLE static inline bool mkdir(const QString& file)
+    {
+        return QDir().mkdir(file);
+    }
+
+    // 创建目录路径
+    Q_INVOKABLE static inline bool mkpath(const QString& file)
+    {
+        return QDir().mkpath(file);
+    }
+
+    // 返回格式化为本地文件路径的URL的路径
+    Q_INVOKABLE static QList<QString> toLocalFileList(const QList<QUrl>& urls)
+    {
+        QList<QString> list;
+        for(const auto& url : urls)
+        {
+            list.append(url.toLocalFile());
+        }
+        return list;
+    }
+
+    // 判断路径是否存在，不存在则创建
+    Q_INVOKABLE static bool checkOrCreatePath(const QString& path)
+    {
+        QDir dir(path);
+        if(!dir.exists())
+        {
+            return dir.mkpath(path);
+        } else {
+            return true;
+        }
+    }
+
+    // 读取文件内容
+    Q_INVOKABLE static QString readFile(const QString& path)
+    {
+        QByteArray data;
+        if(CatModel::readFile(path,data)) {
+            return { data };
+        }
+        return {};
+    }
+
+    // 写文件内容
+    Q_INVOKABLE static void writeFile(const QString& path, const QString& content)
+    {
+        CatModel::writeFile(path, content.toUtf8());
+    }
+
+};
 
 }
 

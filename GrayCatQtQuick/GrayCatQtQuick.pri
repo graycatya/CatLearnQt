@@ -31,7 +31,10 @@ QT += qml quick widgets
 INCLUDEPATH += $$PWD/Src
 
 win32 {
+contains(DEFINES, QT_OS_WIN10)
+{
     include($$PWD/Src/CatFrameless/CatFrameless.pri)
+}
 }
 include($$PWD/imports/imports.pri)
 include($$PWD/Src/CatModel/CatModel.pri)

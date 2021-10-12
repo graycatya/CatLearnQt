@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-
+namespace CatModel {
 
 template <typename T>
 class CatListModel : public QAbstractListModel {
@@ -39,6 +39,6 @@ protected:
 
 };
 
-
+}
 
 #endif // CATLISTMODEL_H

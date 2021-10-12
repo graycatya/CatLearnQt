@@ -67,7 +67,7 @@ CONFIG(debug, debug|release){
 # 配置COPIES
 COPIES += examples
 
-CONFIG += c++11
+CONFIG += c++17 utf8_source
 CONFIG += object_with_source
 # CONFIG += console
 
@@ -75,7 +75,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QGUIAPPLICATION_CLASS
 
 win32 {
-    #DEFINES += QT_OS_WIN10
+    DEFINES += QT_OS_WIN10
 }
 
 TARGET = CatQuickExamples

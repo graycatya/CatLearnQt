@@ -2,14 +2,15 @@
 #include "ModelTools.h"
 #include <QJsonArray>
 
+
 #include <QDebug>
 
-
+namespace CatModel {
 
 void CatTreeModel::loadFromJson(const QString &jsonPath, const QString &recursionKey)
 {
     QJsonArray arr;
-    if(!ModelToolFunctin::readJsonFile(jsonPath, arr))
+    if(!CatModel::readJsonFile(jsonPath, arr))
     {
         return;
     }
@@ -43,7 +44,7 @@ bool CatTreeModel::saveToJson(const QString &jsonPath, bool compact) const
             arr.push_back(node);
         }
     }
-    return ModelToolFunctin::writeJsonFile(jsonPath, arr, compact);
+    return CatModel::writeJsonFile(jsonPath, arr, compact);
 }
 
 void CatTreeModel::clear()
@@ -344,4 +345,4 @@ void CatTreeModel::innerUpdate(int index)
     }
 }
 
-
+}

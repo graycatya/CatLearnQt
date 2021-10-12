@@ -2,9 +2,10 @@
 #define CATTREEMODEL_H
 
 #include "CatListModel.h"
+#include "CatListModel.cpp"
 #include <QJsonObject>
 
-
+namespace CatModel {
 
 const static QString ModelDepthKey = QStringLiteral("TreeModel_depth");
 const static QString ModelExpendKey = QStringLiteral("TreeModel_expend");
@@ -95,7 +96,7 @@ private:
     QString m_recursionKey = ModelRecursionKey;
 };
 
-
+}
 
 
 #endif // CATTREEMODEL_H

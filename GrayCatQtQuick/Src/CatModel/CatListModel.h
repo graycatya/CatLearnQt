@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-namespace CatModel {
+
 
 template <typename T>
 class CatListModel : public QAbstractListModel {
@@ -25,7 +25,7 @@ public:
 
     int rowCount(const QModelIndex& parent) const override;
 
-    QVariant data(const QModelIndex& index, int role) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const;
     bool setData(const QModelIndex& index, const QVariant& value, int role) override;
 
     bool insertRows(int row, int count, const QModelIndex& parent = QModelIndex()) override;
@@ -39,6 +39,6 @@ protected:
 
 };
 
-}
+
 
 #endif // CATLISTMODEL_H

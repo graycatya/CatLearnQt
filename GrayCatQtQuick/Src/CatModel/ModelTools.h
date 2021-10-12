@@ -16,7 +16,7 @@
 
 #include <type_traits>
 
-namespace CatModel {
+namespace ModelToolFunctin {
 
 /*************************************************
 // 函数名称
@@ -376,6 +376,8 @@ static bool writeJsonFile(const QString &filePath, const QJsonObject &jsonObj, b
     return writeJsonFile(filePath, QJsonDocument(jsonObj), compact);
 }
 
+}
+
 class ModelTool : public QObject {
     Q_OBJECT
 public:
@@ -502,7 +504,7 @@ public:
     Q_INVOKABLE static QString readFile(const QString& path)
     {
         QByteArray data;
-        if(CatModel::readFile(path,data)) {
+        if(ModelToolFunctin::readFile(path,data)) {
             return { data };
         }
         return {};
@@ -511,11 +513,11 @@ public:
     // 写文件内容
     Q_INVOKABLE static void writeFile(const QString& path, const QString& content)
     {
-        CatModel::writeFile(path, content.toUtf8());
+        writeFile(path, content.toUtf8());
     }
 
 };
 
-}
+
 
 #endif // MODELTOOLS_H

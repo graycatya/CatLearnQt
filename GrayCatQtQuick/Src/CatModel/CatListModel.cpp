@@ -1,7 +1,6 @@
 ﻿#include "CatListModel.h"
 
 
-namespace CatModel {
 
 template<typename T>
 CatListModel<T>::CatListModel(QObject *parent) : Parent(parent)
@@ -122,4 +121,4 @@ Qt::DropActions CatListModel<T>::supportedDropActions() const
 
 
 
-}
+

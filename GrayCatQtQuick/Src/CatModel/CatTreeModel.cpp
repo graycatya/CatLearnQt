@@ -4,12 +4,12 @@
 
 #include <QDebug>
 
-namespace CatModel {
 
-void CatModel::CatTreeModel::loadFromJson(const QString &jsonPath, const QString &recursionKey)
+
+void CatTreeModel::loadFromJson(const QString &jsonPath, const QString &recursionKey)
 {
     QJsonArray arr;
-    if(!readJsonFile(jsonPath, arr))
+    if(!ModelToolFunctin::readJsonFile(jsonPath, arr))
     {
         return;
     }
@@ -21,7 +21,7 @@ void CatModel::CatTreeModel::loadFromJson(const QString &jsonPath, const QString
     countChanged();
 }
 
-bool CatModel::CatTreeModel::saveToJson(const QString &jsonPath, bool compact) const
+bool CatTreeModel::saveToJson(const QString &jsonPath, bool compact) const
 {
     QJsonArray arr;
     int depth = 0;
@@ -43,10 +43,10 @@ bool CatModel::CatTreeModel::saveToJson(const QString &jsonPath, bool compact) c
             arr.push_back(node);
         }
     }
-    return writeJsonFile(jsonPath, arr, compact);
+    return ModelToolFunctin::writeJsonFile(jsonPath, arr, compact);
 }
 
-void CatModel::CatTreeModel::clear()
+void CatTreeModel::clear()
 {
     beginResetModel();
     m_nodeList.clear();
@@ -54,7 +54,7 @@ void CatModel::CatTreeModel::clear()
     countChanged();
 }
 
-void CatModel::CatTreeModel::setNodeValue(int index, const QString &key, const QVariant &value)
+void CatTreeModel::setNodeValue(int index, const QString &key, const QVariant &value)
 {
     if(index < 0 || index >= m_nodeList.size())
     {
@@ -67,7 +67,7 @@ void CatModel::CatTreeModel::setNodeValue(int index, const QString &key, const Q
     }
 }
 
-int CatModel::CatTreeModel::addNode(int index, const QJsonObject &json)
+int CatTreeModel::addNode(int index, const QJsonObject &json)
 {
     if(index < 0 || index >= m_nodeList.size())
     {
@@ -98,7 +98,7 @@ int CatModel::CatTreeModel::addNode(int index, const QJsonObject &json)
     return i;
 }
 
-void CatModel::CatTreeModel::remove(int index)
+void CatTreeModel::remove(int index)
 {
     if(index < 0 || index >= m_nodeList.size())
     {
@@ -175,7 +175,7 @@ void CatTreeModel::expand(int index)
     setNodeValue(index, ModelChildrenExpendKey, true);
 }
 
-void CatModel::CatTreeModel::collapse(int index)
+void CatTreeModel::collapse(int index)
 {
     if(index < 0 || index >= m_nodeList.size())
     {
@@ -195,7 +195,7 @@ void CatModel::CatTreeModel::collapse(int index)
     setNodeValue(index, ModelChildrenExpendKey, false);
 }
 
-void CatModel::CatTreeModel::expandTo(int index)
+void CatTreeModel::expandTo(int index)
 {
     if(index < 0 || index >= m_nodeList.size())
     {
@@ -219,7 +219,7 @@ void CatModel::CatTreeModel::expandTo(int index)
     }
 }
 
-void CatModel::CatTreeModel::expandAll()
+void CatTreeModel::expandAll()
 {
     for(int i = 0; i < m_nodeList.size(); ++i)
     {
@@ -231,7 +231,7 @@ void CatModel::CatTreeModel::expandAll()
     }
 }
 
-void CatModel::CatTreeModel::collapseAll()
+void CatTreeModel::collapseAll()
 {
     for(int i = 0; i < m_nodeList.size(); ++i)
     {
@@ -246,17 +246,17 @@ void CatModel::CatTreeModel::collapseAll()
     }
 }
 
-int CatModel::CatTreeModel::count() const
+int CatTreeModel::count() const
 {
     return m_nodeList.size();
 }
 
-QVariant CatModel::CatTreeModel::data(int idx, int role) const
+QVariant CatTreeModel::data(int idx, int role) const
 {
     return Parent::data(Parent::index(idx), role);
 }
 
-void CatModel::CatTreeModel::gen(int depth, const QJsonArray &dataArray)
+void CatTreeModel::gen(int depth, const QJsonArray &dataArray)
 {
     for(auto i : dataArray)
     {
@@ -282,7 +282,7 @@ void CatModel::CatTreeModel::gen(int depth, const QJsonArray &dataArray)
     }
 }
 
-QJsonArray CatModel::CatTreeModel::getChildren(int parentIndex, int parentDepth) const
+QJsonArray CatTreeModel::getChildren(int parentIndex, int parentDepth) const
 {
     QJsonArray arr;
     for(int i = parentIndex + 1; i < m_nodeList.size(); ++i)
@@ -309,7 +309,7 @@ QJsonArray CatModel::CatTreeModel::getChildren(int parentIndex, int parentDepth)
     return arr;
 }
 
-int CatModel::CatTreeModel::addWithoutDepth(const QJsonObject &json)
+int CatTreeModel::addWithoutDepth(const QJsonObject &json)
 {
     auto obj = QJsonObject(json);
     obj[ModelDepthKey] = 0;
@@ -323,7 +323,7 @@ int CatModel::CatTreeModel::addWithoutDepth(const QJsonObject &json)
     return m_nodeList.count() - 1;
 }
 
-void CatModel::CatTreeModel::innerUpdate(int index)
+void CatTreeModel::innerUpdate(int index)
 {
     if(index < 0 || index >= m_nodeList.size())
     {
@@ -344,4 +344,4 @@ void CatModel::CatTreeModel::innerUpdate(int index)
     }
 }
 
-}
+

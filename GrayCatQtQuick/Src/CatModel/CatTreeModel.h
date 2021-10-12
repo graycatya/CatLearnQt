@@ -4,7 +4,7 @@
 #include "CatListModel.h"
 #include <QJsonObject>
 
-namespace CatModel {
+
 
 const static QString ModelDepthKey = QStringLiteral("TreeModel_depth");
 const static QString ModelExpendKey = QStringLiteral("TreeModel_expend");
@@ -25,6 +25,9 @@ class CatTreeModel : public CatListModel<QJsonObject>
 public:
     // 声明父类
     using Parent = CatListModel<QJsonObject>;
+
+    CatTreeModel() {}
+    ~CatTreeModel() {}
     // 从json文件读入数据
     Q_INVOKABLE void loadFromJson(const QString& jsonPath, const QString& recursionKey = ModelRecursionKey);
     // 导出到json文件
@@ -92,7 +95,7 @@ private:
     QString m_recursionKey = ModelRecursionKey;
 };
 
-}
+
 
 
 #endif // CATTREEMODEL_H

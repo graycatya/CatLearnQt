@@ -135,3 +135,4 @@ win32 {
 
 HEADERS += \
     CatConfig.h \
+    QmlConfig.h

@@ -35,5 +35,8 @@
         <file>FunctionLayout/TreeLayout/CatTreeLayout.qml</file>
         <file>FunctionLayout/GridLayout/CatGridListView.qml</file>
         <file>FunctionLayout/GridLayout/CatGridListItem.qml</file>
+        <file>Common/CatTreeView.qml</file>
+        <file>ControlDemos/DemoCatTreeView.qml</file>
+        <file>Common/CatTreeHeader.qml</file>
     </qresource>
 </RCC>

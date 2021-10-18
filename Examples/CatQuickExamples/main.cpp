@@ -1,6 +1,6 @@
 ﻿#include <QQmlApplicationEngine>
 #include <QDebug>
-#include <QQmlContext>
+//#include <QQmlContext>
 #ifdef QT_WEBENGINE_LIB
 #include <QtWebEngine>
 #include <QtWebView>
@@ -13,7 +13,8 @@
 #include <QmlCatLog.h>
 #include "CatConfig.h"
 #include "SingleApplication"
-#include "Src/TableFunction/TableViewModel.h"
+#include "QmlConfig.h"
+
 
 
 int main(int argc, char *argv[])
@@ -33,8 +34,7 @@ int main(int argc, char *argv[])
     CatConfig *catconfig = CatConfig::Instance();
     catconfig->InitConfig();
 
-    qmlRegisterType<TableViewModel>("TableViewModel",1,0,"TableViewModel");
-
+    QmlConfig::moduleRegister();
 
 #ifdef QT_OS_WIN10
     CatFrameLessView view;

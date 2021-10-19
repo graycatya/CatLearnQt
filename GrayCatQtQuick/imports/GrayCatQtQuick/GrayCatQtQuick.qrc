@@ -21,6 +21,7 @@
         <file>Qml/CatGeneral/RotateCursor.qml</file>
         <file>Qml/CatGeneral/TemplateWidget.qml</file>
         <file>Qml/CatImage/CatImageBase.qml</file>
+        <file>Qml/CatInput/GeneralInput.qml</file>
         <file>Qml/CatInput/IpTextInput.qml</file>
         <file>Qml/CatModule/CatCalendar.qml</file>
         <file>Qml/CatModule/CatPopup.qml</file>

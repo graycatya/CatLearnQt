@@ -18,6 +18,7 @@ DragWidget 1.0 Qml/CatGeneral/DragWidget.qml
 RotateCursor 1.0 Qml/CatGeneral/RotateCursor.qml
 TemplateWidget 1.0 Qml/CatGeneral/TemplateWidget.qml
 CatImageBase 1.0 Qml/CatImage/CatImageBase.qml
+GeneralInput 1.0 Qml/CatInput/GeneralInput.qml
 IpTextInput 1.0 Qml/CatInput/IpTextInput.qml
 internal CatWeek Qml/CatModule/CalendarRelyon/CatWeek.qml
 internal DaysItem Qml/CatModule/CalendarRelyon/DaysItem.qml

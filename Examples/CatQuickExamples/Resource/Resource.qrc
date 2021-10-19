@@ -184,5 +184,13 @@
         <file>Images/White/TreeLayout.png</file>
         <file>Images/Black/Return.png</file>
         <file>Images/White/Return.png</file>
+        <file>Images/Black/CatTreeView.png</file>
+        <file>Images/Black/SearchInput.png</file>
+        <file>Images/White/CatTreeView.png</file>
+        <file>Images/White/SearchInput.png</file>
+        <file>Images/Black/TreeButton_fold_default.png</file>
+        <file>Images/Black/TreeButton_unfold_default.png</file>
+        <file>Images/White/TreeButton_fold_default.png</file>
+        <file>Images/White/TreeButton_unfold_default.png</file>
     </qresource>
 </RCC>

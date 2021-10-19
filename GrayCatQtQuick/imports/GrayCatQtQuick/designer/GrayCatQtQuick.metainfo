@@ -280,6 +280,20 @@ MetaInfo {
         }
     }
     Type {
+        name: "GrayCatQtQuick.Qml.CatInput.GeneralInput"
+        icon: "images/GeneralInput.png"
+
+        ItemLibraryEntry {
+            name: "GeneralInput"
+            category: "GrayCatQtQuick - CatInput"
+            libraryIcon: "images/GeneralInput.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtQuick"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
         name: "GrayCatQtQuick.Qml.CatInput.IpTextInput"
         icon: "images/IpTextInput.png"
 

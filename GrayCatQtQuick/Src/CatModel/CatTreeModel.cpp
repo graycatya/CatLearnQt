@@ -265,14 +265,14 @@ void CatTreeModel::gen(int depth, const QJsonArray &dataArray)
         obj[ModelDepthKey] = depth;
         obj[ModelExpendKey] = true;
         obj[ModelChildrenExpendKey] = false;
-        obj[ModelChildrenKey] = false;
+        obj[ModelHasChildrendKey] = false;
         if(!m_recursionKey.isEmpty() && obj.contains(m_recursionKey))
         {
             auto arr = obj.value(m_recursionKey).toArray();
             if(!arr.isEmpty())
             {
                 obj[ModelChildrenExpendKey] = true;
-                obj[ModelChildrenKey] = true;
+                obj[ModelHasChildrendKey] = true;
                 obj.remove(m_recursionKey);
                 m_nodeList.append(obj);
                 gen(depth + 1, arr);
@@ -316,7 +316,7 @@ int CatTreeModel::addWithoutDepth(const QJsonObject &json)
     obj[ModelDepthKey] = 0;
     obj[ModelExpendKey] = true;
     obj[ModelChildrenExpendKey] = false;
-    obj[ModelChildrenKey] = false;
+    obj[ModelHasChildrendKey] = false;
     beginInsertRows(QModelIndex(), m_nodeList.count(), m_nodeList.count());
     m_nodeList.append(obj);
     endInsertRows();
@@ -343,6 +343,8 @@ void CatTreeModel::innerUpdate(int index)
             childrenCount++;
         }
     }
+
+    setNodeValue(index, ModelHasChildrendKey, childrenCount > 0);
 }
 
 }

@@ -29,7 +29,8 @@ Item {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            height: 40
+            anchors.rightMargin: 20
+            height: 36
         }
 
         CatTreeView {
@@ -40,9 +41,10 @@ Item {
 
             anchors {
                 right: parent.right
-                top: cattreeheader.top
+                top: cattreeheader.bottom
                 left: parent.left
                 bottom: parent.bottom
+                topMargin: 10
             }
 
             onExpand: {

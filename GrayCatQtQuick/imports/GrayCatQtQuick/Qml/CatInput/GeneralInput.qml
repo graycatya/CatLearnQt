@@ -72,28 +72,28 @@ Item {
                     id: logoiamge
                     Layout.preferredWidth: logoImageSize
                     Layout.preferredHeight: logoImageSize
+                }
 
-                    TextField {
-                        background: Item {
-                            anchors.fill: parent
-                        }
-                        id: textinput
-                        clip: true
-                        selectByMouse: true
-                        Layout.fillWidth: true
-                        Layout.fillHeight: true
-                        Layout.topMargin: textInputMargin
-                        Layout.bottomMargin: textInputMargin
-                        Layout.leftMargin: textInputMargin
-                        Layout.rightMargin: textInputMargin
+                TextField {
+                    background: Item {
+                        anchors.fill: parent
                     }
+                    id: textinput
+                    clip: true
+                    selectByMouse: true
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    Layout.topMargin: textInputMargin
+                    Layout.bottomMargin: textInputMargin
+                    Layout.leftMargin: textInputMargin
+                    Layout.rightMargin: textInputMargin
+                }
 
-                    CatButtonImage {
-                        id: comboboxbutton
-                        Layout.preferredWidth: comboboxButtonSize
-                        Layout.preferredHeight: comboboxButtonSize
+                CatButtonImage {
+                    id: comboboxbutton
+                    Layout.preferredWidth: comboboxButtonSize
+                    Layout.preferredHeight: comboboxButtonSize
 
-                    }
                 }
             }
         }

@@ -34,8 +34,8 @@ Item {
             width: 300
             height: model.display[__modelExpendKey] === true ? 36 : 0
             visible: height > 0
-            color: "transparent"
-
+            color: (listview.currentIndex === index || cattransarea.hovered) ? ProjectObject.catsidecolumnitem_SelectColor : "transparent"
+            radius: 5
             Image {
                 id: controlTreeImage
                 anchors {
@@ -62,6 +62,24 @@ Item {
                         }
                     }
                 }
+            }
+
+            CatTransArea {
+                id: cattransarea
+                height: parent.height
+                width: parent.width - controlTreeImage.x
+                hoverEnabled: true
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+                //enabled: !delegateRect.e
+                onPressed: {
+                    if (listview.currentIndex !== index) {
+                        listview.currentIndex = index;
+                    } else {
+                        listview.currentIndex = -1;
+                    }
+                    console.log("treeitem clicked: " + model.display["name"])
+                }
+
             }
 
             CatBasicsText {

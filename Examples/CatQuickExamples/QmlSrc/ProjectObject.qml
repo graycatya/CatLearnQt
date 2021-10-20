@@ -173,6 +173,12 @@ QtObject {
     property color defaultPopupBorderColor: "#2C2C2C"
     property color defaultPopupBackgroundColor: "#3C3C3C"
 
+    property color defaultGeneralInputBackgroundColor: "#01000000"
+    property color defaultGeneralInputBackgroundBorderColor: "#444444"
+    property color defaultGeneralInputBackgroundBorderColor_hovered: "#19A0FA"
+    property color defaultGeneralInputBackgroundBorderColor_errored: "#C14444"
+    property color defaultGeneralInputSelectionColor: "#ffc7c7"
+
     property color languageBackgroundColor: "#3C3C3C"
 
     property color moreViewBackColor: "#353538"
@@ -326,6 +332,12 @@ QtObject {
         projectobject.defaultPopupTextColor = t.defaultPopupTextColor
         projectobject.defaultPopupBorderColor = t.defaultPopupBorderColor
         projectobject.defaultPopupBackgroundColor = t.defaultPopupBackgroundColor
+
+        projectobject.defaultGeneralInputBackgroundColor = t.defaultGeneralInputBackgroundColor
+        projectobject.defaultGeneralInputBackgroundBorderColor = t.defaultGeneralInputBackgroundBorderColor
+        projectobject.defaultGeneralInputBackgroundBorderColor_hovered = t.defaultGeneralInputBackgroundBorderColor_hovered
+        projectobject.defaultGeneralInputBackgroundBorderColor_errored = t.defaultGeneralInputBackgroundBorderColor_errored
+        projectobject.defaultGeneralInputSelectionColor = t.defaultGeneralInputSelectionColor
 
         projectobject.languageBackgroundColor = t.languageBackgroundColor
 
@@ -483,6 +495,12 @@ QtObject {
             defaultPopupBorderColor: "#2C2C2C"
             defaultPopupBackgroundColor: "#3C3C3C"
 
+            defaultGeneralInputBackgroundColor: "#01000000"
+            defaultGeneralInputBackgroundBorderColor: "#444444"
+            defaultGeneralInputBackgroundBorderColor_hovered: "#19A0FA"
+            defaultGeneralInputBackgroundBorderColor_errored: "#C14444"
+            defaultGeneralInputSelectionColor: "#ffc7c7"
+
             languageBackgroundColor: "#3C3C3C"
 
             moreViewBackColor: "#353538"
@@ -633,6 +651,12 @@ QtObject {
             defaultPopupTextColor: "#FFFFFF"
             defaultPopupBorderColor: "#19A0FA"
             defaultPopupBackgroundColor: "#19A0FA"
+
+            defaultGeneralInputBackgroundColor: "#01000000"
+            defaultGeneralInputBackgroundBorderColor: "#444444"
+            defaultGeneralInputBackgroundBorderColor_hovered: "#19A0FA"
+            defaultGeneralInputBackgroundBorderColor_errored: "#C14444"
+            defaultGeneralInputSelectionColor: "#ffc7c7"
 
             languageBackgroundColor: "#FFFFFF"
 

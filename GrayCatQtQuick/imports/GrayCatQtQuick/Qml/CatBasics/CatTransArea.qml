@@ -20,5 +20,11 @@ MouseArea{
     onPressAndHold: { mouse.accepted = false; }
     onClicked: { mouse.accepted = false; }
     onReleased: { mouse.accepted = false; }
-    onWheel: { mouse.accepted = false; }
+    onWheel: {
+        try {
+            mouse.accepted = false;
+        } catch(err) {
+            console.log(err.message)
+        }
+    }
 }

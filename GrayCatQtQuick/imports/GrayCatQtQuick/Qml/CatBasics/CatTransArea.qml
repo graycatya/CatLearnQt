@@ -1,4 +1,4 @@
-﻿import QtQuick 2.9
+﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 
 MouseArea{
@@ -22,7 +22,7 @@ MouseArea{
     onReleased: { mouse.accepted = false; }
     onWheel: {
         try {
-            mouse.accepted = false;
+            wheel.accepted = false;
         } catch(err) {
             console.log(err.message)
         }

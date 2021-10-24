@@ -110,6 +110,10 @@ Item {
 
         ScrollIndicator.vertical: ScrollIndicator { }
 
+        onCurrentIndexChanged: {
+            console.log("catTreeView currentIndex: " + currentIndex)
+        }
+
     }
 
     function rename(index) {

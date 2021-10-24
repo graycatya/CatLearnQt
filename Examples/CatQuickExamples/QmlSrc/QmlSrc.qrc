@@ -39,5 +39,7 @@
         <file>ControlDemos/DemoCatTreeView.qml</file>
         <file>Common/CatTreeHeader.qml</file>
         <file>Common/CatTransArea.qml</file>
+        <file>FunctionLayout/TreeLayout/CatTreeListView.qml</file>
+        <file>FunctionLayout/TreeLayout/CatTreeDemoStrationView.qml</file>
     </qresource>
 </RCC>

@@ -8,13 +8,56 @@ Rectangle {
     id: defaultlayout
     color: "transparent"
 
-    Text {
-        anchors.centerIn: parent
-        text: "tree layout"
-        font.family: ProjectObject.fontFamily
-        font.pixelSize: 20
-        color: ProjectObject.defaultTextColor
-        font.bold: true
+    RowLayout {
+        id: defaultRowlayout
+        anchors.fill: parent
+        spacing: 20
+        Rectangle {
+            Layout.preferredWidth: 300
+            Layout.fillHeight: true
+            color: "transparent"
+            CatTreeListView {
+                id: cattreelistview
+                anchors.fill: parent
+                color: ProjectObject.defaultRectangleColor
+                radius: 5
+            }
+
+            DropShadow {
+                anchors.fill: cattreelistview
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 5.0
+                samples: 10
+                color: ProjectObject.defaultShadowColor
+                source: cattreelistview
+            }
+        }
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            color: "transparent"
+            CatTreeDemoStrationView {
+                id: demonstrationview
+                anchors.fill: parent
+                //anchors.margins: 5
+                radius: 5
+                color: ProjectObject.defaultRectangleColor
+            }
+            DropShadow {
+                anchors.fill: demonstrationview
+                horizontalOffset: 0
+                verticalOffset: 0
+                radius: 5.0
+                samples: 10
+                color: ProjectObject.defaultShadowColor
+                source: demonstrationview
+            }
+        }
     }
 
+    /*function updatedemo(demoname, index, qmlsource)
+    {
+        demonstrationview.updatedemo(demoname, index, qmlsource)
+    }*/
 }

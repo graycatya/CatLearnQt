@@ -670,6 +670,8 @@ QtObject {
         }
     }
 
+    property var controlLibs: [ "default", "quick3d", "webengine" ]
+
     property var defaultControl: {
         "control": [
             {

@@ -32,8 +32,9 @@ Item {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 20
             height: 36
+            treeModel: cattreemodel
+            treeView: cattreeview
         }
 
         CatTreeView {

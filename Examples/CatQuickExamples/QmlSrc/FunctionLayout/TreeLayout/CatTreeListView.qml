@@ -45,6 +45,10 @@ Rectangle {
                 cattreemodel.collapse(index)
             }
 
+            onUpdatedemo: {
+                demonstrationview.updatedemo(demoname, qmlsource)
+            }
+
 
         }
 
@@ -54,14 +58,14 @@ Rectangle {
         let length = ProjectObject.defaultControl.control.length;
         console.log("length: " + length)
         var  params = {};
-        for(let j = 0; j < ProjectObject.controlLibs.length; j++)
+        /*for(let j = 0; j < ProjectObject.controlLibs.length; j++)
         {
             cattreeview.currentIndex = cattreemodel.addNode(-1, {"name": ProjectObject.controlLibs[j]})
 
             cattreeview.positionTo(-1)
             //let libs = String(ProjectObject.controlLibs[j])
             params[ProjectObject.controlLibs[j]] = 0;
-        }
+        }*/
         for(let i = 0; i < length; i++)
         {
             let add = true;
@@ -74,15 +78,25 @@ Rectangle {
             }
             if(add)
             {
-                cattreeview.currentIndex = cattreemodel.addNode(params[ProjectObject.defaultControl.control[i].libs],
-                                                                {"name": ProjectObject.defaultControl.control[i].name,
-                                                                 "author": ProjectObject.defaultControl.control[i].author,
-                                                                 "version": ProjectObject.defaultControl.control[i].version,
-                                                                 "logoSource": ProjectObject.defaultControl.control[i].logoSource,
-                                                                 "qmlSource": ProjectObject.defaultControl.control[i].qmlSource,
-                                                                 "libs": ProjectObject.defaultControl.control[i].libs})
-                cattreeview.positionTo(params[ProjectObject.defaultControl.control[i].libs])
+                //params[params[ProjectObject.defaultControl.control[i].libs]
+                let searchlibs = cattreemodel.search("name", ProjectObject.defaultControl.control[i].libs)
+                if(searchlibs.length <= 0)
+                {
+                    cattreemodel.addNode(-1, {"name": ProjectObject.defaultControl.control[i].libs});
+                }
+
+                searchlibs = cattreemodel.search("name", ProjectObject.defaultControl.control[i].libs)
+                cattreemodel.addNode(searchlibs[0],
+                                    {"name": ProjectObject.defaultControl.control[i].name,
+                                     "author": ProjectObject.defaultControl.control[i].author,
+                                     "version": ProjectObject.defaultControl.control[i].version,
+                                     "logoSource": ProjectObject.defaultControl.control[i].logoSource,
+                                     "qmlSource": ProjectObject.defaultControl.control[i].qmlSource,
+                                     "libs": ProjectObject.defaultControl.control[i].libs})
+
             }
         }
+        cattreeview.currentIndex = 1
+        cattreeview.positionTo(cattreeview.currentIndex)
     }
 }

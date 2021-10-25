@@ -66,7 +66,7 @@ QRect CatFrameLessView::calcCenterGeo(const QRect &screenGeo, const QSize &norma
         h = screenGeo.height();
     }
 
-    return {x, y, w, h };
+    return { x, y, w, h };
 }
 
 bool CatFrameLessView::isMax() const

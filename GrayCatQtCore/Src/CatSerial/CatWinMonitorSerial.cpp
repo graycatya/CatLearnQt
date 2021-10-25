@@ -1,4 +1,6 @@
 ﻿#include "CatWinMonitorSerial.h"
+#include "MonitorSerial.h"
+
 #include <CatLog>
 #include <QDataStream>
 
@@ -19,6 +21,12 @@ QMutex* CatWinMonitorSerial::m_pMutex = new QMutex;
 #define THRD_MESSAGE_EXIT WM_USER + 1
 const _TCHAR CLASS_NAME[] = _T("Sample Window Class");
 
+struct WinSerialPortInfo
+{
+    std::string portName;
+    std::string description;
+};
+
 HWND hWnd;
 DWORD iThread;
 HANDLE hThread;
@@ -32,21 +40,138 @@ static const GUID GUID_DEVINTERFACE_LIST[] =
     // GUID_DEVINTERFACE_HID,
     { 0x4D1E55B2, 0xF16F, 0x11CF, { 0x88, 0xCB, 0x00, 0x11, 0x11, 0x00, 0x00, 0x30 } },
     // GUID_NDIS_LAN_CLASS
-    { 0xad498944, 0x762f, 0x11d0, { 0x8d, 0xcb, 0x00, 0xc0, 0x4f, 0xc3, 0x35, 0x8c } }
+    { 0xad498944, 0x762f, 0x11d0, { 0x8d, 0xcb, 0x00, 0xc0, 0x4f, 0xc3, 0x35, 0x8c } },
     // GUID_DEVINTERFACE_COMPORT
-    //{ 0x86e0d1e0, 0x8089, 0x11d0, { 0x9c, 0xe4, 0x08, 0x00, 0x3e, 0x30, 0x1f, 0x73 } },
+    { 0x86e0d1e0, 0x8089, 0x11d0, { 0x9c, 0xe4, 0x08, 0x00, 0x3e, 0x30, 0x1f, 0x73 } },
     // GUID_DEVINTERFACE_SERENUM_BUS_ENUMERATOR
-    //{ 0x4D36E978, 0xE325, 0x11CE, { 0xBF, 0xC1, 0x08, 0x00, 0x2B, 0xE1, 0x03, 0x18 } },
+    { 0x4D36E978, 0xE325, 0x11CE, { 0xBF, 0xC1, 0x08, 0x00, 0x2B, 0xE1, 0x03, 0x18 } },
     // GUID_DEVINTERFACE_PARALLEL
-    //{ 0x97F76EF0, 0xF883, 0x11D0, { 0xAF, 0x1F, 0x00, 0x00, 0xF8, 0x00, 0x84, 0x5C } },
+    { 0x97F76EF0, 0xF883, 0x11D0, { 0xAF, 0x1F, 0x00, 0x00, 0xF8, 0x00, 0x84, 0x5C } },
     // GUID_DEVINTERFACE_PARCLASS
-    //{ 0x811FC6A5, 0xF728, 0x11D0, { 0xA5, 0x37, 0x00, 0x00, 0xF8, 0x75, 0x3E, 0xD1 } }
+    { 0x811FC6A5, 0xF728, 0x11D0, { 0xA5, 0x37, 0x00, 0x00, 0xF8, 0x75, 0x3E, 0xD1 } }
 };
+
+
+
+std::string wstringToString(const std::wstring& wstr)
+{
+    // https://stackoverflow.com/questions/4804298/how-to-convert-wstring-into-string
+    if (wstr.empty())
+    {
+        return std::string();
+    }
+
+    int size = WideCharToMultiByte(CP_ACP, 0, &wstr[0], (int)wstr.size(), NULL, 0, NULL, NULL);
+    std::string ret = std::string(size, 0);
+    WideCharToMultiByte(CP_ACP, 0, &wstr[0], (int)wstr.size(), &ret[0], size, NULL, NULL); // CP_UTF8
+
+    return ret;
+}
+
+bool enumDetailsSerialPorts(QVector<WinSerialPortInfo>& portInfoList)
+{
+    //https://msdn.microsoft.com/en-us/library/ms724256
+
+#define MAX_KEY_LENGTH 255
+#define MAX_VALUE_NAME 16383
+
+    HKEY hKey;
+
+    TCHAR       achValue[MAX_VALUE_NAME];                   // buffer for subkey name
+    DWORD       cchValue = MAX_VALUE_NAME;                  // size of name string
+    TCHAR       achClass[MAX_PATH] = _T("");                // buffer for class name
+    DWORD       cchClassName = MAX_PATH;                    // size of class string
+    DWORD       cSubKeys = 0;                               // number of subkeys
+    DWORD       cbMaxSubKey;                                // longest subkey size
+    DWORD       cchMaxClass;                                // longest class string
+    DWORD       cKeyNum;                                    // number of values for key
+    DWORD       cchMaxValue;                                // longest value name
+    DWORD       cbMaxValueData;                             // longest value data
+    DWORD       cbSecurityDescriptor;                       // size of security descriptor
+    FILETIME    ftLastWriteTime;                            // last write time
+
+    int iRet = -1;
+    bool bRet = false;
+
+    std::string strPortName;
+    WinSerialPortInfo m_serialPortInfo;
+
+    TCHAR strDSName[MAX_VALUE_NAME];
+    memset(strDSName, 0, MAX_VALUE_NAME);
+    DWORD nValueType = 0;
+    DWORD nBuffLen = 10;
+
+    if (ERROR_SUCCESS == RegOpenKeyEx(HKEY_LOCAL_MACHINE, _T("HARDWARE\\DEVICEMAP\\SERIALCOMM"), 0, KEY_READ, &hKey))
+    {
+        // Get the class name and the value count.
+        iRet = RegQueryInfoKey(
+            hKey,                    // key handle
+            achClass,                // buffer for class name
+            &cchClassName,           // size of class string
+            NULL,                    // reserved
+            &cSubKeys,               // number of subkeys
+            &cbMaxSubKey,            // longest subkey size
+            &cchMaxClass,            // longest class string
+            &cKeyNum,                // number of values for this key
+            &cchMaxValue,            // longest value name
+            &cbMaxValueData,         // longest value data
+            &cbSecurityDescriptor,   // security descriptor
+            &ftLastWriteTime);       // last write time
+
+        if (!portInfoList.empty())
+        {
+            portInfoList.clear();
+        }
+
+        // Enumerate the key values.
+        if (cKeyNum > 0 && ERROR_SUCCESS == iRet)
+        {
+            for (int i = 0; i < (int)cKeyNum; i++)
+            {
+                cchValue = MAX_VALUE_NAME;
+                achValue[0] = '\0';
+                nBuffLen = MAX_KEY_LENGTH;//防止 ERROR_MORE_DATA 234L 错误
+
+                if (ERROR_SUCCESS == RegEnumValue(hKey, i, achValue, &cchValue, NULL, NULL, (LPBYTE)strDSName, &nBuffLen))
+                {
+
+#ifdef UNICODE
+                    strPortName = wstringToString(strDSName);
+#else
+                    strPortName = std::string(strDSName);
+#endif
+                    m_serialPortInfo.portName = strPortName;
+                    portInfoList.push_back(m_serialPortInfo);
+                }
+            }
+        }
+        else
+        {
+
+        }
+    }
+
+    if (portInfoList.empty())
+    {
+        bRet = false;
+    }
+    else
+    {
+        bRet = true;
+    }
+
+
+    RegCloseKey(hKey);
+
+    return bRet;
+}
 
 
 
 void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
 {
+
+    static QHash<QString, QString> m_qComs = {};
     CString szDevId = pDevInf->dbcc_name + 4;
     int idx = szDevId.ReverseFind(_T('#'));
     szDevId.Truncate(idx);
@@ -62,15 +187,12 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     if (DBT_DEVICEARRIVAL == wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
-        char *ch = reinterpret_cast<char*>(szTmp.GetBuffer(szTmp.GetLength() + 1));
-        szTmp.ReleaseBuffer();
-        QString STDStr = QString(QLatin1String(ch));
 
-        //QString log =  "win api add: " + STDStr;
-        //CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        //CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
-
-        QString dev = STDStr;
+        std::string STDStr(CW2A(szTmp.GetString()));
+        QString log =  "win api add: " + QString::fromStdString(STDStr);
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+        QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
         if(mes.at(0) == "USB")
         {
@@ -91,7 +213,6 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
             // 注意字节大端小端
             pidstream.setByteOrder(QDataStream::BigEndian);
             pidstream >> npid;*/
-
 
             emit CatWinMonitorSerial::Instance()->AddSerial(npid, nvid);
         }
@@ -100,15 +221,13 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     else
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
-        char *ch = reinterpret_cast<char*>(szTmp.GetBuffer(szTmp.GetLength() + 1));
-        szTmp.ReleaseBuffer();
-        QString STDStr = QString(QLatin1String(ch));
-        //std::string STDStr(CW2A(szTmp.GetString()));
-        //QString log =  "win api del: " + STDStr;
-        //CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        //CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
 
-        QString dev = STDStr;
+        std::string STDStr(CW2A(szTmp.GetString()));
+        QString log =  "win api del: " + QString::fromStdString(STDStr);
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+
+        QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
         if(mes.at(0) == "USB")
         {
@@ -130,7 +249,18 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
             pidstream.setByteOrder(QDataStream::BigEndian);
             pidstream >> npid;*/
 
-            emit CatWinMonitorSerial::Instance()->DeleteSerial(npid, nvid);
+            QHash<QString, QSerialPortInfo> serials = MonitorSerial::Instance()->GetSerialPortInfo();
+
+            QVector<WinSerialPortInfo> seriallist;
+            if(enumDetailsSerialPorts(seriallist))
+            {
+                for (int i = 0; i < seriallist.size(); ++i) {
+                    serials.remove(QString::fromStdString(seriallist.at(i).portName));
+                }
+            }
+
+
+            emit CatWinMonitorSerial::Instance()->DeleteSerial(npid, nvid, serials.keys());
         }
     }
 
@@ -255,8 +385,8 @@ CatWinMonitorSerial::CatWinMonitorSerial()
 {
     hThread = CreateThread(NULL, 0, ThrdFunc, NULL, 0, &iThread);
     if (hThread == NULL) {
-        //QString log = "CatWinMonitorSerial CreateThread Error ";
-        //CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+        QString log = "CatWinMonitorSerial CreateThread Error ";
+        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
     }
 }
 

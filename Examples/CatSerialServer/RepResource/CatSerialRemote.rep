@@ -1,0 +1,5 @@
+﻿class CatSerialRemote
+{
+    //SIGNAL()
+    //SLOT()
+}

@@ -20,7 +20,6 @@ Item {
 
         anchors.fill: parent
 
-
         clip: true
 
         model: gridviewmodel

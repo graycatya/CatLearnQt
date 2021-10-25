@@ -67,6 +67,11 @@ public:
         return m_bStart;
     }
 
+    QHash<QString, QSerialPortInfo> GetSerialPortInfo() noexcept
+    {
+        return m_lSerialPortInfo;
+    }
+
 protected:
     void run() override;
 
@@ -77,7 +82,6 @@ signals:
     //void DeleteSerial(QSerialPortInfo);
     // 同时获取插入与拔出的端口
     void UpdateSerial(QList<QSerialPortInfo> adds, QList<QSerialPortInfo> dels);
-
 
 private:
     MonitorSerial() {

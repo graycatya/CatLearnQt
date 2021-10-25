@@ -1,4 +1,4 @@
-#ifndef CATWINMONITORSERIAL_H
+﻿#ifndef CATWINMONITORSERIAL_H
 #define CATWINMONITORSERIAL_H
 
 #include <QObject>
@@ -45,13 +45,13 @@ signals:
     // 端口插入
     void AddSerial(qint64 pid, qint64 vid);
     // 端口拔出
-    void DeleteSerial(qint64 pid, qint64 vid);
+    void DeleteSerial(qint64 pid, qint64 vid, QList<QString> serials);
 
 private:
     static CatWinMonitorSerial* _instance;
+
     static QMutex* m_pMutex;
 
 };
 
 #endif // CATWINMONITORSERIAL_H
-

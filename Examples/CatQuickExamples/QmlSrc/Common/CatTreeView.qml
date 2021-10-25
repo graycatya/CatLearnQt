@@ -23,6 +23,7 @@ Item {
 
     signal collapse(int index);
     signal expand(int index);
+    signal updatedemo(string demoname, string qmlsource);
 
     ListView {
         id: listview
@@ -31,7 +32,7 @@ Item {
 
         delegate: Rectangle {
             id: delegateRect
-            width: 300
+            width: listview.width
             height: model.display[__modelExpendKey] === true ? 36 : 0
             visible: height > 0
             color: (listview.currentIndex === index || cattransarea.hovered) ? ProjectObject.catsidecolumnitem_SelectColor : "transparent"
@@ -77,7 +78,11 @@ Item {
                     } else {
                         listview.currentIndex = -1;
                     }
-                    console.log("treeitem clicked: " + model.display["name"])
+                    if(model.display["qmlSource"] !== undefined)
+                    {
+                        updatedemo(model.display["name"], model.display["qmlSource"]);
+                    }
+                    //console.log("treeitem clicked: " + model.display["name"] + " : " + model.display["qmlSource"])
                 }
 
             }

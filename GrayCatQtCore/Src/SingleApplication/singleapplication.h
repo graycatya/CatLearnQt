@@ -26,10 +26,14 @@
 #include <QtCore/QtGlobal>
 #include <QtNetwork/QLocalSocket>
 
+
 #ifndef QGUIAPPLICATION_CLASS
-#ifndef QAPPLICATION_CLASS
+#ifdef QAPPLICATION_CLASS
 #include<QApplication>
   #define QAPPLICATION_CLASS QApplication
+#else
+#include<QCoreApplication>
+  #define QAPPLICATION_CLASS QCoreApplication
 #endif
 #else
 #ifndef QAPPLICATION_CLASS

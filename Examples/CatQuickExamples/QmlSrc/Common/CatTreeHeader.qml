@@ -56,6 +56,7 @@ Item {
                     count = 0
                     current = 0
                 }
+                updatePos()
             }
             //comboboxButton.btnImgNormal: ""
 

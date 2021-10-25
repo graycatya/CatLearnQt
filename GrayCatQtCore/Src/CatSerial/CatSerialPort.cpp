@@ -1,5 +1,8 @@
 ﻿#include "CatSerialPort.h"
+#include <CatLog>
+//#include <QAbstractSocket>
 #include <QMetaEnum>
+#include <QCoreApplication>
 
 #if Q_CC_MSVC
     #include "CatWinMonitorSerial.h"
@@ -20,6 +23,11 @@ CatSerialPort::~CatSerialPort()
         m_pReadPortDataWork->deleteLater();
         m_pReadPortDataWork = nullptr;
     }
+    if(m_pReadDataBufferWork)
+    {
+        m_pReadDataBufferWork->deleteLater();
+        m_pReadDataBufferWork = nullptr;
+    }
     if(m_qPort.isOpen())
     {
         m_qPort.close();
@@ -32,6 +40,10 @@ void CatSerialPort::InitProperty()
     m_yReadData.clear();
 
     m_pReadPortDataWork = new ReadPortDataWork(this);
+    m_pReadPortDataWork->SetSerialPort(&m_qPort);
+    m_pReadDataBufferWork = new ReadDataBufferWork(this);
+    m_pReadDataBufferWork->SetSerialPort(&m_qPort);
+    //m_pReadDataBufferWork->Start(10);
 
 }
 
@@ -51,28 +63,46 @@ void CatSerialPort::InitConnect()
             m_pReadPortDataWork->Start(50);
         }
         m_yReadData += m_qPort.readAll();
+        //qDebug() << "seril data: " << m_yReadData;
     });
 
+    /*connect(m_pReadDataBufferWork, &ReadDataBufferWork::readyRead, this, [=](){
+        qDebug() << "ReadDataBufferWork::readyRead";
+        if(!m_pReadPortDataWork->GetWork())
+        {
+            m_pReadPortDataWork->Start(50);
+        }
+        m_yReadData += m_qPort.readAll();
+    });*/
+
+
 #ifdef Q_OS_WIN
+#ifdef Q_CC_MSVC
     if(QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7)
     {
-        QObject::connect(CatWinMonitorSerial::Instance(), &CatWinMonitorSerial::DeleteSerial, this, [=](qint64 pid, qint64 vid){
+        QObject::connect(CatWinMonitorSerial::Instance(), &CatWinMonitorSerial::DeleteSerial, this, [=](qint64 pid, qint64 vid, QList<QString> serials){
 
-            if(m_qPortInfo.vendorIdentifier() == vid && m_qPortInfo.productIdentifier() == pid)
+            for(int i = 0; i < serials.size(); i++)
             {
-                if(m_qPort.isOpen())
+                if(m_qPortInfo.vendorIdentifier() == vid && m_qPortInfo.productIdentifier() == pid && m_qPortInfo.portName() == serials.at(i))
                 {
-                    m_qPort.close();
+                    if(m_qPort.isOpen())
+                    {
+                        m_qPort.close();
+                    }
+                    emit DisconnectPort();
                 }
-                emit DisconnectPort();
             }
         });
     }
+#endif
 #endif
 
     connect(&m_qPort, &QSerialPort::errorOccurred, this, [=](QSerialPort::SerialPortError error){
         if(error == QSerialPort::SerialPortError::ResourceError)
         {
+            QString log = "QSerialPort::errorOccurred: " + QString::number(error);
+            CATLOG::CatLog::__Write_Log("./log", ERROR_LOG_T(log.toStdString()));
             if(m_qPort.isOpen())
             {
                 m_qPort.close();
@@ -103,6 +133,7 @@ bool CatSerialPort::OpenSerial(qint32 baudRate, QSerialPort::StopBits stopBits)
     // [0] 判断端口是否有效
     if(m_qPortInfo.isNull() && m_sSerialPortName.isEmpty())
     {
+        CATLOG::CatLog::__Write_Log(_INFO_LOG("SerialPort PortName is Null!"));
         return false;
     } else if(m_sSerialPortName.isEmpty()) {
         m_sSerialPortName = m_qPortInfo.portName();
@@ -119,9 +150,14 @@ bool CatSerialPort::OpenSerial(qint32 baudRate, QSerialPort::StopBits stopBits)
     m_qPort.setBaudRate(baudRate);
     m_qPort.setStopBits(stopBits);
 
+
+
     // [2] 端口打开
     if(!m_qPort.open(QIODevice::ReadWrite))
     {
+        QString Error = QString("SerialPort Open %1, error code %2")
+                .arg(m_sSerialPortName).arg(m_qPort.error());
+        emit ErrorSerialPort(Error);
         return false;
     }
     emit OpenSuccess();
@@ -155,14 +191,32 @@ QSerialPortInfo CatSerialPort::GetSerialProtInfo(QString port)
     return info;
 }
 
+QSerialPort *CatSerialPort::GetSerialPort()
+{
+    return &m_qPort;
+}
+
+void CatSerialPort::Clear()
+{
+    m_yReadData.clear();
+    m_yWriteData.clear();
+}
+
 void CatSerialPort::WriteSerialPortSlot(QByteArray data, bool waitread, int msecs)
 {
     if(m_qPort.isOpen())
     {
+        QString log = QString("%1 Write: %2").arg(m_sSerialPortName).arg(QString(data.toHex()));
+        CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./seriallog", INFO_LOG_T(log.toStdString()));
         m_qPort.write(data);
+        //m_pReadDataBufferWork->Start(10);
         if(waitread)
         {
-            while(m_qPort.waitForReadyRead(msecs));
+            while(m_qPort.waitForReadyRead(msecs))
+            {
+                QCoreApplication::processEvents();
+            };
         }
     }
 }

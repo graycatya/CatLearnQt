@@ -135,6 +135,43 @@ QMultiMap<QString, QVariant> CatSettingBase::GetArray(QString file, QString node
     return map;
 }
 
+QMultiMap<QString, QVariant> CatSettingBase::GetArray(QString file, QString node)
+{
+    QMultiMap<QString, QVariant> map;
+    map.clear();
+
+    QSettings setting(file, QSettings::IniFormat);
+    int size = setting.beginReadArray(node);
+    QStringList keys = setting.allKeys();
+    for(int i = size - 1; i >= 0; i--)
+    {
+        setting.setArrayIndex(i);
+        map.insert(keys[i], setting.value(keys[i]));
+    }
+    setting.endArray();
+
+    return map;
+}
+
+QVector<QVariant> CatSettingBase::GetArrays(QString file, QString node)
+{
+    QVector<QVariant> map;
+    map.clear();
+
+    QSettings setting(file, QSettings::IniFormat);
+    int size = setting.beginReadArray(node);
+    QStringList keys = setting.allKeys();
+    for(int i = size - 1; i >= 0; i--)
+    {
+        setting.setArrayIndex(i);
+        QString temp = setting.value(QString::number(i)).toString();
+        map.push_back(setting.value(QString::number(i)));
+    }
+    setting.endArray();
+
+    return map;
+}
+
 bool CatSettingBase::ConfigExist(QString file)
 {
     QFileInfo fileInfo(file);

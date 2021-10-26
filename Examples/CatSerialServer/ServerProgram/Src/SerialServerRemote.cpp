@@ -1,0 +1,49 @@
+﻿#include "SerialServerRemote.h"
+#include "SerialDevList.h"
+
+
+SerialServerRemote::SerialServerRemote(QObject *parent) : CatSerialRemoteSource(parent)
+{
+    Q_UNUSED(parent)
+    InitConnect();
+}
+
+SerialServerRemote::~SerialServerRemote()
+{
+
+}
+
+void SerialServerRemote::SerialDevList()
+{
+    emit SerialDevListSign(SerialDevList::Instance()->GetSerialDevList());
+}
+
+void SerialServerRemote::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
+{
+    SerialDevList::Instance()->OpenSerialPort(port, baudRate, stopBits);
+}
+
+void SerialServerRemote::CloseSerialPort(QString port)
+{
+    SerialDevList::Instance()->CloseSerialPort(port);
+}
+
+void SerialServerRemote::WriteData(QString port, QByteArray data)
+{
+    SerialDevList::Instance()->WriteData(port, data);
+}
+
+void SerialServerRemote::InitConnect()
+{
+    connect(SerialDevList::Instance(), &SerialDevList::AddDev, this, [=](QString port){
+        emit AddDev(port);
+    });
+    connect(SerialDevList::Instance(), &SerialDevList::DelDev, this, [=](QString port){
+        emit DelDev(port);
+    });
+    connect(SerialDevList::Instance(), &SerialDevList::SerialError, this, &CatSerialRemoteSource::SerialError);
+    connect(SerialDevList::Instance(), &SerialDevList::ReadData, this, &CatSerialRemoteSource::ReadData);
+    connect(SerialDevList::Instance(), &SerialDevList::SerialOpenSucceed, this, &CatSerialRemoteSource::SerialOpenSucceed);
+    connect(SerialDevList::Instance(), &SerialDevList::SerialCloseSucceed, this, &CatSerialRemoteSource::SerialCloseSucceed);
+    connect(SerialDevList::Instance(), &SerialDevList::SerialDisconnect, this, &CatSerialRemoteSource::SerialDisconnect);
+}

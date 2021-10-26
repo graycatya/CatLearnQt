@@ -1,5 +1,20 @@
 ﻿class CatSerialRemote
 {
-    //SIGNAL()
-    //SLOT()
+    SIGNAL(SerialDevListSign(QList<QString> ports))
+    SLOT(SerialDevList())
+
+    SIGNAL(SerialOpenSucceed(QString port))
+    SLOT(OpenSerialPort(QString port, qint32 baudRate, int stopBits))
+
+    SIGNAL(SerialCloseSucceed(QString port))
+    SLOT(CloseSerialPort(QString port))
+
+    SIGNAL(SerialDisconnect(QString port))
+    SIGNAL(SerialError(QString port, quint64 error))
+
+    SIGNAL(ReadData(QString port, QByteArray data))
+    SLOT(WriteData(QString port, QByteArray data))
+
+    SIGNAL(AddDev(QString port))
+    SIGNAL(DelDev(QString port))
 }

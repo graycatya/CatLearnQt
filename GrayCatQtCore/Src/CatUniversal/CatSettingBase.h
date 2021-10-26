@@ -2,6 +2,7 @@
 #define CATSETTINGBASE_H
 
 #include <QObject>
+#include <QVector>
 
 class CatSettingBase : public QObject
 {
@@ -21,6 +22,8 @@ protected:
     static QStringList GetKeys(QString file, QString node = "");
     static QVariant GetValue(QString file, QString key, QString node = "");
     static QMultiMap<QString, QVariant> GetArray(QString file, QString node, QStringList keys);
+    static QMultiMap<QString, QVariant> GetArray(QString file, QString node);
+    static QVector<QVariant> GetArrays(QString file, QString node);
     static bool ConfigExist(QString file);
 
 };

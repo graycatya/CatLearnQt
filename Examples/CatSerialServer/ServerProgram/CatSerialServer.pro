@@ -14,7 +14,19 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 include($$PWD/../../../GrayCatQtCore/GrayCatQtCore.pri)
 
 SOURCES += \
+    ServerConfig.cpp \
+    Src/SerialDevList.cpp \
+    Src/SerialServerInitialize.cpp \
+    Src/SerialServerRemote.cpp \
+    Src/SerialServerWebSocket.cpp \
     main.cpp 
 
 REPC_SOURCE = \
     ../RepResource/CatSerialRemote.rep
+
+HEADERS += \
+    ServerConfig.h \
+    Src/SerialDevList.h \
+    Src/SerialServerInitialize.h \
+    Src/SerialServerRemote.h \
+    Src/SerialServerWebSocket.h

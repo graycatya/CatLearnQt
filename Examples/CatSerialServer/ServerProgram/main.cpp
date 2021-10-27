@@ -2,6 +2,7 @@
 #include "ServerConfig.h"
 #include "CatLog"
 #include "Src/SerialDevList.h"
+#include "Src/SerialServerInitialize.h"
 
 
 int main(int argc, char *argv[])
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
     SerialDevList::Instance();
     CATLOG::CatLog::Instance()->__Write_Log(INFO_LOG_T("start SerialServer"));
 
+    SerialServerInitialize initialize;
 
     return app.exec();
 }

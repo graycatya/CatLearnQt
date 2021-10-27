@@ -124,8 +124,6 @@ void SerialDevList::AddDevs(QList<QSerialPortInfo> devs)
     {
         if(this->IsDev(info))
         {
-            QString log = "Effective equipment: " + info.portName();
-            CATLOG::CatLog::__Write_Log("./SerialServer", INFO_LOG_T(log.toStdString()));
             emit AddDev(info.portName());
         }
     }

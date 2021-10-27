@@ -36,9 +36,15 @@ void SerialServerRemote::WriteData(QString port, QByteArray data)
 void SerialServerRemote::InitConnect()
 {
     connect(SerialDevList::Instance(), &SerialDevList::AddDev, this, [=](QString port){
+        QString log = "SerialServerRemote addDev: " + port;
+        CATLOG::CatLog::Instance()->__Write_Log(INFO_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./SerialServer", INFO_LOG_T(log.toStdString()));
         emit AddDev(port);
     });
     connect(SerialDevList::Instance(), &SerialDevList::DelDev, this, [=](QString port){
+        QString log = "SerialServerRemote delDev: " + port;
+        CATLOG::CatLog::Instance()->__Write_Log(INFO_LOG_T(log.toStdString()));
+        CATLOG::CatLog::__Write_Log("./SerialServer", INFO_LOG_T(log.toStdString()));
         emit DelDev(port);
     });
     connect(SerialDevList::Instance(), &SerialDevList::SerialError, this, &CatSerialRemoteSource::SerialError);

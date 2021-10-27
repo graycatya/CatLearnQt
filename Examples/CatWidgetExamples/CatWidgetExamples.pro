@@ -8,6 +8,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
 
 #DEFINES += ANDROID_APP
+DEFINES += QAPPLICATION_CLASS
 
 CONFIG += c++11
 # CONFIG += console

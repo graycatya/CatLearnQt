@@ -19,12 +19,17 @@ QList<QString> SerialDevList::GetSerialDevList()
 void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
 {
     QHash<QString, QSerialPortInfo> infos = MonitorSerial::Instance()->GetSerialPortInfo();
+    QString log = "OpenSerialPort infos Size: " + QString::number(infos.size());
+    CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
     foreach (QSerialPortInfo info, infos)
     {
+        QString log = QString("OpenSerialPort infoName %1, port %2").arg(info.portName()).arg(port);
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
         if(info.portName() == port)
         {
             if(!m_ySerials.contains(port))
             {
+                CATLOG::CatLog::Instance()->__Write_Log(INFO_LOG_T("Serial contains"));
                 SERIALSTATE serialState;
                 serialState.serialPort = new CatSerialPort;
                 serialState.serialPort->SetSerialInfo(info);
@@ -42,26 +47,33 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
                 });
                 serialState.DisconnectCon = connect(serialState.serialPort, &CatSerialPort::DisconnectPort, this, [=, &serialState](){
                     serialState.DisConnect();
+                    serialState.serialPort->Close();
                     delete serialState.serialPort;
                     serialState.serialPort = nullptr;
                     m_ySerials.remove(serialState.serialPort->GetPortName());
                 });
                 if(serialState.serialPort->OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
                 {
-                    emit SerialOpenSucceed(port);
+                    return;
+                    //emit SerialOpenSucceed(port);
                 } else {
                     emit SerialError(port, 10003);
+                    return;
                 }
+                break;
             } else {
                 if(m_ySerials[info.portName()].serialPort->IsOpen())
                 {
                     emit SerialError(port, 10002);
+                    return;
                 }
                 if(m_ySerials[info.portName()].serialPort->OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
                 {
                     emit SerialOpenSucceed(port);
+                    return;
                 } else {
                     emit SerialError(port, 10003);
+                    return;
                 }
             }
             break;

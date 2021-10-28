@@ -157,6 +157,7 @@ bool CatSerialPort::OpenSerial(qint32 baudRate, QSerialPort::StopBits stopBits)
     {
         QString Error = QString("SerialPort Open %1, error code %2")
                 .arg(m_sSerialPortName).arg(m_qPort.error());
+        qDebug() << "Error: " + Error;
         emit ErrorSerialPort(Error);
         return false;
     }
@@ -171,11 +172,11 @@ bool CatSerialPort::IsOpen()
 
 void CatSerialPort::Close()
 {
-    if(m_qPort.isOpen())
-    {
+    //if(m_qPort.isOpen())
+    //{
         m_qPort.close();
         emit Closeed();
-    }
+    //}
 }
 
 QSerialPortInfo CatSerialPort::GetSerialProtInfo(QString port)

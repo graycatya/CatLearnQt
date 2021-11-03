@@ -5,28 +5,12 @@
 #include <QMutex>
 #include "CatSerial"
 
+class SerialState;
 
 class SerialDevList : public QObject
 {
     Q_OBJECT
 public:
-    struct SERIALSTATE {
-        QMetaObject::Connection SerialReadCon;
-        QMetaObject::Connection ErrorCon;
-        QMetaObject::Connection DisconnectCon;
-        QMetaObject::Connection CloseCon;
-        QMetaObject::Connection OpenCon;
-        CatSerialPort *serialPort;
-
-        void DisConnect()
-        {
-            disconnect(SerialReadCon);
-            disconnect(ErrorCon);
-            disconnect(OpenCon);
-            disconnect(DisconnectCon);
-            disconnect(CloseCon);
-        }
-    };
     static SerialDevList* Instance() noexcept
     {
         if(_instance == nullptr)
@@ -87,7 +71,8 @@ private:
 private:
     static SerialDevList* _instance;
     static QMutex* m_pMutex;
-    QHash<QString, SERIALSTATE> m_ySerials;
+    QHash<QString, SerialState*> m_ySerials;
+
 };
 
 #endif // SERIALDEVLIST_H

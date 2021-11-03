@@ -1,8 +1,29 @@
 ﻿#include "SerialDevList.h"
 #include "ServerConfig.h"
+#include <QCoreApplication>
 
 SerialDevList* SerialDevList::_instance = nullptr;
 QMutex* SerialDevList::m_pMutex = new QMutex;
+
+class SerialState : public QObject {
+
+public:
+    QMetaObject::Connection SerialReadCon;
+    QMetaObject::Connection ErrorCon;
+    QMetaObject::Connection DisconnectCon;
+    QMetaObject::Connection CloseCon;
+    QMetaObject::Connection OpenCon;
+    CatSerialPort serialPort;
+
+    void DisConnect()
+    {
+        disconnect(SerialReadCon);
+        disconnect(ErrorCon);
+        disconnect(OpenCon);
+        disconnect(DisconnectCon);
+        disconnect(CloseCon);
+    }
+};
 
 
 QList<QString> SerialDevList::GetSerialDevList()
@@ -30,32 +51,48 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
             if(!m_ySerials.contains(port))
             {
                 CATLOG::CatLog::Instance()->__Write_Log(INFO_LOG_T("Serial contains"));
-                SERIALSTATE serialState;
-                serialState.serialPort = new CatSerialPort;
-                serialState.serialPort->SetSerialInfo(info);
-                serialState.SerialReadCon = connect(serialState.serialPort, &CatSerialPort::ReadSerialPort, this, [=](QByteArray data){
+                SerialState *serialState = new SerialState;
+                //serialState.serialPort = new CatSerialPort;
+                serialState->serialPort.SetSerialInfo(info);
+                serialState->SerialReadCon =
+                connect(&serialState->serialPort, &CatSerialPort::ReadSerialPort, this, [=](QByteArray data){
                     emit ReadData(port, data);
-                });
-                serialState.OpenCon = connect(serialState.serialPort, &CatSerialPort::OpenSuccess, this, [=](){
+                }, Qt::QueuedConnection);
+                serialState->OpenCon =
+                connect(&serialState->serialPort, &CatSerialPort::OpenSuccess, this, [=](){
                     emit SerialOpenSucceed(port);
-                });
-                serialState.CloseCon = connect(serialState.serialPort, &CatSerialPort::Closeed, this, [=](){
+                }, Qt::QueuedConnection);
+                serialState->CloseCon =
+                connect(&serialState->serialPort, &CatSerialPort::Closeed, this, [=](){
                     emit SerialCloseSucceed(port);
-                });
-                serialState.ErrorCon = connect(serialState.serialPort, &CatSerialPort::ErrorSerialPort, this, [=](QString error){
+                }, Qt::QueuedConnection);
+                serialState->ErrorCon =
+                connect(&serialState->serialPort, &CatSerialPort::ErrorSerialPort, this, [=](QString error){
                     emit SerialError(port, 10004);
-                });
-                serialState.DisconnectCon = connect(serialState.serialPort, &CatSerialPort::DisconnectPort, this, [=, &serialState](){
-                    QString log = "Disconnect port: " + serialState.serialPort->GetPortName();
+                }, Qt::QueuedConnection);
+                serialState->DisconnectCon =
+                connect(&serialState->serialPort, &CatSerialPort::DisconnectPort, this, [=](){
+                    QString log = "Disconnect port: " + port;
                     CATLOG::CatLog::Instance()->__Write_Log(DEBUG_LOG_T(log.toStdString()));
-                    serialState.DisConnect();
-                    serialState.serialPort->Close();
-                    delete serialState.serialPort;
-                    serialState.serialPort = nullptr;
-                    m_ySerials.remove(port);
-                });
+                    if(m_ySerials.contains(port))
+                    {
+                        if(m_ySerials.contains(port))
+                        {
+                            if(m_ySerials[port] != nullptr)
+                            {
+                                m_ySerials[port]->DisConnect();
+                                m_ySerials[port]->serialPort.Close();
+                                delete m_ySerials[port];
+                                m_ySerials[port] = nullptr;
+                                QCoreApplication::processEvents();
+                            }
+                        }
+                        m_ySerials.remove(port);
+                    }
+
+                }, Qt::QueuedConnection);
                 m_ySerials[port] = serialState;
-                if(serialState.serialPort->OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
+                if(serialState->serialPort.OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
                 {
                     return;
                     //emit SerialOpenSucceed(port);
@@ -65,12 +102,12 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
                 }
                 break;
             } else {
-                if(m_ySerials[info.portName()].serialPort->IsOpen())
+                if(m_ySerials[info.portName()]->serialPort.IsOpen())
                 {
                     emit SerialError(port, 10002);
                     return;
                 }
-                if(m_ySerials[info.portName()].serialPort->OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
+                if(m_ySerials[info.portName()]->serialPort.OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
                 {
                     emit SerialOpenSucceed(port);
                     return;
@@ -90,7 +127,10 @@ void SerialDevList::CloseSerialPort(QString port)
 {
     if(m_ySerials.contains(port))
     {
-        m_ySerials[port].serialPort->Close();
+        if(m_ySerials[port] != nullptr)
+        {
+            m_ySerials[port]->serialPort.Close();
+        }
     } else {
         emit SerialError(port, 10005);
     }
@@ -100,7 +140,10 @@ void SerialDevList::WriteData(QString port, QByteArray data)
 {
     if(m_ySerials.contains(port))
     {
-        m_ySerials[port].serialPort->WriteSerialPortSlot(data);
+        if(m_ySerials[port] != nullptr)
+        {
+            m_ySerials[port]->serialPort.WriteSerialPortSlot(data);
+        }
     } else {
         emit SerialError(port, 10006);
     }
@@ -152,11 +195,18 @@ void SerialDevList::DelDevs(QList<QSerialPortInfo> devs)
         {
             if(m_ySerials.contains(info.portName()))
             {
-                m_ySerials[info.portName()].DisConnect();
-                m_ySerials[info.portName()].serialPort->Close();
-                delete m_ySerials[info.portName()].serialPort;
-                m_ySerials[info.portName()].serialPort = nullptr;
-                m_ySerials.remove(info.portName());
+                if(m_ySerials.contains(info.portName()))
+                {
+                    if(m_ySerials[info.portName()] != nullptr)
+                    {
+                        m_ySerials[info.portName()]->DisConnect();
+                        m_ySerials[info.portName()]->serialPort.Close();
+                        delete m_ySerials[info.portName()];
+                        m_ySerials[info.portName()] = nullptr;
+                        QCoreApplication::processEvents();
+                    }
+                    m_ySerials.remove(info.portName());
+                }
             }
 
             emit DelDev(info.portName());

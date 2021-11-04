@@ -104,10 +104,10 @@ Item {
         }
 
         add: Transition {
-            NumberAnimation  { from: -root.width; to: 0; properties: "x"; duration: 300; easing.type: Easing.OutQuad }
+            NumberAnimation  { from: -parent.width; to: 0; properties: "x"; duration: 300; easing.type: Easing.OutQuad }
         }
         remove: Transition {
-            NumberAnimation { to: -root.width; property: "x"; duration: 300; easing.type: Easing.OutQuad }
+            NumberAnimation { to: -parent.width; property: "x"; duration: 300; easing.type: Easing.OutQuad }
         }
         displaced : Transition {
             NumberAnimation  { properties: "x,y"; duration: 300; easing.type: Easing.OutQuad }

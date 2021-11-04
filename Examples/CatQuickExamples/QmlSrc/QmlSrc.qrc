@@ -41,5 +41,7 @@
         <file>Common/CatTransArea.qml</file>
         <file>FunctionLayout/TreeLayout/CatTreeListView.qml</file>
         <file>FunctionLayout/TreeLayout/CatTreeDemoStrationView.qml</file>
+        <file>MoreFunctionViews/WebEngineLicence.qml</file>
+        <file>MoreFunctionViews/WebKitLicence.qml</file>
     </qresource>
 </RCC>

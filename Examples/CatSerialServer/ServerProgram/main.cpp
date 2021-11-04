@@ -8,6 +8,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
+    app.setApplicationName("CatSerialServer");
 
     qRegisterMetaType<QSerialPortInfo>("QSerialPortInfo");
     qRegisterMetaType<QList<QSerialPortInfo>>("QList<QSerialPortInfo>");

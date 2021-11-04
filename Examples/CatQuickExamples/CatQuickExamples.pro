@@ -74,8 +74,8 @@ CONFIG += object_with_source
 DEFINES += QT_DEPRECATED_WARNINGS
 DEFINES += QGUIAPPLICATION_CLASS
 
-win32 {
-    DEFINES += QT_OS_WIN10
+win32:msvc {
+        DEFINES += QT_OS_WIN10
 }
 
 TARGET = CatQuickExamples
@@ -98,7 +98,10 @@ include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 include($$PWD/../../GrayCatQtCore/Src/SingleApplication/singleapplication.pri)
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
-include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+win32:msvc {
+    include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+}
+
 include($$PWD/Src/TableFunction/TableFunction.pri)
 
 # 配置file_copies

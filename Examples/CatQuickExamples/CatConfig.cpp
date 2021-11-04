@@ -9,7 +9,9 @@
 
 #include "CatEncp.h"
 #include "QrenCode/QuickQrenCodeParentItem.h"
+#ifdef _MSC_VER
 #include "Src/WebChannelFunction/CatEchatswebChannel.h"
+#endif
 
 
 CatConfig* CatConfig::_instance = nullptr;

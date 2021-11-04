@@ -14,7 +14,9 @@
 #include <objidl.h> // Fixes error C2504: 'IUnknown' : base class undefined
 #include <windows.h>
 #include <windowsx.h>
+#ifdef _MSC_VER
 #include <atltypes.h>
+#endif
 
 static bool Titlecontains = false;
 

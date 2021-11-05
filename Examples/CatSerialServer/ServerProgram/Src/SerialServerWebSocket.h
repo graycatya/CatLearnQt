@@ -11,14 +11,18 @@ class SerialServerWebSocket : public QObject
     Q_ENUMS(PROTOCOL_CMD)
 public:
     enum PROTOCOL_CMD {
-        NEWCONNECTSOCKET = 0,
+        NEWCONNECTSOCKET = 1,
         ADDDEV,
         DELDEV,
         SERIALERROR,
         READDATA,
         SERIALOPENSUCCEED,
         SERIALCLOSESUCCEED,
-        SERIALDISCONNECT
+        SERIALDISCONNECT,
+        SERIALDEVLIST,
+        OPENSERIALPORT,
+        CLOSESERIALPORT,
+        WRITEDATA
     };
     explicit SerialServerWebSocket(QObject *parent = nullptr);
     ~SerialServerWebSocket();
@@ -26,6 +30,8 @@ public:
 private:
     void InitProperty();
     void InitConnect();
+
+    void DecodeData(QString data);
 
     QString NewConnectSocket();
     QString AddDev(QString port);

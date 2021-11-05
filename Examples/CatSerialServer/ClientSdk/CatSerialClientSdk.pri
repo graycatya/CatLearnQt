@@ -1,4 +1,4 @@
-QT += core remoteobjects websockets
+QT += core remoteobjects
 
 CONFIG += c++11
 

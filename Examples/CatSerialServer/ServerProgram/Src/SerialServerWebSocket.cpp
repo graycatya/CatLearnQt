@@ -31,7 +31,7 @@ void SerialServerWebSocket::InitProperty()
     {
         port = ServerConfig::Instance()->getValue("WebSocketServer_Port").toInt();
     }
-    if(m_pWebSocketServer->listen(QHostAddress::LocalHost, port))
+    if(m_pWebSocketServer->listen(QHostAddress::Any, port))
     {
         QString log = QString("Start webSocket %1 url %4")
                 .arg(m_pWebSocketServer->serverName())
@@ -251,6 +251,7 @@ void SerialServerWebSocket::ontextMessageReceived(const QString &message)
             .arg(socket->peerPort())
             .arg(message);
     CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    DecodeData(message);
 }
 
 void SerialServerWebSocket::ontextFrameReceived(const QByteArray &message)
@@ -262,6 +263,7 @@ void SerialServerWebSocket::ontextFrameReceived(const QByteArray &message)
             .arg(socket->peerPort())
             .arg(QString(message));
     CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    DecodeData(message);
 }
 
 void SerialServerWebSocket::onDisconnected()
@@ -274,4 +276,74 @@ void SerialServerWebSocket::onDisconnected()
     CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
     m_pSockets.removeOne(socket);
     qDebug() << "sockets: " << m_pSockets.size();
+}
+
+void SerialServerWebSocket::DecodeData(QString data)
+{
+    qDebug() << "read: " << data;
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
+    if(!jsonDocument.isNull())
+    {
+        if(jsonDocument.isObject())
+        {
+            QJsonObject jsObject = jsonDocument.object();
+
+            if(jsObject.value("Cmd").toInt() > 0 && (jsObject.value("State").toInt() == 200))
+            {
+                switch (jsObject.value("Cmd").toInt()) {
+                    case NEWCONNECTSOCKET:{
+                        qDebug() << "Decode NEWCONNECTSOCKET";
+                        break;
+                    }
+                    case ADDDEV:{
+                        qDebug() << "Decode ADDDEV";
+                        break;
+                    }
+                    case DELDEV:{
+                        qDebug() << "Decode DELDEV";
+                        break;
+                    }
+                    case SERIALERROR:{
+                        qDebug() << "Decode SERIALERROR";
+                        break;
+                    }
+                    case READDATA:{
+                        qDebug() << "Decode READDATA";
+                        break;
+                    }
+                    case SERIALOPENSUCCEED:{
+                        qDebug() << "Decode SERIALOPENSUCCEED";
+                        break;
+                    }
+                    case SERIALCLOSESUCCEED:{
+                        qDebug() << "Decode SERIALCLOSESUCCEED";
+                        break;
+                    }
+                    case SERIALDISCONNECT:{
+                        qDebug() << "Decode SERIALDISCONNECT";
+                        break;
+                    }
+                    case SERIALDEVLIST:{
+                        qDebug() << "Decode SERIALDEVLIST";
+                        break;
+                    }
+                    case OPENSERIALPORT:{
+                        qDebug() << "Decode OPENSERIALPORT";
+                        break;
+                    }
+                    case CLOSESERIALPORT:{
+                        qDebug() << "Decode CLOSESERIALPORT";
+                        break;
+                    }
+                    case WRITEDATA:{
+                        qDebug() << "Decode WRITEDATA";
+                        break;
+                    }
+                    default: {
+                        break;
+                    }
+                }
+            }
+        }
+    }
 }

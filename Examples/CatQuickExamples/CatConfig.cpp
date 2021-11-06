@@ -11,6 +11,10 @@
 #include "QrenCode/QuickQrenCodeParentItem.h"
 #ifdef _MSC_VER
 #include "Src/WebChannelFunction/CatEchatswebChannel.h"
+#else
+#ifndef Q_OS_WIN
+#include "Src/WebChannelFunction/CatEchatswebChannel.h"
+#endif
 #endif
 
 

@@ -293,50 +293,62 @@ void SerialServerWebSocket::DecodeData(QString data)
                 switch (jsObject.value("Cmd").toInt()) {
                     case NEWCONNECTSOCKET:{
                         qDebug() << "Decode NEWCONNECTSOCKET";
+                        DecodeNewConnectSocket(data);
                         break;
-                    }
+                    };
                     case ADDDEV:{
                         qDebug() << "Decode ADDDEV";
+                        DecodeAddDev(data);
                         break;
                     }
                     case DELDEV:{
                         qDebug() << "Decode DELDEV";
+                        DecodeDelDev(data);
                         break;
                     }
                     case SERIALERROR:{
                         qDebug() << "Decode SERIALERROR";
+                        DecodeSerialError(data);
                         break;
                     }
                     case READDATA:{
                         qDebug() << "Decode READDATA";
+                        DecodeReadData(data);
                         break;
                     }
                     case SERIALOPENSUCCEED:{
                         qDebug() << "Decode SERIALOPENSUCCEED";
+                        DecodeSerialOpenSucceed(data);
                         break;
                     }
                     case SERIALCLOSESUCCEED:{
                         qDebug() << "Decode SERIALCLOSESUCCEED";
+                        DecodeSerialCloseSucceed(data);
                         break;
                     }
                     case SERIALDISCONNECT:{
                         qDebug() << "Decode SERIALDISCONNECT";
+                        DecodeSerialDisconnect(data);
                         break;
                     }
                     case SERIALDEVLIST:{
                         qDebug() << "Decode SERIALDEVLIST";
+                        DecodeSerialDevList(data);
                         break;
                     }
                     case OPENSERIALPORT:{
                         qDebug() << "Decode OPENSERIALPORT";
+                        DecodeOpenSerialPort(data);
                         break;
                     }
                     case CLOSESERIALPORT:{
                         qDebug() << "Decode CLOSESERIALPORT";
+                        DecodeCloseSerialPort(data);
                         break;
                     }
                     case WRITEDATA:{
                         qDebug() << "Decode WRITEDATA";
+                        DecodeWriteData(data);
                         break;
                     }
                     default: {
@@ -347,3 +359,114 @@ void SerialServerWebSocket::DecodeData(QString data)
         }
     }
 }
+
+void SerialServerWebSocket::DecodeNewConnectSocket(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeAddDev(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeDelDev(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeSerialError(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeReadData(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeSerialOpenSucceed(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeSerialCloseSucceed(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeSerialDisconnect(QString data)
+{
+
+}
+
+void SerialServerWebSocket::DecodeSerialDevList(QString data)
+{
+    QWebSocket *socket = qobject_cast<QWebSocket*>(sender());
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
+    QJsonObject jsObject = jsonDocument.object();
+    if(jsObject.value("Cmd").toInt() != SERIALDEVLIST)
+    {
+        QString json;
+        QJsonDocument doc;
+        QJsonObject jsobject;
+        jsobject.insert("Cmd", SERIALDEVLIST);
+        jsobject.insert("ServerUrl", m_pWebSocketServer->serverUrl().toString());
+        jsobject.insert("State", 200);
+        QJsonArray array;
+        QList<QString> devs = SerialDevList::Instance()->GetSerialDevList();
+        foreach(auto dev , devs)
+        {
+            array.append(dev);
+        }
+        jsobject.insert("Devs", array);
+        doc.setObject(jsobject);
+        json = doc.toJson();
+
+        socket->sendTextMessage(json);
+
+    }
+}
+
+void SerialServerWebSocket::DecodeOpenSerialPort(QString data)
+{
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
+    QJsonObject jsObject = jsonDocument.object();
+    if(jsObject.value("Cmd").toInt() != OPENSERIALPORT)
+    {
+        if(!jsObject.value("Dev").toString().isEmpty())
+        {
+            SerialDevList::Instance()->OpenSerialPort(jsObject.value("Dev").toString(),
+                                                      jsObject.value("BaudRate").toInt(),
+                                                      jsObject.value("StopBits").toInt());
+        }
+    }
+}
+
+void SerialServerWebSocket::DecodeCloseSerialPort(QString data)
+{
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
+    QJsonObject jsObject = jsonDocument.object();
+    if(jsObject.value("Cmd").toInt() != CLOSESERIALPORT)
+    {
+        if(!jsObject.value("Dev").toString().isEmpty())
+        {
+            SerialDevList::Instance()->CloseSerialPort(jsObject.value("Dev").toString());
+        }
+    }
+}
+
+void SerialServerWebSocket::DecodeWriteData(QString data)
+{
+    QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
+    QJsonObject jsObject = jsonDocument.object();
+    if(jsObject.value("Cmd").toInt() != CLOSESERIALPORT)
+    {
+        if(!jsObject.value("Dev").toString().isEmpty())
+        {
+            SerialDevList::Instance()->WriteData(jsObject.value("Dev").toString(),
+                                                 jsObject.value("Data").toString().toLocal8Bit());
+        }
+    }
+}
+

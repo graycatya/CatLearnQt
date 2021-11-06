@@ -42,6 +42,19 @@ private:
     QString SerialCloseSucceed(QString port);
     QString SerialDisconnect(QString port);
 
+    void DecodeNewConnectSocket(QString data);
+    void DecodeAddDev(QString data);
+    void DecodeDelDev(QString data);
+    void DecodeSerialError(QString data);
+    void DecodeReadData(QString data);
+    void DecodeSerialOpenSucceed(QString data);
+    void DecodeSerialCloseSucceed(QString data);
+    void DecodeSerialDisconnect(QString data);
+    void DecodeSerialDevList(QString data);
+    void DecodeOpenSerialPort(QString data);
+    void DecodeCloseSerialPort(QString data);
+    void DecodeWriteData(QString data);
+
 private slots:
     void onNewConnection();
     void ontextMessageReceived(const QString &message);

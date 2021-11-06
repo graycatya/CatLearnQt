@@ -101,6 +101,9 @@ include($$PWD/QmlCatLog/QmlCatLog.pri)
 win32:msvc {
     include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
 }
+mac {
+    include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+}
 
 include($$PWD/Src/TableFunction/TableFunction.pri)
 

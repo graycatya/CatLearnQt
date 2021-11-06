@@ -89,7 +89,7 @@ public:
     Q_INVOKABLE QString getWebResourcePath()
     {
     #ifdef QT_NO_DEBUG
-        return QCoreApplication::applicationDirPath() + "/WebResource";
+        return "file:///" + QCoreApplication::applicationDirPath() + "/WebResource";
     #else
         qDebug() << WEBRESOURCEPATH;
         return WEBRESOURCEPATH;

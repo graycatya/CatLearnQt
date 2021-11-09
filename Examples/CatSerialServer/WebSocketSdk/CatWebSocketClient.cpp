@@ -2,6 +2,7 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include "CatLog"
 
 CatWebSocketClient::CatWebSocketClient(QObject *parent)
     : QThread(parent)
@@ -49,11 +50,14 @@ void CatWebSocketClient::InitConnect()
     });
     connect(m_pWebSocket, &QWebSocket::textMessageReceived, this, [=](const QString &message){
         DecodeData(message);
-
     });
     connect(m_pWebSocket, &QWebSocket::binaryMessageReceived, this, [=](const QByteArray &message){
         DecodeData(message);
     });
+    connect(this, &CatWebSocketClient::WriteDataSign, m_pWebSocket, [=](const QString data){
+        CATLOG::CatLog::__Write_Log(INFO_LOG_T());
+        m_pWebSocket->sendTextMessage(data);
+    }, Qt::QueuedConnection);
 }
 
 void CatWebSocketClient::DecodeData(QString data)
@@ -152,7 +156,7 @@ void CatWebSocketClient::DecodeAddDev(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != ADDDEV)
+    if(jsObject.value("Cmd").toInt() == ADDDEV)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
@@ -165,11 +169,11 @@ void CatWebSocketClient::DecodeDelDev(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != DELDEV)
+    if(jsObject.value("Cmd").toInt() == DELDEV)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
-            emit AddDev(jsObject.value("Dev").toString());
+            emit DelDev(jsObject.value("Dev").toString());
         }
     }
 }
@@ -178,7 +182,7 @@ void CatWebSocketClient::DecodeSerialError(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != SERIALERROR)
+    if(jsObject.value("Cmd").toInt() == SERIALERROR)
     {
         if(!jsObject.value("Dev").toString().isEmpty() && jsObject.value("Error").toInt() != 0)
         {
@@ -191,11 +195,12 @@ void CatWebSocketClient::DecodeReadData(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != READDATA)
+    if(jsObject.value("Cmd").toInt() == READDATA)
     {
         if(!jsObject.value("Dev").toString().isEmpty() && !jsObject.value("Data").toString().isEmpty())
         {
-            emit ReadData(jsObject.value("Dev").toString(), jsObject.value("Data").toString().toLocal8Bit());
+            QString data = jsObject.value("Data").toString();
+            emit ReadData(jsObject.value("Dev").toString(), QByteArray::fromHex(data.toLatin1()));
         }
     }
 }
@@ -204,7 +209,7 @@ void CatWebSocketClient::DecodeSerialOpenSucceed(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != SERIALOPENSUCCEED)
+    if(jsObject.value("Cmd").toInt() == SERIALOPENSUCCEED)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
@@ -217,7 +222,7 @@ void CatWebSocketClient::DecodeSerialCloseSucceed(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != SERIALCLOSESUCCEED)
+    if(jsObject.value("Cmd").toInt() == SERIALCLOSESUCCEED)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
@@ -230,7 +235,7 @@ void CatWebSocketClient::DecodeSerialDisconnect(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != SERIALDISCONNECT)
+    if(jsObject.value("Cmd").toInt() == SERIALDISCONNECT)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
@@ -243,14 +248,15 @@ void CatWebSocketClient::DecodeSerialDevList(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != SERIALDEVLIST)
+    if(jsObject.value("Cmd").toInt() == SERIALDEVLIST)
     {
         QList<QString> devs;
-        
-        /*if(!jsObject.value("Dev").toString().isEmpty())
+        QJsonArray array = jsObject.value("Devs").toArray();
+        foreach(auto dev, array)
         {
-            emit SerialDisconnect(jsObject.value("Dev").toString());
-        }*/
+            devs.append(dev.toString());
+        }
+        emit SerialDevListSign(devs);
     }
 }
 
@@ -272,6 +278,7 @@ void CatWebSocketClient::DecodeWriteData(QString data)
 void CatWebSocketClient::run()
 {
     InitProperty();
+    qDebug() << QString::fromStdString(INFO_LOG_T("run"));
     InitConnect();
     exec();
     qDebug() << "exit client socket";
@@ -289,7 +296,8 @@ void CatWebSocketClient::SerialDevList()
     jsobject.insert("State", 200);
     doc.setObject(jsobject);
     json = doc.toJson();
-    m_pWebSocket->sendTextMessage(json);
+    emit WriteDataSign(json);
+    //m_pWebSocket->sendTextMessage(json);
 }
 
 void CatWebSocketClient::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
@@ -304,7 +312,8 @@ void CatWebSocketClient::OpenSerialPort(QString port, qint32 baudRate, int stopB
     jsobject.insert("State", 200);
     doc.setObject(jsobject);
     json = doc.toJson();
-    m_pWebSocket->sendTextMessage(json);
+    emit WriteDataSign(json);
+    //m_pWebSocket->sendTextMessage(json);
 }
 
 void CatWebSocketClient::CloseSerialPort(QString port)
@@ -317,7 +326,8 @@ void CatWebSocketClient::CloseSerialPort(QString port)
     jsobject.insert("State", 200);
     doc.setObject(jsobject);
     json = doc.toJson();
-    m_pWebSocket->sendTextMessage(json);
+    emit WriteDataSign(json);
+    //m_pWebSocket->sendTextMessage(json);
 }
 
 void CatWebSocketClient::WriteData(QString port, QByteArray data)
@@ -327,9 +337,10 @@ void CatWebSocketClient::WriteData(QString port, QByteArray data)
     QJsonObject jsobject;
     jsobject.insert("Cmd", WRITEDATA);
     jsobject.insert("Dev", port);
-    jsobject.insert("Data", data);
+    jsobject.insert("Data", QString(data.toHex(':')));
     jsobject.insert("State", 200);
     doc.setObject(jsobject);
     json = doc.toJson();
-    m_pWebSocket->sendTextMessage(json);
+    emit WriteDataSign(json);
+    //m_pWebSocket->sendTextMessage(json);
 }

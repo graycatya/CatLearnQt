@@ -60,6 +60,7 @@ signals:
     void ReadData(QString port, QByteArray data);
     void AddDev(QString port);
     void DelDev(QString port);
+    void WriteDataSign(const QString data);
 
 public slots:
     void SerialDevList();

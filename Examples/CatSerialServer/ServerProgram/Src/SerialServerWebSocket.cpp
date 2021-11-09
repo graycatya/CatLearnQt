@@ -177,7 +177,7 @@ QString SerialServerWebSocket::ReadData(QString port, QByteArray data)
     jsobject.insert("Cmd", READDATA);
     jsobject.insert("ServerUrl", m_pWebSocketServer->serverUrl().toString());
     jsobject.insert("Dev", port);
-    jsobject.insert("Data", QString(data));
+    jsobject.insert("Data", QString(data.toHex(':')));
     jsobject.insert("State", 200);
     doc.setObject(jsobject);
     json = doc.toJson();
@@ -405,7 +405,7 @@ void SerialServerWebSocket::DecodeSerialDevList(QString data)
     QWebSocket *socket = qobject_cast<QWebSocket*>(sender());
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != SERIALDEVLIST)
+    if(jsObject.value("Cmd").toInt() == SERIALDEVLIST)
     {
         QString json;
         QJsonDocument doc;
@@ -432,7 +432,7 @@ void SerialServerWebSocket::DecodeOpenSerialPort(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != OPENSERIALPORT)
+    if(jsObject.value("Cmd").toInt() == OPENSERIALPORT)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
@@ -447,7 +447,7 @@ void SerialServerWebSocket::DecodeCloseSerialPort(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != CLOSESERIALPORT)
+    if(jsObject.value("Cmd").toInt() == CLOSESERIALPORT)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
@@ -460,12 +460,13 @@ void SerialServerWebSocket::DecodeWriteData(QString data)
 {
     QJsonDocument jsonDocument = QJsonDocument::fromJson(data.toLocal8Bit().data());
     QJsonObject jsObject = jsonDocument.object();
-    if(jsObject.value("Cmd").toInt() != CLOSESERIALPORT)
+    if(jsObject.value("Cmd").toInt() == WRITEDATA)
     {
         if(!jsObject.value("Dev").toString().isEmpty())
         {
+            QString data = jsObject.value("Data").toString();
             SerialDevList::Instance()->WriteData(jsObject.value("Dev").toString(),
-                                                 jsObject.value("Data").toString().toLocal8Bit());
+                                                 QByteArray::fromHex(data.toLatin1()));
         }
     }
 }

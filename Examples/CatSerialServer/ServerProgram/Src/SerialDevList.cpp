@@ -138,6 +138,8 @@ void SerialDevList::CloseSerialPort(QString port)
 
 void SerialDevList::WriteData(QString port, QByteArray data)
 {
+    QString log = "WriteData: " + data;
+    CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
     if(m_ySerials.contains(port))
     {
         if(m_ySerials[port] != nullptr)

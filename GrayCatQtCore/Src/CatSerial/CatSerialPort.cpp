@@ -63,7 +63,7 @@ void CatSerialPort::InitConnect()
             m_pReadPortDataWork->Start(50);
         }
         m_yReadData += m_qPort.readAll();
-        //qDebug() << "seril data: " << m_yReadData;
+        qDebug() << "seril data: " << m_yReadData;
     });
 
     /*connect(m_pReadDataBufferWork, &ReadDataBufferWork::readyRead, this, [=](){

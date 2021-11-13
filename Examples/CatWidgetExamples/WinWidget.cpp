@@ -121,7 +121,7 @@ void WinWidget::InitProperty()
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
     ui->TopWidget->setVisible(false);
 #else
-    SetShadowWeight(5);
+    SetShadowWeight(8);
     SetShadowColor(QColor(0, 0, 0, 50));
 #endif
     // 注册事件过滤 - 提供窗体拖拽

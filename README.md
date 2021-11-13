@@ -29,7 +29,6 @@
       - [Figma原型](#figma原型)
     - [CatWidgetExamples效果预览](#catwidgetexamples效果预览)
     - [MetroDemo惠州地铁案例效果预览](#metrodemo惠州地铁案例效果预览)
-  - [打赏](#打赏)
 
 ## CatLearnQt
 
@@ -319,8 +318,4 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 
 ![metrodemo](./doc/PubImages/metrodemo.gif)
 
-### 打赏
 
-觉得分享的内容还不错, 就打赏下作者吧~~~
-
-<img src="./doc/Images/Alipay.png" width="35%" height="35%" /><img src="./doc/Images/WeChat.png" width="35%" height="35%" />

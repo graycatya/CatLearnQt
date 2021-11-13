@@ -30,7 +30,6 @@
       - [FigmaPrototype](#figmaprototype)
     - [CatWidgetExamplesEffectPreview](#catwidgetexampleseffectpreview)
     - [MetroDemo_HuizhouMetroCaseEffectPreview](#metrodemo_huizhoumetrocaseeffectpreview)
-  - [Support](#support)
 
 ## CatLearnQt
 
@@ -320,8 +319,4 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 
 ![Metro Demo](./doc/PubImages/metrodemo.gif)
 
-### Support
 
-Support me if you like it~~~
-
-<img src="./doc/Images/Alipay.png" width="35%" height="35%" /><img src="./doc/Images/WeChat.png" width="35%" height="35%" />

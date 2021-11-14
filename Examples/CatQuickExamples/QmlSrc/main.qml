@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
-import CatEncp 1.0
+//import CatEncp 1.0
 import "FunctionLayout"
 import "./MoreFunctionViews"
 
@@ -89,8 +89,8 @@ Rectangle {
 
 
     Component.onCompleted: {
-        catLog.debug_print("run ui, system is: " + Qt.platform.os);
-        catLog.debug_print("webresourcepath " + catconfig.getWebResourcePath())
+        console.log("run ui, system is: " + Qt.platform.os);
+        console.log("webresourcepath " + catconfig.getWebResourcePath())
         ProjectObject.currentTheme = catconfig.getValue("Style");
 
         if(Qt.platform.os === "osx")

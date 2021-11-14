@@ -259,6 +259,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | Examples/CatWidgetExamples | Widgdet版项目演示 |
 | Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples裁减版WebAssmbly版项目演示 |
 | Examples/MetroDemo | 基于Quick实现惠州地铁案例 |
+| Examples/CatSerialServer | 跨平台串口服务进程 |
 
 #### CatQuickExamples效果预览
 
@@ -279,6 +280,9 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | Image3dRotation | 图片3d旋转 |
 | CatECharts | WebEngine演示ECharts图表 |
 | CatSideColumn | 滑动侧栏 |
+| CatSorter | 分页器 |
+| TableView | 表格控件 |
+| CatTreeView | 树形控件 |
 
 ##### 效果演示
 

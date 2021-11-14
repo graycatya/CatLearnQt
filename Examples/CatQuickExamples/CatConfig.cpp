@@ -7,13 +7,17 @@
 #include <QDir>
 #include <QDesktopServices>
 
+#ifndef WEBASSEMBLY
 #include "CatEncp.h"
+#endif
 #include "QrenCode/QuickQrenCodeParentItem.h"
+#ifndef WEBASSEMBLY
 #ifdef _MSC_VER
 #include "Src/WebChannelFunction/CatEchatswebChannel.h"
 #else
 #ifndef Q_OS_WIN
 #include "Src/WebChannelFunction/CatEchatswebChannel.h"
+#endif
 #endif
 #endif
 
@@ -30,6 +34,7 @@ QTranslator* CatConfig::m_pTranslatorDi = nullptr;
 void CatConfig::InitConfig()
 {
     InitQmlRegisterType();
+#ifndef WEBASSEMBLY
     if(!configExist())
     {
         QSettings setting(m_sConfigPath, QSettings::IniFormat);
@@ -50,6 +55,7 @@ void CatConfig::InitConfig()
     } else {
         InitLanguage(getValue("Language").toInt());
     }
+#endif
 }
 
 bool CatConfig::configExist()
@@ -203,7 +209,9 @@ QList<QString> CatConfig::systemFontFamily(QFontDatabase::WritingSystem writingS
 void CatConfig::InitQmlRegisterType()
 {
     qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
+#ifndef WEBASSEMBLY
     qmlRegisterType<CatEncp>("CatEncp", 1, 0, "CatEncp");
+#endif
 #ifdef QT_WEBENGINE_LIB
     qmlRegisterType<CatEchatswebChannel>("io.decovar.CatEchatswebChannel", 1, 0, "CatEchatswebChannel");
 #endif

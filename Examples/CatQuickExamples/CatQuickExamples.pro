@@ -1,5 +1,7 @@
 QT += core gui quick
 
+DEFINES += WEBASSEMBLY
+
 message(Qt version: $$[QT_VERSION])
 message(Qt is installed in $$[QT_INSTALL_PREFIX])
 message(Qt resources can be found in the following locations:)
@@ -16,6 +18,11 @@ message(Examples: $$[QT_INSTALL_EXAMPLES])
 !mingw {
     QT += webengine webchannel websockets webview
 }
+
+if(contains(DEFINES,WEBASSEMBLY)) {
+    QT -= webengine webchannel websockets webview
+}
+
 
 
 DEFINES += WEBRESOURCEPATH=\\\"file:///$$PWD/WebResource\\\"
@@ -47,7 +54,11 @@ minQtVersion(5, 15, 0) {
     QT += quick3d
 }
 
+if(contains(DEFINES,WEBASSEMBLY)) {
+    QT -= quick3d
+}
 
+if(!contains(DEFINES,WEBASSEMBLY)) {
 # 配置file_copies
 CONFIG += file_copies
 
@@ -66,6 +77,7 @@ CONFIG(debug, debug|release){
 
 # 配置COPIES
 COPIES += examples
+}
 
 CONFIG += c++17 utf8_source
 CONFIG += object_with_source
@@ -93,20 +105,29 @@ Debug:RCC_DIR = debug/.rcc
 Debug:UI_DIR = debug/.ui
 
 include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
-include($$PWD/../../GrayCatQtCore/Src/CatEncp/CatEncp.pri)
+
 include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
-include($$PWD/../../GrayCatQtCore/Src/SingleApplication/singleapplication.pri)
+
+if(!contains(DEFINES,WEBASSEMBLY)) {
+    include($$PWD/../../GrayCatQtCore/Src/SingleApplication/singleapplication.pri)
+    include($$PWD/../../GrayCatQtCore/Src/CatEncp/CatEncp.pri)
+}
+
 include($$PWD/QrenCode/QrenCode.pri)
 include($$PWD/QmlCatLog/QmlCatLog.pri)
-win32:msvc {
-    include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
-}
-mac {
-    include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+
+if(!contains(DEFINES,WEBASSEMBLY)) {
+    win32:msvc {
+        include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+    }
+    mac {
+        include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+    }
 }
 
 include($$PWD/Src/TableFunction/TableFunction.pri)
 
+if(!contains(DEFINES,WEBASSEMBLY)) {
 # 配置file_copies
 CONFIG += file_copies
 
@@ -123,6 +144,7 @@ CONFIG(debug, debug|release){
 }
 
 COPIES += webresource
+}
 
 SOURCES += \
     CatConfig.cpp \

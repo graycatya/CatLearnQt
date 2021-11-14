@@ -57,7 +57,7 @@ Rectangle {
                 channel.connectTo(catechatswebchannel)
                 webSocket.onTextMessageReceived.connect(catechatswebchannel.textMessageReceive)
                 webSocket.onTextMessageReceived.connect(function(data){
-                    catLog.debug_print("DemoCatEchars: " + data);
+                    console.log("DemoCatEchars: " + data);
                 });
                 catechatswebchannel.onMessageChanged.connect(webSocket.sendTextMessage);
             }

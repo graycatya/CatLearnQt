@@ -1,5 +1,7 @@
 QT += core gui sql
-if(!contains(DEFINES,WEBASSEMBLY)) {
+
+DEFINES += WEBASSEMBLY
+if(contains(DEFINES,WEBASSEMBLY)) {
 QT -= sql
 }
 QT += quick quickwidgets

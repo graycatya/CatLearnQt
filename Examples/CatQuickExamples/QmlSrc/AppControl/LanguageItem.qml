@@ -1,4 +1,4 @@
-import QtQuick 2.12
+﻿import QtQuick 2.12
 import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
 import "../"
@@ -32,7 +32,10 @@ Item {
         }
 
         onClicked: {
-            catconfig.setCurrentLanguage(languageStr);
+            if(catconfig != undefined)
+            {
+                catconfig.setCurrentLanguage(languageStr);
+            }
         }
     }
 
@@ -47,7 +50,10 @@ Item {
     }
 
     onLanguageStrChanged: {
-        updateLanguage()
+        if(catconfig != undefined)
+        {
+            updateLanguage()
+        }
     }
 
     function updateLanguage()
@@ -62,9 +68,11 @@ Item {
     }
 
     Component.onCompleted: {
-
-        catconfig.updateLanguage.connect(function(){
-            updateLanguage()
-        });
+        if(catconfig != undefined)
+        {
+            catconfig.updateLanguage.connect(function(){
+                updateLanguage()
+            });
+        }
     }
 }

@@ -10,9 +10,12 @@
 #ifdef Q_CC_MSVC
 #include "CatFrameless/CatFrameLessView.h"
 #endif
-#include <QmlCatLog.h>
+
 #include "CatConfig.h"
+#ifndef WEBASSEMBLY
 #include "SingleApplication"
+#include <QmlCatLog.h>
+#endif
 #include "QmlConfig.h"
 
 
@@ -24,17 +27,26 @@ int main(int argc, char *argv[])
 #ifdef QT_WEBENGINE_LIB
     QtWebEngine::initialize();
 #endif
-    QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
 
+#ifndef WEBASSEMBLY
+    QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
+#endif
+
+#ifndef WEBASSEMBLY
     SingleApplication app(argc, argv);
+#else
+    QGuiApplication app(argc, argv);
+#endif
     app.setOrganizationName("GrayCatYa");
     app.setOrganizationDomain("graycatya.com");
     app.setApplicationName("CatQuickExamples");
-
+#ifndef WEBASSEMBLY
     CatConfig *catconfig = CatConfig::Instance();
     catconfig->InitConfig();
 
+
     QmlConfig::moduleRegister();
+#endif
 
 #ifdef QT_OS_WIN10
     CatFrameLessView view;
@@ -49,7 +61,9 @@ int main(int argc, char *argv[])
 
     view.engine()->addImportPath(GrayCatQtQuickImportPath);
     view.engine()->rootContext()->setContextProperty("view", &view);
+#ifndef WEBASSEMBLY
     view.engine()->rootContext()->setContextProperty("catLog", catlog);
+#endif
     view.engine()->rootContext()->setContextProperty("catconfig", catconfig);
 
     QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), view.engine(), SLOT(retranslate()));
@@ -67,10 +81,13 @@ int main(int argc, char *argv[])
 #else
     QQmlApplicationEngine engine;
     engine.addImportPath(GrayCatQtQuickImportPath);
+#ifndef WEBASSEMBLY
     engine.rootContext()->setContextProperty("catLog", catlog);
+
     engine.rootContext()->setContextProperty("catconfig", catconfig);
 
     QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), &engine, SLOT(retranslate()));
+#endif
     for(QString path : engine.importPathList())
     {
         qDebug() << path;

@@ -5,6 +5,8 @@
 
 #include <QMutex>
 
+#include <QMap>
+
 class CatWinMonitorSerial : public QObject
 {
     Q_OBJECT
@@ -37,15 +39,23 @@ public:
         }
     }
 
+    static QStringList Serials();
+
+    QMap<QString, QString> m_pSerials;
+
 private:
     CatWinMonitorSerial();
     ~CatWinMonitorSerial();
 
 signals:
     // 端口插入
-    void AddSerial(qint64 pid, qint64 vid);
+    void AddSerial(qint64 pid, qint64 vid, QString serial);
     // 端口拔出
-    void DeleteSerial(qint64 pid, qint64 vid, QList<QString> serials);
+    void DeleteSerial(qint64 pid, qint64 vid, QString serial);
+    // 端口插入
+    //void AddSerial(QSerialPortInfo);
+    // 端口拔出
+
 
 private:
     static CatWinMonitorSerial* _instance;

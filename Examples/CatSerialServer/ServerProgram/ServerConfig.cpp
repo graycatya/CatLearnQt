@@ -4,6 +4,7 @@
 #include <QDesktopServices>
 #include <QCoreApplication>
 #include <QVariant>
+#include <QDebug>
 
 ServerConfig* ServerConfig::_instance = nullptr;
 QMutex* ServerConfig::m_pMutex = new QMutex;
@@ -67,6 +68,7 @@ bool ServerConfig::configExist()
 ServerConfig::ServerConfig()
 {
     m_sConfigPath = QCoreApplication::applicationDirPath() + "/SerialServerConfig.ini";
+    qDebug() << "m_sConfigPath: " << m_sConfigPath;
 }
 
 ServerConfig::~ServerConfig()

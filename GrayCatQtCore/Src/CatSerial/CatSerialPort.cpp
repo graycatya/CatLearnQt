@@ -80,20 +80,19 @@ void CatSerialPort::InitConnect()
 #ifdef Q_CC_MSVC
     if(QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7)
     {
-        QObject::connect(CatWinMonitorSerial::Instance(), &CatWinMonitorSerial::DeleteSerial, this, [=](qint64 pid, qint64 vid, QList<QString> serials){
+        QObject::connect(CatWinMonitorSerial::Instance(), &CatWinMonitorSerial::DeleteSerial, this, [=](qint64 pid, qint64 vid, QString serial){
 
-            for(int i = 0; i < serials.size(); i++)
-            {
-                if(m_qPortInfo.vendorIdentifier() == vid && m_qPortInfo.productIdentifier() == pid && m_qPortInfo.portName() == serials.at(i))
+                if(serial == m_qPort.portName())
                 {
+                    qDebug() << "CatWinMonitorSerial DeleteSerial : " << serial;
                     if(m_qPort.isOpen())
                     {
                         m_qPort.close();
                     }
                     emit DisconnectPort();
                 }
-            }
-        });
+
+        }, Qt::QueuedConnection);
     }
 #endif
 #endif
@@ -115,6 +114,7 @@ void CatSerialPort::InitConnect()
 void CatSerialPort::SetSerialInfo(const QSerialPortInfo info)
 {
     this->m_qPortInfo = info;
+    qDebug() << "SetSerialInfo: " << this->m_qPortInfo.systemLocation() << " " << this->m_qPortInfo.description();
     this->m_sSerialPortName = info.portName();
 }
 

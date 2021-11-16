@@ -3,11 +3,12 @@
 #include "CatLog"
 #include "Src/SerialDevList.h"
 #include "Src/SerialServerInitialize.h"
+#include "SingleApplication"
 
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication app(argc, argv);
+    SingleApplication app(argc, argv);
     app.setApplicationName("CatSerialServer");
 
     qRegisterMetaType<QSerialPortInfo>("QSerialPortInfo");

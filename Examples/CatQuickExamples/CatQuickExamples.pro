@@ -1,6 +1,6 @@
 QT += core gui quick
 
-DEFINES += WEBASSEMBLY
+#DEFINES += WEBASSEMBLY
 
 message(Qt version: $$[QT_VERSION])
 message(Qt is installed in $$[QT_INSTALL_PREFIX])

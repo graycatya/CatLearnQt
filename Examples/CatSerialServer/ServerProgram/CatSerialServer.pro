@@ -6,7 +6,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 DEFINES += COREAPP
 
-CONFIG +=console
+#CONFIG +=console
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -38,7 +38,7 @@ include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    MainWidget.cpp \
+    MainWindow.cpp \
     main.cpp \
 
 
@@ -48,7 +48,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
-    MainWidget.ui
+    MainWindow.ui
 
 HEADERS += \
-    MainWidget.h
+    MainWindow.h

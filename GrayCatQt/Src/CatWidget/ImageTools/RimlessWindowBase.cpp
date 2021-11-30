@@ -450,8 +450,8 @@ void RimlessWindowBase::paintEvent(QPaintEvent *event)
     Q_UNUSED(event)
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
-    path.addRect(ShadowWeight, ShadowWeight,
-                 this->width()-ShadowWeight*2, this->height()-ShadowWeight*2);
+    path.addRoundedRect(ShadowWeight, ShadowWeight,
+                 this->width()-ShadowWeight*2, this->height()-ShadowWeight*2, 2, 2);
 
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing, true);
@@ -462,9 +462,9 @@ void RimlessWindowBase::paintEvent(QPaintEvent *event)
     {
         QPainterPath path;
         path.setFillRule(Qt::WindingFill);
-        path.addRect(ShadowWeight-i, ShadowWeight-i,
+        path.addRoundedRect(ShadowWeight-i, ShadowWeight-i,
                      this->width()-(ShadowWeight-i)*2,
-                     this->height()-(ShadowWeight-i)*2);
+                     this->height()-(ShadowWeight-i)*2, 2, 2);
         color.setAlpha(150 - qSqrt(i)*50);
         painter.setPen(color);
         painter.drawPath(path);

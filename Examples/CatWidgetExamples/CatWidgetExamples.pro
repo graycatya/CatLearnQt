@@ -1,6 +1,6 @@
 QT += core gui sql
 
-DEFINES += WEBASSEMBLY
+#DEFINES += WEBASSEMBLY
 if(contains(DEFINES,WEBASSEMBLY)) {
 QT -= sql
 }

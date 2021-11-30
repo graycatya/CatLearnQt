@@ -374,7 +374,7 @@ bool CatFramelessWidget::eventFilter(QObject *watched, QEvent *event)
             }
 
             // 识别标题栏拖动产生半屏全屏效果
-            if(titleBar != 0 && titleBar->rect().contains(pos))
+            if(titleBar != 0 && titleBar->geometry().contains(pos))
             {
                 QWidget *child = titleBar->childAt(pos);
                 if(!child)

@@ -15,8 +15,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+protected:
+    void paintEvent(QPaintEvent *event) override;
+
 private:
     void InitFrameless();
+
+    void PaintShadow(QPainter *painter, QColor shadowcolor, int shadowwidth, qreal radius);
 
 private:
     Ui::MainWindow *ui;

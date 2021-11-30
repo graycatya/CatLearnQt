@@ -1,6 +1,7 @@
 ﻿#include "CatFramelessMainWindow.h"
 #include "qevent.h"
 #include "qwidget.h"
+#include <QDebug>
 
 #ifdef Q_OS_WIN
 #include "windows.h"
@@ -316,7 +317,8 @@ bool CatFramelessMainWindow::eventFilter(QObject *watched, QEvent *event)
                 }
 
                 //识别标题栏拖动产生半屏全屏效果
-                if (titleBar != 0 && titleBar->rect().contains(pos)) {
+                if (titleBar != 0 && titleBar->geometry().contains(pos)) {
+                    //qDebug() << "titleBar->geometry (): " << titleBar->geometry();
                     QWidget *child = titleBar->childAt(pos);
                     if (!child) {
                         *result = HTCAPTION;

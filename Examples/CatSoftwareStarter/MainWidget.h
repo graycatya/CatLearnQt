@@ -2,13 +2,19 @@
 #define MAINWIDGET_H
 
 #include <QWidget>
-#include "CatFrameless/CatFramelessWidget.h"
+
 
 namespace Ui {
 class MainWidget;
 }
 
+#ifdef Q_OS_WIN
+#include "CatFrameless/CatFramelessWidget.h"
 class MainWidget : public CatFramelessWidget
+#else
+#include "CatFrameless/CatFramelessMainWindow.h"
+class MainWidget : public CatFramelessMainWindow
+#endif
 {
     Q_OBJECT
 

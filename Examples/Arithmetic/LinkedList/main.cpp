@@ -26,12 +26,8 @@ public:
 
     int get(int index)
     {
-        if(size == 0)
-        {
-            return -1;
-        } else if(size < index) {
-            return -1;
-        } else {
+        if(index<0||index>(size-1)) return -1;
+        else {
             int curindex = 0;
             SinglyListNode *last = head;
             SinglyListNode *next = last->next;
@@ -102,29 +98,32 @@ public:
 
     void deleteAtIndex(int index)
     {
-        if(size != 0 && index >= 0 && index <= size)
-        {
-            int curindex = 0;
-            SinglyListNode *last = head;
-            SinglyListNode *next = last->next;
-            SinglyListNode *temp = nullptr;
-            while (last->next) {
-                if(curindex == index)
-                {
-                    break;
-                }
-                temp = last;
-                last = next;
-                next = next->next;
-                curindex++;
-            }
-            delete last;
-            last = nullptr;
-            last = next;
-            if(temp) temp->next = last;
+        if(index<0||index>=size) return ;
 
-            size--;
+        int curindex = 0;
+        SinglyListNode *last = head;
+        SinglyListNode *next = last->next;
+        SinglyListNode *temp = nullptr;
+        while (last->next) {
+            if(curindex == index)
+            {
+                break;
+            }
+            temp = last;
+            last = next;
+            next = next->next;
+            curindex++;
         }
+        delete last;
+        last = nullptr;
+        last = next;
+        if(temp) {
+            temp->next = last;
+            head = temp;
+        }
+
+        size--;
+
     }
 
 private:
@@ -140,8 +139,8 @@ int main(int argc, char *argv[])
     linkedList.addAtTail(3);
     linkedList.addAtIndex(1,2);   //链表变为1-> 2-> 3
     qDebug() << QString::number(linkedList.get(1));            //返回2
-    linkedList.deleteAtIndex(1);  //现在链表是1-> 3
-    qDebug() << QString::number(linkedList.get(1));            //返回2
+    linkedList.deleteAtIndex(0);  //现在链表是1-> 3
+    qDebug() << QString::number(linkedList.get(0));            //返回2
 
 
     return app.exec();

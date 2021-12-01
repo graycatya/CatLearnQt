@@ -12,10 +12,10 @@
  */
 class MyLinkedList {
 public:
-    struct SinglyListNode {
+    struct Node {
         int val;
-        SinglyListNode *next;
-        SinglyListNode(int x) : val(x), next(nullptr) {}
+        Node *next;
+        Node(int x) : val(x), next(nullptr) {}
     };
 
     MyLinkedList()
@@ -26,35 +26,19 @@ public:
 
     int get(int index)
     {
-        if(index<0||index>(size-1)) return -1;
-        else {
-            int curindex = 0;
-            SinglyListNode *last = head;
-            SinglyListNode *next = last->next;
-
-            while (last->next) {
-                if(curindex == index)
-                {
-                    break;
-                }
-                last = next;
-                next = next->next;
-                curindex++;
-            }
-            return last->val;
+        if(index < 0 || index >(size-1)) return -1;
+        Node *cur = head;
+        while((index--)) {
+            cur = cur->next;
         }
+        return cur->val;
     }
 
     void addAtHead(int val)
     {
-        if(size == 0)
-        {
-            head = new SinglyListNode(val);
-        } else {
-            SinglyListNode *node = new SinglyListNode(val);
-            node->next = head;
-            head = node;
-        }
+        Node *newnode = new Node(val);
+        newnode->next = head;
+        head = newnode;
         size++;
     }
 
@@ -62,84 +46,82 @@ public:
     {
         if(size == 0)
         {
-            head = new SinglyListNode(val);
-        } else {
-            SinglyListNode *temp = head;
-            SinglyListNode *last = temp;
-            while (temp) {
-                last = temp;
-                temp = temp->next;
-            }
-            temp = new SinglyListNode(val);
-            last->next = temp;
+            addAtHead(val);
+            return;
         }
+        Node *cur = head;
+        while (cur->next) {
+            cur = cur->next;
+        }
+        Node *newnode = new Node(val);
+        newnode->next = cur->next;
+        cur->next = newnode;
         size++;
     }
 
     void addAtIndex(int index, int val)
     {
-        if(index<=0) addAtHead(val);//插入index的时候，如果下标是=0,就相当于从头插入，所以要包含<=
-        else if(index==size) addAtTail(val);
-        else if(index>size) return ;
+        if(index <= 0) addAtHead(val);
+        else if(index == size) addAtTail(val);
+        else if(index > size) return;
         else {
-            SinglyListNode *node = new SinglyListNode(val);
-            SinglyListNode *cur = head;
-            SinglyListNode *last = cur;
+            Node *newnode = new Node(val);
+            Node *cur = head;
+            Node *last = nullptr;
             while (index--) {
                 last = cur;
                 cur = cur->next;
             }
-            node->next = last->next;
-            last->next = node;
+            newnode->next = cur;
+            if(last)
+            {
+                last->next = newnode;
+            } else {
+                last = newnode;
+            }
+
             size++;
         }
-
     }
 
     void deleteAtIndex(int index)
     {
-        if(index<0||index>=size) return ;
-
-        int curindex = 0;
-        SinglyListNode *last = head;
-        SinglyListNode *next = last->next;
-        SinglyListNode *temp = nullptr;
-        while (last->next) {
-            if(curindex == index)
-            {
-                break;
-            }
-            temp = last;
-            last = next;
-            next = next->next;
-            curindex++;
+        if(index<0||index>=size) return;
+        Node *last = nullptr;
+        Node *cur = head;
+        while (index--) {
+           last = cur;
+           cur = cur->next;
         }
-        delete last;
-        last = nullptr;
-        last = next;
-        if(temp) {
-            temp->next = last;
-            head = temp;
+        if(last)
+        {
+            last->next = cur->next;
+        } else {
+            head = cur->next;
         }
-
+        delete cur;
+        cur = nullptr;
         size--;
-
     }
 
 private:
     int size;
-    SinglyListNode *head;
+    Node *head;
 };
 
 int main(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
     MyLinkedList linkedList;
+    /*
     linkedList.addAtHead(1);
     linkedList.addAtTail(3);
     linkedList.addAtIndex(1,2);   //链表变为1-> 2-> 3
     qDebug() << QString::number(linkedList.get(1));            //返回2
     linkedList.deleteAtIndex(0);  //现在链表是1-> 3
+    qDebug() << QString::number(linkedList.get(0));            //返回3
+    */
+    linkedList.addAtTail(1);
     qDebug() << QString::number(linkedList.get(0));            //返回2
 
 

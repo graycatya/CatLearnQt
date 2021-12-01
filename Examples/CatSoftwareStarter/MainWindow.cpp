@@ -3,6 +3,7 @@
 #include <QPainterPath>
 #include <QPainter>
 #include <QtMath>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     CatFramelessMainWindow(parent),
@@ -27,6 +28,9 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::InitFrameless()
 {
     this->setTitleBar(ui->TitleWidget);
+    connect(ui->TitleWidget, &CatTitleWidget::doubleClick, this, [=](){
+        qDebug() << "CatTitleWidget::doubleClick";
+    });
 
     //设置样式表
     QStringList list;

@@ -28,8 +28,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::InitFrameless()
 {
     this->setTitleBar(ui->TitleWidget);
-    connect(ui->TitleWidget, &CatTitleWidget::doubleClick, this, [=](){
-        qDebug() << "CatTitleWidget::doubleClick";
+    connect(this, &CatFramelessMainWindow::titleDblClick, this, [=](){
+        qDebug() << "CatFramelessMainWindow::titleDblClick  ";
     });
 
     //设置样式表

@@ -3,6 +3,7 @@ FORMS += \
     $$PWD/PagingNavigationTools.ui \
     $$PWD/QrenCodeTool.ui \
     $$PWD/RimlessWindowTool.ui \
+    $$PWD/SideColumnTool.ui \
     $$PWD/SliderTools.ui
 
 HEADERS += \
@@ -11,6 +12,7 @@ HEADERS += \
     $$PWD/QrenCodeTool.h \
     $$PWD/RimlessWindow.h \
     $$PWD/RimlessWindowTool.h \
+    $$PWD/SideColumnTool.h \
     $$PWD/SliderTools.h
 
 SOURCES += \
@@ -19,6 +21,7 @@ SOURCES += \
     $$PWD/QrenCodeTool.cpp \
     $$PWD/RimlessWindow.cpp \
     $$PWD/RimlessWindowTool.cpp \
+    $$PWD/SideColumnTool.cpp \
     $$PWD/SliderTools.cpp
 
 
@@ -34,3 +37,6 @@ SOURCES += \
 include(QcustomplotCharts/QcustomplotCharts.pri)
 
 }
+
+include(SideWidgetTools/SideWidgetTools.pri)
+

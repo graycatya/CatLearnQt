@@ -135,5 +135,18 @@
         <file>Images/CatWhite/BoardErasure.png</file>
         <file>Images/CatGray/CodeChina.png</file>
         <file>Images/CatWhite/CodeChina.png</file>
+        <file>Images/CatGray/SideColumn.png</file>
+        <file>Images/CatWhite/SideColumn.png</file>
+        <file>qss/CatGray/SideColumnTool.css</file>
+        <file>qss/CatWhite/SideColumnTool.css</file>
+        <file>Images/CatGray/SideCloseButton.png</file>
+        <file>Images/CatGray/SideOpenButton.png</file>
+        <file>Images/CatWhite/SideCloseButton.png</file>
+        <file>Images/CatWhite/SideOpenButton.png</file>
+        <file>Images/applogo.ico</file>
+        <file>Images/CatGray/SideTestButton.png</file>
+        <file>Images/CatWhite/SideTestButton.png</file>
+        <file>qss/CatGray/SideBoxButton.css</file>
+        <file>qss/CatWhite/SideBoxButton.css</file>
     </qresource>
 </RCC>

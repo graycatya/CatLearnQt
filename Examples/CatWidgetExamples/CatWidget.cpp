@@ -17,6 +17,7 @@
 #ifndef Q_OS_IOS
 #include "WidgetTools/CatQcustomplotTools.h"
 #endif
+#include "WidgetTools/SideColumnTool.h"
 
 
 
@@ -70,6 +71,7 @@ void CatWidget::InitToolButtons()
 #ifndef Q_OS_IOS
     ToolButtonList << "CatQcustomplotTools";
 #endif
+    ToolButtonList << "CatSideColumnTool";
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -115,6 +117,12 @@ void CatWidget::InitToolWidgets()
     m_pCatQcustomplotTools->setMouseTracking(true);
 #endif
 
+    SideColumnTool *m_pSideColumnTool = new SideColumnTool;
+    m_pSideColumnTool->setObjectName("CatSideColumnTool");
+    ui->ToolStackedWidget->addWidget(m_pSideColumnTool);
+    m_pSideColumnTool->installEventFilter(this);
+    m_pSideColumnTool->setMouseTracking(true);
+
     ui->ToolStackedWidget->setMouseTracking(true);
 }
 
@@ -151,6 +159,9 @@ void CatWidget::On_ToolButtons(int id)
 bool CatWidget::eventFilter(QObject *watched, QEvent *event)
 {
     if(watched->objectName() == "CatRimlessWindowTool")
+    {
+        watched->eventFilter(watched, event);
+    } else if(watched->objectName() == "CatSideColumnTool")
     {
         watched->eventFilter(watched, event);
     }

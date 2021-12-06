@@ -12,6 +12,9 @@
 #include <QTimer>
 #include <QQmlDebuggingEnabler>
 #include <QDateTime>
+#include <QPainterPath>
+#include <QPainter>
+#include <QtMath>
 //#include <QGraphicsDropShadowEffect>
 
 
@@ -23,11 +26,13 @@
 #include "CatControl/ListingOptions.h"
 #include "CatQuickWidget.h"
 
+
 WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget(parent),
 #else
-    RimlessWindowBase(parent, true),
+    CatFramelessWidget(parent),
+    //RimlessWindowBase(parent, true),
 #endif
     ui(new Ui::WinWidget) ,
     m_bFullScreen(false) ,
@@ -121,8 +126,11 @@ void WinWidget::InitProperty()
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
     ui->TopWidget->setVisible(false);
 #else
-    SetShadowWeight(8);
-    SetShadowColor(QColor(0, 0, 0, 50));
+    ShadowWeight = 8;
+    ShadowColor = QColor(0, 0, 0, 50);
+    setTitleBar(ui->TopWidget);
+    //SetShadowWeight(8);
+    //SetShadowColor(QColor(0, 0, 0, 50));
 #endif
     // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
@@ -320,7 +328,7 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #else
-        SetMoveRect(ui->TopWidget->rect());
+        //SetMoveRect(ui->TopWidget->rect());
 #endif
         this->mouseMoveEvent((QMouseEvent*)event);
     } else if(event->type() == QEvent::MouseButtonRelease)
@@ -378,7 +386,7 @@ void WinWidget::mouseMoveEvent(QMouseEvent *event)
 {
 
 #ifdef Q_OS_WIN
-    RimlessWindowBase::mouseMoveEvent(event);
+    /*RimlessWindowBase::mouseMoveEvent(event);
     QPoint pos = event->pos();
     if(m_bMousePress && m_bFullScreen && m_bTopWidget)
     {
@@ -392,7 +400,7 @@ void WinWidget::mouseMoveEvent(QMouseEvent *event)
             this->resize(QSize(m_pLastRect.size()));
             SetZoomButtonState("Min");
         }
-    }
+    }*/
 #else
     Q_UNUSED(event)
 #endif
@@ -413,6 +421,32 @@ void WinWidget::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event)
     //this->deleteLater();
+}
+
+void WinWidget::paintEvent(QPaintEvent *event)
+{
+    Q_UNUSED(event)
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(ShadowWeight, ShadowWeight,
+                 this->width()-ShadowWeight*2, this->height()-ShadowWeight*2, 2, 2);
+
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+    painter.fillPath(path, QBrush(Qt::white));
+
+    QColor color = ShadowColor;
+    for(int i=0; i<ShadowWeight; i++)
+    {
+        QPainterPath path;
+        path.setFillRule(Qt::WindingFill);
+        path.addRoundedRect(ShadowWeight-i, ShadowWeight-i,
+                     this->width()-(ShadowWeight-i)*2,
+                     this->height()-(ShadowWeight-i)*2, 2, 2);
+        color.setAlpha(150 - qSqrt(i)*50);
+        painter.setPen(color);
+        painter.drawPath(path);
+    }
 }
 
 void WinWidget::On_ButtonFunc(int id)

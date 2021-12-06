@@ -67,6 +67,11 @@ QPushButton#CatPagingNavigationTool {
     qproperty-iconSize: 48px 48px;
 }
 
+QPushButton#CatSideColumnTool {
+    qproperty-icon: url(:/Images/CatGray/SideColumn.png);
+    qproperty-iconSize: 48px 48px;
+}
+
 QScrollArea#ListingOptionsScroll {
     border: none;
     background-color: transparent;

@@ -2,6 +2,7 @@
 #define WINWIDGET_H
 
 #include "RimlessWindowBase.h"
+#include "CatFrameless/CatFramelessWidget.h"
 #include <QHash>
 
 class QPushButton;
@@ -20,7 +21,7 @@ class WinWidget : public
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget
 #else
-    RimlessWindowBase
+    CatFramelessWidget
 #endif
 {
     Q_OBJECT
@@ -58,6 +59,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
     void closeEvent(QCloseEvent *event);
+    void paintEvent(QPaintEvent *event);
 
 signals:
     void Closeed();
@@ -79,6 +81,10 @@ private:
     bool m_bFullScreen;
     bool m_bTopWidget;
     QRect m_pLastRect;
+
+    // 阴影属性
+    QColor ShadowColor;
+    int ShadowWeight;
 
 };
 

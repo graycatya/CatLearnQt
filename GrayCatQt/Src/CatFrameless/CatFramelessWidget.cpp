@@ -58,6 +58,7 @@ void CatFramelessWidget::showEvent(QShowEvent *event)
 
 void CatFramelessWidget::doWindowStateChange(QEvent *event)
 {
+    Q_UNUSED(event)
     // 非最大化才能移动和拖动大小
     if(windowState() == Qt::WindowNoState)
     {

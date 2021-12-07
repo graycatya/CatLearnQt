@@ -30,6 +30,7 @@ file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 
 add_subdirectory(QcustomplotCharts)
+add_subdirectory(SideWidgetTools)
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
@@ -40,3 +41,4 @@ add_library(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PUBLIC QcustomplotCharts)
+target_link_libraries(${PROJECT_NAME} PUBLIC SideWidgetTools)

@@ -15,6 +15,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-DAPP_NAME="CatWidgetExamples")
 add_definitions(-DAPP_VERSION="v1.2.0")
 add_definitions(-DLOG_PATH="Logs/")
+add_definitions(-DQAPPLICATION_CLASS)
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 

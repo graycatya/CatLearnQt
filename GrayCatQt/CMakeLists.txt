@@ -33,6 +33,7 @@ find_android_gui()
 add_subdirectory(Src/CatControl)
 add_subdirectory(Src/CatGraphicsView)
 add_subdirectory(Src/CatWidget)
+add_subdirectory(Src/CatFrameless)
 
 
 add_library(${STATIC_NAME} STATIC)
@@ -49,6 +50,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatControl)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatGraphicsView)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatWidget)
+target_link_libraries(${PROJECT_NAME} PUBLIC CatFrameless)
 
 target_link_android_gui(${PROJECT_NAME})
 
@@ -56,6 +58,7 @@ target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PUBLIC CatControl)
 target_link_libraries(${STATIC_NAME} PUBLIC CatGraphicsView)
 target_link_libraries(${STATIC_NAME} PUBLIC CatWidget)
+target_link_libraries(${STATIC_NAME} PUBLIC CatFrameless)
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

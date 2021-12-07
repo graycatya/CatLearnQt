@@ -1,6 +1,7 @@
 ﻿//#include <QApplication>
 #ifndef WEBASSEMBLY
     #include <SingleApplication>
+    #include <QApplication>
 #else
     #include <QApplication>
 #endif
@@ -36,20 +37,7 @@ int main(int argc, char *argv[])
     config->SetTranslator(&app);
     config->InitConfig();
 #ifndef Q_OS_IOS
-    // [3] 启动串口热插拔检测
-/*  MonitorSerial::Instance()->Start(200, true);
-    QObject::connect(MonitorSerial::Instance(), &MonitorSerial::UpdateSerial, [](QList<QSerialPortInfo> adds, QList<QSerialPortInfo> dels){
-        for(auto info : adds)
-        {
-            QString log = "AddSerial: " + info.portName() + " " + QString::number(info.productIdentifier()) + " : " + QString::number(info.vendorIdentifier());
-            CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        }
-        for(auto info : dels)
-        {
-            QString log = "DeleteSerial: " + info.portName() + " " + QString::number(info.productIdentifier()) + " : " + QString::number(info.vendorIdentifier());
-            CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        }
-    });*/
+
 #endif
 
     WinWidget w;

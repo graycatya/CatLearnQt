@@ -327,6 +327,14 @@
     </message>
 </context>
 <context>
+    <name>SideColumnTool</name>
+    <message>
+        <location filename="../../WidgetTools/SideColumnTool.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SliderTools</name>
     <message>
         <location filename="../../WidgetTools/SliderTools.ui" line="14"/>
@@ -352,27 +360,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="302"/>
+        <location filename="../../WinWidget.cpp" line="310"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="303"/>
+        <location filename="../../WinWidget.cpp" line="311"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="304"/>
+        <location filename="../../WinWidget.cpp" line="312"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="305"/>
+        <location filename="../../WinWidget.cpp" line="313"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="306"/>
+        <location filename="../../WinWidget.cpp" line="314"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

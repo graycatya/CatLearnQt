@@ -1,7 +1,7 @@
 ﻿#include "CatWinMonitorSerial.h"
 #include "MonitorSerial.h"
 
-#include <CatLog>
+//#include <CatLog>
 #include <QDataStream>
 
 #include <Windows.h>
@@ -92,7 +92,11 @@ QString WDK_WhoAllVidPid( string ssin )
     }
     else
     {
+#ifdef UNICODE
         hDevInfo = SetupDiGetClassDevsEx( InterfaceClassGuid, (PCWSTR)&"SCSI", NULL, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT, DeviceInfoSet, NULL, NULL );
+#else
+        hDevInfo = SetupDiGetClassDevsEx( InterfaceClassGuid, (PCSTR)&"SCSI", NULL, DIGCF_DEVICEINTERFACE | DIGCF_PRESENT, DeviceInfoSet, NULL, NULL );
+#endif
     }
 
     if (hDevInfo == INVALID_HANDLE_VALUE)
@@ -217,7 +221,12 @@ QString getPortName(int index, QString keyorvalue)
     QString valuemessage;//键值
     keysize = sizeof(keyname);
     valuesize = sizeof(keyvalue);
-    if (RegEnumValue(hKey, index, keyname, &keysize, 0, &type, (BYTE*)keyvalue, &valuesize) == 0) { //列举键名和值
+#ifdef UNICODE
+    if (RegEnumValue(hKey, index, (LPWSTR)keyname, &keysize, 0, &type, (BYTE*)keyvalue, &valuesize) == 0) { //列举键名和值
+#else
+    if (RegEnumValue(hKey, index, (LPSTR)keyname, &keysize, 0, &type, (BYTE*)keyvalue, &valuesize) == 0) { //列举键名和值
+#endif
+
         for (int i=0; i<(int)keysize; i++) {
             message = keyname[i];
             keymessage.append(message);
@@ -251,7 +260,7 @@ QStringList getAvailableSerialPort()
         for(int i = 0;i<key.size();i++){
             QString key = getPortName(i,"key");
             QString value = getPortName(i,"value");
-            qDebug()<<key<<value;
+            //qDebug()<<key<<value;
             availablePortName<<value;
         }
 
@@ -395,10 +404,10 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr(CW2A(szTmp.GetString()));
-        QString log =  "win api add: " + QString::fromStdString(STDStr);
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+        std::string STDStr(CW2A((LPCWSTR)szTmp.GetString()));
+        //QString log =  "win api add: " + QString::fromStdString(STDStr);
+        //CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        //CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
         QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
         if(mes.at(0) == "USB")
@@ -422,10 +431,10 @@ void UpdateDevice(PDEV_BROADCAST_DEVICEINTERFACE pDevInf, WPARAM wParam)
     {
         szTmp.Format(_T("%s"), szDevId.GetBuffer());
 
-        std::string STDStr(CW2A(szTmp.GetString()));
-        QString log =  "win api del: " + QString::fromStdString(STDStr);
-        CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
+        std::string STDStr(CW2A((LPCWSTR)szTmp.GetString()));
+        //QString log =  "win api del: " + QString::fromStdString(STDStr);
+        //CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+        //CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(log.toStdString()));
 
         QString dev = QString::fromStdString(STDStr);
         QStringList mes = dev.split('\\');
@@ -572,8 +581,8 @@ CatWinMonitorSerial::CatWinMonitorSerial()
     m_pSerials.clear();
     hThread = CreateThread(NULL, 0, ThrdFunc, NULL, 0, &iThread);
     if (hThread == NULL) {
-        QString log = "CatWinMonitorSerial CreateThread Error ";
-        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+        //QString log = "CatWinMonitorSerial CreateThread Error ";
+        //CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
     }
 }
 

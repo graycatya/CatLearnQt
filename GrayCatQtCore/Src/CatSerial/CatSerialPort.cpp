@@ -100,8 +100,8 @@ void CatSerialPort::InitConnect()
     connect(&m_qPort, &QSerialPort::errorOccurred, this, [=](QSerialPort::SerialPortError error){
         if(error == QSerialPort::SerialPortError::ResourceError)
         {
-            QString log = "QSerialPort::errorOccurred: " + QString::number(error);
-            CATLOG::CatLog::__Write_Log("./log", ERROR_LOG_T(log.toStdString()));
+            //QString log = "QSerialPort::errorOccurred: " + QString::number(error);
+            //CATLOG::CatLog::__Write_Log("./log", ERROR_LOG_T(log.toStdString()));
             if(m_qPort.isOpen())
             {
                 m_qPort.close();
@@ -133,7 +133,7 @@ bool CatSerialPort::OpenSerial(qint32 baudRate, QSerialPort::StopBits stopBits)
     // [0] 判断端口是否有效
     if(m_qPortInfo.isNull() && m_sSerialPortName.isEmpty())
     {
-        CATLOG::CatLog::__Write_Log(_INFO_LOG("SerialPort PortName is Null!"));
+        //CATLOG::CatLog::__Write_Log(_INFO_LOG("SerialPort PortName is Null!"));
         return false;
     } else if(m_sSerialPortName.isEmpty()) {
         m_sSerialPortName = m_qPortInfo.portName();
@@ -207,9 +207,9 @@ void CatSerialPort::WriteSerialPortSlot(QByteArray data, bool waitread, int msec
 {
     if(m_qPort.isOpen())
     {
-        QString log = QString("%1 Write: %2").arg(m_sSerialPortName).arg(QString(data.toHex()));
-        CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
-        CATLOG::CatLog::__Write_Log("./seriallog", INFO_LOG_T(log.toStdString()));
+        //QString log = QString("%1 Write: %2").arg(m_sSerialPortName).arg(QString(data.toHex()));
+        //CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+        //CATLOG::CatLog::__Write_Log("./seriallog", INFO_LOG_T(log.toStdString()));
         m_qPort.write(data);
         //m_pReadDataBufferWork->Start(10);
         if(waitread)

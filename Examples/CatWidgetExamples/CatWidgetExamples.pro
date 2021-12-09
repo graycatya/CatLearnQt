@@ -1,4 +1,4 @@
-QT += core gui sql
+QT += core gui sql widgets
 
 #DEFINES += WEBASSEMBLY
 if(contains(DEFINES,WEBASSEMBLY)) {
@@ -11,6 +11,7 @@ contains(QT_CONFIG, opengl): QT += opengl
 
 #DEFINES += ANDROID_APP
 DEFINES += QAPPLICATION_CLASS
+#DEFINES += _X86_
 
 CONFIG += c++11
 # CONFIG += console

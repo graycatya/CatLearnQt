@@ -1,4 +1,5 @@
-#include "CatEchatswebChannel.h"
+﻿#include "CatEchatswebChannel.h"
+#include <QDebug>
 
 CatEchatswebChannel::CatEchatswebChannel()
 {

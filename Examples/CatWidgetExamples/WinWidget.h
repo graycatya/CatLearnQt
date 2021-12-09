@@ -3,6 +3,7 @@
 
 #include "RimlessWindowBase.h"
 #include "CatFrameless/CatFramelessWidget.h"
+#include "CatFrameless/CatFrameLessMainView.h"
 #include <QHash>
 
 class QPushButton;
@@ -21,7 +22,7 @@ class WinWidget : public
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget
 #else
-    CatFramelessWidget
+    RimlessWindowBase
 #endif
 {
     Q_OBJECT

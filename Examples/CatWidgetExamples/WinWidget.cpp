@@ -31,7 +31,7 @@ WinWidget::WinWidget(QWidget *parent) :
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget(parent),
 #else
-    CatFramelessWidget(parent),
+    RimlessWindowBase(parent),
     //RimlessWindowBase(parent, true),
 #endif
     ui(new Ui::WinWidget) ,
@@ -128,9 +128,10 @@ void WinWidget::InitProperty()
 #else
     ShadowWeight = 8;
     ShadowColor = QColor(0, 0, 0, 50);
-    setTitleBar(ui->TopWidget);
-    //SetShadowWeight(8);
-    //SetShadowColor(QColor(0, 0, 0, 50));
+    //setTitleItem(ui->TopWidget);
+    //setTitleBar(ui->TopWidget);
+    SetShadowWeight(8);
+    SetShadowColor(QColor(0, 0, 0, 50));
 #endif
     // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
@@ -189,7 +190,7 @@ void WinWidget::InitConnect()
     connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
         QApplication::exit(0);
     });
-    /*
+
 #if defined (Q_OS_WIN)
     connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
         if(m_bMousePress && m_bFullScreen && m_bTopWidget)
@@ -206,7 +207,7 @@ void WinWidget::InitConnect()
             }
         }
     });
-#endif*/
+#endif
     // [初始化工具栏信号与槽]
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
 
@@ -328,7 +329,7 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
     {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
 #else
-        //SetMoveRect(ui->TopWidget->rect());
+        SetMoveRect(ui->TopWidget->rect());
 #endif
         this->mouseMoveEvent((QMouseEvent*)event);
     } else if(event->type() == QEvent::MouseButtonRelease)
@@ -386,7 +387,7 @@ void WinWidget::mouseMoveEvent(QMouseEvent *event)
 {
 
 #ifdef Q_OS_WIN
-    /*RimlessWindowBase::mouseMoveEvent(event);
+    RimlessWindowBase::mouseMoveEvent(event);
     QPoint pos = event->pos();
     if(m_bMousePress && m_bFullScreen && m_bTopWidget)
     {
@@ -400,7 +401,7 @@ void WinWidget::mouseMoveEvent(QMouseEvent *event)
             this->resize(QSize(m_pLastRect.size()));
             SetZoomButtonState("Min");
         }
-    }*/
+    }
 #else
     Q_UNUSED(event)
 #endif

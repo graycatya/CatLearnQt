@@ -2,15 +2,16 @@
 #include <QGuiApplication>
 #include <QWidget>
 #include <QScreen>
+#include <QDebug>
 
 #include <QTimer>
-#include <WinUser.h> // Windows UI 相关的大部分 API 都是在 winuser.h 中定义的
+//#include <WinUser.h> // Windows UI 相关的大部分 API 都是在 winuser.h 中定义的
 #include <dwmapi.h> //dwmapi获得Areo效果
-#include <objidl.h> // Fixes error C2504: 'IUnknown' : base class undefined
+//#include <objidl.h> // Fixes error C2504: 'IUnknown' : base class undefined
 #include <windows.h>
 #include <windowsx.h>
 #ifdef _MSC_VER
-#include <atltypes.h>
+//#include <atltypes.h>
 #endif
 
 static bool Titlecontains = false;
@@ -83,7 +84,7 @@ static long hitTest(RECT winrect, long x, long y, int borderWidth)
     }
 }
 
-static bool isMaxWin(QMainWindow *win)
+static bool isMaxWin(QWidget *win)
 {
     return win->windowState() == Qt::WindowMaximized;
 }
@@ -326,6 +327,9 @@ bool CatFrameLessMainView::nativeEvent(const QByteArray &eventType, void *messag
             if (m_pCatFrameLessMainViewPrivate->m_titleItem) {
                 auto titlePos = m_pCatFrameLessMainViewPrivate->m_titleItem->mapToGlobal(m_pCatFrameLessMainViewPrivate->m_titleItem->pos());
                 titlePos = mapFromGlobal(titlePos);
+                titlePos.setX(titlePos.x() - m_pCatFrameLessMainViewPrivate->m_titleItem->pos().x());
+                titlePos.setY(titlePos.y() - m_pCatFrameLessMainViewPrivate->m_titleItem->pos().y());
+                //qDebug() << "titlePos: " << titlePos << m_pCatFrameLessMainViewPrivate->m_titleItem->pos();
                 auto titleRect = QRect(titlePos.x(), titlePos.y(),
                                        m_pCatFrameLessMainViewPrivate->m_titleItem->width(),
                                        m_pCatFrameLessMainViewPrivate->m_titleItem->height());
@@ -351,7 +355,7 @@ bool CatFrameLessMainView::nativeEvent(const QByteArray &eventType, void *messag
         break;
     }
     }
-    return QMainWindow::nativeEvent(eventType, message, result);
+    return QWidget::nativeEvent(eventType, message, result);
 }
 
 void CatFrameLessMainView::resizeEvent(QResizeEvent *event)
@@ -385,9 +389,9 @@ void CatFrameLessMainView::moveUpdateSize()
         {
             if(!isMax())
             {
-                this->setGeometry(QCursor::pos().x() - cursorwidth,
+                /*this->setGeometry(QCursor::pos().x() - cursorwidth,
                                   QCursor::pos().y() - cursorheight,
-                                  width, height);
+                                  width, height);*/
             }
         }
         //this->setWidth(width);

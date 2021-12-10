@@ -7,6 +7,10 @@ QLabel#Icon {
     max-height: 22px;
 }
 
+QWidget#BackCentralwidget {
+    background-color: transparent;
+}
+
 QWidget#WinWidget {
     background-color: transparent;
 }

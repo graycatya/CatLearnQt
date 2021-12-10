@@ -8,6 +8,7 @@
 #include <CatLog>
 #include <QTranslator>
 #include "WinWidget.h"
+#include "WinMainWidget.h"
 
 #include "CatConfig/CatConfig.h"
 #include <QTimer>
@@ -40,7 +41,7 @@ int main(int argc, char *argv[])
 
 #endif
 
-    WinWidget w;
+    WinMainWidget w;
     w.show();
 
     return app.exec();

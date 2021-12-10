@@ -139,6 +139,9 @@ CatFrameLessMainView::CatFrameLessMainView(QWidget *parent)
     : QMainWindow(parent)
     , m_pCatFrameLessMainViewPrivate(new CatFrameLessMainViewPrivate)
 {
+    setAutoFillBackground(false);
+
+    setAttribute(Qt::WA_TranslucentBackground, true);
     setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
     //setFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
 
@@ -166,6 +169,12 @@ CatFrameLessMainView::CatFrameLessMainView(QWidget *parent)
         setIsMax(state == Qt::WindowMaximized);
     });
     */
+    connect(this, &CatFrameLessMainView::moveWindow, [=](){
+        static int i = 0;
+        qDebug() << "moveUpdateSize " << i;
+        i++;
+
+    });
 }
 
 CatFrameLessMainView::~CatFrameLessMainView()
@@ -355,14 +364,15 @@ bool CatFrameLessMainView::nativeEvent(const QByteArray &eventType, void *messag
         break;
     }
     }
-    return QWidget::nativeEvent(eventType, message, result);
+    return QMainWindow::nativeEvent(eventType, message, result);
 }
 
 void CatFrameLessMainView::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
+    //qDebug() << "resizeEvent";
     emit updateSize();
-    this->resize(this->geometry().size());
+
     QMainWindow::resizeEvent(event);
 }
 

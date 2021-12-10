@@ -5,6 +5,7 @@ SOURCES += \
     $$PWD/CatSettings.cpp \
     $$PWD/CatWidget.cpp \
     $$PWD/WinWidget.cpp \
+    $$PWD/WinMainWidget.cpp \
 
 HEADERS += \
     $$PWD/CatAbout.h \
@@ -12,7 +13,8 @@ HEADERS += \
     $$PWD/CatQuickWidget.h \
     $$PWD/CatSettings.h \
     $$PWD/CatWidget.h \
-    $$PWD/WinWidget.h
+    $$PWD/WinWidget.h \
+    $$PWD/WinMainWidget.h \
 
 FORMS += \
     $$PWD/CatAbout.ui \
@@ -20,7 +22,8 @@ FORMS += \
     $$PWD/CatQuickWidget.ui \
     $$PWD/CatSettings.ui \
     $$PWD/CatWidget.ui \
-    $$PWD/WinWidget.ui
+    $$PWD/WinWidget.ui \
+    $$PWD/WinMainWidget.ui
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

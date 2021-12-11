@@ -148,5 +148,7 @@
         <file>Images/CatWhite/SideTestButton.png</file>
         <file>qss/CatGray/SideBoxButton.css</file>
         <file>qss/CatWhite/SideBoxButton.css</file>
+        <file>Images/CatGray/Inputs.png</file>
+        <file>Images/CatWhite/Inputs.png</file>
     </qresource>
 </RCC>

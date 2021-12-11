@@ -1,5 +1,5 @@
 QWidget#SideWidget {
-    background-color: #757575;
+    background-color: #f3f3f3;
 }
 
 QPushButton#SideButton[State="Open"] {

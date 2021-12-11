@@ -48,9 +48,9 @@ void CatGraphicsView::InitProperty()
 
 void CatGraphicsView::InitConnect()
 {
-    connect(scene(), &QGraphicsScene::sceneRectChanged, this, [=](const QRectF &rect){
+    /*connect(scene(), &QGraphicsScene::sceneRectChanged, this, [=](const QRectF &rect){
         qDebug() << "scene Rect: " << rect;
-    });
+    });*/
 }
 
 void CatGraphicsView::mousePressEvent(QMouseEvent *event)

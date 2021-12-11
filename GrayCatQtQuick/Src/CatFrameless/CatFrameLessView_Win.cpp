@@ -253,9 +253,9 @@ void CatFrameLessView::moveUpdateSize()
         {
             if(!isMax())
             {
-                this->setGeometry(QCursor::pos().x() - cursorwidth,
+                /*this->setGeometry(QCursor::pos().x() - cursorwidth,
                                   QCursor::pos().y() - cursorheight,
-                                  width, height);
+                                  width, height);*/
             }
         }
         //this->setWidth(width);
@@ -380,6 +380,14 @@ bool CatFrameLessView::nativeEvent(const QByteArray &eventType, void *message, l
     case WM_MOVE:
     {
         moveUpdateSize();
+        SetWindowPos(msg->hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+        RedrawWindow(msg->hwnd, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
+        break;
+    }
+    case WM_SIZE:
+    {
+        SetWindowPos(msg->hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+        RedrawWindow(msg->hwnd, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
         break;
     }
     }

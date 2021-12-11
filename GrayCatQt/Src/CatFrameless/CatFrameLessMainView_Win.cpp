@@ -142,7 +142,10 @@ CatFrameLessMainView::CatFrameLessMainView(QWidget *parent)
     setAutoFillBackground(false);
 
     setAttribute(Qt::WA_TranslucentBackground, true);
-    setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
+    setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint
+                   | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint
+                   | Qt::Window | Qt::FramelessWindowHint);
+    //this->setWindowOpacity(0.0);
     //setFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
 
     //setResizeMode(SizeRootObjectToView); //添加后可自适应布局
@@ -162,19 +165,13 @@ CatFrameLessMainView::CatFrameLessMainView(QWidget *parent)
         QCoreApplication::processEvents();
     });
 
-    m_pTimer->start(10);
+    m_pTimer->start(50);
     //connect(this, &QMainWindow::windowTitleChanged);
     /*
     connect(this, &QMainWindow::windowStateChanged, this, [&](Qt::WindowState state){
         setIsMax(state == Qt::WindowMaximized);
     });
     */
-    connect(this, &CatFrameLessMainView::moveWindow, [=](){
-        static int i = 0;
-        qDebug() << "moveUpdateSize " << i;
-        i++;
-
-    });
 }
 
 CatFrameLessMainView::~CatFrameLessMainView()
@@ -361,6 +358,14 @@ bool CatFrameLessMainView::nativeEvent(const QByteArray &eventType, void *messag
     case WM_MOVE:
     {
         moveUpdateSize();
+        SetWindowPos(msg->hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+        RedrawWindow(msg->hwnd, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
+        break;
+    }
+    case WM_SIZE:
+    {
+        SetWindowPos(msg->hwnd, nullptr, 0, 0, 0, 0, SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOOWNERZORDER);
+        RedrawWindow(msg->hwnd, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_NOCHILDREN);
         break;
     }
     }

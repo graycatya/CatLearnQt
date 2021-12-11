@@ -72,6 +72,10 @@ QPushButton#CatSideColumnTool {
     qproperty-iconSize: 48px 48px;
 }
 
+QPushButton#CatInputTools {
+    qproperty-icon: url(:/Images/CatWhite/Inputs.png);
+    qproperty-iconSize: 48px 48px;
+}
 
 QScrollArea#ListingOptionsScroll {
     border: none;

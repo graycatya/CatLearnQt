@@ -1,6 +1,7 @@
 HEADERS += \
     $$PWD/CatDoubleSlider.h \
     $$PWD/CatDoubleValidator.h \
+    $$PWD/CatFlowLayout.h \
     $$PWD/CatIntValidator.h \
     $$PWD/CatPagingNavigation.h \
     $$PWD/CatToolTip.h \
@@ -9,6 +10,7 @@ HEADERS += \
 SOURCES += \
     $$PWD/CatDoubleSlider.cpp \
     $$PWD/CatDoubleValidator.cpp \
+    $$PWD/CatFlowLayout.cpp \
     $$PWD/CatIntValidator.cpp \
     $$PWD/CatPagingNavigation.cpp \
     $$PWD/CatToolTip.cpp \

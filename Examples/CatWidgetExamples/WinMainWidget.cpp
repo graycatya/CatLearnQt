@@ -164,12 +164,12 @@ void WinMainWidget::InitProperty()
 void WinMainWidget::InitConnect()
 {
 #ifdef Q_OS_WIN
-    connect(this, &CatFrameLessMainView::moveWindow, this, [=](){
-        QTimer::singleShot(100, this, [=](){
+    /*connect(this, &CatFrameLessMainView::moveWindow, this, [=](){
+        QTimer::singleShot(50, this, [=](){
             if(isMaximized())
             {
 
-                ui->verticalLayout->setContentsMargins(0,8,8,0);
+                ui->verticalLayout->setContentsMargins(8,8,8,0);
                 SetZoomButtonState("Max");
             } else {
 
@@ -177,7 +177,17 @@ void WinMainWidget::InitConnect()
                 SetZoomButtonState("Min");
             }
         });
-    });
+    });*/
+    if(isMaximized())
+    {
+
+        ui->verticalLayout->setContentsMargins(8,8,8,0);
+        SetZoomButtonState("Max");
+    } else {
+
+        ui->verticalLayout->setContentsMargins(0,0,0,0);
+        SetZoomButtonState("Min");
+    }
 #else
 
 #endif
@@ -230,7 +240,7 @@ void WinMainWidget::SetWindowZoom()
     if(!isMaximized())
     {
         showMaximized();
-        ui->verticalLayout->setContentsMargins(0,8,8,0);
+        ui->verticalLayout->setContentsMargins(9,9,9,0);
         SetZoomButtonState("Max");
     } else {
         showNormal();
@@ -312,6 +322,22 @@ bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
         //SetMoveRect(ui->TopWidget->rect());
 #endif
         this->mouseMoveEvent((QMouseEvent*)event);
+    } else if(event->type() == QEvent::Resize)
+    {
+#ifdef Q_OS_WIN
+    if(isMaximized())
+    {
+
+        ui->verticalLayout->setContentsMargins(9,9,9,0);
+        SetZoomButtonState("Max");
+    } else {
+
+        ui->verticalLayout->setContentsMargins(0,0,0,0);
+        SetZoomButtonState("Min");
+    }
+#else
+
+#endif
     } else if(event->type() == QEvent::MouseButtonRelease)
     {
         this->mouseReleaseEvent((QMouseEvent*)event);

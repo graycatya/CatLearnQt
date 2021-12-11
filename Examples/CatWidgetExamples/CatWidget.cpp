@@ -18,6 +18,7 @@
 #include "WidgetTools/CatQcustomplotTools.h"
 #endif
 #include "WidgetTools/SideColumnTool.h"
+#include "WidgetTools/InputTools.h"
 
 
 
@@ -71,7 +72,7 @@ void CatWidget::InitToolButtons()
 #ifndef Q_OS_IOS
     ToolButtonList << "CatQcustomplotTools";
 #endif
-    ToolButtonList << "CatSideColumnTool";
+    ToolButtonList << "CatSideColumnTool" << "CatInputTools";
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -80,7 +81,8 @@ void CatWidget::InitToolButtons()
         m_pToolButtons[ToolButtonList[i]] = button;
     }
 
-    QSpacerItem* item = new QSpacerItem(50, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    QSpacerItem* item = new QSpacerItem(
+                50, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
     m_pToolListiongOptions->AddItem(item);
 }
@@ -122,6 +124,12 @@ void CatWidget::InitToolWidgets()
     ui->ToolStackedWidget->addWidget(m_pSideColumnTool);
     m_pSideColumnTool->installEventFilter(this);
     m_pSideColumnTool->setMouseTracking(true);
+
+    InputTools *m_pInputTools = new InputTools;
+    m_pInputTools->setObjectName("CatInputTools");
+    ui->ToolStackedWidget->addWidget(m_pInputTools);
+    m_pInputTools->installEventFilter(this);
+    m_pInputTools->setMouseTracking(true);
 
     ui->ToolStackedWidget->setMouseTracking(true);
 }

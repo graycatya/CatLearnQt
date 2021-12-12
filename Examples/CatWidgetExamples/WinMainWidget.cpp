@@ -332,7 +332,7 @@ bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
     if(isMaximized())
     {
 
-        ui->verticalLayout->setContentsMargins(9,9,9,0);
+        ui->verticalLayout->setContentsMargins(8,8,8,0);
         SetZoomButtonState("Max");
     } else {
 

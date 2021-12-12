@@ -27,6 +27,10 @@ find_android_gui()
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
+if(NOT WIN32)
+    list(REMOVE_ITEM CURPATH_DIR_LIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/CatFrameLessMainView_Win.cpp)
+endif(NOT WIN32)
+
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS})
 
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS})

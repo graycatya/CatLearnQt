@@ -117,7 +117,11 @@ void WinMainWidget::InitUi()
 
 void WinMainWidget::InitProperty()
 {
+#ifdef Q_OS_WIN
     setTitleItem(ui->TitleWidget);
+#else
+    ui->TopWidget->setVisible(false);
+#endif
     ui->BottomWidget->setVisible(false);
 
     // 注册事件过滤 - 提供窗体拖拽
@@ -375,7 +379,11 @@ bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
     }
 
 /*#endif*/
+#ifdef Q_OS_WIN
     return CatFrameLessMainView::eventFilter(watched, event);
+#else
+    return QMainWindow::eventFilter(watched, event);
+#endif
 }
 
 void WinMainWidget::mouseDoubleClickEvent(QMouseEvent *event)

@@ -251,6 +251,14 @@
     </message>
 </context>
 <context>
+    <name>InputTools</name>
+    <message>
+        <location filename="../../WidgetTools/InputTools.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PagingNavigationTools</name>
     <message>
         <location filename="../../WidgetTools/PagingNavigationTools.ui" line="14"/>
@@ -352,6 +360,44 @@
     </message>
 </context>
 <context>
+    <name>WinMainWidget</name>
+    <message>
+        <location filename="../../WinMainWidget.ui" line="14"/>
+        <source>MainWindow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../WinMainWidget.ui" line="118"/>
+        <source>Title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../WinMainWidget.cpp" line="308"/>
+        <source>QWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../WinMainWidget.cpp" line="309"/>
+        <source>QGraphicsView</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../WinMainWidget.cpp" line="310"/>
+        <source>QQuickWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../WinMainWidget.cpp" line="311"/>
+        <source>Setting</source>
+        <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <location filename="../../WinMainWidget.cpp" line="312"/>
+        <source>About</source>
+        <translation type="unfinished">关于</translation>
+    </message>
+</context>
+<context>
     <name>WinWidget</name>
     <message>
         <location filename="../../WinWidget.ui" line="14"/>
@@ -364,27 +410,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="310"/>
+        <location filename="../../WinWidget.cpp" line="311"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="311"/>
+        <location filename="../../WinWidget.cpp" line="312"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="312"/>
+        <location filename="../../WinWidget.cpp" line="313"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="313"/>
+        <location filename="../../WinWidget.cpp" line="314"/>
         <source>Setting</source>
         <translation type="unfinished">设置</translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="314"/>
+        <location filename="../../WinWidget.cpp" line="315"/>
         <source>About</source>
         <translation type="unfinished">关于</translation>
     </message>

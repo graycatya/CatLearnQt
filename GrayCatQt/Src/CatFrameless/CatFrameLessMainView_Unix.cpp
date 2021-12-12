@@ -75,6 +75,11 @@ bool CatFrameLessMainView::isMax() const
     return m_pCatFrameLessMainViewPrivate->m_isMax;
 }
 
+void CatFrameLessMainView::setWork(bool work)
+{
+    m_bWork = work;
+}
+
 QWidget *CatFrameLessMainView::titleItem() const
 {
     return m_pCatFrameLessMainViewPrivate->m_titleItem;

@@ -17,7 +17,7 @@ CatFrameLessView::CatFrameLessView(QWindow *parent)
     : QQuickView(parent)
     , m_pCatFrameLessViewPrivate(new CatFrameLessViewPrivate)
 {
-    setFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint);
+    setFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowTitleHint | Qt::WindowSystemMenuHint | Qt::WindowCloseButtonHint | Qt::Window);
 
     setResizeMode(SizeRootObjectToView); //添加后可自适应布局
     setColor(QColor(0, 0, 0, 0));

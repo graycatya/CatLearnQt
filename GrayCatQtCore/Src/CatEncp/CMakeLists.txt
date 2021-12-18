@@ -1,6 +1,6 @@
-﻿cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.10)
 
-project(QmlCatLog)
+project(CatEncp)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
@@ -36,19 +36,3 @@ add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
 
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
                                    ${SRC_HEAD_LIST})
-
-
-target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE CatLog_Sington)
-SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0.0 SOVERSION 1)
-
-target_compile_definitions(${STATIC_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core Qt5::Quick)
-target_link_libraries(${STATIC_NAME} PRIVATE CatLog_Sington)
-SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES VERSION 1.0.0.0 SOVERSION 1)
-
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
-
-
-

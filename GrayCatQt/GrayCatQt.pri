@@ -37,4 +37,4 @@ INCLUDEPATH += $$PWD/Src
 include($$PWD/Src/CatWidget/CatWidget.pri)
 include($$PWD/Src/CatGraphicsView/CatGraphicsView.pri)
 include($$PWD/Src/CatControl/CatControl.pri)
-include($$PWD/Src/CatFrameless/CatFrameless.pri)
+include($$PWD/Src/CatWidgetFrameless/CatWidgetFrameless.pri)

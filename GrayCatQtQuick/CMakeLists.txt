@@ -27,7 +27,7 @@ find_package(Qt5 COMPONENTS Core Gui Quick REQUIRED)
 
 find_android_gui()
 
-add_subdirectory(Src/CatFrameless)
+add_subdirectory(Src/CatQuickFrameless)
 
 add_library(${STATIC_NAME} STATIC)
 
@@ -40,13 +40,13 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Quick)
-target_link_libraries(${PROJECT_NAME} PUBLIC CatFrameless)
+target_link_libraries(${PROJECT_NAME} PUBLIC CatQuickFrameless)
 
 target_link_android_gui(${PROJECT_NAME})
 
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Gui)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Quick)
-target_link_libraries(${STATIC_NAME} PUBLIC CatFrameless)
+target_link_libraries(${STATIC_NAME} PUBLIC CatQuickFrameless)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

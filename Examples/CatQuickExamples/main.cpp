@@ -1,5 +1,6 @@
 ﻿#include <QQmlApplicationEngine>
 #include <QDebug>
+#include <QVariant>
 //#include <QQmlContext>
 #ifdef QT_WEBENGINE_LIB
 #include <QtWebEngine>
@@ -8,13 +9,13 @@
 #include <QWebSocketServer>
 #endif
 #ifdef Q_CC_MSVC
-#include "CatFrameless/CatFrameLessView.h"
+#include "CatFrameLessView.h"
 #endif
 
 #include "CatConfig.h"
 #ifndef WEBASSEMBLY
 #include "SingleApplication"
-#include <QmlCatLog.h>
+#include "QmlCatLog.h"
 #endif
 #include "QmlConfig.h"
 

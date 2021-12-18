@@ -1,6 +1,6 @@
-cmake_minimum_required(VERSION 3.10)
+﻿cmake_minimum_required(VERSION 3.10)
 
-project(CatUniversal LANGUAGES CXX)
+project(CatQuickFrameless LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -22,11 +22,21 @@ include(GrayCatQt)
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
+#add_definitions("-Wall -g -Xlint:deprecation")
+#add_definitions(-std=c++17)
 
-find_package(Qt5 COMPONENTS Core Gui REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick Gui REQUIRED)
+#find_android_gui()
+
+if(WIN32)
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS
+                                    CatFrameLessView_Unix.cpp)
+else()
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS
+                                    CatFrameLessView_Win.cpp)
+endif(WIN32)
+
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
-
-filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
                                   ${SRC_HEAD_LIST})
@@ -34,15 +44,19 @@ add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
                                    ${SRC_HEAD_LIST})
 
+
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
-
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Quick)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
 
+#target_link_android_gui(${PROJECT_NAME})
+
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Quick)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Gui)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

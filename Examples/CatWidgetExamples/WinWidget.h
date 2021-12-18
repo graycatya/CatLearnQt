@@ -2,8 +2,8 @@
 #define WINWIDGET_H
 
 #include "RimlessWindowBase.h"
-#include "CatFrameless/CatFramelessWidget.h"
-#include "CatFrameless/CatFrameLessMainView.h"
+#include "CatWidgetFrameless/CatFramelessWidget.h"
+#include "CatWidgetFrameless/CatFrameLessMainView.h"
 #include <QHash>
 
 class QPushButton;

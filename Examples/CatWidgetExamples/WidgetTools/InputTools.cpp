@@ -50,7 +50,19 @@ void InputTools::InitConnect()
 
 void InputTools::UpdateStyle()
 {
+    QString stylePath;
+    if(CatConfig::ConfigExist())
+    {
+        stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
+    } else {
+        stylePath = ":/qss/CatGray/";
+    }
 
+    QFile file_0(stylePath + "InputTools.css");
+    file_0.open(QIODevice::ReadOnly);
+    QString stylehoot_0 = QLatin1String(file_0.readAll());
+    this->setStyleSheet(stylehoot_0);
+    file_0.close();
 }
 
 void InputTools::InitDefauleSlider()

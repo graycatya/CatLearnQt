@@ -150,5 +150,7 @@
         <file>qss/CatWhite/SideBoxButton.css</file>
         <file>Images/CatGray/Inputs.png</file>
         <file>Images/CatWhite/Inputs.png</file>
+        <file>qss/CatGray/InputTools.css</file>
+        <file>qss/CatWhite/InputTools.css</file>
     </qresource>
 </RCC>

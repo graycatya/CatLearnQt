@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include "RimlessWindowBase.h"
 #ifdef Q_OS_WIN
-#include "CatFrameless/CatFramelessWidget.h"
-#include "CatFrameless/CatFrameLessMainView.h"
+#include "CatFramelessWidget.h"
+#include "CatFrameLessMainView.h"
 #endif
 #include <QHash>
 

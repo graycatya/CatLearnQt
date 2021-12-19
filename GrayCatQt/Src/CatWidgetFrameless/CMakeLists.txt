@@ -59,3 +59,5 @@ target_link_android_gui(${STATIC_NAME})
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Gui)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

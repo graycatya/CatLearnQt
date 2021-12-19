@@ -10,3 +10,4 @@ win32 {
     SOURCES += \
         $$PWD/CatFrameLessView_Unix.cpp
 }
+INCLUDEPATH += $$PWD

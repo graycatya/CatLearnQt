@@ -23,7 +23,7 @@ SOURCES += \
     Src/SerialServerWebSocket.cpp \
     main.cpp 
 
-REPC_SOURCE = \
+REPC_SOURCE += \
     ../RepResource/CatSerialRemote.rep
 
 HEADERS += \

@@ -15,6 +15,8 @@
 #include <QFontComboBox>
 #include <QKeySequenceEdit>
 
+#include <QListView>
+
 InputTools::InputTools(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::InputTools)
@@ -96,9 +98,11 @@ void InputTools::InitDefauleSlider()
 
     QComboBox *combobox = new QComboBox(this);
     combobox->setMinimumWidth(200);
+    combobox->setView(new QListView);
 
     QFontComboBox *fontcombobox = new QFontComboBox(this);
     fontcombobox->setMinimumWidth(200);
+    fontcombobox->setView(new QListView);
 
     QKeySequenceEdit *keysequenceedit = new QKeySequenceEdit(this);
     keysequenceedit->setMinimumWidth(200);

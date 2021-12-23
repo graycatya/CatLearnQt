@@ -99,6 +99,7 @@ void InputTools::InitDefauleSlider()
     QComboBox *combobox = new QComboBox(this);
     combobox->setMinimumWidth(200);
     combobox->setView(new QListView);
+    combobox->addItems({"test1", "test2", "test3", "test4"});
 
     QFontComboBox *fontcombobox = new QFontComboBox(this);
     fontcombobox->setMinimumWidth(200);

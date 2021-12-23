@@ -173,6 +173,34 @@ QComboBox::down-arrow:on {
     image: url(:/Images/CatGray/PullUp.png);
 }
 
+/*下拉项样式 背景蓝色*/
+QAbstractItemView {
+    border: 1px solid #313131;
+    background-color: #484848;
+    outline:0px;
+    font-family: "Ubuntu";
+}
+QAbstractItemView::item {
+    color: #C1C1C1;
+    border: transparent;
+    min-height: 25px;
+    background-color: #484848;
+}  
+
+/*下拉项选中样式*/
+QAbstractItemView::item:selected { 
+    color: #C1C1C1;
+    border: transparent;
+    background-color: rgba(223,74,22,100%);
+}   
+
+/*下拉项鼠标悬浮样式*/
+QAbstractItemView::item:hover { 
+    color: #C1C1C1;
+    border: transparent;
+    background:#656565;
+}
+
 
 QSpinBox {
     color: white;
@@ -196,3 +224,50 @@ QSpinBox::down-button
     image: url(:/Images/CatGray/PullDown.png);	
 }
 
+
+
+QDoubleSpinBox {
+    color: white;
+    border: 1px solid #959595;
+    background-color: #757575;
+    border-radius: 2px;   /* 圆角 */
+    font-family: "Ubuntu";
+}
+
+QDoubleSpinBox:focus {
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+/*spinbox 抬起样式*/
+QDoubleSpinBox::up-button
+{
+    image: url(:/Images/CatGray/PullUp.png);			
+}
+
+QDoubleSpinBox::down-button
+{
+    image: url(:/Images/CatGray/PullDown.png);
+}
+
+QDateTimeEdit {
+    color: white;
+    border: 1px solid #959595;
+    background-color: #757575;
+    border-radius: 2px;   /* 圆角 */
+    font-family: "Ubuntu";
+}
+
+QDateTimeEdit:focus {
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+/*spinbox 抬起样式*/
+QDateTimeEdit::up-button
+{
+    image: url(:/Images/CatGray/PullUp.png);			
+}
+
+QDateTimeEdit::down-button
+{
+    image: url(:/Images/CatGray/PullDown.png);	
+}

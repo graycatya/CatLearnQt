@@ -115,7 +115,7 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | 库 | 说明链接 |
 |:--:|:--:|
 | GrayCatQt | 提供了基于QWidget，QGraphicsView自定义控件集。 |
-| GrayCatQtQuick | 提供了基于GraphiceView模块与控件集 |
+| GrayCatQtQuick | 提供了基于Quick,Qml模块与控件集 |
 | GrayCatQtCore | 提供了串口，网络，蓝牙，日志，线程等模块。 |
 
 #### 使用核心库

@@ -116,7 +116,7 @@ CatLearnQt is released under the GPL v3 license. If you use CatLearnQt or its co
 | Library | Explanation link |
 |:--:|:--:|
 | GrayCatQt | Provides a set of custom controls based on QWidget and QGraphicsView. |
-| GrayCatQtQuick | Provides based on GraphicsViewmodule and control set |
+| GrayCatQtQuick | Provides based on Quick,Qml and control set |
 | GrayCatQtCore | Provides modules such as serial port, network, Bluetooth, log, thread, etc. |
 
 #### How to use Core Library

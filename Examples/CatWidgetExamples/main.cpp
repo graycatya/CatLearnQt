@@ -12,6 +12,8 @@
 
 #include "CatConfig/CatConfig.h"
 #include <QTimer>
+
+#include <QLibraryInfo>
 /*
 #ifndef Q_OS_IOS
 #include <CatSerial>
@@ -29,9 +31,19 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #endif
 
+    QCoreApplication::addLibraryPath("../");
     // [1] 启动日志模块
     CATLOG::CatLog::Instance();
     CATLOG::CatLog::__Write_Log(INFO_LOG_T("Init System!"));
+
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::PrefixPath).toStdString()));
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::LibrariesPath).toStdString()));
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath).toStdString()));
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::BinariesPath).toStdString()));
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::ImportsPath).toStdString()));
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString()));
+    CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::TranslationsPath).toStdString()));
+
 
     // [2] 配置初始化
     CatConfig *config = CatConfig::Instance();

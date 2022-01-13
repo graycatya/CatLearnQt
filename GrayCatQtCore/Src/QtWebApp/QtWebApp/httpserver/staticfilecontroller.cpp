@@ -1,4 +1,4 @@
-/**
+﻿/**
   @file
   @author Stefan Frings
 */
@@ -71,7 +71,7 @@ void StaticFileController::service(HttpRequest &request, HttpResponse &response)
         // If the filename is a directory, append index.html.
         if (QFileInfo(docroot+path).isDir())
         {
-            path+="/index.html";
+            path+="index.html";
         }
         // Try to open the file
         QFile file(docroot+path);

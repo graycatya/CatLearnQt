@@ -1,6 +1,8 @@
 ﻿#include "WinMainWidget.h"
 #include "ui_WinMainWidget.h"
 
+#include <QtGui/qpainter.h>
+
 #include <QMouseEvent>
 #include <QApplication>
 #include <QScreen>
@@ -26,17 +28,20 @@
 #include "CatConfig/CatConfig.h"
 #include "CatControl/ListingOptions.h"
 #include "CatQuickWidget.h"
+#include "framelesswindowsmanager.h"
+#include "utilities.h"
 
+FRAMELESSHELPER_USE_NAMESPACE
 
-WinMainWidget::WinMainWidget(QWidget *parent) :
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-    QMainWindow(parent),
-#else
-    CatFrameLessMainView(parent),
-    //RimlessWindowBase(parent, true),
-#endif
+WinMainWidget::WinMainWidget(QWidget *parent, Qt::WindowFlags flags) :
+    QMainWindow(parent, flags),
     ui(new Ui::WinMainWidget)
 {
+    setAttribute(Qt::WA_DontCreateNativeAncestors);
+    createWinId();
+
+    resize(800, 600);
+
     ui->setupUi(this);
     InitUi();
     InitProperty();
@@ -117,11 +122,9 @@ void WinMainWidget::InitUi()
 
 void WinMainWidget::InitProperty()
 {
-#ifdef Q_OS_WIN
-    setTitleItem(ui->TitleWidget);
-#else
-    ui->TopWidget->setVisible(false);
-#endif
+
+    //ui->TopWidget->setVisible(false);
+
     ui->BottomWidget->setVisible(false);
 
     // 注册事件过滤 - 提供窗体拖拽
@@ -167,34 +170,24 @@ void WinMainWidget::InitProperty()
 
 void WinMainWidget::InitConnect()
 {
-#ifdef Q_OS_WIN
-    /*connect(this, &CatFrameLessMainView::moveWindow, this, [=](){
-        QTimer::singleShot(50, this, [=](){
-            if(isMaximized())
-            {
+    setMenuWidget(ui->TopWidget);
+    //connect(this, &WinMainWidget::windowIconChanged, titleBarWidget->iconButton, &QPushButton::setIcon);
+    //connect(this, &WinMainWidget::windowTitleChanged, titleBarWidget->titleLabel, &QLabel::setText);
+    //connect(ui->CloseButton, &QPushButton::clicked, this, &MainWindow::close);
+    connect(ui->MinimizeButton, &QPushButton::clicked, this, &WinMainWidget::showMinimized);
+    connect(ui->ZoomButton, &QPushButton::clicked, this, [this](){
+        if (isMaximized() || isFullScreen()) {
+            showNormal();
+        } else {
+            showMaximized();
+        }
+    });
+    connect(this, &WinMainWidget::windowStateChanged, this, [this](){
+        ui->ZoomButton->setChecked(isMaximized());
+        //titleBarWidget->maximizeButton->setToolTip(isMaximized() ? tr("Restore") : tr("Maximize"));
+    });
 
-                ui->verticalLayout->setContentsMargins(8,8,8,0);
-                SetZoomButtonState("Max");
-            } else {
-
-                ui->verticalLayout->setContentsMargins(0,0,0,0);
-                SetZoomButtonState("Min");
-            }
-        });
-    });*/
-    if(isMaximized())
-    {
-
-        ui->verticalLayout->setContentsMargins(8,8,8,0);
-        SetZoomButtonState("Max");
-    } else {
-
-        ui->verticalLayout->setContentsMargins(0,0,0,0);
-        SetZoomButtonState("Min");
-    }
-#else
-
-#endif
+    /*
     connect(ui->MinimizeButton, &QPushButton::clicked, this, [=](){
         showMinimized();
     });
@@ -202,6 +195,7 @@ void WinMainWidget::InitConnect()
     connect(ui->ZoomButton, &QPushButton::clicked, this, [=](){
         SetWindowZoom();
     });
+    */
 
     connect(ui->CloseButton, &QPushButton::clicked, this, [=](){
         QApplication::exit(0);
@@ -290,7 +284,7 @@ void WinMainWidget::UpdateStyle()
     this->setStyleSheet(stylehoot_0);
     file_0.close();
 
-    if(m_bFullScreen)
+    if(isMaximized() || isFullScreen())
     {
         SetZoomButtonState("Max");
     } else {
@@ -317,6 +311,27 @@ void WinMainWidget::retranslateUi()
     SetTitle(title);
 }
 
+void WinMainWidget::showEvent(QShowEvent *event)
+{
+    QMainWindow::showEvent(event);
+    static bool inited = false;
+    if (!inited) {
+        const auto win = windowHandle();
+        if (win) {
+            FramelessWindowsManager::addWindow(win);
+            FramelessWindowsManager::setHitTestVisible(win, ui->Icon, true);
+            FramelessWindowsManager::setHitTestVisible(win, ui->Title, true);
+            FramelessWindowsManager::setHitTestVisible(win, ui->MinimizeButton, true);
+            FramelessWindowsManager::setHitTestVisible(win, ui->ZoomButton, true);
+            FramelessWindowsManager::setHitTestVisible(win, ui->CloseButton, true);
+            FramelessWindowsManager::setHitTestVisible(win, ui->BackCentralwidget, true);
+            const auto margin = static_cast<int>(qRound(frameBorderThickness()));
+            setContentsMargins(margin, margin, margin, margin);
+            inited = true;
+        }
+    }
+}
+
 bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
 {
     if(event->type() == QEvent::MouseMove)
@@ -328,20 +343,12 @@ bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
         this->mouseMoveEvent((QMouseEvent*)event);
     } else if(event->type() == QEvent::Resize)
     {
-#ifdef Q_OS_WIN
-    if(isMaximized())
-    {
-
-        ui->verticalLayout->setContentsMargins(8,8,8,0);
-        SetZoomButtonState("Max");
-    } else {
-
-        ui->verticalLayout->setContentsMargins(0,0,0,0);
-        SetZoomButtonState("Min");
-    }
-#else
-
-#endif
+        if(isMaximized() || isFullScreen())
+        {
+            SetZoomButtonState("Max");
+        } else {
+            SetZoomButtonState("Min");
+        }
     } else if(event->type() == QEvent::MouseButtonRelease)
     {
         this->mouseReleaseEvent((QMouseEvent*)event);
@@ -378,12 +385,9 @@ bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
         }
     }
 
-/*#endif*/
-#ifdef Q_OS_WIN
-    return CatFrameLessMainView::eventFilter(watched, event);
-#else
+
     return QMainWindow::eventFilter(watched, event);
-#endif
+
 }
 
 void WinMainWidget::mouseDoubleClickEvent(QMouseEvent *event)
@@ -416,11 +420,67 @@ void WinMainWidget::changeEvent(QEvent *event)
     } else {
         QWidget::changeEvent(event);
     }
+    bool shouldUpdate = false;
+    if (event->type() == QEvent::WindowStateChange) {
+        if (isMaximized() || isFullScreen()) {
+            setContentsMargins(0, 0, 0, 0);
+        } else if (!isMinimized()) {
+            const auto margin = static_cast<int>(qRound(frameBorderThickness()));
+            setContentsMargins(margin, margin, margin, margin);
+        }
+        shouldUpdate = true;
+        Q_EMIT windowStateChanged();
+    } else if (event->type() == QEvent::ActivationChange) {
+        shouldUpdate = true;
+    }
+    if (shouldUpdate) {
+        update();
+    }
 }
 
 void WinMainWidget::closeEvent(QCloseEvent *event)
 {
     Q_UNUSED(event)
+}
+
+void WinMainWidget::paintEvent(QPaintEvent *event)
+{
+    QMainWindow::paintEvent(event);
+    if ((windowState() == Qt::WindowNoState)
+#ifdef Q_OS_WINDOWS
+        && !Utilities::isWin11OrGreater()
+#endif
+        ) {
+        const qreal borderThickness = frameBorderThickness();
+        const auto w = static_cast<qreal>(width());
+        const auto h = static_cast<qreal>(height());
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+        using BorderLines = QList<QLineF>;
+#else
+        using BorderLines = QVector<QLineF>;
+#endif
+        const BorderLines lines = {
+            {0, 0, w, 0},
+            {w - borderThickness, 0, w - borderThickness, h},
+            {w, h - borderThickness, 0, h - borderThickness},
+            {0, h, 0, 0}
+        };
+        QPainter painter(this);
+        painter.save();
+        painter.setRenderHint(QPainter::Antialiasing, false);
+        const ColorizationArea area = Utilities::getColorizationArea();
+        const bool colorizedBorder = ((area == ColorizationArea::TitleBar_WindowBorder)
+                                      || (area == ColorizationArea::All));
+        const QColor borderColor = (isActiveWindow() ? (colorizedBorder ? Utilities::getColorizationColor() : Qt::black) : Qt::darkGray);
+        painter.setPen({borderColor, borderThickness});
+        painter.drawLines(lines);
+        painter.restore();
+    }
+}
+
+qreal WinMainWidget::frameBorderThickness() const
+{
+    return (static_cast<qreal>(Utilities::getWindowVisibleFrameBorderThickness(winId())) / devicePixelRatioF());
 }
 
 void WinMainWidget::On_ButtonFunc(int id)

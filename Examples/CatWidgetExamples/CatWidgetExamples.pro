@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 contains(QT_CONFIG, opengl): QT += opengl
 
 #DEFINES += ANDROID_APP
-DEFINES += QAPPLICATION_CLASS
+DEFINES += QAPPLICATIONEXE_CLASS
 #DEFINES += _X86_
 
 CONFIG += c++11
@@ -42,6 +42,7 @@ DEFINES += APP_VERSION=\\\"'v1.2.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
 DEFINES += APP_NAME=\\\"'CatWidgetExamples'\\\"
 
+include($$PWD/../../GrayFramelesshelper/GrayFramelesshelper.pri)
 include($$PWD/CatWidgetExamples.pri)
 include($$PWD/../../GrayCatQt/GrayCatQt.pri)
 include($$PWD/../../GrayCatQtCore/GrayCatQtCore.pri)

@@ -1,7 +1,7 @@
 ﻿#ifndef WINMAINWIDGET_H
 #define WINMAINWIDGET_H
 
-#include <QMainWindow>
+#include <QtWidgets/qmainwindow.h>
 #include "RimlessWindowBase.h"
 #ifdef Q_OS_WIN
 #include "CatFramelessWidget.h"
@@ -21,17 +21,12 @@ namespace Ui {
 class WinMainWidget;
 }
 
-class WinMainWidget : public
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-    QMainWindow
-#else
-    CatFrameLessMainView
-#endif
+class WinMainWidget : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    explicit WinMainWidget(QWidget *parent = nullptr);
+    explicit WinMainWidget(QWidget *parent = nullptr, Qt::WindowFlags flags = {});
     ~WinMainWidget();
 
 private:
@@ -51,14 +46,20 @@ private:
     void retranslateUi();
 
 protected:
+    void showEvent(QShowEvent *event);
     bool eventFilter(QObject *watched, QEvent *event);
     void mouseDoubleClickEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
     void closeEvent(QCloseEvent *event);
+    void paintEvent(QPaintEvent *event);
+
+private:
+    qreal frameBorderThickness() const;
 
 signals:
     void Closeed();
+    void windowStateChanged();
 
 private slots:
     void On_ButtonFunc(int id);

@@ -27,8 +27,8 @@
 #include <QtNetwork/QLocalSocket>
 
 
-#ifndef QGUIAPPLICATION_CLASS
-#ifdef QAPPLICATION_CLASS
+#ifndef QGUIAPPLICATIONEXE_CLASS
+#ifdef QAPPLICATIONEXE_CLASS
 #include<QApplication>
   #define QAPPLICATION_CLASS QApplication
 #else

@@ -4,6 +4,7 @@ import QtQml.Models 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
+import QtQuick.Window 2.0
 import GrayCatQtQuick 1.0
 
 Rectangle {
@@ -165,6 +166,7 @@ Rectangle {
                 onClicked: {
                     stylepopup.show();
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(stylebutton, true)
             }
             CatButtonImage {
                 id: languagebutton
@@ -226,6 +228,7 @@ Rectangle {
                 onClicked: {
                     languagepopup.show();
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(languagebutton, true)
             }
             CatButtonImage {
                 id: morebutton
@@ -244,6 +247,7 @@ Rectangle {
                 onClicked: {
                     moreview.visible = true;
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(morebutton, true)
             }
         }
 
@@ -261,7 +265,7 @@ Rectangle {
             Layout.fillHeight: true
             spacing: 0
             CatButtonImage {
-                //id: settingbutton
+                id: minimizbutton
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
                 backImage.width: backImage.sourceSize.width
@@ -274,14 +278,15 @@ Rectangle {
                 backgroundColor_hovered: ProjectObject.titleButtonHoverColor
                 backgroundColor_pressed: ProjectObject.titleButtonPressColor
                 onClicked: {
-                    view.showMinimized()
+                    root.showMinimized()
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(minimizbutton, true)
             }
             CatButtonImage {
-                //id: settingbutton
+                id: maximizbutton
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
-                visible: !isMaxed
+                visible: !((root.visibility === Window.Maximized) || (root.visibility === Window.FullScreen))
                 backImage.width: backImage.sourceSize.width
                 backImage.height: backImage.sourceSize.height
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "max_gray.png"
@@ -292,15 +297,15 @@ Rectangle {
                 backgroundColor_hovered: ProjectObject.titleButtonHoverColor
                 backgroundColor_pressed: ProjectObject.titleButtonPressColor
                 onClicked: {
-                    view.showMaximized()
-                    view.setTitlecontains(false);
+                    root.showMaximized()
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(maximizbutton, true)
             }
             CatButtonImage {
-                //id: settingbutton
+                id: normalbutton
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
-                visible: isMaxed
+                visible: ((root.visibility === Window.Maximized) || (root.visibility === Window.FullScreen))
                 backImage.width: backImage.sourceSize.width
                 backImage.height: backImage.sourceSize.height
                 btnImgNormal: ProjectObject.getCurrentResourcePath() + "normal_gray.png"
@@ -311,12 +316,12 @@ Rectangle {
                 backgroundColor_hovered: ProjectObject.titleButtonHoverColor
                 backgroundColor_pressed: ProjectObject.titleButtonPressColor
                 onClicked: {
-                    view.showNormal()
-                    view.setTitlecontains(false);
+                    root.showNormal()
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(normalbutton, true)
             }
             CatButtonImage {
-                //id: settingbutton
+                id: closebutton
                 Layout.preferredHeight: 40
                 Layout.preferredWidth: 50
                 backImage.width: backImage.sourceSize.width
@@ -329,8 +334,9 @@ Rectangle {
                 backgroundColor_hovered: ProjectObject.titleCloseButtonHoverColor
                 backgroundColor_pressed: ProjectObject.titleCloseButtonPressColor
                 onClicked: {
-                    view.close()
+                    root.close()
                 }
+                Component.onCompleted: framelessHelper.setHitTestVisible(closebutton, true)
             }
         }
 
@@ -344,11 +350,11 @@ Rectangle {
         width: parent.width - 253
         height: parent.height
         Component.onCompleted: {
-            view.setTitleItem(blankItem)
+            //view.setTitleItem(blankItem)
         }
 
 
-        MouseArea {
+        /*MouseArea {
             id: moveArea
             anchors.fill: parent
             // 悬停事件是否被处理
@@ -374,10 +380,10 @@ Rectangle {
             }
 
             onMove: {
-                view.x += xOffset
-                view.y += yOffset
+                root.x += xOffset
+                root.y += yOffset
             }
-        }
+        }*/
     }
 
 

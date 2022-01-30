@@ -23,7 +23,15 @@
 int main(int argc, char *argv[])
 {
     // 共享窗体上下文，并且防止黑屏出现
-    QApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Round);
+#endif
     // [0] 进程单例 - 不可重复打开
 #ifndef WEBASSEMBLY
     SingleApplication app(argc, argv);

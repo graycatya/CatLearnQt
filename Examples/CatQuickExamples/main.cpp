@@ -18,8 +18,7 @@
 #include "QmlCatLog.h"
 #endif
 #include "QmlConfig.h"
-
-
+#include <QtQuickControls2/qquickstyle.h>
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +26,15 @@ int main(int argc, char *argv[])
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #ifdef QT_WEBENGINE_LIB
     QtWebEngine::initialize();
+#endif
+
+    QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
+    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QGuiApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#endif
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 14, 0))
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Round);
 #endif
 
 #ifndef WEBASSEMBLY
@@ -41,6 +49,12 @@ int main(int argc, char *argv[])
     app.setOrganizationName("GrayCatYa");
     app.setOrganizationDomain("graycatya.com");
     app.setApplicationName("CatQuickExamples");
+
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
+    QQuickStyle::setStyle(QStringLiteral("Basic"));
+#else
+    QQuickStyle::setStyle(QStringLiteral("Default"));
+#endif
 #ifndef WEBASSEMBLY
     CatConfig *catconfig = CatConfig::Instance();
     catconfig->InitConfig();
@@ -49,52 +63,46 @@ int main(int argc, char *argv[])
     QmlConfig::moduleRegister();
 #endif
 
-#ifdef QT_OS_WIN10
-    CatFrameLessView view;
 
-    QObject::connect(&view, &QQuickView::statusChanged,
-                     [&view](QQuickView::Status status){
-        if(QQuickView::Ready == status)
-        {
-            view.show();
-        }
-    });
-
-    view.engine()->addImportPath(GrayCatQtQuickImportPath);
-    view.engine()->rootContext()->setContextProperty("view", &view);
-#ifndef WEBASSEMBLY
-    view.engine()->rootContext()->setContextProperty("catLog", catlog);
-#endif
-    view.engine()->rootContext()->setContextProperty("catconfig", catconfig);
-
-    QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), view.engine(), SLOT(retranslate()));
-    for(QString path : view.engine()->importPathList())
-    {
-        qDebug() << path;
-    }
-    view.setMinimumSize({ 900, 600 });
-    view.resize(900, 600);
-    view.moveToScreenCenter();
-
-    const QUrl url(QStringLiteral("qrc:/main.qml"));
-    view.setSource(url);
-
-#else
     QQmlApplicationEngine engine;
+
+
     engine.addImportPath(GrayCatQtQuickImportPath);
+    //engine.rootContext()->setContextProperty("view", &view);
 #ifndef WEBASSEMBLY
     engine.rootContext()->setContextProperty("catLog", catlog);
-
+#endif
     engine.rootContext()->setContextProperty("catconfig", catconfig);
 
     QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), &engine, SLOT(retranslate()));
-#endif
     for(QString path : engine.importPathList())
     {
         qDebug() << path;
     }
-    engine.load( QUrl( "qrc:/generalmain.qml" ) );
-#endif
+    //engine.setMinimumSize({ 900, 600 });
+    //engine.resize(900, 600);
+    //engine.moveToScreenCenter();
+
+    const QUrl mainQmlUrl(QStringLiteral("qrc:///main.qml"));
+    const QMetaObject::Connection connection = QObject::connect(
+        &engine,
+        &QQmlApplicationEngine::objectCreated,
+        &app,
+        [&mainQmlUrl, &connection](QObject *object, const QUrl &url) {
+            if (url != mainQmlUrl) {
+                return;
+            }
+            if (!object) {
+                QGuiApplication::exit(-1);
+            } else {
+                QObject::disconnect(connection);
+            }
+        },
+        Qt::QueuedConnection);
+
+    engine.load(mainQmlUrl);
+
+
 
     return app.exec();
 }

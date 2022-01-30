@@ -1,4 +1,5 @@
 ﻿import QtQuick 2.12
+import QtQuick.Window 2.0
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.12
@@ -6,28 +7,36 @@ import GrayCatQtQuick 1.0
 //import CatEncp 1.0
 import "FunctionLayout"
 import "./MoreFunctionViews"
+import wangwenx190.Utils 1.0
 
 
-Rectangle {
+
+Window {
     id: root
+    visible: true
     width: 800
     height: 600
 
-    property bool isMaxed: view.isMax
+    //property bool isMaxed: view.isMax
+
+    property real _flh_margin: ((root.visibility === root.Maximized) || (root.visibility === root.FullScreen)) ? 0 : (Utils.frameBorderThickness / Screen.devicePixelRatio)
+    property var _win_prev_state: null
 
     //color: ProjectObject.appBackgroundColor
+    FramelessHelper {
+        id: framelessHelper
+    }
 
     ColumnLayout {
         id: rootLayout
         spacing: 0
         anchors.fill: parent
-        anchors.topMargin: isMaxed ? 8 : 0
-        anchors.leftMargin: isMaxed ? 8 : 0
-        anchors.rightMargin: isMaxed ? 8 : 0
-        anchors.bottomMargin: isMaxed ? 8 : 0
-
         Item {
             Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.topMargin: root._flh_margin
+            Layout.leftMargin: root._flh_margin
+            Layout.rightMargin: root._flh_margin
             Layout.preferredHeight: 40
             Layout.maximumHeight: 40
             Layout.minimumHeight: 40
@@ -89,6 +98,7 @@ Rectangle {
 
 
     Component.onCompleted: {
+        framelessHelper.removeWindowFrame()
         console.log("run ui, system is: " + Qt.platform.os);
         console.log("webresourcepath " + catconfig.getWebResourcePath())
         ProjectObject.currentTheme = catconfig.getValue("Style");

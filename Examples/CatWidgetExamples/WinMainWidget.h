@@ -52,10 +52,14 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
     void closeEvent(QCloseEvent *event);
+#ifndef Q_OS_MACOS
     void paintEvent(QPaintEvent *event);
+#endif
 
 private:
+#ifndef Q_OS_MACOS
     qreal frameBorderThickness() const;
+#endif
 
 signals:
     void Closeed();

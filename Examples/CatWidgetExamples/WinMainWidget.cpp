@@ -443,6 +443,7 @@ void WinMainWidget::closeEvent(QCloseEvent *event)
     Q_UNUSED(event)
 }
 
+#ifndef Q_OS_MACOS
 void WinMainWidget::paintEvent(QPaintEvent *event)
 {
     QMainWindow::paintEvent(event);
@@ -482,6 +483,7 @@ qreal WinMainWidget::frameBorderThickness() const
 {
     return (static_cast<qreal>(Utilities::getWindowVisibleFrameBorderThickness(winId())) / devicePixelRatioF());
 }
+#endif
 
 void WinMainWidget::On_ButtonFunc(int id)
 {

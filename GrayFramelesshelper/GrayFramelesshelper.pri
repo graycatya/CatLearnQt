@@ -35,5 +35,15 @@ win32 {
 linux*: SOURCES += $$PWD/utilities_linux.cpp
 macx: SOURCES += $$PWD/utilities_macos.mm
 
+macx {
+    LIBS += -framework CoreServices
+    LIBS += -framework Foundation
+    LIBS += -framework CoreFoundation
+    LIBS += -framework Carbon
+    LIBS += -lobjc
+    LIBS += -framework AppKit
+    DEFINES += OBJC_OLD_DISPATCH_PROTOTYPES
+}
+
 INCLUDEPATH += $$PWD
 

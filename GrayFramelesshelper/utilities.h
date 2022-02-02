@@ -45,6 +45,10 @@ namespace Utilities
 [[nodiscard]] FRAMELESSHELPER_API bool isSystemMenuRequested(const void *data, QPointF *pos);
 [[nodiscard]] FRAMELESSHELPER_API bool showSystemMenu(const WId winId, const QPointF &pos);
 
+#ifdef Q_OS_MACOS
+[[nodiscard]] FRAMELESSHELPER_API bool setupDockClickEvent();
+#endif
+
 #ifdef Q_OS_WINDOWS
 [[nodiscard]] FRAMELESSHELPER_API bool isWin8OrGreater();
 [[nodiscard]] FRAMELESSHELPER_API bool isWin8Point1OrGreater();

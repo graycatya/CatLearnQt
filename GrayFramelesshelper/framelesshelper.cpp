@@ -194,6 +194,7 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
         }
 
     } else if (type == QEvent::MouseButtonPress) {
+        qDebug() << "edges: " << edges;
         if (edges != Qt::Edges{}) {
             if ((window->windowState() == Qt::WindowState::WindowNoState) && !hitTestVisible && resizable) {
                 if (!window->startSystemResize(edges)) {

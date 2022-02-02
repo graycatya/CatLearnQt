@@ -1,4 +1,4 @@
-﻿#include "WinMainWidget.h"
+#include "WinMainWidget.h"
 #include "ui_WinMainWidget.h"
 
 #include <QtGui/qpainter.h>
@@ -31,7 +31,7 @@
 #include "framelesswindowsmanager.h"
 #include "utilities.h"
 #ifdef Q_OS_MACOS
-#include <Cocoa.h>
+#import <Cocoa/Cocoa.h>
 #endif
 
 FRAMELESSHELPER_USE_NAMESPACE
@@ -40,6 +40,9 @@ WinMainWidget::WinMainWidget(QWidget *parent, Qt::WindowFlags flags) :
     QMainWindow(parent, flags),
     ui(new Ui::WinMainWidget)
 {
+#ifndef Q_OS_IOS
+    Utilities::setupDockClickEvent();
+#endif
     setAttribute(Qt::WA_DontCreateNativeAncestors);
     createWinId();
 
@@ -179,9 +182,12 @@ void WinMainWidget::InitConnect()
     //connect(ui->CloseButton, &QPushButton::clicked, this, &MainWindow::close);
     connect(ui->MinimizeButton, &QPushButton::clicked, this, [this](){
 #ifdef Q_OS_MACOS
-        NSView *view
+        NSView *view = (NSView*)window()->winId();
+        NSWindow *wnd = [view window];
+        [wnd setStyleMask:[wnd styleMask] | NSWindowStyleMaskMiniaturizable];
 #endif
         this->showMinimized();
+
     });
     connect(ui->ZoomButton, &QPushButton::clicked, this, [this](){
         if (isMaximized() || isFullScreen()) {

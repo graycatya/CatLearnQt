@@ -14,10 +14,10 @@
 #include <QTimer>
 
 #include <QLibraryInfo>
-/*
+
 #ifndef Q_OS_IOS
-#include <CatSerial>
-#endif*/
+#include "utilities.h"
+#endif
 
 
 int main(int argc, char *argv[])
@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #endif
 
+
     QCoreApplication::addLibraryPath("../");
     // [1] 启动日志模块
     CATLOG::CatLog::Instance();
@@ -57,9 +58,6 @@ int main(int argc, char *argv[])
     CatConfig *config = CatConfig::Instance();
     config->SetTranslator(&app);
     config->InitConfig();
-#ifndef Q_OS_IOS
-
-#endif
 
     WinMainWidget w;
     w.show();

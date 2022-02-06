@@ -128,7 +128,7 @@ void WinMainWidget::InitProperty()
 
     //ui->TopWidget->setVisible(false);
 
-    ui->BottomWidget->setVisible(false);
+
 
     // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
@@ -137,8 +137,6 @@ void WinMainWidget::InitProperty()
     ui->ToolListWidget->setMouseTracking(true);
     ui->ExhibitionWidget->installEventFilter(this);
     ui->ExhibitionWidget->setMouseTracking(true);
-    ui->BottomWidget->installEventFilter(this);
-    ui->BottomWidget->setMouseTracking(true);
     ui->WinRootWidget->installEventFilter(this);
     ui->WinRootWidget->setMouseTracking(true);
     for(auto button : m_pButtons)
@@ -332,7 +330,7 @@ void WinMainWidget::showEvent(QShowEvent *event)
             FramelessWindowsManager::setHitTestVisible(win, ui->MinimizeButton, true);
             FramelessWindowsManager::setHitTestVisible(win, ui->ZoomButton, true);
             FramelessWindowsManager::setHitTestVisible(win, ui->CloseButton, true);
-            FramelessWindowsManager::setHitTestVisible(win, ui->BackCentralwidget, true);
+            //FramelessWindowsManager::setHitTestVisible(win, ui->WinRootWidget, true);
 #ifndef Q_OS_MACOS
             const auto margin = static_cast<int>(qRound(frameBorderThickness()));
             setContentsMargins(margin, margin, margin, margin);
@@ -344,6 +342,7 @@ void WinMainWidget::showEvent(QShowEvent *event)
 
 bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
 {
+    //qDebug() << watched->objectName() << " : " << event;
     if(event->type() == QEvent::MouseMove)
     {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
@@ -419,6 +418,7 @@ void WinMainWidget::mouseMoveEvent(QMouseEvent *event)
 #else
     Q_UNUSED(event)
 #endif
+    qDebug() << "main move event";
 }
 
 void WinMainWidget::changeEvent(QEvent *event)
@@ -458,6 +458,7 @@ void WinMainWidget::closeEvent(QCloseEvent *event)
 
 void WinMainWidget::paintEvent(QPaintEvent *event)
 {
+    qDebug() << "main paint event";
     QMainWindow::paintEvent(event);
     if ((windowState() == Qt::WindowNoState)
 #ifdef Q_OS_WINDOWS

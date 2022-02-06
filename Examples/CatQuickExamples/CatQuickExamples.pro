@@ -125,6 +125,9 @@ if(!contains(DEFINES,WEBASSEMBLY)) {
     mac {
         include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
     }
+    unix {
+        include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+    }
 }
 
 include($$PWD/Src/TableFunction/TableFunction.pri)

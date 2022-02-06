@@ -26,6 +26,7 @@
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 
+#include <QDateTime>
 #include <QtCore/qdebug.h>
 #include <QtGui/qevent.h>
 #include <QtGui/qwindow.h>
@@ -44,6 +45,7 @@ void FramelessHelper::removeWindowFrame(QWindow *window)
     }
     window->setFlags(window->flags() | Qt::FramelessWindowHint);
     window->installEventFilter(this);
+    //window->setMouseTracking(this);
     window->setProperty(Constants::kFramelessModeFlag, true);
 }
 
@@ -204,8 +206,8 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
             }
         }
     }
-
-    return false;
+    //qDebug() << object->objectName() << " | " << event << " framelesshelper event filter";
+    return QObject::eventFilter(object, event);
 }
 
 FRAMELESSHELPER_END_NAMESPACE

@@ -84,7 +84,7 @@ CONFIG += object_with_source
 # CONFIG += console
 
 DEFINES += QT_DEPRECATED_WARNINGS
-DEFINES += QGUIAPPLICATION_CLASS
+DEFINES += QGUIAPPLICATIONEXE_CLASS
 
 win32:msvc {
         DEFINES += QT_OS_WIN10
@@ -108,6 +108,8 @@ include($$PWD/../../GrayCatQtQuick/GrayCatQtQuick.pri)
 
 include($$PWD/../../GrayCatQtCore/Src/CatUniversal/CatUniversal.pri)
 
+include($$PWD/../../GrayFramelesshelper/GrayFramelesshelper.pri)
+
 if(!contains(DEFINES,WEBASSEMBLY)) {
     include($$PWD/../../GrayCatQtCore/Src/SingleApplication/singleapplication.pri)
     include($$PWD/../../GrayCatQtCore/Src/CatEncp/CatEncp.pri)
@@ -123,9 +125,13 @@ if(!contains(DEFINES,WEBASSEMBLY)) {
     mac {
         include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
     }
+    unix {
+        include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
+    }
 }
 
 include($$PWD/Src/TableFunction/TableFunction.pri)
+
 
 if(!contains(DEFINES,WEBASSEMBLY)) {
 # 配置file_copies

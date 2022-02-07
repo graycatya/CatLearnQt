@@ -1,3 +1,5 @@
+QT += core
+
 HEADERS += \
     $$PWD/CatConfig.h
 

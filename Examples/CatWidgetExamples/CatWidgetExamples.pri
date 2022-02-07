@@ -5,7 +5,7 @@ SOURCES += \
     $$PWD/CatSettings.cpp \
     $$PWD/CatWidget.cpp \
     $$PWD/WinWidget.cpp \
-    $$PWD/WinMainWidget.cpp \
+
 
 HEADERS += \
     $$PWD/CatAbout.h \
@@ -15,6 +15,15 @@ HEADERS += \
     $$PWD/CatWidget.h \
     $$PWD/WinWidget.h \
     $$PWD/WinMainWidget.h \
+
+macx {
+    SOURCES += \
+        $$PWD/WinMainWidget.mm \
+} else {
+    SOURCES += \
+        $$PWD/WinMainWidget.cpp \
+}
+
 
 FORMS += \
     $$PWD/CatAbout.ui \

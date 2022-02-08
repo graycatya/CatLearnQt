@@ -33,6 +33,9 @@
 #include "framelesswindowsmanager.h"
 #include "utilities.h"
 
+#include <QMouseEvent>
+#include <QGuiApplication>
+
 FRAMELESSHELPER_BEGIN_NAMESPACE
 
 FramelessHelper::FramelessHelper(QObject *parent) : QObject(parent) {}
@@ -159,6 +162,9 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
             window->setCursor(Qt::ArrowCursor);
         }
     } else if (type == QEvent::MouseMove) {
+        //QPoint pos = QPoint(10,10);
+        //QMouseEvent Mouseevent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+        //QGuiApplication::sendEvent(window, &Mouseevent);
         // Display resize indicators
         static bool cursorChanged = false;
         if ((window->windowState() == Qt::WindowState::WindowNoState) && resizable) {
@@ -206,7 +212,7 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
             }
         }
     }
-    //qDebug() << object->objectName() << " | " << event << " framelesshelper event filter";
+    qDebug() << object->objectName() << " | " << event << " framelesshelper event filter";
     return QObject::eventFilter(object, event);
 }
 

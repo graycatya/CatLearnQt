@@ -84,8 +84,9 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
 
                                 m_ySerials[port]->DisConnect();
                                 m_ySerials[port]->serialPort.Close();
-                                delete m_ySerials[port];
-                                m_ySerials[port] = nullptr;
+                                //QCoreApplication::processEvents();
+                                //delete m_ySerials[port];
+                                //m_ySerials[port] = nullptr;
                                 //QCoreApplication::processEvents();
                             }
                         }
@@ -130,6 +131,9 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
 
 void SerialDevList::CloseSerialPort(QString port)
 {
+    QString log = "CloseSerialPort " + port;
+    CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    //QCoreApplication::processEvents();
     if(m_ySerials.contains(port))
     {
         m_pMutex->lock();
@@ -147,14 +151,18 @@ void SerialDevList::WriteData(QString port, QByteArray data)
 {
     QString log = "WriteData: " + data;
     CATLOG::CatLog::__Write_Log(INFO_LOG_T(log.toStdString()));
+    //QCoreApplication::processEvents();
     if(m_ySerials.contains(port))
     {
-        m_pMutex->lock();
-        if(m_ySerials[port] != nullptr)
+        if(m_ySerials.contains(port))
         {
-            m_ySerials[port]->serialPort.WriteSerialPortSlot(data);
+            m_pMutex->lock();
+            if(m_ySerials[port] != nullptr)
+            {
+                m_ySerials[port]->serialPort.WriteSerialPortSlot(data);
+            }
+            m_pMutex->unlock();
         }
-        m_pMutex->unlock();
     } else {
         emit SerialError(port, 10006);
     }
@@ -219,6 +227,7 @@ void SerialDevList::DelDevs(QList<QSerialPortInfo> devs)
                     {
                         m_ySerials[info.portName()]->DisConnect();
                         m_ySerials[info.portName()]->serialPort.Close();
+                        //QCoreApplication::processEvents();
                         delete m_ySerials[info.portName()];
                         m_ySerials[info.portName()] = nullptr;
                         //QCoreApplication::processEvents();

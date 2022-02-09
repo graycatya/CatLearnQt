@@ -1,4 +1,4 @@
-/*
+﻿/*
  * MIT License
  *
  * Copyright (C) 2021 by wangwenx190 (Yuhang Zhao)
@@ -23,6 +23,14 @@
  */
 
 #include "framelesshelper.h"
+
+#ifdef Q_OS_LINUX
+#include <QX11Info>
+
+#include <X11/Xatom.h>
+#include <X11/Xlib.h>
+#include <X11/extensions/shape.h>
+#endif
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 
@@ -200,11 +208,23 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
     if(m_bLinuxWindowClicked)
     {
         m_bLinuxWindowClicked = false;
-        qDebug() << window->flags();
-        QPoint pos = QPoint(10,10);
-        QMouseEvent Mouseevent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-        QGuiApplication::sendEvent(window, &Mouseevent);
-        window->showNormal();
+        const auto display = QX11Info::display();
+        const auto screen = QX11Info::appScreen();
+
+        XEvent xevent;
+        memset(&xevent, 0, sizeof(XEvent));
+
+        xevent.type = ButtonRelease;
+        xevent.xbutton.button = Button1;
+        xevent.xbutton.window = window->winId();
+        xevent.xbutton.x = pos.x();
+        xevent.xbutton.y = pos.y();
+        xevent.xbutton.x_root = globalPos.x();
+        xevent.xbutton.y_root = globalPos.y();
+        xevent.xbutton.display = display;
+
+        XSendEvent(display, widget->effectiveWinId(), False, ButtonReleaseMask, &xevent);
+        XFlush(display);
         qDebug() << "LinuxWindow ckicked";
     }
 #endif

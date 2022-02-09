@@ -32,7 +32,10 @@ win32 {
         $$PWD/qwinregistry.cpp
     LIBS += -luser32 -lshell32 -ladvapi32
 }
-linux*: SOURCES += $$PWD/utilities_linux.cpp
+linux* {
+    QT += x11extras
+    SOURCES += $$PWD/utilities_linux.cpp
+}
 macx: SOURCES += $$PWD/utilities_macos.mm
 
 macx {

@@ -419,7 +419,6 @@ void WinMainWidget::mouseMoveEvent(QMouseEvent *event)
 #else
     Q_UNUSED(event)
 #endif
-    qDebug() << "main move event";
 }
 
 void WinMainWidget::changeEvent(QEvent *event)
@@ -459,7 +458,6 @@ void WinMainWidget::closeEvent(QCloseEvent *event)
 
 void WinMainWidget::paintEvent(QPaintEvent *event)
 {
-    qDebug() << "main paint event";
     QMainWindow::paintEvent(event);
     if ((windowState() == Qt::WindowNoState)
 #ifdef Q_OS_WINDOWS

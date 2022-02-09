@@ -38,7 +38,11 @@
 
 FRAMELESSHELPER_BEGIN_NAMESPACE
 
-FramelessHelper::FramelessHelper(QObject *parent) : QObject(parent) {}
+FramelessHelper::FramelessHelper(QObject *parent) : QObject(parent) {
+#ifdef Q_OS_LINUX
+    m_bLinuxWindowClicked = false;
+#endif
+}
 
 void FramelessHelper::removeWindowFrame(QWindow *window)
 {
@@ -70,6 +74,7 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
     if (!object || !event) {
         return false;
     }
+
     // Only monitor window events.
     if (!object->isWindowType()) {
         return false;
@@ -81,6 +86,7 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
         return false;
     }
     const auto window = qobject_cast<QWindow *>(object);
+
     const int resizeBorderThickness = FramelessWindowsManager::getResizeBorderThickness(window);
     const int titleBarHeight = FramelessWindowsManager::getTitleBarHeight(window);
     const bool resizable = FramelessWindowsManager::getResizable(window);
@@ -91,7 +97,7 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
 #else
     const QPoint localMousePosition = mouseEvent->windowPos().toPoint();
 #endif
-    const Qt::Edges edges = [window, resizeBorderThickness, windowWidth, &localMousePosition] {
+    const Qt::Edges edges = [window, resizeBorderThickness, windowWidth, &localMousePosition, this] {
         const int windowHeight = window->height();
         if (localMousePosition.y() <= resizeBorderThickness) {
             if (localMousePosition.x() <= resizeBorderThickness) {
@@ -141,9 +147,13 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
     static bool titlebarClicked = false;
     if (type == QEvent::MouseButtonPress) {
         if (isInTitlebarArea)
+        {
             titlebarClicked = true;
+        }
         else
+        {
             titlebarClicked = false;
+        }
     }
 
     if (type == QEvent::MouseButtonDblClick) {
@@ -162,9 +172,6 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
             window->setCursor(Qt::ArrowCursor);
         }
     } else if (type == QEvent::MouseMove) {
-        //QPoint pos = QPoint(10,10);
-        //QMouseEvent Mouseevent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
-        //QGuiApplication::sendEvent(window, &Mouseevent);
         // Display resize indicators
         static bool cursorChanged = false;
         if ((window->windowState() == Qt::WindowState::WindowNoState) && resizable) {
@@ -189,10 +196,25 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
                 }
             }
         }
-
+#ifdef Q_OS_LINUX
+    if(m_bLinuxWindowClicked)
+    {
+        m_bLinuxWindowClicked = false;
+        qDebug() << window->flags();
+        QPoint pos = QPoint(10,10);
+        QMouseEvent Mouseevent(QEvent::MouseButtonPress, pos, Qt::LeftButton, Qt::LeftButton, Qt::NoModifier);
+        QGuiApplication::sendEvent(window, &Mouseevent);
+        window->showNormal();
+        qDebug() << "LinuxWindow ckicked";
+    }
+#endif
         if ((mouseEvent->buttons() & Qt::LeftButton) && titlebarClicked) {
             if (edges == Qt::Edges{}) {
                 if (isInTitlebarArea) {
+                    qDebug() << window->flags();
+#ifdef Q_OS_LINUX
+            m_bLinuxWindowClicked = true;
+#endif
                     if (!window->startSystemMove()) {
                         // ### FIXME: TO BE IMPLEMENTED!
                         qWarning() << "Current OS doesn't support QWindow::startSystemMove().";
@@ -202,9 +224,12 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
         }
 
     } else if (type == QEvent::MouseButtonPress) {
-        qDebug() << "edges: " << edges;
+
         if (edges != Qt::Edges{}) {
             if ((window->windowState() == Qt::WindowState::WindowNoState) && !hitTestVisible && resizable) {
+#ifdef Q_OS_LINUX
+            m_bLinuxWindowClicked = true;
+#endif
                 if (!window->startSystemResize(edges)) {
                     // ### FIXME: TO BE IMPLEMENTED!
                     qWarning() << "Current OS doesn't support QWindow::startSystemResize().";
@@ -212,7 +237,7 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
             }
         }
     }
-    qDebug() << object->objectName() << " | " << event << " framelesshelper event filter";
+    //qDebug() << object->objectName() << " | " << event << " framelesshelper event filter";
     return QObject::eventFilter(object, event);
 }
 

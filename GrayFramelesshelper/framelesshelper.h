@@ -51,6 +51,11 @@ public:
 
 protected:
     bool eventFilter(QObject *object, QEvent *event) override;
+
+#ifdef Q_OS_LINUX
+private:
+    bool m_bLinuxWindowClicked;
+#endif
 };
 
 FRAMELESSHELPER_END_NAMESPACE

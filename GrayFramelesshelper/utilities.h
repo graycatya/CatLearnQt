@@ -63,6 +63,10 @@ FRAMELESSHELPER_API void updateQtFrameMargins(QWindow *window, const bool enable
 [[nodiscard]] FRAMELESSHELPER_API bool isWindowNoState(const WId winId);
 #endif
 
+#ifdef Q_OS_LINUX
+[[nodiscard]] FRAMELESSHELPER_API void X11ButtonRelease(const WId winId, QPoint pos, QPoint globalPos);
+#endif
+
 }
 
 FRAMELESSHELPER_END_NAMESPACE

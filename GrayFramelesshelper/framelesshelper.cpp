@@ -24,14 +24,6 @@
 
 #include "framelesshelper.h"
 
-#ifdef Q_OS_LINUX
-#include <QX11Info>
-
-#include <X11/Xatom.h>
-#include <X11/Xlib.h>
-#include <X11/extensions/shape.h>
-#endif
-
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 
 #include <QDateTime>
@@ -88,13 +80,23 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
         return false;
     }
     const QEvent::Type type = event->type();
+    const auto window = qobject_cast<QWindow *>(object);
+#ifdef Q_OS_LINUX
+
+        if(m_bLinuxWindowClicked)
+        {
+            m_bLinuxWindowClicked = false;
+            Utilities::X11ButtonRelease(window->winId(), QPoint(0,0), QPoint(0,0));
+            return false;
+        }
+
+
+#endif
     // We are only interested in mouse events.
     if ((type != QEvent::MouseButtonDblClick) && (type != QEvent::MouseButtonPress)
             && (type != QEvent::MouseMove)) {
         return false;
     }
-    const auto window = qobject_cast<QWindow *>(object);
-
     const int resizeBorderThickness = FramelessWindowsManager::getResizeBorderThickness(window);
     const int titleBarHeight = FramelessWindowsManager::getTitleBarHeight(window);
     const bool resizable = FramelessWindowsManager::getResizable(window);
@@ -204,34 +206,9 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
                 }
             }
         }
-#ifdef Q_OS_LINUX
-    if(m_bLinuxWindowClicked)
-    {
-        m_bLinuxWindowClicked = false;
-        const auto display = QX11Info::display();
-        const auto screen = QX11Info::appScreen();
-
-        XEvent xevent;
-        memset(&xevent, 0, sizeof(XEvent));
-
-        xevent.type = ButtonRelease;
-        xevent.xbutton.button = Button1;
-        xevent.xbutton.window = window->winId();
-        xevent.xbutton.x = pos.x();
-        xevent.xbutton.y = pos.y();
-        xevent.xbutton.x_root = globalPos.x();
-        xevent.xbutton.y_root = globalPos.y();
-        xevent.xbutton.display = display;
-
-        XSendEvent(display, widget->effectiveWinId(), False, ButtonReleaseMask, &xevent);
-        XFlush(display);
-        qDebug() << "LinuxWindow ckicked";
-    }
-#endif
         if ((mouseEvent->buttons() & Qt::LeftButton) && titlebarClicked) {
             if (edges == Qt::Edges{}) {
                 if (isInTitlebarArea) {
-                    qDebug() << window->flags();
 #ifdef Q_OS_LINUX
             m_bLinuxWindowClicked = true;
 #endif

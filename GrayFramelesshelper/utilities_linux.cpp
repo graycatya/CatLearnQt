@@ -26,6 +26,14 @@
 
 #include <QtCore/qvariant.h>
 
+#ifdef Q_OS_LINUX
+#include <QX11Info>
+
+#include <X11/Xatom.h>
+#include <X11/Xlib.h>
+//#include <X11/extensions/shape.h>
+#endif
+
 FRAMELESSHELPER_BEGIN_NAMESPACE
 
 static constexpr int kDefaultResizeBorderThickness = 8;
@@ -106,7 +114,7 @@ bool Utilities::shouldAppsUseDarkMode()
 ColorizationArea Utilities::getColorizationArea()
 {
     // ### TO BE IMPLEMENTED
-    return ColorizationArea::None;
+    return static_cast<ColorizationArea>(0);
 }
 
 bool Utilities::isThemeChanged(const void *data)
@@ -130,6 +138,27 @@ bool Utilities::showSystemMenu(const WId winId, const QPointF &pos)
     Q_UNUSED(winId);
     Q_UNUSED(pos);
     return false;
+}
+
+void Utilities::X11ButtonRelease(const WId winId, QPoint pos, QPoint globalPos)
+{
+    const auto display = QX11Info::display();
+    //const auto screen = QX11Info::appScreen();
+
+    XEvent xevent;
+    memset(&xevent, 0, sizeof(XEvent));
+
+    xevent.type = ButtonRelease;
+    xevent.xbutton.button = Button1;
+    xevent.xbutton.window = winId;
+    xevent.xbutton.x = pos.x();
+    xevent.xbutton.y = pos.y();
+    xevent.xbutton.x_root = globalPos.x();
+    xevent.xbutton.y_root = globalPos.y();
+    xevent.xbutton.display = display;
+
+    XSendEvent(display, winId, False, ButtonReleaseMask, &xevent);
+    XFlush(display);
 }
 
 FRAMELESSHELPER_END_NAMESPACE

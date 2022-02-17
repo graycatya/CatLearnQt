@@ -4,6 +4,9 @@ HEADERS += \
     $$PWD/CatFlowLayout.h \
     $$PWD/CatIntValidator.h \
     $$PWD/CatPagingNavigation.h \
+    $$PWD/CatShadowWidget.h \
+    $$PWD/CatTableViewBasics.h \
+    $$PWD/CatTableWidgetBasics.h \
     $$PWD/CatToolTip.h \
     $$PWD/ListingOptions.h \
 
@@ -13,6 +16,9 @@ SOURCES += \
     $$PWD/CatFlowLayout.cpp \
     $$PWD/CatIntValidator.cpp \
     $$PWD/CatPagingNavigation.cpp \
+    $$PWD/CatShadowWidget.cpp \
+    $$PWD/CatTableViewBasics.cpp \
+    $$PWD/CatTableWidgetBasics.cpp \
     $$PWD/CatToolTip.cpp \
     $$PWD/ListingOptions.cpp \
 

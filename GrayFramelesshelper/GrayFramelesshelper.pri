@@ -36,9 +36,16 @@ linux* {
     QT += x11extras
     SOURCES += $$PWD/utilities_linux.cpp
 }
-macx: SOURCES += $$PWD/utilities_macos.mm
 
 macx {
+    OBJECTIVE_HEADERS += \
+        $$PWD/nswindow_proxy.h \
+        $$PWD/scoped_nsobject.h \
+        $$PWD/window_buttons_proxy.h
+    OBJECTIVE_SOURCES += \
+        $$PWD/utilities_macos.mm \
+        $$PWD/nswindow_proxy.mm \
+        $$PWD/window_buttons_proxy.mm
     LIBS += -framework CoreServices
     LIBS += -framework Foundation
     LIBS += -framework CoreFoundation

@@ -122,9 +122,6 @@ if(!contains(DEFINES,WEBASSEMBLY)) {
     win32:msvc {
         include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
     }
-    mac {
-        include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
-    }
     unix {
         include($$PWD/Src/WebChannelFunction/WebChannelFunction.pri)
     }

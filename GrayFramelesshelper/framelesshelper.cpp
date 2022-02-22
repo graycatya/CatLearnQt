@@ -44,16 +44,45 @@ FramelessHelper::FramelessHelper(QObject *parent) : QObject(parent) {
 #endif
 }
 
+/*!
+    Resize non-client area
+ */
+void FramelessHelper::resizeWindow(const QSize& windowSize)
+{
+    if (windowSize == this->windowSize())
+        return;
+
+    setWindowSize(windowSize);
+}
+
 void FramelessHelper::removeWindowFrame(QWindow *window)
 {
     Q_ASSERT(window);
     if (!window) {
         return;
     }
+    m_window = window;
+
+    QRect origRect = m_window->geometry();
+#ifdef Q_OS_MAC
+    window->setFlags(Qt::Window);
+#endif // Q_OS_MAC
+#ifdef Q_OS_LINUX
     window->setFlags(window->flags() | Qt::FramelessWindowHint);
+#endif
+
+    m_window->setGeometry(origRect);
+    resizeWindow(origRect.size());
+
     window->installEventFilter(this);
     //window->setMouseTracking(this);
     window->setProperty(Constants::kFramelessModeFlag, true);
+
+
+#ifdef Q_OS_MAC
+    Utilities::setMacWindowHook(m_window);
+    Utilities::setMacWindowFrameless(m_window);
+#endif
 }
 
 void FramelessHelper::bringBackWindowFrame(QWindow *window)
@@ -65,6 +94,7 @@ void FramelessHelper::bringBackWindowFrame(QWindow *window)
     window->removeEventFilter(this);
     window->setFlags(window->flags() & ~Qt::FramelessWindowHint);
     window->setProperty(Constants::kFramelessModeFlag, false);
+
 }
 
 bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
@@ -82,16 +112,14 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
     const QEvent::Type type = event->type();
     const auto window = qobject_cast<QWindow *>(object);
 #ifdef Q_OS_LINUX
-
         if(m_bLinuxWindowClicked)
         {
             m_bLinuxWindowClicked = false;
             Utilities::X11ButtonRelease(window->winId(), QPoint(0,0), QPoint(0,0));
             return false;
         }
-
-
 #endif
+
     // We are only interested in mouse events.
     if ((type != QEvent::MouseButtonDblClick) && (type != QEvent::MouseButtonPress)
             && (type != QEvent::MouseMove)) {
@@ -153,6 +181,8 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
                 && !hitTestVisible;
     }
 
+    //qDebug() << "windows: "<< window->geometry();
+
     // Determine if the mouse click occurred in the title bar
     static bool titlebarClicked = false;
     if (type == QEvent::MouseButtonPress) {
@@ -183,6 +213,8 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
         }
     } else if (type == QEvent::MouseMove) {
         // Display resize indicators
+        QMouseEvent *mouseEvent = dynamic_cast<QMouseEvent*>(event);
+
         static bool cursorChanged = false;
         if ((window->windowState() == Qt::WindowState::WindowNoState) && resizable) {
             if (((edges & Qt::TopEdge) && (edges & Qt::LeftEdge))
@@ -206,12 +238,14 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
                 }
             }
         }
+
         if ((mouseEvent->buttons() & Qt::LeftButton) && titlebarClicked) {
             if (edges == Qt::Edges{}) {
                 if (isInTitlebarArea) {
 #ifdef Q_OS_LINUX
             m_bLinuxWindowClicked = true;
 #endif
+
                     if (!window->startSystemMove()) {
                         // ### FIXME: TO BE IMPLEMENTED!
                         qWarning() << "Current OS doesn't support QWindow::startSystemMove().";
@@ -227,10 +261,12 @@ bool FramelessHelper::eventFilter(QObject *object, QEvent *event)
 #ifdef Q_OS_LINUX
             m_bLinuxWindowClicked = true;
 #endif
+#ifndef Q_OS_MACOS
                 if (!window->startSystemResize(edges)) {
                     // ### FIXME: TO BE IMPLEMENTED!
                     qWarning() << "Current OS doesn't support QWindow::startSystemResize().";
                 }
+#endif
             }
         }
     }

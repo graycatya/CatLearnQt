@@ -29,6 +29,7 @@
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 15, 0))
 
 #include <QtCore/qobject.h>
+#include <QSize>
 
 QT_BEGIN_NAMESPACE
 QT_FORWARD_DECLARE_CLASS(QWindow)
@@ -46,6 +47,10 @@ public:
     explicit FramelessHelper(QObject *parent = nullptr);
     ~FramelessHelper() override = default;
 
+    QSize windowSize() { return m_windowSize; }
+    void setWindowSize(const QSize& size) { m_windowSize = size; }
+    void resizeWindow(const QSize& windowSize);
+
     void removeWindowFrame(QWindow *window);
     void bringBackWindowFrame(QWindow *window);
 
@@ -56,6 +61,10 @@ protected:
 private:
     bool m_bLinuxWindowClicked;
 #endif
+
+private:
+    QWindow *m_window;
+    QSize m_windowSize;
 };
 
 FRAMELESSHELPER_END_NAMESPACE

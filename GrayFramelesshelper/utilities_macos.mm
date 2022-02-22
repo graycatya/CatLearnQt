@@ -28,14 +28,17 @@
 #include <Cocoa/Cocoa.h>
 #include <objc/objc.h>
 #include <objc/message.h>
+
+#include "nswindow_proxy.h"
 #include <QDebug>
 
 FRAMELESSHELPER_BEGIN_NAMESPACE
+namespace Utilities {
 
 static constexpr int kDefaultResizeBorderThickness = 8;
 static constexpr int kDefaultCaptionHeight = 23;
 
-int Utilities::getSystemMetric(const QWindow *window, const SystemMetric metric, const bool dpiScale, const bool forceSystemValue)
+int getSystemMetric(const QWindow *window, const SystemMetric metric, const bool dpiScale, const bool forceSystemValue)
 {
     Q_ASSERT(window);
     if (!window) {
@@ -88,39 +91,39 @@ int Utilities::getSystemMetric(const QWindow *window, const SystemMetric metric,
     return 0;
 }
 
-QColor Utilities::getColorizationColor()
+QColor getColorizationColor()
 {
     // ### TO BE IMPLEMENTED
     return Qt::darkGray;
 }
 
-int Utilities::getWindowVisibleFrameBorderThickness(const WId winId)
+int getWindowVisibleFrameBorderThickness(const WId winId)
 {
     // ### TO BE IMPLEMENTED
     Q_UNUSED(winId);
     return 1;
 }
 
-bool Utilities::shouldAppsUseDarkMode()
+bool shouldAppsUseDarkMode()
 {
     // ### TO BE IMPLEMENTED
     return false;
 }
 
-ColorizationArea Utilities::getColorizationArea()
+ColorizationArea getColorizationArea()
 {
     // ### TO BE IMPLEMENTED
     return ColorizationArea::None;
 }
 
-bool Utilities::isThemeChanged(const void *data)
+bool isThemeChanged(const void *data)
 {
     // ### TO BE IMPLEMENTED
     Q_UNUSED(data);
     return false;
 }
 
-bool Utilities::isSystemMenuRequested(const void *data, QPointF *pos)
+bool isSystemMenuRequested(const void *data, QPointF *pos)
 {
     // ### TO BE IMPLEMENTED
     Q_UNUSED(data);
@@ -128,7 +131,7 @@ bool Utilities::isSystemMenuRequested(const void *data, QPointF *pos)
     return false;
 }
 
-bool Utilities::showSystemMenu(const WId winId, const QPointF &pos)
+bool showSystemMenu(const WId winId, const QPointF &pos)
 {
     // ### TO BE IMPLEMENTED
     Q_UNUSED(winId);
@@ -142,7 +145,7 @@ bool applicationShouldHandleReopen(id self,SEL _cmd, ...)
     return false;
 }
 
-bool Utilities::setupDockClickEvent()
+bool setupDockClickEvent()
 {
     Class cls = objc_getClass("NSApplication");
 
@@ -200,6 +203,178 @@ bool Utilities::setupDockClickEvent()
     return false;
 }
 
+static QHash<QWindow*, NSWindowProxy*> gQWindowToNSWindow;
 
+static NSWindow* getNSWindow(QWindow* w)
+{
+    NSView* view = reinterpret_cast<NSView *>(w->winId());
+    if (view == nullptr) {
+        qWarning() << "Unable to get NSView.";
+        return nullptr;
+    }
+    NSWindow* nswindow = [view window];
+    if (nswindow == nullptr) {
+        qWarning() << "Unable to get NSWindow.";
+        return nullptr;
+    }
+
+    return nswindow;
+}
+
+bool setMacWindowHook(QWindow* w)
+{
+    NSWindow* nswindow = getNSWindow(w);
+    if (nswindow == nullptr)
+        return false;
+
+    NSWindowProxy *obj = new NSWindowProxy(nswindow, w);
+    gQWindowToNSWindow.insert(w, obj);
+
+    return true;
+}
+
+bool unsetMacWindowHook(QWindow* w)
+{
+    if (!gQWindowToNSWindow.contains(w))
+        return false;
+
+    NSWindowProxy* obj = gQWindowToNSWindow[w];
+    gQWindowToNSWindow.remove(w);
+    delete obj;
+
+    return true;
+}
+
+bool setMacWindowFrameless(QWindow* w)
+{
+    NSView* view = reinterpret_cast<NSView *>(w->winId());
+    if (view == nullptr)
+        return false;
+    NSWindow* nswindow = [view window];
+    if (nswindow == nullptr)
+        return false;
+
+    view.wantsLayer = YES;
+
+    nswindow.styleMask = nswindow.styleMask | NSWindowStyleMaskFullSizeContentView;
+    nswindow.titlebarAppearsTransparent = true;
+    nswindow.titleVisibility = NSWindowTitleHidden;
+    nswindow.hasShadow = true;
+
+    nswindow.movableByWindowBackground = false;
+    nswindow.movable = false;
+
+    nswindow.showsToolbarButton = false;
+    [nswindow standardWindowButton:NSWindowCloseButton].hidden = true;
+    [nswindow standardWindowButton:NSWindowMiniaturizeButton].hidden = true;
+    [nswindow standardWindowButton:NSWindowZoomButton].hidden = true;
+
+    [nswindow makeKeyWindow];
+    return true;
+}
+
+bool unsetMacWindowFrameless(QWindow* w)
+{
+    NSView* view = reinterpret_cast<NSView *>(w->winId());
+    if (view == nullptr)
+        return false;
+    NSWindow* nswindow = [view window];
+    if (nswindow == nullptr)
+        return false;
+
+    view.wantsLayer = NO;
+
+    nswindow.styleMask = nswindow.styleMask & ~NSWindowStyleMaskFullSizeContentView;
+    nswindow.titlebarAppearsTransparent = false;
+    nswindow.titleVisibility = NSWindowTitleVisible;
+    nswindow.hasShadow = true;
+
+    nswindow.movableByWindowBackground = false;
+    nswindow.movable = true;
+
+    nswindow.showsToolbarButton = true;
+    [nswindow standardWindowButton:NSWindowCloseButton].hidden = false;
+    [nswindow standardWindowButton:NSWindowMiniaturizeButton].hidden = false;
+    [nswindow standardWindowButton:NSWindowZoomButton].hidden = false;
+
+    return true;
+}
+
+bool startMacDrag(QWindow* w, const QPoint& pos)
+{
+    NSWindow* nswindow = getNSWindow(w);
+    if (nswindow == nullptr)
+        return false;
+
+    CGEventRef clickDown = CGEventCreateMouseEvent(
+        NULL, kCGEventLeftMouseDown, CGPointMake(pos.x(), pos.y()), kCGMouseButtonLeft);
+    NSEvent *nsevent = [NSEvent eventWithCGEvent:clickDown];
+    [nswindow performWindowDragWithEvent:nsevent];
+    CFRelease(clickDown);
+    return true;
+}
+
+Qt::MouseButtons getMacMouseButtons()
+{
+    return static_cast<Qt::MouseButtons>((uint)(NSEvent.pressedMouseButtons & Qt::MouseButtonMask));
+}
+
+bool setStandardWindowButtonsVisibility(QWindow *w, bool visible)
+{
+    NSWindowProxy* obj = gQWindowToNSWindow[w];
+    obj->setWindowButtonVisibility(visible);
+    return true;
+}
+
+/*! The origin of \a pos is top-left of window. */
+bool setStandardWindowButtonsPosition(QWindow *w, const QPoint &pos)
+{
+    NSWindowProxy* obj = gQWindowToNSWindow[w];
+    obj->setWindowButtonVisibility(true);
+    obj->setTrafficLightPosition(pos);
+    return true;
+}
+
+QSize standardWindowButtonsSize(QWindow *w)
+{
+    NSWindow* nswindow = getNSWindow(w);
+    if (nswindow == nullptr)
+        return QSize();
+
+    NSButton* left = [nswindow standardWindowButton:NSWindowCloseButton];
+    NSButton* right = [nswindow standardWindowButton:NSWindowZoomButton];
+    float height = NSHeight(left.frame);
+    float width = NSMaxX(right.frame) - NSMinX(left.frame);
+    return QSize(width, height);
+}
+
+bool setStandardWindowButtonEnabled(QWindow *w, NSWindowButton name, bool enable = true)
+{
+    NSWindow* nswindow = getNSWindow(w);
+    if (nswindow == nullptr)
+        return false;
+
+    NSButton* btn = [nswindow standardWindowButton:name];
+    [btn setEnabled: enable ? YES : NO];
+
+    return true;
+}
+
+bool setCloseBtnEnabled(QWindow *w, bool enable)
+{
+    return setStandardWindowButtonEnabled(w, NSWindowCloseButton, enable);
+}
+
+bool setMinBtnEnabled(QWindow *w, bool enable)
+{
+    return setStandardWindowButtonEnabled(w, NSWindowMiniaturizeButton, enable);
+}
+
+bool setZoomBtnEnabled(QWindow *w, bool enable)
+{
+    return setStandardWindowButtonEnabled(w, NSWindowZoomButton, enable);
+}
+
+}
 
 FRAMELESSHELPER_END_NAMESPACE

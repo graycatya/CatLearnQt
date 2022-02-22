@@ -350,6 +350,7 @@ void WinMainWidget::showEvent(QShowEvent *event)
 
 bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
 {
+    //qDebug() << "WinMainWidget: " << watched->objectName();
     if(event->type() == QEvent::MouseMove)
     {
 #if defined(Q_OS_LINUX) || defined(Q_OS_MAC)

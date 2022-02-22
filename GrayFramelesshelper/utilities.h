@@ -45,9 +45,21 @@ namespace Utilities
 [[nodiscard]] FRAMELESSHELPER_API bool isSystemMenuRequested(const void *data, QPointF *pos);
 [[nodiscard]] FRAMELESSHELPER_API bool showSystemMenu(const WId winId, const QPointF &pos);
 
-#ifdef Q_OS_MACOS
+#ifdef Q_OS_MAC
 [[nodiscard]] FRAMELESSHELPER_API bool setupDockClickEvent();
-#endif
+FRAMELESSHELPER_API bool setMacWindowHook(QWindow* w);
+FRAMELESSHELPER_API bool unsetMacWindowHook(QWindow* w);
+FRAMELESSHELPER_API bool setMacWindowFrameless(QWindow* w);
+FRAMELESSHELPER_API bool unsetMacWindowFrameless(QWindow* w);
+FRAMELESSHELPER_API bool startMacDrag(QWindow* w, const QPoint& pos);
+FRAMELESSHELPER_API Qt::MouseButtons getMacMouseButtons();
+FRAMELESSHELPER_API bool setStandardWindowButtonsVisibility(QWindow *w, bool visible);
+FRAMELESSHELPER_API bool setStandardWindowButtonsPosition(QWindow *w, const QPoint &pos);
+FRAMELESSHELPER_API QSize standardWindowButtonsSize(QWindow *w);
+FRAMELESSHELPER_API bool setCloseBtnEnabled(QWindow *w, bool enable = true);
+FRAMELESSHELPER_API bool setMinBtnEnabled(QWindow *w, bool enable = true);
+FRAMELESSHELPER_API bool setZoomBtnEnabled(QWindow *w, bool enable = true);
+#endif // Q_OS_MAC
 
 #ifdef Q_OS_WINDOWS
 [[nodiscard]] FRAMELESSHELPER_API bool isWin8OrGreater();

@@ -35,6 +35,7 @@ win32 {
 linux* {
     QT += x11extras
     SOURCES += $$PWD/utilities_linux.cpp
+    LIBS += -lX11
 }
 macx: SOURCES += $$PWD/utilities_macos.mm
 

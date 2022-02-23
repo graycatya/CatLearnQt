@@ -158,7 +158,7 @@ QComboBox:on { /* 当弹出窗口打开时，移动文本 */
 QComboBox::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
-    width: 15px;
+    /*width: 15px;*/
     border-top-right-radius: 3px; /* 半径与QComboBox相同 */
     border-bottom-right-radius: 3px;
 }
@@ -270,4 +270,58 @@ QDateTimeEdit::up-button
 QDateTimeEdit::down-button
 {
     image: url(:/Images/CatWhite/PullDown.png);	
+}
+
+
+QFontComboBox {
+    font-family: "Ubuntu";
+    border: 1px solid #d2d2d2;
+    color: #4b4642;
+    background-color: #fdfdfd;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 150px;
+    min-height: 30px;
+}
+
+
+QFontComboBox:editable {
+    color: #4b4642;
+    background-color: #fdfdfd;
+    
+}
+
+QFontComboBox:!editable, QFontComboBox::drop-down:editable {
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+}
+
+/* 当弹出窗口打开时，QComboBox将处于“on”状态 */
+QFontComboBox:!editable:on, QFontComboBox::drop-down:editable:on {
+    border: 1px solid rgba(223,74,22,100%);
+    background-color: #fdfdfd;
+}
+
+QFontComboBox:on { /* 当弹出窗口打开时，移动文本 */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QFontComboBox::drop-down {
+    min-width: 30px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    /*width: 15px;*/
+    border-top-right-radius: 3px; /* 半径与QComboBox相同 */
+    border-bottom-right-radius: 3px;
+}
+
+QFontComboBox::down-arrow {
+    /*padding-right: 6px;*/
+    image: url(:/Images/CatWhite/PullDown.png);
+}
+
+QFontComboBox::down-arrow:on {
+    /*padding-right: 6px;*/
+    image: url(:/Images/CatWhite/PullUp.png);
 }

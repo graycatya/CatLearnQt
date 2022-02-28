@@ -350,6 +350,10 @@ void CatTableViewBasics::InitTopTable()
     connect(horizontalScrollBar(), &QAbstractSlider::valueChanged,
             m_pTopTableWidget->horizontalScrollBar(), &QAbstractSlider::setValue);
 
+    connect(m_pTopTableWidget->verticalScrollBar(), &QScrollBar::valueChanged, this, [=](int value){
+        Q_UNUSED(value)
+        m_pTopTableWidget->verticalScrollBar()->setValue(0);
+    });
     m_pTopTableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pTopTableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pTopTableWidget->show();
@@ -388,6 +392,11 @@ void CatTableViewBasics::InitLeftTable()
     connect(verticalScrollBar(), &QAbstractSlider::valueChanged,
             m_pLeftTableWidget->verticalScrollBar(), &QAbstractSlider::setValue);
 
+    connect(m_pLeftTableWidget->horizontalScrollBar(), &QScrollBar::valueChanged, this, [=](int value){
+        Q_UNUSED(value)
+        m_pLeftTableWidget->horizontalScrollBar()->setValue(0);
+    });
+
     m_pLeftTableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pLeftTableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pLeftTableWidget->show();
@@ -419,11 +428,16 @@ void CatTableViewBasics::InitIntersectionTable()
     connect(m_pIntersectionWidget->verticalHeader(),&QHeaderView::sectionResized, this,
             &CatTableViewBasics::updateSectionHeight);
 
+    connect(m_pIntersectionWidget->verticalScrollBar(), &QScrollBar::valueChanged, this, [=](int value){
+        Q_UNUSED(value)
+        m_pIntersectionWidget->verticalScrollBar()->setValue(0);
+    });
+
     //连接信号槽, 用于滚动条联动
-    connect(m_pIntersectionWidget->verticalScrollBar(), &QAbstractSlider::valueChanged,
+    /*connect(m_pIntersectionWidget->verticalScrollBar(), &QAbstractSlider::valueChanged,
             verticalScrollBar(), &QAbstractSlider::setValue);
     connect(verticalScrollBar(), &QAbstractSlider::valueChanged,
-            m_pIntersectionWidget->verticalScrollBar(), &QAbstractSlider::setValue);
+            m_pIntersectionWidget->verticalScrollBar(), &QAbstractSlider::setValue);*/
 
     m_pIntersectionWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     m_pIntersectionWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);

@@ -15,7 +15,7 @@ QLabel#ImageLabel {
 QLabel#TextLabel {
     font-family: "Ubuntu";
     font-size: 18px;
-    color: #FFFFFF;
+    color: #4b4642;
 }
 
 QWidget#RigthWidget {

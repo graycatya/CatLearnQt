@@ -19,6 +19,7 @@
 #endif
 #include "WidgetTools/SideColumnTool.h"
 #include "WidgetTools/InputTools.h"
+#include "WidgetTools/TableViewTool.h"
 
 
 
@@ -73,6 +74,7 @@ void CatWidget::InitToolButtons()
     ToolButtonList << "CatQcustomplotTools";
 #endif
     ToolButtonList << "CatSideColumnTool" << "CatInputTools";
+    ToolButtonList << "CatTableViewTool";
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -130,6 +132,12 @@ void CatWidget::InitToolWidgets()
     ui->ToolStackedWidget->addWidget(m_pInputTools);
     m_pInputTools->installEventFilter(this);
     m_pInputTools->setMouseTracking(true);
+
+    TableViewTool *m_pTableViewTool = new TableViewTool;
+    m_pTableViewTool->setObjectName("CatTableViewTool");
+    ui->ToolStackedWidget->addWidget(m_pTableViewTool);
+    m_pTableViewTool->installEventFilter(this);
+    m_pTableViewTool->setMouseTracking(true);
 
     ui->ToolStackedWidget->setMouseTracking(true);
 }

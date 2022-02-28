@@ -17,6 +17,9 @@ Window {
     width: 800
     height: 600
 
+    minimumWidth: 800
+    minimumHeight: 600
+
     //property bool isMaxed: view.isMax
 
     property real _flh_margin: ((root.visibility === root.Maximized) || (root.visibility === root.FullScreen)) ? 0 : (Utils.frameBorderThickness / Screen.devicePixelRatio)

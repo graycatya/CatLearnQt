@@ -77,6 +77,11 @@ QPushButton#CatInputTools {
     qproperty-iconSize: 48px 48px;
 }
 
+QPushButton#CatTableViewTool {
+    qproperty-icon: url(:/Images/CatWhite/TableView.png);
+    qproperty-iconSize: 48px 48px;
+}
+
 QScrollArea#ListingOptionsScroll {
     border: none;
     background-color: transparent;

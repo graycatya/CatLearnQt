@@ -152,5 +152,9 @@
         <file>Images/CatWhite/Inputs.png</file>
         <file>qss/CatGray/InputTools.css</file>
         <file>qss/CatWhite/InputTools.css</file>
+        <file>Images/CatGray/TableView.png</file>
+        <file>Images/CatWhite/TableView.png</file>
+        <file>qss/CatGray/TableViewTool.css</file>
+        <file>qss/CatWhite/TableViewTool.css</file>
     </qresource>
 </RCC>

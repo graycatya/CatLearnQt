@@ -28,6 +28,7 @@ int CatHttp::DownLoad(QUrl url, QString downloaddir, bool ssl)
         if(!dir.mkpath(downloaddir))
         {
             m_bWork = false;
+            emit DownLoadError();
             return DOWNLOADPATHERROR;
         }
     }
@@ -210,6 +211,11 @@ void CatHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
             emit ReplyDataed(datas);
         }
 
+         if(statusCode != 200)
+        {
+            emit NetWorkError();
+        }
+
         m_yState = NONE;
         m_pVar.clear();
         m_bWork = false;
@@ -265,6 +271,11 @@ void CatHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
             }
 
             emit ReplyDataed(datas);
+        }
+
+        if(statusCode != 200)
+        {
+            emit NetWorkError();
         }
 
         m_yState = NONE;
@@ -325,6 +336,11 @@ void CatHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
             emit ReplyDataed(datas);
         }
 
+        if(statusCode != 200)
+        {
+            emit NetWorkError();
+        }
+
         m_yState = NONE;
         m_pVar.clear();
         m_bWork = false;
@@ -367,7 +383,7 @@ void CatHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
 
 void CatHttp::httpDownFinished()
 {
-    QNetworkReply *m_pReply =qobject_cast<QNetworkReply *>(sender());
+    QNetworkReply *m_pReply = qobject_cast<QNetworkReply *>(sender());
     m_pReply->deleteLater();
     m_pReply = nullptr;
     if(m_pFile)
@@ -387,13 +403,10 @@ void CatHttp::httpDownFinished()
 
 void CatHttp::httpDownReadyRead()
 {
-    QNetworkReply *m_pReply =qobject_cast<QNetworkReply *>(sender());
+    QNetworkReply *m_pReply = qobject_cast<QNetworkReply *>(sender());
     if(m_pFile)
     {
-        if(m_pReply->readBufferSize() > 0)
-        {
-            m_pFile->write(m_pReply->readAll());
-        }
+        m_pFile->write(m_pReply->readAll());
     }
 }
 
@@ -433,5 +446,7 @@ void CatHttp::httpError(QNetworkReply::NetworkError)
 
 void CatHttp::updateDataReadProgress(qint64 bytesRead, qint64 totalBytes)
 {
+    QString log = QString("updateDataReadProgress: %1/%2").arg(bytesRead).arg(totalBytes);
+    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     emit DownLoadProgress(bytesRead, totalBytes);
 }

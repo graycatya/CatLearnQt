@@ -1,5 +1,6 @@
 ﻿#include "CatHttpParam.h"
 #include <QFile>
+#include <QFileInfo>
 
 
 CatHttpParam::CatHttpParam(QObject *parent)
@@ -17,11 +18,35 @@ QHttpPart CatHttpParam::AddHttpParam(const QString &key, const QString &value)
     return part;
 }
 
+QHttpPart CatHttpParam::AddHttpFileParam(QHttpMultiPart *multipart, const QString &key, const QString &filepath)
+{
+    QHttpPart filePart;
+    if(multipart)
+    {
+        QFileInfo fileinfo;
+        fileinfo.setFile(filepath);
+        QString log = QString("AddHttpFileParam: %1").arg(fileinfo.fileName());
+        CATLOG::CatLog::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
+        filePart.setHeader(QNetworkRequest::ContentTypeHeader, "application/octet-stream");
+        filePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant(QString("form-data; name=\"%1\";filename=\"%2\";").arg(key).arg(fileinfo.fileName())));
+        QFile *file = new QFile(filepath);
+        file->open(QIODevice::ReadOnly);
+        filePart.setBodyDevice(file);
+        file->setParent(multipart);
+    }
+    m_yParts.push_back(filePart);
+    return filePart;
+}
+
 QHttpPart CatHttpParam::AddHttpImageParam(QHttpMultiPart *multipart, const QString &key, const QString &imagepath, const QString &type)
 {
     QHttpPart imagePart;
     if(multipart)
     {
+        QFileInfo fileinfo;
+        fileinfo.setFile(imagepath);
+        QString log = QString("AddHttpImageParam: %1").arg(fileinfo.fileName());
+        CATLOG::CatLog::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
         imagePart.setHeader(QNetworkRequest::ContentTypeHeader, QVariant(type));
         imagePart.setHeader(QNetworkRequest::ContentDispositionHeader, QVariant(QString("form-data; name=\"%1\"").arg(key)));
         QFile *file = new QFile(imagepath);

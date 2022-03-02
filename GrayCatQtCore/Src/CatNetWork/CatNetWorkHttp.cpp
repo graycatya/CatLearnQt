@@ -181,7 +181,7 @@ void CatNetWorkHttp::run()
         }
         while(m_bWork)
         {
-            QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
+            QThread::exec();
         }
         m_pManager->deleteLater();
         m_pManager = nullptr;
@@ -244,12 +244,15 @@ void CatNetWorkHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
             }
 
             emit ReplyDataed(datas);
+        } else {
+            emit NetWorkError();
         }
 
         m_yState = NONE;
         m_pVar.clear();
         m_bWork = false;
         m_pReply->deleteLater();
+        QThread::quit();
     });
 
     connect(m_pManager, &QNetworkAccessManager::sslErrors, this, [=](QNetworkReply *reply, const QList<QSslError> &errors){
@@ -301,12 +304,15 @@ void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
             }
 
             emit ReplyDataed(datas);
+        } else {
+            emit NetWorkError();
         }
 
         m_yState = NONE;
         m_pVar.clear();
         m_bWork = false;
         m_pReply->deleteLater();
+        QThread::quit();
     });
 
     connect(m_pManager, &QNetworkAccessManager::sslErrors, this, [=](QNetworkReply *reply, const QList<QSslError> &errors){
@@ -359,6 +365,8 @@ void CatNetWorkHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
             }
 
             emit ReplyDataed(datas);
+        } else {
+            emit NetWorkError();
         }
 
         m_yState = NONE;
@@ -367,6 +375,7 @@ void CatNetWorkHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
         QHttpMultiPart* part = reinterpret_cast<QHttpMultiPart*>(hash["data"].value<void*>());
         part->deleteLater();
         m_pReply->deleteLater();
+        QThread::quit();
     });
 
     connect(m_pManager, &QNetworkAccessManager::sslErrors, this, [=](QNetworkReply *reply, const QList<QSslError> &errors){
@@ -420,6 +429,7 @@ void CatNetWorkHttp::httpDownFinished()
     QString file = m_pVar.toHash()["fileName"].toString();
     emit DownLoadFinished(file);
     m_pVar.clear();
+    QThread::quit();
 }
 
 void CatNetWorkHttp::httpDownReadyRead()
@@ -466,6 +476,7 @@ void CatNetWorkHttp::httpError(QNetworkReply::NetworkError)
     m_yState = NONE;
     m_bWork = false;
     m_pVar.clear();
+    QThread::quit();
 }
 
 void CatNetWorkHttp::updateDataReadProgress(qint64 bytesRead, qint64 totalBytes)

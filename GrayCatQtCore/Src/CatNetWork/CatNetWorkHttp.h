@@ -51,6 +51,7 @@ signals:
     void DownLoadError();
     void HttpPostError();
     void DownLoadProgress(qint64, qint64);
+    void NetWorkError();
 
     void ReplyDataed(QByteArray data);
 

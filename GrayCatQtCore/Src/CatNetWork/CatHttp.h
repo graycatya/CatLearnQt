@@ -49,6 +49,7 @@ signals:
     void DownLoadFinished(QString filePath);
     void DownLoadError();
     void HttpPostError();
+    void NetWorkError();
     void DownLoadProgress(qint64, qint64);
 
     void ReplyDataed(QByteArray data);

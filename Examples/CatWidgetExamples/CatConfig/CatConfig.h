@@ -63,6 +63,8 @@ public:
 
     void InitConfig();
 
+    static QStringList GetTableHeader();
+
 signals:
     void UpdateStyleSheets();
 

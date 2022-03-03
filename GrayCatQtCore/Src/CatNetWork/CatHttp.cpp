@@ -162,8 +162,6 @@ void CatHttp::InitHttpDownLoad(QNetworkAccessManager *m_pManager)
     QHash<QString, QVariant> hash = m_pVar.toHash();
     if(hash["ssl"].toBool())
     {
-        m_pReply = m_pManager->get(QNetworkRequest(hash["url"].toUrl()));
-    } else {
         QNetworkRequest request;
         QSslConfiguration config;
         QSslConfiguration conf = request.sslConfiguration();
@@ -172,6 +170,8 @@ void CatHttp::InitHttpDownLoad(QNetworkAccessManager *m_pManager)
         request.setSslConfiguration(conf);
         request.setUrl(hash["url"].toUrl());
         m_pReply = m_pManager->get(request);
+    } else {
+        m_pReply = m_pManager->get(QNetworkRequest(hash["url"].toUrl()));
     }
 
     if(m_pReply != nullptr)
@@ -446,7 +446,5 @@ void CatHttp::httpError(QNetworkReply::NetworkError)
 
 void CatHttp::updateDataReadProgress(qint64 bytesRead, qint64 totalBytes)
 {
-    QString log = QString("updateDataReadProgress: %1/%2").arg(bytesRead).arg(totalBytes);
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(log.toStdString()));
     emit DownLoadProgress(bytesRead, totalBytes);
 }

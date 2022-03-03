@@ -156,5 +156,13 @@
         <file>Images/CatWhite/TableView.png</file>
         <file>qss/CatGray/TableViewTool.css</file>
         <file>qss/CatWhite/TableViewTool.css</file>
+        <file>Images/CheckOff_Hover.png</file>
+        <file>Images/CheckOff_Normal.png</file>
+        <file>Images/CheckOn_All.png</file>
+        <file>Images/CheckOn_Partially.png</file>
+        <file>Images/BelowHover.png</file>
+        <file>Images/BelowNormal.png</file>
+        <file>Images/UpHover.png</file>
+        <file>Images/UpNormal.png</file>
     </qresource>
 </RCC>

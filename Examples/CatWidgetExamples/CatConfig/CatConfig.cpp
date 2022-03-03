@@ -175,3 +175,12 @@ void CatConfig::InitConfig()
     }
 }
 
+QStringList CatConfig::GetTableHeader()
+{
+    QStringList list;
+    list << tr("ID");
+    list << tr("State");
+    list << tr("Time");
+    return list;
+}
+

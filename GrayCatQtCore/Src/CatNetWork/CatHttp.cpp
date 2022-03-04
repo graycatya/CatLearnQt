@@ -150,7 +150,7 @@ void CatHttp::RunHttpFunc()
     }
     while(m_bWork)
     {
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 1000);
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
     m_pManager->deleteLater();
     m_pManager = nullptr;
@@ -331,6 +331,7 @@ void CatHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
             while (m_pReply->waitForReadyRead(50))
             {
                 datas += m_pReply->readAll();
+                QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
             }
 
             emit ReplyDataed(datas);
@@ -407,6 +408,7 @@ void CatHttp::httpDownReadyRead()
     if(m_pFile)
     {
         m_pFile->write(m_pReply->readAll());
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     }
 }
 
@@ -446,5 +448,6 @@ void CatHttp::httpError(QNetworkReply::NetworkError)
 
 void CatHttp::updateDataReadProgress(qint64 bytesRead, qint64 totalBytes)
 {
+    QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
     emit DownLoadProgress(bytesRead, totalBytes);
 }

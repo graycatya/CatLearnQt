@@ -32,7 +32,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QWidget" name="TableView" native="true"/>
+      <widget class="CatTableViewTool" name="TableView" native="true"/>
      </item>
      <item>
       <widget class="QWidget" name="BottomWidget" native="true">
@@ -84,6 +84,12 @@
    <class>CatPagingNavigation</class>
    <extends>QWidget</extends>
    <header>CatControl/CatPagingNavigation.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>CatTableViewTool</class>
+   <extends>QWidget</extends>
+   <header location="global">WidgetTools/CatTableViewTools/CatTableViewTool.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

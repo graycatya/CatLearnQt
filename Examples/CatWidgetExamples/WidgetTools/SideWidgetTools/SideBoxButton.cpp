@@ -141,11 +141,11 @@ bool SideBoxButton::eventFilter(QObject *watched, QEvent *event)
     if(event->type() == QEvent::Enter)
     {
         SetButtonBackState("Hover");
-        qDebug() << "button " << event->type();
+        //qDebug() << "button " << event->type();
     } else if(event->type() == QEvent::Leave)
     {
         UpdateButtonState();
-        qDebug() << "button " << event->type();
+        //qDebug() << "button " << event->type();
     }
 
     return QWidget::eventFilter(watched, event);

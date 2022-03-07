@@ -104,42 +104,44 @@ void CatWidget::InitToolWidgets()
     RimlessWindowTool *m_pRimlessWindowTool = new RimlessWindowTool;
     m_pRimlessWindowTool->setObjectName("CatRimlessWindowTool");
     ui->ToolStackedWidget->addWidget(m_pRimlessWindowTool);
-    m_pRimlessWindowTool->installEventFilter(this);
+    m_pRimlessWindowTool->installEventFilter(ui->ToolStackedWidget);
     m_pRimlessWindowTool->setMouseTracking(true);
 
     PagingNavigationTools *m_pPagingNavigationTools = new PagingNavigationTools;
     m_pPagingNavigationTools->setObjectName("PagingNavigationTools");
     ui->ToolStackedWidget->addWidget(m_pPagingNavigationTools);
-    m_pPagingNavigationTools->installEventFilter(this);
+    m_pPagingNavigationTools->installEventFilter(ui->ToolStackedWidget);
     m_pPagingNavigationTools->setMouseTracking(true);
 
 #ifndef Q_OS_IOS
     CatQcustomplotTools *m_pCatQcustomplotTools = new CatQcustomplotTools;
     m_pCatQcustomplotTools->setObjectName("CatQcustomplotTools");
     ui->ToolStackedWidget->addWidget(m_pCatQcustomplotTools);
-    m_pCatQcustomplotTools->installEventFilter(this);
+    m_pCatQcustomplotTools->installEventFilter(ui->ToolStackedWidget);
     m_pCatQcustomplotTools->setMouseTracking(true);
 #endif
 
     SideColumnTool *m_pSideColumnTool = new SideColumnTool;
     m_pSideColumnTool->setObjectName("CatSideColumnTool");
     ui->ToolStackedWidget->addWidget(m_pSideColumnTool);
-    m_pSideColumnTool->installEventFilter(this);
+    m_pSideColumnTool->installEventFilter(ui->ToolStackedWidget);
     m_pSideColumnTool->setMouseTracking(true);
 
     InputTools *m_pInputTools = new InputTools;
     m_pInputTools->setObjectName("CatInputTools");
     ui->ToolStackedWidget->addWidget(m_pInputTools);
-    m_pInputTools->installEventFilter(this);
+    m_pInputTools->installEventFilter(ui->ToolStackedWidget);
     m_pInputTools->setMouseTracking(true);
 
     TableViewTool *m_pTableViewTool = new TableViewTool;
     m_pTableViewTool->setObjectName("CatTableViewTool");
     ui->ToolStackedWidget->addWidget(m_pTableViewTool);
-    m_pTableViewTool->installEventFilter(this);
     m_pTableViewTool->setMouseTracking(true);
+    m_pTableViewTool->installEventFilter(ui->ToolStackedWidget);
+
 
     ui->ToolStackedWidget->setMouseTracking(true);
+    ui->ToolStackedWidget->installEventFilter(this);
 }
 
 void CatWidget::UpdateStyle()
@@ -174,12 +176,16 @@ void CatWidget::On_ToolButtons(int id)
 
 bool CatWidget::eventFilter(QObject *watched, QEvent *event)
 {
-    if(watched->objectName() == "CatRimlessWindowTool")
+    /*if(watched->objectName() == "CatRimlessWindowTool")
     {
         watched->eventFilter(watched, event);
     } else if(watched->objectName() == "CatSideColumnTool")
     {
         watched->eventFilter(watched, event);
     }
+    if(watched->objectName() == "CatTableViewTool")
+    {
+        watched->eventFilter(watched, event);
+    }*/
     return QWidget::eventFilter(watched, event);
 }

@@ -29,7 +29,7 @@ private:
     void paintHead(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paintHeadData(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paintHeadCheck(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    void paintText(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, QString text, int flags) const;
+    void paintText(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, QString text, QColor color, int flags) const;
     void paintSortButton(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, int flags) const;
     void paintDataCheck(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
     void paintTableData(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const;
@@ -48,6 +48,9 @@ private:
     void setHeadSortData(QAbstractItemModel *model, const QModelIndex &index, QString data) const;
 
     int getSelectCheckTableData(QAbstractItemModel *model);
+
+signals:
+    void sortColumned(int column, Qt::SortOrder order);
 
 public slots:
     void onHoverIndexChanged(const QModelIndex &index);

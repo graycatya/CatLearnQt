@@ -1,4 +1,4 @@
-#include "WinMainWidget.h"
+﻿#include "WinMainWidget.h"
 #include "ui_WinMainWidget.h"
 
 #include <QtGui/qpainter.h>
@@ -333,8 +333,8 @@ void WinMainWidget::showEvent(QShowEvent *event)
         const auto win = windowHandle();
         if (win) {
             FramelessWindowsManager::addWindow(win);
-            FramelessWindowsManager::setHitTestVisible(win, ui->Icon, true);
-            FramelessWindowsManager::setHitTestVisible(win, ui->Title, true);
+            //FramelessWindowsManager::setHitTestVisible(win, ui->Icon, true);
+            //FramelessWindowsManager::setHitTestVisible(win, ui->Title, true);
             FramelessWindowsManager::setHitTestVisible(win, ui->MinimizeButton, true);
             FramelessWindowsManager::setHitTestVisible(win, ui->ZoomButton, true);
             FramelessWindowsManager::setHitTestVisible(win, ui->CloseButton, true);
@@ -350,15 +350,7 @@ void WinMainWidget::showEvent(QShowEvent *event)
 
 bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
 {
-    //qDebug() << "WinMainWidget: " << watched->objectName();
-    if(event->type() == QEvent::MouseMove)
-    {
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-#else
-        //SetMoveRect(ui->TopWidget->rect());
-#endif
-        this->mouseMoveEvent((QMouseEvent*)event);
-    } else if(event->type() == QEvent::Resize)
+    if(event->type() == QEvent::Resize)
     {
         if(isMaximized() || isFullScreen())
         {
@@ -366,42 +358,7 @@ bool WinMainWidget::eventFilter(QObject *watched, QEvent *event)
         } else {
             SetZoomButtonState("Min");
         }
-    } else if(event->type() == QEvent::MouseButtonRelease)
-    {
-        this->mouseReleaseEvent((QMouseEvent*)event);
     }
-
-    QStringList list = { "WidgetFunc", "GraphicsViewFunc",
-                         "AboutFunc", "Setting",
-                         "About", "WinCatDrawingBoard",
-                            "WinCatAbout", "WinCatSettings",
-                         "WinCatWidget", "ToolListWidget",
-                            "ListiongOptions", "QuickWidgetFunc",
-                         "WinCatQuickWidget"};
-    if(watched->objectName() == "WinCatWidget")
-    {
-        watched->eventFilter(watched, event);
-    } else if(watched->objectName() == "WinCatDrawingBoard") {
-        watched->eventFilter(watched, event);
-
-        if(event->type() == QEvent::Paint)
-        {
-            return watched->eventFilter(watched, event);
-        }
-    }
-
-    //m_bTopWidget = watched->objectName() == "TopWidget" ? true : false;
-
-    for(auto temp : list)
-    {
-        if(watched->objectName() == temp && event->type() == QEvent::MouseMove)
-        {
-
-            this->setCursor(Qt::ArrowCursor);
-            return QWidget::eventFilter(watched, event);
-        }
-    }
-
 
     return QMainWindow::eventFilter(watched, event);
 

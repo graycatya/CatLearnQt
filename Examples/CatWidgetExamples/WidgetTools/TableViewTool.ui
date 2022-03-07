@@ -50,14 +50,14 @@
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>339</width>
+            <width>20</width>
             <height>20</height>
            </size>
           </property>
          </spacer>
         </item>
         <item>
-         <widget class="CatPagingNavigation" name="widget" native="true"/>
+         <widget class="CatPagingNavigation" name="Paging" native="true"/>
         </item>
         <item>
          <spacer name="horizontalSpacer_2">
@@ -66,7 +66,7 @@
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>338</width>
+            <width>20</width>
             <height>20</height>
            </size>
           </property>
@@ -83,7 +83,7 @@
   <customwidget>
    <class>CatPagingNavigation</class>
    <extends>QWidget</extends>
-   <header>CatControl/CatPagingNavigation.h</header>
+   <header location="global">CatControl/CatPagingNavigation.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>

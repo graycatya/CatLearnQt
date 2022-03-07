@@ -16,6 +16,8 @@ public:
 
     void AddData(bool state = false, QString times = "");
 
+    void ClearTable();
+
 private:
       void InitUi();
       void InitProperty();
@@ -24,6 +26,7 @@ private:
 
 protected:
       bool eventFilter(QObject *object, QEvent *event);
+      void resizeEvent(QResizeEvent *event);
 
 signals:
     void checkRect(QRect rect);

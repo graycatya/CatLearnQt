@@ -7,6 +7,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <CatLog>
+#include <QColor>
 
 
 CatConfig* CatConfig::_instance = nullptr;
@@ -178,9 +179,62 @@ void CatConfig::InitConfig()
 QStringList CatConfig::GetTableHeader()
 {
     QStringList list;
+    list << "";
     list << tr("ID");
     list << tr("State");
     list << tr("Time");
     return list;
+}
+
+QColor CatConfig::GetTableViewHeadText_Color()
+{
+    QString style = GetValue("style", "Defaule").toString();
+    QColor color;
+    if(style == "CatGray")
+    {
+        color = "#FFFFFF";
+    } else {
+        color = "#424242";
+    }
+    return color;
+}
+
+QColor CatConfig::GetTableViewItemStateDataError_Color()
+{
+    QString style = GetValue("style", "Defaule").toString();
+    QColor color;
+    if(style == "CatGray")
+    {
+        color = "#FF0000";
+    } else {
+        color = "#FF0000";
+    }
+    return color;
+}
+
+QColor CatConfig::GetTableViewItemStateDataOk_Color()
+{
+    QString style = GetValue("style", "Defaule").toString();
+    QColor color;
+    if(style == "CatGray")
+    {
+        color = "#00FF0A";
+    } else {
+        color = "#00FF0A";
+    }
+    return color;
+}
+
+QColor CatConfig::GetTableViewItemText_Color()
+{
+    QString style = GetValue("style", "Defaule").toString();
+    QColor color;
+    if(style == "CatGray")
+    {
+        color = "#FFFFFF";
+    } else {
+        color = "#424242";
+    }
+    return color;
 }
 

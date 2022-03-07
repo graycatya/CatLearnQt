@@ -38,6 +38,7 @@ void CatTableItemDelegate::paintHead(QPainter *painter, const QStyleOptionViewIt
 {
     if(index.row() == 0)
     {
+        //painter->fillRect(option.rect, CatConfig::GetTableViewHeadBackGround_Normal());
         paintHeadCheck(painter, option, index);
         paintHeadData(painter, option, index);
     } else {
@@ -58,13 +59,13 @@ void CatTableItemDelegate::paintHeadData(QPainter *painter, const QStyleOptionVi
         {
             text = CatConfig::GetTableHeader().at(getHeadSortData(index).toInt());
         }
-        paintText(painter, option, index, text, Qt::AlignVCenter | Qt::AlignLeft);
+        paintText(painter, option, index, text, CatConfig::GetTableViewHeadText_Color(), Qt::AlignVCenter | Qt::AlignHCenter);
     }
 
     // 绘制排序按钮
     if(index.column() == HEAD_TIME_COLUMN)
     {
-        paintSortButton(painter, option, index, Qt::AlignVCenter | Qt::AlignLeft);
+        paintSortButton(painter, option, index, Qt::AlignVCenter | Qt::AlignHCenter);
     }
 }
 
@@ -104,11 +105,11 @@ void CatTableItemDelegate::paintHeadCheck(QPainter *painter, const QStyleOptionV
     }
 }
 
-void CatTableItemDelegate::paintText(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, QString text, int flags) const
+void CatTableItemDelegate::paintText(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index, QString text, QColor color,  int flags) const
 {
     QStandardItem *item = qobject_cast<const QStandardItemModel*>(index.model())->itemFromIndex(index);
-    painter->setBrush(item->foreground());
-    QPen pen(item->foreground().color());
+    painter->setBrush(color);
+    QPen pen(color);
     painter->setPen(pen);
     painter->setFont(item->font());
     painter->drawText(option.rect, flags, text);
@@ -232,10 +233,10 @@ void CatTableItemDelegate::paintDataCheck(QPainter *painter, const QStyleOptionV
 
 void CatTableItemDelegate::paintTableData(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
 {
-    if(index.column() >= DATA_STATE_COLUMN && index.column() <= DATA_STATE_COLUMN)
+    if(index.column() == DATA_ID_COLUMN || index.column() == DATA_TIME_COLUMN)
     {
         QString text = index.data(Qt::UserRole).toString();
-        paintText(painter, option, index, text, Qt::AlignVCenter | Qt::AlignHCenter);
+        paintText(painter, option, index, text, CatConfig::GetTableViewItemText_Color(), Qt::AlignVCenter | Qt::AlignHCenter);
     }
 }
 
@@ -250,16 +251,16 @@ void CatTableItemDelegate::paintTableState(QPainter *painter, const QStyleOption
         if(index.data(Qt::UserRole).toBool())
         {
             text = "ERROR";
-            textcolor = QColor("#FF0000");
+            textcolor = CatConfig::GetTableViewItemStateDataError_Color();
         } else {
             text = "OK";
-            textcolor = QColor("#00FF0A");
+            textcolor = CatConfig::GetTableViewItemStateDataOk_Color();
         }
 
         QPen pen(textcolor);
         painter->setPen(pen);
         painter->setFont(item->font());
-        painter->drawText(option.rect, Qt::AlignVCenter | Qt::AlignLeft, text);
+        painter->drawText(option.rect, Qt::AlignVCenter | Qt::AlignHCenter, text);
     }
 }
 
@@ -269,6 +270,7 @@ QStyleOptionViewItem CatTableItemDelegate::paintHover(QPainter *painter, const Q
     if(m_hoverrow == index.row())
     {
         optiont.state |= QStyle::State_MouseOver;
+        //State_Selected
     }
     return optiont;
 }
@@ -302,7 +304,7 @@ void CatTableItemDelegate::editorHeadCheck(QEvent *event, QAbstractItemModel *mo
 
 void CatTableItemDelegate::editorHeadSortButton(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
-    int flags = Qt::AlignVCenter | Qt::AlignLeft;
+    int flags = Qt::AlignVCenter | Qt::AlignHCenter;
     QStandardItem *item = qobject_cast<const QStandardItemModel*>(index.model())->itemFromIndex(index);
     QFontMetrics fm(item->font());
     QString text = item->data(Qt::TextColorRole).toString();
@@ -353,10 +355,25 @@ void CatTableItemDelegate::editorHeadSortButton(QEvent *event, QAbstractItemMode
         QMouseEvent *eventM = dynamic_cast<QMouseEvent*>(event);
         if(UpButtonRect.contains(eventM->pos()))
         {
-            setHeadSortState(model, index, 1);
+            if(getHeadSortState(index) != 1)
+            {
+                setHeadSortState(model, index, 1);
+                emit sortColumned(index.column(), Qt::AscendingOrder);
+            } else {
+                setHeadSortState(model, index, 0);
+                emit sortColumned(1, Qt::AscendingOrder);
+            }
+
         } else if(BelowButtonRect.contains(eventM->pos()))
         {
-            setHeadSortState(model, index, 2);
+            if(getHeadSortState(index) != 2)
+            {
+                emit sortColumned(index.column(), Qt::DescendingOrder);
+                setHeadSortState(model, index, 2);
+            } else {
+                setHeadSortState(model, index, 0);
+                emit sortColumned(1, Qt::AscendingOrder);
+            }
         }
     }
 }

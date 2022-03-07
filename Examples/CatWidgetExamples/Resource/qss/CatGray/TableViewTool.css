@@ -1,3 +1,239 @@
 QWidget#BottomWidget {
     background-color: transparent;
 }
+
+QTableView {
+    background-color: #343434;
+}
+
+QTableView#CatTopTableWidget, 
+QTableView#CatLeftTableWidget,
+QTableView#CatIntersectionWidget {
+    border: 0px solid #E7EBF4;
+}
+
+QTableView#CatTopTableWidget::item, 
+QTableView#CatLeftTableWidget::item,
+QTableView#CatIntersectionWidget::item {
+    font-family: "Ubuntu";
+    font-size: 16px;
+    color: #1E2641;
+}
+
+QTableView::item {
+    background-color: #343434;
+    font-family: "Ubuntu";
+    font-size: 16px;
+    color: #1E2641;
+}
+
+QTableView#TableView::item,
+QTableView#CatLeftTableWidget::item {  /** 每个单元格设置 */
+    background-color: #343434;  /*交替行，第二行*/
+    font-family: "Ubuntu";
+    font-size: 16px;
+    text-align: center;
+    color: #1E2641;
+    border-bottom: 1px solid #D3D9D9;
+}
+
+QTableView#TableView::item:!alternate:hover,
+QTableView#CatLeftTableWidget::item:!alternate:hover {  /** 每个单元格设置 */
+    background-color: #343420;  /*交替行，第二行*/
+    font-family: "Ubuntu";
+    font-size: 16px;
+    text-align: center;
+    color: #1E2641;
+    border-bottom: 1px solid #D3D9D9;
+}
+
+QTableView#TableView::item:!alternate:selected,
+QTableView#CatLeftTableWidget::item:!alternate:selected {
+    background-color: #343400;  /*交替行，第二行*/
+    font-family: "Ubuntu";
+    font-size: 16px;
+    text-align: center;
+    color: #1E2641;
+    border-bottom: 1px solid #D3D9D9;
+}
+
+QTableView#CatTopTableWidget::item,
+QTableView#CatIntersectionWidget::item {  /** 每个单元格设置 */
+    background-color: #656565;  /*交替行，第二行*/
+    font-family: "Ubuntu";
+    font-size: 16px;
+    text-align: center;
+    color: #1E2641;
+    border-bottom: 1px solid #D3D9D9;
+}
+
+QTableView#CatTopTableWidget::item:!alternate:!selected,
+QTableView#CatIntersectionWidget::item:!alternate:!selected {
+    background-color: #656565;  /*交替行，第二行*/
+    font-family: "Ubuntu";
+    font-size: 16px;
+    text-align: center;
+    color: #1E2641;
+    border-bottom: 1px solid #D3D9D9;
+}
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
+/* 上下箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar:horizontal
+{
+    height:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:horizontal
+{
+    height:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-width:20;
+}
+
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QPushButton#PreviousPage, 
+QPushButton#PreviousSeveralPage, 
+QPushButton#NextPage, 
+QPushButton#NextPageSeveralPage {
+    min-width: 20px;
+    min-height: 20px;
+    background: transparent;
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-radius: 2px;
+    color: #C1C1C1;
+    font-family: "Ubuntu";
+}
+
+QPushButton#PreviousSeveralPage:hover, 
+QPushButton#NextPageSeveralPage:hover {
+    background-color: #888888;
+    color: #C1C1C1;
+}
+
+QPushButton#PreviousSeveralPage:pressed, 
+QPushButton#NextPageSeveralPage:pressed {
+    background-color: rgba(223,74,22,100%);
+    color: #C1C1C1;
+}
+
+QPushButton#PreviousSeveralPage:checked, 
+QPushButton#NextPageSeveralPage:checked {
+    background-color: rgba(223,74,22,100%);
+    color: #C1C1C1;
+}
+
+QPushButton#PreviousPage:hover, QPushButton#NextPage:hover {
+    background-color: #888888;
+    color: #C1C1C1;
+}
+
+QPushButton#PageButton {
+    min-width: 20px;
+    min-height: 20px;
+    background: transparent;
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-radius: 2px;
+    color: #C1C1C1;
+    font-family: "Ubuntu";
+}
+
+QPushButton#PageButton:hover {
+    background-color: #888888;
+    color: #C1C1C1;
+}
+
+QPushButton#PageButton:pressed {
+    background-color: rgba(223,74,22,100%);
+    color: white;
+}
+
+QPushButton#PageButton:checked {
+    background-color: rgba(223,74,22,100%);
+    color: white;
+}

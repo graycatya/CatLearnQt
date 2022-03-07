@@ -56,8 +56,18 @@ void CatTableViewTool::AddData(bool state, QString times)
 
 }
 
+void CatTableViewTool::ClearTable()
+{
+
+    this->model()->removeRows(1, m_TotalDataNums);
+    m_TotalDataNums = 0;
+    this->model()->setData(this->model()->index(0,0), 0, Qt::UserRole);
+
+}
+
 void CatTableViewTool::InitUi()
 {
+    //setUpdatesEnabled(true);
     horizontalHeader()->setVisible(true);
     verticalHeader()->setVisible(true);// 垂直不可见
 
@@ -110,9 +120,11 @@ void CatTableViewTool::InitUi()
     horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch); //所有列都扩展自适应宽度，填充充满整个屏幕宽度
     horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed); //对第0列单独设置固定宽度
     horizontalHeader()->setSectionResizeMode(1, QHeaderView::Fixed);
+    horizontalHeader()->setSectionResizeMode(3, QHeaderView::Fixed);
 
     setColumnWidth(0, 50);
     setColumnWidth(1, 50);
+    setColumnWidth(3, 500);
 
     setRowHeight(0, 50);
     setShowGrid(false);
@@ -149,13 +161,19 @@ void CatTableViewTool::InitProperty()
     GetLeftTableView()->installEventFilter(this);
     GetLeftTableView()->setMouseTracking(true);
     GetLeftTableView()->viewport()->installEventFilter(this);
+    this->setUpdatesEnabled(true);
+    GetLeftTableView()->setUpdatesEnabled(true);
 }
 
 void CatTableViewTool::InitConnect()
 {
+    connect(delegate, &CatTableItemDelegate::sortColumned, this, [=](int column, Qt::SortOrder order){
+        //horizontalHeader()->setSortIndicator(column, order);
+        model()->sort(column, order);
+    });
     connect(this, &CatTableViewTool::hoverIndexChanged, delegate, [=](const QModelIndex &index){
         delegate->onHoverIndexChanged(index);
-        update();
+        viewport()->update();
     });
     connect(this, &QTableView::entered, this, [=](const QModelIndex &index){
         emit hoverIndexChanged(index);
@@ -163,13 +181,6 @@ void CatTableViewTool::InitConnect()
     connect(GetLeftTableView(), &QTableView::entered, this, [=](const QModelIndex &index){
         emit hoverIndexChanged(index);
     });
-
-
-    for(int i = 0; i < 29; i++)
-    {
-        AddData(false,
-                QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss"));
-    }
 }
 
 void CatTableViewTool::InitTableHead()
@@ -206,12 +217,19 @@ bool CatTableViewTool::eventFilter(QObject *object, QEvent *event)
     if(event->type() == QEvent::MouseMove)
     {
         delegate->onCurrentMouseed(dynamic_cast<QMouseEvent*>(event)->pos());
-        update();
+        viewport()->update();
     } else if(event->type() == QEvent::Leave)
     {
         delegate->onShiftOutChanged();
-        update();
+        viewport()->update();
     }
 
     return CatTableViewBasics::eventFilter(object, event);
+}
+
+void CatTableViewTool::resizeEvent(QResizeEvent *event)
+{
+    Q_UNUSED(event)
+
+    CatTableViewBasics::resizeEvent(event);
 }

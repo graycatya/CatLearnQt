@@ -65,6 +65,16 @@ public:
 
     static QStringList GetTableHeader();
 
+    static QColor GetTableViewHeadText_Color();
+
+    static QColor GetTableViewItemStateDataError_Color();
+    static QColor GetTableViewItemStateDataOk_Color();
+
+    static QColor GetTableViewItemText_Color();
+
+
+
+
 signals:
     void UpdateStyleSheets();
 

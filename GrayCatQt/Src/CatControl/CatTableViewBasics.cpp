@@ -291,7 +291,9 @@ void CatTableViewBasics::updateFrozenTableGeometry()
                                         (horizontalHeader()->isVisible() ? horizontalHeader()->height() : 0) + viewport()->height());
 
         viewport()->stackUnder(m_pLeftTableWidget);//设置窗口层次
+        viewport()->stackUnder(m_pIntersectionWidget);
         viewport()->stackUnder(m_pTopTableWidget);//设置窗口层次
+
     } else if(m_pTopTableWidget)
     {
         m_pTopTableWidget->verticalHeader()->setMinimumWidth(verticalHeader()->width());

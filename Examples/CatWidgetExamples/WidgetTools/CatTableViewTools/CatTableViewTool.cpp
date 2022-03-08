@@ -163,6 +163,8 @@ void CatTableViewTool::InitProperty()
     GetLeftTableView()->viewport()->installEventFilter(this);
     this->setUpdatesEnabled(true);
     GetLeftTableView()->setUpdatesEnabled(true);
+
+    setSortingEnabled(true);
 }
 
 void CatTableViewTool::InitConnect()

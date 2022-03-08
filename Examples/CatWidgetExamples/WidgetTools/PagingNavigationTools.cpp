@@ -99,3 +99,9 @@ void PagingNavigationTools::on_SetCurrentPageButton_clicked()
 {
     ui->PagingNavigationWidget->SetCurrentPage(ui->CurrentPageEdit->text().toULongLong());
 }
+
+void PagingNavigationTools::changeEvent(QEvent *event)
+{
+    Q_UNUSED(event)
+    ui->retranslateUi(this);
+}

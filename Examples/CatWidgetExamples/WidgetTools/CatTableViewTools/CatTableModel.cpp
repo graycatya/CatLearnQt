@@ -15,4 +15,5 @@ CatTableModel::~CatTableModel()
 void CatTableModel::sort(int column, Qt::SortOrder order)
 {
     qDebug() << column << " : " << order;
+    QStandardItemModel::sort(column, order);
 }

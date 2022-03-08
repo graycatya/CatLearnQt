@@ -24,6 +24,9 @@ private slots:
 
     void on_SetCurrentPageButton_clicked();
 
+protected:
+    void changeEvent(QEvent *event);
+
 private:
     void InitUi();
     void InitProperty();

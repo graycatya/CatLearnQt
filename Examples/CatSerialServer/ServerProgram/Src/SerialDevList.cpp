@@ -115,7 +115,7 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
                 }
                 if(m_ySerials[info.portName()]->serialPort.OpenSerial(baudRate, static_cast<QSerialPort::StopBits>(stopBits)))
                 {
-                    emit SerialOpenSucceed(port);
+                    //emit SerialOpenSucceed(port);
                     return;
                 } else {
                     emit SerialError(port, 10003);

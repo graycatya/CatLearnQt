@@ -52,8 +52,6 @@ void CatTableViewTool::AddData(bool state, QString times)
     dataModel->appendRow(headitems);
 
     setRowHeight(m_TotalDataNums, 50);
-
-
 }
 
 void CatTableViewTool::ClearTable()
@@ -73,6 +71,7 @@ void CatTableViewTool::InitUi()
 
 
     dataModel = new CatTableModel(this);
+    dataModel->SetCatTableViewTool(this);
 
     //dataModel->item(0,0)->setCheckState(Qt::CheckState::PartiallyChecked);
 

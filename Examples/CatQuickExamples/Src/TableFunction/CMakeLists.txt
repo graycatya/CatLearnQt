@@ -1,6 +1,6 @@
-﻿cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.10)
 
-project(QrenCode LANGUAGES CXX)
+project(TableFunction LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -22,38 +22,40 @@ include(GrayCatQt)
 load_name_static(STATIC_NAME) 
 message(STATUS ${STATIC_NAME})
 
+#add_definitions(-std=c++17)
+
+find_package(Qt5 COMPONENTS Core Gui Qml REQUIRED)
+find_unix_package(X11Extras)
+
+find_android_gui()
+#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+
+
 file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
 
-find_package(Qt5 COMPONENTS Core Gui Widgets Quick REQUIRED)
-#find_android_gui()
-#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
-filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
-add_subdirectory(QrenCodeSrc)
+filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
                                   ${SRC_HEAD_LIST})
 
+
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
                                    ${SRC_HEAD_LIST})
-
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Qml)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(${PROJECT_NAME} PUBLIC QrenCodeSrc)
-#target_link_android_gui(${PROJECT_NAME})
+target_link_android_gui(${PROJECT_NAME})
 
-target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Qml)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(${STATIC_NAME} PUBLIC QrenCodeSrc_static)
 
-#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

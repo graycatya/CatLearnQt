@@ -42,13 +42,13 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatQcustomplot)
 target_link_libraries(${PROJECT_NAME} PUBLIC ImageTools)
 target_link_libraries(${PROJECT_NAME} PUBLIC QrenCode)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 target_link_android_gui(${PROJECT_NAME})
 
 
 target_link_libraries(${STATIC_NAME} PUBLIC CatQcustomplot)
 target_link_libraries(${STATIC_NAME} PUBLIC ImageTools)
 target_link_libraries(${STATIC_NAME} PUBLIC QrenCode)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Quick)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 
 #target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

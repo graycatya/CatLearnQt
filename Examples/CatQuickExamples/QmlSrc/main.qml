@@ -7,7 +7,7 @@ import GrayCatQtQuick 1.0
 //import CatEncp 1.0
 import "FunctionLayout"
 import "./MoreFunctionViews"
-import wangwenx190.Utils 1.0
+import GrayFramelesshelper.Utils 1.0
 
 
 
@@ -22,7 +22,7 @@ Window {
 
     //property bool isMaxed: view.isMax
 
-    property real _flh_margin: ((root.visibility === root.Maximized) || (root.visibility === root.FullScreen)) ? 0 : (Utils.frameBorderThickness / Screen.devicePixelRatio)
+    //property real _flh_margin: ((root.visibility === root.Maximized) || (root.visibility === root.FullScreen)) ? 0 : (Utils.frameBorderThickness / Screen.devicePixelRatio)
     property var _win_prev_state: null
 
     //color: ProjectObject.appBackgroundColor
@@ -37,9 +37,9 @@ Window {
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.topMargin: root._flh_margin
-            Layout.leftMargin: root._flh_margin
-            Layout.rightMargin: root._flh_margin
+            //Layout.topMargin: root._flh_margin
+            //Layout.leftMargin: root._flh_margin
+            //Layout.rightMargin: root._flh_margin
             Layout.preferredHeight: 40
             Layout.maximumHeight: 40
             Layout.minimumHeight: 40

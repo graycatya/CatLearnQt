@@ -33,6 +33,8 @@ filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 add_library(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                             ${SRC_HEAD_LIST})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

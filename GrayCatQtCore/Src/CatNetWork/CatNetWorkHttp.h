@@ -52,8 +52,11 @@ signals:
     void HttpPostError();
     void DownLoadProgress(qint64, qint64);
     void NetWorkError();
-
     void ReplyDataed(QByteArray data);
+    void ExitTasked();
+
+public slots:
+    void ExitTask();
 
 private slots:
     void httpDownFinished();

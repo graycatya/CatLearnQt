@@ -1,5 +1,5 @@
 ﻿#include "CatSerialPort.h"
-#include <CatLog>
+//#include <CatLog>
 //#include <QAbstractSocket>
 #include <QMetaEnum>
 #include <QCoreApplication>
@@ -63,7 +63,7 @@ void CatSerialPort::InitConnect()
             m_pReadPortDataWork->Start(50);
         }
         m_yReadData += m_qPort.readAll();
-        qDebug() << "seril data: " << m_yReadData;
+        //qDebug() << "seril data: " << m_yReadData;
     });
 
     /*connect(m_pReadDataBufferWork, &ReadDataBufferWork::readyRead, this, [=](){
@@ -84,7 +84,7 @@ void CatSerialPort::InitConnect()
 
                 if(serial == m_qPort.portName())
                 {
-                    qDebug() << "CatWinMonitorSerial DeleteSerial : " << serial;
+                    //qDebug() << "CatWinMonitorSerial DeleteSerial : " << serial;
                     if(m_qPort.isOpen())
                     {
                         m_qPort.close();
@@ -114,7 +114,7 @@ void CatSerialPort::InitConnect()
 void CatSerialPort::SetSerialInfo(const QSerialPortInfo info)
 {
     this->m_qPortInfo = info;
-    qDebug() << "SetSerialInfo: " << this->m_qPortInfo.systemLocation() << " " << this->m_qPortInfo.description();
+    //qDebug() << "SetSerialInfo: " << this->m_qPortInfo.systemLocation() << " " << this->m_qPortInfo.description();
     this->m_sSerialPortName = info.portName();
 }
 
@@ -157,7 +157,7 @@ bool CatSerialPort::OpenSerial(qint32 baudRate, QSerialPort::StopBits stopBits)
     {
         QString Error = QString("SerialPort Open %1, error code %2")
                 .arg(m_sSerialPortName).arg(m_qPort.error());
-        qDebug() << "Error: " + Error;
+        //qDebug() << "Error: " + Error;
         emit ErrorSerialPort(Error);
         return false;
     }

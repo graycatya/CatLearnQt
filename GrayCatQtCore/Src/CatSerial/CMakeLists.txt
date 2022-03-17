@@ -54,13 +54,13 @@ add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
 
 
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::SerialPort)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::SerialPort)
 target_link_android_gui(${PROJECT_NAME})
 
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::SerialPort)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::SerialPort)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

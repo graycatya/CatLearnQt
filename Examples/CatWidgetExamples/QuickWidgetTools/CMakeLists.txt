@@ -34,8 +34,8 @@ add_library(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                                    ${SRC_UI_LIST})
 
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::QuickWidgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::QuickWidgets)

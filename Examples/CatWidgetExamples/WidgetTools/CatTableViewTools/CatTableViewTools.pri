@@ -9,3 +9,5 @@ SOURCES += \
     $$PWD/CatTableItemDelegate.cpp \
     $$PWD/CatTableModel.cpp \
     $$PWD/CatTableViewTool.cpp
+
+INCLUDEPATH += $$PWD

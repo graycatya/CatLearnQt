@@ -50,3 +50,5 @@ include(InputTools/InputTools.pri)
 
 include(CatTableViewTools/CatTableViewTools.pri)
 
+INCLUDEPATH += $$PWD
+

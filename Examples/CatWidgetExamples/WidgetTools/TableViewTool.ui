@@ -89,7 +89,7 @@
   <customwidget>
    <class>CatTableViewTool</class>
    <extends>QWidget</extends>
-   <header location="global">WidgetTools/CatTableViewTools/CatTableViewTool.h</header>
+   <header location="global">CatTableViewTools/CatTableViewTool.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -7,7 +7,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QTimer>
-#include <CatLog>
+//#include <CatLog>
 
 class ReadDataBufferWork : public QThread
 {

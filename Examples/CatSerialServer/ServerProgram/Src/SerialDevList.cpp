@@ -1,6 +1,7 @@
 ﻿#include "SerialDevList.h"
 #include "ServerConfig.h"
 #include <QCoreApplication>
+#include <CatLog>
 
 SerialDevList* SerialDevList::_instance = nullptr;
 QMutex* SerialDevList::m_pMutex = new QMutex;

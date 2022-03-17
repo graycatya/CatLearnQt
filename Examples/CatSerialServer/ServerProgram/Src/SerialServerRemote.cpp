@@ -1,5 +1,6 @@
 ﻿#include "SerialServerRemote.h"
 #include "SerialDevList.h"
+#include <CatLog>
 
 
 SerialServerRemote::SerialServerRemote(QObject *parent) : CatSerialRemoteSource(parent)

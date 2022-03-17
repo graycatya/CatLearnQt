@@ -17,6 +17,7 @@ message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 #add_definitions(-DWEBASSEMBLY)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../module/cmake")
+#list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}")
 
 include(GrayCatQt)
 
@@ -26,7 +27,9 @@ message(STATUS ${STATIC_NAME})
 find_package(Qt5 COMPONENTS Core Gui Quick REQUIRED)
 
 find_android_gui()
+qt5_add_resources(PROJECT_QRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/imports/GrayCatQtQuick/GrayCatQtQuick.qrc")
 
+add_subdirectory(Src/CatModel)
 add_subdirectory(Src/CatQuickFrameless)
 
 add_library(${STATIC_NAME} STATIC)
@@ -37,16 +40,18 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
 SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 target_link_libraries(${PROJECT_NAME} PUBLIC CatQuickFrameless)
+target_link_libraries(${PROJECT_NAME} PUBLIC CatModel)
 
 target_link_android_gui(${PROJECT_NAME})
 
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Gui)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Quick)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 target_link_libraries(${STATIC_NAME} PUBLIC CatQuickFrameless)
+target_link_libraries(${STATIC_NAME} PUBLIC CatModel)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

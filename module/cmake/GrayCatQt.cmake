@@ -159,7 +159,7 @@ endfunction(find_android_gui)
 
 function(target_link_android_gui PROJECTNAME)
 	if(ANDROID)
-		target_link_libraries(${PROJECTNAME} PRIVATE Qt5::Gui)
+		target_link_libraries(${PROJECTNAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
 	endif(ANDROID)
 endfunction(target_link_android_gui)
 #-------------------------------------

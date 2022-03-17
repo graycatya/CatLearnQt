@@ -26,11 +26,11 @@
 
 #include "framelesshelper_global.h"
 #include <QtQuick/qquickitem.h>
+#include <QtCore/qobject.h>
 
 FRAMELESSHELPER_BEGIN_NAMESPACE
 
-//class FRAMELESSHELPER_API FramelessQuickHelper : public QQuickItem
-class FramelessQuickHelper : public QQuickItem
+class FRAMELESSHELPER_API FramelessQuickHelper : public QQuickItem
 {
     Q_OBJECT
     Q_DISABLE_COPY_MOVE(FramelessQuickHelper)

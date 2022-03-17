@@ -10,7 +10,12 @@
         "type_traits": "cpp",
         "utility": "cpp",
         "variant": "cpp",
-        "singleapplication": "cpp"
+        "singleapplication": "cpp",
+        "*.rh": "cpp",
+        "system_error": "cpp",
+        "xlocnum": "cpp",
+        "xmemory": "cpp",
+        "xstring": "cpp"
     },
     "MicroPython.executeButton": [
         {

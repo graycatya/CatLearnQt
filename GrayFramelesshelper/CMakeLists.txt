@@ -1,35 +1,15 @@
-cmake_minimum_required(VERSION 3.5)
+﻿cmake_minimum_required(VERSION 3.10)
 
 project(GrayFramelesshelper LANGUAGES CXX)
-
-option(BUILD_EXAMPLES "Build examples." ON)
-option(TEST_UNIX "Test UNIX version (from Win32)." OFF)
-
-set(BUILD_SHARED_LIBS ON)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-set(CMAKE_INCLUDE_CURRENT_DIR ON)
-
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui REQUIRED)
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Quick)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Quick)
 
 set(SOURCES
     framelesshelper_global.h
     framelesshelper.h
     framelesshelper.cpp
-    framelesswindowsmanager.h
-    framelesswindowsmanager.cpp
     utilities.h
     utilities.cpp
+    framelesswindowsmanager.h
+    framelesswindowsmanager.cpp
 )
 
 if(TARGET Qt${QT_VERSION_MAJOR}::Quick)
@@ -42,25 +22,28 @@ endif()
 if(WIN32)
     list(APPEND SOURCES
         framelesshelper_windows.h
-        qwinregistry_p.h
-        qwinregistry.cpp
         utilities_win32.cpp
         framelesshelper_win32.h
         framelesshelper_win32.cpp
     )
-elseif(APPLE)
-    list(APPEND SOURCES utilities_macos.mm)
-elseif(UNIX)
-    list(APPEND SOURCES utilities_linux.cpp)
-endif()
-
-if(WIN32 AND BUILD_SHARED_LIBS)
-    enable_language(RC)
-    list(APPEND SOURCES framelesshelper.rc)
+else()
+    if(APPLE)
+        list(APPEND SOURCES
+            utilities_macos.mm
+            nswindow_proxy.h
+            nswindow_proxy.mm
+            window_buttons_proxy.h
+            window_buttons_proxy.mm
+            scoped_nsobject.h
+        )
+    else()
+        find_package(Qt${QT_VERSION_MAJOR} COMPONENTS X11Extras REQUIRED)
+        list(APPEND SOURCES core/utilities_linux.cpp)
+    endif()
 endif()
 
 add_library(${PROJECT_NAME} ${SOURCES})
-add_library(wangwenx190::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+add_library(CatGrayYa::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 if(NOT BUILD_SHARED_LIBS)
     target_compile_definitions(${PROJECT_NAME} PUBLIC
@@ -73,7 +56,7 @@ target_compile_definitions(${PROJECT_NAME} PRIVATE
     QT_NO_CAST_TO_ASCII
     QT_NO_KEYWORDS
     QT_DEPRECATED_WARNINGS
-    QT_DISABLE_DEPRECATED_BEFORE=0x060200
+    QT_DISABLE_DEPRECATED_BEFORE=0x060100
     FRAMELESSHELPER_BUILD_LIBRARY
 )
 
@@ -83,8 +66,22 @@ if(TEST_UNIX)
     )
 endif()
 
+if(WIN32)
+    target_link_libraries(${PROJECT_NAME} PRIVATE dwmapi user32 shell32 advapi32)
+else()
+    if(APPLE)
+        target_link_libraries(${PROJECT_NAME} PRIVATE
+            "-framework Cocoa -framework Carbon"
+        )
+    else()
+        target_link_libraries(${PROJECT_NAME} PRIVATE
+            Qt${QT_VERSION_MAJOR}::X11Extras
+            X11
+        )
+    endif()
+endif()
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    Qt${QT_VERSION_MAJOR}::CorePrivate
     Qt${QT_VERSION_MAJOR}::GuiPrivate
 )
 
@@ -94,10 +91,12 @@ if(TARGET Qt${QT_VERSION_MAJOR}::Quick)
     )
 endif()
 
+if(TARGET Qt${QT_VERSION_MAJOR}::Widgets)
+    target_link_libraries(${PROJECT_NAME} PRIVATE
+        Qt${QT_VERSION_MAJOR}::WidgetsPrivate
+    )
+endif()
+
 target_include_directories(${PROJECT_NAME} PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>"
 )
-
-if(BUILD_EXAMPLES)
-    add_subdirectory(examples)
-endif()

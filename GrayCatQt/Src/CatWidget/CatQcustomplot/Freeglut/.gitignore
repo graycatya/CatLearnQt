@@ -62,7 +62,7 @@ qrc_*.cpp
 Thumbs.db
 *.res
 *.qtds
-*.rc
+
 /.qmake.cache
 /.qmake.stash
 /debug/

@@ -28,6 +28,7 @@
 
 
 #ifndef QGUIAPPLICATIONEXE_CLASS
+
 #ifdef QAPPLICATIONEXE_CLASS
 #include<QApplication>
   #define QAPPLICATION_CLASS QApplication
@@ -35,11 +36,17 @@
 #include<QCoreApplication>
   #define QAPPLICATION_CLASS QCoreApplication
 #endif
+
 #else
-#ifndef QAPPLICATION_CLASS
+
+#ifdef QGUIAPPLICATIONEXE_CLASS
 #include<QGuiApplication>
   #define QAPPLICATION_CLASS QGuiApplication
+#else
+#include<QCoreApplication>
+  #define QAPPLICATION_CLASS QCoreApplication
 #endif
+
 #endif
 
 #include QT_STRINGIFY(QAPPLICATION_CLASS)

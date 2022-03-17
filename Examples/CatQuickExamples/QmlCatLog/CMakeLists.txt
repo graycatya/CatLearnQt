@@ -34,19 +34,20 @@ filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
                                   ${SRC_HEAD_LIST})
 
+SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
+SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
+target_compile_definitions(${STATIC_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(${STATIC_NAME} PRIVATE CatLog_Sington)
+
 add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
                                    ${SRC_HEAD_LIST})
 
-
-target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE CatLog_Sington)
 SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0.0 SOVERSION 1)
-
-target_compile_definitions(${STATIC_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core Qt5::Quick)
-target_link_libraries(${STATIC_NAME} PRIVATE CatLog_Sington)
-SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES VERSION 1.0.0.0 SOVERSION 1)
+target_compile_definitions(${PROJECT_NAME} PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE CatLog_Sington)
+target_link_android_gui(${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
 

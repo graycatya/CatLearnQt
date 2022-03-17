@@ -8,17 +8,21 @@
 #include <QWebChannel>
 #include <QWebSocketServer>
 #endif
-#ifdef Q_CC_MSVC
-#include "CatFrameLessView.h"
-#endif
 
 #include "CatConfig.h"
 #ifndef WEBASSEMBLY
-#include "SingleApplication"
 #include "QmlCatLog.h"
+#include "SingleApplication"
 #endif
-#include "QmlConfig.h"
+#include <QQmlContext>
+#include <QQmlEngine>
+#include <QmlCatLog.h>
+#include <QQuickView>
 #include <QtQuickControls2/qquickstyle.h>
+
+#include "QmlConfig.h"
+
+
 
 int main(int argc, char *argv[])
 {
@@ -60,12 +64,12 @@ int main(int argc, char *argv[])
     catconfig->InitConfig();
 
 
-    QmlConfig::moduleRegister();
+
 #endif
+    QmlConfig::moduleRegister();
 
 
     QQmlApplicationEngine engine;
-
 
     engine.addImportPath(GrayCatQtQuickImportPath);
     //engine.rootContext()->setContextProperty("view", &view);

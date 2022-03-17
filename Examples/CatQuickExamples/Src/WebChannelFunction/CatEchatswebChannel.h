@@ -1,7 +1,9 @@
-#ifndef CATECHATSWEBCHANNEL_H
+﻿#ifndef CATECHATSWEBCHANNEL_H
 #define CATECHATSWEBCHANNEL_H
 
-#include <QWebChannelAbstractTransport>
+#include <QtWebChannel/QtWebChannel>
+#include <QtWebChannel/QWebChannelAbstractTransport>
+//#include <qwebchannelabstracttransport.h>
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>

@@ -16,6 +16,11 @@ bool Dtcomp_Time_Descending(Model_Structure left, Model_Structure right)
     return timel > timer;
 }
 
+bool Dtcomp_Id_Ascending(Model_Structure left, Model_Structure right)
+{
+    return left.id < right.id;
+}
+
 CatTableModel::CatTableModel(QObject *parent)
     : QStandardItemModel(parent)
 {
@@ -52,9 +57,8 @@ void CatTableModel::AddData(Model_Structure data)
     headitems.append(item2);
     headitems.append(item3);
 
-    m_pCatTableViewTool->setRowHeight(rowCount(), 50);
-
     appendRow(headitems);
+    m_pCatTableViewTool->setRowHeight(rowCount()-1, 50);
 }
 
 void CatTableModel::AddData(QList<Model_Structure> datas)
@@ -85,10 +89,7 @@ void CatTableModel::AddData(QList<Model_Structure> datas)
         headitems.append(item3);
 
         appendRow(headitems);
-
-        m_pCatTableViewTool->setRowHeight(rowCount(), 50);
-
-        //m_pCatTableViewTool->setRowHeight(rowCount(), 50);
+        m_pCatTableViewTool->setRowHeight(rowCount()-1, 50);
     }
 }
 
@@ -107,14 +108,9 @@ void CatTableModel::sort(int column, Qt::SortOrder order)
 {
     if(column == 3)
     {
-        QList<QDateTime> lists;
         m_yTableDatas.clear();
         for(int i = 1; i < rowCount(); i++)
         {
-            qDebug() << item(i, column)->data(Qt::UserRole).toString();
-            QDateTime time = QDateTime::fromString(item(i, column)->data(Qt::UserRole).toString(),
-                                                   "yyyy-MM-dd HH:mm:ss");
-            lists.append(time);
             Model_Structure data;
             data.check = item(i, 0)->data(Qt::UserRole).toInt();
             data.id = item(i, 1)->data(Qt::UserRole).toInt();
@@ -129,6 +125,24 @@ void CatTableModel::sort(int column, Qt::SortOrder order)
             AddData(m_yTableDatas);
         } else {
             qSort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Time_Descending);
+            Clear();
+            AddData(m_yTableDatas);
+        }
+    } else if(column == 1)
+    {
+        m_yTableDatas.clear();
+        for(int i = 1; i < rowCount(); i++)
+        {
+            Model_Structure data;
+            data.check = item(i, 0)->data(Qt::UserRole).toInt();
+            data.id = item(i, 1)->data(Qt::UserRole).toInt();
+            data.state = item(i, 2)->data(Qt::UserRole).toBool();
+            data.time = item(i, 3)->data(Qt::UserRole).toString();
+            m_yTableDatas.append(data);
+        }
+        if(order == Qt::SortOrder::AscendingOrder)
+        {
+            qSort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Id_Ascending);
             Clear();
             AddData(m_yTableDatas);
         }

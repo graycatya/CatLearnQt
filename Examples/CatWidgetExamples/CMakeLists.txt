@@ -2,6 +2,8 @@
 
 project(CatWidgetExamples LANGUAGES CXX)
 
+MESSAGE(STATUS "operation system is ${CMAKE_SYSTEM}")
+
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(QT_QMAKE_EXECUTABLE ON)
 
@@ -15,7 +17,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_definitions(-DAPP_NAME="CatWidgetExamples")
 add_definitions(-DAPP_VERSION="v1.2.0")
 add_definitions(-DLOG_PATH="Logs/")
-add_definitions(-DQAPPLICATION_CLASS)
+add_definitions(-DQAPPLICATIONEXE_CLASS)
 
 message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -58,11 +60,27 @@ file(GLOB SRC_UI_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 
 filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
 
+if(WIN32)
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS
+                                    WinMainWidget.mm)
+elseif(APPLE)
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS
+                                    WinMainWidget.cpp)
+elseif(UNIX)
+    filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS
+                                    WinMainWidget.mm)
+endif()
+
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQt GrayCatQt.out)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayCatQtCore GrayCatQtCore.out)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/../../GrayFramelesshelper GrayFramelesshelper.out)
 add_subdirectory(CatConfig)
 add_subdirectory(QuickWidgetTools)
 add_subdirectory(WidgetTools)
+
+if(WIN32)
+    list(APPEND CURPATH_DIR_LIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/Resource/app_win32.rc)
+endif(WIN32)
 
 add_executable(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                                 ${SRC_HEAD_LIST}
@@ -71,14 +89,15 @@ add_executable(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
 
 target_link_libraries(${PROJECT_NAME} PRIVATE GrayCatQt)
 target_link_libraries(${PROJECT_NAME} PRIVATE GrayCatQtCore)
+target_link_libraries(${PROJECT_NAME} PRIVATE GrayFramelesshelper)
 target_link_libraries(${PROJECT_NAME} PRIVATE CatConfig)
 #target_link_libraries(${PROJECT_NAME} PUBLIC ImageTools)
 target_link_libraries(${PROJECT_NAME} PRIVATE WidgetTools)
 target_link_libraries(${PROJECT_NAME} PRIVATE QuickWidgetTools)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::QuickWidgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Svg)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::QuickWidgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Svg)
 

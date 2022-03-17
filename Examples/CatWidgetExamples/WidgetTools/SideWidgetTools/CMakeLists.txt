@@ -34,4 +34,4 @@ add_library(${PROJECT_NAME} ${CURPATH_DIR_LIB_SRCS}
                             ${SRC_HEAD_LIST}
                             ${SRC_UI_LIST})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)

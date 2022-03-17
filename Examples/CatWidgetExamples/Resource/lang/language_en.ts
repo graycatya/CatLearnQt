@@ -2,34 +2,6 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en_US">
 <context>
-    <name>ButtonTool</name>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ButtonTool.cpp" line="58"/>
-        <source>cut</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ButtonTool.cpp" line="69"/>
-        <source>save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ButtonTool.cpp" line="80"/>
-        <source>close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ButtonTool.cpp" line="128"/>
-        <source>CloseLamp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ButtonTool.cpp" line="130"/>
-        <source>OpenLamp</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>CatAbout</name>
     <message>
         <location filename="../../CatAbout.ui" line="20"/>
@@ -285,44 +257,6 @@
     </message>
 </context>
 <context>
-    <name>GifButtonWidget</name>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="26"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="134"/>
-        <source>X:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="164"/>
-        <source>Y:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="194"/>
-        <source>W:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="224"/>
-        <source>H:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="264"/>
-        <source>Fps:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/GifButtonWidget.ui" line="302"/>
-        <source>0   帧</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ImageTools</name>
     <message>
         <location filename="../../WidgetTools/ImageTools.ui" line="14"/>
@@ -419,15 +353,6 @@
     </message>
 </context>
 <context>
-    <name>ScreenShot</name>
-    <message>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ScreenShot.cpp" line="427"/>
-        <location filename="../../../../GrayCatQt/Src/CatWidget/ImageTools/ScreenShot.cpp" line="434"/>
-        <source>( %1 , %2 ) - ( %3 x %4 )</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SideColumnTool</name>
     <message>
         <location filename="../../WidgetTools/SideColumnTool.ui" line="14"/>
@@ -470,31 +395,26 @@
     </message>
     <message>
         <location filename="../../WinMainWidget.cpp" line="308"/>
-        <location filename="../../WinMainWidget.mm" line="316"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../WinMainWidget.cpp" line="309"/>
-        <location filename="../../WinMainWidget.mm" line="317"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../WinMainWidget.cpp" line="310"/>
-        <location filename="../../WinMainWidget.mm" line="318"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../WinMainWidget.cpp" line="311"/>
-        <location filename="../../WinMainWidget.mm" line="319"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../WinMainWidget.cpp" line="312"/>
-        <location filename="../../WinMainWidget.mm" line="320"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

@@ -47,17 +47,17 @@ SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 
 target_link_android_gui(${PROJECT_NAME})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Widgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Gui)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
 
 #target_link_android_gui(${PROJECT_NAME})
 
 
 target_link_android_gui(${STATIC_NAME})
 
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Widgets)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt5::Gui)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})

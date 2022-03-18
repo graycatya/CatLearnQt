@@ -23,7 +23,7 @@ add_definitions(-DAPP_VERSION="v1.2.0")
 add_definitions(-DLOG_PATH="Logs/")
 add_definitions(-DQGUIAPPLICATIONEXE_CLASS)
 #add_definitions(-DGrayCatQtQuickImportPath="qrc:///")
-add_definitions(-DWEBRESOURCEPATH="file:///$$PWD/WebResource")
+add_definitions(-DWEBRESOURCEPATH="file:///${CMAKE_CURRENT_SOURCE_DIR}/WebResource")
 #DEFINES += WEBRESOURCEPATH=\\\"file:///$$PWD/WebResource\\\"
 
 

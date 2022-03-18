@@ -37,8 +37,9 @@ else()
             scoped_nsobject.h
         )
     else()
+        find_package(QT NAMES Qt6 Qt5 COMPONENTS X11Extras REQUIRED)
         find_package(Qt${QT_VERSION_MAJOR} COMPONENTS X11Extras REQUIRED)
-        list(APPEND SOURCES core/utilities_linux.cpp)
+        list(APPEND SOURCES utilities_linux.cpp)
     endif()
 endif()
 

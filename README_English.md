@@ -23,6 +23,9 @@
       - [GrayCatQtCore](#graycatqtcore)
         - [qmake](#qmake-2)
         - [cmake](#cmake-2)
+      - [GrayFramelesshelper](#grayframelesshelper)
+        - [qmake](#qmake-3)
+        - [cmake](#cmake-3)
   - [ExamplesProject](#examplesproject)
     - [CatQuickExamplesEffectPreview](#catquickexampleseffectpreview)
       - [Controls](#controls)
@@ -118,6 +121,7 @@ CatLearnQt is released under the GPL v3 license. If you use CatLearnQt or its co
 | GrayCatQt | Provides a set of custom controls based on QWidget and QGraphicsView. |
 | GrayCatQtQuick | Provides based on Quick,Qml and control set |
 | GrayCatQtCore | Provides modules such as serial port, network, Bluetooth, log, thread, etc. |
+| GrayFramelesshelper | A cross-platform frameless module. |
 
 #### How to use Core Library
 
@@ -252,6 +256,30 @@ include(GrayCatQt)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 ```
 
+##### GrayFramelesshelper
+
+###### qmake
+
+* Usage of pri file
+
+Use the core library only need to import, the'.pri' file under the module folder
+
+>Steps
+
+```
+include(GrayFramelesshelper/GrayFramelesshelper.pri)
+```
+
+###### cmake
+
+1. First copy the module folder to your project directory, there are modules used by cmake
+
+
+```
+# Use the module in your CMakeLists.txt
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayFramelesshelper GrayFramelesshelper.out)
+```
+
 ### ExamplesProject
 
 | Directory | Explanation |
@@ -260,6 +288,7 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | Examples/CatWidgetExamples | Widgdet version project demo |
 | Examples/CatWidgetWebAssEmblyExamples | CatWidgetExamples cut version WebAssmbly version project demo |
 | Examples/MetroDemo | Implement HuizhouMetroCase based on Quick |
+| Examples/CatSerialServer | Cross-platform serial port service process |
 
 #### CatQuickExamplesEffectPreview
 
@@ -280,6 +309,9 @@ add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
 | Image3dRotation | Picture 3d rotation |
 | CatECharts | WebEngine demo ECharts chart |
 | CatSideColumn | Sliding sidebar |
+| CatSorter | Sorter |
+| TableView | Form control |
+| CatTreeView | Tree control |
 
 ##### Demo
 

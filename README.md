@@ -22,6 +22,9 @@
       - [GrayCatQtCore](#graycatqtcore)
         - [qmake](#qmake-2)
         - [cmake](#cmake-2)
+      - [GrayFramelesshelper](#grayframelesshelper)
+        - [qmake](#qmake-3)
+        - [cmake](#cmake-3)
   - [Examples 项目](#examples-项目)
     - [CatQuickExamples效果预览](#catquickexamples效果预览)
       - [控件列表](#控件列表)
@@ -117,6 +120,7 @@ CatLearnQt是根据GPL v3许可发行，如果您使用CatLearnQt或其组成库
 | GrayCatQt | 提供了基于QWidget，QGraphicsView自定义控件集。 |
 | GrayCatQtQuick | 提供了基于Quick,Qml模块与控件集 |
 | GrayCatQtCore | 提供了串口，网络，蓝牙，日志，线程等模块。 |
+| GrayFramelesshelper | 跨平台无边框模块。 |
 
 #### 使用核心库
 
@@ -249,6 +253,30 @@ include(GrayCatQt)
 ```
 # 在你的CMakeLists.txt中使用该模块
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayCatQtCore GrayCatQtCore.out)
+```
+
+
+##### GrayFramelesshelper
+
+###### qmake
+
+* pri文件用法
+
+使用该核心库只需要导入，模块文件夹下的'.pri'文件
+
+>步骤
+
+```
+include(GrayFramelesshelper/GrayFramelesshelper.pri)
+```
+
+###### cmake
+
+1. 拷贝GrayFramelesshelper到你项目目录下
+
+```
+# 在你的CMakeLists.txt中使用该模块
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/GrayFramelesshelper GrayFramelesshelper.out)
 ```
 
 ### Examples 项目

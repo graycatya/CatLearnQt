@@ -1,0 +1,39 @@
+{
+    "$schema": "http://qt.io/schema/extension-schema-v1#",
+    "title": "Calendar",
+    "extensionType": [
+        "library"
+    ],
+    "version": "1.72.0",
+    "vendor": {
+        "name": "The Qt Company",
+        "url": "https://qt.io"
+    },
+    "contact": "Qt sales",
+    "copyright": [ "The Qt Company" ],
+    "author": "Qt RnD",
+    "icon": "https://upload.wikimedia.org/wikipedia/en/a/ae/TheQtCompany_Logo.png",
+    "licenses": [
+      { "licenseType": "GPLv3",
+        "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.html" }
+    ],
+    "created": "2018-12-03",
+    "lastUpdate": "2019-10-08",
+    "platforms": [
+        "macOS 10.14", "CentOS"
+    ],
+    "qtVersions": [
+        "5.12.5", "5.13.0", "5.13.1"
+    ],
+    "tags": [
+        "Calendar" ],
+    "price": {
+        "listprice": 0
+    },
+    "support": "support@qt.io",
+    "bugUrl": "https://bugreports.qt.io",
+    "sourceRepoUrl": "https://code.qt.io",
+    "dependencies": [
+        "Quick"
+    ]
+}

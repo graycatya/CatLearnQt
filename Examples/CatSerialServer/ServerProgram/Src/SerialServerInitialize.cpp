@@ -1,5 +1,6 @@
 ﻿#include "SerialServerInitialize.h"
 #include "SerialDevList.h"
+#include "ServerConfig.h"
 
 SerialServerInitialize::SerialServerInitialize(QObject *parent)
 {
@@ -19,7 +20,13 @@ SerialServerInitialize::~SerialServerInitialize()
 void SerialServerInitialize::InitServer()
 {
     m_pHost = new QRemoteObjectHost(this);
-    m_pHost->setHostUrl(QUrl("local:interfaces"));
+    QString url;
+    url = ServerConfig::Instance()->getValue("ServerRo_Address").toString();
+    if(url.isEmpty())
+    {
+        url = "local:interfaces";
+    }
+    m_pHost->setHostUrl(url);
     m_pSerialServerRemote = new SerialServerRemote(this);
     m_pHost->enableRemoting(m_pSerialServerRemote);
 

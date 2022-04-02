@@ -144,6 +144,8 @@ public:
 
     void Clear();
 
+    void SetReadDateMSleep(int sleep);
+
 signals:
     void ReadSerialPort(QByteArray);
     void ErrorSerialPort(QString);
@@ -164,6 +166,7 @@ private:
     QByteArray m_yWriteData;
     QByteArray m_yReadData;
     QSerialPort m_qPort;
+    int m_ySleep = 10;
 
     ReadPortDataWork *m_pReadPortDataWork;
     ReadDataBufferWork *m_pReadDataBufferWork;

@@ -54,6 +54,12 @@ void SerialDevList::OpenSerialPort(QString port, qint32 baudRate, int stopBits)
                 CATLOG::CatLog::Instance()->__Write_Log(INFO_LOG_T("Serial contains"));
                 SerialState *serialState = new SerialState;
                 //serialState.serialPort = new CatSerialPort;
+                int msleep = ServerConfig::Instance()->getValue("SerialPortRead_Sleep").toInt();
+                if(msleep == 0)
+                {
+                    msleep = 10;
+                }
+                serialState->serialPort.SetReadDateMSleep(msleep);
                 serialState->serialPort.SetSerialInfo(info);
                 serialState->SerialReadCon =
                 connect(&serialState->serialPort, &CatSerialPort::ReadSerialPort, this, [=](QByteArray data){

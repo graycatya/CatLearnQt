@@ -60,7 +60,7 @@ void CatSerialPort::InitConnect()
     connect(&m_qPort, &QSerialPort::readyRead, this, [=](){
         if(!m_pReadPortDataWork->GetWork())
         {
-            m_pReadPortDataWork->Start(50);
+            m_pReadPortDataWork->Start(m_ySleep);
         }
         m_yReadData += m_qPort.readAll();
         //qDebug() << "seril data: " << m_yReadData;
@@ -201,6 +201,11 @@ void CatSerialPort::Clear()
 {
     m_yReadData.clear();
     m_yWriteData.clear();
+}
+
+void CatSerialPort::SetReadDateMSleep(int sleep)
+{
+    m_ySleep = sleep;
 }
 
 void CatSerialPort::WriteSerialPortSlot(QByteArray data, bool waitread, int msecs)

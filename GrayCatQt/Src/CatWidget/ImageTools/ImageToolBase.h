@@ -1,4 +1,4 @@
-﻿#ifndef IMAGETOOLBASE_H
+#ifndef IMAGETOOLBASE_H
 #define IMAGETOOLBASE_H
 
 #include <QWidget>
@@ -45,6 +45,7 @@ protected:
     bool m_bLight; // 灯 - 遮罩背景
     bool m_bCut; // 切换 - 放大镜或聚光灯 区域 矩形(false), 圆形(true)
     bool m_bInit; // 初始化成功标志
+    float m_screenDpi;// 高分屏DPI缩放
     QColor MaskLayerColor;
 };
 

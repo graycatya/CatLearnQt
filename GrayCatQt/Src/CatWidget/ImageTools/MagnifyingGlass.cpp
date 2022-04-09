@@ -1,4 +1,4 @@
-﻿#include "MagnifyingGlass.h"
+#include "MagnifyingGlass.h"
 #include "ButtonTool.h"
 #include <QMouseEvent>
 #include <QPaintEvent>
@@ -214,10 +214,10 @@ void MagnifyingGlass::paintEvent(QPaintEvent *event)
             QTransform transform;
             transform.translate(x, y);
             transform.scale(m_qZoomRatio, m_qZoomRatio);
-            QPixmap pix = m_pFullScreen->copy(x + static_cast<int>(float(side)/float(m_qZoomRatio)*scale_x),
-                                              y + static_cast<int>(float(side)/float(m_qZoomRatio)*scale_y),
-                                              static_cast<int>(float(side)/float(m_qZoomRatio)),
-                                              static_cast<int>(float(side)/float(m_qZoomRatio)));
+            QPixmap pix = m_pFullScreen->copy((x + static_cast<int>(float(side)/float(m_qZoomRatio)*scale_x))*m_screenDpi,
+                                              (y + static_cast<int>(float(side)/float(m_qZoomRatio)*scale_y))*m_screenDpi,
+                                              static_cast<int>(float(side)/float(m_qZoomRatio))*m_screenDpi,
+                                              static_cast<int>(float(side)/float(m_qZoomRatio))*m_screenDpi);
             QBrush brush(pix);
             brush.setTransform(transform);
             painter.setBrush(brush);
@@ -238,10 +238,10 @@ void MagnifyingGlass::paintEvent(QPaintEvent *event)
             QTransform transform;
             transform.translate(x, y);
             transform.scale(m_qZoomRatio, m_qZoomRatio);
-            QPixmap pix = m_pFullScreen->copy(x + static_cast<int>(float(w)/float(m_qZoomRatio)*scale_x),
-                                              y + static_cast<int>(float(h)/float(m_qZoomRatio)*scale_y),
-                                              static_cast<int>(float(w)/float(m_qZoomRatio)),
-                                              static_cast<int>(float(h)/float(m_qZoomRatio)));
+            QPixmap pix = m_pFullScreen->copy((x + static_cast<int>(float(w)/float(m_qZoomRatio)*scale_x))*m_screenDpi,
+                                              (y + static_cast<int>(float(h)/float(m_qZoomRatio)*scale_y))*m_screenDpi,
+                                              static_cast<int>(float(w)/float(m_qZoomRatio))*m_screenDpi,
+                                              static_cast<int>(float(h)/float(m_qZoomRatio))*m_screenDpi);
             QBrush brush(pix);
             brush.setTransform(transform);
             painter.setBrush(brush);

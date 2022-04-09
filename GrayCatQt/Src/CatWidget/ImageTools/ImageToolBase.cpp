@@ -1,7 +1,8 @@
-#include "ImageToolBase.h"
+﻿#include "ImageToolBase.h"
 #include "ProcessObject.h"
 #include <QApplication>
 #include <QDebug>
+#include <QScreen>
 
 ImageToolBase::ImageToolBase(QWidget *parent)
     : QWidget(parent)

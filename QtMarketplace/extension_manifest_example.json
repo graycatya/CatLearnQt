@@ -1,32 +1,32 @@
 {
-    "$schema": "http://qt.io/schema/extension-schema-v1#",
-    "title": "Calendar",
+    "$schema": "",
+    "title": "CatLearnQt",
     "extensionType": [
-        "library"
+        "library", "demonstration program"
     ],
-    "version": "1.72.0",
+    "version": "1.2.0",
     "vendor": {
-        "name": "The Qt Company",
-        "url": "https://qt.io"
+        "name": "CatLearnQt",
+        "url": "https://github.com/graycatya/CatLearnQt"
     },
-    "contact": "Qt sales",
-    "copyright": [ "The Qt Company" ],
-    "author": "Qt RnD",
-    "icon": "https://upload.wikimedia.org/wikipedia/en/a/ae/TheQtCompany_Logo.png",
+    "contact": "graycatya",
+    "copyright": [ "CatLearnQt" ],
+    "author": "graycatya",
+    "icon": "https://avatars.githubusercontent.com/u/38936683?v=4",
     "licenses": [
       { "licenseType": "GPLv3",
-        "licenseUrl": "https://www.gnu.org/licenses/gpl-3.0.html" }
+        "licenseUrl": "https://api.github.com/licenses/gpl-3.0" }
     ],
-    "created": "2018-12-03",
-    "lastUpdate": "2019-10-08",
+    "created": "2020-11-16",
+    "lastUpdate": "2022-03-25",
     "platforms": [
-        "macOS 10.14", "CentOS"
+        "macOS 10.14", "Windows", "Linux"
     ],
     "qtVersions": [
-        "5.12.5", "5.13.0", "5.13.1"
+        "5.12.5", "5.13.0", "5.13.1", "5.14.1", "5.15.2"
     ],
     "tags": [
-        "Calendar" ],
+        "Quick", "QWidget", "Learn" ],
     "price": {
         "listprice": 0
     },
@@ -34,6 +34,7 @@
     "bugUrl": "https://bugreports.qt.io",
     "sourceRepoUrl": "https://code.qt.io",
     "dependencies": [
-        "Quick"
+        "Quick",
+        "QWidget"
     ]
 }

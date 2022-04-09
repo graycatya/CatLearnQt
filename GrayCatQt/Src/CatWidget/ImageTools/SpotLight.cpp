@@ -1,4 +1,4 @@
-﻿#include "SpotLight.h"
+#include "SpotLight.h"
 #include "ButtonTool.h"
 #include <QMouseEvent>
 #include <QPaintEvent>
@@ -208,7 +208,7 @@ void SpotLight::paintEvent(QPaintEvent *event)
             m_pScreen->SetGeometry(m_pScreen->x(), m_pScreen->y(), side, side);
             QTransform transform;
             transform.translate(x, y);
-            QPixmap pix = m_pFullScreen->copy(x, y, side, side);
+            QPixmap pix = m_pFullScreen->copy(x*m_screenDpi, y*m_screenDpi, side*m_screenDpi, side*m_screenDpi);
             QBrush brush(pix);
             brush.setTransform(transform);
             painter.setBrush(brush);
@@ -223,7 +223,7 @@ void SpotLight::paintEvent(QPaintEvent *event)
             //m_pZoom->show();
 
         } else {
-            QPixmap pix = m_pFullScreen->copy(x, y, w, h);
+            QPixmap pix = m_pFullScreen->copy(x*m_screenDpi, y*m_screenDpi, w*m_screenDpi, h*m_screenDpi);
             painter.drawPixmap(x, y, pix);
             painter.drawRect(x, y, w, h);
 

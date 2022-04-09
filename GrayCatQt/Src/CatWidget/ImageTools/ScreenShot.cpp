@@ -1,4 +1,4 @@
-﻿#include "ScreenShot.h"
+#include "ScreenShot.h"
 #include "ButtonTool.h"
 #include <QMouseEvent>
 #include <QPaintEvent>
@@ -189,7 +189,7 @@ void ScreenShot::Save()
         int w = m_pScreen->GetRightBottomPos().x() - x;
         int h = m_pScreen->GetRightBottomPos().y() - y;
 
-        m_pFullScreen->copy(x, y, w, h).save(fileName);
+        m_pFullScreen->copy(x*m_screenDpi, y*m_screenDpi, w*m_screenDpi, h*m_screenDpi).save(fileName);
 
         close();
         emit clicked(STATE::CLOSE);
@@ -396,7 +396,7 @@ void ScreenShot::paintEvent(QPaintEvent *event)
 
     if(w > 0 && h > 0)
     {
-        QPixmap pix = m_pFullScreen->copy(x,y,w,h);
+        QPixmap pix = m_pFullScreen->copy(x*m_screenDpi,y*m_screenDpi,w*m_screenDpi,h*m_screenDpi);
         /*QScreen *screen = QApplication::primaryScreen();
         QPixmap pix = screen->grabWindow(
                                            QApplication::desktop()->winId(),

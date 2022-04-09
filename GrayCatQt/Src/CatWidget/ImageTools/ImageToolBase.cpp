@@ -2,6 +2,7 @@
 #include "ProcessObject.h"
 #include <QApplication>
 #include <QDebug>
+#include <QScreen>
 
 ImageToolBase::ImageToolBase(QWidget *parent)
     : QWidget(parent)
@@ -25,6 +26,8 @@ ImageToolBase::ImageToolBase(QWidget *parent)
     this->setMouseTracking(true);
     //添加自定义类控制
     setAttribute(Qt::WA_StyledBackground,true);
+    //获得DPI缩放值
+    m_screenDpi = QApplication::primaryScreen()->devicePixelRatio();
 }
 
 ImageToolBase::~ImageToolBase()

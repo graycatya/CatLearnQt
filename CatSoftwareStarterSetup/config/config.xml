@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Installer>
+    <Name>CatSoftwareStarter</Name>
+    <Version>1.0.0</Version>
+    <Title>CatSoftwareStarter</Title>
+    <Publisher>CatGray</Publisher>
+    <StartMenuDir>CatGray</StartMenuDir>
+    <ProductUrl>www.graycatya.com</ProductUrl>
+    <WizardStyle>Modern</WizardStyle>
+    <Logo>logo.png</Logo>
+    <TargetDir>@ApplicationsDirX32@/CatSoftwareStarter</TargetDir>
+    <InstallerApplicationIcon>app</InstallerApplicationIcon>
+    <InstallerWindowIcon>logo.png</InstallerWindowIcon>
+</Installer>

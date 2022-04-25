@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package>
+    <DisplayName>QtGui</DisplayName>
+    <Description>CatSoftwareStarter</Description>
+    <Description xml:lang="de_de">CatSoftwareStarter Tools</Description>
+    <Version>1.2.0</Version>
+    <ReleaseDate>2022-04-25</ReleaseDate>
+    <Name>CatSoftwareStarter</Name>
+    <!-- <Dependencies>com.vendor.root.component1</Dependencies> -->
+    <Virtual>false</Virtual>
+    <!-- <Licenses>
+        <License name="License Agreement" file="license.txt" />
+    </Licenses>
+    <Script>installscript.qs</Script>
+    <UserInterfaces>
+        <UserInterface>specialpage.ui</UserInterface>
+        <UserInterface>errorpage.ui</UserInterface>
+    </UserInterfaces>
+    <Translations>
+        <Translation>sv_se.qm</Translation>
+        <Translation>de_de.qm</Translation>
+    </Translations> -->
+
+
+    <!-- <SortingPriority>0</SortingPriority> -->
+    <UpdateText>CatSoftwareStarter</UpdateText>
+    <Default>false</Default>
+    <ForcedInstallation>true</ForcedInstallation>
+    <Essential>false</Essential>
+    <!-- <Replaces>com.vendor.root.component2old</Replaces> -->
+</Package>

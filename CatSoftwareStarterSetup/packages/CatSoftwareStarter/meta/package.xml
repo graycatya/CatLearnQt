@@ -7,7 +7,7 @@
     <ReleaseDate>2022-04-25</ReleaseDate>
     <Name>CatSoftwareStarter</Name>
     <!-- <Dependencies>com.vendor.root.component1</Dependencies> -->
-    <Virtual>false</Virtual>
+    <!-- <Virtual>false</Virtual> -->
     <!-- <Licenses>
         <License name="License Agreement" file="license.txt" />
     </Licenses>
@@ -24,7 +24,7 @@
 
     <!-- <SortingPriority>0</SortingPriority> -->
     <UpdateText>CatSoftwareStarter</UpdateText>
-    <Default>false</Default>
+    <!-- <Default>false</Default> -->
     <ForcedInstallation>true</ForcedInstallation>
     <Essential>false</Essential>
     <!-- <Replaces>com.vendor.root.component2old</Replaces> -->

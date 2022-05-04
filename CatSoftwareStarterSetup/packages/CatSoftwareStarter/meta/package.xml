@@ -27,5 +27,6 @@
     <!-- <Default>false</Default> -->
     <ForcedInstallation>true</ForcedInstallation>
     <Essential>false</Essential>
+    <Script>installscript.js</Script>
     <!-- <Replaces>com.vendor.root.component2old</Replaces> -->
 </Package>

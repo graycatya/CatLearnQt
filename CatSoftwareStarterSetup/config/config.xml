@@ -5,15 +5,15 @@
     <Title>CatSoftwareStarter</Title>                                   <!-- 安装界面显示的标题 -->
     <Publisher>graycatya</Publisher>                                     <!-- 所属公司，即公司名称 -->
     <ProductUrl>http://www.graycatya.com</ProductUrl>                     <!-- 软件URL地址 -->
-    <InstallerWindowIcon>../Resource/logo.icon</InstallerWindowIcon>               <!-- 安装界面Icon-->
-    <InstallerApplicationIcon>../Resource/logo.icon</InstallerApplicationIcon>     <!-- 打包后的exe图标-->
+    <InstallerWindowIcon>../Resource/logo.ico</InstallerWindowIcon>               <!-- 安装界面Icon-->
+    <InstallerApplicationIcon>../Resource/logo.ico</InstallerApplicationIcon>     <!-- 打包后的exe图标-->
     <Logo>../Resource/logo.png</Logo>
     <StartMenuDir>CatSoftwareStarter</StartMenuDir>
     <TargetDir>@homeDir@/CatSoftwareStarter</TargetDir>
-    <AdminTargetDir>@rootDir@/CatSoftwareStarter</AdminTargetDir>                               <!-- 安装路径-->
+    <AdminTargetDir>@ApplicationsDirX86/CatSoftwareStarter</AdminTargetDir>                               <!-- 安装路径-->
     <WizardStyle>Modern</WizardStyle>                                       <!-- 安装向导页面的样式,Modern(现代),Mac,Aero,Classic(经典)-->
     <AllowSpaceInPath>true</AllowSpaceInPath>                              <!-- 安装路径是否允许包含非ASCII字符-->
     <RepositorySettingsPageVisible>false</RepositorySettingsPageVisible>    <!-- 隐藏安装对话框中的 存储库设置页面-->
     <RunProgramDescription>CatSoftwareStarter</RunProgramDescription> <!-- 安装程序描述文本-->
-    <MaintenanceToolName>SDKMaintenanceTool</MaintenanceToolName>
+    <MaintenanceToolName>MaintenanceTool</MaintenanceToolName>
 </Installer>

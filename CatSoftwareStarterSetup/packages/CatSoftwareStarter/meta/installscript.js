@@ -37,6 +37,7 @@ function operationForWindows()
         "@TargetDir@/CatWidgetExamples.exe",    // 默认安装目录/CatWidgetExamples.exe
         "@StartMenuDir@/CatWidgetExamples/CatWidgetExamples.lnk", //开始菜单
         "workingDirectory=@TargetDir@");
+        
     component.addOperation("CreateShortcut",                // 创建快捷方式
         "@TargetDir@/MaintenanceTool.exe",    // 默认安装目录/MaintenanceTool.exe
         "@StartMenuDir@/CatWidgetExamples/MaintenanceTool.lnk", //开始菜单
@@ -50,7 +51,7 @@ function operationForWindows()
 }
 
 
- 
+
 Component.prototype.createOperations = function()
 {
     component.createOperations(); 

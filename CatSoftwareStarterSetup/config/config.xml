@@ -5,9 +5,9 @@
     <Title>CatSoftwareStarter</Title>                                   <!-- 安装界面显示的标题 -->
     <Publisher>graycatya</Publisher>                                     <!-- 所属公司，即公司名称 -->
     <ProductUrl>http://www.graycatya.com</ProductUrl>                     <!-- 软件URL地址 -->
-    <InstallerWindowIcon>logo.ico</InstallerWindowIcon>               <!-- 安装界面Icon-->
-    <InstallerApplicationIcon>logo.ico</InstallerApplicationIcon>     <!-- 打包后的exe图标-->
-    <Logo>../Resource/logo.png</Logo>
+    <InstallerWindowIcon>../Resource/logo.png</InstallerWindowIcon>        
+    <InstallerApplicationIcon>app.ico</InstallerApplicationIcon>     <!-- 打包后的exe图标-->
+    <!-- <Logo>../Resource/logo_1.png</Logo> -->
     <StartMenuDir>CatSoftwareStarter</StartMenuDir>
     <TargetDir>@homeDir@/CatSoftwareStarter</TargetDir>
     <AdminTargetDir>@ApplicationsDirX86/CatSoftwareStarter</AdminTargetDir>                               <!-- 安装路径-->
@@ -16,4 +16,5 @@
     <RepositorySettingsPageVisible>false</RepositorySettingsPageVisible>    <!-- 隐藏安装对话框中的 存储库设置页面-->
     <RunProgramDescription>CatSoftwareStarter</RunProgramDescription> <!-- 安装程序描述文本-->
     <MaintenanceToolName>MaintenanceTool</MaintenanceToolName>
+    <RemoveTargetDir>false</RemoveTargetDir>
 </Installer>

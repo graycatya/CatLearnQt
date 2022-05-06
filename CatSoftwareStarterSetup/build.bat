@@ -1,1 +1,1 @@
-.\bin\binarycreator.exe -c .\config\config.xml -p .\packages CatSoftwareStarterSetup.exe -v
+.\bin\binarycreator.exe -c .\config\config.xml -p .\packages Setup.exe -v

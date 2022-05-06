@@ -5,8 +5,8 @@
     <Title>CatSoftwareStarter</Title>                                   <!-- 安装界面显示的标题 -->
     <Publisher>graycatya</Publisher>                                     <!-- 所属公司，即公司名称 -->
     <ProductUrl>http://www.graycatya.com</ProductUrl>                     <!-- 软件URL地址 -->
-    <InstallerWindowIcon>../Resource/logo.ico</InstallerWindowIcon>               <!-- 安装界面Icon-->
-    <InstallerApplicationIcon>../Resource/logo.ico</InstallerApplicationIcon>     <!-- 打包后的exe图标-->
+    <InstallerWindowIcon>logo.ico</InstallerWindowIcon>               <!-- 安装界面Icon-->
+    <InstallerApplicationIcon>logo.ico</InstallerApplicationIcon>     <!-- 打包后的exe图标-->
     <Logo>../Resource/logo.png</Logo>
     <StartMenuDir>CatSoftwareStarter</StartMenuDir>
     <TargetDir>@homeDir@/CatSoftwareStarter</TargetDir>

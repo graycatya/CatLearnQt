@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package>
-    <DisplayName>QtGui</DisplayName>
-    <Description>CatSoftwareStarter</Description>
+    <DisplayName>CatSoftwareStarter</DisplayName>
+    <Description>CatSoftwareStarter Tools</Description>
     <Description xml:lang="de_de">CatSoftwareStarter Tools</Description>
     <Version>1.2.0</Version>
     <ReleaseDate>2022-04-25</ReleaseDate>
@@ -28,5 +28,10 @@
     <ForcedInstallation>true</ForcedInstallation>
     <Essential>false</Essential>
     <Script>installscript.js</Script>
+    <UserInterfaces>
+        <UserInterface>targetwidget.ui</UserInterface>
+        <UserInterface>licensewidget.ui</UserInterface>
+
+    </UserInterfaces>
     <!-- <Replaces>com.vendor.root.component2old</Replaces> -->
 </Package>

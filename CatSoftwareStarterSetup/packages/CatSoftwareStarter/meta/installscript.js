@@ -8,18 +8,20 @@ var Dir = new function () {
 };
 
 var CatTools = new function () {
-    this.DecisionPath = function(path) {
+    this.DecisionPath = function(path, widget) {
         if (systemInfo.productType === "windows")
         {
             var strs = path.split("\\");
-            if(path == installer.value("ApplicationsDir") 
-                || path == installer.value("ApplicationsDirX86") 
-                || path.length == 3)
+            if(path == Dir.toNativeSparator(installer.value("ApplicationsDir"))
+                || path == Dir.toNativeSparator(installer.value("ApplicationsDirX86"))
+                || (strs.length == 2 && strs[1] == ""))
             {
-                var widget = gui.pageWidgetByObjectName("DynamicTargetWidget");
-                widget.targetDirectory.text = path;
+                widget.targetDirectory.text = Dir.toNativeSparator(installer.value("ApplicationsDirX86")) + "\\" + installer.value("ProductName");
+                return false;
             }
         }
+        widget.complete = true;
+        installer.setValue("TargetDir", path);
         return true;
     }
 }
@@ -84,6 +86,9 @@ function Component()
         // if (systemInfo.productType === "windows")
         //     installer.setDefaultPageVisible(QInstaller.StartMenuSelection, false);
         // installer.setDefaultPageVisible(QInstaller.ReadyForInstallation, false);
+    } else if(installer.isUninstaller()) {
+        QMessageBox.question("quit.question", "Uninstaller", "Uninstaller",
+                                   QMessageBox.Yes | QMessageBox.No);
     }
 };
 
@@ -94,8 +99,11 @@ Component.prototype.installerLoaded = function () {
             widget.targetChooser.clicked.connect(this, Component.prototype.chooseTarget);
             widget.targetDirectory.textChanged.connect(this, Component.prototype.targetChanged);
 
-            widget.windowTitle = "Installation Folder";
-            widget.targetDirectory.text = Dir.toNativeSparator(installer.value("TargetDir"));
+            //widget.windowTitle = "Installation Folder";
+            if (systemInfo.productType === "windows")
+            {
+                widget.targetDirectory.text = Dir.toNativeSparator(installer.value("ApplicationsDirX86")) + "\\" + installer.value("ProductName");
+            }
         }
     }
 
@@ -105,7 +113,7 @@ Component.prototype.installerLoaded = function () {
             widget.acceptLicense.toggled.connect(this, Component.prototype.checkAccepted);
             widget.complete = false;
             widget.declineLicense.checked = true;
-            widget.windowTitle = "License Agreement";
+            //widget.windowTitle = "License Agreement";
         }
     }
 };
@@ -114,12 +122,8 @@ Component.prototype.targetChanged = function (text) {
     var widget = gui.pageWidgetByObjectName("DynamicTargetWidget");
     if (widget != null) {
         if (text != "") {
-            if(CatTools.DecisionPath(text))
-            {
-                widget.complete = true;
-                installer.setValue("TargetDir", text);
-                return;
-            }
+            CatTools.DecisionPath(text, widget);
+            return;
         }
         widget.complete = false;
     }
@@ -143,6 +147,13 @@ Component.prototype.checkAccepted = function (checked) {
     }
 }
 
+
+Component.prototype.uninstallationFinishedPageIsShown = function()
+{
+    QMessageBox.question( "quit.question" ,  "isUninstaller" ,  "卸载程序" , 
+    QMessageBox . Yes |  QMessageBox . No);
+}
+
 Component.prototype.createOperations = function()
 {
     component.createOperations(); 
@@ -154,3 +165,12 @@ Component.prototype.createOperations = function()
         operationForLinux();
     }
 };
+
+Component.prototype.IntroductionPageCallback = function()
+{
+    QMessageBox.question("quit.question", "Uninstaller", "Uninstaller",
+    QMessageBox.Yes | QMessageBox.No);
+    console.log("Is Updater: " + installer.isUpdater());
+    console.log("Is Uninstaller: " + installer.isUninstaller());
+    console.log("Is Package Manager: " + installer.isPackageManager());
+}

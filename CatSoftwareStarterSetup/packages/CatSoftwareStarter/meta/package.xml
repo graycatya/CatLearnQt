@@ -24,7 +24,7 @@
 
     <!-- <SortingPriority>0</SortingPriority> -->
     <UpdateText>CatSoftwareStarter</UpdateText>
-    <!-- <Default>false</Default> -->
+    <Default>script</Default>
     <ForcedInstallation>true</ForcedInstallation>
     <Essential>false</Essential>
     <Script>installscript.js</Script>

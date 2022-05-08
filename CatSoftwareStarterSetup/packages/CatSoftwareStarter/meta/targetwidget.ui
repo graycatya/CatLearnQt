@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>503</width>
+    <width>670</width>
     <height>190</height>
    </rect>
   </property>
@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Installation Folder</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>

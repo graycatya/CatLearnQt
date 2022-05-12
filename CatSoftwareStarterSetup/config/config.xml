@@ -16,6 +16,6 @@
     <RepositorySettingsPageVisible>false</RepositorySettingsPageVisible>    <!-- 隐藏安装对话框中的 存储库设置页面-->
     <RunProgramDescription>CatSoftwareStarter</RunProgramDescription>       <!-- 安装程序描述文本-->
     <MaintenanceToolName>MaintenanceTool</MaintenanceToolName>
-    <RemoveTargetDir>true</RemoveTargetDir>
+    <RemoveTargetDir>false</RemoveTargetDir>
     <ControlScript>installscript.js</ControlScript>
 </Installer>

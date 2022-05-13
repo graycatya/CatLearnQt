@@ -121,17 +121,19 @@ QMultiMap<QString, QVariant> CatSettingBase::GetArray(QString file, QString node
 
     QSettings setting(file, QSettings::IniFormat);
     int size = setting.beginReadArray(node);
-    if(keys.size() != size)
+    Q_UNUSED(size)
+    QStringList settingkeys = setting.allKeys();
+    for(int i = 0; i < settingkeys.size(); i++)
     {
-        return map;
-    }
-    for(int i = size - 1; i >= 0; i--)
-    {
-        setting.setArrayIndex(i);
-        map.insert(keys[i], setting.value(keys[i]));
+        if(settingkeys[i].split('/').size() == 2)
+        {
+            if(keys.contains(settingkeys[i].split('/').at(1)))
+            {
+                map.insert(settingkeys[i].split('/').at(1), setting.value(settingkeys[i]));
+            }
+        }
     }
     setting.endArray();
-
     return map;
 }
 

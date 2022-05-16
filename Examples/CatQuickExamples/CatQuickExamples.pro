@@ -161,9 +161,16 @@ TRANSLATIONS = $$PWD/Resource/Lang/language_en.ts \
                 $$PWD/Resource/lang/language_zh_CN.ts
 
 win32 {
-    RC_ICONS += Resource\Images\applogo.ico
+    RC_ICONS += Resource\Images\cqlogo.ico
 }
 
 HEADERS += \
     CatConfig.h \
     QmlConfig.h
+
+win32 {
+    CONFIG(release, debug|release){
+        QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+        QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS
+    }
+}

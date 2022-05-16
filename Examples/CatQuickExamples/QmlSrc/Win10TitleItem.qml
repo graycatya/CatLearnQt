@@ -25,7 +25,7 @@ Rectangle {
             Image {
                 id: logoimg
                 anchors.centerIn: parent
-                source: ProjectObject.getCurrentResourcePath() + "portrait.png"
+                source: ProjectObject.getCurrentResourcePath() + "CatQuickExamples.png"
                 width: 20
                 height: 20
             }

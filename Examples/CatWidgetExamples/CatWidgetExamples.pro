@@ -52,9 +52,16 @@ TRANSLATIONS = Resource/lang/language_en.ts \
                Resource/lang/language_zh_CN.ts
 
 win32 {
-    RC_ICONS += Resource\Images\applogo.ico
+    RC_ICONS += Resource\Images\cwlogo.ico
 }
 
 SOURCES += \
     main.cpp
 
+
+win32 {
+    CONFIG(release, debug|release){
+        QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+        QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS
+    }
+}

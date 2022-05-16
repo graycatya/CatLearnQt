@@ -164,5 +164,8 @@
         <file>Images/BelowNormal.png</file>
         <file>Images/UpHover.png</file>
         <file>Images/UpNormal.png</file>
+        <file>Images/CatGray/CatWidgetExamples.png</file>
+        <file>Images/CatWhite/CatWidgetExamples.png</file>
+        <file>Images/cwlogo.ico</file>
     </qresource>
 </RCC>

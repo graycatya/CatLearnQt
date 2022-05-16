@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "CatSoftwareStarter"
-#define MyAppVersion "1.2.0"
+#define MyAppVersion "0.0.0"
 #define MyAppPublisher "GrayCatYa"
 #define MyAppURL "https://www.graycatya.com/"
 #define MyAppExeName "CatWidgetExamples.exe"
@@ -20,26 +20,30 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=D:\code\CatLearnQt\CatSoftwareStarterSetup\InnoSetup\Licence.txt
+LicenseFile={#SourcePath}\Licence.txt
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=D:\code\CatLearnQt\CatSoftwareStarterSetup\InnoSetup
+OutputDir={#SourcePath}
 OutputBaseFilename=CatSoftwareStarterSetup
-SetupIconFile=D:\code\CatLearnQt\CatSoftwareStarterSetup\InnoSetup\Resource\logo.ico
+SetupIconFile={#SourcePath}\Resource\logo.ico
+Uninstallable=yes
+UninstallDisplayName=CatSoftwareStarter
+UninstallDisplayIcon={#SourcePath}\Resource\logo.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "chinese"; MessagesFile: "compiler:languages/ChineseSimplified.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\code\CatLearnQt\CatSoftwareStarterSetup\InnoSetup\CatSoftwareStarter\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\code\CatLearnQt\CatSoftwareStarterSetup\InnoSetup\CatSoftwareStarter\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#SourcePath}\CatSoftwareStarter\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\CatSoftwareStarter\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

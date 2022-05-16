@@ -1,1 +1,0 @@
-.\bin\binarycreator.exe -c .\config\config.xml -r Resource/resource.qrc -p .\packages CatSoftwareStarterSetup.exe -v

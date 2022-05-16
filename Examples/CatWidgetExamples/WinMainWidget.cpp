@@ -272,10 +272,10 @@ void WinMainWidget::UpdateStyle()
     {
         stylePath = ":/qss/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
         QString icon = ":/Images/" + CatConfig::GetValue("style", "Defaule").toString() + "/";
-        this->setWindowIcon(QIcon(icon + "CATicon.png"));
+        this->setWindowIcon(QIcon(icon + "CatWidgetExamples.png"));
     } else {
         stylePath = ":/qss/CatGray/";
-        this->setWindowIcon(QIcon(":/Images/CatGray/CATicon.png"));
+        this->setWindowIcon(QIcon(":/Images/CatGray/CatWidgetExamples.png"));
     }
 
     QFile file_1(stylePath + "ListingOptionsWin.css");

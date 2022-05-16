@@ -196,5 +196,7 @@
         <file>Images/Black/next_triangle.png</file>
         <file>Images/White/last_triangle.png</file>
         <file>Images/White/next_triangle.png</file>
+        <file>Images/Black/CatQuickExamples.png</file>
+        <file>Images/White/CatQuickExamples.png</file>
     </qresource>
 </RCC>

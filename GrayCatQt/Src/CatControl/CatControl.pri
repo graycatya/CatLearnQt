@@ -1,4 +1,5 @@
 HEADERS += \
+    $$PWD/CarouselImageWidget.h \
     $$PWD/CatDoubleSlider.h \
     $$PWD/CatDoubleValidator.h \
     $$PWD/CatFlowLayout.h \
@@ -10,6 +11,7 @@ HEADERS += \
     $$PWD/ListingOptions.h \
 
 SOURCES += \
+    $$PWD/CarouselImageWidget.cpp \
     $$PWD/CatDoubleSlider.cpp \
     $$PWD/CatDoubleValidator.cpp \
     $$PWD/CatFlowLayout.cpp \

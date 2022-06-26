@@ -153,7 +153,7 @@ endfunction(link_android_lib)
 # Qt 5.15 cmake 编译android库需要添加gui
 function(find_android_gui)
 	if(ANDROID)
-		find_package(Qt5 COMPONENTS Gui REQUIRED)
+		find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Gui REQUIRED)
 	endif(ANDROID)
 endfunction(find_android_gui)
 

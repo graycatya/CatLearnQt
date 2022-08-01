@@ -58,7 +58,8 @@ int CatNetWorkHttp::DownLoad(QUrl url, QString downloaddir, bool ssl)
         }
         QFileInfo info(url.path());
         QString fileName(info.fileName());
-        if(downloaddir[downloaddir.size()-1] != "/")
+        QChar tchar = downloaddir[downloaddir.size()-1];
+        if(tchar != '/')
         {
             downloaddir = downloaddir + "/";
         }

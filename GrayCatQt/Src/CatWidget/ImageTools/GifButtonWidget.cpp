@@ -10,7 +10,10 @@
 #include <QAction>
 #include "gif.h"
 #include <QRegExp>
+
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QRegExpValidator>
+#endif
 
 
 GifButtonWidget::GifButtonWidget(QWidget *parent) :

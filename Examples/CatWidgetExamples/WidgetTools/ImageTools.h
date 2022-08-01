@@ -2,6 +2,7 @@
 #define IMAGETOOLS_H
 
 #include <QWidget>
+#include <QHash>
 
 class QPushButton;
 

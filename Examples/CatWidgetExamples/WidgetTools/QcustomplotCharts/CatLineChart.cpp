@@ -6,6 +6,10 @@
 #include <CatLog>
 #include <QFileDialog>
 
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+#include <QRandomGenerator>
+#endif
+
 CatLineChart::CatLineChart(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CatLineChart),
@@ -225,7 +229,7 @@ void CatLineChart::InitChartConnect()
 
     // 定时更新动态数据
     connect(m_pDataTimer, &QTimer::timeout, this, [=](){
-
+#if (QT_VERSION < QT_VERSION_CHECK(5,10,0))
         double currtime = (double)(QDateTime::currentMSecsSinceEpoch()) / 1000.0;
         qsrand(currtime);
 
@@ -239,6 +243,23 @@ void CatLineChart::InitChartConnect()
           }
           lastPointKey = currtime;
         }
+#else
+        double currtime = (double)(QDateTime::currentMSecsSinceEpoch()) / 1000.0;
+
+        QRandomGenerator prng1(currtime);
+
+        static double lastPointKey = 0;
+        if (currtime-lastPointKey > 0.5) // at most add point every 2 ms
+        {
+          // add data to lines:
+          for(auto temp : m_pGraphs)
+          {
+              temp->addData(currtime, prng1.generate() % 100);
+          }
+          lastPointKey = currtime;
+        }
+#endif
+
         // make key axis range scroll with the data (at a constant range size of 8):
         customPlot->xAxis->setRange(currtime, 8, Qt::AlignRight);
         customPlot->replot();
@@ -430,7 +451,7 @@ void CatLineChart::on_SaveButton_clicked()
         ui->ChartWidget->SetTracer(false);
         customPlot->replot();
         customPlot->toPixmap(customPlot->width(), customPlot->height()).save(file);
-        customPlot->xAxis->setRange(lastxlower.toTime_t(), lastxupper.toTime_t());
+        customPlot->xAxis->setRange(lastxlower.toSecsSinceEpoch(), lastxupper.toSecsSinceEpoch());
         customPlot->yAxis->setRange(lastylower, lastyupper);
         ui->ChartWidget->SetTracer(true);
         customPlot->replot();

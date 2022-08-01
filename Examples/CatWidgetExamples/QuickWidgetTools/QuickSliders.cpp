@@ -2,6 +2,7 @@
 #include "ui_QuickSliders.h"
 #include <QQuickItem>
 #include <CatLog>
+#include <QFile>
 
 #include "../CatConfig/CatConfig.h"
 

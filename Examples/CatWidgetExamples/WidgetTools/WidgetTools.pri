@@ -30,6 +30,7 @@ SOURCES += \
     $$PWD/SliderTools.cpp \
     $$PWD/TableViewTool.cpp
 
+lessThan(QT_MAJOR_VERSION, 6) {
 
 if(!contains(DEFINES,IOS_APP)) {
 
@@ -41,6 +42,8 @@ SOURCES += \
     $$PWD/CatQcustomplotTools.cpp
 
 include(QcustomplotCharts/QcustomplotCharts.pri)
+
+}
 
 }
 

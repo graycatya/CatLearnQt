@@ -1,4 +1,4 @@
-#include "CatBarChart.h"
+﻿#include "CatBarChart.h"
 #include "ui_CatBarChart.h"
 
 #include "../../CatConfig/CatConfig.h"
@@ -8,6 +8,10 @@
 #include "CatControl/ListingOptions.h"
 #include "CatWidget/CatQcustomplot/CatQcustomplotCharts/CatCustomChart.h"
 #include "CatWidget/CatQcustomplot/CatBars.h"
+
+#if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
+#include <QRandomGenerator>
+#endif
 
 CatBarChart::CatBarChart(QWidget *parent) :
     QWidget(parent),
@@ -189,7 +193,7 @@ void CatBarChart::InitChartConnect()
     }
     // 定时更新动态数据
     connect(m_pDataTimer, &QTimer::timeout, this, [=](){
-
+#if (QT_VERSION < QT_VERSION_CHECK(5,10,0))
         double currtime = (double)(QDateTime::currentMSecsSinceEpoch()) / 1000.0;
         qsrand(currtime);
 
@@ -206,6 +210,24 @@ void CatBarChart::InitChartConnect()
           }
           lastPointKey = currtime;
         }
+#else
+        double currtime = (double)(QDateTime::currentMSecsSinceEpoch()) / 1000.0;
+
+        QRandomGenerator prng1(currtime);
+        static double lastPointKey = 0;
+        if (currtime-lastPointKey > 0.5) // at most add point every 2 ms
+        {
+          // add data to lines:
+          for(auto temp : m_pBars)
+          {
+              int value = prng1.generate() % 100;
+              temp->addData(currtime, value);
+              QDateTime time;
+              time.setSecsSinceEpoch(currtime);
+          }
+          lastPointKey = currtime;
+        }
+#endif
         // make key axis range scroll with the data (at a constant range size of 8):
         for(auto customPlot : m_pCatCustomCharts)
         {

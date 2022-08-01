@@ -75,7 +75,7 @@ void CatSerialPort::InitConnect()
         m_yReadData += m_qPort.readAll();
     });*/
 
-
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #ifdef Q_OS_WIN
 #ifdef Q_CC_MSVC
     if(QSysInfo::windowsVersion() == QSysInfo::WV_WINDOWS7)
@@ -94,6 +94,7 @@ void CatSerialPort::InitConnect()
 
         }, Qt::QueuedConnection);
     }
+#endif
 #endif
 #endif
 

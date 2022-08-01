@@ -3,12 +3,17 @@
 #include <QPaintEvent>
 #include <QScreen>
 #include <QApplication>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QPainter>
 #include <QEvent>
 
 #include <QDebug>
 #include <QIcon>
+#include <QFile>
 
 #include "ProcessObject.h"
 #include "GifButtonWidget.h"
@@ -74,7 +79,12 @@ void CatGifTool::InitProperty()
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
     QPalette pal = palette();
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     pal.setColor(QPalette::Background,Qt::transparent);
+#else
+    pal.setColor(QPalette::Window,Qt::transparent);
+#endif
+
     setPalette(pal);
     setWindowOpacity(1);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -98,6 +108,7 @@ void CatGifTool::InitProperty()
 
     // 初始化 处理屏幕的对象 并初始化 可活动范围
     m_pScreen = new ProcessObject;
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     m_pScreen->SetMaxParentSize(QApplication::desktop()->size());
     m_pScreen->SetMaxWidth(QApplication::desktop()->size().width());
     m_pScreen->SetMaxHeight(QApplication::desktop()->size().height());
@@ -123,6 +134,33 @@ void CatGifTool::InitProperty()
     int h = QApplication::desktop()->size().height() * 0.5;
     int x = (QApplication::desktop()->size().width() - w)/2;
     int y = (QApplication::desktop()->size().height() - h)/2;
+#else
+    m_pScreen->SetMaxParentSize(QApplication::primaryScreen()->availableGeometry().size());
+    m_pScreen->SetMaxWidth(QApplication::primaryScreen()->availableGeometry().size().width());
+    m_pScreen->SetMaxHeight(QApplication::primaryScreen()->availableGeometry().size().height());
+    m_pScreen->SetMinWidth(0);
+    m_pScreen->SetMinHeight(0);
+
+    m_pGifButtonWidget->move(QApplication::primaryScreen()->availableGeometry().width() - m_pGifButtonWidget->width() - 20,
+                             QApplication::primaryScreen()->availableGeometry().height() - m_pGifButtonWidget->height() - 50);
+
+    this->setGeometry(0,0,
+                      QApplication::primaryScreen()->availableGeometry().width(),
+                      QApplication::primaryScreen()->availableGeometry().height());
+
+    connect(this, &CatGifTool::gifgeometry, m_pGifButtonWidget, &GifButtonWidget::On_Gifgeometry);
+    connect(m_pGifButtonWidget, &GifButtonWidget::gifmoveed, this, &CatGifTool::On_Move);
+    connect(m_pGifButtonWidget, &GifButtonWidget::gifshowed, this, &CatGifTool::On_Show);
+    connect(m_pGifButtonWidget, &GifButtonWidget::gifstarted, this, &CatGifTool::On_Start);
+    connect(m_pGifButtonWidget, &GifButtonWidget::closeed, this, [=](){
+        QApplication::exit(0);
+    });
+
+    int w = QApplication::primaryScreen()->availableGeometry().width() * 0.5;
+    int h = QApplication::primaryScreen()->availableGeometry().height() * 0.5;
+    int x = (QApplication::primaryScreen()->availableGeometry().width() - w)/2;
+    int y = (QApplication::primaryScreen()->availableGeometry().height() - h)/2;
+#endif
     m_pGifButtonWidget->SetGifSelect(true);
     SetGeometry(x, y, w, h);
 
@@ -356,7 +394,7 @@ void CatGifTool::paintEvent(QPaintEvent *event)
     Q_UNUSED(event)
 
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+    painter.setRenderHints(QPainter::Antialiasing);
     int x = m_pScreen->x();
     int y = m_pScreen->y();
     int w = m_pScreen->width();
@@ -385,7 +423,11 @@ void CatGifTool::paintEvent(QPaintEvent *event)
     }
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+void CatGifTool::enterEvent(QEnterEvent *event)
+#else
 void CatGifTool::enterEvent(QEvent *event)
+#endif
 {
     if(event->type() == QEvent::Enter)
     {

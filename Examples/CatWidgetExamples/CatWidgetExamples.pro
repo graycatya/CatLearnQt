@@ -59,9 +59,9 @@ SOURCES += \
     main.cpp
 
 
-win32 {
-    CONFIG(release, debug|release){
-        QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
-        QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS
-    }
-}
+#win32 {
+#    CONFIG(release, debug|release){
+#        QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+#        QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS
+#    }
+#}

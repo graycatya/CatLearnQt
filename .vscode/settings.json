@@ -15,7 +15,11 @@
         "system_error": "cpp",
         "xlocnum": "cpp",
         "xmemory": "cpp",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "xiosbase": "cpp",
+        "vector": "cpp",
+        "xutility": "cpp",
+        "algorithm": "cpp"
     },
     "MicroPython.executeButton": [
         {

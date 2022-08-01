@@ -2,7 +2,9 @@
 #include <QDebug>
 #include <QMouseEvent>
 #include <QGraphicsScale>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QGLWidget>
+#endif
 #include <QGraphicsScene>
 #include "CatGraphicsScene.h"
 
@@ -33,9 +35,13 @@ void CatGraphicsView::ScaleZoomOut()
 void CatGraphicsView::Reset()
 {
     //this->setTransformationAnchor(QGraphicsView::AnchorViewCenter);
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     QMatrix q;
     q.setMatrix(1, matrix().m12(), matrix().m21(),1, matrix().dx(), matrix().dy());
     setMatrix(q,false);
+#else
+    resetTransform();
+#endif
 }
 
 void CatGraphicsView::InitProperty()

@@ -2,6 +2,12 @@ DEFINES += TEAHINGTOOL_VERSION=\\\"'v1.0.0'\\\"
 
 QT       += svg
 
+lessThan(QT_MAJOR_VERSION, 6) {
+
+} else {
+QT += svgwidgets
+}
+
 RESOURCES += \
     $$PWD/TeachingTool/TeachingTool.qrc
 

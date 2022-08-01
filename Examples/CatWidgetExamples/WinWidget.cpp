@@ -8,7 +8,11 @@
 #include <QPushButton>
 #include <QButtonGroup>
 #include <CatLog>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QTimer>
 #include <QQmlDebuggingEnabler>
 #include <QDateTime>
@@ -247,7 +251,11 @@ void WinWidget::SetWindowZoom()
     if(m_bFullScreen)
     {
         m_pLastRect = QRect(this->pos().x(), this->pos().y(), this->width(), this->height());
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
         QRect rect = QApplication::desktop()->availableGeometry(this);
+#else
+        QRect rect = QApplication::primaryScreen()->availableGeometry();
+#endif
         this->setGeometry(rect.x()-5, rect.y()-5, rect.width()+10, rect.height()+10);
         SetZoomButtonState("Max");
     } else {

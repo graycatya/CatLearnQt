@@ -2,6 +2,7 @@
 #define CATQCUSTOMPLOTTOOLS_H
 
 #include <QWidget>
+#include <QHash>
 
 class QPushButton;
 class ListiongOptions;

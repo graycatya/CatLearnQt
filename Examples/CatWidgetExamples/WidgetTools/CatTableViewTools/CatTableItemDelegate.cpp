@@ -11,6 +11,7 @@
 #include <QJsonObject>
 #include <QJsonDocument>
 #include "CatConfig/CatConfig.h"
+#include <QDebug>
 
 CatTableItemDelegate::CatTableItemDelegate(QObject *parent)
     : QStyledItemDelegate(parent)
@@ -54,7 +55,7 @@ void CatTableItemDelegate::paintHeadData(QPainter *painter, const QStyleOptionVi
             | index.column() == HEAD_STATE_COLUMN
             | index.column() == HEAD_TIME_COLUMN)
     {
-        QString text = CatConfig::GetTableHeader().at(index.data(Qt::TextColorRole).toInt());
+        QString text = CatConfig::GetTableHeader().at(index.data(Qt::ForegroundRole).toInt());
         if(index.column() >= HEAD_TIME_COLUMN && index.column() <= HEAD_TIME_COLUMN)
         {
             text = CatConfig::GetTableHeader().at(getHeadSortData(index).toInt());
@@ -119,7 +120,7 @@ void CatTableItemDelegate::paintSortButton(QPainter *painter, const QStyleOption
 {
     QStandardItem *item = qobject_cast<const QStandardItemModel*>(index.model())->itemFromIndex(index);
     QFontMetrics fm(item->font());
-    QString text = item->data(Qt::TextColorRole).toString();
+    QString text = item->data(Qt::ForegroundRole).toString();
     if(index.column() >= 5 && index.column() <= 8)
     {
         text = CatConfig::GetTableHeader().at(getHeadSortData(index).toInt());
@@ -307,7 +308,7 @@ void CatTableItemDelegate::editorHeadSortButton(QEvent *event, QAbstractItemMode
     int flags = Qt::AlignVCenter | Qt::AlignHCenter;
     QStandardItem *item = qobject_cast<const QStandardItemModel*>(index.model())->itemFromIndex(index);
     QFontMetrics fm(item->font());
-    QString text = item->data(Qt::TextColorRole).toString();
+    QString text = item->data(Qt::ForegroundRole).toString();
     if(index.column() >= 5 && index.column() <= 8)
     {
         text = getHeadSortData(index);
@@ -416,28 +417,28 @@ void CatTableItemDelegate::editorTableDataCheck(QEvent *event, QAbstractItemMode
 
 int CatTableItemDelegate::getHeadSortState(const QModelIndex &index) const
 {
-    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::TextColorRole).toString().toUtf8()).object();
+    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::ForegroundRole).toString().toUtf8()).object();
     return object["sort"].toInt();
 }
 
 void CatTableItemDelegate::setHeadSortState(QAbstractItemModel *model, const QModelIndex &index, int state) const
 {
-    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::TextColorRole).toString().toUtf8()).object();
+    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::ForegroundRole).toString().toUtf8()).object();
     object["sort"] = state;
-    model->setData(index, QJsonDocument(object).toJson(QJsonDocument::Compact), Qt::TextColorRole);
+    model->setData(index, QJsonDocument(object).toJson(QJsonDocument::Compact), Qt::ForegroundRole);
 }
 
 QString CatTableItemDelegate::getHeadSortData(const QModelIndex &index) const
 {
-    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::TextColorRole).toString().toUtf8()).object();
+    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::ForegroundRole).toString().toUtf8()).object();
     return object["data"].toString();
 }
 
 void CatTableItemDelegate::setHeadSortData(QAbstractItemModel *model, const QModelIndex &index, QString data) const
 {
-    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::TextColorRole).toString().toUtf8()).object();
+    QJsonObject object = QJsonDocument::fromJson(index.data(Qt::ForegroundRole).toString().toUtf8()).object();
     object["data"] = data;
-    model->setData(index, QJsonDocument(object).toJson(QJsonDocument::Compact), Qt::TextColorRole);
+    model->setData(index, QJsonDocument(object).toJson(QJsonDocument::Compact), Qt::ForegroundRole);
 }
 
 int CatTableItemDelegate::getSelectCheckTableData(QAbstractItemModel *model)

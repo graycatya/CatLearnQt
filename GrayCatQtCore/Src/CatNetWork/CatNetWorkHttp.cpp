@@ -2,7 +2,9 @@
 #include <QDir>
 #include <QCoreApplication>
 #include <QUrlQuery>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QTextCodec>
+#endif
 #include <QHttpMultiPart>
 #include <QJsonParseError>
 
@@ -211,7 +213,7 @@ void CatNetWorkHttp::InitHttpDownLoad(QNetworkAccessManager *m_pManager)
         QSslConfiguration config;
         QSslConfiguration conf = request.sslConfiguration();
         conf.setPeerVerifyMode(QSslSocket::VerifyNone);
-        conf.setProtocol(QSsl::TlsV1SslV3);
+        conf.setProtocol(QSsl::TlsV1_0);
         request.setSslConfiguration(conf);
         request.setUrl(hash["url"].toUrl());
         m_pReply = m_pManager->get(request);
@@ -279,7 +281,7 @@ void CatNetWorkHttp::InitHttpGet(QNetworkAccessManager *m_pManager)
         QSslConfiguration config;
         QSslConfiguration conf = request.sslConfiguration();
         conf.setPeerVerifyMode(QSslSocket::VerifyNone);
-        conf.setProtocol(QSsl::TlsV1SslV3);
+        conf.setProtocol(QSsl::TlsV1_0);
         request.setSslConfiguration(conf);
         request.setUrl(hash["url"].toUrl());
         m_pManager->get(request);
@@ -340,7 +342,7 @@ void CatNetWorkHttp::InitHttpPost(QNetworkAccessManager *m_pManager)
         QSslConfiguration config;
         QSslConfiguration conf = request.sslConfiguration();
         conf.setPeerVerifyMode(QSslSocket::VerifyNone);
-        conf.setProtocol(QSsl::TlsV1SslV3);
+        conf.setProtocol(QSsl::TlsV1_0);
         request.setSslConfiguration(conf);
         request.setUrl(hash["url"].toUrl());
         m_pManager->post(request, hash["data"].toByteArray());
@@ -406,7 +408,7 @@ void CatNetWorkHttp::InitHttpMultiPartPost(QNetworkAccessManager *m_pManager)
         QSslConfiguration config;
         QSslConfiguration conf = request.sslConfiguration();
         conf.setPeerVerifyMode(QSslSocket::VerifyNone);
-        conf.setProtocol(QSsl::TlsV1SslV3);
+        conf.setProtocol(QSsl::TlsV1_0);
         request.setSslConfiguration(conf);
         request.setUrl(hash["url"].toUrl());
         hash["data"].value<void*>();

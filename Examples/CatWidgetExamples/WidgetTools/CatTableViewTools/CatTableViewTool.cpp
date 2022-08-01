@@ -203,9 +203,9 @@ void CatTableViewTool::InitTableHead()
             QJsonObject object;
             object.insert("sort", 0);
             object.insert("data", QString::number(i));
-            item->setData(QJsonDocument(object).toJson(QJsonDocument::Compact), Qt::TextColorRole);
+            item->setData(QJsonDocument(object).toJson(QJsonDocument::Compact), Qt::ForegroundRole);
         } else {
-            item->setData(QString::number(i), Qt::TextColorRole);
+            item->setData(QString::number(i), Qt::ForegroundRole);
         }
 
         headitems.append(item);

@@ -49,7 +49,9 @@ int main(int argc, char *argv[])
     CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::LibrariesPath).toStdString()));
     CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath).toStdString()));
     CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::BinariesPath).toStdString()));
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::ImportsPath).toStdString()));
+#endif
     CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::Qml2ImportsPath).toStdString()));
     CATLOG::CatLog::__Write_Log("./log", INFO_LOG_T(QLibraryInfo::location(QLibraryInfo::TranslationsPath).toStdString()));
 

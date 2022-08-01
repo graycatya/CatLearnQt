@@ -11,6 +11,8 @@
 #include <iostream>
 #include <atlstr.h> // CString
 #include <QSettings>
+#include <QVector>
+
 using namespace std;
 
 #pragma comment (lib, "Setupapi.lib")

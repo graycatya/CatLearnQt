@@ -245,8 +245,12 @@ void CatDrawingBoard::moveEvent(QMoveEvent *event)
 {
     Q_UNUSED(event)
 }
-
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+void CatDrawingBoard::enterEvent(QEnterEvent *event)
+#else
 void CatDrawingBoard::enterEvent(QEvent *event)
+#endif
+
 {
     Q_UNUSED(event)
 }

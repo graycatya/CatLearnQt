@@ -9,6 +9,9 @@
 #include <QMenu>
 #include <QAction>
 #include "gif.h"
+#include <QRegExp>
+#include <QRegExpValidator>
+
 
 GifButtonWidget::GifButtonWidget(QWidget *parent) :
     QWidget(parent),
@@ -75,7 +78,7 @@ void GifButtonWidget::InitProperty()
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     setAutoFillBackground(true);
     QPalette pal = palette();
-    pal.setColor(QPalette::Background,Qt::transparent);
+    pal.setColor(QPalette::Window,Qt::transparent);
     setPalette(pal);
     setWindowOpacity(1);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -92,13 +95,16 @@ void GifButtonWidget::InitProperty()
     m_pClose->setText("关闭");
     m_pMenu->addAction(m_pClose);
 
-
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     QRegExp rx("0|[1-9]\\d{0,3}");
     QRegExpValidator v(rx, this);
     ui->LineEditX->setValidator(new QRegExpValidator(rx));
     ui->LineEditY->setValidator(new QRegExpValidator(rx));
     ui->LineEditWidth->setValidator(new QRegExpValidator(rx));
     ui->LineEditHeight->setValidator(new QRegExpValidator(rx));
+#else
+
+#endif
 
     QFile resourceqss(":/ImageTools/qss/GifButtonWidget.css");
     resourceqss.open(QFile::ReadOnly);

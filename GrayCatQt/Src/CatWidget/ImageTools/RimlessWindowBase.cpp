@@ -4,7 +4,11 @@
 #include <QApplication>
 #include <QScreen>
 #include <QMouseEvent>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QDebug>
 #include <QTimer>
 #include <QPainter>
@@ -428,8 +432,11 @@ void RimlessWindowBase::moveEvent(QMoveEvent *event)
     }*/
     emit moveEvented();
 }
-
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+void RimlessWindowBase::enterEvent(QEnterEvent *event)
+#else
 void RimlessWindowBase::enterEvent(QEvent *event)
+#endif
 {
     Q_UNUSED(event)
 

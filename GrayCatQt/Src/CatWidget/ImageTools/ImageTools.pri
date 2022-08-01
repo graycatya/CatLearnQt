@@ -1,5 +1,11 @@
 DEFINES += IMAGETOOL_VERSION=\\\"'v1.0.0'\\\"
 
+lessThan(QT_MAJOR_VERSION, 6) {
+
+} else {
+QT += core5compat
+}
+
 unix {
     QT += x11extras
     LIBS += -lX11

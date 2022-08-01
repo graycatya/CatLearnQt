@@ -718,7 +718,11 @@ void CatDoubleSlider::setSliderDataType(CatDoubleSlider::SliderDataTypes type)
     emit SliderDataTypeChanged(type);
 }
 
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+void CatDoubleSlider::enterEvent(QEnterEvent *event)
+#else
 void CatDoubleSlider::enterEvent(QEvent *event)
+#endif
 {
     Q_UNUSED(event)
 }

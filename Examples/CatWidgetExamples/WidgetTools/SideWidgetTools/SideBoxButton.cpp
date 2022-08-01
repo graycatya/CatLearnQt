@@ -55,7 +55,7 @@ void SideBoxButton::InitUi()
     m_pBackWeidget = new QWidget(this);
     m_pBackWeidget->setObjectName("BackWeidget");
     layout->addWidget(m_pBackWeidget);
-    layout->setMargin(0);
+    //layout->setMargin(0);
     layout->setContentsMargins(0,0,0,0);
 
     m_pBackLayout = new QHBoxLayout(m_pBackWeidget);

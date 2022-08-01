@@ -5,7 +5,11 @@
 #include <QPushButton>
 #include <CatLog>
 #include <QFile>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 
 #include "CatWidget/ImageTools/ImageToolFactory.h"
 #include "CatWidget/ImageTools/ImageToolBase.h"
@@ -60,9 +64,16 @@ void ImageTools::InitConnect()
                 base->deleteLater();
             }
         });
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
         base->setGeometry(0,0,
                           QApplication::desktop()->size().width(),
                           QApplication::desktop()->size().height());
+#else
+        base->setGeometry(0,0,
+                          QApplication::primaryScreen()->availableGeometry().width(),
+                          QApplication::primaryScreen()->availableGeometry().height());
+#endif
+
         //base->setWindowState(base->windowState() ^ Qt::WindowFullScreen);
 
         base->show();
@@ -77,9 +88,15 @@ void ImageTools::InitConnect()
                 base->deleteLater();
             }
         });
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
         base->setGeometry(0,0,
                           QApplication::desktop()->size().width(),
                           QApplication::desktop()->size().height());
+#else
+        base->setGeometry(0,0,
+                          QApplication::primaryScreen()->availableGeometry().width(),
+                          QApplication::primaryScreen()->availableGeometry().height());
+#endif
         base->show();
     });
 
@@ -91,9 +108,15 @@ void ImageTools::InitConnect()
                 base->deleteLater();
             }
         });
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
         base->setGeometry(0,0,
                           QApplication::desktop()->size().width(),
                           QApplication::desktop()->size().height());
+#else
+        base->setGeometry(0,0,
+                          QApplication::primaryScreen()->availableGeometry().width(),
+                          QApplication::primaryScreen()->availableGeometry().height());
+#endif
         base->show();
     });
 }

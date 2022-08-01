@@ -20,7 +20,10 @@ HEADERS += \
 
 SOURCES += \
     $$PWD/CatWinMonitorSerial.cpp \
+}
 
+win32 {
+    LIBS += -luser32 -lshell32 -ladvapi32
 }
 
 

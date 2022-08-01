@@ -2,6 +2,7 @@
 #define CATQUICKWIDGET_H
 
 #include <QWidget>
+#include <QHash>
 
 class ListiongOptions;
 class QPushButton;

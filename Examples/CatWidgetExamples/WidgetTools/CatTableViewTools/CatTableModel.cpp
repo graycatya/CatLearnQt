@@ -1,6 +1,7 @@
 ﻿#include "CatTableModel.h"
 #include <QDebug>
 #include <QDateTime>
+#include <algorithm>
 
 bool Dtcomp_Time_Ascending(Model_Structure left, Model_Structure right)
 {
@@ -120,11 +121,20 @@ void CatTableModel::sort(int column, Qt::SortOrder order)
         }
         if(order == Qt::SortOrder::AscendingOrder)
         {
+#if (QT_VERSION <= QT_VERSION_CHECK(6,0,0))
             qSort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Time_Ascending);
+#else
+            std::sort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Time_Ascending);
+#endif
             Clear();
             AddData(m_yTableDatas);
         } else {
+#if (QT_VERSION <= QT_VERSION_CHECK(6,0,0))
             qSort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Time_Descending);
+#else
+            std::sort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Time_Descending);
+#endif
+
             Clear();
             AddData(m_yTableDatas);
         }
@@ -142,7 +152,12 @@ void CatTableModel::sort(int column, Qt::SortOrder order)
         }
         if(order == Qt::SortOrder::AscendingOrder)
         {
+#if (QT_VERSION <= QT_VERSION_CHECK(6,0,0))
             qSort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Id_Ascending);
+#else
+            std::sort(m_yTableDatas.begin(), m_yTableDatas.end(), Dtcomp_Id_Ascending);
+#endif
+
             Clear();
             AddData(m_yTableDatas);
         }

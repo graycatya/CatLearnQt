@@ -3,10 +3,6 @@
 
 #include <QtWidgets/qmainwindow.h>
 #include "RimlessWindowBase.h"
-#ifdef Q_OS_WIN
-#include "CatFramelessWidget.h"
-#include "CatFrameLessMainView.h"
-#endif
 #include <QHash>
 
 class QPushButton;

@@ -4,7 +4,11 @@
 #include <QPaintEvent>
 #include <QShowEvent>
 #include <QApplication>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QDebug>
 
 #include "CatWidget/ImageTools/ProcessObject.h"
@@ -293,7 +297,7 @@ void RimlessWindow::paintEvent(QPaintEvent * event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+    painter.setRenderHints(QPainter::Antialiasing);
     int x = m_pScreen->x();
     int y = m_pScreen->y();
     int w = m_pScreen->width();

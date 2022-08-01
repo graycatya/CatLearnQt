@@ -2,6 +2,7 @@
 #define CATDRAWINGBOARD_H
 
 #include <QWidget>
+#include <QHash>
 
 class CatGraphicsScene;
 class CatGraphicsView;
@@ -41,7 +42,12 @@ protected:
     void showEvent(QShowEvent *) override;
     void resizeEvent(QResizeEvent *event) override;
     void moveEvent(QMoveEvent *event) override;
+protected:
+#if (QT_VERSION >= QT_VERSION_CHECK(6,0,0))
+    void enterEvent(QEnterEvent *event) override;
+#else
     void enterEvent(QEvent *event) override;
+#endif
     void leaveEvent(QEvent *event) override;
 
 private:

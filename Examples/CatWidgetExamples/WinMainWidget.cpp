@@ -11,7 +11,11 @@
 #include <QPushButton>
 #include <QButtonGroup>
 #include <CatLog>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QTimer>
 #include <QQmlDebuggingEnabler>
 #include <QDateTime>

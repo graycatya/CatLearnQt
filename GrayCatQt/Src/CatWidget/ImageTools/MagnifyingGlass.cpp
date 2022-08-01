@@ -1,14 +1,19 @@
-#include "MagnifyingGlass.h"
+﻿#include "MagnifyingGlass.h"
 #include "ButtonTool.h"
 #include <QMouseEvent>
 #include <QPaintEvent>
 #include <QShowEvent>
 #include <QPainter>
 #include <QApplication>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QScreen>
 #include <QDebug>
 #include <QtMath>
+#include <QFile>
 
 #include "ProcessObject.h"
 
@@ -102,9 +107,15 @@ void MagnifyingGlass::InitProperty()
 
     // 初始化 处理屏幕的对象 并初始化 可活动范围
     m_pScreen = new ProcessObject;
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     m_pScreen->SetMaxParentSize(QApplication::desktop()->size());
     m_pScreen->SetMaxWidth(QApplication::desktop()->size().width());
     m_pScreen->SetMaxHeight(QApplication::desktop()->size().height());
+#else
+    m_pScreen->SetMaxParentSize(QApplication::primaryScreen()->availableGeometry().size());
+    m_pScreen->SetMaxWidth(QApplication::primaryScreen()->availableGeometry().width());
+    m_pScreen->SetMaxHeight(QApplication::primaryScreen()->availableGeometry().height());
+#endif
 
 
     m_pFullScreen = new QPixmap;
@@ -184,7 +195,7 @@ void MagnifyingGlass::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+    painter.setRenderHints(QPainter::Antialiasing);
     int x = m_pScreen->x();
     int y = m_pScreen->y();
     int w = m_pScreen->width();
@@ -283,6 +294,7 @@ void MagnifyingGlass::showEvent(QShowEvent *event)
 
         // QT5.6 获取主屏幕大小 - 全屏大小
         QScreen *screen = QApplication::primaryScreen();
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
         *m_pFullScreen = screen->grabWindow(
                                            QApplication::desktop()->winId(),
                                            0,
@@ -290,7 +302,15 @@ void MagnifyingGlass::showEvent(QShowEvent *event)
                                            m_pScreen->GetMaxParentWidget(),
                                            m_pScreen->GetMaxParentHeight()
                                        );
-
+#else
+        *m_pFullScreen = screen->grabWindow(
+                                           winId(),
+                                           0,
+                                           0,
+                                           m_pScreen->GetMaxParentWidget(),
+                                           m_pScreen->GetMaxParentHeight()
+                                       );
+#endif
         m_pBackgroundScreen = new QPixmap(*m_pFullScreen);
 
         update();

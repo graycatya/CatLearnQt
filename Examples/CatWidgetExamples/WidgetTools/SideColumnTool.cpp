@@ -70,7 +70,15 @@ void SideColumnTool::InitConnect()
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });
-
+#if (QT_VERSION <= QT_VERSION_CHECK(5,12,11))
+    connect(m_pSideButtonGroup, QOverload<int>::of(&QButtonGroup::buttonClicked), this, [=](int id){
+        qDebug() << "button group clicked: " << id;
+        foreach(auto button , m_pSideButtons)
+        {
+            button->UpdateButtonState();
+        }
+    });
+#else
     connect(m_pSideButtonGroup, &QButtonGroup::idClicked, this, [=](int id){
         qDebug() << "button group clicked: " << id;
         foreach(auto button , m_pSideButtons)
@@ -78,6 +86,8 @@ void SideColumnTool::InitConnect()
             button->UpdateButtonState();
         }
     });
+#endif
+
 
     connect(m_pSideButton, &QPushButton::clicked, this, [=](){
         SetUnfold(!m_bUnfold);

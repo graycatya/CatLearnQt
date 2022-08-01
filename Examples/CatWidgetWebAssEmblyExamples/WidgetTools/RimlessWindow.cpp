@@ -4,7 +4,11 @@
 #include <QPaintEvent>
 #include <QShowEvent>
 #include <QApplication>
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
+#else
+#include <QScreen>
+#endif
 #include <QDebug>
 
 #include "CatWidget/ImageTools/ProcessObject.h"

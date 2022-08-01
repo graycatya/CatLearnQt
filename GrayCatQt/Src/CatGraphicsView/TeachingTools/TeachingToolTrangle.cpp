@@ -1070,7 +1070,7 @@ void TeachingToolTrangle::paintGraduations(QPainter *painter)
     QFontMetricsF fontMetrics(painter->font());
     sPixelsPerCentimeter = CatMath::CmtoPx(1);
     double pixelsPerMillimeter = sPixelsPerCentimeter/10.0;
-    double numbersWidth = fontMetrics.width("00");
+    double numbersWidth = fontMetrics.boundingRect("00").width();
         bool shouldDisplayAllNumbers = (numbersWidth <= (sPixelsPerCentimeter - 5));
 
         for (int millimeters = 0; millimeters < (Rect().width() - sLeftEdgeMargin - sRoundingRadius) / pixelsPerMillimeter; millimeters++)
@@ -1133,7 +1133,7 @@ void TeachingToolTrangle::paintGraduations(QPainter *painter)
                 || millimeters % (millimetersPerCentimeter*5) == 0)
             {
                 QString text = QString("%1").arg(static_cast<int>(millimeters / millimetersPerCentimeter));
-                qreal textWidth = fontMetrics.width(text);
+                qreal textWidth = fontMetrics.boundingRect(text).width();
                 qreal textHeight = fontMetrics.tightBoundingRect(text).height();
 
                 requiredSpace = graduationHeight + textHeight + textWidth + SEPARATOR ;

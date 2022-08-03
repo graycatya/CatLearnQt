@@ -15,15 +15,6 @@ message(Translation files: $$[QT_INSTALL_TRANSLATIONS])
 message(Settings: $$[QT_INSTALL_CONFIGURATION])
 message(Examples: $$[QT_INSTALL_EXAMPLES])
 
-!mingw {
-    QT += webengine webchannel websockets webview
-}
-
-if(contains(DEFINES,WEBASSEMBLY)) {
-    QT -= webengine webchannel websockets webview
-}
-
-
 
 DEFINES += WEBRESOURCEPATH=\\\"file:///$$PWD/WebResource\\\"
 
@@ -50,12 +41,35 @@ defineTest(minQtVersion) {
     return(false)
 }
 
-minQtVersion(5, 15, 0) {
+#判断Qt版本
+lessThan(QT_MAJOR_VERSION, 6) {
+
+minQtVersion(5, 15, 2) {
     QT += quick3d
+
+    !mingw {
+        QT += webengine webchannel websockets webview
+    }
+
 }
+
+} else {
+
+QT += quick3d
+
+!mingw {
+    QT += webenginequick webchannel websockets webview
+}
+
+}
+
 
 if(contains(DEFINES,WEBASSEMBLY)) {
     QT -= quick3d
+}
+
+if(contains(DEFINES,WEBASSEMBLY)) {
+    QT -= webengine webchannel websockets webview
 }
 
 if(!contains(DEFINES,WEBASSEMBLY)) {

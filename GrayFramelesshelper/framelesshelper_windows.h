@@ -1,4 +1,4 @@
-/*
+﻿/*
  * MIT License
  *
  * Copyright (C) 2021 by wangwenx190 (Yuhang Zhao)
@@ -75,7 +75,8 @@
 #define NTDDI_VERSION NTDDI_WIN10_CO
 
 #include <QtCore/qt_windows.h>
-#include <shellapi.h>
+//#include <shellapi.h>
+#include <windows.h>
 #include <dwmapi.h>
 
 #ifndef WM_NCUAHDRAWCAPTION

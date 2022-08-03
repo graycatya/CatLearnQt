@@ -39,6 +39,7 @@ win32 {
         $$PWD/framelesshelper_win32.cpp \
         $$PWD/qwinregistry.cpp
     LIBS += -luser32 -lshell32 -ladvapi32
+
 }
 linux* {
     QT += x11extras

@@ -31,6 +31,7 @@
 #include "utilities.h"
 #include "framelesshelper_windows.h"
 
+
 FRAMELESSHELPER_BEGIN_NAMESPACE
 
 struct FramelessHelperWinData

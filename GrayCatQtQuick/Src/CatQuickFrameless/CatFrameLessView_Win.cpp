@@ -8,11 +8,11 @@
 #include <QTimer>
 
 
-
+#include <windows.h>
 #include <WinUser.h> // Windows UI 相关的大部分 API 都是在 winuser.h 中定义的
 #include <dwmapi.h> //dwmapi获得Areo效果
 #include <objidl.h> // Fixes error C2504: 'IUnknown' : base class undefined
-#include <windows.h>
+
 #include <windowsx.h>
 #ifdef _MSC_VER
 #include <atltypes.h>

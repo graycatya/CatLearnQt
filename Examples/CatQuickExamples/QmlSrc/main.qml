@@ -7,7 +7,6 @@ import GrayCatQtQuick 1.0
 //import CatEncp 1.0
 import "FunctionLayout"
 import "./MoreFunctionViews"
-import GrayFramelesshelper.Utils 1.0
 
 
 

@@ -14,7 +14,7 @@
 #include <QTimer>
 
 #include <QLibraryInfo>
-
+#include <QQuickWindow>
 #ifndef Q_OS_IOS
 #include "utilities.h"
 #endif
@@ -39,7 +39,9 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 #endif
 
-
+#if (QT_VERSION > QT_VERSION_CHECK(6,0,0))
+    QQuickWindow::setGraphicsApi(QSGRendererInterface::OpenGL);
+#endif
     QCoreApplication::addLibraryPath("../");
     // [1] 启动日志模块
     CATLOG::CatLog::Instance();

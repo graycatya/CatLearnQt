@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import GrayCatQtQuick 1.0
 import QtQuick.Layouts 1.12
-import QtGraphicalEffects 1.12
+import GrayCatQtCompat 1.0
 import QtQuick.Controls 2.12
 import "../"
 
@@ -63,7 +63,7 @@ Rectangle {
 
         // 解决button侧栏圆角问题 buttonsRect
         layer.enabled: true
-        layer.effect: OpacityMask{
+        layer.effect: CatOpacityMask{
             maskSource: Rectangle{
                 width: morerect.width
                 height: morerect.height
@@ -306,7 +306,7 @@ Rectangle {
          }
      }*/
 
-    DropShadow {
+    CatDropShadow {
         anchors.fill: morerect
         horizontalOffset: 0
         verticalOffset: 0

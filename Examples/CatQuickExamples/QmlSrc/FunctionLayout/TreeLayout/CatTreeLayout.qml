@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import QtGraphicalEffects 1.12
+import GrayCatQtCompat 1.0
 import "../../"
 
 Rectangle {
@@ -23,7 +23,7 @@ Rectangle {
                 radius: 5
             }
 
-            DropShadow {
+            CatDropShadow {
                 anchors.fill: cattreelistview
                 horizontalOffset: 0
                 verticalOffset: 0
@@ -44,7 +44,7 @@ Rectangle {
                 radius: 5
                 color: ProjectObject.defaultRectangleColor
             }
-            DropShadow {
+            CatDropShadow {
                 anchors.fill: demonstrationview
                 horizontalOffset: 0
                 verticalOffset: 0

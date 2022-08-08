@@ -2,11 +2,12 @@
 import QtQuick.Window 2.0
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
-import QtGraphicalEffects 1.12
 import GrayCatQtQuick 1.0
+import GrayCatQtCompat 1.0
 //import CatEncp 1.0
 import "FunctionLayout"
 import "./MoreFunctionViews"
+import GrayFramelesshelper.Utils 1.0
 
 
 
@@ -48,7 +49,7 @@ Window {
 
             }
 
-            DropShadow {
+            CatDropShadow {
                 anchors.fill: win10titleitem
                 horizontalOffset: 0
                 verticalOffset: 0
@@ -134,6 +135,5 @@ Window {
         to: ProjectObject.appBackgroundColor
         duration: ProjectObject.settingtransition ? 400 : 0
     }
-
 
 }

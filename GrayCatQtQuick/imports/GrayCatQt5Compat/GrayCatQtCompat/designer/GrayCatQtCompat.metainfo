@@ -1,0 +1,45 @@
+MetaInfo {
+    Type {
+        name: "GrayCatQtCompat.Qml.CatConicalGradient"
+        icon: "images/CatConicalGradient.png"
+
+        ItemLibraryEntry {
+            name: "CatConicalGradient"
+            category: "GrayCatQtCompat - Qml"
+            libraryIcon: "images/CatConicalGradient.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtCompat"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
+        name: "GrayCatQtCompat.Qml.CatDropShadow"
+        icon: "images/CatDropShadow.png"
+
+        ItemLibraryEntry {
+            name: "CatDropShadow"
+            category: "GrayCatQtCompat - Qml"
+            libraryIcon: "images/CatDropShadow.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtCompat"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+    Type {
+        name: "GrayCatQtCompat.Qml.CatOpacityMask"
+        icon: "images/CatOpacityMask.png"
+
+        ItemLibraryEntry {
+            name: "CatOpacityMask"
+            category: "GrayCatQtCompat - Qml"
+            libraryIcon: "images/CatOpacityMask.png"
+            version: "1.0"
+            requiredImport: "GrayCatQtCompat"
+            Property { name: "width"; type: "int"; value: 120 }
+            Property { name: "height"; type: "int"; value: 80 }
+        }
+    }
+}
+

@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import GrayCatQtQuick 1.0
-import QtGraphicalEffects 1.12
+import GrayCatQtCompat 1.0
 import QtQuick.Controls 2.12
 import "../"
 
@@ -56,7 +56,7 @@ Item {
                         height: sourceSize.height
                     }
 
-                    DropShadow {
+                    CatDropShadow {
                         anchors.fill: listbuttonimg
                         horizontalOffset: 0
                         verticalOffset: 0
@@ -100,7 +100,7 @@ Item {
                         height: sourceSize.height
                     }
 
-                    DropShadow {
+                    CatDropShadow {
                         anchors.fill: treebuttonimg
                         horizontalOffset: 0
                         verticalOffset: 0
@@ -142,7 +142,7 @@ Item {
                         height: sourceSize.height
                     }
 
-                    DropShadow {
+                    CatDropShadow {
                         anchors.fill: gridbuttonimg
                         horizontalOffset: 0
                         verticalOffset: 0

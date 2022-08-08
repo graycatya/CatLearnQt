@@ -25,16 +25,22 @@ defineTest(minQtVersion) {
     error("GrayCatQtQuick minimum supported Qt5 version is 5.12.0")
 }
 
+#判断Qt版本
+lessThan(QT_MAJOR_VERSION, 6) {
+
+} else {
+
+}
+
 QT += qml quick widgets
 
 
 INCLUDEPATH += $$PWD/Src
-
-win32:msvc {
-contains(DEFINES, QT_OS_WIN10)
-{
-    include($$PWD/Src/CatQuickFrameless/CatQuickFrameless.pri)
-}
+#判断Qt版本
+lessThan(QT_MAJOR_VERSION, 6) {
+    include($$PWD/imports/GrayCatQt5Compat/imports.pri)
+} else {
+    include($$PWD/imports/GrayCatQt6Compat/imports.pri)
 }
 include($$PWD/imports/imports.pri)
 include($$PWD/Src/CatModel/CatModel.pri)

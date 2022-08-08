@@ -2,7 +2,7 @@
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtQml.Models 2.12
-import QtGraphicalEffects 1.12
+import GrayCatQtCompat 1.0
 import GrayCatQtQuick 1.0
 
 
@@ -29,7 +29,7 @@ Rectangle {
                 width: 20
                 height: 20
             }
-            DropShadow {
+            CatDropShadow {
                 anchors.fill: logoimg
                 horizontalOffset: 0
                 verticalOffset: 0
@@ -102,7 +102,7 @@ Rectangle {
                                 border.color: ProjectObject.styleRectBorderColor
                                 border.width: 0
                             }
-                            DropShadow {
+                            CatDropShadow {
                                 anchors.fill: stylerect
                                 horizontalOffset: 0
                                 verticalOffset: 0

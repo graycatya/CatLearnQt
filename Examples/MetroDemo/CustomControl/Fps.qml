@@ -1,5 +1,5 @@
 import QtQuick 2.12
-import QtGraphicalEffects 1.12
+import "GrayCatQtCompat"
 Item {
     id: root
     property int fps: 60 

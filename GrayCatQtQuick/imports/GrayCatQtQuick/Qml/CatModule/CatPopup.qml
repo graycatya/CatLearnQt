@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtGraphicalEffects 1.12
+import "qrc:/GrayCatQtCompat"
 
 Item {
     id: catpopup
@@ -34,7 +34,7 @@ Item {
         anchors.verticalCenter: parent.bottom
         anchors.verticalCenterOffset: verticalOffset
     }
-    DropShadow {
+    CatDropShadow {
         anchors.fill: bar
         horizontalOffset: 0
         verticalOffset: 0
@@ -61,7 +61,7 @@ Item {
                 border.color: borderColor
                 border.width: borderWidth
             }
-            DropShadow {
+            CatDropShadow {
                 anchors.fill: background
                 horizontalOffset: 0
                 verticalOffset: 0

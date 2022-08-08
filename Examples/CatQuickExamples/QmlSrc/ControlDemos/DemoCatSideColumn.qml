@@ -2,7 +2,7 @@
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import GrayCatQtQuick 1.0
-import QtGraphicalEffects 1.12
+import GrayCatQtCompat 1.0
 import "../"
 
 
@@ -257,7 +257,7 @@ Rectangle {
         }
     }
 
-    DropShadow {
+    CatDropShadow {
         anchors.fill: sideitemrectangle
         horizontalOffset: 0
         verticalOffset: 0

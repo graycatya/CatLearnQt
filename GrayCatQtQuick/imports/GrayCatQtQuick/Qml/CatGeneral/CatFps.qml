@@ -1,6 +1,6 @@
 ﻿//pragma Singleton
 import QtQuick 2.12
-import QtGraphicalEffects 1.12
+import "qrc:/GrayCatQtCompat"
 Item {
     id: root
     readonly property string version: "1.0"
@@ -43,7 +43,7 @@ Item {
         border.width: width / 6
         visible: false
     }
-    ConicalGradient {
+    CatConicalGradient {
         width: rect.width 
         height: rect.height 
         gradient: Gradient 

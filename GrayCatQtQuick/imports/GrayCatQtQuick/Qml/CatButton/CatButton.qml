@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.12
+import "qrc:/GrayCatQtCompat"
 //import "../CatBasics"
 
 Button{
@@ -51,7 +51,7 @@ Button{
                 id: tooltiprectangle
                 anchors.fill: parent
             }
-            DropShadow {
+            CatDropShadow {
                 anchors.fill: tooltiprectangle
                 horizontalOffset: 2
                 verticalOffset: 2

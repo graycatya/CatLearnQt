@@ -118,7 +118,7 @@ Item {
 
                 // 解决button侧栏圆角问题 buttonsRect
                 layer.enabled: true
-                layer.effect: OpacityMask{
+                layer.effect: CatOpacityMask{
                     maskSource: Rectangle{
                         width: gridItemRect.width
                         height: gridItemRect.height

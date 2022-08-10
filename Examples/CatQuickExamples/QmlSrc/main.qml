@@ -102,6 +102,7 @@ Window {
 
     Component.onCompleted: {
         framelessHelper.removeWindowFrame()
+        console.log("qtversion: " + qtversion);
         console.log("run ui, system is: " + Qt.platform.os);
         console.log("webresourcepath " + catconfig.getWebResourcePath())
         ProjectObject.currentTheme = catconfig.getValue("Style");

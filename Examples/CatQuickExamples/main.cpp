@@ -77,6 +77,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("catLog", catlog);
 #endif
     engine.rootContext()->setContextProperty("catconfig", catconfig);
+    engine.rootContext()->setContextProperty("qtversion", QString(qVersion()));
 
     QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), &engine, SLOT(retranslate()));
     for(QString path : engine.importPathList())

@@ -101,7 +101,12 @@ Button {
         //鼠标图标， hovered 或者 pressed时显示此图标
         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
         onDoubleClicked: { mouse.accepted = false;}
-        onPositionChanged: { mouse.accepted = false;}
+        onPositionChanged: {
+            if(mouse)
+            {
+                mouse.accepted = false;
+            }
+        }
         onPressed:  {  mouse.accepted = false; }
         onPressAndHold: { mouse.accepted = false; }
         onClicked:  { mouse.accepted = false;}

@@ -2,6 +2,7 @@
 #define QTQMLPARENTQRENCODE_H
 
 #include <QQuickPaintedItem>
+#include <QImage>
 
 extern "C" {
     #include "QrenCodeSrc/qrencode.h"
@@ -132,6 +133,8 @@ public:
         update();
     }
 
+    Q_INVOKABLE QImage getQrenImage();
+
 protected:
     void paint(QPainter *painter) override;
 
@@ -148,6 +151,7 @@ private:
     QColor m_qBackgroundColor;
     QColor m_qQrencodeColor;
     bool m_bCasesen;
+    QImage m_qImage;
 
 };
 

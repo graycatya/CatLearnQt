@@ -14,14 +14,8 @@ QuickQrenCodeParentItem::~QuickQrenCodeParentItem()
 
 }
 
-void QuickQrenCodeParentItem::paint(QPainter *painter)
+QImage QuickQrenCodeParentItem::getQrenImage()
 {
-    if(m_sText.isEmpty())
-    {
-        return;
-    }
-
-    //二维码数据
     QRcode *qrCode = nullptr;
 
     qrCode = QRcode_encodeString(const_cast<const char*>(m_sText.toStdString().c_str()), 2,
@@ -31,16 +25,20 @@ void QuickQrenCodeParentItem::paint(QPainter *painter)
 
     if(nullptr == qrCode)
     {
-        return;
+        return QImage();
     }
     int w = qMin(width(),height());
-
-    QColor background(m_qBackgroundColor);
-    painter->setBrush(background);
-    painter->setPen(Qt::NoPen);
-    painter->drawRect(0, 0, w, w);
     double scale = w / qrCode->width;
+    QPixmap *pixmap = new QPixmap(qrCode->width * scale, qrCode->width * scale);
+    QPainter *painter = new QPainter(pixmap);
+
+    painter->save();
+
+
+    //painter.begin(&m_qImage);
+
     QColor foreground(m_qQrencodeColor);
+    painter->setRenderHint(QPainter::Antialiasing, true);
     painter->setBrush(foreground);
     for(int y = 0; y < qrCode->width; y++)
     {
@@ -54,9 +52,36 @@ void QuickQrenCodeParentItem::paint(QPainter *painter)
             }
         }
     }
-
+    painter->restore();
+    delete painter;
     QRcode_free(qrCode);
     qrCode = nullptr;
+    m_qImage = pixmap->scaled(w, w, Qt::IgnoreAspectRatio, Qt::SmoothTransformation).toImage().copy();
+    delete pixmap;
+    pixmap = nullptr;
+    return m_qImage;
+}
+
+void QuickQrenCodeParentItem::paint(QPainter *painter)
+{
+    if(m_sText.isEmpty())
+    {
+        return;
+    }
+
+    QImage qrimage = getQrenImage();
+    if(qrimage == QImage())
+    {
+        return;
+    }
+
+    int w = qMin(width(),height());
+    QColor background(m_qBackgroundColor);
+    painter->setBrush(background);
+    painter->setPen(Qt::NoPen);
+    painter->drawRect(0, 0, w, w);
+    painter->drawImage(0, 0, qrimage, 0, 0, w, w);
+
 
     painter->setBrush(QColor("#00ffffff"));
     double icon_width = (w - 2.0) * m_qQrPercent;

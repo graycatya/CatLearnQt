@@ -278,7 +278,7 @@ QPushButton#Log {
 	max-width: 150px;
 	max-height: 150px;
 	border-radius: 75px;
-	background-color: #343434;
+	background-color: #ffffff;
 	qproperty-icon: url(:/Images/CatWhite/CatWidgetExamples.png);
 	qproperty-iconSize: 100px 100px;
 	border: 2px solid #dddddd;

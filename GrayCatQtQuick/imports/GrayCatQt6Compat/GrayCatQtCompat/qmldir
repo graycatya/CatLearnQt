@@ -1,4 +1,0 @@
-module GrayCatQtCompat
-CatDropShadow 1.0 Qml/CatDropShadow.qml
-CatConicalGradient 1.0 Qml/CatConicalGradient.qml
-CatOpacityMask 1.0 Qml/CatOpacityMask.qml

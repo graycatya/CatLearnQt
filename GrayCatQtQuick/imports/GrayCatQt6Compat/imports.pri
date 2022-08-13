@@ -6,15 +6,19 @@ CONFIG(debug,debug|release){
     } else {
         path=$$system("pwd")
     }
-    RESOURCES += $$PWD/GrayCatQtCompat/GrayCatQtCompat.qrc
-    GrayCatQtCompatImport=\"file:///$$path\"
-    DEFINES += GrayCatQtCompatImportPath=\\\"file:///$${path}\\\"
+    RESOURCES += $$PWD/GrayCatQtQuick/GrayCatQtQuick.qrc
+    GrayCatQtQuickImport=\"file:///$$path\"
+    #GrayCatQtQuickImage=\"file:///$$path/GrayCatQtQuick/Images/\"
+    DEFINES += GrayCatQtQuickImportPath=\\\"file:///$${path}\\\"
+    #DEFINES += GrayCatQtQuickImagePath=\\\"file:///$${path}/GrayCatQtQuick/Images/\\\"
 } else {
     # release mode use qrc file
-    RESOURCES += $$PWD/GrayCatQtCompat/GrayCatQtCompat.qrc
+    RESOURCES += $$PWD/GrayCatQtQuick/GrayCatQtQuick.qrc
     # release mode set importPath with 'qrc:///'
-    GrayCatQtCompatImport=\"qrc:/\"
-    DEFINES += GrayCatQtCompatImportPath=\\\"qrc:///\\\"
+    GrayCatQtQuickImport=\"qrc:/\"
+    #GrayCatQtQuickImage=\"qrc:/GrayCatQtQuick/Images/\"
+    DEFINES += GrayCatQtQuickImportPath=\\\"qrc:///\\\"
+    #DEFINES += GrayCatQtQuickImagePath=\\\"qrc:/GrayCatQtQuick/Images/\\\"
 }
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

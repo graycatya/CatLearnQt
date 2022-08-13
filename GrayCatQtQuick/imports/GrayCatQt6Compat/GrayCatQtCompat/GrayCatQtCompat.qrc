@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/GrayCatQtCompat">
-        <file>qmldir</file>
-        <file>Qml/CatDropShadow.qml</file>
-        <file>Qml/CatConicalGradient.qml</file>
-        <file>Qml/CatOpacityMask.qml</file>
-    </qresource>
-</RCC>

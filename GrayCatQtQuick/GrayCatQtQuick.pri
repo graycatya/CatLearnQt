@@ -42,7 +42,7 @@ lessThan(QT_MAJOR_VERSION, 6) {
 } else {
     include($$PWD/imports/GrayCatQt6Compat/imports.pri)
 }
-include($$PWD/imports/imports.pri)
+#include($$PWD/imports/imports.pri)
 include($$PWD/Src/CatModel/CatModel.pri)
 
 #RESOURCES += \

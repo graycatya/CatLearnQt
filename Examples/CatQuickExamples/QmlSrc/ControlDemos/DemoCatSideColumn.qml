@@ -2,7 +2,7 @@
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import GrayCatQtQuick 1.0
-import GrayCatQtCompat 1.0
+
 import "../"
 
 

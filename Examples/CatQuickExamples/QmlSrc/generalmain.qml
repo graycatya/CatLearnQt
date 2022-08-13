@@ -2,7 +2,7 @@
 import QtQml 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import GrayCatQtCompat 1.0
+
 import Qt.labs.calendar 1.0
 import QtQuick.Window 2.12
 import GrayCatQtQuick 1.0

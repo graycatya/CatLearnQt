@@ -70,7 +70,6 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
-    engine.addImportPath(GrayCatQtCompatImportPath);
     engine.addImportPath(GrayCatQtQuickImportPath);
     //engine.rootContext()->setContextProperty("view", &view);
 #ifndef WEBASSEMBLY

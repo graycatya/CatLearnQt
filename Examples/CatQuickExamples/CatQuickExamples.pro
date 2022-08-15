@@ -44,7 +44,7 @@ defineTest(minQtVersion) {
 #判断Qt版本
 lessThan(QT_MAJOR_VERSION, 6) {
 
-minQtVersion(5, 15, 2) {
+minQtVersion(5, 15, 11) {
     QT += quick3d
 
     !mingw {
@@ -70,6 +70,7 @@ if(contains(DEFINES,WEBASSEMBLY)) {
 
 if(contains(DEFINES,WEBASSEMBLY)) {
     QT -= webengine webchannel websockets webview
+    QT -= webenginequick webchannel websockets webview
 }
 
 if(!contains(DEFINES,WEBASSEMBLY)) {

@@ -76,13 +76,13 @@ Button{
         propagateComposedEvents: true
         //鼠标图标， hovered 或者 pressed时显示此图标
         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
-        onDoubleClicked: { mouse.accepted = false;}
-        onPositionChanged: { mouse.accepted = false;}
-        onPressed:  {  mouse.accepted = false; }
-        onPressAndHold: { mouse.accepted = false; }
-        onClicked:  { mouse.accepted = false;}
-        onReleased: { mouse.accepted = false;}
-        onWheel: { wheel.accepted = false; }
+        onDoubleClicked: function(mouse){ mouse.accepted = false;}
+        onPositionChanged: function(mouse){ mouse.accepted = false;}
+        onPressed:  function(mouse){  mouse.accepted = false; }
+        onPressAndHold: function(mouse){ mouse.accepted = false; }
+        onClicked:  function(mouse){ mouse.accepted = false;}
+        onReleased: function(mouse){ mouse.accepted = false;}
+        onWheel: function(wheel){ wheel.accepted = false; }
         onEntered: { buttonEntered() }
         onExited: { buttonExited() }
     }

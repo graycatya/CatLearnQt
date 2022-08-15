@@ -37,6 +37,10 @@ QImage QuickQrenCodeParentItem::getQrenImage()
     painter->eraseRect(0,0,w,w);
 
     //painter.begin(&m_qImage);
+    QColor background(m_qBackgroundColor);
+    painter->setBrush(background);
+    painter->setPen(Qt::NoPen);
+    painter->drawRect(0, 0, w, w);
 
     QColor foreground(m_qQrencodeColor);
     painter->setRenderHint(QPainter::Antialiasing, true);
@@ -78,21 +82,18 @@ void QuickQrenCodeParentItem::paint(QPainter *painter)
 
     int w = qMin(width(),height());
     painter->eraseRect(0,0,w,w);
-    QColor background(m_qBackgroundColor);
-    painter->setBrush(background);
-    painter->setPen(Qt::NoPen);
-    painter->drawRect(0, 0, w, w);
     painter->drawImage(0, 0, getQrenImage(), 0, 0, w, w);
 
-
-    painter->setBrush(QColor("#00ffffff"));
-    double icon_width = (w - 2.0) * m_qQrPercent;
-    double icon_height = icon_width;
-    double wrap_x = (w - icon_width) / 2.0;
-    double wrap_y = (w - icon_height) / 2.0;
-    QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
-    painter->drawRoundedRect(wrap, 50, 50);
     if(!m_sQrLogo.isEmpty()){
+        painter->setRenderHint(QPainter::Antialiasing, true);
+        painter->setPen(Qt::NoPen);
+        painter->setBrush(QColor("#00ffffff"));
+        double icon_width = (w - 2.0) * m_qQrPercent;
+        double icon_height = icon_width;
+        double wrap_x = (w - icon_width) / 2.0;
+        double wrap_y = (w - icon_height) / 2.0;
+        QRectF wrap(wrap_x - 5, wrap_y - 5, icon_width + 10, icon_height + 10);
+        painter->drawRoundedRect(wrap, 50, 50);
         QPixmap image(m_sQrLogo);
         QRectF target(wrap_x, wrap_y, icon_width, icon_height);
         QRectF sources(0, 0, image.width (), image.height ());

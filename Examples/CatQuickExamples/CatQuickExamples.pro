@@ -169,8 +169,15 @@ SOURCES += \
     main.cpp
 
 RESOURCES += \
-    QmlSrc/QmlSrc.qrc \
     Resource/Resource.qrc
+
+lessThan(QT_MAJOR_VERSION, 6) {
+RESOURCES += \
+    QmlSrc/Qt5Compat/QmlSrc.qrc
+} else {
+RESOURCES += \
+    QmlSrc/Qt6Compat/QmlSrc.qrc
+}
 
 TRANSLATIONS = $$PWD/Resource/Lang/language_en.ts \
                 $$PWD/Resource/lang/language_zh_CN.ts

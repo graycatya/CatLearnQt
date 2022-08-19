@@ -2,13 +2,21 @@
 #include <QDebug>
 #include <QVariant>
 //#include <QQmlContext>
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #ifdef QT_WEBENGINE_LIB
 #include <QtWebEngine>
 #include <QtWebView>
 #include <QWebChannel>
 #include <QWebSocketServer>
 #endif
-
+#else
+#ifdef QT_WEBENGINEQUICK_LIB
+#include <QtWebEngineQuick>
+#include <QtWebView>
+#include <QWebChannel>
+#include <QWebSocketServer>
+#endif
+#endif
 #include "CatConfig.h"
 #ifndef WEBASSEMBLY
 #include "QmlCatLog.h"
@@ -28,10 +36,15 @@ int main(int argc, char *argv[])
 {
     //QGuiApplication
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #ifdef QT_WEBENGINE_LIB
     QtWebEngine::initialize();
 #endif
-
+#else
+#ifdef QT_WEBENGINEQUICK_LIB
+    QtWebEngineQuick::initialize();
+#endif
+#endif
     QCoreApplication::setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);

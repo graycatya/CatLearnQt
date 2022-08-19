@@ -212,8 +212,14 @@ void CatConfig::InitQmlRegisterType()
 #ifndef WEBASSEMBLY
     qmlRegisterType<CatEncp>("CatEncp", 1, 0, "CatEncp");
 #endif
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #ifdef QT_WEBENGINE_LIB
     qmlRegisterType<CatEchatswebChannel>("io.decovar.CatEchatswebChannel", 1, 0, "CatEchatswebChannel");
+#endif
+#else
+#ifdef QT_WEBENGINEQUICK_LIB
+    qmlRegisterType<CatEchatswebChannel>("io.decovar.CatEchatswebChannel", 1, 0, "CatEchatswebChannel");
+#endif
 #endif
 }
 

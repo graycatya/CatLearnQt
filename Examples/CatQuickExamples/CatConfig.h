@@ -82,6 +82,11 @@ public:
         #ifdef QT_WEBENGINE_LIB
             return true;
         #else
+        #ifdef QT_WEBENGINEQUICK_LIB
+                return true;
+        #else
+                return false;
+        #endif
             return false;
         #endif
     }

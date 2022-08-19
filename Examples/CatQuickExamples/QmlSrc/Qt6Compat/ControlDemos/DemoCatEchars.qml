@@ -51,7 +51,7 @@ Rectangle {
         listen: true
         port: 14618
 
-        onClientConnected: {
+        onClientConnected: function(webSocket) {
             if(webSocket.status === WebSocket.Open)
             {
                 channel.connectTo(catechatswebchannel)

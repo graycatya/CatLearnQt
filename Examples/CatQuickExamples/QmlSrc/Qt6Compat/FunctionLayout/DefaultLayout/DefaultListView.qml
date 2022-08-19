@@ -36,7 +36,7 @@ Rectangle {
                     version: modelversion
                     logoSource: modellogosource
                     qmlSource: modelqmlsource
-                    onOpencontrol: {
+                    onOpencontrol: function(controlname, qmlsource) {
                         updateDemo(controlname, qmlsource)
                     }
                 }
@@ -75,7 +75,11 @@ Rectangle {
 
         // 解决快速添加问题
         displaced: Transition {
-            NumberAnimation { properties: "x,y"; duration: 400; easing.type: Easing.OutBounce }
+            NumberAnimation {
+                properties: "x,y";
+                duration: 400;
+                easing.type: Easing.OutBounce
+            }
 
             // 确保opacity和scale值变为1.0
             NumberAnimation { property: "opacity"; to: 1.0 }

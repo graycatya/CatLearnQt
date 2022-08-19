@@ -191,8 +191,8 @@ HEADERS += \
     QmlConfig.h
 
 win32 {
-    CONFIG(release, debug|release){
-        QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
-        QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS
-    }
+#    CONFIG(release, debug|release){
+#        QMAKE_LFLAGS += /MANIFESTUAC:\"level=\'requireAdministrator\' uiAccess=\'false\'\"
+#        QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS
+#    }
 }

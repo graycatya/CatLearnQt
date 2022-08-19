@@ -14,12 +14,12 @@ MouseArea{
     cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 
     //将accept设置为true将防止鼠标事件传播到此项下面的项。
-    onDoubleClicked: { mouse.accepted = false; }
-    onPositionChanged: { mouse.accepted = false; }
-    onPressed: { mouse.accepted = false; }
-    onPressAndHold: { mouse.accepted = false; }
-    onClicked: { mouse.accepted = false; }
-    onReleased: { mouse.accepted = false; }
+    onDoubleClicked: function(mouse){ mouse.accepted = false; }
+    onPositionChanged: function(mouse){ mouse.accepted = false; }
+    onPressed: function(mouse){ mouse.accepted = false; }
+    onPressAndHold: function(mouse){ mouse.accepted = false; }
+    onClicked: function(mouse){ mouse.accepted = false; }
+    onReleased: function(mouse){ mouse.accepted = false; }
     onWheel: {
         try {
             wheel.accepted = false;

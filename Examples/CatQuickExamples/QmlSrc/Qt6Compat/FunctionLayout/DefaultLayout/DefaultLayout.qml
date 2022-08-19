@@ -20,7 +20,7 @@ Rectangle {
             /*border.color: "#4E4E4E"
             border.width: 1
             radius: 5*/
-            onUpdateDemo: {
+            onUpdateDemo: function(demoname, qmlsource) {
                 demonstrationview.updatedemo(demoname, qmlsource)
             }
         }

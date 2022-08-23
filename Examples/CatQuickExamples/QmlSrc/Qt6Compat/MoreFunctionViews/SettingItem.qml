@@ -217,7 +217,8 @@ Item {
                     border.color: ProjectObject.switchbuttonback_CheckColor
 
                     Rectangle {
-                        x: switchtransition.checked ? parent.width - width - 2 : 1
+                        id: switchtransitioncircle
+                        x: 1
                         width: switchtransition.checked ? parent.height - 4 : parent.height - 2
                         height: width
                         radius: width / 2
@@ -225,14 +226,23 @@ Item {
                         color: ProjectObject.switchbuttonCircle_Color
                         //border.color: "#C4C4C4"
 
-                        Behavior on x {
-                            NumberAnimation { duration: 200 }
+                        NumberAnimation on x {
+                            id: switchtransitioncircleAnimation
+                            duration: 200
+                        }
+
+                        function animationTo()
+                        {
+                            switchtransitioncircleAnimation.from = x
+                            switchtransitioncircleAnimation.to = switchtransition.checked ? parent.width - width - 1 : 1
+                            switchtransitioncircleAnimation.running = true
                         }
                     }
                 }
 
                 onVisualPositionChanged: {
                     ProjectObject.settingtransition = checked
+                    switchtransitioncircle.animationTo()
                     //console.log("fsdafa; " + checked)
                 }
             }

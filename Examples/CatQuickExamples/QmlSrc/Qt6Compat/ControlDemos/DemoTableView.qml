@@ -218,22 +218,32 @@ Rectangle {
                                 border.color: ProjectObject.switchbuttonback_CheckColor
 
                                 Rectangle {
-                                    x: switchshowhighlight.checked ? parent.width - width - 2 : 1
-                                    width: switchshowhighlight.checked ? parent.height - 4 : parent.height - 2
+                                    id: switchtransitioncircle
+                                    x: 1
+                                    width: parent.height - 2
                                     height: width
                                     radius: width / 2
                                     anchors.verticalCenter: parent.verticalCenter
                                     color: ProjectObject.switchbuttonCircle_Color
                                     //border.color: "#C4C4C4"
 
-                                    Behavior on x {
-                                        NumberAnimation { duration: 200 }
+                                    NumberAnimation on x {
+                                        id: switchtransitioncircleAnimation
+                                        duration: 200
+                                    }
+                                    function animationTo()
+                                    {
+                                        switchtransitioncircle.width = switchshowhighlight.checked ? parent.height - 4 : parent.height - 2
+                                        switchtransitioncircleAnimation.from = x
+                                        switchtransitioncircleAnimation.to = switchshowhighlight.checked ? parent.width - switchtransitioncircle.width - 1 : 1
+                                        switchtransitioncircleAnimation.running = true
                                     }
                                 }
                             }
 
                             onVisualPositionChanged: {
                                 tableviewmodel.setData(tableviewmodel.index(row, column), switchshowhighlight.checked)
+                                switchtransitioncircle.animationTo()
                                 //catsidecolumn.showhighlight = visualPosition
                                 //catsidecolumn.currentindex(catsidecolumn.listviewitem.currentIndex)
                             }

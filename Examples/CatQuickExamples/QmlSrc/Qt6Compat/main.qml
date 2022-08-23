@@ -81,7 +81,7 @@ Window {
                 id: catfps
                 anchors.right: parent.right
                 anchors.top: parent.top
-                anchors.rightMargin: -15
+                //anchors.rightMargin: -15
                 anchors.topMargin: -15
                 gradient0Color: ProjectObject.fpsgradient0Color
                 gradient1Color: ProjectObject.fpsgradient1Color

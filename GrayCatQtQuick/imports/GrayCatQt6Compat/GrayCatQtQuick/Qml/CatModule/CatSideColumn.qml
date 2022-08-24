@@ -30,20 +30,20 @@ Rectangle {
         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 
         //将accept设置为true将防止鼠标事件传播到此项下面的项。
-        onDoubleClicked: { mouse.accepted = false; }
-        onPositionChanged: {
+        onDoubleClicked: function(mouse) { mouse.accepted = false; }
+        onPositionChanged: function(mouse) {
             mouse.accepted = false;
         }
-        onPressed: {
+        onPressed: function(mouse) {
             mouse.accepted = false;
         }
-        onPressAndHold: {
+        onPressAndHold: function(mouse) {
             mouse.accepted = false;
         }
-        onClicked: {
+        onClicked: function(mouse) {
             mouse.accepted = false;
         }
-        onReleased: {
+        onReleased: function(mouse) {
             mouse.accepted = false;
         }
 
@@ -160,7 +160,7 @@ Rectangle {
         }
     ]
 
-    onCurrentindex: {
+    onCurrentindex: function(index) {
         listview.currentIndex = index;
     }
 

@@ -80,8 +80,8 @@ Rectangle {
                     cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 
                     //将accept设置为true将防止鼠标事件传播到此项下面的项。
-                    onDoubleClicked: { mouse.accepted = false; }
-                    onPositionChanged: {
+                    onDoubleClicked: function(mouse) { mouse.accepted = false; }
+                    onPositionChanged: function(mouse) {
                         mouse.accepted = false;
                     }
                     /*onPressed: {
@@ -90,7 +90,7 @@ Rectangle {
                     onPressAndHold: {
                         mouse.accepted = false;
                     }*/
-                    onClicked: {
+                    onClicked: function(mouse) {
                         catsidecolumn.listviewitem.currentIndex = index
                         catsidecolumn.currentindex(index)
                         if(!catsidecolumn.showhighlight)
@@ -99,7 +99,7 @@ Rectangle {
                         }
                         mouse.accepted = false;
                     }
-                    onReleased: {
+                    onReleased: function(mouse) {
                         mouse.accepted = false;
                     }
 
@@ -234,7 +234,8 @@ Rectangle {
                         border.color: switchbuttonback_CheckColor
 
                         Rectangle {
-                            x: switchshowhighlight.checked ? parent.width - width - 2 : 1
+                            id: switchtransitioncircle
+                            x: 1
                             width: switchshowhighlight.checked ? parent.height - 4 : parent.height - 2
                             height: width
                             radius: width / 2
@@ -242,8 +243,16 @@ Rectangle {
                             color: switchbuttonCircle_Color
                             //border.color: "#C4C4C4"
 
-                            Behavior on x {
-                                NumberAnimation { duration: 200 }
+                            NumberAnimation on x {
+                                id: switchtransitioncircleAnimation
+                                duration: 200
+                            }
+                            function animationTo()
+                            {
+                                switchtransitioncircle.width = switchshowhighlight.checked ? parent.height - 4 : parent.height - 2
+                                switchtransitioncircleAnimation.from = x
+                                switchtransitioncircleAnimation.to = switchshowhighlight.checked ? parent.width - switchtransitioncircle.width - 1 : 1
+                                switchtransitioncircleAnimation.running = true
                             }
                         }
                     }
@@ -251,6 +260,7 @@ Rectangle {
                     onVisualPositionChanged: {
                         catsidecolumn.showhighlight = visualPosition
                         catsidecolumn.currentindex(catsidecolumn.listviewitem.currentIndex)
+                        switchtransitioncircle.animationTo()
                     }
                 }
             }

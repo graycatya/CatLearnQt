@@ -1,0 +1,3 @@
+[submodule "3rdparty/lottie-qml"]
+	path = 3rdparty/lottie-qml
+	url = https://github.com/graycatya/lottie-qml.git

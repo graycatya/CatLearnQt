@@ -86,7 +86,7 @@ Rectangle {
                 textColor_select: ProjectObject.defaultTextColor_select
 
 
-                onUpdateCurrentPage: {
+                onUpdateCurrentPage: function(page){
                     console.log("update currentpage: " + page)
                 }
 
@@ -180,7 +180,7 @@ Rectangle {
 
                 inputPageState: true
 
-                onUpdateCurrentPage: {
+                onUpdateCurrentPage: function(page){
                     console.log("update currentpage: " + page)
                 }
 

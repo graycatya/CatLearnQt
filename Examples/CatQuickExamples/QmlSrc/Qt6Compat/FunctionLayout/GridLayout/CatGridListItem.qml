@@ -32,21 +32,21 @@ Item {
                 anchors.fill: parent
                 hoverEnabled: true
                 cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
-                onDoubleClicked: { mouse.accepted = false; }
-                onPositionChanged: {
+                onDoubleClicked: function(mouse) { mouse.accepted = false; }
+                onPositionChanged: function(mouse) {
 
                 }
-                onPressed: {
+                onPressed: function(mouse) {
 
                 }
-                onPressAndHold: {
+                onPressAndHold: function(mouse) {
 
                 }
-                onClicked: {
+                onClicked: function(mouse) {
                     console.log("clicked: " + qmlSource);
                     demonstrationview.updatedemo(controlName, qmlSource)
                 }
-                onReleased: {
+                onReleased: function(mouse) {
                     mouse.accepted = false;
                 }
 

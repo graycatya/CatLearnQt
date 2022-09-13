@@ -25,7 +25,7 @@ Rectangle {
         /* 此属性保存组合的鼠标事件
          * 是否会自动传播到与此鼠标区域重叠但视觉堆叠顺序较低的其他鼠标区域
         */
-        //propagateComposedEvents: true
+        propagateComposedEvents: true
         // 此属性保存此鼠标区域的光标形状
         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 

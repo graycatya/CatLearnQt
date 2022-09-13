@@ -1,6 +1,6 @@
-﻿import QtQuick 2.12
-import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.12
+﻿import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 import "../CatGraphicalEffects"
 import "../CatButton"
 
@@ -27,25 +27,25 @@ Item {
 
         hoverEnabled: true
 
-        onDoubleClicked: { mouse.accepted = false; }
+        onDoubleClicked: function(mouse){ mouse.accepted = false; }
 
-        onPositionChanged: {
+        onPositionChanged: function(mouse){
             mouse.accepted = false
         }
 
-        onPressed: {
+        onPressed: function(mouse){
             mouse.accepted = false
         }
 
-        onPressAndHold: {
+        onPressAndHold: function(mouse){
             mouse.accepted = false
         }
 
-        onClicked: {
+        onClicked: function(mouse){
             mouse.accepted = false
         }
 
-        onReleased: {
+        onReleased: function(mouse){
             mouse.accepted = false
         }
 

@@ -1,5 +1,5 @@
-﻿import QtQuick 2.12
-import QtQuick.Controls 2.12
+﻿import QtQuick
+import QtQuick.Controls
 
 MouseArea{
     readonly property string version: "1.0"
@@ -20,7 +20,7 @@ MouseArea{
     onPressAndHold: function(mouse){ mouse.accepted = false; }
     onClicked: function(mouse){ mouse.accepted = false; }
     onReleased: function(mouse){ mouse.accepted = false; }
-    onWheel: {
+    onWheel: function(wheel) {
         try {
             wheel.accepted = false;
         } catch(err) {

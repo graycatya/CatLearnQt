@@ -1,5 +1,5 @@
-﻿import QtQuick 2.9
-import QtQuick.Controls 2.12
+﻿import QtQuick
+import QtQuick.Controls
 
 ToolTip {
     readonly property string version: "1.0"

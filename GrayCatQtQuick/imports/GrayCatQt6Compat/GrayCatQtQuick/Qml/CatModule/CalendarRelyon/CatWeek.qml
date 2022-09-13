@@ -1,6 +1,6 @@
-﻿import QtQuick 2.12
-import QtQml 2.12
-import QtQuick.Layouts 1.12
+﻿import QtQuick
+import QtQml
+import QtQuick.Layouts
 
 Item {
     id: root

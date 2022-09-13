@@ -37,15 +37,15 @@ Rectangle {
             Layout.fillHeight: true
             Layout.fillWidth: true
 
-            onExpand: {
+            onExpand: function(index) {
                 cattreemodel.expand(index)
             }
 
-            onCollapse: {
+            onCollapse: function(index) {
                 cattreemodel.collapse(index)
             }
 
-            onUpdatedemo: {
+            onUpdatedemo: function(demoname, qmlsource) {
                 demonstrationview.updatedemo(demoname, qmlsource)
             }
 

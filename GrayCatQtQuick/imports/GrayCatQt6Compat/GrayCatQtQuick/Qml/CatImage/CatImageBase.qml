@@ -1,4 +1,4 @@
-﻿import QtQuick 2.12
+﻿import QtQuick
 
 Image {
     readonly property string version: "1.0"

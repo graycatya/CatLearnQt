@@ -101,7 +101,7 @@ Rectangle {
 
                     MouseArea {
                         id: transarea
-                        visible: true
+                        //visible: true
 
                         anchors.fill: parent
                         // 悬停事件是否被处理

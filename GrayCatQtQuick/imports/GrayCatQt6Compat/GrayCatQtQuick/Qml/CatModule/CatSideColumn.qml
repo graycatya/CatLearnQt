@@ -48,6 +48,7 @@ Rectangle {
         }
 
         onEntered: {
+            console.log("root entered")
             if(sideslip)
             {
                 catsidecolumn.state = "showText"
@@ -55,6 +56,7 @@ Rectangle {
         }
 
         onExited: {
+            console.log("root exited")
             if(sideslip)
             {
                 catsidecolumn.state = "hideText"

@@ -99,74 +99,76 @@ Rectangle {
                         }
                     }
 
-                    MouseArea {
-                        id: transarea
-                        //visible: true
+//                    MouseArea {
+//                        id: transarea
+//                        //visible: true
 
-                        anchors.fill: parent
-                        // 悬停事件是否被处理
-                        hoverEnabled: true
-                        /* 此属性保存组合的鼠标事件
-                         * 是否会自动传播到与此鼠标区域重叠但视觉堆叠顺序较低的其他鼠标区域
-                        */
-                        propagateComposedEvents: true
-                        // 此属性保存此鼠标区域的光标形状
-                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
+//                        anchors.fill: parent
+//                        // 悬停事件是否被处理
+//                        hoverEnabled: true
+//                        /* 此属性保存组合的鼠标事件
+//                         * 是否会自动传播到与此鼠标区域重叠但视觉堆叠顺序较低的其他鼠标区域
+//                        */
+//                        propagateComposedEvents: true
+//                        // 此属性保存此鼠标区域的光标形状
+//                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 
-                        //将accept设置为true将防止鼠标事件传播到此项下面的项。
-                        onDoubleClicked: function(mouse) { mouse.accepted = false; }
-                        onPositionChanged: function(mouse) {
-                            mouse.accepted = false;
-                        }
-                        /*onPressed: {
-                            mouse.accepted = false;
-                        }
-                        onPressAndHold: {
-                            mouse.accepted = false;
-                        }*/
-                        onClicked: function(mouse) {
-                            catsidecolumn.listviewitem.currentIndex = index
-                            catsidecolumn.currentindex(index)
-                            if(!catsidecolumn.showhighlight)
-                            {
-                                color = catsidecolumnitem_SelectColor
-                            }
-                            mouse.accepted = false;
-                        }
-                        onReleased: function(mouse) {
-                            mouse.accepted = false;
-                        }
+//                        //将accept设置为true将防止鼠标事件传播到此项下面的项。
+//                        onDoubleClicked: function(mouse) { mouse.accepted = false; }
+//                        onPositionChanged: function(mouse) {
+//                            mouse.accepted = false;
+//                        }
+//                        /*onPressed: {
+//                            mouse.accepted = false;
+//                        }
+//                        onPressAndHold: {
+//                            mouse.accepted = false;
+//                        }*/
+//                        onClicked: function(mouse) {
+//                            catsidecolumn.listviewitem.currentIndex = index
+//                            catsidecolumn.currentindex(index)
+//                            if(!catsidecolumn.showhighlight)
+//                            {
+//                                color = catsidecolumnitem_SelectColor
+//                            }
+//                            mouse.accepted = false;
+//                        }
+//                        onReleased: function(mouse) {
+//                            mouse.accepted = false;
+//                        }
 
-                        onEntered: {
-                            //console.log("index: " + catsidecolumn.listviewitem.currentIndex)
-                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
-                            {
-                                color = catsidecolumnitem_HoverColor
-                            }
-                        }
+//                        onEntered: {
+//                            //console.log("index: " + catsidecolumn.listviewitem.currentIndex)
+//                            console.log("item entered")
+//                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
+//                            {
+//                                color = catsidecolumnitem_HoverColor
+//                            }
+//                        }
 
-                        onExited: {
-                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
-                            {
-                                color = catsidecolumnitem_DefaultColor
-                            }
-                        }
+//                        onExited: {
+//                            console.log("item exited")
+//                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
+//                            {
+//                                color = catsidecolumnitem_DefaultColor
+//                            }
+//                        }
 
-                        Component.onCompleted: {
-                            ProjectObject.updateCurrentThemeed.connect(function(){
-                                if (typeof(catsidecolumn) !== 'undefined')
-                                {
-                                    if(catsidecolumn.listviewitem.currentIndex === index)
-                                    {
-                                        if(!catsidecolumn.showhighlight)
-                                        {
-                                            color = catsidecolumnitem_SelectColor
-                                        }
-                                    }
-                                }
-                            });
-                        }
-                    }
+//                        Component.onCompleted: {
+//                            ProjectObject.updateCurrentThemeed.connect(function(){
+//                                if (typeof(catsidecolumn) !== 'undefined')
+//                                {
+//                                    if(catsidecolumn.listviewitem.currentIndex === index)
+//                                    {
+//                                        if(!catsidecolumn.showhighlight)
+//                                        {
+//                                            color = catsidecolumnitem_SelectColor
+//                                        }
+//                                    }
+//                                }
+//                            });
+//                        }
+//                    }
 
 
 

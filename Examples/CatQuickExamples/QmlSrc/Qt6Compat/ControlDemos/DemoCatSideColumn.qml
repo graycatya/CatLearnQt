@@ -44,6 +44,38 @@ Rectangle {
                 itemimgsource: "Function_3.png"
                 itemtext: qsTr("Function_3")
             }
+            ListElement {
+                itemimgsource: "Function_0.png"
+                itemtext: qsTr("Function_0")
+            }
+            ListElement {
+                itemimgsource: "Function_1.png"
+                itemtext: qsTr("Function_1")
+            }
+            ListElement {
+                itemimgsource: "Function_2.png"
+                itemtext: qsTr("Function_2")
+            }
+            ListElement {
+                itemimgsource: "Function_3.png"
+                itemtext: qsTr("Function_3")
+            }
+            ListElement {
+                itemimgsource: "Function_0.png"
+                itemtext: qsTr("Function_0")
+            }
+            ListElement {
+                itemimgsource: "Function_1.png"
+                itemtext: qsTr("Function_1")
+            }
+            ListElement {
+                itemimgsource: "Function_2.png"
+                itemtext: qsTr("Function_2")
+            }
+            ListElement {
+                itemimgsource: "Function_3.png"
+                itemtext: qsTr("Function_3")
+            }
         }
 
         CatSideColumn {
@@ -55,7 +87,9 @@ Rectangle {
             sideslip: true
             fontcolor: ProjectObject.catsidecolumnitem_FunctionColor
 
-
+            onMouseMoves: function(mx, my) {
+                console.log("xy: " + mx + " " + my)
+            }
 
             //anchors.centerIn: sideitemrectangle
 

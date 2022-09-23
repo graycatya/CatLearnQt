@@ -44,7 +44,7 @@ defineTest(minQtVersion) {
 #判断Qt版本
 lessThan(QT_MAJOR_VERSION, 6) {
 
-minQtVersion(5, 15, 11) {
+minQtVersion(5, 12, 11) {
     QT += quick3d
 
     !mingw {

@@ -15,6 +15,7 @@ Rectangle {
     state: "hideText"
 
     signal currentindex(int index);
+    signal mouseMoves(int mx, int my);
 
     MouseArea {
         id: transarea
@@ -61,6 +62,14 @@ Rectangle {
             {
                 catsidecolumn.state = "hideText"
             }
+        }
+
+        onMouseXChanged: {
+            mouseMoves(mouseX, mouseY)
+        }
+
+        onMouseYChanged: {
+            mouseMoves(mouseX, mouseY)
         }
 
         ListView {

@@ -14,8 +14,12 @@ Rectangle {
 
     state: "hideText"
 
-    signal currentindex(int index);
-    signal mouseMoves(int mx, int my);
+    //signal currentindex(int index)
+    signal mouseMovesindex(int index)
+    signal mouseClicked(int index)
+    signal mouseReleased(int index)
+    signal mouseEntered()
+    signal mouseExited()
 
     MouseArea {
         id: transarea
@@ -26,12 +30,14 @@ Rectangle {
         /* 此属性保存组合的鼠标事件
          * 是否会自动传播到与此鼠标区域重叠但视觉堆叠顺序较低的其他鼠标区域
         */
-        //propagateComposedEvents: true
+        propagateComposedEvents: true
         // 此属性保存此鼠标区域的光标形状
         cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 
         //将accept设置为true将防止鼠标事件传播到此项下面的项。
-        onDoubleClicked: function(mouse) { mouse.accepted = false; }
+        onDoubleClicked: function(mouse) {
+            mouse.accepted = false;
+        }
         onPositionChanged: function(mouse) {
             mouse.accepted = false;
         }
@@ -42,9 +48,14 @@ Rectangle {
             mouse.accepted = false;
         }
         onClicked: function(mouse) {
+            console.log("clicked")
+            var viewindex = listview.indexAt(mouseX, listview.contentY + mouseY);
+            mouseClicked(viewindex)
+            listview.currentIndex = viewindex;
             mouse.accepted = false;
         }
         onReleased: function(mouse) {
+            mouseReleased(listview.indexAt(mouseX, listview.contentY + mouseY))
             mouse.accepted = false;
         }
 
@@ -54,6 +65,7 @@ Rectangle {
             {
                 catsidecolumn.state = "showText"
             }
+            mouseEntered()
         }
 
         onExited: {
@@ -62,15 +74,17 @@ Rectangle {
             {
                 catsidecolumn.state = "hideText"
             }
+            mouseExited()
         }
 
         onMouseXChanged: {
-            mouseMoves(mouseX, mouseY)
+            mouseMovesindex(listview.indexAt(mouseX, listview.contentY + mouseY))
         }
 
         onMouseYChanged: {
-            mouseMoves(mouseX, mouseY)
+            mouseMovesindex(listview.indexAt(mouseX, listview.contentY + mouseY))
         }
+
 
         ListView {
             id: listview
@@ -170,9 +184,5 @@ Rectangle {
             }
         }
     ]
-
-    onCurrentindex: function(index) {
-        listview.currentIndex = index;
-    }
 
 }

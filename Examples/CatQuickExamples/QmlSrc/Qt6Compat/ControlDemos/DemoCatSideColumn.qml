@@ -87,10 +87,6 @@ Rectangle {
             sideslip: true
             fontcolor: ProjectObject.catsidecolumnitem_FunctionColor
 
-            onMouseMoves: function(mx, my) {
-                console.log("xy: " + mx + " " + my)
-            }
-
             //anchors.centerIn: sideitemrectangle
 
             color: sideitemrectanglebackcolor
@@ -133,95 +129,100 @@ Rectangle {
                         }
                     }
 
-//                    MouseArea {
-//                        id: transarea
-//                        //visible: true
+                    MouseArea {
+                        id: transarea
+                        //visible: true
 
-//                        anchors.fill: parent
-//                        // 悬停事件是否被处理
-//                        hoverEnabled: true
-//                        /* 此属性保存组合的鼠标事件
-//                         * 是否会自动传播到与此鼠标区域重叠但视觉堆叠顺序较低的其他鼠标区域
-//                        */
-//                        propagateComposedEvents: true
-//                        // 此属性保存此鼠标区域的光标形状
-//                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
+                        anchors.fill: parent
+                        // 悬停事件是否被处理
+                        //hoverEnabled: true
+                        /* 此属性保存组合的鼠标事件
+                         * 是否会自动传播到与此鼠标区域重叠但视觉堆叠顺序较低的其他鼠标区域
+                        */
+                        propagateComposedEvents: true
+                        // 此属性保存此鼠标区域的光标形状
+                        cursorShape: enabled ? Qt.PointingHandCursor : Qt.ForbiddenCursor
 
-//                        //将accept设置为true将防止鼠标事件传播到此项下面的项。
-//                        onDoubleClicked: function(mouse) { mouse.accepted = false; }
-//                        onPositionChanged: function(mouse) {
-//                            mouse.accepted = false;
-//                        }
-//                        /*onPressed: {
-//                            mouse.accepted = false;
-//                        }
-//                        onPressAndHold: {
-//                            mouse.accepted = false;
-//                        }*/
-//                        onClicked: function(mouse) {
-//                            catsidecolumn.listviewitem.currentIndex = index
-//                            catsidecolumn.currentindex(index)
-//                            if(!catsidecolumn.showhighlight)
-//                            {
-//                                color = catsidecolumnitem_SelectColor
-//                            }
-//                            mouse.accepted = false;
-//                        }
-//                        onReleased: function(mouse) {
-//                            mouse.accepted = false;
-//                        }
-
-//                        onEntered: {
-//                            //console.log("index: " + catsidecolumn.listviewitem.currentIndex)
-//                            console.log("item entered")
-//                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
-//                            {
-//                                color = catsidecolumnitem_HoverColor
-//                            }
-//                        }
-
-//                        onExited: {
-//                            console.log("item exited")
-//                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
-//                            {
-//                                color = catsidecolumnitem_DefaultColor
-//                            }
-//                        }
-
-//                        Component.onCompleted: {
-//                            ProjectObject.updateCurrentThemeed.connect(function(){
-//                                if (typeof(catsidecolumn) !== 'undefined')
-//                                {
-//                                    if(catsidecolumn.listviewitem.currentIndex === index)
-//                                    {
-//                                        if(!catsidecolumn.showhighlight)
-//                                        {
-//                                            color = catsidecolumnitem_SelectColor
-//                                        }
-//                                    }
-//                                }
-//                            });
-//                        }
-//                    }
+                        //将accept设置为true将防止鼠标事件传播到此项下面的项。
+                        onDoubleClicked: function(mouse) { mouse.accepted = false; }
+                        onPositionChanged: function(mouse) {
+                            mouse.accepted = false;
+                        }
+                        /*onPressed: {
+                            mouse.accepted = false;
+                        }
+                        onPressAndHold: {
+                            mouse.accepted = false;
+                        }*/
+                        onClicked: function(mouse) {
+                            mouse.accepted = false;
+                        }
+                        onReleased: function(mouse) {
+                            mouse.accepted = false;
+                        }
+                    }
 
 
 
 
                 Component.onCompleted: {
-                    catsidecolumn.currentindex.connect(function(updateindex){
-                        //console.log("updateindex: " + updateindex)
-                        if(!catsidecolumn.showhighlight)
+                    ProjectObject.updateCurrentThemeed.connect(function(){
+                        if (typeof(catsidecolumn) !== 'undefined')
                         {
-                            if(updateindex !== index)
+                            if(catsidecolumn.listviewitem.currentIndex === index)
                             {
-                                color = catsidecolumnitem_DefaultColor
-                            } else {
+                                if(!catsidecolumn.showhighlight)
+                                {
+                                    color = catsidecolumnitem_SelectColor
+                                }
+                            }
+                        }
+                    });
+                    catsidecolumn.mouseClicked.connect(function(updateindex){
+                        if(index === updateindex)
+                        {
+                            if(!catsidecolumn.showhighlight)
+                            {
                                 color = catsidecolumnitem_SelectColor
                             }
                         } else {
+                           color = catsidecolumnitem_DefaultColor
+                        }
+                    })
+                    catsidecolumn.mouseMovesindex.connect(function(updateindex){
+                        if(index === updateindex)
+                        {
+                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
+                            {
+                                color = catsidecolumnitem_HoverColor
+                            }
+                        } else {
+                            if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
+                            {
+                                color = catsidecolumnitem_DefaultColor
+                            }
+                        }
+                    })
+                    catsidecolumn.mouseExited.connect(function(){
+                        if(catsidecolumn.listviewitem.currentIndex !== index && !catsidecolumn.showhighlight)
+                        {
                             color = catsidecolumnitem_DefaultColor
                         }
-                    });
+                    })
+//                    catsidecolumn.currentindex.connect(function(updateindex){
+//                        //console.log("updateindex: " + updateindex)
+//                        if(!catsidecolumn.showhighlight)
+//                        {
+//                            if(updateindex !== index)
+//                            {
+//                                color = catsidecolumnitem_DefaultColor
+//                            } else {
+//                                color = catsidecolumnitem_SelectColor
+//                            }
+//                        } else {
+//                            color = catsidecolumnitem_DefaultColor
+//                        }
+//                    });
                     if(index === 0 && !catsidecolumn.showhighlight)
                     {
                         color = catsidecolumnitem_SelectColor
@@ -294,7 +295,7 @@ Rectangle {
 
                     onVisualPositionChanged: {
                         catsidecolumn.showhighlight = visualPosition
-                        catsidecolumn.currentindex(catsidecolumn.listviewitem.currentIndex)
+                        //catsidecolumn.currentindex(catsidecolumn.listviewitem.currentIndex)
                         switchtransitioncircle.animationTo()
                     }
                 }

@@ -2,6 +2,7 @@
 #define QTQMLPARENTQRENCODE_H
 
 #include <QQuickPaintedItem>
+#include <QImage>
 
 extern "C" {
     #include "QrenCodeSrc/qrencode.h"
@@ -16,6 +17,8 @@ class QuickQrenCodeParentItem : public QQuickPaintedItem
     Q_PROPERTY(QR_LEVEL qrlevel READ getQrlevel WRITE setQrlevel)
     Q_PROPERTY(bool casesen READ getCasesen WRITE setCasesen)
     Q_PROPERTY(qreal qrpercent READ getQrPercent WRITE setQrPercent)
+    Q_PROPERTY(QColor backgroundColor READ getBackgroundColor WRITE setBackgroundColor)
+    Q_PROPERTY(QColor qrencodeColor READ getQrencodeColor WRITE setQrencodeColor)
     Q_ENUMS(QR_MODE)
     Q_ENUMS(QR_LEVEL)
 
@@ -108,6 +111,30 @@ public:
         update();
     }
 
+    inline QColor getBackgroundColor()
+    {
+        return m_qBackgroundColor;
+    }
+
+    inline void setBackgroundColor(QColor color)
+    {
+        m_qBackgroundColor = color;
+        update();
+    }
+
+    inline QColor getQrencodeColor()
+    {
+        return m_qQrencodeColor;
+    }
+
+    inline void setQrencodeColor(QColor color)
+    {
+        m_qQrencodeColor = color;
+        update();
+    }
+
+    Q_INVOKABLE QImage getQrenImage();
+
 protected:
     void paint(QPainter *painter) override;
 
@@ -121,7 +148,10 @@ private:
     QR_MODE m_eQrmode;
     QR_LEVEL m_eQrlevel;
     qreal m_qQrPercent;
+    QColor m_qBackgroundColor;
+    QColor m_qQrencodeColor;
     bool m_bCasesen;
+    QImage m_qImage;
 
 };
 

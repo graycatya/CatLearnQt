@@ -306,7 +306,7 @@ static char *dupAndToUpper(const char *str, QRencodeMode hint)
 	return newstr;
 }
 
-int Split_splitStringToQRinput(const char *string, QRinput *input,
+int roobo_Split_splitStringToQRinput(const char *string, QRinput *input,
 		QRencodeMode hint, int casesensitive)
 {
 	char *newstr;

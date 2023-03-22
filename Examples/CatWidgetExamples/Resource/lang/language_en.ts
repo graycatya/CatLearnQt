@@ -166,12 +166,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="66"/>
+        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="70"/>
         <source>DxVa:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="424"/>
+        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="445"/>
         <source>Save file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -394,27 +394,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinMainWidget.cpp" line="308"/>
+        <location filename="../../WinMainWidget.cpp" line="315"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinMainWidget.cpp" line="309"/>
+        <location filename="../../WinMainWidget.cpp" line="316"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinMainWidget.cpp" line="310"/>
+        <location filename="../../WinMainWidget.cpp" line="317"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinMainWidget.cpp" line="311"/>
+        <location filename="../../WinMainWidget.cpp" line="318"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinMainWidget.cpp" line="312"/>
+        <location filename="../../WinMainWidget.cpp" line="319"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>
@@ -432,27 +432,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="311"/>
+        <location filename="../../WinWidget.cpp" line="319"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="312"/>
+        <location filename="../../WinWidget.cpp" line="320"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="313"/>
+        <location filename="../../WinWidget.cpp" line="321"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="314"/>
+        <location filename="../../WinWidget.cpp" line="322"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="315"/>
+        <location filename="../../WinWidget.cpp" line="323"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

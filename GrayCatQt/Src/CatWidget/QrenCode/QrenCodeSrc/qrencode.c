@@ -635,7 +635,7 @@ static QRcode *QRcode_encodeStringReal(const char *string, int version, QRecLeve
 	}
 	if(input == NULL) return NULL;
 
-	ret = Split_splitStringToQRinput(string, input, hint, casesensitive);
+	ret = roobo_Split_splitStringToQRinput(string, input, hint, casesensitive);
 	if(ret < 0) {
 		QRinput_free(input);
 		return NULL;
@@ -877,7 +877,7 @@ static QRcode_List *QRcode_encodeDataStructuredReal(
 	if(eightbit) {
 		ret = QRinput_append(input, QR_MODE_8, size, data);
 	} else {
-		ret = Split_splitStringToQRinput((char *)data, input, hint, casesensitive);
+		ret = roobo_Split_splitStringToQRinput((char *)data, input, hint, casesensitive);
 	}
 	if(ret < 0) {
 		QRinput_free(input);

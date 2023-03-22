@@ -19,7 +19,8 @@
         "xiosbase": "cpp",
         "vector": "cpp",
         "xutility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "sstream": "cpp"
     },
     "MicroPython.executeButton": [
         {

@@ -45,6 +45,7 @@ private:
     void InitHttpGet(QNetworkAccessManager *m_pManager);
     void InitHttpPost(QNetworkAccessManager *m_pManager);
     void InitHttpMultiPartPost(QNetworkAccessManager *m_pManager);
+    void SetHttpState(HTTPSTATE state);
 
 signals:
     void DownLoadFinished(QString filePath);
@@ -54,6 +55,9 @@ signals:
     void NetWorkError();
     void ReplyDataed(QByteArray data);
     void ExitTasked();
+    void UpdateHttpState();
+
+
 
 public slots:
     void ExitTask();
@@ -67,11 +71,6 @@ private slots:
 private:
     bool m_bStart;
     bool m_bWork;
-    QMutex m_yMutex;
-    QWaitCondition m_yWaitCondition;
-    QMutex m_yStartMutex;
-    QWaitCondition m_yWaitStartCondition;
-
 
     QVariant m_pVar;
 

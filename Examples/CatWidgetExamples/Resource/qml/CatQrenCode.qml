@@ -28,8 +28,8 @@ Item {
     onWidthChanged: {
         rectroot.width = root.width;
         rectroot.height = root.height;
-        qrencode.x = 10;
-        qrencode.y = 10;
+        qrencode.x = 5;
+        qrencode.y = 5;
         qrencode.width = root.width - 10;
         qrencode.height = root.height - 10;
     }
@@ -37,8 +37,8 @@ Item {
     onHeightChanged: {
         rectroot.width = root.width;
         rectroot.height = root.height;
-        qrencode.x = 10;
-        qrencode.y = 10;
+        qrencode.x = 5;
+        qrencode.y = 5;
         qrencode.width = root.width - 10;
         qrencode.height = root.height - 10;
     }

@@ -36,7 +36,13 @@ void QrenCodeTool::UpdateQrenCode()
     QPixmap qrPixmap;
     int width = ui->QrenCodeLabel->width();
     int height = ui->QrenCodeLabel->height();
-    GernerateQRCode(ui->QrenCodeEdit->text(), qrPixmap, QSize(width, height), "", 5);
+    QRCODE qrproperty;
+    qrproperty.text = ui->QrenCodeEdit->text();
+    qrproperty.size = QSize(width, height);
+    qrproperty.qrpercent = 0;
+    qrproperty.backgroundColor = "#FFFFFF";
+    qrproperty.qrencodeColor = "#000000";
+    GernerateQRCode(qrproperty, qrPixmap);
 
     ui->QrenCodeLabel->setPixmap(qrPixmap);
 }

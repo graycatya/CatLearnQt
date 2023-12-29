@@ -39,8 +39,11 @@ Debug:UI_DIR = debug/.ui
 DEFINES += APP_VERSION=\\\"'v1.2.0'\\\"
 DEFINES += LOG_PATH=\\\"'Logs/'\\\"
 DEFINES += APP_NAME=\\\"'CatWidgetExamples'\\\"
-
+lessThan(QT_MAJOR_VERSION, 6) {
 include($$PWD/../../GrayFramelesshelper/GrayFramelesshelper.pri)
+} else {
+
+}
 include($$PWD/CatWidgetExamples.pri)
 include($$PWD/../../GrayCatQt/GrayCatQt.pri)
 include($$PWD/../../GrayCatQtCore/GrayCatQtCore.pri)

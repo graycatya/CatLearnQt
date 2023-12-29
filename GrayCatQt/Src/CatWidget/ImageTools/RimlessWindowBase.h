@@ -38,7 +38,9 @@ private:
 
 #ifdef Q_OS_LINUX
 #ifndef Q_OS_ANDROID
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
     void LinuxMoveWidget( int type, QString event = "_NET_WM_MOVERESIZE");
+#endif
 #endif
 #endif
 

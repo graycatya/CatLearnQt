@@ -31,6 +31,12 @@ if(contains(DEFINES,WEBASSEMBLY)) {
     LIBS -= -lX11
 }
 
+lessThan(QT_MAJOR_VERSION, 6) {
+
+} else {
+    QT -= x11extras
+}
+
 HEADERS += \
     $$PWD/ButtonTool.h \
     $$PWD/CatGifTool.h \

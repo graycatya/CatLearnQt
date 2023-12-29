@@ -213,8 +213,11 @@ void WinWidget::InitConnect()
     });
 #endif
     // [初始化工具栏信号与槽]
+#if (QT_VERSION > QT_VERSION_CHECK(6,0,0))
+    connect(m_pListiongOptions->GetButtonGroup(), &QButtonGroup::idClicked, this, &WinWidget::On_ButtonFunc);
+#else
     connect(m_pListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ButtonFunc(int)));
-
+#endif
 
 
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){

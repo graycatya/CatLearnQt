@@ -17,9 +17,11 @@
 
 #ifndef Q_OS_ANDROID
 #ifdef Q_OS_LINUX
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #ifndef WEBASSEMBLY
 #include <X11/Xlib.h>
 #include <QX11Info>
+#endif
 #endif
 #endif
 #endif
@@ -97,6 +99,7 @@ void RimlessWindowBase::SetProcessGeometry(int x, int y, int width, int height)
 #ifdef Q_OS_LINUX
 #ifndef Q_OS_ANDROID
 #ifndef WEBASSEMBLY
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 void RimlessWindowBase::LinuxMoveWidget(int type, QString event)
 {
     XEvent xevent;
@@ -124,6 +127,7 @@ void RimlessWindowBase::LinuxMoveWidget(int type, QString event)
                &xevent);
     XFlush(display);
 }
+#endif
 #endif
 #endif
 #endif
@@ -248,7 +252,9 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
 #ifdef Q_OS_LINUX
 #ifndef Q_OS_ANDROID
 #ifndef WEBASSEMBLY
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
         LinuxMoveWidget(ClientMessage);
+#endif
 #endif
 #endif
 #endif
@@ -368,7 +374,9 @@ void RimlessWindowBase::mouseMoveEvent(QMouseEvent *event)
         {
             QApplication::mouseButtons().setFlag(Qt::NoButton, true);
 #ifndef WEBASSEMBLY
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
             LinuxMoveWidget(ButtonRelease, "_NET_WM_ALLOWED_ACTIONS");
+#endif
 #endif
             m_bMousePress = false;
             m_pScreen->SetState(ProcessObject::STATE::SELECT);

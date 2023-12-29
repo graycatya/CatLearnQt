@@ -20,7 +20,9 @@
         "vector": "cpp",
         "xutility": "cpp",
         "algorithm": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "compare": "cpp",
+        "ranges": "cpp"
     },
     "MicroPython.executeButton": [
         {

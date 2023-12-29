@@ -14,11 +14,11 @@
 #include "WidgetTools/SliderTools.h"
 #include "WidgetTools/RimlessWindowTool.h"
 #include "WidgetTools/PagingNavigationTools.h"
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+
 #ifndef Q_OS_IOS
 #include "WidgetTools/CatQcustomplotTools.h"
 #endif
-#endif
+
 #include "WidgetTools/SideColumnTool.h"
 #include "WidgetTools/InputTools.h"
 #include "WidgetTools/TableViewTool.h"
@@ -121,7 +121,7 @@ void CatWidget::InitToolWidgets()
     m_pPagingNavigationTools->installEventFilter(ui->ToolStackedWidget);
     m_pPagingNavigationTools->setMouseTracking(true);
 
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+
 #ifndef Q_OS_IOS
     CatQcustomplotTools *m_pCatQcustomplotTools = new CatQcustomplotTools;
     m_pCatQcustomplotTools->setObjectName("CatQcustomplotTools");
@@ -129,7 +129,7 @@ void CatWidget::InitToolWidgets()
     m_pCatQcustomplotTools->installEventFilter(ui->ToolStackedWidget);
     m_pCatQcustomplotTools->setMouseTracking(true);
 #endif
-#endif
+
 
     SideColumnTool *m_pSideColumnTool = new SideColumnTool;
     m_pSideColumnTool->setObjectName("CatSideColumnTool");

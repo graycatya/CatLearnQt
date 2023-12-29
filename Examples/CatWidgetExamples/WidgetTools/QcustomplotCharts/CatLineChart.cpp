@@ -188,8 +188,11 @@ void CatLineChart::InitChartConnect()
     connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
     connect(customPlot, SIGNAL(mousePress(QMouseEvent*)), this, SLOT(On_MousePress()));
-
+#if (QT_VERSION > QT_VERSION_CHECK(6,0,0))
+    connect(m_pDxvaBox, &QComboBox::currentTextChanged, this, &CatLineChart::On_UpdateDxva);
+#else
     connect(m_pDxvaBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(On_UpdateDxva(QString)));
+#endif
 
     // 用户更改QCustomPlot中的选择后（例如通过单击），将发出此信号。
     connect(customPlot, &QCustomPlot::selectionChangedByUser, this, [=](){
@@ -363,7 +366,7 @@ void CatLineChart::UpdatePositionType(int id)
     ui->ChartWidget->SetTracerYPositionType((QCPItemPosition::PositionType)id);
 }
 
-void CatLineChart::On_UpdateDxva(QString dxva)
+void CatLineChart::On_UpdateDxva(const QString dxva)
 {
     if(dxva == "Not")
     {

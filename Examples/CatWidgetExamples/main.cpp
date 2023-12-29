@@ -8,17 +8,20 @@
 #include <CatLog>
 #include <QTranslator>
 #include "WinWidget.h"
-#include "WinMainWidget.h"
+
 
 #include "CatConfig/CatConfig.h"
 #include <QTimer>
 
 #include <QLibraryInfo>
 #include <QQuickWindow>
+
+#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+#include "WinMainWidget.h"
 #ifndef Q_OS_IOS
 #include "utilities.h"
 #endif
-
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -62,10 +65,13 @@ int main(int argc, char *argv[])
     CatConfig *config = CatConfig::Instance();
     config->SetTranslator(&app);
     config->InitConfig();
-
+#if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
     WinMainWidget w;
     w.show();
-
+#else
+    WinWidget w;
+    w.show();
+#endif
     return app.exec();
 }
 

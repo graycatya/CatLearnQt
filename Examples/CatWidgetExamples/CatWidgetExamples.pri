@@ -14,14 +14,26 @@ HEADERS += \
     $$PWD/CatSettings.h \
     $$PWD/CatWidget.h \
     $$PWD/WinWidget.h \
-    $$PWD/WinMainWidget.h \
+
 
 macx {
     SOURCES += \
         $$PWD/WinMainWidget.mm \
 } else {
-    SOURCES += \
-        $$PWD/WinMainWidget.cpp \
+lessThan(QT_MAJOR_VERSION, 6) {
+
+HEADERS += \
+    $$PWD/WinMainWidget.h
+
+SOURCES += \
+    $$PWD/WinMainWidget.cpp
+
+FORMS += \
+    $$PWD/WinMainWidget.ui
+} else {
+
+}
+
 }
 
 
@@ -33,7 +45,7 @@ FORMS += \
     $$PWD/CatSettings.ui \
     $$PWD/CatWidget.ui \
     $$PWD/WinWidget.ui \
-    $$PWD/WinMainWidget.ui
+
 
 # The following define makes your compiler emit warnings if you use
 # any Qt feature that has been marked deprecated (the exact warnings

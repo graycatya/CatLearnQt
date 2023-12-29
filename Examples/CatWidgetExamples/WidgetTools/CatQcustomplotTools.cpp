@@ -41,7 +41,12 @@ void CatQcustomplotTools::InitProperty()
 
 void CatQcustomplotTools::InitConnect()
 {
+#if (QT_VERSION > QT_VERSION_CHECK(6,0,0))
+    connect(m_pToolListiongOptions->GetButtonGroup(), SIGNAL(idClicked(int)), this, SLOT(On_ToolButtons(int)));
+#else
     connect(m_pToolListiongOptions->GetButtonGroup(), SIGNAL(buttonClicked(int)), this, SLOT(On_ToolButtons(int)));
+#endif
+
     connect(CatConfig::Instance(), &CatConfig::UpdateStyleSheets, this, [=](){
         UpdateStyle();
     });

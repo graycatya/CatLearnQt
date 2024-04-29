@@ -127,7 +127,7 @@ include($$PWD/../../GrayFramelesshelper/GrayFramelesshelper.pri)
 
 if(!contains(DEFINES,WEBASSEMBLY)) {
     include($$PWD/../../GrayCatQtCore/Src/SingleApplication/singleapplication.pri)
-    include($$PWD/../../GrayCatQtCore/Src/CatEncp/CatEncp.pri)
+    #include($$PWD/../../GrayCatQtCore/Src/CatEncp/CatEncp.pri)
 }
 
 include($$PWD/QrenCode/QrenCode.pri)

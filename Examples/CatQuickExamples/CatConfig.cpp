@@ -8,7 +8,7 @@
 #include <QDesktopServices>
 
 #ifndef WEBASSEMBLY
-#include "CatEncp.h"
+//#include "CatEncp.h"
 #endif
 #include "QrenCode/QuickQrenCodeParentItem.h"
 #ifndef WEBASSEMBLY
@@ -210,7 +210,7 @@ void CatConfig::InitQmlRegisterType()
 {
     qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
 #ifndef WEBASSEMBLY
-    qmlRegisterType<CatEncp>("CatEncp", 1, 0, "CatEncp");
+    //qmlRegisterType<CatEncp>("CatEncp", 1, 0, "CatEncp");
 #endif
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
 #ifdef QT_WEBENGINE_LIB

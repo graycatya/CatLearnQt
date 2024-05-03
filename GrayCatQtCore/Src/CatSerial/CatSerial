@@ -1,6 +1,0 @@
-﻿#include "CatSerialPort.h"
-#include "MonitorSerial.h"
-
-#if Q_CC_MSVC
-#include "CatWinMonitorSerial.h"
-#endif

@@ -1,5 +1,0 @@
-*.log
-build-*-Debug
-build-*-Release
-QtWebApp/doc/html
-*.pro.user*

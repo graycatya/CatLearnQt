@@ -1,0 +1,47 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>generalmain.qml</file>
+        <file>ProjectObject.qml</file>
+        <file>qmldir</file>
+        <file>Win10TitleItem.qml</file>
+        <file>FunctionLayout/DefaultLayout/DefaultLayout.qml</file>
+        <file>FunctionLayout/LayoutView.qml</file>
+        <file>FunctionLayout/DefaultLayout/DefaultListItem.qml</file>
+        <file>FunctionLayout/DefaultLayout/DefaultListView.qml</file>
+        <file>FunctionLayout/DefaultLayout/DemonstrationView.qml</file>
+        <file>ControlDemos/Image3dRotation.qml</file>
+        <file>GeneralTitleItem.qml</file>
+        <file>ControlDemos/DemoImageFlipable.qml</file>
+        <file>ControlDemos/DemoImageFlicker.qml</file>
+        <file>ControlDemos/DemoImageFlickerGradient.qml</file>
+        <file>ControlDemos/DemoImageMove.qml</file>
+        <file>ControlDemos/DemoImageScale.qml</file>
+        <file>ControlDemos/DemoMarquee.qml</file>
+        <file>ControlDemos/DemoTextOneByOneShow.qml</file>
+        <file>ControlDemos/DemoCatRectangle.qml</file>
+        <file>ControlDemos/DemoQParentQrenCode.qml</file>
+        <file>ControlDemos/DemoCatCalendar.qml</file>
+        <file>ControlDemos/DemoCatEchars.qml</file>
+        <file>ControlDemos/DemoCatSideColumn.qml</file>
+        <file>ControlDemos/DemoCatSorter.qml</file>
+        <file>AppControl/LanguageItem.qml</file>
+        <file>MoreFunctionViews/MoreView.qml</file>
+        <file>MoreFunctionViews/SettingItem.qml</file>
+        <file>MoreFunctionViews/LicenceItem.qml</file>
+        <file>MoreFunctionViews/AboutItem.qml</file>
+        <file>ControlDemos/DemoTableView.qml</file>
+        <file>FunctionLayout/GridLayout/CatGridLayout.qml</file>
+        <file>FunctionLayout/TreeLayout/CatTreeLayout.qml</file>
+        <file>FunctionLayout/GridLayout/CatGridListView.qml</file>
+        <file>FunctionLayout/GridLayout/CatGridListItem.qml</file>
+        <file>Common/CatTreeView.qml</file>
+        <file>ControlDemos/DemoCatTreeView.qml</file>
+        <file>Common/CatTreeHeader.qml</file>
+        <file>Common/CatTransArea.qml</file>
+        <file>FunctionLayout/TreeLayout/CatTreeListView.qml</file>
+        <file>FunctionLayout/TreeLayout/CatTreeDemoStrationView.qml</file>
+        <file>MoreFunctionViews/WebEngineLicence.qml</file>
+        <file>MoreFunctionViews/WebKitLicence.qml</file>
+    </qresource>
+</RCC>

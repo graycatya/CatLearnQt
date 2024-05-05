@@ -1,3 +1,9 @@
-[submodule "3rdparty/lottie-qml"]
-	path = 3rdparty/lottie-qml
-	url = https://github.com/graycatya/lottie-qml.git
+[submodule "QCatGrayCore"]
+	path = modules/QCatGrayCore
+	url = https://github.com/graycatya/QCatGrayCore.git
+[submodule "QCatGrayQuick"]
+	path = modules/QCatGrayQuick
+	url = https://github.com/graycatya/QCatGrayQuick.git
+[submodule "QCatGrayWidgets"]
+	path = modules/QCatGrayWidgets
+	url = https://github.com/graycatya/QCatGrayWidgets.git

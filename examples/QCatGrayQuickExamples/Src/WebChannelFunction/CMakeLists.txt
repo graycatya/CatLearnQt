@@ -11,54 +11,31 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-message(STATUS ${CMAKE_CURRENT_SOURCE_DIR})
 
-#set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/Lib)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../../../../module/cmake")
-
-include(GrayCatQt)
-
-load_name_static(STATIC_NAME) 
-message(STATUS ${STATIC_NAME})
-
-#add_definitions(-std=c++17)
-
-find_package(Qt5 COMPONENTS Core Gui Widgets WebChannel REQUIRED)
-
-find_android_gui()
-#target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Core Gui Widgets WebChannel)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Core Gui Widgets WebChannel)
 
 
-file(GLOB SRC_HEAD_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h")
+file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
+  "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+)
 
+add_library(${PROJECT_NAME}_a STATIC ${SRC_LIST})
 
-filtration_aux_source_directory(CURPATH_DIR_LIB_SRCS)
-
-add_library(${STATIC_NAME} STATIC ${CURPATH_DIR_LIB_SRCS}
-                                  ${SRC_HEAD_LIST})
-
-
-add_library(${PROJECT_NAME} SHARED ${CURPATH_DIR_LIB_SRCS}
-                                   ${SRC_HEAD_LIST})
-
-SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES OUTPUT_NAME ${PROJECT_NAME})
-SET_TARGET_PROPERTIES(${PROJECT_NAME} PROPERTIES VERSION 1.0.0 SOVERSION 1)
-SET_TARGET_PROPERTIES(${STATIC_NAME} PROPERTIES CLEAN_DIRECT_OUTPUT 1)
-
+add_library(${PROJECT_NAME} SHARED ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::WebChannel)
-target_link_libraries(${PROJECT_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::WebChannelPrivate)
-target_link_android_gui(${PROJECT_NAME})
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::WebChannel)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::WebChannelPrivate)
 
-target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(${STATIC_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(${STATIC_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::WebChannel)
-target_link_libraries(${STATIC_NAME} PUBLIC Qt${QT_VERSION_MAJOR}::WebChannelPrivate)
+target_link_libraries(${PROJECT_NAME}_a PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME}_a PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(${PROJECT_NAME}_a PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
+target_link_libraries(${PROJECT_NAME}_a PRIVATE Qt${QT_VERSION_MAJOR}::WebChannel)
+target_link_libraries(${PROJECT_NAME}_a PRIVATE Qt${QT_VERSION_MAJOR}::WebChannelPrivate)
 
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME}_a PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

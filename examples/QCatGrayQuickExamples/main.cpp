@@ -18,13 +18,9 @@
 #endif
 #endif
 #include "CatConfig.h"
-#ifndef WEBASSEMBLY
-#include "QmlCatLog.h"
-#include "SingleApplication"
-#endif
+
 #include <QQmlContext>
 #include <QQmlEngine>
-#include <QmlCatLog.h>
 #include <QQuickView>
 #include <QtQuickControls2/qquickstyle.h>
 
@@ -54,18 +50,13 @@ int main(int argc, char *argv[])
     QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::Round);
 #endif
 
-#ifndef WEBASSEMBLY
-    QMLCATLOG::CatLog *catlog = QMLCATLOG::CatLog::Instance();
-#endif
 
-#ifndef WEBASSEMBLY
-    SingleApplication app(argc, argv);
-#else
+
     QGuiApplication app(argc, argv);
-#endif
+
     app.setOrganizationName("GrayCatYa");
     app.setOrganizationDomain("graycatya.com");
-    app.setApplicationName("CatQuickExamples");
+    app.setApplicationName(APP_NAME);
 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
     QQuickStyle::setStyle(QStringLiteral("Basic"));
@@ -83,11 +74,7 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
-    engine.addImportPath(GrayCatQtQuickImportPath);
     //engine.rootContext()->setContextProperty("view", &view);
-#ifndef WEBASSEMBLY
-    engine.rootContext()->setContextProperty("catLog", catlog);
-#endif
     engine.rootContext()->setContextProperty("catconfig", catconfig);
     engine.rootContext()->setContextProperty("qtversion", QString(qVersion()));
 

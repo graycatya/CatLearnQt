@@ -1,7 +1,7 @@
 ﻿#ifndef CATCONFIG_H
 #define CATCONFIG_H
 
-#include "CatSettingBase.h"
+#include "QCatGraySettingBase.h"
 #include <QMutex>
 #include <QLocale>
 #include <QDebug>
@@ -10,7 +10,7 @@
 
 class QTranslator;
 
-class CatConfig : public CatSettingBase
+class CatConfig : public QCatGraySettingBase
 {
     Q_OBJECT
 public:

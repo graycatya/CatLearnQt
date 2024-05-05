@@ -2,21 +2,17 @@
 #include <QSettings>
 #include <QTimer>
 #include <QTranslator>
-#include <CatLog>
 #include <QFileInfo>
 #include <QDir>
 #include <QDesktopServices>
 
-#ifndef WEBASSEMBLY
-//#include "CatEncp.h"
-#endif
-#include "QrenCode/QuickQrenCodeParentItem.h"
+#include "QCatGrayQuickQrenCodeQml.h"
 #ifndef WEBASSEMBLY
 #ifdef _MSC_VER
-#include "Src/WebChannelFunction/CatEchatswebChannel.h"
+#include "CatEchatswebChannel.h"
 #else
 #ifndef Q_OS_WIN
-#include "Src/WebChannelFunction/CatEchatswebChannel.h"
+#include "CatEchatswebChannel.h"
 #endif
 #endif
 #endif
@@ -60,47 +56,47 @@ void CatConfig::InitConfig()
 
 bool CatConfig::configExist()
 {
-    return CatSettingBase::ConfigExist(m_sConfigPath);
+    return QCatGraySettingBase::ConfigExist(m_sConfigPath);
 }
 
 void CatConfig::setValue(QString key, QVariant var, QString node)
 {
-    CatSettingBase::SetValue(m_sConfigPath, key, var, node);
+    QCatGraySettingBase::SetValue(m_sConfigPath, key, var, node);
 }
 
 void CatConfig::removeNodeValue(QString node, QString key)
 {
-    CatSettingBase::RemoveNodeValue(m_sConfigPath, node, key);
+    QCatGraySettingBase::RemoveNodeValue(m_sConfigPath, node, key);
 }
 
 void CatConfig::removeNode(QString node)
 {
-    CatSettingBase::RemoveNode(m_sConfigPath, node);
+    QCatGraySettingBase::RemoveNode(m_sConfigPath, node);
 }
 
 void CatConfig::setGroup(QString node, QStringList keys, QVariantList vars)
 {
-    CatSettingBase::SetGroup(m_sConfigPath, node, keys, vars);
+    QCatGraySettingBase::SetGroup(m_sConfigPath, node, keys, vars);
 }
 
 void CatConfig::setArray(QString node, QStringList keys, QVariantList vars)
 {
-    CatSettingBase::SetArray(m_sConfigPath, node, keys, vars);
+    QCatGraySettingBase::SetArray(m_sConfigPath, node, keys, vars);
 }
 
 QStringList CatConfig::getKeys(QString node)
 {
-    return CatSettingBase::GetKeys(m_sConfigPath, node);
+    return QCatGraySettingBase::GetKeys(m_sConfigPath, node);
 }
 
 QVariant CatConfig::getValue(QString key, QString node)
 {
-    return CatSettingBase::GetValue(m_sConfigPath, key, node);
+    return QCatGraySettingBase::GetValue(m_sConfigPath, key, node);
 }
 
 QMultiMap<QString, QVariant> CatConfig::getArray(QString node, QStringList keys)
 {
-    return CatSettingBase::GetArray(m_sConfigPath, node, keys);
+    return QCatGraySettingBase::GetArray(m_sConfigPath, node, keys);
 }
 
 QList<QString> CatConfig::getAppDefineLanguages()
@@ -208,7 +204,7 @@ QList<QString> CatConfig::systemFontFamily(QFontDatabase::WritingSystem writingS
 
 void CatConfig::InitQmlRegisterType()
 {
-    qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
+    qmlRegisterType<QCatGrayQuickQrenCodeQml>("QParentQrenCode", 1, 0, "ParentQrenCode");
 #ifndef WEBASSEMBLY
     //qmlRegisterType<CatEncp>("CatEncp", 1, 0, "CatEncp");
 #endif
@@ -225,7 +221,6 @@ void CatConfig::InitQmlRegisterType()
 
 CatConfig::CatConfig()
 {
-    CATLOG::CatLog::__Write_Log(DEBUG_LOG_T(QCoreApplication::applicationDirPath().toStdString()));
     m_sConfigPath = QCoreApplication::applicationDirPath() + "/quickexampleconfig.ini";
     m_pTranslator = new QTranslator;
     m_pTranslatorDi = new QTranslator;

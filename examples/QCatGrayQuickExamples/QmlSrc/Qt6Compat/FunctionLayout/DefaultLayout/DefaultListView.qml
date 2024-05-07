@@ -1,7 +1,7 @@
 ﻿import QtQuick
 import QtQml
 
-import GrayCatQtQuick
+import QCatGrayQuick
 import "../../"
 
 Rectangle {

@@ -2,7 +2,7 @@
 import CatTreeModel
 import ModelTool
 import QtQuick.Layouts
-import GrayCatQtQuick
+import QCatGrayQuick
 import "../Common"
 import "../"
 

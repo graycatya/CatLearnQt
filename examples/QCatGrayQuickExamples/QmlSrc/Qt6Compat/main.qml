@@ -2,7 +2,7 @@
 import QtQuick.Window
 import QtQuick.Layouts
 import QtQuick.Controls
-import GrayCatQtQuick
+import QCatGrayQuick
 
 //import CatEncp
 import "FunctionLayout"

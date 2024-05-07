@@ -3,7 +3,7 @@ import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import GrayCatQtQuick
+import QCatGrayQuick
 import "../../ControlDemos"
 import "../../"
 

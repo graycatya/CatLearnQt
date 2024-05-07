@@ -25,6 +25,7 @@
 #include <QtQuickControls2/qquickstyle.h>
 
 #include "QmlConfig.h"
+#include "QCatGrayQuickPlugins.h"
 
 
 
@@ -70,14 +71,17 @@ int main(int argc, char *argv[])
 
 
 #endif
-    QmlConfig::moduleRegister();
+
 
 
     QQmlApplicationEngine engine;
+
+    QmlConfig::moduleRegister();
     //engine.rootContext()->setContextProperty("view", &view);
     engine.rootContext()->setContextProperty("catconfig", catconfig);
     engine.rootContext()->setContextProperty("qtversion", QString(qVersion()));
-
+    QCatGrayQuickPlugins qcatgrayquickplugins;
+    qcatgrayquickplugins.InitQCatGrayQuickPlugins(&engine);
     QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), &engine, SLOT(retranslate()));
     for(QString path : engine.importPathList())
     {
@@ -87,7 +91,7 @@ int main(int argc, char *argv[])
     //engine.resize(900, 600);
     //engine.moveToScreenCenter();
 
-    const QUrl mainQmlUrl(QStringLiteral("qrc:///main.qml"));
+    const QUrl mainQmlUrl(QStringLiteral("qrc:///generalmain.qml"));
     const QMetaObject::Connection connection = QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreated,

@@ -32,7 +32,9 @@ else(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick QuickControls2 Qml WebEngine WebView WebSockets Quick3D REQUIRED)
 endif(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 file(GLOB SRC_LIST  "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
-              "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp")
+              "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
+                "${CMAKE_CURRENT_SOURCE_DIR}/QCatGrayModel/*.h"
+                "${CMAKE_CURRENT_SOURCE_DIR}/QCatGrayModel/*.cpp")
 
 set(SRC_QRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/Resource/Resource.qrc"
   "${CMAKE_CURRENT_SOURCE_DIR}/QmlSrc/Qt${QT_VERSION_MAJOR}Compat/QmlSrc.qrc")
@@ -92,9 +94,10 @@ endif(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 target_link_libraries(${PROJECT_NAME} PRIVATE TableFunction_a
                                               WebChannelFunction_a
                                               QCatGrayQuick
-                                              QCatGrayQrenCodeQml_a
-                                              #QCatGrayModel_a
+                                              QCatGrayQuickQrenCodeQml_a
                                               QCatGrayUniversal_a)
+
+target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/QCatGrayModel")
 
 
 

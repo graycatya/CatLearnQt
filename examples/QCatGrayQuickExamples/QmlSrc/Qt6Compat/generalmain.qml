@@ -3,9 +3,9 @@ import QtQml
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import Qt.labs.calendar
+//import Qt.labs.calendar
 import QtQuick.Window
-import GrayCatQtQuick
+import QCatGrayQuick
 //import CatEncp
 import "FunctionLayout"
 import "./MoreFunctionViews"
@@ -72,8 +72,8 @@ Window {
                 anchors.topMargin: -15
                 gradient0Color: ProjectObject.fpsgradient0Color
                 gradient1Color: ProjectObject.fpsgradient1Color
-                width: 120
-                height: 32
+//                width: 120
+//                height: 32
             }
         }
 

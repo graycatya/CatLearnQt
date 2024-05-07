@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Layouts 1.12
 import "../"
-import GrayCatQtQuick 1.0
+import QCatGrayQuick 1.0
 
 
 Item {
@@ -17,7 +17,7 @@ Item {
                 id: apptext
                 anchors.left: parent.left
                 anchors.right: parent.right
-                text: "CatQuickExamples v1.2.0"
+                text: catconfig.getAppName() + " " + catconfig.getAppVersion()
                 color: ProjectObject.defaultTextColor
                 font.pixelSize: 32
                 font.family: ProjectObject.fontFamily
@@ -96,18 +96,18 @@ Item {
                     }
                 }
 
-                CatButtonImage {
-                    imagebackground.radius: 5
-                    backgroundColor: "#01000000"
-                    backgroundColor_pressed: "#66000000"
-                    backgroundColor_hovered: "#40000000"
-                    Layout.preferredHeight: 30
-                    Layout.preferredWidth: 30
-                    btnImgUrl: ProjectObject.getCurrentResourcePath() + "Gitee.png"
-                    onClicked: {
-                        catconfig.openWebUrl(ProjectObject.giteeUrl);
-                    }
-                }
+//                CatButtonImage {
+//                    imagebackground.radius: 5
+//                    backgroundColor: "#01000000"
+//                    backgroundColor_pressed: "#66000000"
+//                    backgroundColor_hovered: "#40000000"
+//                    Layout.preferredHeight: 30
+//                    Layout.preferredWidth: 30
+//                    btnImgUrl: ProjectObject.getCurrentResourcePath() + "Gitee.png"
+//                    onClicked: {
+//                        catconfig.openWebUrl(ProjectObject.giteeUrl);
+//                    }
+//                }
 
                 Item {
                     Layout.fillHeight: true

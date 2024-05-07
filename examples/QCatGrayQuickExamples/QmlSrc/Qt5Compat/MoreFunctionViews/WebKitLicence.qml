@@ -9,7 +9,7 @@ Item {
         Text {
             anchors.fill: parent
             //textFormat: Text.RichText
-            text: "SingleApplication(The MIT License)\nCatLearnQt(GPL v3)"
+            text: "CatLearnQt(GPL v3)"
             wrapMode: Text.WordWrap //换行
             font.pixelSize: 24
             font.family: ProjectObject.fontFamily

@@ -1,7 +1,7 @@
 ﻿import QtQuick
 import QtQuick.Layouts
 
-import GrayCatQtQuick
+import QCatGrayQuick
 import QtWebEngine
 import QtWebView
 import QtWebChannel

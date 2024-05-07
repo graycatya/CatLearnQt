@@ -191,6 +191,16 @@ QString CatConfig::getQtVersion()
     return QT_VERSION_STR;
 }
 
+QString CatConfig::getAppVersion()
+{
+    return APP_VERSION;
+}
+
+QString CatConfig::getAppName()
+{
+    return APP_NAME;
+}
+
 QList<QString> CatConfig::systemFontFamily(QFontDatabase::WritingSystem writingSystem)
 {
     QList<QString> familys;

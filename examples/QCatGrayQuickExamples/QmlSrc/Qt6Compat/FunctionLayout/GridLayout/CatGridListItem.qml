@@ -1,7 +1,7 @@
 ﻿import QtQuick
 import QtQuick.Controls
 
-import GrayCatQtQuick
+import QCatGrayQuick
 import "../../"
 
 Item {

@@ -1,7 +1,7 @@
 ﻿import QtQuick 2.12
 import QtQuick.Layouts 1.12
 
-import GrayCatQtQuick 1.0
+import QCatGrayQuick 1.0
 import QtWebEngine 1.10
 import QtWebView 1.1
 import QtWebChannel 1.0

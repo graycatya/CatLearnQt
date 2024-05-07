@@ -65,6 +65,8 @@ public:
     Q_INVOKABLE static QByteArray getLicenceHtml();
     Q_INVOKABLE static void openWebUrl(QString url);
     Q_INVOKABLE static QString getQtVersion();
+    Q_INVOKABLE static QString getAppVersion();
+    Q_INVOKABLE static QString getAppName();
 
     Q_INVOKABLE QList<QString> systemFontFamily(QFontDatabase::WritingSystem writingSystem = QFontDatabase::Any);
 

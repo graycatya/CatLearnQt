@@ -1,7 +1,7 @@
 ﻿import QtQuick
 import QtQuick.Layouts
 
-import GrayCatQtQuick
+import QCatGrayQuick
 import TableViewModel
 import QtQuick.Controls
 import QtQml.Models

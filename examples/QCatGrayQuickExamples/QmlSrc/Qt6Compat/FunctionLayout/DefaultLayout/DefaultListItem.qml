@@ -1,7 +1,7 @@
 ﻿import QtQuick
 import QtQml
 import QtQuick.Layouts
-import GrayCatQtQuick
+import QCatGrayQuick
 import "../../"
 
 

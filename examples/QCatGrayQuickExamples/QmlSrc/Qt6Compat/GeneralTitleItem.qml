@@ -3,7 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import QtQml.Models
 
-import GrayCatQtQuick
+import QCatGrayQuick
 
 
 Rectangle {

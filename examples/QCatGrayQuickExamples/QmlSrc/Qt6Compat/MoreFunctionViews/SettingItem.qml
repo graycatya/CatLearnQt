@@ -1,6 +1,6 @@
 ﻿import QtQuick
 import QtQuick.Layouts
-import GrayCatQtQuick
+import QCatGrayQuick
 
 import QtQuick.Controls
 import "../"

@@ -1,6 +1,6 @@
 ﻿import QtQuick
 
-import GrayCatQtQuick
+import QCatGrayQuick
 import "../"
 
 Item {

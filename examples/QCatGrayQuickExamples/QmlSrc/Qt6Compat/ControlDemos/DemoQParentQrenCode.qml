@@ -1,5 +1,5 @@
 ﻿import QtQuick
-import GrayCatQtQuick
+import QCatGrayQuick
 import QParentQrenCode
 import "../"
 

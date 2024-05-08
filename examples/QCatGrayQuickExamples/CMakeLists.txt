@@ -94,6 +94,7 @@ endif(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
 target_link_libraries(${PROJECT_NAME} PRIVATE TableFunction_a
                                               WebChannelFunction_a
                                               QCatGrayQuick
+                                              LottieQml
                                               QCatGrayQuickQrenCodeQml_a
                                               QCatGrayUniversal_a)
 

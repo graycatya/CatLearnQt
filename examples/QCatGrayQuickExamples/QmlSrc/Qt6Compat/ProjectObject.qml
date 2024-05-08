@@ -801,6 +801,14 @@ QtObject {
                 "logoSource": "CatTreeView.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatTreeView.qml",
                 "libs": "default",
+            },
+            {
+                "name": "LottieQml",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": "LottieQml.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoLottie.qml",
+                "libs": "default",
             }
         ]
     }

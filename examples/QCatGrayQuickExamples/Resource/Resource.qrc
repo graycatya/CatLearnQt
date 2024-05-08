@@ -198,5 +198,11 @@
         <file>Images/White/next_triangle.png</file>
         <file>Images/Black/CatQuickExamples.png</file>
         <file>Images/White/CatQuickExamples.png</file>
+        <file>Lottie/Lottie_404.json</file>
+        <file>Images/Black/Demonstrate.png</file>
+        <file>Images/Black/LottieQml.png</file>
+        <file>Images/White/Demonstrate.png</file>
+        <file>Images/White/LottieQml.png</file>
+        <file>Images/cqlogo.ico</file>
     </qresource>
 </RCC>

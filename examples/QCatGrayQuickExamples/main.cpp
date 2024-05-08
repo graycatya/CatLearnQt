@@ -26,11 +26,13 @@
 
 #include "QmlConfig.h"
 #include "QCatGrayQuickPlugins.h"
+#include "LottieQmlPlugins.h"
 
 
 
 int main(int argc, char *argv[])
 {
+    qputenv("QML_XHR_ALLOW_FILE_READ", "1");
     //QGuiApplication
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #if (QT_VERSION < QT_VERSION_CHECK(6, 0, 0))
@@ -82,6 +84,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("qtversion", QString(qVersion()));
     QCatGrayQuickPlugins qcatgrayquickplugins;
     qcatgrayquickplugins.InitQCatGrayQuickPlugins(&engine);
+    LottieQmlPlugins lottieqmlplugins;
+    lottieqmlplugins.InitLottieQmlPlugins(&engine);
     QObject::connect(CatConfig::Instance(), SIGNAL(updateLanguage()), &engine, SLOT(retranslate()));
     for(QString path : engine.importPathList())
     {

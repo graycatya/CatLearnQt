@@ -43,5 +43,6 @@
         <file>FunctionLayout/TreeLayout/CatTreeDemoStrationView.qml</file>
         <file>MoreFunctionViews/WebEngineLicence.qml</file>
         <file>MoreFunctionViews/WebKitLicence.qml</file>
+        <file>ControlDemos/DemoLottie.qml</file>
     </qresource>
 </RCC>

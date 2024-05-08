@@ -55,12 +55,12 @@ Rectangle {
         anchors.rightMargin: 25
         width: 30
         height: 30
-        backImage.width: backImage.sourceSize.width
-        backImage.height: backImage.sourceSize.height
-        btnImgNormal: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"
-        btnImgHovered: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"
-        btnImgPressed: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"
-        btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "Demonstrate.svg"
+        backImage.width: 16
+        backImage.height: 16
+        btnImgNormal: ProjectObject.getCurrentResourcePath() + "Demonstrate.png"
+        btnImgHovered: ProjectObject.getCurrentResourcePath() + "Demonstrate.png"
+        btnImgPressed: ProjectObject.getCurrentResourcePath() + "Demonstrate.png"
+        btnImgDisbaled: ProjectObject.getCurrentResourcePath() + "Demonstrate.png"
         backgroundColor: "#1D9FF7"
         backgroundColor_hovered: "#1D9FF7"
         backgroundColor_pressed: "#1D9FF7"

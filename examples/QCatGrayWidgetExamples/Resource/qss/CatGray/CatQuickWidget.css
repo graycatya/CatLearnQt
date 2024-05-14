@@ -1,0 +1,18 @@
+QWidget#ToolWidget {
+    border: none;
+    background-color: #272626;
+}
+
+QStackedWidget#ToolStackedWidget {
+    border-radius: 4px;
+	background-color: #343434;
+}
+
+QLineEdit#QrenCodeEdit {
+    color: white;
+    font-family: "Ubuntu";
+    border: 1px solid #959595;
+    border-radius: 3px;
+    background-color: #757575;
+}
+

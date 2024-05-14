@@ -1,0 +1,264 @@
+QPushButton#Log {
+	min-width: 150px;
+	min-height: 150px;
+	max-width: 150px;
+	max-height: 150px;
+	border-radius: 75px;
+	background-color: #ffffff;
+	qproperty-icon: url(:/Images/CatWhite/CatSettings.png);
+    qproperty-iconSize: 100px 100px;
+    border: 2px solid #dddddd;
+}
+
+QScrollArea#ScrollRootArea {
+    border-radius: 4px;
+    border: 2px solid #dddddd;
+	background-color: #fbfbfb;
+}
+
+QWidget#CatSettingRoot {
+    background-color: transparent;
+}
+
+QLabel {
+    color: #4b4642;
+    font-size: 20px;
+    font-family: "Ubuntu";
+}
+
+QComboBox {
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 150px;
+    min-height: 30px;
+}
+
+
+QComboBox:editable {
+    color: #4b4642;
+    background-color: #fdfdfd;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+}
+
+/* 当弹出窗口打开时，QComboBox将处于“on”状态 */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    border: 1px solid rgba(223,74,22,100%);
+    background-color: #fdfdfd;
+}
+
+QComboBox:on { /* 当弹出窗口打开时，移动文本 */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+    border-top-right-radius: 3px; /* 半径与QComboBox相同 */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    padding-right: 6px;
+    image: url(:/Images/CatWhite/PullDown.png);
+}
+
+QComboBox::down-arrow:on {
+    padding-right: 6px;
+    image: url(:/Images/CatWhite/PullUp.png);
+}
+
+/*下拉项样式 背景蓝色*/
+QListView#StyleComboBoxView {
+    border: 1px solid #c9c9c9;
+    background-color: #fafafa;
+    outline:0px;
+    font-family: "Ubuntu";
+}
+QListView#StyleComboBoxView::item {
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: transparent;
+    min-height: 25px;
+    background-color: #fafafa;
+}  
+
+/*下拉项选中样式*/
+QListView#StyleComboBoxView::item:selected { 
+    color: #C1C1C1;
+    border: transparent;
+    background-color: rgba(223,74,22,100%);
+}   
+
+/*下拉项鼠标悬浮样式*/
+QListView#StyleComboBoxView::item:hover { 
+    color: #4b4642;
+    border: transparent;
+    background:#dedede;
+}
+
+QWidget#WindowColorsWidget, QWidget#SaveWidget  {
+    border: 1px solid #ebebeb;
+    background-color: #ffffff;
+    border-radius: 1px;
+}
+
+
+QLabel#AppSettings, QLabel#AppSave {
+    color: #4b4642;
+    font-weight: bold;
+    font-size: 24px;
+    font-family: "Ubuntu";
+}
+
+QLineEdit#SavePathEdit {
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #d2d2d2;
+    background-color: #fdfdfd;
+    border-radius: 3px;
+    min-height: 30px;
+}
+
+QPushButton#ChangeButton {
+    min-width: 100px;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    color: #4b4642;
+    font-family: "Ubuntu";
+    border: 1px solid #e4e4e4;
+    background-color: #fcfcfc;
+}
+
+QPushButton#ChangeButton:hover {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid #424242;
+}
+
+QPushButton#ChangeButton:pressed {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QPushButton#ChangeButton:checked {
+    border: none;
+    background-color: #dedede;
+    min-height: 30px;
+    max-height: 30px;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
+/* 上下箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar:horizontal
+{
+    height:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:horizontal
+{
+    height:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-width:20;
+}
+
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}

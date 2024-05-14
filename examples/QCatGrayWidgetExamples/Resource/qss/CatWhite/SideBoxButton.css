@@ -1,0 +1,36 @@
+QWidget#BackWeidget[State="NotHover"] {
+    background-color: transparent;
+}
+
+QWidget#BackWeidget[State="Hover"] {
+    background-color: rgba(223,74,22,100%);
+}
+
+QLabel#ImageLabel {
+    background-image: url(:/Images/CatWhite/SideTestButton.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+QLabel#TextLabel {
+    font-family: "Ubuntu";
+    font-size: 18px;
+    color: #4b4642;
+}
+
+QWidget#RigthWidget {
+    min-width: 4;
+    max-width: 4;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 0px;
+}
+
+QWidget#RigthWidget[State="NotCheck"] {
+    background-color: transparent;
+}
+
+QWidget#RigthWidget[State="Check"] {
+    background-color: #FFFFFF; 
+}

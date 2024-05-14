@@ -6,6 +6,8 @@ if (UNIX)
 add_compile_options(-Wall -fPIC -Wno-stringop-overflow)
 endif(UNIX)
 
+set(CMAKE_OBJECT_PATH_MAX 1024)
+
 message(STATUS "------------------------------------------------------------" )
 message(STATUS "[CatLearnQt] Configuration summary."                     )
 message(STATUS "------------------------------------------------------------ ")
@@ -32,6 +34,7 @@ set(MODULES
 
 set(EXAMPLES
     QCatGrayQuickExamples
+    QCatGrayWidgetExamples
 )
 
 foreach(3rdparty_module ${3RDPARTY})

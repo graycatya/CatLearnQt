@@ -1,0 +1,10 @@
+QWidget#CatQcustomplotTools {
+    background: transparent;
+}
+
+QWidget#QCustomplptToolWidget {
+    background-color: transparent;
+    min-height: 32px;
+    max-height: 32px;
+}
+

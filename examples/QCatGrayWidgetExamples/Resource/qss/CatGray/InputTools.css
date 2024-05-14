@@ -1,0 +1,327 @@
+QScrollArea {
+    border: none;
+    background-color: transparent;
+}
+
+/* 滚动条 */
+QScrollBar:vertical
+{
+    width:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:vertical
+{
+    width:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:hover
+{
+    width:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-height:20;
+}
+
+QScrollBar::handle:vertical:pressed
+{
+    width:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-height:20;
+}
+
+/* 上下箭头的边框 */
+QScrollBar::add-line:vertical,QScrollBar::sub-line:vertical
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:vertical,QScrollBar::sub-page:vertical
+{
+    width: 0px;
+    background: transparent;
+    border: none;
+}
+
+QScrollBar:horizontal
+{
+    height:8px;
+    background-color: transparent;
+    margin:0px,0px,0px,0px;
+    padding-top:0px;
+    padding-bottom:0px;
+}
+
+QScrollBar::handle:horizontal
+{
+    height:8px;
+    background:rgba(130,130,130,50%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:hover
+{
+    height:8px;
+    background:rgba(130,130,130,75%);
+    border-radius:4px;
+    min-width:20;
+}
+
+QScrollBar::handle:horizontal:pressed
+{
+    height:8px;
+    background:rgba(223,74,22,100%);
+    border-radius:4px;
+    min-width:20;
+}
+
+
+/* 左右箭头的边框 */
+QScrollBar::add-line:horizontal,QScrollBar::sub-line:horizontal
+{
+    background: transparent;
+    border: none;
+}
+
+/* 滚动条背景 */
+QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
+{
+    height: 0px;
+    background: transparent;
+    border: none;
+}
+
+QLineEdit {
+    color: white;
+    font-family: "Ubuntu";
+    font-size: 15px;
+    border: 1px solid #959595;
+    border-radius: 3px;
+    background-color: #757575;
+}
+
+QLineEdit:focus {
+    color: white;
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+QLineEdit:!enabled {
+    color: #818BA7;
+    border: 1px solid #EFF1F6;
+    background-color: #EFF1F6;
+}
+
+
+QComboBox {
+    color: #C1C1C1;
+    font-family: "Ubuntu";
+    border: 1px solid #313131;
+    background-color: #484848;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 150px;
+    min-height: 30px;
+}
+
+
+QComboBox:editable {
+    color: #C1C1C1;
+    background: #484848;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+    border: 1px solid #313131;
+    background: #484848;
+}
+
+/* 当弹出窗口打开时，QComboBox将处于“on”状态 */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    border: 1px solid rgba(223,74,22,100%);
+    background: #484848;
+}
+
+QComboBox:on { /* 当弹出窗口打开时，移动文本 */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    /*width: 15px;*/
+    border-top-right-radius: 3px; /* 半径与QComboBox相同 */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    padding-right: 6px;
+    image: url(:/Images/CatGray/PullDown.png);
+}
+
+QComboBox::down-arrow:on {
+    padding-right: 6px;
+    image: url(:/Images/CatGray/PullUp.png);
+}
+
+/*下拉项样式 背景蓝色*/
+QAbstractItemView {
+    border: 1px solid #313131;
+    background-color: #484848;
+    outline:0px;
+    font-family: "Ubuntu";
+}
+QAbstractItemView::item {
+    color: #C1C1C1;
+    border: transparent;
+    min-height: 25px;
+    background-color: #484848;
+}  
+
+/*下拉项选中样式*/
+QAbstractItemView::item:selected { 
+    color: #C1C1C1;
+    border: transparent;
+    background-color: rgba(223,74,22,100%);
+}   
+
+/*下拉项鼠标悬浮样式*/
+QAbstractItemView::item:hover { 
+    color: #C1C1C1;
+    border: transparent;
+    background:#656565;
+}
+
+
+QSpinBox {
+    color: white;
+    border: 1px solid #959595;
+    background-color: #757575;
+    border-radius: 2px;   /* 圆角 */
+    font-family: "Ubuntu";
+}
+
+QSpinBox:focus {
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+/*spinbox 抬起样式*/
+QSpinBox::up-button
+{
+    image: url(:/Images/CatGray/PullUp.png);			
+}
+QSpinBox::down-button
+{
+    image: url(:/Images/CatGray/PullDown.png);	
+}
+
+
+
+QDoubleSpinBox {
+    color: white;
+    border: 1px solid #959595;
+    background-color: #757575;
+    border-radius: 2px;   /* 圆角 */
+    font-family: "Ubuntu";
+}
+
+QDoubleSpinBox:focus {
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+/*spinbox 抬起样式*/
+QDoubleSpinBox::up-button
+{
+    image: url(:/Images/CatGray/PullUp.png);			
+}
+
+QDoubleSpinBox::down-button
+{
+    image: url(:/Images/CatGray/PullDown.png);
+}
+
+QDateTimeEdit {
+    color: white;
+    border: 1px solid #959595;
+    background-color: #757575;
+    border-radius: 2px;   /* 圆角 */
+    font-family: "Ubuntu";
+}
+
+QDateTimeEdit:focus {
+    border: 1px solid rgba(223,74,22,100%);
+}
+
+/*spinbox 抬起样式*/
+QDateTimeEdit::up-button
+{
+    image: url(:/Images/CatGray/PullUp.png);			
+}
+
+QDateTimeEdit::down-button
+{
+    image: url(:/Images/CatGray/PullDown.png);	
+}
+
+
+QFontComboBox {
+    color: #C1C1C1;
+    font-family: "Ubuntu";
+    border: 1px solid #313131;
+    background-color: #484848;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 150px;
+    min-height: 30px;
+}
+
+
+QFontComboBox:editable {
+    color: #C1C1C1;
+    background: #484848;
+    
+}
+
+QFontComboBox:!editable, QFontComboBox::drop-down:editable {
+    border: 1px solid #313131;
+    background: #484848;
+}
+
+/* 当弹出窗口打开时，QComboBox将处于“on”状态 */
+QFontComboBox:!editable:on, QFontComboBox::drop-down:editable:on {
+    border: 1px solid rgba(223,74,22,100%);
+    background: #484848;
+}
+
+QFontComboBox:on { /* 当弹出窗口打开时，移动文本 */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QFontComboBox::drop-down {
+    min-width: 30px;
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    /*width: 15px;*/
+    border-top-right-radius: 3px; /* 半径与QComboBox相同 */
+    border-bottom-right-radius: 3px;
+}
+
+QFontComboBox::down-arrow {
+    /*padding-right: 6px;*/
+    image: url(:/Images/CatGray/PullDown.png);
+}
+
+QFontComboBox::down-arrow:on {
+    /*padding-right: 6px;*/
+    image: url(:/Images/CatGray/PullUp.png);
+}

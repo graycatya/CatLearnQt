@@ -1,0 +1,11 @@
+QWidget#SideWidget {
+    background-color: #757575;
+}
+
+QPushButton#SideButton[State="Open"] {
+    border-image: url(:/Images/CatGray/SideOpenButton.png);
+}
+
+QPushButton#SideButton[State="Close"] {
+    border-image: url(:/Images/CatGray/SideCloseButton.png);
+}

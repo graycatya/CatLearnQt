@@ -120,17 +120,10 @@ void WinWidget::InitProperty()
     //setAttribute(Qt::WA_DeleteOnClose, true);
     //setAttribute(Qt::WA_QuitOnClose, false);
     ui->BottomWidget->setVisible(false);
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
+
     ui->WinRootWidgetLayout->setContentsMargins(0,0,0,0);
     ui->TopWidget->setVisible(false);
-#else
-    ShadowWeight = 8;
-    ShadowColor = QColor(0, 0, 0, 50);
-    //setTitleItem(ui->TopWidget);
-    //setTitleBar(ui->TopWidget);
-    SetShadowWeight(8);
-    SetShadowColor(QColor(0, 0, 0, 50));
-#endif
+
     // 注册事件过滤 - 提供窗体拖拽
     ui->TopWidget->installEventFilter(this);
     ui->TopWidget->setMouseTracking(true);
@@ -189,23 +182,7 @@ void WinWidget::InitConnect()
         QApplication::exit(0);
     });
 
-#if defined (Q_OS_WIN)
-    connect(this, &RimlessWindowBase::mouseMoveed, this, [=](QPoint pos){
-        if(m_bMousePress && m_bFullScreen && m_bTopWidget)
-        {
-            //qDebug() << m_bMousePress;
-            if(ui->TopWidget->rect().contains(pos))
-            {
-                m_bFullScreen = !m_bFullScreen;
-                float ration = static_cast<float>(pos.x()) / static_cast<float>(this->width());
-                int x = static_cast<int>(static_cast<float>(m_pLastRect.width()) * ration);
-                SetProcessGeometry(pos.x() - x , 0, m_pLastRect.width(), m_pLastRect.height());
-                this->resize(QSize(m_pLastRect.size()));
-                SetZoomButtonState("Min");
-            }
-        }
-    });
-#endif
+
     // [初始化工具栏信号与槽]
 #if (QT_VERSION > QT_VERSION_CHECK(6,0,0))
     connect(m_pListiongOptions->GetButtonGroup(), &QButtonGroup::idClicked, this, &WinWidget::On_ButtonFunc);
@@ -332,10 +309,7 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
 #else*/
     if(event->type() == QEvent::MouseMove)
     {
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-#else
-        SetMoveRect(ui->TopWidget->rect());
-#endif
+
         this->mouseMoveEvent((QMouseEvent*)event);
     } else if(event->type() == QEvent::MouseButtonRelease)
     {
@@ -391,25 +365,8 @@ void WinWidget::mouseDoubleClickEvent(QMouseEvent *event)
 void WinWidget::mouseMoveEvent(QMouseEvent *event)
 {
 
-#ifdef Q_OS_WIN
-    RimlessWindowBase::mouseMoveEvent(event);
-    QPoint pos = event->pos();
-    if(m_bMousePress && m_bFullScreen && m_bTopWidget)
-    {
-        //qDebug() << m_bMousePress;
-        if(ui->TopWidget->rect().contains(pos))
-        {
-            m_bFullScreen = !m_bFullScreen;
-            float ration = static_cast<float>(pos.x()) / static_cast<float>(this->width());
-            int x = static_cast<int>(static_cast<float>(m_pLastRect.width()) * ration);
-            SetProcessGeometry(pos.x() - x , 0, m_pLastRect.width(), m_pLastRect.height());
-            this->resize(QSize(m_pLastRect.size()));
-            SetZoomButtonState("Min");
-        }
-    }
-#else
     Q_UNUSED(event)
-#endif
+
 }
 
 void WinWidget::changeEvent(QEvent *event)

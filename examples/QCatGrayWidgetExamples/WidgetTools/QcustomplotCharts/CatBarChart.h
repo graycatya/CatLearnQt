@@ -6,8 +6,8 @@
 
 class QCPBars;
 class QCPAxisRect;
-class CatCustomChart;
-class ListiongOptions;
+class QCatGrayQcustomplotCustomChart;
+class QCatGrayListingOptions;
 
 namespace Ui {
 class CatBarChart;
@@ -46,9 +46,9 @@ protected:
 
 private:
     Ui::CatBarChart *ui;
-    QVector<CatCustomChart*> m_pCatCustomCharts;
+    QVector<QCatGrayQcustomplotCustomChart*> m_pCatCustomCharts;
     QVector<QCPBars*> m_pBars;
-    ListiongOptions *m_pListiongOptions;
+    QCatGrayListingOptions *m_pListiongOptions;
     QTimer *m_pDataTimer;
 };
 

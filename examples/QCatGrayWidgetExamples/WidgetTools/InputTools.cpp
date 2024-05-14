@@ -1,8 +1,7 @@
 ﻿#include "InputTools.h"
 #include "ui_InputTools.h"
-#include "../CatConfig/CatConfig.h"
+#include "CatConfig.h"
 
-#include <CatLog>
 #include <QFile>
 #include <QSlider>
 
@@ -69,7 +68,7 @@ void InputTools::UpdateStyle()
 
 void InputTools::InitDefauleSlider()
 {
-    m_pCatFlowLayout = new CatFlowLayout(20, 10, 10);
+    m_pCatFlowLayout = new QCatGrayFlowLayout(20, 10, 10);
     ui->InputLayout->addLayout(m_pCatFlowLayout);
     /*
         #include <QLineEdit>

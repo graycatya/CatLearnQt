@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QHash>
 
-class ListiongOptions;
+class QCatGrayListingOptions;
 class QPushButton;
 
 class QuickSliders;
@@ -37,7 +37,7 @@ private slots:
 
 private:
     Ui::CatQuickWidget *ui;
-    ListiongOptions *m_pToolListiongOptions;
+    QCatGrayListingOptions *m_pToolListiongOptions;
     QHash<QString, QPushButton*> m_pToolButtons;
     QuickSliders *m_pQuickSliders;
     QuickQrenCode *m_pQuickQrenCode;

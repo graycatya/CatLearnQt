@@ -206,7 +206,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="CatPagingNavigation" name="PagingNavigationWidget" native="true"/>
+      <widget class="QCatGrayPagingNavigation" name="PagingNavigationWidget" native="true"/>
      </item>
      <item>
       <spacer name="horizontalSpacer">
@@ -240,9 +240,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CatPagingNavigation</class>
+   <class>QCatGrayPagingNavigation</class>
    <extends>QWidget</extends>
-   <header>CatControl/CatPagingNavigation.h</header>
+   <header>QCatGrayPagingNavigation.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

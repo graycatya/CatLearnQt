@@ -1,13 +1,12 @@
 ﻿#include "CatBarChart.h"
 #include "ui_CatBarChart.h"
 
-#include "../../CatConfig/CatConfig.h"
+#include "CatConfig.h"
 
-#include <CatLog>
 
-#include "CatControl/ListingOptions.h"
-#include "CatWidget/CatQcustomplot/CatQcustomplotCharts/CatCustomChart.h"
-#include "CatWidget/CatQcustomplot/CatBars.h"
+#include "QCatGrayListingOptions.h"
+#include "QCatGrayQcustomplotCustomChart.h"
+#include "QCatGrayQcustomplotBars.h"
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
 #include <QRandomGenerator>
@@ -43,11 +42,11 @@ void CatBarChart::InitUi()
     ui->RootLayout->setStretchFactor(ui->FunctionWidget, 1);
     ui->RootLayout->setStretchFactor(ui->ChartWidgets, 9);
 
-    m_pListiongOptions = new ListiongOptions(ListiongOptions::VBox, ui->ChartWidgets);
+    m_pListiongOptions = new QCatGrayListingOptions(QCatGrayListingOptions::VBox, ui->ChartWidgets);
     m_pListiongOptions->RemoveBackGaugeItem();
     ui->ChartWidgetsLayout->addWidget(m_pListiongOptions);
 
-    ui->WidthTypeBox->addItems(CatQcustomplot::BarsWidthType());
+    ui->WidthTypeBox->addItems(QCatGrayQcustomplot::BarsWidthType());
     QListView *view_0 = new QListView();
     view_0->setObjectName("StyleComboBoxView");
     ui->WidthTypeBox->setView(view_0);
@@ -116,7 +115,7 @@ void CatBarChart::InitCharts()
 {
     for(int i = 0; i < 4; i++)
     {
-        CatCustomChart *customPlot = new CatCustomChart(ui->ChartWidgets);
+        QCatGrayQcustomplotCustomChart *customPlot = new QCatGrayQcustomplotCustomChart(ui->ChartWidgets);
         customPlot->legend->setVisible(true);
         customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
         customPlot->SetGraphSelectionDecoratorWidth(3);
@@ -146,7 +145,7 @@ void CatBarChart::InitChartConnect()
 {
     for(auto temp : m_pCatCustomCharts)
     {
-        CatCustomChart *customPlot = temp;
+        QCatGrayQcustomplotCustomChart *customPlot = temp;
         connect(customPlot->xAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->xAxis2, SLOT(setRange(QCPRange)));
         connect(customPlot->yAxis, SIGNAL(rangeChanged(QCPRange)), customPlot->yAxis2, SLOT(setRange(QCPRange)));
         connect(ui->WidthTypeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(On_UpdateWidthType(int)));
@@ -172,10 +171,10 @@ void CatBarChart::InitChartConnect()
             }
         });
 
-        connect(customPlot, &CatCustomChart::mouseMove, this, [=](QMouseEvent* event){
-            CatCustomChart *customPot = qobject_cast<CatCustomChart*>(sender());
+        connect(customPlot, &QCatGrayQcustomplotCustomChart::mouseMove, this, [=](QMouseEvent* event){
+            QCatGrayQcustomplotCustomChart *customPot = qobject_cast<QCatGrayQcustomplotCustomChart*>(sender());
             //获取鼠标坐标
-            QVector<CatBarsRectData> rectdatas = dynamic_cast<CatBars*>(customPot->GetBars().at(0))->CurrentShowRectDatass();
+            QVector<CatBarsRectData> rectdatas = dynamic_cast<QCatGrayQcustomplotBars*>(customPot->GetBars().at(0))->CurrentShowRectDatass();
             QToolTip::hideText();
             for(auto temp : rectdatas)
             {

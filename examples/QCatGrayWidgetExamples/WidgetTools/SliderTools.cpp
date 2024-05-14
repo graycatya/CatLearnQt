@@ -1,9 +1,8 @@
 ﻿#include "SliderTools.h"
 #include "ui_SliderTools.h"
-#include "../CatConfig/CatConfig.h"
+#include "CatConfig.h"
 
 
-#include <CatLog>
 #include <QFile>
 #include <QSlider>
 
@@ -30,7 +29,7 @@ void SliderTools::InitUi()
 
 void SliderTools::InitProperty()
 {
-    //ui->CatVbSlider->setSlideOrientationState(CatDoubleSlider::OrientationState::SliderVertical);
+    //ui->CatVbSlider->setSlideOrientationState(QCatGrayDoubleSlider::OrientationState::SliderVertical);
     UpdateStyle();
 }
 
@@ -40,11 +39,11 @@ void SliderTools::InitConnect()
         UpdateStyle();
     });
 /*
-    connect(ui->CatSlider, &CatDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
+    connect(ui->CatSlider, &QCatGrayDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
         qDebug() << first << " : " << second;
     });
 
-    connect(ui->CatVbSlider, &CatDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
+    connect(ui->CatVbSlider, &QCatGrayDoubleSlider::UpdateFirstSeconded, this, [=](qreal first, qreal second){
         qDebug() << first << " : " << second;
     });
 */

@@ -7,10 +7,10 @@
 #include <QJsonDocument>
 #include <QMouseEvent>
 
-#include "CatConfig/CatConfig.h"
+#include "CatConfig.h"
 
 CatTableViewTool::CatTableViewTool(QWidget *parent)
-    : CatTableViewBasics(parent)
+    : QCatGrayTableViewBasics(parent)
 {
     this->setObjectName("CatTableViewTool");
     InitUi();
@@ -225,12 +225,12 @@ bool CatTableViewTool::eventFilter(QObject *object, QEvent *event)
         viewport()->update();
     }
 
-    return CatTableViewBasics::eventFilter(object, event);
+    return QCatGrayTableViewBasics::eventFilter(object, event);
 }
 
 void CatTableViewTool::resizeEvent(QResizeEvent *event)
 {
     Q_UNUSED(event)
 
-    CatTableViewBasics::resizeEvent(event);
+    QCatGrayTableViewBasics::resizeEvent(event);
 }

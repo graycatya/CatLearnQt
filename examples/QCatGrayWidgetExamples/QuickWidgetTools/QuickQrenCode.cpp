@@ -1,8 +1,7 @@
 ﻿#include "QuickQrenCode.h"
 #include "ui_QuickQrenCode.h"
-#include "CatWidget/QrenCode/QuickQrenCodeParentItem.h"
+#include "QCatGrayQuickQrenCodeQml.h"
 
-#include <CatLog>
 
 QuickQrenCode::QuickQrenCode(QWidget *parent) :
     QWidget(parent),
@@ -20,7 +19,7 @@ QuickQrenCode::~QuickQrenCode()
 
 void QuickQrenCode::InitProperty()
 {
-    qmlRegisterType<QuickQrenCodeParentItem>("QParentQrenCode", 1, 0, "ParentQrenCode");
+    qmlRegisterType<QCatGrayQuickQrenCodeQml>("QParentQrenCode", 1, 0, "ParentQrenCode");
     QUrl source("qrc:/qml/CatQrenCode.qml");
     //this->setWindowFlag(Qt::FramelessWindowHint);
     //setAttribute(Qt::WA_TranslucentBackground, true);

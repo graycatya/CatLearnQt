@@ -2,7 +2,7 @@
 #define INPUTTOOLS_H
 
 #include <QWidget>
-#include "CatControl/CatFlowLayout.h"
+#include "QCatGrayFlowLayout.h"
 
 namespace Ui {
 class InputTools;
@@ -27,7 +27,7 @@ private:
 
 private:
     Ui::InputTools *ui;
-    CatFlowLayout *m_pCatFlowLayout = nullptr;
+    QCatGrayFlowLayout *m_pCatFlowLayout = nullptr;
 };
 
 #endif // INPUTTOOLS_H

@@ -10,7 +10,7 @@
 #include <QPen>
 #include <QJsonObject>
 #include <QJsonDocument>
-#include "CatConfig/CatConfig.h"
+#include "CatConfig.h"
 #include <QDebug>
 
 CatTableItemDelegate::CatTableItemDelegate(QObject *parent)

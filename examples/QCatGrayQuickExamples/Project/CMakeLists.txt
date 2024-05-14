@@ -57,7 +57,7 @@ set(TS_FILES
     "${TS_DIR}/language_zh_CN.ts"
 )
 
-# build_linguisttools(${TS_FILES})
+build_linguisttools(${TS_FILES})
 
 if(WIN32)
     list(APPEND CURPATH_DIR_LIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/Resource/app_win32.rc)

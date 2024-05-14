@@ -4,9 +4,9 @@
 #include <QWidget>
 #include <QHash>
 
-class CatGraphicsScene;
-class CatGraphicsView;
-class ListiongOptions;
+class QCatGrayGraphicsDrawingBoardScene;
+class QCatGrayGraphicsDrawingBoardView;
+class QCatGrayListingOptions;
 class QPushButton;
 
 namespace Ui {
@@ -22,7 +22,7 @@ public:
     ~CatDrawingBoard();
 
 public:
-    CatGraphicsView* CreateBoard( void );
+    QCatGrayGraphicsDrawingBoardView* CreateBoard( void );
 
 private:
     void InitUi();
@@ -52,11 +52,11 @@ protected:
 
 private:
     Ui::CatDrawingBoard *ui;
-    ListiongOptions *m_pTeachingOptions;
-    ListiongOptions *m_pBoardOptions;
+    QCatGrayListingOptions *m_pTeachingOptions;
+    QCatGrayListingOptions *m_pBoardOptions;
     QHash<QString, QPushButton*> m_pTeachingButtons;
     QHash<QString, QPushButton*> m_pBoardButtons;
-    QVector<CatGraphicsScene*> m_pBoardScenes;
+    QVector<QCatGrayGraphicsDrawingBoardScene*> m_pBoardScenes;
 };
 
 #endif // CATDRAWINGBOARD_H

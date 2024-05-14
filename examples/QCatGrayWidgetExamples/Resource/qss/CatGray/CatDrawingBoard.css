@@ -3,7 +3,7 @@ QWidget#GraphicsTopToolWidget {
     max-height: 32px;
 }
 
-CatGraphicsView {
+QCatGrayGraphicsDrawingBoardView {
     background-color: #244242;
     border: none;
 }

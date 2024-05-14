@@ -25,6 +25,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                                 Qt${QT_VERSION_MAJOR}::Gui
                                                 Qt${QT_VERSION_MAJOR}::Widgets
                                                 Qt${QT_VERSION_MAJOR}::Quick
-                                                Qt${QT_VERSION_MAJOR}::QuickWidgets)
+                                                Qt${QT_VERSION_MAJOR}::QuickWidgets
+                                                QCatGrayQrenCode_a
+                                                QCatGrayQuickQrenCodeQml_a
+                                                QCatGrayUniversal_a)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

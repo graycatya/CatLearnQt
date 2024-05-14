@@ -1,11 +1,11 @@
 ﻿#ifndef CATTABLEVIEWTOOL_H
 #define CATTABLEVIEWTOOL_H
 
-#include "CatControl/CatTableViewBasics.h"
+#include "QCatGrayTableViewBasics.h"
 #include "CatTableItemDelegate.h"
 #include "CatTableModel.h"
 
-class CatTableViewTool : public CatTableViewBasics
+class CatTableViewTool : public QCatGrayTableViewBasics
 {
     Q_OBJECT
 public:

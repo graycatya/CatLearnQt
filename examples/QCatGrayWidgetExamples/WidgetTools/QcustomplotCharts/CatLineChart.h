@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QDateTime>
+#include <QTimer>
 
 class QCPGraph;
 class QComboBox;

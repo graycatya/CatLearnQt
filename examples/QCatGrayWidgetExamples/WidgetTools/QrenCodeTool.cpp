@@ -1,9 +1,7 @@
 ﻿#include "QrenCodeTool.h"
 #include "ui_QrenCodeTool.h"
-#include "CatWidget/QrenCode/QtQrenCode.h"
-#include "../CatConfig/CatConfig.h"
-
-#include <CatLog>
+#include "QCatGrayQrenCode.h"
+#include "CatConfig.h"
 
 QrenCodeTool::QrenCodeTool(QWidget *parent) :
     QWidget(parent),

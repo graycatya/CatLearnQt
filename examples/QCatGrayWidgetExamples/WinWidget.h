@@ -1,13 +1,11 @@
 ﻿#ifndef WINWIDGET_H
 #define WINWIDGET_H
 
-#include "RimlessWindowBase.h"
-#include "CatWidgetFrameless/CatFramelessWidget.h"
-#include "CatWidgetFrameless/CatFrameLessMainView.h"
 #include <QHash>
+#include <QWidget>
 
 class QPushButton;
-class ListiongOptions;
+class QCatGrayListingOptions;
 class CatDrawingBoard;
 class CatAbout;
 class CatSettings;
@@ -18,12 +16,8 @@ namespace Ui {
 class WinWidget;
 }
 
-class WinWidget : public
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
-    QWidget
-#else
-    RimlessWindowBase
-#endif
+class WinWidget : public QWidget
+
 {
     Q_OBJECT
 
@@ -70,7 +64,7 @@ private slots:
 
 private:
     Ui::WinWidget *ui;
-    ListiongOptions *m_pListiongOptions;
+    QCatGrayListingOptions *m_pListiongOptions;
     QHash<QString, QPushButton*> m_pButtons;
 
     CatDrawingBoard *m_pCatDrawingBoard;

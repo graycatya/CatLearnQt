@@ -1,10 +1,9 @@
 ﻿#include "CatDrawingBoard.h"
 #include "ui_CatDrawingBoard.h"
-#include "CatGraphicsView/CatGraphicsView.h"
-#include "CatGraphicsView/CatGraphicsScene.h"
-#include "CatGraphicsView/TeachingTools/TeachingToolRuler.h"
-#include "CatControl/ListingOptions.h"
-#include "CatWidget/ImageTools/RimlessWindowBase.h"
+#include "QCatGrayGraphicsDrawingBoardView.h"
+#include "QCatGrayGraphicsDrawingBoardScene.h"
+#include "QCatGrayTeachingToolRuler.h"
+#include "QCatGrayListingOptions.h"
 #include "CatConfig/CatConfig.h"
 #include <QLabel>
 #include <QVBoxLayout>
@@ -27,20 +26,20 @@ CatDrawingBoard::~CatDrawingBoard()
     delete ui;
 }
 
-CatGraphicsView *CatDrawingBoard::CreateBoard()
+QCatGrayGraphicsDrawingBoardView *CatDrawingBoard::CreateBoard()
 {
     QWidget *widget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(widget);
     layout->setContentsMargins(0,0,0,0);
     layout->setSpacing(0);
 
-    CatGraphicsScene *scene = new CatGraphicsScene(this);
+    QCatGrayGraphicsDrawingBoardScene *scene = new QCatGrayGraphicsDrawingBoardScene(this);
     scene->installEventFilter(this);
 
     //scene->setBackgroundBrush(QBrush(QColor("#244242")));
     scene->setSceneRect(-2000, -2000, 4000, 4000);
 
-    CatGraphicsView *view = new CatGraphicsView(this);
+    QCatGrayGraphicsDrawingBoardView *view = new QCatGrayGraphicsDrawingBoardView(this);
     view->installEventFilter(this);
     view->setMouseTracking(true);
     view->setScene(scene);
@@ -64,7 +63,7 @@ void CatDrawingBoard::InitUi()
     QVBoxLayout *layout_0 = new QVBoxLayout(ui->GraphicsToolWidget);
     layout_0->setContentsMargins(0,0,0,0);
     layout_0->setSpacing(0);
-    m_pTeachingOptions = new ListiongOptions(ListiongOptions::VBox, ui->GraphicsToolWidget);
+    m_pTeachingOptions = new QCatGrayListingOptions(QCatGrayListingOptions::VBox, ui->GraphicsToolWidget);
     layout_0->addWidget(m_pTeachingOptions);
 
     QVBoxLayout *layout_1 = new QVBoxLayout(ui->GraphicsTopToolWidget);
@@ -72,7 +71,7 @@ void CatDrawingBoard::InitUi()
     ui->GraphicsTopToolWidget->setMaximumHeight(30);
     layout_1->setContentsMargins(0,0,0,0);
     layout_1->setSpacing(0);
-    m_pBoardOptions = new ListiongOptions(ListiongOptions::HBox, ui->GraphicsTopToolWidget);
+    m_pBoardOptions = new QCatGrayListingOptions(QCatGrayListingOptions::HBox, ui->GraphicsTopToolWidget);
     layout_1->addWidget(m_pBoardOptions);
 
 
@@ -89,7 +88,7 @@ void CatDrawingBoard::InitProperty()
 
     UpdateStyle();
 
-    //qDebug() << m_pTeachingButtons["TeachingToolRuler"]->height();
+    //qDebug() << m_pTeachingButtons["QCatGrayTeachingToolRuler"]->height();
     QSpacerItem* item = new QSpacerItem(60, 10, QSizePolicy::Minimum, QSizePolicy::Expanding);
     m_pTeachingOptions->AddItem(item);
 }
@@ -97,7 +96,7 @@ void CatDrawingBoard::InitProperty()
 void CatDrawingBoard::InitConnect()
 {
     // 教具工具栏
-    connect(m_pTeachingButtons["TeachingToolRuler"], &QPushButton::clicked, this, [=](){
+    connect(m_pTeachingButtons["QCatGrayTeachingToolRuler"], &QPushButton::clicked, this, [=](){
         m_pBoardScenes[ui->GraphicsStacked->currentIndex()]->AddTeachingToolRuler();
     });
     connect(m_pTeachingButtons["TeachingToolTrangle"], &QPushButton::clicked, this, [=](){
@@ -142,7 +141,7 @@ void CatDrawingBoard::InitConnect()
 
 void CatDrawingBoard::InitTeachingTool()
 {
-    QStringList list = {"TeachingToolRuler", "TeachingToolTrangle",
+    QStringList list = {"QCatGrayTeachingToolRuler", "TeachingToolTrangle",
                         "TeachingToolProtractor", "TeachingToolCompass"};
     for(int i = 0; i < list.size(); i++)
     {

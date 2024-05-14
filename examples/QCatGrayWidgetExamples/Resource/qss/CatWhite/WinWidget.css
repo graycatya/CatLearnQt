@@ -36,7 +36,7 @@ QWidget#BottomWidget {
     background-color: #007ACC;
 }
 
-ListiongOptions {
+QCatGrayListingOptions {
     border-radius: 0px;
     background-color: transparent;
 }

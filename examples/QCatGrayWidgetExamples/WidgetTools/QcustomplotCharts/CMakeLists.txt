@@ -22,6 +22,9 @@ file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
 add_library(${PROJECT_NAME} STATIC ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
-                                                CatQcustomplot)
+                                                CatConfig
+                                                QCatGrayQcustomplot_a
+                                                QCatGrayUniversal_a
+                                                QCatGrayWidgetControls_a)
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,10 +1,11 @@
 ﻿#include "SideColumnTool.h"
 #include "ui_SideColumnTool.h"
-#include "../CatConfig/CatConfig.h"
+#include "CatConfig.h"
 
-#include <CatLog>
+
 #include <QFile>
 #include <QSlider>
+#include <QDebug>
 
 SideColumnTool::SideColumnTool(QWidget *parent) :
     QWidget(parent),

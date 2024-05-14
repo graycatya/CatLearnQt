@@ -7,7 +7,6 @@
 #include <QFile>
 #include <QPushButton>
 #include <QButtonGroup>
-#include <CatLog>
 #if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
 #include <QDesktopWidget>
 #else
@@ -27,17 +26,12 @@
 #include "CatSettings.h"
 #include "CatWidget.h"
 #include "CatConfig/CatConfig.h"
-#include "CatControl/ListingOptions.h"
+#include "QCatGrayListingOptions.h"
 #include "CatQuickWidget.h"
 
 
 WinWidget::WinWidget(QWidget *parent) :
-#if defined(Q_OS_LINUX) || defined(Q_OS_MAC)
     QWidget(parent),
-#else
-    RimlessWindowBase(parent),
-    //RimlessWindowBase(parent, true),
-#endif
     ui(new Ui::WinWidget) ,
     m_bFullScreen(false) ,
     m_bTopWidget(false)
@@ -62,8 +56,8 @@ void WinWidget::InitUi()
     QVBoxLayout *ToolListWidgetLayout = new QVBoxLayout(ui->ToolListWidget);
     ToolListWidgetLayout->setContentsMargins(0,0,0,0);
     ToolListWidgetLayout->setSpacing(0);
-    m_pListiongOptions = new ListiongOptions(ListiongOptions::VBox, ui->ToolListWidget);
-    m_pListiongOptions->setObjectName("ListiongOptions");
+    m_pListiongOptions = new QCatGrayListingOptions(QCatGrayListingOptions::VBox, ui->ToolListWidget);
+    m_pListiongOptions->setObjectName("QCatGrayListingOptions");
     ToolListWidgetLayout->addWidget(m_pListiongOptions);
 
     InitButtonList();
@@ -353,7 +347,7 @@ bool WinWidget::eventFilter(QObject *watched, QEvent *event)
                          "About", "WinCatDrawingBoard",
                             "WinCatAbout", "WinCatSettings",
                          "WinCatWidget", "ToolListWidget",
-                            "ListiongOptions", "QuickWidgetFunc",
+                            "QCatGrayListingOptions", "QuickWidgetFunc",
                          "WinCatQuickWidget"};
     if(watched->objectName() == "WinCatWidget")
     {

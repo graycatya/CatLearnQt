@@ -6,8 +6,8 @@
 #include <QTimer>
 #include <QApplication>
 #include <QTranslator>
-#include <CatLog>
 #include <QColor>
+#include <QDebug>
 
 
 CatConfig* CatConfig::_instance = nullptr;
@@ -31,12 +31,12 @@ void CatConfig::InitLang(QLocale::Language lang)
     switch (lang) {
         case QLocale::Chinese: {
             arg = m_pTranslator->load(QString(":/lang/language_zh_CN.qm"));
-            CatSettingBase::SetValue(m_sConfigPath, "Language", "chinese(china)", "Defaule");
+            QCatGraySettingBase::SetValue(m_sConfigPath, "Language", "chinese(china)", "Defaule");
             break;
         }
         default: {
             arg = m_pTranslator->load(QString(":/lang/language_en.qm"));
-            CatSettingBase::SetValue(m_sConfigPath, "Language", "english", "Defaule");
+            QCatGraySettingBase::SetValue(m_sConfigPath, "Language", "english", "Defaule");
             break;
         }
     }
@@ -45,67 +45,66 @@ void CatConfig::InitLang(QLocale::Language lang)
 
     if(!arg)
     {
-        QString log = QString("language init error!");
-        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+        qDebug() << QString("language init error!");
     }
 }
 
 void CatConfig::SetValue(QString key, QVariant var, QString node)
 {
-    CatSettingBase::SetValue(m_sConfigPath, key, var, node);
+    QCatGraySettingBase::SetValue(m_sConfigPath, key, var, node);
 }
 
 void CatConfig::RemoveNodeValue(QString node, QString key)
 {
-    CatSettingBase::RemoveNodeValue(m_sConfigPath, node, key);
+    QCatGraySettingBase::RemoveNodeValue(m_sConfigPath, node, key);
 }
 
 void CatConfig::RemoveNode(QString node)
 {
-    CatSettingBase::RemoveNode(m_sConfigPath, node);
+    QCatGraySettingBase::RemoveNode(m_sConfigPath, node);
 }
 
 void CatConfig::SetGroup(QString node, QStringList keys, QVariantList vars)
 {
-    CatSettingBase::SetGroup(m_sConfigPath, node, keys, vars);
+    QCatGraySettingBase::SetGroup(m_sConfigPath, node, keys, vars);
 }
 
 void CatConfig::SetArray(QString node, QStringList keys, QVariantList vars)
 {
-    CatSettingBase::SetArray(m_sConfigPath, node, keys, vars);
+    QCatGraySettingBase::SetArray(m_sConfigPath, node, keys, vars);
 }
 
 QStringList CatConfig::GetKeys(QString node)
 {
-    return CatSettingBase::GetKeys(m_sConfigPath, node);
+    return QCatGraySettingBase::GetKeys(m_sConfigPath, node);
 }
 
 QVariant CatConfig::GetValue(QString key, QString node)
 {
-    return CatSettingBase::GetValue(m_sConfigPath, key, node);
+    return QCatGraySettingBase::GetValue(m_sConfigPath, key, node);
 }
 
 QMultiMap<QString, QVariant> CatConfig::GetArray(QString node, QStringList keys)
 {
-    return CatSettingBase::GetArray(m_sConfigPath, node, keys);
+    return QCatGraySettingBase::GetArray(m_sConfigPath, node, keys);
 }
 
 void CatConfig::SetWindowStyle(QVariant var)
 {
-    CatSettingBase::SetValue(m_sConfigPath, "style", var, "Defaule");
+    QCatGraySettingBase::SetValue(m_sConfigPath, "style", var, "Defaule");
     emit UpdateStyleSheets();
 }
 
 void CatConfig::SetTranslator(QVariant var)
 {
-    CatSettingBase::SetValue(m_sConfigPath, "Language", var, "Defaule");
+    QCatGraySettingBase::SetValue(m_sConfigPath, "Language", var, "Defaule");
     m_pApp->removeTranslator(m_pTranslator);
     UpdateTranslator(var.toString());
 }
 
 bool CatConfig::ConfigExist()
 {
-    return CatSettingBase::ConfigExist(m_sConfigPath);
+    return QCatGraySettingBase::ConfigExist(m_sConfigPath);
 }
 
 CatConfig::CatConfig()
@@ -132,8 +131,7 @@ void CatConfig::UpdateTranslator(QString translator)
 
     if(!arg)
     {
-        QString log = QString("language init error!");
-        CATLOG::CatLog::__Write_Log(ERROR_LOG_T(log.toStdString()));
+        qDebug() << QString("language init error!");
     }
 }
 
@@ -155,16 +153,16 @@ void CatConfig::InitConfig()
 
         QStringList style = {"style", "style"};
         QVariantList styleNames = { "CatGray", "CatWhite" };
-        CatSettingBase::SetArray(m_sConfigPath, "StyleSheets", style, styleNames);
+        QCatGraySettingBase::SetArray(m_sConfigPath, "StyleSheets", style, styleNames);
 
         QStringList defaultKeys = { "style" };
         QVariantList defaultVars = { "CatGray" };
-        CatSettingBase::SetGroup(m_sConfigPath, "Defaule", defaultKeys, defaultVars);
+        QCatGraySettingBase::SetGroup(m_sConfigPath, "Defaule", defaultKeys, defaultVars);
         if(m_pApp != nullptr)
         {
             QStringList langtKeys = { "lang", "lang" };
             QVariantList langVars = { "english", "chinese(china)" };
-            CatSettingBase::SetArray(m_sConfigPath, "Langs", langtKeys, langVars);
+            QCatGraySettingBase::SetArray(m_sConfigPath, "Langs", langtKeys, langVars);
 
             QLocale locale;
             InitLang(locale.language());

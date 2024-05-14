@@ -117,7 +117,7 @@ QScrollBar::add-page:horizontal,QScrollBar::sub-page:horizontal
     border: none;
 }
 
-CatCustomChart {
+QCatGrayQcustomplotCustomChart {
     font-family: "Ubuntu";
     qproperty-Background: #686868;
     qproperty-LegendBorderColor: transparent;

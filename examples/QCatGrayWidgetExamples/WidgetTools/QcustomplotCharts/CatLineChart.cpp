@@ -1,9 +1,8 @@
 ﻿#include "CatLineChart.h"
 #include "ui_CatLineChart.h"
 
-#include "../../CatConfig/CatConfig.h"
-#include <CatUniversal/CatFile.h>
-#include <CatLog>
+#include "CatConfig.h"
+#include <QCatGrayFile.h>
 #include <QFileDialog>
 
 #if (QT_VERSION >= QT_VERSION_CHECK(5,10,0))
@@ -137,7 +136,7 @@ void CatLineChart::UpdateStyle()
 
 void CatLineChart::InitCharts()
 {
-    CatCustomChart *customPlot = ui->ChartWidget;
+    QCatGrayQcustomplotCustomChart *customPlot = ui->ChartWidget;
     customPlot->legend->setVisible(true);
     customPlot->legend->setSelectedIconBorderPen(QPen(Qt::gray));
     customPlot->SetGraphSelectionDecoratorWidth(3);
@@ -180,7 +179,7 @@ void CatLineChart::InitCharts()
 
 void CatLineChart::InitChartConnect()
 {
-    CatCustomChart *customPlot = ui->ChartWidget;
+    QCatGrayQcustomplotCustomChart *customPlot = ui->ChartWidget;
     connect(ui->ScatterShapeBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphScatterStyle(int)));
     connect(ui->LineStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateGraphLineStyle(int)));
     connect(ui->TracerStyleBox, SIGNAL(currentIndexChanged(int)), this, SLOT(UpdateTracerStyle(int)));
@@ -442,7 +441,7 @@ void CatLineChart::on_SaveButton_clicked()
     double lastylower = customPlot->yAxis->range().lower;
     double lastyupper = customPlot->yAxis->range().upper;
     QString filename = QDateTime::currentDateTime().toString("yyMMddhhmmss") + ".png";
-    CatFile::Existe(CatConfig::GetValue("SaveFilePath").toString(), true);
+    QCatGrayFile::Existe(CatConfig::GetValue("SaveFilePath").toString(), true);
     QString definepath = CatConfig::GetValue("SaveFilePath").toString() + "/" + filename;
 
     QString file = QFileDialog::getSaveFileName(this, tr("Save file"), definepath, "png(*.png)");

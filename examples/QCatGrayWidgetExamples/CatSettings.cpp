@@ -7,7 +7,7 @@
 #include <QDebug>
 #include <QTimer>
 #include <QFileDialog>
-#include "CatControl/CatToolTip.h"
+#include "QCatGrayToolTip.h"
 
 CatSettings::CatSettings(QWidget *parent) :
     QWidget(parent),
@@ -146,10 +146,10 @@ bool CatSettings::eventFilter(QObject *object, QEvent *event)
     {
         if(event->type() == QEvent::Type::Enter)
         {
-            CatToolTip::Instance()->ShowToolTip(CatConfig::GetValue("SaveFilePath").toString());
+            QCatGrayToolTip::Instance()->ShowToolTip(CatConfig::GetValue("SaveFilePath").toString());
         } else if(event->type() == QEvent::Type::Leave)
         {
-            CatToolTip::Instance()->HideToolTip();
+            QCatGrayToolTip::Instance()->HideToolTip();
         }
     }
     return QWidget::eventFilter(object, event);

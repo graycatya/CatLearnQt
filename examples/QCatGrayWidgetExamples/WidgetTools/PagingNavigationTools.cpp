@@ -3,8 +3,8 @@
 
 #include "../CatConfig/CatConfig.h"
 
-#include "CatControl/CatPagingNavigation.h"
-#include "CatControl/CatIntValidator.h"
+#include "QCatGrayPagingNavigation.h"
+#include "QCatGrayIntValidator.h"
 
 #include <QDebug>
 #include <QFile>
@@ -26,8 +26,8 @@ PagingNavigationTools::~PagingNavigationTools()
 
 void PagingNavigationTools::InitUi()
 {
-    CatIntValidator *intval = new CatIntValidator(this);
-    currentpageval = new CatIntValidator(this);
+    QCatGrayIntValidator *intval = new QCatGrayIntValidator(this);
+    currentpageval = new QCatGrayIntValidator(this);
     intval->setRange(1,99999999);
     ui->DataSumEdit->setValidator(intval);
     ui->ItemsPerPagesEdit->setValidator(intval);
@@ -53,11 +53,11 @@ void PagingNavigationTools::InitConnect()
         UpdateStyle();
     });
 
-    connect(ui->PagingNavigationWidget, &CatPagingNavigation::CurrentPageed, this, [=](qulonglong currentpage){
+    connect(ui->PagingNavigationWidget, &QCatGrayPagingNavigation::CurrentPageed, this, [=](qulonglong currentpage){
         ui->CurrentPageEdit->setText(QString::number(currentpage));
     });
 
-    connect(ui->PagingNavigationWidget, &CatPagingNavigation::TotalPageeed, this, [=](qulonglong totalpage){
+    connect(ui->PagingNavigationWidget, &QCatGrayPagingNavigation::TotalPageeed, this, [=](qulonglong totalpage){
         ui->TotalPagesEdit->setText(QString::number(totalpage));
         currentpageval->setRange(1, ui->PagingNavigationWidget->GetTotalPages());
     });

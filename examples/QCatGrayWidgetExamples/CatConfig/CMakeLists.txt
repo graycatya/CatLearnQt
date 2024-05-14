@@ -20,8 +20,9 @@ file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
 
 add_library(${PROJECT_NAME} STATIC ${SRC_LIST})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
+                                                Qt${QT_VERSION_MAJOR}::Gui
+                                                Qt${QT_VERSION_MAJOR}::Widgets
+                                                QCatGrayUniversal_a)
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

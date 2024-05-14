@@ -5,7 +5,7 @@
 #include <QHash>
 
 class QPushButton;
-class ListiongOptions;
+class QCatGrayListingOptions;
 
 namespace Ui {
 class CatQcustomplotTools;
@@ -34,7 +34,7 @@ private slots:
 
 private:
     Ui::CatQcustomplotTools *ui;
-    ListiongOptions *m_pToolListiongOptions;
+    QCatGrayListingOptions *m_pToolListiongOptions;
     QHash<QString, QPushButton*> m_pToolButtons;
 };
 

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QHash>
 
-class ListiongOptions;
+class QCatGrayListingOptions;
 class QPushButton;
 
 namespace Ui {
@@ -37,7 +37,7 @@ protected:
 
 private:
     Ui::CatWidget *ui;
-    ListiongOptions *m_pToolListiongOptions;
+    QCatGrayListingOptions *m_pToolListiongOptions;
     QHash<QString, QPushButton*> m_pToolButtons;
 
 };

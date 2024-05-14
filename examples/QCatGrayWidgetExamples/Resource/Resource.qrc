@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/">
-        <file>qss/CatGray/ListingOptions.css</file>
+        <file>qss/CatGray/QCatGrayListingOptions.css</file>
         <file>qss/CatGray/WinWidget.css</file>
         <file>Images/CatGray/Close.png</file>
         <file>Images/CatGray/MaximizeMin.png</file>
@@ -52,7 +52,7 @@
         <file>qss/CatWhite/CatAbout.css</file>
         <file>qss/CatWhite/CatDrawingBoard.css</file>
         <file>qss/CatWhite/ListingOptionBoard.css</file>
-        <file>qss/CatWhite/ListingOptions.css</file>
+        <file>qss/CatWhite/QCatGrayListingOptions.css</file>
         <file>qss/CatWhite/ListingOptionsWin.css</file>
         <file>qss/CatWhite/ListingOptionTeaching.css</file>
         <file>qss/CatWhite/WinWidget.css</file>

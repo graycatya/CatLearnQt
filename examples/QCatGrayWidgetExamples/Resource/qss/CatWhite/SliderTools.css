@@ -304,9 +304,9 @@ QSlider#Slider3::handle:vertical:hover {
     border-radius: 7px;
 }
 
-CatDoubleSlider#CatSlider {
-    qproperty-SlideOrientationState: "CatDoubleSlider::SliderHorizontal";
-    qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+QCatGrayDoubleSlider#CatSlider {
+    qproperty-SlideOrientationState: "QCatGrayDoubleSlider::SliderHorizontal";
+    qproperty-SliderStyle: "QCatGrayDoubleSlider::SliderRect";
     qproperty-SlideLeftColor: #ebebeb;  
     qproperty-SlideRightColor: #ebebeb;  
     qproperty-BackgroundSlideRectColor :#773f72; 
@@ -318,9 +318,9 @@ CatDoubleSlider#CatSlider {
     qproperty-BackgroundRectColor: #dedede;
 }
 
-CatDoubleSlider#CatVbSlider {
-    qproperty-SlideOrientationState: "CatDoubleSlider::SliderVertical";
-    qproperty-SliderStyle: "CatDoubleSlider::SliderRect";
+QCatGrayDoubleSlider#CatVbSlider {
+    qproperty-SlideOrientationState: "QCatGrayDoubleSlider::SliderVertical";
+    qproperty-SliderStyle: "QCatGrayDoubleSlider::SliderRect";
     qproperty-SlideLeftColor: #ebebeb;  
     qproperty-SlideRightColor: #ebebeb;  
     qproperty-BackgroundSlideRectColor :#773f72; 

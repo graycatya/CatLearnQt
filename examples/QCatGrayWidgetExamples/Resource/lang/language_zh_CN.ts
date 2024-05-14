@@ -115,18 +115,18 @@
 <context>
     <name>CatConfig</name>
     <message>
-        <location filename="../../CatConfig/CatConfig.cpp" line="183"/>
+        <location filename="../../CatConfig/CatConfig.cpp" line="181"/>
         <source>ID</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../CatConfig/CatConfig.cpp" line="184"/>
+        <location filename="../../CatConfig/CatConfig.cpp" line="182"/>
         <source>State</source>
         <translatorcomment>状态</translatorcomment>
         <translation>状态</translation>
     </message>
     <message>
-        <location filename="../../CatConfig/CatConfig.cpp" line="185"/>
+        <location filename="../../CatConfig/CatConfig.cpp" line="183"/>
         <source>Time</source>
         <translatorcomment>时间</translatorcomment>
         <translation>时间</translation>
@@ -199,12 +199,12 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="70"/>
+        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="69"/>
         <source>DxVa:</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="448"/>
+        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="447"/>
         <source>Save file</source>
         <translatorcomment>保存文件</translatorcomment>
         <translation>保存文件</translation>
@@ -295,14 +295,6 @@
     <name>CatWidget</name>
     <message>
         <location filename="../../CatWidget.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>ImageTools</name>
-    <message>
-        <location filename="../../WidgetTools/ImageTools.ui" line="14"/>
         <source>Form</source>
         <translation></translation>
     </message>
@@ -404,14 +396,6 @@
     </message>
 </context>
 <context>
-    <name>RimlessWindowTool</name>
-    <message>
-        <location filename="../../WidgetTools/RimlessWindowTool.ui" line="14"/>
-        <source>Form</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>SideColumnTool</name>
     <message>
         <location filename="../../WidgetTools/SideColumnTool.ui" line="14"/>
@@ -466,28 +450,28 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="322"/>
+        <location filename="../../WinWidget.cpp" line="316"/>
         <source>QWidget</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="323"/>
+        <location filename="../../WinWidget.cpp" line="317"/>
         <source>QGraphicsView</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="324"/>
+        <location filename="../../WinWidget.cpp" line="318"/>
         <source>QQuickWidget</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="325"/>
+        <location filename="../../WinWidget.cpp" line="319"/>
         <source>Setting</source>
         <translatorcomment>设置</translatorcomment>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="326"/>
+        <location filename="../../WinWidget.cpp" line="320"/>
         <source>About</source>
         <translatorcomment>关于</translatorcomment>
         <translation>关于</translation>

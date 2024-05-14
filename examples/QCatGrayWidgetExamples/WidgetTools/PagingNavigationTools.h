@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class CatIntValidator;
+class QCatGrayIntValidator;
 
 namespace Ui {
 class PagingNavigationTools;
@@ -36,7 +36,7 @@ private:
 
 private:
     Ui::PagingNavigationTools *ui;
-    CatIntValidator *currentpageval;
+    QCatGrayIntValidator *currentpageval;
 };
 
 #endif // PAGINGNAVIGATIONTOOLS_H

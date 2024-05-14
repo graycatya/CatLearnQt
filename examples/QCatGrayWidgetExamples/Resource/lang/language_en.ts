@@ -85,17 +85,17 @@
 <context>
     <name>CatConfig</name>
     <message>
-        <location filename="../../CatConfig/CatConfig.cpp" line="183"/>
+        <location filename="../../CatConfig/CatConfig.cpp" line="181"/>
         <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../CatConfig/CatConfig.cpp" line="184"/>
+        <location filename="../../CatConfig/CatConfig.cpp" line="182"/>
         <source>State</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../CatConfig/CatConfig.cpp" line="185"/>
+        <location filename="../../CatConfig/CatConfig.cpp" line="183"/>
         <source>Time</source>
         <translation type="unfinished"></translation>
     </message>
@@ -166,12 +166,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="70"/>
+        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="69"/>
         <source>DxVa:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="448"/>
+        <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.cpp" line="447"/>
         <source>Save file</source>
         <translation type="unfinished"></translation>
     </message>
@@ -257,14 +257,6 @@
     </message>
 </context>
 <context>
-    <name>ImageTools</name>
-    <message>
-        <location filename="../../WidgetTools/ImageTools.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>InputTools</name>
     <message>
         <location filename="../../WidgetTools/InputTools.ui" line="14"/>
@@ -345,14 +337,6 @@
     </message>
 </context>
 <context>
-    <name>RimlessWindowTool</name>
-    <message>
-        <location filename="../../WidgetTools/RimlessWindowTool.ui" line="14"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>SideColumnTool</name>
     <message>
         <location filename="../../WidgetTools/SideColumnTool.ui" line="14"/>
@@ -394,27 +378,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="322"/>
+        <location filename="../../WinWidget.cpp" line="316"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="323"/>
+        <location filename="../../WinWidget.cpp" line="317"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="324"/>
+        <location filename="../../WinWidget.cpp" line="318"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="325"/>
+        <location filename="../../WinWidget.cpp" line="319"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="326"/>
+        <location filename="../../WinWidget.cpp" line="320"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

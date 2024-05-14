@@ -1,13 +1,12 @@
 ﻿#include "CatQcustomplotTools.h"
 #include "ui_CatQcustomplotTools.h"
 
-#include <CatLog>
 #include <QFile>
 #include <QPushButton>
 #include <QButtonGroup>
 
-#include "../CatConfig/CatConfig.h"
-#include "CatControl/ListingOptions.h"
+#include "CatConfig.h"
+#include "QCatGrayListingOptions.h"
 
 #include "QcustomplotCharts/CatLineChart.h"
 #include "QcustomplotCharts/CatBarChart.h"
@@ -80,7 +79,7 @@ void CatQcustomplotTools::InitChartsTool()
     QVBoxLayout *layout_0 = new QVBoxLayout(ui->QCustomplptToolWidget);
     layout_0->setContentsMargins(0,0,0,0);
     layout_0->setSpacing(0);
-    m_pToolListiongOptions = new ListiongOptions(ListiongOptions::HBox, ui->QCustomplptToolWidget);
+    m_pToolListiongOptions = new QCatGrayListingOptions(QCatGrayListingOptions::HBox, ui->QCustomplptToolWidget);
     //m_pToolListiongOptions->GetWidget()->setObjectName("CatQcustomplotListOptions");
     layout_0->addWidget(m_pToolListiongOptions);
     QStringList list = { "CatLineChart", "CatBarGraph" };

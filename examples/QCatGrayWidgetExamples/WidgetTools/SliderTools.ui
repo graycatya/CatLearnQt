@@ -120,7 +120,7 @@
              <number>0</number>
             </property>
             <item>
-             <widget class="CatDoubleSlider" name="CatSlider" native="true">
+             <widget class="QCatGrayDoubleSlider" name="CatSlider" native="true">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -140,7 +140,7 @@
              <number>10</number>
             </property>
             <item>
-             <widget class="CatDoubleSlider" name="CatVbSlider" native="true">
+             <widget class="QCatGrayDoubleSlider" name="CatVbSlider" native="true">
               <property name="minimumSize">
                <size>
                 <width>20</width>
@@ -194,9 +194,9 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CatDoubleSlider</class>
+   <class>QCatGrayDoubleSlider</class>
    <extends>QWidget</extends>
-   <header>CatControl/CatDoubleSlider.h</header>
+   <header>QCatGrayDoubleSlider.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

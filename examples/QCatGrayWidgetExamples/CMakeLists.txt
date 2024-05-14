@@ -54,15 +54,16 @@ endif(WIN32)
 add_executable(${PROJECT_NAME}  ${SRC_LIST}
                                 ${PROJECT_QRC_FILES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE QCatGrayUniversal_a)
-target_link_libraries(${PROJECT_NAME} PRIVATE CatConfig)
-#target_link_libraries(${PROJECT_NAME} PUBLIC ImageTools)
-target_link_libraries(${PROJECT_NAME} PRIVATE WidgetTools)
-target_link_libraries(${PROJECT_NAME} PRIVATE QuickWidgetTools)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Gui)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::QuickWidgets)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Svg)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Svg
+                                                Qt${QT_VERSION_MAJOR}::Quick
+                                                Qt${QT_VERSION_MAJOR}::Core
+                                                Qt${QT_VERSION_MAJOR}::Widgets
+                                                Qt${QT_VERSION_MAJOR}::QuickWidgets
+                                                CatConfig
+                                                WidgetTools
+                                                QuickWidgetTools
+                                                QCatGrayWidgetControls_a
+                                                QCatGrayGraphicsDrawingBoard_a
+                                                QCatGrayTeachingTools_a
+                                                QCatGrayUniversal_a)
 

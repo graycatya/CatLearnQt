@@ -1,18 +1,15 @@
 ﻿#include "CatWidget.h"
 #include "ui_CatWidget.h"
 #include "CatConfig/CatConfig.h"
-#include "CatControl/ListingOptions.h"
+#include "QCatGrayListingOptions.h"
 
 #include <QPushButton>
 #include <QButtonGroup>
-#include <CatLog>
 #include <QFile>
 
 
 #include "WidgetTools/QrenCodeTool.h"
-#include "WidgetTools/ImageTools.h"
 #include "WidgetTools/SliderTools.h"
-#include "WidgetTools/RimlessWindowTool.h"
 #include "WidgetTools/PagingNavigationTools.h"
 
 #ifndef Q_OS_IOS
@@ -70,17 +67,17 @@ void CatWidget::InitToolButtons()
     QVBoxLayout *layout_ToolOptions = new QVBoxLayout(ui->ToolWidget);
     layout_ToolOptions->setContentsMargins(0,5,0,5);
     layout_ToolOptions->setSpacing(0);
-    m_pToolListiongOptions = new ListiongOptions(ListiongOptions::VBox, ui->ToolWidget);
+    m_pToolListiongOptions = new QCatGrayListingOptions(QCatGrayListingOptions::VBox, ui->ToolWidget);
     layout_ToolOptions->addWidget(m_pToolListiongOptions);
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatQrenCode", "CatImageTools", "CatSliderTools", "CatRimlessWindowTool", "CatPagingNavigationTool"};
-#if (QT_VERSION < QT_VERSION_CHECK(6,0,0))
+    QStringList ToolButtonList = {"CatQrenCode", "CatSliderTools", "CatPagingNavigationTool"};
+
 #ifndef Q_OS_IOS
     ToolButtonList << "CatQcustomplotTools";
 #endif
-#endif
+
     ToolButtonList << "CatSideColumnTool" << "CatInputTools";
     ToolButtonList << "CatTableViewTool";
     for(int i = 0; i < ToolButtonList.size(); i++)
@@ -103,17 +100,17 @@ void CatWidget::InitToolWidgets()
     m_pQrenCodeTool->setObjectName("CatWidgetQrenCodeTool");
     ui->ToolStackedWidget->addWidget(m_pQrenCodeTool);
 
-    ImageTools *m_pImageTools = new ImageTools;
-    ui->ToolStackedWidget->addWidget(m_pImageTools);
+//    ImageTools *m_pImageTools = new ImageTools;
+//    ui->ToolStackedWidget->addWidget(m_pImageTools);
 
     SliderTools *m_pSliderTools = new SliderTools;
     ui->ToolStackedWidget->addWidget(m_pSliderTools);
 
-    RimlessWindowTool *m_pRimlessWindowTool = new RimlessWindowTool;
-    m_pRimlessWindowTool->setObjectName("CatRimlessWindowTool");
-    ui->ToolStackedWidget->addWidget(m_pRimlessWindowTool);
-    m_pRimlessWindowTool->installEventFilter(ui->ToolStackedWidget);
-    m_pRimlessWindowTool->setMouseTracking(true);
+//    RimlessWindowTool *m_pRimlessWindowTool = new RimlessWindowTool;
+//    m_pRimlessWindowTool->setObjectName("CatRimlessWindowTool");
+//    ui->ToolStackedWidget->addWidget(m_pRimlessWindowTool);
+//    m_pRimlessWindowTool->installEventFilter(ui->ToolStackedWidget);
+//    m_pRimlessWindowTool->setMouseTracking(true);
 
     PagingNavigationTools *m_pPagingNavigationTools = new PagingNavigationTools;
     m_pPagingNavigationTools->setObjectName("PagingNavigationTools");

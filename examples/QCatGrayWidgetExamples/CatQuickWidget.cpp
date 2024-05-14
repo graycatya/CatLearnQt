@@ -1,11 +1,10 @@
 ﻿#include "CatQuickWidget.h"
 #include "ui_CatQuickWidget.h"
 #include "CatConfig/CatConfig.h"
-#include "CatControl/ListingOptions.h"
+#include "QCatGrayListingOptions.h"
 
 #include <QPushButton>
 #include <QButtonGroup>
-#include <CatLog>
 #include <QFile>
 #include <QQmlDebuggingEnabler>
 
@@ -58,7 +57,7 @@ void CatQuickWidget::InitToolButtons()
     QVBoxLayout *layout_ToolOptions = new QVBoxLayout(ui->ToolWidget);
     layout_ToolOptions->setContentsMargins(0,5,0,5);
     layout_ToolOptions->setSpacing(0);
-    m_pToolListiongOptions = new ListiongOptions(ListiongOptions::VBox, ui->ToolWidget);
+    m_pToolListiongOptions = new QCatGrayListingOptions(QCatGrayListingOptions::VBox, ui->ToolWidget);
     layout_ToolOptions->addWidget(m_pToolListiongOptions);
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);

@@ -1,9 +1,8 @@
 ﻿#include "TableViewTool.h"
 #include "ui_TableViewTool.h"
-#include "../CatConfig/CatConfig.h"
+#include "CatConfig.h"
 
 
-#include <CatLog>
 #include <QFile>
 #include <QDateTime>
 
@@ -52,7 +51,7 @@ void TableViewTool::InitConnect()
         UpdateStyle();
     });
 
-    connect(ui->Paging, &CatPagingNavigation::CurrentPageed, this, [=](qulonglong currentpage){
+    connect(ui->Paging, &QCatGrayPagingNavigation::CurrentPageed, this, [=](qulonglong currentpage){
         onCurrentPage(currentpage);
     });
 

@@ -25,12 +25,18 @@ add_subdirectory(SideWidgetTools)
 add_subdirectory(InputTools)
 add_subdirectory(CatTableViewTools)
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets REQUIRED)
+
 
 add_library(${PROJECT_NAME} STATIC ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                                                 QcustomplotCharts
                                                 SideWidgetTools
-                                                CatTableViewTools)
+                                                CatTableViewTools
+                                                CatConfig
+                                                QCatGrayUniversal_a
+                                                QCatGrayQrenCode_a
+                                                QCatGrayWidgetControls_a)
 

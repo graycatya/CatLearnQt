@@ -1,6 +1,6 @@
 ﻿#include "SideBoxButton.h"
 
-#include "../../CatConfig/CatConfig.h"
+#include "CatConfig.h"
 #include <QPaintEvent>
 #include <QDebug>
 #include <QFile>

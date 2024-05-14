@@ -1,14 +1,14 @@
 ﻿#ifndef CATCONFIG_H
 #define CATCONFIG_H
 
-#include "CatUniversal/CatSettingBase.h"
+#include "QCatGraySettingBase.h"
 #include <QMutex>
 #include <QLocale>
 
 class QApplication;
 class QTranslator;
 
-class CatConfig : public CatSettingBase
+class CatConfig : public QCatGraySettingBase
 {
     Q_OBJECT
 public:

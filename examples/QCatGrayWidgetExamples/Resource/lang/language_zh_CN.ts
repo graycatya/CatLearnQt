@@ -450,28 +450,28 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="316"/>
+        <location filename="../../WinWidget.cpp" line="293"/>
         <source>QWidget</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="317"/>
+        <location filename="../../WinWidget.cpp" line="294"/>
         <source>QGraphicsView</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="318"/>
+        <location filename="../../WinWidget.cpp" line="295"/>
         <source>QQuickWidget</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="319"/>
+        <location filename="../../WinWidget.cpp" line="296"/>
         <source>Setting</source>
         <translatorcomment>设置</translatorcomment>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="320"/>
+        <location filename="../../WinWidget.cpp" line="297"/>
         <source>About</source>
         <translatorcomment>关于</translatorcomment>
         <translation>关于</translation>

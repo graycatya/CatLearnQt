@@ -8,19 +8,20 @@ Item {
     id: root
 
     property var loaderparent: parent.parent
-    height: rootColumn.implicitHeight
+    height: rootColumn.implicitHeight + timeeditrow.implicitHeight + 5
 
     Connections {
-        target: model
+        target: loaderparent.chatmodel.getStruct(index)
         function onSenderimageChanged() {
-            console.log("model.senderimage: " + model.senderimage)
             image.source = model.senderimage
         }
 
         function onRecipientimageChanged() {
             image.source = model.recipientimage
         }
+
     }
+
 
 
     Column {
@@ -39,6 +40,7 @@ Item {
                 id: image
                 width: 40
                 height: 40
+                source: model.senderimage !== "" ? model.senderimage : model.recipientimage
             }
             Rectangle {
                 id: textRectangle
@@ -47,6 +49,7 @@ Item {
                 color: loaderparent.isUser ? loaderparent.senderBgColor : loaderparent.recipientBgColor
                 radius: 5
                 Rectangle{
+                    id: bubblerect
                     width: 10
                     height: 10
                     anchors.horizontalCenter: loaderparent.isUser ? parent.left : parent.right
@@ -77,7 +80,35 @@ Item {
         }
 
     }
+    Row {
+        id: timeeditrow
+        anchors.top: rootColumn.bottom
+        anchors.topMargin: 5
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: rowlayout.spacing + image.width
+        anchors.rightMargin: rowlayout.spacing + image.width
+        layoutDirection: loaderparent.isUser ? Qt.LeftToRight : Qt.RightToLeft
+        CatChatTextEdit {
+            id: timeedit
+            font.family: ProjectObject.fontFamily
+            font.pixelSize: 14
+            color: ProjectObject.defaultTextColor
 
-
+            verticalAlignment: TextEdit.AlignVCenter
+            horizontalAlignment: TextEdit.AlignLeft
+            readOnly: true
+            selectByMouse: true
+            selectionColor: "black"
+            selectedTextColor: "white"
+            wrapMode: TextEdit.WrapAnywhere
+            padding: 0
+    //                    text: model.datetime
+           text: {
+                var date = new Date(model.datetime);
+                return date.toLocaleString(Qt.locale("de_DE"), "yyyy-MM-dd HH:mm:ss")
+            }
+        }
+    }
 
 }

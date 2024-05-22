@@ -9,8 +9,6 @@ import "../"
 Item {
     id: root
 
-    property int currentTime: new Date().getTime()
-
     ColumnLayout {
         anchors.fill: parent
         anchors.margins: 10
@@ -29,13 +27,14 @@ Item {
                 id: catchatview
                 chatviewRepeaterModel: chatmodel
                 anchors.fill: parent
-                anchors.margins: 5
+                anchors.margins: 10
                 clip: true
                 chatviewDelegate: CatChatItemBase {
                     width: parent.width
                     height: delegate.item.height
-                    senderBgColor: ProjectObject.styleRectBorderColor
-                    recipientBgColor: ProjectObject.styleRectBorderColor
+                    chatmodel: catchatview.chatviewRepeaterModel
+                    senderBgColor: ProjectObject.defaultButton_DefaultColor
+                    recipientBgColor: ProjectObject.defaultButton_DefaultColor
                     delegate.source: "CatChatCommon/ChatItem.qml"
 
                 }
@@ -106,10 +105,10 @@ Item {
                     }
 
                     onClicked: {
-                        var object = chatmodel.appendStruct(root.currentTime, "A", "A", "B", root.currentTime, chattext.text, ChatStruct.Chat_Text)
+                        var currentDate = new Date()
+                        var object = chatmodel.appendStruct(root.currentTime, "A", "A", "B", parseInt(currentDate.getTime()),
+                                                            chattext.text, ChatStruct.Chat_Text)
                         object.senderimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
-                        console.log("object senderimage: " + object.senderimage)
-                        console.log("object data: " + object.data)
                     }
                 }
 
@@ -140,7 +139,9 @@ Item {
                     }
 
                     onClicked: {
-                        var object = chatmodel.appendStruct(root.currentTime, "A", "B", "A", root.currentTime, chattext.text, ChatStruct.Chat_Text)
+                        var currentDate = parseInt(new Date().getTime())
+                        var object = chatmodel.appendStruct(root.currentTime, "A", "B", "A", currentDate,
+                                                            chattext.text, ChatStruct.Chat_Text)
                         object.recipientimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
                     }
                 }

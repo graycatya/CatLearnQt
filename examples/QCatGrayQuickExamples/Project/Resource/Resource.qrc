@@ -204,5 +204,7 @@
         <file>Images/White/Demonstrate.png</file>
         <file>Images/White/LottieQml.png</file>
         <file>Images/cqlogo.ico</file>
+        <file>Images/Black/Chat.png</file>
+        <file>Images/White/Chat.png</file>
     </qresource>
 </RCC>

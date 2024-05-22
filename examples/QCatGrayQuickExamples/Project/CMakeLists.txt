@@ -96,7 +96,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE TableFunction_a
                                               QCatGrayQuick
                                               LottieQml
                                               QCatGrayQuickQrenCodeQml_a
-                                              QCatGrayUniversal_a)
+                                              QCatGrayUniversal_a
+                                              QCatGrayQuickChatModel_a)
 
 target_include_directories(${PROJECT_NAME} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/QCatGrayModel")
 

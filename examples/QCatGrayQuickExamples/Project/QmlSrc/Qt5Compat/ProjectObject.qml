@@ -632,9 +632,9 @@ QtObject {
             catPopupColor: "#FFFFFF"
             catPopupdropshadowColor: "#63000000"
 
-            defaultButton_DefaultColor: "#FFFFFF"
-            defaultButton_HoverColor: "#FFFFFF"
-            defaultButton_PressColor: "#FFFFFF"
+            defaultButton_DefaultColor: "#eeeeee"
+            defaultButton_HoverColor: "#eeeeee"
+            defaultButton_PressColor: "#eeeeee"
             defaultButtonBorder_DefaultColor: "#1171AE"
 
             defaultButtonTextBackgroundColor: "#01000000"
@@ -808,6 +808,14 @@ QtObject {
                 "version" : "1.0",
                 "logoSource": "LottieQml.png",
                 "qmlSource": projectobject.getProjectQmlControlPath() + "DemoLottie.qml",
+                "libs": "default",
+            },
+            {
+                "name": "CatChat",
+                "author" : "GrayCatQt",
+                "version" : "1.0",
+                "logoSource": "Chat.png",
+                "qmlSource": projectobject.getProjectQmlControlPath() + "DemoCatChat.qml",
                 "libs": "default",
             }
         ]

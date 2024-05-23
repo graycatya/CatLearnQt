@@ -105,10 +105,11 @@ Item {
                     }
 
                     onClicked: {
-                        var currentDate = new Date()
-                        var object = chatmodel.appendStruct(root.currentTime, "A", "A", "B", parseInt(currentDate.getTime()),
+                        var currentDate = parseInt(new Date().getTime())
+                        var object = chatmodel.appendStruct(root.currentTime, "A", "A", "B", currentDate,
                                                             chattext.text, ChatStruct.Chat_Text)
                         object.senderimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
+                        catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
                     }
                 }
 
@@ -143,6 +144,7 @@ Item {
                         var object = chatmodel.appendStruct(root.currentTime, "A", "B", "A", currentDate,
                                                             chattext.text, ChatStruct.Chat_Text)
                         object.recipientimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
+                        catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
                     }
                 }
             }

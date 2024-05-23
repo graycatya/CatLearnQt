@@ -1,10 +1,10 @@
-import QtQuick 2.12
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.12
-import QCatGrayQuick 1.0
+import QtQuick 
+import QtQuick.Layouts 
+import QtQuick.Controls 
+import QCatGrayQuick 
 
-import QCatGrayChatStruct 1.0
-import QCatGrayQuickChatModel 1.0
+import QCatGrayChatStruct 
+import QCatGrayQuickChatModel 
 import "../"
 Item {
     id: root
@@ -32,11 +32,11 @@ Item {
                 clip: true
                 chatviewDelegate: CatChatItemBase {
                     width: parent.width
-                    height: delegate.item.height
+                    height: delegate.item != null ? delegate.item.height : 0
                     chatmodel: catchatview.chatviewRepeaterModel
                     senderBgColor: ProjectObject.defaultButton_DefaultColor
                     recipientBgColor: ProjectObject.defaultButton_DefaultColor
-                    delegate.source: "CatChatCommon/ChatItem.qml"
+                    delegate.source: ProjectObject.getProjectQmlControlPath() + "CatChatCommon/ChatItem.qml"
 
                 }
 

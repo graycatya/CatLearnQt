@@ -16,7 +16,7 @@ Rectangle {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.topMargin: 20
-        anchors.leftMargin: 40
+        anchors.leftMargin: 20
         text: controlname
         font.pixelSize: 26
         font.family: ProjectObject.fontFamily

@@ -44,5 +44,7 @@
         <file>MoreFunctionViews/WebEngineLicence.qml</file>
         <file>MoreFunctionViews/WebKitLicence.qml</file>
         <file>ControlDemos/DemoLottie.qml</file>
+        <file>ControlDemos/DemoCatChat.qml</file>
+        <file>ControlDemos/CatChatCommon/ChatItem.qml</file>
     </qresource>
 </RCC>

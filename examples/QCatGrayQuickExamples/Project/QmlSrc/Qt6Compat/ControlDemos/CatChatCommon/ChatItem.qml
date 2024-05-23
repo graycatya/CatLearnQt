@@ -1,7 +1,7 @@
-import QtQuick 2.12
-import QCatGrayQuick 1.0
-import QtQuick.Layouts 1.12
-import QtQuick.Controls 2.12
+import QtQuick 
+import QCatGrayQuick 
+import QtQuick.Layouts 
+import QtQuick.Controls 
 import "../../"
 
 Item {

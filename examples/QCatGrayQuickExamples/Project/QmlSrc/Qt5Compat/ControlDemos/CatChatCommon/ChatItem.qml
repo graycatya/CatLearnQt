@@ -88,7 +88,7 @@ Item {
             }
             Rectangle {
                 id: textRectangle
-                width: textedit.contentWidth
+                width: textedit.width
                 height: textedit.height
                 color: loaderparent.isUser ? loaderparent.senderBgColor : loaderparent.recipientBgColor
                 radius: 5

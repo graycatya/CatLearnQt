@@ -54,6 +54,7 @@ int main(int argc, char *argv[])
     config->InitConfig();
 
     WinWidget w;
+    qDebug() << "winid: " << w.winId();
     w.show();
 
     return app.exec();

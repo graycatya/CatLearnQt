@@ -386,31 +386,31 @@ void WinWidget::closeEvent(QCloseEvent *event)
     //this->deleteLater();
 }
 
-void WinWidget::paintEvent(QPaintEvent *event)
-{
-    Q_UNUSED(event)
-    QPainterPath path;
-    path.setFillRule(Qt::WindingFill);
-    path.addRoundedRect(ShadowWeight, ShadowWeight,
-                 this->width()-ShadowWeight*2, this->height()-ShadowWeight*2, 2, 2);
+// void WinWidget::paintEvent(QPaintEvent *event)
+// {
+//     Q_UNUSED(event)
+//     QPainterPath path;
+//     path.setFillRule(Qt::WindingFill);
+//     path.addRoundedRect(ShadowWeight, ShadowWeight,
+//                  this->width()-ShadowWeight*2, this->height()-ShadowWeight*2, 2, 2);
 
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.fillPath(path, QBrush(Qt::white));
+//     QPainter painter(this);
+//     painter.setRenderHint(QPainter::Antialiasing, true);
+//     painter.fillPath(path, QBrush(Qt::white));
 
-    QColor color = ShadowColor;
-    for(int i=0; i<ShadowWeight; i++)
-    {
-        QPainterPath path;
-        path.setFillRule(Qt::WindingFill);
-        path.addRoundedRect(ShadowWeight-i, ShadowWeight-i,
-                     this->width()-(ShadowWeight-i)*2,
-                     this->height()-(ShadowWeight-i)*2, 2, 2);
-        color.setAlpha(150 - qSqrt(i)*50);
-        painter.setPen(color);
-        painter.drawPath(path);
-    }
-}
+//     QColor color = ShadowColor;
+//     for(int i=0; i<ShadowWeight; i++)
+//     {
+//         QPainterPath path;
+//         path.setFillRule(Qt::WindingFill);
+//         path.addRoundedRect(ShadowWeight-i, ShadowWeight-i,
+//                      this->width()-(ShadowWeight-i)*2,
+//                      this->height()-(ShadowWeight-i)*2, 2, 2);
+//         color.setAlpha(150 - qSqrt(i)*50);
+//         painter.setPen(color);
+//         painter.drawPath(path);
+//     }
+// }
 
 void WinWidget::On_ButtonFunc(int id)
 {

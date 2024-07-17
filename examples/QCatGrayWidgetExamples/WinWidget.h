@@ -54,7 +54,7 @@ protected:
     void mouseMoveEvent(QMouseEvent *event);
     void changeEvent(QEvent *event);
     void closeEvent(QCloseEvent *event);
-    void paintEvent(QPaintEvent *event);
+    //void paintEvent(QPaintEvent *event);
 
 signals:
     void Closeed();

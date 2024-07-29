@@ -11,6 +11,7 @@ class CatAbout;
 class CatSettings;
 class CatWidget;
 class CatQuickWidget;
+class CatGrayQuickWidget;
 
 namespace Ui {
 class WinWidget;
@@ -72,6 +73,7 @@ private:
     CatSettings *m_pCatSettings;
     CatWidget *m_pCatWidget;
     CatQuickWidget *m_pCatQuickWidget;
+    CatGrayQuickWidget *m_pCatGrayQuickWidget;
 
     bool m_bFullScreen;
     bool m_bTopWidget;

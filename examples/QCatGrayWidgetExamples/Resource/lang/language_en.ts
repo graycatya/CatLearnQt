@@ -109,6 +109,14 @@
     </message>
 </context>
 <context>
+    <name>CatGrayQuickWidget</name>
+    <message>
+        <location filename="../../CatGrayQuickWidget.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>CatLineChart</name>
     <message>
         <location filename="../../WidgetTools/QcustomplotCharts/CatLineChart.ui" line="14"/>
@@ -378,27 +386,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="293"/>
+        <location filename="../../WinWidget.cpp" line="308"/>
         <source>QWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="294"/>
+        <location filename="../../WinWidget.cpp" line="309"/>
         <source>QGraphicsView</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="295"/>
+        <location filename="../../WinWidget.cpp" line="310"/>
         <source>QQuickWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="296"/>
+        <location filename="../../WinWidget.cpp" line="311"/>
+        <source>CatGrayQuickWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../WinWidget.cpp" line="312"/>
         <source>Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../WinWidget.cpp" line="297"/>
+        <location filename="../../WinWidget.cpp" line="313"/>
         <source>About</source>
         <translation type="unfinished"></translation>
     </message>

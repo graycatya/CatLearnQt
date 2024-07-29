@@ -188,9 +188,13 @@
            </property>
            <item>
             <widget class="QStackedWidget" name="FuncStackWidget">
+             <property name="currentIndex">
+              <number>5</number>
+             </property>
              <widget class="QWidget" name="WidgetFunc"/>
              <widget class="QWidget" name="GraphicsViewFunc"/>
              <widget class="QWidget" name="QuickWidgetFunc"/>
+             <widget class="QWidget" name="CatGrayQuickWidgetFunc"/>
              <widget class="QWidget" name="SettingFunc"/>
              <widget class="QWidget" name="AboutFunc"/>
             </widget>

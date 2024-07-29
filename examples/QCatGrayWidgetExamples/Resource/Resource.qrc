@@ -167,5 +167,14 @@
         <file>Images/CatGray/CatWidgetExamples.png</file>
         <file>Images/CatWhite/CatWidgetExamples.png</file>
         <file>Images/cwlogo.ico</file>
+        <file>qss/CatGray/CatGrayQuickWidget.css</file>
+        <file>qss/CatWhite/CatGrayQuickWidget.css</file>
+        <file>Images/CatGray/Test.png</file>
+        <file>Images/CatWhite/Test.png</file>
+        <file>qml/CatGrayQuickWidgetTest.qml</file>
+        <file>qss/CatGray/ListingOptionCatGrayQuickWidgetTool.css</file>
+        <file>qss/CatWhite/ListingOptionCatGrayQuickWidgetTool.css</file>
+        <file>qml/StyleConfig.qml</file>
+        <file>qml/qmldir</file>
     </qresource>
 </RCC>

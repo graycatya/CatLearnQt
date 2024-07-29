@@ -28,6 +28,7 @@
 #include "CatConfig/CatConfig.h"
 #include "QCatGrayListingOptions.h"
 #include "CatQuickWidget.h"
+#include "CatGrayQuickWidget.h"
 
 
 WinWidget::WinWidget(QWidget *parent) :
@@ -83,6 +84,8 @@ void WinWidget::InitUi()
     m_pCatDrawingBoard->setObjectName("WinCatDrawingBoard");
     layout_Graphics->addWidget(m_pCatDrawingBoard);
 
+    // m_pCatGrayQuickWidget = new CatGrayQuickWidget(ui->GraphicsViewFunc);
+
     // About 布局
     QVBoxLayout *layout_About = new QVBoxLayout(ui->AboutFunc);
     layout_About->setContentsMargins(0,0,0,0);
@@ -109,6 +112,16 @@ void WinWidget::InitUi()
     m_pCatQuickWidget = new CatQuickWidget(ui->QuickWidgetFunc);
     m_pCatQuickWidget->setObjectName("WinCatQuickWidget");
     layout_QuickWidget->addWidget(m_pCatQuickWidget);
+
+    QVBoxLayout *layout_CatGrayQuickWidget = new QVBoxLayout(ui->CatGrayQuickWidgetFunc);
+    layout_CatGrayQuickWidget->setContentsMargins(0,0,0,0);
+    layout_CatGrayQuickWidget->setSpacing(0);
+
+    m_pCatGrayQuickWidget = new CatGrayQuickWidget(ui->CatGrayQuickWidgetFunc);
+    m_pCatGrayQuickWidget->setObjectName("CatGrayQuickWidget");
+    layout_CatGrayQuickWidget->addWidget(m_pCatGrayQuickWidget);
+
+    ui->FuncStackWidget->setCurrentIndex(0);
 
     // 微调布局
     //ui->TopLayout->setAlignment(ui->Title, Qt::AlignVCenter | Qt::AlignHCenter);
@@ -158,6 +171,8 @@ void WinWidget::InitProperty()
     m_pListiongOptions->setMouseTracking(true);
     m_pCatQuickWidget->installEventFilter(this);
     m_pCatQuickWidget->setMouseTracking(true);
+    m_pCatGrayQuickWidget->installEventFilter(this);
+    m_pCatGrayQuickWidget->setMouseTracking(true);
     ui->Title->installEventFilter(this);
     ui->Title->setMouseTracking(true);
 
@@ -201,8 +216,8 @@ void WinWidget::InitConnect()
 void WinWidget::InitButtonList()
 {
     QStringList buttonList = { "WidgetFunc", "GraphicsViewFunc",
-                               "QuickWidgetFunc", "Setting",
-                               "About" };
+                               "QuickWidgetFunc", "CatGrayQuickWidget",
+                               "Setting", "About" };
     for(int i = 0; i < buttonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pListiongOptions->GetRootWidget());
@@ -288,13 +303,14 @@ void WinWidget::retranslateUi()
     if(!m_pButtons.isEmpty())
     {
         QStringList buttonList = { "WidgetFunc", "GraphicsViewFunc",
-                                   "QuickWidgetFunc", "Setting",
-                                   "About" };
+                                   "QuickWidgetFunc", "CatGrayQuickWidget",
+                                   "Setting", "About" };
         m_pButtons[buttonList[0]]->setText(tr("QWidget"));
         m_pButtons[buttonList[1]]->setText(tr("QGraphicsView"));
         m_pButtons[buttonList[2]]->setText(tr("QQuickWidget"));
-        m_pButtons[buttonList[3]]->setText(tr("Setting"));
-        m_pButtons[buttonList[4]]->setText(tr("About"));
+        m_pButtons[buttonList[3]]->setText(tr("CatGrayQuickWidget"));
+        m_pButtons[buttonList[4]]->setText(tr("Setting"));
+        m_pButtons[buttonList[5]]->setText(tr("About"));
 
     }
 

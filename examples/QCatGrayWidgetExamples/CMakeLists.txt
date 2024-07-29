@@ -46,6 +46,7 @@ file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
 add_subdirectory(CatConfig)
 add_subdirectory(QuickWidgetTools)
 add_subdirectory(WidgetTools)
+add_subdirectory(CatGrayQuickWidgetTools)
 
 if(WIN32)
     list(APPEND SRC_LIST ${CMAKE_CURRENT_SOURCE_DIR}/Resource/app_win32.rc)
@@ -65,5 +66,6 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Svg
                                                 QCatGrayWidgetControls_a
                                                 QCatGrayGraphicsDrawingBoard_a
                                                 QCatGrayTeachingTools_a
-                                                QCatGrayUniversal_a)
+                                                QCatGrayUniversal_a
+                                                CatGrayQuickWidgetTools)
 

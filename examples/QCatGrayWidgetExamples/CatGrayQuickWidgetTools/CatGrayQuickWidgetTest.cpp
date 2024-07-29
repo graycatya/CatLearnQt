@@ -4,8 +4,9 @@
 #include <QDebug>
 #include <QQuickView>
 #include <QQuickItem>
+#include <QQmlEngine>
 #include "CatConfig.h"
-
+#include "QCatGrayQuickPlugins.h"
 #include "QCatGrayQuickWidget.h"
 
 CatGrayQuickWidgetTest::CatGrayQuickWidgetTest(QWidget *parent)
@@ -32,7 +33,8 @@ void CatGrayQuickWidgetTest::InitUi()
 
 void CatGrayQuickWidgetTest::InitProperty()
 {
-
+    QCatGrayQuickPlugins qcatgrayquickplugins;
+    qcatgrayquickplugins.InitQCatGrayQuickPlugins(m_pCatGrayQuickWidget->view()->engine());
 }
 
 void CatGrayQuickWidgetTest::InitConnect()

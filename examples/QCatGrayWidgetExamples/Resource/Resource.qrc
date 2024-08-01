@@ -176,5 +176,6 @@
         <file>qss/CatWhite/ListingOptionCatGrayQuickWidgetTool.css</file>
         <file>qml/StyleConfig.qml</file>
         <file>qml/qmldir</file>
+        <file>qml/CatGrayQuickWidgetTableTest.qml</file>
     </qresource>
 </RCC>

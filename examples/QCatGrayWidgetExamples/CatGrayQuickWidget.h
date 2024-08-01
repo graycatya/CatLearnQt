@@ -8,6 +8,7 @@ class QCatGrayListingOptions;
 class QPushButton;
 
 class CatGrayQuickWidgetTest;
+class CatGrayQuickWidgetTableTest;
 
 namespace Ui {
 class CatGrayQuickWidget;
@@ -39,6 +40,7 @@ private:
     QCatGrayListingOptions *m_pToolListiongOptions;
     QHash<QString, QPushButton*> m_pToolButtons;
     CatGrayQuickWidgetTest *m_pCatGrayQuickWidgetTest;
+    CatGrayQuickWidgetTableTest *m_pCatGrayQuickWidgetTableTest;
 };
 
 #endif // CATGRAYQUICKWIDGET_H

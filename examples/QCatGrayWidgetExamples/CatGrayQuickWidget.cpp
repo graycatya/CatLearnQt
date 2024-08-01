@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QQmlDebuggingEnabler>
 #include "CatGrayQuickWidgetTest.h"
+#include "CatGrayQuickWidgetTableTest.h"
 
 CatGrayQuickWidget::CatGrayQuickWidget(QWidget *parent) :
     QWidget(parent),
@@ -60,7 +61,7 @@ void CatGrayQuickWidget::InitToolButtons()
 
     static_cast<QVBoxLayout*>(m_pToolListiongOptions->GetButtonlayout())->setSpacing(2);
 
-    QStringList ToolButtonList = {"CatGrayQuickWidgetTest"};
+    QStringList ToolButtonList = {"CatGrayQuickWidgetTest", "CatGrayQuickWidgetTableTest"};
     for(int i = 0; i < ToolButtonList.size(); i++)
     {
         QPushButton *button = new QPushButton(m_pToolListiongOptions->GetRootWidget());
@@ -79,6 +80,10 @@ void CatGrayQuickWidget::InitToolWidgets()
     m_pCatGrayQuickWidgetTest = new CatGrayQuickWidgetTest;
     m_pCatGrayQuickWidgetTest->setObjectName("CatGrayQuickWidgetTest");
     ui->ToolStackedWidget->addWidget(m_pCatGrayQuickWidgetTest);
+
+    m_pCatGrayQuickWidgetTableTest = new CatGrayQuickWidgetTableTest;
+    m_pCatGrayQuickWidgetTableTest->setObjectName("CatGrayQuickWidgetTableTest");
+    ui->ToolStackedWidget->addWidget(m_pCatGrayQuickWidgetTableTest);
 }
 
 void CatGrayQuickWidget::UpdateStyle()

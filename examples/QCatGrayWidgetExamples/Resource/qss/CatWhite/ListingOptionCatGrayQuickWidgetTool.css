@@ -42,6 +42,11 @@ QPushButton#CatGrayQuickWidgetTest {
     qproperty-iconSize: 40px 40px;
 }
 
+QPushButton#CatGrayQuickWidgetTableTest {
+    qproperty-icon: url(:/Images/CatWhite/TableView.png);
+    qproperty-iconSize: 40px 40px;
+}
+
 
 
 QScrollArea#ListingOptionsScroll {

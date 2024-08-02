@@ -50,7 +50,6 @@ Rectangle {
         delegate: CatTableViewDelegateBase {
             Component.onCompleted: {
                 console.log("init: " + model.row)
-                console.log("init: " + model.keys)
             }
         }
     }

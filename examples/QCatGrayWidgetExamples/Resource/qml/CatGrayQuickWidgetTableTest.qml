@@ -31,6 +31,28 @@ Rectangle {
         anchors.rightMargin: 20
         anchors.bottomMargin: 20
         color: "red"
+        model: ListModel {
+            id: fruitModel
+
+            ListElement {
+                name: "Apple"
+                cost: 2.45
+            }
+            ListElement {
+                name: "Orange"
+                cost: 3.25
+            }
+            ListElement {
+                name: "Banana"
+                cost: 1.95
+            }
+        }
+        delegate: CatTableViewDelegateBase {
+            Component.onCompleted: {
+                console.log("init: " + model.row)
+                console.log("init: " + model.keys)
+            }
+        }
     }
 
     onUpdateStyle: function(index) {

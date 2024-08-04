@@ -24,7 +24,7 @@ Rectangle {
         anchors.topMargin: 5
         gradient0Color: StyleConfig.fpsgradient0Color
         gradient1Color: StyleConfig.fpsgradient1Color
-        width: 120
+        //width: 120
         height: 32
     }
 

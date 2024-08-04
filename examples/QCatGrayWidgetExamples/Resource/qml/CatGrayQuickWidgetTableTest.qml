@@ -19,7 +19,7 @@ Rectangle {
         anchors.topMargin: 5
         gradient0Color: StyleConfig.fpsgradient0Color
         gradient1Color: StyleConfig.fpsgradient1Color
-        width: 120
+        //width: 120
         height: 32
     }
 
@@ -30,7 +30,6 @@ Rectangle {
         anchors.leftMargin: 20
         anchors.rightMargin: 20
         anchors.bottomMargin: 20
-        color: "red"
         model: ListModel {
             id: fruitModel
 

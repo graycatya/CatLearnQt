@@ -19,8 +19,7 @@ file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
                     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
                     "${CMAKE_CURRENT_SOURCE_DIR}/*.ui")
 
-add_library(${PROJECT_NAME} STATIC ${SRC_LIST}
-    CatGrayQuickWidgetTableTest.cpp)
+add_library(${PROJECT_NAME} STATIC ${SRC_LIST})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                                 Qt${QT_VERSION_MAJOR}::Gui
@@ -31,6 +30,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                                 QCatGrayQuickQrenCodeQml_a
                                                 QCatGrayUniversal_a
                                                 QCatGrayQuickWidget_a
+                                                QCatGrayQuickTableViewModel_a
                                                 CatConfig
                                                 QCatGrayQuick)
 

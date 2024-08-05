@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QCatGrayQuick 1.0
+import QCatGrayQuickTableViewModelStruct 1.0
 
 Rectangle {
     id: root
@@ -30,27 +31,33 @@ Rectangle {
         anchors.leftMargin: 20
         anchors.rightMargin: 20
         anchors.bottomMargin: 20
-        model: ListModel {
-            id: fruitModel
+        columnfreezeNum: 1
+        headerData: ["id", "name", "time", "uuid", ""]
 
-            ListElement {
-                name: "Apple"
-                cost: 2.45
-            }
-            ListElement {
-                name: "Orange"
-                cost: 3.25
-            }
-            ListElement {
-                name: "Banana"
-                cost: 1.95
+        headerDelegate: CatTableViewHeaderDelegateBase {
+            width: 200
+            height: 30
+            Rectangle {
+                anchors.fill: parent
+                border.color: "#FFFFFF"
+                border.width: 1
+                color: "#000000"
+                Component.onCompleted: {
+                    console.log("isheaderFreeze: " + isheaderFreeze)
+                }
             }
         }
         delegate: CatTableViewDelegateBase {
             Component.onCompleted: {
                 console.log("init: " + index)
-                console.log("table: " + name)
+                console.log("key : " + cattableview.model.getStruct(index).data["key"]);
+                console.log("columnCount: " + cattableview.model.columnCount())
             }
+        }
+
+        Component.onCompleted: {
+            cattableview.model.setHeaderCount(5);
+            cattableview.model.appendStruct({"key":"test"});
         }
     }
 

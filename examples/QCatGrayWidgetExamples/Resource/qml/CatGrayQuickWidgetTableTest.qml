@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QCatGrayQuick 1.0
-import QCatGrayQuickTableViewModelStruct 1.0
+import com.catgray.QCatGrayQuickTableViewModelStruct 1.0
 
 Rectangle {
     id: root
@@ -32,7 +32,7 @@ Rectangle {
         anchors.rightMargin: 20
         anchors.bottomMargin: 20
         columnfreezeNum: 1
-        headerData: ["id", "name", "time", "uuid", ""]
+        headerData: ["check", "id", "name", "time", "uuid", ""]
 
         headerDelegate: CatTableViewHeaderDelegateBase {
             width: 200
@@ -48,6 +48,14 @@ Rectangle {
             }
         }
         delegate: CatTableViewDelegateBase {
+
+            delegate : Rectangle {
+                width: 200
+                height: 30
+                border.color: "#FFFFFF"
+                border.width: 1
+                color: "#000000"
+            }
             Component.onCompleted: {
                 console.log("init: " + index)
                 console.log("key : " + cattableview.model.getStruct(index).data["key"]);
@@ -57,7 +65,9 @@ Rectangle {
 
         Component.onCompleted: {
             cattableview.model.setHeaderCount(5);
-            cattableview.model.appendStruct({"key":"test"});
+            for(var i = 0; i < 20; i++)
+                cattableview.model.appendStruct({"id":"test"});
+
         }
     }
 

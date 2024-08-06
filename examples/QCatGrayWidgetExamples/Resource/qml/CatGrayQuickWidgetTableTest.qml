@@ -64,11 +64,19 @@ Rectangle {
         }
 
         Component.onCompleted: {
-            cattableview.model.setHeaderCount(5);
-            for(var i = 0; i < 20; i++)
-                cattableview.model.appendStruct({"id":"test"});
+            settingTableView();
+            initTableView();
 
         }
+    }
+
+    function settingTableView() {
+        cattableview.model.setHeaderCount(5);
+    }
+
+    function initTableView() {
+        for(var i = 0; i < 20; i++)
+            cattableview.model.appendStruct({"id":"test"});
     }
 
     onUpdateStyle: function(index) {

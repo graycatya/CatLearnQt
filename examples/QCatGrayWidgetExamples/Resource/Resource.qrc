@@ -177,5 +177,7 @@
         <file>qml/StyleConfig.qml</file>
         <file>qml/qmldir</file>
         <file>qml/CatGrayQuickWidgetTableTest.qml</file>
+        <file>qml/QuickWidgetTableHeaderItem.qml</file>
+        <file>qml/QuickWidgetTableDataItem.qml</file>
     </qresource>
 </RCC>

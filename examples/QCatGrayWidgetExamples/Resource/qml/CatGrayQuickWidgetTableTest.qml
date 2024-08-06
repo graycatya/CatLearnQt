@@ -32,36 +32,28 @@ Rectangle {
         anchors.rightMargin: 20
         anchors.bottomMargin: 20
         columnfreezeNum: 1
-        headerData: ["check", "id", "name", "time", "uuid", ""]
+        headerData: ["check", "id", "name", "time", "uuid", "load"]
 
         headerDelegate: CatTableViewHeaderDelegateBase {
-            width: 200
-            height: 30
-            Rectangle {
+            QuickWidgetTableHeaderItem {
                 anchors.fill: parent
                 border.color: "#FFFFFF"
                 border.width: 1
                 color: "#000000"
-                Component.onCompleted: {
-                    console.log("isheaderFreeze: " + isheaderFreeze)
-                }
+//                Component.onCompleted: {
+//                    console.log("isheaderFreeze: " + isheaderFreeze)
+//                }
             }
         }
-        delegate: CatTableViewDelegateBase {
-
-            delegate : Rectangle {
-                width: 200
-                height: 30
+        delegate: CatTableViewItemBase {
                 border.color: "#FFFFFF"
                 border.width: 1
                 color: "#000000"
-            }
-            Component.onCompleted: {
-                console.log("init: " + index)
-                console.log("key : " + cattableview.model.getStruct(index).data["key"]);
-                console.log("columnCount: " + cattableview.model.columnCount())
-            }
+//                Component.onCompleted: {
+//                    console.log("init: " + index)
+//                }
         }
+
 
         Component.onCompleted: {
             settingTableView();
@@ -71,12 +63,21 @@ Rectangle {
     }
 
     function settingTableView() {
-        cattableview.model.setHeaderCount(5);
+        //cattableview.model.setHeaderCount(5);
+        cattableview.model.setAllHeaderMaximumWidth(200);
+        cattableview.model.setAllHeaderPreferredWidth(200);
+        cattableview.model.getHeaderStruct(2).resizeMode = 2
+        cattableview.model.getHeaderStruct(2).maximumWidth = 1000
+        cattableview.model.getHeaderStruct(4).resizeMode = 2
+        cattableview.model.getHeaderStruct(4).maximumWidth = 1000
     }
 
     function initTableView() {
-        for(var i = 0; i < 20; i++)
-            cattableview.model.appendStruct({"id":"test"});
+        for(var i = 0; i < 50; i++)
+        {
+            var currentTime = new Date()
+            cattableview.model.appendStruct({"check": false, "id":i, "name":"user"+i, "time": currentTime.toString("yyyy-MM-dd hh:mm:ss:fff"), "uuid": "uuid" + i, "load": 0.2});
+        }
     }
 
     onUpdateStyle: function(index) {

@@ -12,6 +12,10 @@ QtObject {
     property color fpsgradient0Color: "#9B9898"
     property color fpsgradient1Color: "#4E4E4E"
 
+    // table style
+    property color tableviewItem_borderColor: "#D3D9D9";
+    property color tableviewItem_backColor: "#343434";
+
     property ListModel themes: ListModel {
         ListElement {
             name: "CatWhite"

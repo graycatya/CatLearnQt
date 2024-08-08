@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QCatGrayQuick 1.0
 import com.catgray.QCatGrayQuickTableViewModelStruct 1.0
+import com.catgray.QCatGrayQuickTableViewHeaderStruct 1.0
 
 Rectangle {
     id: root
@@ -9,7 +10,6 @@ Rectangle {
     signal updateStyle(int index)
 
     color: StyleConfig.backColor
-
 
 
     CatFps {
@@ -66,10 +66,11 @@ Rectangle {
         //cattableview.model.setHeaderCount(5);
         cattableview.model.setAllHeaderMaximumWidth(200);
         cattableview.model.setAllHeaderPreferredWidth(200);
-        cattableview.model.getHeaderStruct(2).resizeMode = 2
+        cattableview.model.getHeaderStruct(2).resizeMode = QCatGrayQuickTableViewHeaderStruct.Stretch
         cattableview.model.getHeaderStruct(2).maximumWidth = 1000
-        cattableview.model.getHeaderStruct(4).resizeMode = 2
+        cattableview.model.getHeaderStruct(4).resizeMode = QCatGrayQuickTableViewHeaderStruct.Stretch
         cattableview.model.getHeaderStruct(4).maximumWidth = 1000
+        cattableview.model.getHeaderStruct(3).resizeMode = QCatGrayQuickTableViewHeaderStruct.FixedCanBeManuallyAdjusted
     }
 
     function initTableView() {

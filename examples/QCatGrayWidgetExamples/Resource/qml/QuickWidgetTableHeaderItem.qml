@@ -2,9 +2,10 @@ import QtQuick 2.12
 
 Rectangle {
     id: root
-    readonly property var model: parent.model
-    readonly property int columnIndex: parent.columnIndex
-    readonly property int rowIndex: parent.rowIndex
+    readonly property var model: parent.parent.model
+    readonly property int columnIndex: parent.parent.columnIndex
+    readonly property int rowIndex: parent.parent.rowIndex
+    readonly property var headerData: parent.parent.headerData
     Loader {
         id: itemLoader
         anchors.centerIn: parent
@@ -18,7 +19,7 @@ Rectangle {
            anchors.fill: parent
            verticalAlignment: Text.AlignVCenter
            horizontalAlignment: Text.AlignHCenter
-           text: root.parent.headerData[rowIndex]
+           text: headerData[rowIndex]
            color: StyleConfig.textColor
 
            font.pixelSize: 16

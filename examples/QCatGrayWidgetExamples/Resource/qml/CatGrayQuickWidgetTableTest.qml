@@ -20,7 +20,6 @@ Rectangle {
         anchors.topMargin: 5
         gradient0Color: StyleConfig.fpsgradient0Color
         gradient1Color: StyleConfig.fpsgradient1Color
-        //width: 120
         height: 32
     }
 
@@ -35,25 +34,32 @@ Rectangle {
         headerData: ["check", "id", "name", "time", "uuid", "load"]
 
         headerDelegate: CatTableViewHeaderDelegateBase {
-            QuickWidgetTableHeaderItem {
-                anchors.fill: parent
-                border.color: "#FFFFFF"
-                border.width: 1
-                color: "#000000"
-//                Component.onCompleted: {
-//                    console.log("isheaderFreeze: " + isheaderFreeze)
-//                }
-            }
-        }
-        delegate: CatTableViewItemBase {
-                border.color: "#FFFFFF"
-                border.width: 1
-                color: "#000000"
-//                Component.onCompleted: {
-//                    console.log("init: " + index)
-//                }
+            sourceComponent: isheaderFreeze ? headerComponent : itemComponent
         }
 
+        delegate: QuickWidgetTableDataItem {
+                border.color: "#FFFFFF"
+                border.width: 1
+                color: "#000000"
+        }
+
+        Component {
+            id: headerComponent
+            QuickWidgetTableHeaderItem {
+                border.color: "#FFFFFF"
+                border.width: 1
+                color: "#000000"
+            }
+        }
+
+        Component {
+            id: itemComponent
+            QuickWidgetTableDataItem {
+                border.color: "#FFFFFF"
+                border.width: 1
+                color: "#000000"
+            }
+        }
 
         Component.onCompleted: {
             settingTableView();

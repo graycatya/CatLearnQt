@@ -36,13 +36,33 @@ Rectangle {
         headerData: ["check", "id", "name", "time", "uuid", "load"]
 
         headerDelegate: CatTableViewHeaderDelegateBase {
-            sourceComponent: isheaderFreeze ? headerComponent : itemComponent
+            datamodel: cattableview.model
+            headerStruct: cattableview.model.getHeaderStruct(rowIndex)
+            headerTableData: cattableview.model.headerTableData
+            Rectangle {
+                width: headerStruct.preferredWidth
+                height: datamodel.preferredHeaderHeight
+
+                border.color: "#FFFFFF"
+                border.width: 1
+                color: "#666666"
+                Text {
+                   anchors.fill: parent
+                   verticalAlignment: Text.AlignVCenter
+                   horizontalAlignment: Text.AlignHCenter
+                   text: datamodel.headerTableData[index]
+                   color: "#FFFFFF"
+                   font.pixelSize: 16
+
+                }
+
+            }
+
         }
 
         delegate: QuickWidgetTableDataItem {
-                border.color: "#FFFFFF"
-                border.width: 1
-                color: "#000000"
+            columnindex: index
+            datamodel: cattableview.model
         }
 
         Component {
@@ -66,6 +86,7 @@ Rectangle {
         Component.onCompleted: {
             settingTableView();
             initTableView();
+            testTimer.running = true
 
         }
     }
@@ -81,15 +102,19 @@ Rectangle {
         cattableview.model.getHeaderStruct(3).resizeMode = QCatGrayQuickTableViewHeaderStruct.FixedCanBeManuallyAdjusted
     }
 
-    // Timer {
-    //     interval: 1000
-    //     repeat: true
-    //     running: true
-    //     onTriggered: {
-    //         var currentTime = new Date()
-    //         cattableview.model.appendStruct({"check": false, "id":cattableview.model.tabledata.length, "name":"user"+cattableview.model.tabledata.length, "time": currentTime.toString("yyyy-MM-dd hh:mm:ss:fff"), "uuid": "uuid" + cattableview.model.tabledata.length, "load": 0.2});
-    //     }
-    // }
+     Timer {
+         id: testTimer
+         interval: 1000
+         //repeat: true
+         //running: true
+         onTriggered: {
+             console.log("cattableview: " + cattableview.model.tabledata.length)
+             cattableview.model.removeStruct(20);
+             console.log("cattableview: " + cattableview.model.tabledata.length)
+//             var currentTime = new Date()
+//             cattableview.model.appendStruct({"check": false, "id":cattableview.model.tabledata.length, "name":"user"+cattableview.model.tabledata.length, "time": currentTime.toString("yyyy-MM-dd hh:mm:ss:fff"), "uuid": "uuid" + cattableview.model.tabledata.length, "load": 0.2});
+         }
+     }
 
     function initTableView() {
         for(var i = 0; i < 10000; i++)

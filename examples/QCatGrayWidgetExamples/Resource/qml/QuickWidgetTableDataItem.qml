@@ -1,23 +1,21 @@
 import QtQuick 2.12
 import QCatGrayQuick 1.0
 
-CatTableViewItemBase {
+CatTableViewDelegateBase {
     id: root
-    Loader {
-        id: itemLoader
-        anchors.centerIn: parent
-        sourceComponent: textstate
-    }
-
-    Component {
-        id: textstate
+    delegate: Rectangle {
+        clip: true
+        width: datamodel.getHeaderStruct(index).preferredWidth
+        height: datamodel.getStruct(columnindex).preferredHeight
+        border.color: "#FFFFFF"
+        border.width: 1
+        color: "#000000"
         Text {
-           id: tabletext
            anchors.fill: parent
            verticalAlignment: Text.AlignVCenter
            horizontalAlignment: Text.AlignHCenter
-           text: datamodel ? datamodel.getStruct(columnIndex).data[headerData[rowIndex]] : ""
-           color: StyleConfig.textColor
+           text: datamodel.getStruct(columnindex).data[datamodel.headerTableData[index]]
+           color: "#FFFFFF"
            font.pixelSize: 16
 
         }

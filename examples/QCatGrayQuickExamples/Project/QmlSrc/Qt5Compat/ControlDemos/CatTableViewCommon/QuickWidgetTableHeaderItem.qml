@@ -20,7 +20,7 @@ Rectangle {
            verticalAlignment: Text.AlignVCenter
            horizontalAlignment: Text.AlignHCenter
            text: headerData ? headerData[rowIndex] : ""
-           color: StyleConfig.textColor
+           color: "#C1C1C1"
 
            font.pixelSize: 16
         }

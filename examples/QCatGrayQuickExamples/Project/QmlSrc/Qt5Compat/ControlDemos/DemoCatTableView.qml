@@ -1,27 +1,18 @@
 import QtQuick 2.12
-import QtQuick.Controls 2.12
+import CatTreeModel 1.0
+import ModelTool 1.0
+import QtQuick.Layouts 1.12
 import QCatGrayQuick 1.0
+import "../Common"
+import "../"
+import "./CatTableViewCommon"
+
 import com.catgray.QCatGrayQuickTableViewModelStruct 1.0
 import com.catgray.QCatGrayQuickTableViewHeaderStruct 1.0
 
-Rectangle {
-    id: root
 
-    signal updateStyle(int index)
-
-    color: StyleConfig.backColor
-
-
-    CatFps {
-        id: catfps
-        anchors.right: parent.right
-        anchors.top: parent.top
-        anchors.rightMargin: 5
-        anchors.topMargin: 5
-        gradient0Color: StyleConfig.fpsgradient0Color
-        gradient1Color: StyleConfig.fpsgradient1Color
-        height: 32
-    }
+Item {
+    id: democattableview
 
     CatTableView {
         id: cattableview
@@ -92,15 +83,11 @@ Rectangle {
     // }
 
     function initTableView() {
-        for(var i = 0; i < 10000; i++)
+        for(var i = 0; i < 1000; i++)
         {
             var currentTime = new Date()
             cattableview.model.appendStruct({"check": false, "id":i, "name":"user"+i, "time": currentTime.toString("yyyy-MM-dd hh:mm:ss:fff"), "uuid": "uuid" + i, "load": 0.2});
         }
     }
 
-    onUpdateStyle: function(index) {
-        console.log("onUpdateStyle: " + index)
-        StyleConfig.currentTheme = index;
-    }
 }

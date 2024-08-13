@@ -1,14 +1,14 @@
-import QtQuick 2.12
-import CatTreeModel 1.0
-import ModelTool 1.0
-import QtQuick.Layouts 1.12
-import QCatGrayQuick 1.0
+import QtQuick 
+import CatTreeModel 
+import ModelTool 
+import QtQuick.Layouts 
+import QCatGrayQuick 
 import "../Common"
 import "../"
 import "./CatTableViewCommon"
 
-import com.catgray.QCatGrayQuickTableViewModelStruct 1.0
-import com.catgray.QCatGrayQuickTableViewHeaderStruct 1.0
+import com.catgray.QCatGrayQuickTableViewModelStruct 
+import com.catgray.QCatGrayQuickTableViewHeaderStruct 
 
 
 Item {

@@ -43,15 +43,15 @@ Rectangle {
                 width: headerStruct.preferredWidth
                 height: datamodel.preferredHeaderHeight
 
-                border.color: "#FFFFFF"
+                border.color: StyleConfig.tableviewItem_borderColor
                 border.width: 1
-                color: "#666666"
+                color: StyleConfig.tableviewHeader_backColor
                 Text {
                    anchors.fill: parent
                    verticalAlignment: Text.AlignVCenter
                    horizontalAlignment: Text.AlignHCenter
                    text: datamodel.headerTableData[index]
-                   color: "#FFFFFF"
+                   color: StyleConfig.textColor
                    font.pixelSize: 16
 
                 }
@@ -61,26 +61,8 @@ Rectangle {
         }
 
         delegate: QuickWidgetTableDataItem {
-            columnindex: index
+            columnIndex: index
             datamodel: cattableview.model
-        }
-
-        Component {
-            id: headerComponent
-            QuickWidgetTableHeaderItem {
-                border.color: "#FFFFFF"
-                border.width: 1
-                color: "#000000"
-            }
-        }
-
-        Component {
-            id: itemComponent
-            QuickWidgetTableDataItem {
-                border.color: "#FFFFFF"
-                border.width: 1
-                color: "#000000"
-            }
         }
 
         Component.onCompleted: {
@@ -104,7 +86,7 @@ Rectangle {
 
      Timer {
          id: testTimer
-         interval: 1000
+         interval: 5000
          //repeat: true
          //running: true
          onTriggered: {
@@ -117,7 +99,7 @@ Rectangle {
      }
 
     function initTableView() {
-        for(var i = 0; i < 10000; i++)
+        for(var i = 0; i < 100; i++)
         {
             var currentTime = new Date()
             cattableview.model.appendStruct({"check": false, "id":i, "name":"user"+i, "time": currentTime.toString("yyyy-MM-dd hh:mm:ss:fff"), "uuid": "uuid" + i, "load": 0.2});

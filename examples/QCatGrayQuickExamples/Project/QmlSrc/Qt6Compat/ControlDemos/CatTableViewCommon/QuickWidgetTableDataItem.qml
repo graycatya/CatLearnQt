@@ -1,5 +1,5 @@
-import QtQuick 2.12
-import QCatGrayQuick 1.0
+import QtQuick 
+import QCatGrayQuick 
 import "../../"
 
 CatTableViewDelegateBase {

@@ -117,8 +117,8 @@ Item {
                     padding: 14
 
                     text: model.data
-                    property int contentWidth: Math.max(10,loaderparent.width - 50*2)
-                    width: Math.min(contentWidth, textWidth)
+                    //property int contentWidth: Math.max(10,loaderparent.width - 50*2)
+                    width: Math.min(Math.max(10,loaderparent.width - 50*2), textWidth)
                 }
             }
         }

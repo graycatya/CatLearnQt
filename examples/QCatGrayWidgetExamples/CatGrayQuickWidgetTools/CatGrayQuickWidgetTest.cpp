@@ -5,6 +5,7 @@
 #include <QQuickView>
 #include <QQuickItem>
 #include <QQmlEngine>
+#include <QtQuickControls2/QQuickStyle>
 #include "CatConfig.h"
 #include "QCatGrayQuickPlugins.h"
 #include "QCatGrayQuickWidget.h"
@@ -35,6 +36,7 @@ void CatGrayQuickWidgetTest::InitProperty()
 {
     QCatGrayQuickPlugins qcatgrayquickplugins;
     qcatgrayquickplugins.InitQCatGrayQuickPlugins(m_pCatGrayQuickWidget->view()->engine());
+    //QQuickStyle::setStyle("Basic");
 }
 
 void CatGrayQuickWidgetTest::InitConnect()

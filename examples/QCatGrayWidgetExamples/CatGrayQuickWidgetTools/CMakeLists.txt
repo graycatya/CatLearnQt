@@ -12,8 +12,8 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
-find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets Quick QuickWidgets REQUIRED)
-find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Quick QuickWidgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Gui Widgets Quick QuickWidgets QuickControls2 REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Widgets Quick QuickWidgets QuickControls2 REQUIRED)
 
 file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/*.h"
                     "${CMAKE_CURRENT_SOURCE_DIR}/*.cpp"
@@ -26,6 +26,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt${QT_VERSION_MAJOR}::Core
                                                 Qt${QT_VERSION_MAJOR}::Widgets
                                                 Qt${QT_VERSION_MAJOR}::Quick
                                                 Qt${QT_VERSION_MAJOR}::QuickWidgets
+                                                Qt${QT_VERSION_MAJOR}::QuickControls2
                                                 QCatGrayQrenCode_a
                                                 QCatGrayQuickQrenCodeQml_a
                                                 QCatGrayUniversal_a

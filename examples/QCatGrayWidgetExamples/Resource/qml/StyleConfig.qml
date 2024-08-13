@@ -13,8 +13,9 @@ QtObject {
     property color fpsgradient1Color: "#4E4E4E"
 
     // table style
-    property color tableviewItem_borderColor: "#D3D9D9";
-    property color tableviewItem_backColor: "#343434";
+    property color tableviewItem_borderColor: "#D3D9D9"
+    property color tableviewItem_backColor: "#fbfbfb"
+    property color tableviewHeader_backColor: "#dddddd"
 
     property ListModel themes: ListModel {
         ListElement {
@@ -23,6 +24,9 @@ QtObject {
             textColor: "#4b4642"
             fpsgradient0Color: "#9B9898"
             fpsgradient1Color: "#4E4E4E"
+            tableviewItem_borderColor: "#D3D9D9"
+            tableviewItem_backColor: "#fbfbfb"
+            tableviewHeader_backColor: "#dddddd"
         }
         ListElement {
             name: "CatGray"
@@ -30,6 +34,9 @@ QtObject {
             textColor: "#C1C1C1"
             fpsgradient0Color: "#9B9898"
             fpsgradient1Color: "#4E4E4E"
+            tableviewItem_borderColor: "#D3D9D9"
+            tableviewItem_backColor: "#343434"
+            tableviewHeader_backColor: "#656565"
         }
     }
 
@@ -41,6 +48,9 @@ QtObject {
         styleconfig.textColor = t.textColor
         styleconfig.fpsgradient0Color = t.fpsgradient0Color
         styleconfig.fpsgradient1Color = t.fpsgradient1Color
+        styleconfig.tableviewItem_borderColor = t.tableviewItem_borderColor
+        styleconfig.tableviewItem_backColor = t.tableviewItem_backColor
+        styleconfig.tableviewHeader_backColor = t.tableviewHeader_backColor
     }
 
 

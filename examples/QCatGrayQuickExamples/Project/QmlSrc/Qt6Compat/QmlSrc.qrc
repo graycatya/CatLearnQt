@@ -46,5 +46,8 @@
         <file>ControlDemos/DemoLottie.qml</file>
         <file>ControlDemos/DemoCatChat.qml</file>
         <file>ControlDemos/CatChatCommon/ChatItem.qml</file>
+        <file>ControlDemos/DemoCatTableView.qml</file>
+        <file>ControlDemos/CatTableViewCommon/QuickWidgetTableDataItem.qml</file>
+        <file>ControlDemos/CatTableViewCommon/QuickWidgetTableHeaderItem.qml</file>
     </qresource>
 </RCC>

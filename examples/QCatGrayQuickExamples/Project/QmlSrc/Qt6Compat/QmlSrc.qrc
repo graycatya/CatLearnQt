@@ -1,10 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>generalmain.qml</file>
         <file>ProjectObject.qml</file>
         <file>qmldir</file>
-        <file>Win10TitleItem.qml</file>
         <file>FunctionLayout/DefaultLayout/DefaultLayout.qml</file>
         <file>FunctionLayout/LayoutView.qml</file>
         <file>FunctionLayout/DefaultLayout/DefaultListItem.qml</file>

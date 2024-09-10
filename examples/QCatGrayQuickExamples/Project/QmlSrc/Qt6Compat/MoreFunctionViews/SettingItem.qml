@@ -235,7 +235,7 @@ Item {
                         {
                             switchtransitioncircleAnimation.from = x
                             switchtransitioncircleAnimation.to = switchtransition.checked ? parent.width - width - 1 : 1
-                            switchtransitioncircleAnimation.running = true
+                            switchtransitioncircleAnimation.restart();
                         }
                     }
                 }

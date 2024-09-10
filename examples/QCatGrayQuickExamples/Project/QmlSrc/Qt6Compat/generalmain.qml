@@ -106,7 +106,7 @@ Window {
 
         color = ProjectObject.appBackgroundColor
         ProjectObject.updateCurrentThemeed.connect(function(){
-            animation.start();
+            animation.restart();
         });
         //catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
     }

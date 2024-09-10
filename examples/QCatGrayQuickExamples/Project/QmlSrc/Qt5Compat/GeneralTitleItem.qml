@@ -246,7 +246,7 @@ Rectangle {
     Component.onCompleted: {
         color = ProjectObject.titleBackgroundColor
         ProjectObject.updateCurrentThemeed.connect(function(){
-            animation.start();
+            animation.restart();
         });
     }
 

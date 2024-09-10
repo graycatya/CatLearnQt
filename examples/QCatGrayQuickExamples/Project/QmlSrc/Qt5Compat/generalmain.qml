@@ -18,8 +18,11 @@ Window {
     minimumHeight: 600
     visible: true
 
-
     //color: ProjectObject.appBackgroundColor
+
+    CatMessage {
+        id: message
+    }
 
     ColumnLayout {
         id: rootLayout
@@ -106,7 +109,7 @@ Window {
 
         color = ProjectObject.appBackgroundColor
         ProjectObject.updateCurrentThemeed.connect(function(){
-            animation.start();
+            animation.restart();
         });
         //catLog.debug_print("system font familys: " + catconfig.systemFontFamily())
     }

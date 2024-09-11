@@ -13,6 +13,8 @@ QtObject {
         TreeLayout
     }
 
+    property var messageObj: null
+
     property int layoutState: ProjectObject.ListLayout
 
     signal updateLayoutState(int layoutstate);
@@ -188,6 +190,20 @@ QtObject {
 
     property color gridCardColor: "#0CFFFFFF"
 
+    property color message_succeed_back_color: "#f0f9eb"
+    property color message_warning_back_color: "#fdf6ec"
+    property color message_information_back_color: "#edf2fc"
+    property color message_errored_back_color: "#fef0f0"
+
+    property color message_succeed_border_color: "#e9f6e1"
+    property color message_warning_border_color: "#fbf1e2"
+    property color message_information_border_color: "#ecf0f9"
+    property color message_errored_border_color: "#fee9e9"
+
+    property color message_text_succeed_color: "#67c23a"
+    property color message_text_warning_color: "#e6a23c"
+    property color message_text_information_color: "#909399"
+    property color message_text_errored_color: "#f56c6c"
 
     signal updateCurrentThemeed();
 
@@ -347,6 +363,21 @@ QtObject {
         projectobject.lineColor = t.lineColor
 
         projectobject.gridCardColor = t.gridCardColor
+
+        projectobject.message_succeed_back_color = t.message_succeed_back_color
+        projectobject.message_warning_back_color = t.message_warning_back_color
+        projectobject.message_information_back_color = t.message_information_back_color
+        projectobject.message_errored_back_color = t.message_errored_back_color
+
+        projectobject.message_succeed_border_color = t.message_succeed_border_color
+        projectobject.message_warning_border_color = t.message_warning_border_color
+        projectobject.message_information_border_color = t.message_information_border_color
+        projectobject.message_errored_border_color = t.message_errored_border_color
+
+        projectobject.message_text_succeed_color = t.message_text_succeed_color
+        projectobject.message_text_warning_color = t.message_text_warning_color
+        projectobject.message_text_information_color = t.message_text_information_color
+        projectobject.message_text_errored_color = t.message_text_errored_color
 
         catconfig.setValue("Style", currentTheme);
         updateCurrentThemeed();
@@ -510,6 +541,21 @@ QtObject {
 
             gridCardColor: "#0CFFFFFF"
 
+            message_succeed_back_color: "#f0f9eb"
+            message_warning_back_color: "#fdf6ec"
+            message_information_back_color: "#edf2fc"
+            message_errored_back_color: "#fef0f0"
+
+            message_succeed_border_color: "#e9f6e1"
+            message_warning_border_color: "#fbf1e2"
+            message_information_border_color: "#ecf0f9"
+            message_errored_border_color: "#fee9e9"
+
+            message_text_succeed_color: "#67c23a"
+            message_text_warning_color: "#e6a23c"
+            message_text_information_color: "#909399"
+            message_text_errored_color: "#f56c6c"
+
         }
         ListElement {
             name: "White"
@@ -666,6 +712,21 @@ QtObject {
             lineColor: "#333333"
 
             gridCardColor: "#0C888888"
+
+            message_succeed_back_color: "#f0f9eb"
+            message_warning_back_color: "#fdf6ec"
+            message_information_back_color: "#edf2fc"
+            message_errored_back_color: "#fef0f0"
+
+            message_succeed_border_color: "#e9f6e1"
+            message_warning_border_color: "#fbf1e2"
+            message_information_border_color: "#ecf0f9"
+            message_errored_border_color: "#fee9e9"
+
+            message_text_succeed_color: "#67c23a"
+            message_text_warning_color: "#e6a23c"
+            message_text_information_color: "#909399"
+            message_text_errored_color: "#f56c6c"
 
         }
     }

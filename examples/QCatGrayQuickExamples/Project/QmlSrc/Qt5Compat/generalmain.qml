@@ -58,13 +58,23 @@ Window {
         rightMargin: 20
         leftMargin: 20
 
+        // layoutDirection: CatMessage.TopRightDirection
+        // layoutDirection: CatMessage.TopLeftDirection
+        layoutDirection: CatMessage.TopCenterDirection
+        // layoutDirection: CatMessage.LeftCenterDirection
+        // layoutDirection: CatMessage.RightCenterDirection
+        // layoutDirection: CatMessage.BottomCenterDirection
+        // layoutDirection: CatMessage.BottomLeftDirection
+        // layoutDirection: CatMessage.BottomRightDirection
+
+
         Timer {
             interval: 1500
             repeat: true
             running: true
             property int num: 0
             onTriggered: {
-                if(num < 2)
+                if(num < 4)
                 {
                     num++;
                     ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery. I look back at the journey that has brought me to this point, and I am filled with a sense of awe and gratitude. Every step, every challenge, and every triumph has shaped me into the person I am today.");
@@ -76,8 +86,8 @@ Window {
 
         Component.onCompleted: {
             ProjectObject.messageObj = message
-            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery. I look back at the journey that has brought me to this point, and I am filled with a sense of awe and gratitude. Every step, every challenge, and every triumph has shaped me into the person I am today.")
-
+            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today.")
+            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today,deep reflection and self-discovery.  am today.")
         }
     }
 

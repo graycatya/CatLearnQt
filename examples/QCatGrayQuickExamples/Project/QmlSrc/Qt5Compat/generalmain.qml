@@ -68,27 +68,27 @@ Window {
         // layoutDirection: CatMessage.BottomRightDirection
 
 
-        Timer {
-            interval: 1500
-            repeat: true
-            running: true
-            property int num: 0
-            onTriggered: {
-                if(num < 4)
-                {
-                    num++;
-                    ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery. I look back at the journey that has brought me to this point, and I am filled with a sense of awe and gratitude. Every step, every challenge, and every triumph has shaped me into the person I am today.");
-                } else {
-                    repeat = false
-                }
-            }
-        }
+//        Timer {
+//            interval: 1500
+//            repeat: true
+//            running: true
+//            property int num: 0
+//            onTriggered: {
+//                if(num < 4)
+//                {
+//                    num++;
+//                    ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery. I look back at the journey that has brought me to this point, and I am filled with a sense of awe and gratitude. Every step, every challenge, and every triumph has shaped me into the person I am today.");
+//                } else {
+//                    repeat = false
+//                }
+//            }
+//        }
 
-        Component.onCompleted: {
-            ProjectObject.messageObj = message
-            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today.")
-            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today,deep reflection and self-discovery.  am today.")
-        }
+//        Component.onCompleted: {
+//            ProjectObject.messageObj = message
+//            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today.")
+//            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today,deep reflection and self-discovery.  am today.")
+//        }
     }
 
     ColumnLayout {

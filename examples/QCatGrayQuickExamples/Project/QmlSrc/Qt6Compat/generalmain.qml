@@ -20,6 +20,76 @@ Window {
 
 
     //color: ProjectObject.appBackgroundColor
+    CatMessage {
+        id: message
+
+        succeed_back_color: ProjectObject.message_succeed_back_color
+        warning_back_color: ProjectObject.message_warning_back_color
+        information_back_color: ProjectObject.message_information_back_color
+        errored_back_color: ProjectObject.message_errored_back_color
+
+        succeed_border_color: ProjectObject.message_succeed_border_color
+        warning_border_color: ProjectObject.message_warning_border_color
+        information_border_color: ProjectObject.message_information_border_color
+        errored_border_color: ProjectObject.message_errored_border_color
+
+        message_text_succeed_color: ProjectObject.message_text_succeed_color
+        message_text_warning_color: ProjectObject.message_text_warning_color
+        message_text_information_color: ProjectObject.message_text_information_color
+        message_text_errored_color: ProjectObject.message_text_errored_color
+
+        succeed_border_width: 1
+        warning_border_width: 1
+        information_border_width: 1
+        errored_border_width: 1
+
+        succeed_back_radius: 3
+        warning_back_radius: 3
+        information_back_radius: 3
+        errored_back_radius: 3
+
+        message_font.pixelSize: 16
+        message_font.family: ProjectObject.fontFamily
+
+        message_width: 400
+
+        topMargin: 20
+        bottomMargin: 20
+        rightMargin: 20
+        leftMargin: 20
+
+        // layoutDirection: CatMessage.TopRightDirection
+        // layoutDirection: CatMessage.TopLeftDirection
+        layoutDirection: CatMessage.TopCenterDirection
+        // layoutDirection: CatMessage.LeftCenterDirection
+        // layoutDirection: CatMessage.RightCenterDirection
+        // layoutDirection: CatMessage.BottomCenterDirection
+        // layoutDirection: CatMessage.BottomLeftDirection
+        // layoutDirection: CatMessage.BottomRightDirection
+
+
+//        Timer {
+//            interval: 1500
+//            repeat: true
+//            running: true
+//            property int num: 0
+//            onTriggered: {
+//                if(num < 4)
+//                {
+//                    num++;
+//                    ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery. I look back at the journey that has brought me to this point, and I am filled with a sense of awe and gratitude. Every step, every challenge, and every triumph has shaped me into the person I am today.");
+//                } else {
+//                    repeat = false
+//                }
+//            }
+//        }
+
+//        Component.onCompleted: {
+//            ProjectObject.messageObj = message
+//            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today.")
+//            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today,deep reflection and self-discovery.  am today.")
+//        }
+    }
 
     ColumnLayout {
         id: rootLayout

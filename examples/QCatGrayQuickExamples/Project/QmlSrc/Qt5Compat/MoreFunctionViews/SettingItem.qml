@@ -41,6 +41,7 @@ Item {
                 id: listbutton
                 checkable: true;
                 checked: true
+                selected: true
                 Layout.preferredWidth: 80
                 Layout.preferredHeight: 80
                 background: Rectangle {
@@ -86,6 +87,7 @@ Item {
             CatButton {
                 id: treebutton
                 checkable: true;
+                selected: true
                 Layout.preferredWidth: 80
                 Layout.preferredHeight: 80
                 background: Rectangle {
@@ -129,6 +131,7 @@ Item {
             CatButton {
                 id: gridbutton
                 checkable: true;
+                selected: true
                 Layout.preferredWidth: 80
                 Layout.preferredHeight: 80
                 background: Rectangle {

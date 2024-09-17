@@ -132,6 +132,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 36
                     checkable: true;
+                    selected: true
                     background: Rectangle {
                         radius: 10
                         color: settingbutton.checked ? buttonBackColor_pressed : settingbutton.hovered ? buttonBackColor_hover : buttonBackColor_default
@@ -175,6 +176,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 36
                     checkable: true;
+                    selected: true
                     background: Rectangle {
                         radius: 10
                         color: licencebutton.checked ? buttonBackColor_pressed : licencebutton.hovered ? buttonBackColor_hover : buttonBackColor_default
@@ -219,6 +221,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 36
                     checkable: true;
+                    selected: true
                     background: Rectangle {
                         radius: 10
                         color: aboutbutton.checked ? buttonBackColor_pressed : aboutbutton.hovered ? buttonBackColor_hover : buttonBackColor_default

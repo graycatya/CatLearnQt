@@ -263,22 +263,22 @@
 <context>
     <name>MoreView</name>
     <message>
-        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/MoreView.qml" line="152"/>
-        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/MoreView.qml" line="152"/>
+        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/MoreView.qml" line="153"/>
+        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/MoreView.qml" line="153"/>
         <source>Setting</source>
         <translatorcomment>设置</translatorcomment>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/MoreView.qml" line="195"/>
-        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/MoreView.qml" line="195"/>
+        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/MoreView.qml" line="197"/>
+        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/MoreView.qml" line="197"/>
         <source>Licence</source>
         <translatorcomment>许可证</translatorcomment>
         <translation>许可证</translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/MoreView.qml" line="239"/>
-        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/MoreView.qml" line="239"/>
+        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/MoreView.qml" line="242"/>
+        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/MoreView.qml" line="242"/>
         <source>About</source>
         <translatorcomment>关于</translatorcomment>
         <translation>关于</translation>
@@ -294,8 +294,8 @@
         <translation>布局</translation>
     </message>
     <message>
-        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/SettingItem.qml" line="195"/>
-        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/SettingItem.qml" line="195"/>
+        <location filename="../../QmlSrc/Qt5Compat/MoreFunctionViews/SettingItem.qml" line="198"/>
+        <location filename="../../QmlSrc/Qt6Compat/MoreFunctionViews/SettingItem.qml" line="198"/>
         <source>Transition</source>
         <translation type="unfinished"></translation>
     </message>

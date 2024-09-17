@@ -206,5 +206,17 @@
         <file>Images/cqlogo.ico</file>
         <file>Images/Black/Chat.png</file>
         <file>Images/White/Chat.png</file>
+        <file>Images/Black/CatMessage.png</file>
+        <file>Images/Black/message_close.png</file>
+        <file>Images/Black/message_error.png</file>
+        <file>Images/Black/message_info.png</file>
+        <file>Images/Black/message_succeed.png</file>
+        <file>Images/Black/message_warning.png</file>
+        <file>Images/White/CatMessage.png</file>
+        <file>Images/White/message_close.png</file>
+        <file>Images/White/message_error.png</file>
+        <file>Images/White/message_info.png</file>
+        <file>Images/White/message_succeed.png</file>
+        <file>Images/White/message_warning.png</file>
     </qresource>
 </RCC>

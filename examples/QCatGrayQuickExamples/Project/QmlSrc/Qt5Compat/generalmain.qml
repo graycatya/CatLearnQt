@@ -22,6 +22,17 @@ Window {
 
     CatMessage {
         id: message
+        showCloseButton: true
+
+        succeed_image: ProjectObject.getCurrentResourcePath() + "message_succeed.png"
+        warning_image: ProjectObject.getCurrentResourcePath() + "message_warning.png"
+        information_image: ProjectObject.getCurrentResourcePath() + "message_info.png"
+        errored_image: ProjectObject.getCurrentResourcePath() + "message_error.png"
+
+        close_button_image_Normal: ProjectObject.getCurrentResourcePath() + "message_close.png"
+        close_button_image_Hovered: ProjectObject.getCurrentResourcePath() + "message_close.png"
+        close_button_image_Pressed: ProjectObject.getCurrentResourcePath() + "message_close.png"
+        close_button_image_Disbaled: ProjectObject.getCurrentResourcePath() + "message_close.png"
 
         succeed_back_color: ProjectObject.message_succeed_back_color
         warning_back_color: ProjectObject.message_warning_back_color
@@ -67,28 +78,9 @@ Window {
         // layoutDirection: CatMessage.BottomLeftDirection
         // layoutDirection: CatMessage.BottomRightDirection
 
-
-//        Timer {
-//            interval: 1500
-//            repeat: true
-//            running: true
-//            property int num: 0
-//            onTriggered: {
-//                if(num < 4)
-//                {
-//                    num++;
-//                    ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery. I look back at the journey that has brought me to this point, and I am filled with a sense of awe and gratitude. Every step, every challenge, and every triumph has shaped me into the person I am today.");
-//                } else {
-//                    repeat = false
-//                }
-//            }
-//        }
-
-//        Component.onCompleted: {
-//            ProjectObject.messageObj = message
-//            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today.")
-//            ProjectObject.messageObj.message("As I stand here today, I find myself at a crossroads, a moment of deep reflection and self-discovery.  am today,deep reflection and self-discovery.  am today.")
-//        }
+       Component.onCompleted: {
+           ProjectObject.messageObj = message
+       }
     }
 
     ColumnLayout {

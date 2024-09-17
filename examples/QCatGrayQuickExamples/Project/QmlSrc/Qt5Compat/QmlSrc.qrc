@@ -47,5 +47,6 @@
         <file>ControlDemos/DemoCatTableView.qml</file>
         <file>ControlDemos/CatTableViewCommon/QuickWidgetTableDataItem.qml</file>
         <file>ControlDemos/CatTableViewCommon/QuickWidgetTableHeaderItem.qml</file>
+        <file>ControlDemos/DemoCatMessage.qml</file>
     </qresource>
 </RCC>

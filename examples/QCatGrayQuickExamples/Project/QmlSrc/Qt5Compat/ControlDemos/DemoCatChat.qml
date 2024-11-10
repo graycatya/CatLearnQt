@@ -31,7 +31,7 @@ Item {
                 anchors.margins: 10
                 clip: true
                 chatviewDelegate: CatChatItemBase {
-                    width: parent.width
+                    width: catchatview.width
                     height: delegate.item.height
                     chatmodel: catchatview.chatviewRepeaterModel
                     senderBgColor: ProjectObject.defaultButton_DefaultColor
@@ -110,7 +110,7 @@ Item {
                         var object = chatmodel.appendStruct(currentDatetime, "A", "A", "B", currentDatetime,
                                                             chattext.text, ChatStruct.Chat_Text)
                         object.senderimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
-                        catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
+                        catchatview.chatviewScrol.position = 1
                     }
                 }
 
@@ -145,7 +145,7 @@ Item {
                         var object = chatmodel.appendStruct(currentDatetime, "A", "B", "A", currentDatetime,
                                                             chattext.text, ChatStruct.Chat_Text)
                         object.recipientimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
-                        catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
+                        catchatview.chatviewScrol.position = 1
                     }
                 }
             }

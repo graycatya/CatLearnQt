@@ -110,7 +110,7 @@ Item {
                         var object = chatmodel.appendStruct(currentDatetime, "A", "A", "B", currentDatetime,
                                                             chattext.text, ChatStruct.Chat_Text)
                         object.senderimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
-                        catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
+                        //catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
                     }
                 }
 
@@ -145,7 +145,7 @@ Item {
                         var object = chatmodel.appendStruct(currentDatetime, "A", "B", "A", currentDatetime,
                                                             chattext.text, ChatStruct.Chat_Text)
                         object.recipientimage = ProjectObject.getCurrentResourcePath() + "Chat.png"
-                        catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
+                        //catchatview.chatviewScrol.contentY = catchatview.chatviewScrol.contentHeight
                     }
                 }
             }

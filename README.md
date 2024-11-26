@@ -17,9 +17,9 @@ CatLearnQt is released under the GPL v3 license. If you use CatLearnQt or its co
 
 | Module | README | link |
 |:--:|:--:|:--:|
-| QCatGrayCore | [README](./modules/QCatGrayCore/README.md) | [https://github.com/graycatya/QCatGrayCore](https://github.com/graycatya/QCatGrayCore) |
-| QCatGrayQuick | [README](./modules/QCatGrayQuick/README.md) | [https://github.com/graycatya/QCatGrayQuick](https://github.com/graycatya/QCatGrayQuick) |
-| QCatGrayWidgets | [README](./modules/QCatGrayWidgets/README.md) | [https://github.com/graycatya/QCatGrayWidgets](https://github.com/graycatya/QCatGrayWidgets) |
+| QCatGrayCore | [README](https://github.com/graycatya/QCatGrayCore/blob/main/README.md) | [https://github.com/graycatya/QCatGrayCore](https://github.com/graycatya/QCatGrayCore) |
+| QCatGrayQuick | [README](https://github.com/graycatya/QCatGrayQuick/blob/main/README.md) | [https://github.com/graycatya/QCatGrayQuick](https://github.com/graycatya/QCatGrayQuick) |
+| QCatGrayWidgets | [README](https://github.com/graycatya/QCatGrayWidgets/blob/main/README.md) | [https://github.com/graycatya/QCatGrayWidgets](https://github.com/graycatya/QCatGrayWidgets) |
 
 ## Quick-start your own project
 
